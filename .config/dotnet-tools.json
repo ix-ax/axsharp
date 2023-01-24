@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "xmldocmd": {
+      "version": "2.9.0",
+      "commands": [
+        "xmldocmd"
+      ]
+    },
+    "docfx": {
+      "version": "2.60.0",
+      "commands": [
+        "docfx"
+      ]
+    }
+  }
+}

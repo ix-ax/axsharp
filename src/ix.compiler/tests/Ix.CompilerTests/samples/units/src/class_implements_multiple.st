@@ -1,0 +1,11 @@
+CLASS PUBLIC _NULL_CONTEXT_MULTIPLE IMPLEMENTS IContext_Multiple, IObject_Multiple
+    
+END_CLASS   
+
+INTERFACE PUBLIC IContext_Multiple
+    
+END_INTERFACE
+
+INTERFACE PUBLIC IObject_Multiple
+    
+END_INTERFACE

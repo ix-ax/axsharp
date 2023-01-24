@@ -1,0 +1,16 @@
+﻿@inherits RenderableComponentBase
+
+<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
+    <div>
+        <label for="@(Onliner.AttributeName + "_" + id)">@Onliner.AttributeName</label>
+    </div>
+    <div class="w-100">
+        <input id="@(Onliner.AttributeName + "_" + id)"
+               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+               type="date"
+               @bind="@Onliner.Shadow" />
+        <div class="invalid-feedback">
+            @Onliner.AccessStatus.FailureReason
+        </div>
+    </div>
+</div>

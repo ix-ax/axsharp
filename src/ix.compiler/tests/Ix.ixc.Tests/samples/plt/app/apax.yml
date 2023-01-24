@@ -1,0 +1,11 @@
+name: "project-level-tests-app"
+version: 0.1.0
+type: app
+targets:
+  - "1500"
+  - axunit-llvm
+dependencies:
+  "project-level-tests-lib": ^0.1.0
+  "project-level-tests-lib2": ^0.1.0
+devDependencies:
+  "@ax/sdk": 3.0.8

@@ -1,0 +1,53 @@
+name: dev
+
+on:
+  push:
+    branches: [ "dev" ]
+    paths:
+     - 'src/**'
+     - 'cake/**'
+     - '.github/**'
+  pull_request:
+    branches: [ "dev" ]
+    paths:
+     - 'src/**'
+     - 'cake/**'
+     - '.github/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: [ubuntu-latest]  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
+
+    - name: "Setup the apax in the ci runner"
+      #uses: simatic-ax/actions/setup-apax-runner@main
+      uses: ./.github/actions/setup-apax-runner
+      with:
+        APAX_TOKEN: ${{ secrets.APAX_TOKEN }}
+        
+    - name: "Get github nuget source"
+      #uses: simatic-ax/actions/setup-apax-runner@main
+      run:  sudo dotnet nuget add source --username ix-ax --password ${{ secrets.GH_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ix-ax/index.json"
+                 
+    - name: "login to apax"  
+      run: sudo apax login -p ${{ secrets.APAX_TOKEN }}
+      shell: bash
+        
+    - name: "Build  script"  
+      run: sudo dotnet build cake/Build.csproj
+      shell: bash
+                 
+    - name: "Run build script"
+      run: sudo dotnet run --project cake/Build.csproj --do-test true --do-pack true --test-level 1
+      shell: bash         
+

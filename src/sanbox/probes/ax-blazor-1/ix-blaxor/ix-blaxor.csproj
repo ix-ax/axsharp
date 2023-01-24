@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ix\ax-blazor-1.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ix_blaxor</RootNamespace>
+  </PropertyGroup>
+
+<ItemGroup>
+  	<PackageReference Include="Ix.Presentation.Blazor" Version="0.5.0" />
+	<PackageReference Include="Ix.Presentation.Blazor.Controls" Version="0.5.0" /> 
+</ItemGroup>
+</Project>

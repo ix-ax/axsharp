@@ -1,0 +1,15 @@
+name: "ix-integration-plc"
+version: 0.0.0
+type: app
+targets:
+  - "1500"
+  - axunit-llvm
+  - plcsim
+devDependencies:
+  "@ax/sdk": 3.0.8
+variables:
+  APAX_BUILD_ARGS: [ -d ]  
+scripts:
+   ixc: dotnet run --project ..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
+
+

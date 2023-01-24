@@ -1,0 +1,33 @@
+﻿@page "/ManualUi"
+@inherits RenderableComponentBase
+
+<PageTitle>Customized UI</PageTitle>
+
+<h1>Fully custom UI</h1>
+
+<div class="container-sm">
+    <div class="row align-items-start">
+        <div class="col">
+            <p>Counter: @Entry.Plc.oop_counter.Counter.Cyclic</p>
+        </div>
+        <div class="col">
+            <input @bind="@Entry.Plc.oop_counter.Counter.Cyclic" />
+        </div>
+        <div class="col">
+            <input @bind="@Entry.Plc.oop_counter.AllowCounter.Cyclic" class="form-check-input mt-0" type="checkbox" value="" aria-label="If checked counter will run.">
+        </div>
+        <div class="col">
+            <button @onclick="() => Entry.Plc.oop_counter.Counter.SetAsync(0)" type="button" class="btn btn-primary">Reset</button>
+        </div>
+    </div>
+</div>
+
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        UpdateValuesOnChange(Entry.Plc.oop_counter);
+    }
+}
+

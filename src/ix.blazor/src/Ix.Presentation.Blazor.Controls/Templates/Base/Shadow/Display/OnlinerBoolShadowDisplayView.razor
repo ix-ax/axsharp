@@ -1,0 +1,17 @@
+﻿@inherits RenderableComponentBase
+
+<div class="form-group @CssSymbol(Onliner.Symbol)">
+    <div>
+        <label for="@(Onliner.AttributeName + "_" + id)">@Onliner.AttributeName</label>
+    </div>
+    <div class="form-check form-switch">
+        <input id="@(Onliner.AttributeName + "_" + id)"
+               class="form-check-input @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+               type="checkbox"
+               @bind="Onliner.Shadow"
+               disabled>
+        <div class="invalid-feedback">
+            @Onliner.AccessStatus.FailureReason
+        </div>
+    </div>
+</div>

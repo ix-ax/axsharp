@@ -1,0 +1,8 @@
+name: "s"
+version: 0.0.0
+type: app
+targets:
+  - "1500"
+  - axunit-llvm
+devDependencies:
+  "@ax/stc": 4.2.19

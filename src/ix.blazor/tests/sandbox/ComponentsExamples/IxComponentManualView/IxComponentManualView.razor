@@ -1,0 +1,21 @@
+﻿@inherits RenderableViewModelComponentBase<IxComponentManualViewModel>
+@namespace ax_blazor_example
+<h3>IxComponentManualView</h3>
+
+<input type="checkbox" @bind="@ViewModel.Component.ix_bool.Cyclic" />
+
+<p>IxInt value: @ViewModel.Component.ix_int.Cyclic</p>
+<p>IxString value: @ViewModel.Component.ix_string.Cyclic</p>
+
+<input type="text" @bind="ViewModel.ViewModelProperty" />
+@code
+{
+  
+
+    
+
+    protected override void OnInitialized()
+    {
+        UpdateValuesOnChange(ViewModel.Component);
+    }
+}

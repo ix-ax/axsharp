@@ -1,0 +1,64 @@
+﻿
+
+    @switch (LayoutName)
+    {
+        case "TabControlLayout":
+            {
+                <TabPage Text="@ChildName">
+                    @ChildContent
+                </TabPage>
+                break;
+            }
+        case "WrapPanelLayout":
+            {
+
+                <div class="p-2">
+                    @ChildContent
+                </div>
+                break;
+            }
+        case "GroupBoxLayout":
+            {
+
+                <div class="p-2">
+                    @ChildContent
+                </div>
+                break;
+            }
+        case "UniformGridLayout":
+            {
+
+                <div class="p-2" style=" flex: 1;" >
+                    @ChildContent
+                </div>
+                break;
+            }
+
+        default:
+
+            @ChildContent
+            break;
+    }
+
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public ITwinElement Twin { get; set; }
+    [Parameter]
+    public Type ChildrenLayout { get; set; }
+    [Parameter]
+    public bool SetParentLayout { get; set; }
+    [Parameter]
+    public string ChildName { get; set; }
+
+    public string LayoutName { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LayoutName = ChildrenLayout == null ? "" : ChildrenLayout.Name;
+        base.OnInitialized();
+    }
+}

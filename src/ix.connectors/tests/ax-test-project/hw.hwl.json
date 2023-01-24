@@ -1,0 +1,8 @@
+{
+    "Device": {
+      "PLC_1": {
+        "Type": "6ES7 516-3AN01-0AB0",
+        "Firmware": "V2.9"        
+      }
+    }
+  }

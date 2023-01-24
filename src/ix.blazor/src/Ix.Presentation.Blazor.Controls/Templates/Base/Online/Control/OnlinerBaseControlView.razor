@@ -1,0 +1,29 @@
+﻿@inherits RenderableComponentBase
+@typeparam T
+
+<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
+    <div>
+        <label for="@(Onliner.AttributeName + "_" + id)" class="form-label">@Onliner.AttributeName</label>
+    </div>
+    <div>
+        @if (IsNumeric(typeof(T)))
+        {
+            <input id="@(Onliner.AttributeName + "_" + id)"
+               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+                   type="number"
+                   step=any
+                   @bind=@Onliner.Cyclic />
+        }
+        else
+        {
+            <input id="@(Onliner.AttributeName + "_" + id)"
+               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+                   type="text"
+                   step=any
+                   @bind=@Onliner.Cyclic />
+        }
+        <div class="invalid-feedback">
+            @Onliner.AccessStatus.FailureReason
+        </div>
+    </div>
+</div>

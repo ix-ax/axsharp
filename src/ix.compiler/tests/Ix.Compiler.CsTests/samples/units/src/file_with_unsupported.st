@@ -1,0 +1,5 @@
+NAMESPACE Unsupported
+  FUNCTION SomeFunction : INT
+    ;
+  END_FUNCTION  
+END_NAMESPACE

@@ -1,0 +1,17 @@
+﻿@inherits RenderableComponentBase
+@typeparam T
+
+<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
+    <div>
+        <label>@Onliner.AttributeName</label>
+    </div>
+    <div>
+        <input class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+               readonly="readonly"
+               style="background-color: transparent"
+               value="@EnumToIntConverter.Convert(@Onliner.Shadow,null,null,null)  " />
+        <div class="invalid-feedback">
+            @Onliner.AccessStatus.FailureReason
+        </div>
+    </div>
+</div>

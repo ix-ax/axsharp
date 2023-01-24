@@ -1,0 +1,30 @@
+ myBOOL	        
+        myBYTE	        
+        myWORD	        
+        myDWORD	        
+        myLWORD	        
+        mySINT	        
+        myINT	        
+        myDINT	        
+        myLINT	        
+        myUSINT	        
+        myUINT	        
+        myUDINT	        
+        myULINT	        
+        myREAL	        
+        myLREAL	        
+        myTIME	        
+        myLTIME	        
+        myDATE	        
+        myLDATE	        
+        myTIME_OF_DAY	
+        myLTIME_OF_DAY	
+        myDATE_AND_TIME 
+        myLDATE_AND_TIME
+        myCHAR	        
+        myWCHAR	        
+        mySTRING	    
+        myWSTRING	  
+ 
+
+maxsmatch

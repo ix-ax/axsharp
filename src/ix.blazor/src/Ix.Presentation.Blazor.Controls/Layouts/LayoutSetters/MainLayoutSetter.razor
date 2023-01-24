@@ -1,0 +1,38 @@
+﻿
+
+    @if (_layoutName == "GroupBoxLayout")
+    {
+        <GroupBoxLayout Body="@ChildContent" GroupName="@GroupBoxName" />
+    }
+    else
+    {
+        <LayoutView Layout="@LayoutType">
+            @ChildContent
+        </LayoutView>
+    }
+
+
+
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string Class { get; set; }
+    [Parameter]
+    public Type LayoutType { get; set; }
+    [Parameter]
+    public string GroupBoxName { get; set; }
+
+    private string _layoutName;
+
+    protected override void OnInitialized()
+    {
+
+        _layoutName = LayoutType == null ? "" : LayoutType.Name;
+        if (_layoutName == "GroupBoxLayout") LayoutType = null;
+
+        base.OnInitialized();
+    }
+}

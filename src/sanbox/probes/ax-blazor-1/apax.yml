@@ -1,0 +1,10 @@
+name: "ax-blazor-1"
+version: 0.0.0
+type: app
+targets:
+  - "1500"
+  - axunit-llvm
+devDependencies:
+  "@ax/sdk": 3.0.2
+dependencies:
+  "@ax/trace": ^2.3.4

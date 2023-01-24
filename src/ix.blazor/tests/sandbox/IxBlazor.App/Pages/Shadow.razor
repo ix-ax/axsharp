@@ -1,0 +1,21 @@
+﻿@page "/shadow"
+<h3>Shadow COntrol</h3>
+<RenderableContentControl Presentation="ShadowControl"
+                          Context="@Entry.Plc.MAINC.instanceOfstBlazor">
+
+</RenderableContentControl>
+
+<button class="btn btn-primary" @onclick="FlushOnlineToShadow">FlushOnlineToShadow</button>
+<button class="btn btn-primary" @onclick="FlushShadowToOnline">FlushShadowToOnline</button>
+
+@code
+{
+    private void FlushOnlineToShadow()
+    {
+        //Entry.Plc.MAINC.instanceOfstBlazor.FlushOnlineToShadow();
+    }
+    private void FlushShadowToOnline()
+    {
+        //Entry.Plc.MAINC.instanceOfstBlazor.FlushShadowToOnline();
+    }
+}

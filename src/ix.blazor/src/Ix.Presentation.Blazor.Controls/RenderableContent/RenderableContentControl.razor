@@ -1,0 +1,210 @@
+﻿@*This class is view part of RenderableContentControl. It contains UI generation pipeline.*@
+
+    @*Call rendering method over context object*@
+    <div class="@Class">
+        @RenderComponent(_context)
+    </div>
+
+
+
+@code
+{
+    private RenderFragment RenderComponent(ITwinElement element) => __builder =>
+    {
+        // if it is primitive type, just generate
+        if (element is ITwinPrimitive)
+        {
+            @GenerateValueTag(element)
+            return;
+        }
+
+        //try to find complex component (also try predecessors) and generate it
+        var twin = (ITwinObject)element;
+        var twinType = twin.GetType();
+        var component = ViewLocatorBuilder(twinType, Presentation, ComponentService.GetComponent);
+        if (component != null)
+        {
+            @CreateComplexComponent(twin, component);
+        }
+        else
+        {
+            var groupName = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
+            //otherwise render children and set MainLayout
+                <GroupContainerAttributeSetter GroupType="_groupContainer" GroupName="@groupName">
+                    <MainLayoutSetter LayoutType="@MainLayoutType" GroupBoxName="@groupName">
+                        @RenderChildren(twin, MainLayoutType)
+                    </MainLayoutSetter>
+                </GroupContainerAttributeSetter>
+        }
+
+    };
+
+    private RenderFragment RenderChildren(ITwinObject twin, Type parentLayout) => __builder =>
+    {
+        var children = twin.GetKids();
+        var enumerator = children.GetEnumerator();
+        bool canEnumerate = enumerator.MoveNext();
+        while (canEnumerate)
+        {
+            var child = enumerator.Current;
+            if (HasRenderIgnoreAttribute(Presentation.ToString(), child))
+            {
+                canEnumerate = enumerator.MoveNext();
+                continue;
+            }
+            if (child == null) break;
+            //detect, if we have groupLayout
+            var groupLayout = TryLoadLayoutTypeFromProperty(child);
+            if (groupLayout == null)
+            {
+                //if is complex object, and main layout is null, you can generate it to the base type
+                if (child is ITwinObject && TryLoadLayoutType(child) == null)
+                {
+                    @Generator(child, parentLayout)
+                }
+                else
+                { 
+                    var name = String.IsNullOrEmpty(child.AttributeName) ? child.GetSymbolTail() : child.AttributeName;
+                    //otherwise is value tag or has mainLayout set, add children layout and continue
+                    <ChildrenLayoutPropSetter ChildName="@name"
+                                              ChildrenLayout="@parentLayout"
+                                              ChildContent="@Generator(child,null)" />
+                }
+                canEnumerate = enumerator.MoveNext();
+            }
+            else
+            {
+                //otherwise we have a group, create group layout and add children there
+                var group = CreateGroup(enumerator, child, groupLayout, parentLayout, canEnumerate);
+                var groupContainer = TryLoadGroupTypeFromProperty(child);
+
+                <GroupLayoutSetter ParentLayout="@parentLayout"
+                            GroupLayout="@groupLayout"
+                            GroupContainer="@groupContainer"
+                            GroupName="@group.GroupName">
+                @RenderGroup(group, groupLayout)
+                </GroupLayoutSetter>
+
+            }
+
+        }
+    };
+
+
+    private RenderFragment RenderGroup(Group group, Type groupLayout) => __builder =>
+    {
+        foreach (var child in group.GroupElements)
+        {
+           
+            //if child is complex, we can again call recursively and generate it's groups
+            if (child is ITwinObject complex)
+            {
+                @Generator(complex, group.GroupLayout)
+            }
+            else
+            {
+             var name = String.IsNullOrEmpty(child.AttributeName) ? child.GetSymbolTail() : child.AttributeName;
+            <ChildrenLayoutPropSetter ChildName="@name"
+                                      ChildrenLayout="@groupLayout"
+                                      ChildContent="@Generator(child, groupLayout)" />
+            }
+        }
+
+    };
+    
+    private RenderFragment Generator(ITwinElement kid, Type layout) => __builder =>
+    {
+       
+        if (IsEnumerator(kid))
+        {
+            var enumDiscriminatorAttribute = AttributesHandler.GetEnumeratorDiscriminatorAttribute(kid);
+            @GenerateEnum(enumDiscriminatorAttribute, kid)
+        }
+        else if (kid is OnlinerBase)
+        {
+            ITwinPrimitive primitiveKid = (ITwinPrimitive)kid;
+            @GeneratePrimitive(primitiveKid)
+        }
+        else
+        {
+            ITwinObject complexKid = (ITwinObject)kid;
+            @GenerateComplex(complexKid, layout)
+        }
+
+    };
+
+    private RenderFragment GenerateComplex(ITwinObject twin, Type layout) => __builder =>
+    {
+        Type mainLayout = null;
+      
+        var component = ViewLocatorBuilder(twin.GetType(), Presentation, ComponentService.GetComponent);
+        if (component != null)
+        {
+            var name = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
+            <ChildrenLayoutPropSetter ChildName="@name"
+                                      ChildrenLayout="layout"
+                                      ChildContent="@CreateComplexComponent(twin, component)" />
+        }
+        else
+        {
+            if(TryLoadLayoutTypeFromProperty(twin) == null)
+            {
+                mainLayout = TryLoadLayoutType(twin);
+            }
+
+            if (mainLayout != null)
+            {
+                //try load group type from twin
+                var groupContainer = TryLoadGroupType(twin);
+                var groupName = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
+                <GroupContainerAttributeSetter GroupType="groupContainer" GroupName="@groupName">
+                    <MainLayoutSetter LayoutType="mainLayout" GroupBoxName="@groupName">
+                        @RenderChildren(twin, mainLayout)
+                    </MainLayoutSetter>
+                </GroupContainerAttributeSetter>
+            }
+            else
+            {
+                @RenderChildren(twin, layout)
+            }
+        }
+    };
+
+
+    private RenderFragment GeneratePrimitive(ITwinPrimitive primitiveKid) => __builder =>
+    {
+        var primitiveKidType = primitiveKid.GetType();
+        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, Presentation, ComponentService.GetBaseComponent);
+        //if component not found, use BaseGenericComponent
+        if (primitiveComponent == null)
+        {
+            var (baseName, genericTypeArg) = GetGenericInfo(primitiveKidType);
+            bool IsEnum = false;
+            primitiveComponent = ViewGenericLocatorBuilder(baseName, Presentation, genericTypeArg, IsEnum);
+        }
+        @CreatePrimitiveComponent(primitiveKid, primitiveComponent)
+    };
+
+
+     private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinElement kid) => __builder =>
+     {
+        var enumKidType = kid.GetType();
+        var (baseName, genericTypeArg) = GetGenericInfo(enumKidType);
+        bool IsEnum = true;
+        var component = ViewGenericLocatorBuilder(baseName, Presentation, genericTypeArg, IsEnum);
+        @CreateEnumComponent(enumDiscriminatorAttribute, kid, component)
+     };
+
+    private RenderFragment GenerateValueTag(ITwinElement element) => __builder =>
+    {
+        if (IsEnumerator(element))
+        {
+            @GenerateEnum(AttributesHandler.GetEnumeratorDiscriminatorAttribute(element), element)
+        }
+        else
+        {
+            @GeneratePrimitive((ITwinPrimitive)element)
+        }
+    };
+
+}

@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "ix.sln",
+    "projects": [  
+      "ix.templates\\working\\ix.templates.csproj"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "ix.ixc": {
+      "version": "0.6.4-alpha.59",
+      "commands": [
+        "ixc"
+      ]
+    }
+  }
+}

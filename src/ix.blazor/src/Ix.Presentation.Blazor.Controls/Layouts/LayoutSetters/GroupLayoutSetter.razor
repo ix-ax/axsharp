@@ -1,0 +1,95 @@
+﻿@*if it's only one group and the group layout it's not set, just render group and let set layout on kids setter*@
+
+@switch (LayoutName)
+{
+    case "TabControlLayout":
+        {
+            //if parent is TabControl, create tab page from group and set layout from whole group
+            <TabPage Text="@GroupName">
+                <GroupContainerAttributeSetter GroupType="GroupContainer" GroupName="@GroupName">
+                    <LayoutView Layout="GroupLayout">
+                        @ChildContent
+                    </LayoutView>
+                </GroupContainerAttributeSetter>
+            </TabPage>
+
+            break;
+        }
+    case "WrapPanelLayout":
+        {
+
+            <div class="p-2 wrapItem">
+                <GroupContainerAttributeSetter GroupType="GroupContainer" GroupName="@GroupName">
+                    <LayoutView Layout="GroupLayout">
+                        @ChildContent
+                    </LayoutView>
+                </GroupContainerAttributeSetter>
+            </div>
+
+
+            break;
+        }
+    case "GroupBoxLayout":
+        {
+
+            <div class="p-2">
+                <GroupContainerAttributeSetter GroupType="GroupContainer" GroupName="@GroupName">
+                    <LayoutView Layout="GroupLayout">
+                        @ChildContent
+                    </LayoutView>
+                </GroupContainerAttributeSetter>
+            </div>
+
+            break;
+        }
+    case "UniformGridLayout":
+        {
+
+            <div class="p-2 flex-even uniformGridItem">
+                <GroupContainerAttributeSetter GroupType="GroupContainer" GroupName="@GroupName">
+                    <LayoutView Layout="GroupLayout">
+                        @ChildContent
+                    </LayoutView>
+                </GroupContainerAttributeSetter>
+            </div>
+
+            break;
+        }
+    default:
+       
+        <GroupContainerAttributeSetter GroupType="GroupContainer" GroupName="@GroupName">
+            <LayoutView Layout="GroupLayout">
+                @ChildContent
+            </LayoutView>
+        </GroupContainerAttributeSetter>
+        
+
+        break;
+
+}
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public ITwinElement Twin { get; set; }
+    [Parameter]
+    public string GroupName { get; set; }
+    [Parameter]
+    public Type GroupLayout { get; set; }
+    [Parameter]
+    public Type GroupContainer { get; set; }
+    [Parameter]
+    public Type ParentLayout { get; set; }
+    [Parameter]
+    public int GroupedCount { get; set; }
+
+    public string LayoutName { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LayoutName = ParentLayout == null ? "" : ParentLayout.Name;
+        base.OnInitialized();
+    }
+}

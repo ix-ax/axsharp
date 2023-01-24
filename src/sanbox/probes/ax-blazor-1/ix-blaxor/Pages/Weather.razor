@@ -1,0 +1,36 @@
+﻿@page "/weather"
+
+<PageTitle>Weather-form-simatic-ax</PageTitle>
+
+<h1>Weather</h1>
+
+@Entry.Plc.myINT.Cyclic
+
+<div class="container text-left">
+    <div class="row">
+        <div class="col">
+            <div>
+                <RenderableContentControl Presentation="Display"
+                                          Context="@Entry.Plc.myINT" />
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                <RenderableContentControl Presentation="Control"
+                                          Context="@Entry.Plc.weather" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button class="btn-danger" @onclick="@IncrementTemperature">Please press me</button>
+<button type="button" class="btn-dark" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="I told you not to do it. Did I?">Click to toggle popover</button>
+
+@code {
+
+    private void IncrementTemperature()
+    {
+        Entry.Plc.weather.Temperature.Synchron = Entry.Plc.weather.Temperature.Synchron + 1;
+    }
+}
