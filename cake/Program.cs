@@ -385,7 +385,7 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 
         if (Helpers.CanReleaseInternal())
         {
-            var githubToken = context.Environment.GetEnvironmentVariable("gh-packages-ix-ax");
+            var githubToken = context.Environment.GetEnvironmentVariable("GH_TOKEN");
             var githubClient = new GitHubClient(new ProductHeaderValue("IX"));
             githubClient.Credentials = new Credentials(githubToken);
 
