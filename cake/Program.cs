@@ -362,7 +362,7 @@ public sealed class PushPackages : FrostingTask<BuildContext>
                 context.DotNetNuGetPush(nugetFile.FullName,
                     new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings()
                     {
-                        ApiKey = Environment.GetEnvironmentVariable("gh-packages-ix-ax"),
+                        ApiKey = Environment.GetEnvironmentVariable("GH_TOKEN"),
                         Source = "https://nuget.pkg.github.com/ix-ax/index.json",
                         SkipDuplicate = true
                     });
