@@ -28,14 +28,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: '0'   
-        
-    - name: "Get github nuget source"
-      #uses: simatic-ax/actions/setup-apax-runner@main
-      run:  dotnet nuget add source --username PTKu --password ${{ secrets.GH_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ix-ax/index.json"
-                 
-    - name: "login to apax"  
-      run: apax login -p ${{ secrets.APAX_TOKEN }}      
-        
+                   
     - name: "Build  script"  
       run: dotnet build cake/Build.csproj
                        
