@@ -2,6 +2,12 @@
 
 The **IX** is a series of tools that extend SIMATIC AX (Automation Xpansion) with a flexible and powerful connection with .NET ecosystem. IX includes a compiler (`ixc`) that translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application. Furthermore, presentation libraries provide additional features for the automated rendering of PLC data in the UI/HMI.
 
+## State of the project
+
+This project is under development; however, we will be releasing versions that you can play with before the release of the full version. This project follows [semantic versioning](https://semver.org/).
+
+All versions released with a major version number `0` (e.g. 0.10.0) can have breaking changes to the previous version at any moment. Stable versions will be released with a major version number greater than `0` (e.g. 1.2.1).
+
 **IX** is the underlying technology for the [ix.framework](https://github.com/ix-ax/ix.framework) that will provide a series of libraries and components for building automation projects.
 
 ## Disclaimer
@@ -86,12 +92,6 @@ Entry.Plc.weather.GeoLocation.Write();
 
 ![](assets/pics/2022-12-20-06-54-08.png)
 
-
-## State of the project
-
-This project is under development; however, we will be releasing versions that you can play with before the release of the full version. This project follows [semantic versioning](https://semver.org/).
-
-All versions released with a major version number `0` (e.g. 0.10.0) can have breaking changes to the previous version at any moment. Stable versions will be released with a major version number greater than `0` (e.g. 1.2.1).
 
 ## Getting started
 
