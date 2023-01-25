@@ -125,7 +125,7 @@ Renderer will generate following UI:
 
 ![alt text](assets/pipeline.png "UI generated with presentation pipeline")
 
-Primitive types are generated in **Control** presentation type whereas IxComponent is generated in **Manual** presentation type, because Manual view was found first.
+Primitive types are generated in **Control** presentation type whereas IxComponent is generated in **Manual** presentation type, because Manual view have been found first.
 
 <div id='id-renderingore'/>
 
@@ -157,6 +157,7 @@ END_CLASS
 ```
 
 Renderer will render following UI:
+
 ![alt text](assets/renderignore_labels.png "Renderignore and custom labels")
 
 Properties *testEnum* and *testIxComponent* are ignored and the rest of the elements have custom labels.
@@ -183,7 +184,7 @@ Currently, the framework contains a default style that can be added as a referen
 ```
  <link rel="stylesheet" href="/_content/IX.Presentation.Blazor.Controls/css/ix-bootstrap.min.css">
 ```
-It is possible to add built-in javascript libraries aswell:
+It is possible to add built-in javascript libraries as well:
 ```
     <script src="/_content/IX.Presentation.Blazor.Controls/js/ix-bootstrap.bundle.min.js"></script>
     <script src="/_content/IX.Presentation.Blazor.Controls/js/jquery-3.6.0.min.js"></script>

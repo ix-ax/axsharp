@@ -96,23 +96,23 @@ Consider following the plc code:
 CLASS stMultipleLayouts
 	VAR PUBLIC 
 		{#ix-attr:[Container(Layout.Stack)]}
-		{attribute addProperty Name "A1"}
+		{#ix-set:AttributeName = "A1"}
 		Piston_A1 : STRING;
-		{attribute addProperty Name "A2"}
+		{#ix-set:AttributeName = "A2"}
 		Piston_A2 : STRING;
-		{attribute addProperty Name "A3"}
+		{#ix-set:AttributeName = "A3"}
 		Piston_A3 : STRING;
-		{attribute addProperty Name "A4"}
+		{#ix-set:AttributeName = "A4"}
 		Piston_A4 : STRING;
 		
 		{#ix-attr:[Container(Layout.Wrap)]}
-		{attribute addProperty Name "A5"}
+		{#ix-set:AttributeName = "A5"}
 		Piston_A21 : INT;
-		{attribute addProperty Name "A6"}
+		{#ix-set:AttributeName = "A6"}
 		Piston_A22 : INT;
-		{attribute addProperty Name "A7"}
+		{#ix-set:AttributeName = "A7"}
 		Piston_A23 : INT;
-		{attribute addProperty Name "A8"}
+		{#ix-set:AttributeName = "A8"}
 		Piston_A24 : INT;
 	END_VAR 
 END_CLASS
