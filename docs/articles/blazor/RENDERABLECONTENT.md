@@ -20,7 +20,7 @@ This file describes the purpose, features and usage of the **RenderableContentCo
 
 RenderableContentControl is a Blazor component, which is able to automatically generate UI from C# objects acquired within Ix Framework. 
 Ix compiler will create twin C# classes of PLC classes, which instances can be pass to RenderableContentControl to generate corresponding views. 
-It can both complex objects (*ITwinObject* type) and primitive objects containing values (*ITwinPrimitive* type).
+It can render both complex objects (*ITwinObject* type) and primitive objects containing values (*ITwinPrimitive* type).
 In addition, resulting UI can be adjusted with attributes from PLC code.
 
  ---   

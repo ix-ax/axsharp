@@ -1,4 +1,3 @@
-[wip]
 # Ix.Presentation.Blazor
 
 Ix.Presentation.Blazor is set of libraries, which provides automatic generation of UI and custom styles.  
@@ -15,7 +14,7 @@ Ix.Presentation.Blazor is set of libraries, which provides automatic generation 
 
  ---
 ## Installing
-After Blazor server project is created, with following step Ix.Presentation can be installed:
+
 
 ### **Install latest NuGet package Ix.Presentation.Blazor.Controls**
 
