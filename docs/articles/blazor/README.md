@@ -7,16 +7,17 @@ Ix.Presentation.Blazor is set of libraries, which provides automatic generation 
 
 ## Prerequisites
 
+[Checkout you have installed all prerequisites](../../README.md#prerequisites)
 
-- Blazor Server project based on .NET6/.NET7
-- AX Simatic installed
-- Working PLC connector with Entry.cs class (see examples in this repository)
+[Install package source](../../README.md#add-package-source)
 
  ---
 ## Installing
 
 
 ### **Install latest NuGet package Ix.Presentation.Blazor.Controls**
+
+
 
 ~~~
 $ dotnet add package Ix.Presentation.Blazor.Controls 
