@@ -1,6 +1,6 @@
 # Layouts
 
-This file describes layouts, which are supported by Vortex.Presentation.Blazor framework. You will see examples and usage of supported layouts and how they can be nested.
+This file describes layouts, which are supported by Ix.Presentation.Blazor framework. 
 
 Following layouts are supported within the framework:
 
@@ -11,9 +11,9 @@ Following layouts are supported within the framework:
 - Border
 - GroupBox
 
-You can specify a layout in PLC code with the following attribute:
+Layout can by specified in PLC code with the following attribute:
 ```
-{attribute wpf [Container(Layout.Name)]}
+{#ix-attr:[Container(Layout.Name)]}
 ```
 Where *Name* is replaced with the name of one of the supported layouts.
 
@@ -28,16 +28,17 @@ UniformGrid will place elements in a row, where each element is of uniform width
 
 Let's have the following PLC code with a container attribute:
 ```
-{attribute wpf [Container(Layout.UniformGrid)]}
-TYPE stExample :
-STRUCT
-	testInteger : INT;
-	testEnum : stTestEnum;
-	testString : STRING := 'Hello World';
-	testBool : BOOL;
-END_STRUCT
-END_TYPE
+{#ix-attr:[Container(Layout.UniformGrid)]}
+CLASS stExample :
+	VAR PUBLIC 
+		testInteger : INT;
+		testEnum : stTestEnum;
+		testString : STRING := 'Hello World';
+		testBool : BOOL;
+	END_VAR  
+END_CLASS
 ```
+
 And this is the result:
 
 ![alt text](assets/uniform.png "RenderIgnore and custom labels")
@@ -54,21 +55,22 @@ This is the example behavior of wrap panel:
 ## Tabs
 Tabs layout will place each element in its own tab. You are able to switch between tabs to see corresponding UI. In example below, you can see PLC code with Layout.Tabs container attribute and corresponding auto-generated UI.
 ```
-{attribute wpf [Container(Layout.Tabs)]}
-FUNCTION_BLOCK fbWorldWeatherWatch
-VAR	
-	{attribute addProperty Name "<#North pole station#>"}
-	NorthPole : structWeatherStation := (StationICAO := 'CYRB');
+{#ix-attr:[Container(Layout.Tabs)]}
+CLASS fbWorldWeatherWatch
+	VAR PUBLIC   
+		{#ix-set:AttributeName = "North pole station"}
+		NorthPole : structWeatherStation := (StationICAO := 'CYRB');
 
-	{attribute addProperty Name "<#South pole station#>"}
-	SouthPole : structWeatherStation := (StationICAO := 'NZSP');
+		{#ix-set:AttributeName = "South pole station"}
+		SouthPole : structWeatherStation := (StationICAO := 'NZSP');
 
-	{attribute addProperty Name "<#Verl, Germany#>"}
-	Verl : structWeatherStation := (StationICAO := 'EDLP');
+		{#ix-set:AttributeName = "Verl, Germany"}
+		Verl : structWeatherStation := (StationICAO := 'EDLP');
 
-	{attribute addProperty Name "<#Kriva, Slovakia#>"}
-	Kriva : structWeatherStation := (StationICAO := 'LZIB');	
-END_VAR
+		{#ix-set:AttributeName = "Kriva, Slovakia"}
+		Kriva : structWeatherStation := (StationICAO := 'LZIB');	
+	END_VAR 
+END_CLASS
  
 ```
 ![alt text](assets/tabs.gif "Tabs layout")
@@ -87,33 +89,33 @@ GroupBox layout will create border with name of first element around auto-genera
 
 ---
 ## Nested and multiple layouts
-You can combine multiple container attributes in PLC code to create a complex layout of your elements.
+It is possible to nest multiple container attributes in PLC code to create a complex layouts.
 Consider following the plc code:
 ```
-{attribute wpf [Container(Layout.Tabs)]}
-TYPE stMultipleLayouts :
-STRUCT
-	{attribute wpf [Container(Layout.Stack)]}
-	{attribute addProperty Name "A1"}
-	Piston_A1 : STRING;
-	{attribute addProperty Name "A2"}
-	Piston_A2 : STRING;
-	{attribute addProperty Name "A3"}
-	Piston_A3 : STRING;
-	{attribute addProperty Name "A4"}
-	Piston_A4 : STRING;
-	
-	{attribute wpf [Container(Layout.Wrap)]}
-	{attribute addProperty Name "A5"}
-	Piston_A21 : INT;
-	{attribute addProperty Name "A6"}
-	Piston_A22 : INT;
-	{attribute addProperty Name "A7"}
-	Piston_A23 : INT;
-	{attribute addProperty Name "A8"}
-	Piston_A24 : INT;
-END_STRUCT
-END_TYPE
+{#ix-attr:[Container(Layout.Tabs)]}
+CLASS stMultipleLayouts
+	VAR PUBLIC 
+		{#ix-attr:[Container(Layout.Stack)]}
+		{attribute addProperty Name "A1"}
+		Piston_A1 : STRING;
+		{attribute addProperty Name "A2"}
+		Piston_A2 : STRING;
+		{attribute addProperty Name "A3"}
+		Piston_A3 : STRING;
+		{attribute addProperty Name "A4"}
+		Piston_A4 : STRING;
+		
+		{#ix-attr:[Container(Layout.Wrap)]}
+		{attribute addProperty Name "A5"}
+		Piston_A21 : INT;
+		{attribute addProperty Name "A6"}
+		Piston_A22 : INT;
+		{attribute addProperty Name "A7"}
+		Piston_A23 : INT;
+		{attribute addProperty Name "A8"}
+		Piston_A24 : INT;
+	END_VAR 
+END_CLASS
 
 ```
 You will get the following auto-generated UI:
