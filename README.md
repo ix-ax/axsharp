@@ -1,5 +1,3 @@
-# [WIP] RUNNING SOME POST PUBLISH TESTS
-
 ![](assets/pics/banner_wider.png)
 # IX
 
