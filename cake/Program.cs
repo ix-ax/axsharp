@@ -387,7 +387,7 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        if (!context.BuildParameters.DoPublish)
+        if (!context.BuildParameters.DoPublishRelease)
         {
             context.Log.Warning($"Skipping package release.");
             return;
