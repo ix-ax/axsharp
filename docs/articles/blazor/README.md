@@ -1,3 +1,4 @@
+[wip]
 # Ix.Framework.Blazor
 
 This is Ix.Framework.Blazor framework. Providing automatic generation of simple UI from PLC objects for Blazor Server application.

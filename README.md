@@ -1,3 +1,4 @@
+![](assets/pics/banner_wider.png)
 # IX
 
 The **IX** is a series of tools that extend SIMATIC AX (Automation Xpansion) with a flexible and powerful connection with .NET ecosystem. IX includes a compiler (`ixc`) that translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application. Furthermore, presentation libraries provide additional features for the automated rendering of PLC data in the UI/HMI.
@@ -102,6 +103,7 @@ To get started, visit the documentation [here](docs/README.md#getting-started).
 
 Examples can be found [here](src/ix.examples)
 
+
 ## Contributing
 
-Contributions are welcomed. Have a look at this repo [contributing document](CONTRIBUTING.md).
+Contributions are welcomed. Have a look at [contributing document](CONTRIBUTING.md).
