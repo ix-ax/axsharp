@@ -31,7 +31,7 @@ jobs:
         
     - name: "Get github nuget source"
       #uses: simatic-ax/actions/setup-apax-runner@main
-      run:  dotnet nuget add source --username ix-ax --password ${{ secrets.GH_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ix-ax/index.json"
+      run:  dotnet nuget add source --username PTKu --password ${{ secrets.GH_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ix-ax/index.json"
                  
     - name: "login to apax"  
       run: apax login -p ${{ secrets.APAX_TOKEN }}      
