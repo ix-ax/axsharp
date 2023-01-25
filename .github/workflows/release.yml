@@ -33,5 +33,5 @@ jobs:
       run: dotnet build cake/Build.csproj
                  
     - name: "Run build script"
-      run: dotnet run --project cake/Build.csproj --do-test true --do-pack true --test-level 100 --do-publish true      
+      run: dotnet run --project cake/Build.csproj --do-test true --do-pack true --test-level 100 --do-publish true  --do-publish-release true    
 

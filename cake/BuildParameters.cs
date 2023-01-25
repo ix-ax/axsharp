@@ -30,4 +30,7 @@ public class BuildParameters
 
     [Option('l', "test-level", Required = false, Default = 1, HelpText = "Test level 1 - 3")]
     public int TestLevel { get; set; }
+
+    [Option('r', "do-publish-release", Required = false, Default = false, HelpText = "Publishes release on GH")]
+    public bool DoPublishRelease { get; set; }
 }
