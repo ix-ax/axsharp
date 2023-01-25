@@ -1,8 +1,31 @@
+# [WIP] RUNNING SOME POST PUBLISH TESTS
+
+![](assets/pics/banner_wider.png)
 # IX
 
 The **IX** is a series of tools that extend SIMATIC AX (Automation Xpansion) with a flexible and powerful connection with .NET ecosystem. IX includes a compiler (`ixc`) that translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application. Furthermore, presentation libraries provide additional features for the automated rendering of PLC data in the UI/HMI.
 
-**IX** is the underlying technology for the [ix.framework](https://github.com/ix-ax/ix.framework) that will provide a series of libraries and components for building automation projects.
+## State of the project
+
+This project is under development; however, we are [releasing versions](https://github.com/ix-ax/ix/releases) that you can play with before the release of the full version. This project follows [semantic versioning](https://semver.org/).
+
+All versions released with a major version number `0` (e.g. 0.10.0) can have breaking changes to the previous version at any moment. Stable versions will be released with a major version number greater than `0` (e.g. 1.2.1).
+
+We plan to have production-ready libraries and tools in early spring 2024, that will cover:
+
+- compiler for building .NET twin object (ix compiler)
+- communication layer between .NET twin objects and S71500 series PLCs
+- user interface generator for Blazor application
+- application templates for quick development and deployment.
+
+
+**Documentation** is a work in progress should you find missing, unclear, or misleading content please feel free to [add an issue](https://github.com/ix-ax/ix/issues/new/choose) or to create a pull request with the fix you find appropriate.
+
+There are some **known issues** that we are looking into in the development process. The list of known issues is [here](https://github.com/ix-ax/ix/issues?q=is%3Aissue+is%3Aopen+label%3Aknown-issue).
+
+
+
+**IX** is the underlying technology for the [ix.framework](https://github.com/ix-ax/ix.framework) that will be rendered public in this organization and will provide a series of libraries and components for building automation projects.
 
 ## Disclaimer
 
@@ -87,12 +110,6 @@ Entry.Plc.weather.GeoLocation.Write();
 ![](assets/pics/2022-12-20-06-54-08.png)
 
 
-## State of the project
-
-This project is under development; however, we will be releasing versions that you can play with before the release of the full version. This project follows [semantic versioning](https://semver.org/).
-
-All versions released with a major version number `0` (e.g. 0.10.0) can have breaking changes to the previous version at any moment. Stable versions will be released with a major version number greater than `0` (e.g. 1.2.1).
-
 ## Getting started
 
 To get started, visit the documentation [here](docs/README.md#getting-started).
@@ -102,6 +119,7 @@ To get started, visit the documentation [here](docs/README.md#getting-started).
 
 Examples can be found [here](src/ix.examples)
 
+
 ## Contributing
 
-Contributions are welcomed. Have a look at this repo [contributing document](CONTRIBUTING.md).
+Contributions are welcomed. Have a look at [contributing document](CONTRIBUTING.md).

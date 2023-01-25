@@ -1,3 +1,5 @@
-# ix
+![](_media/readme/logo-color-sm.png)
 
-# take your PLC into .NET world.
+# INDUSTRIAL AUTOMATION EXPANSION
+## Bind SIMATIC AX based projects with .NET ecosystem
+

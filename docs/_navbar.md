@@ -1,5 +1,5 @@
 * # About
 
-  * [README](README.md)
+  * [What's in](README.md)
 
 
