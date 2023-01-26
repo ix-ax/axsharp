@@ -21,6 +21,21 @@ public partial class weatherBase : Ix.Connector.ITwinObject
     [ReadOnce()]
     public OnlinerInt StartCounter { get; }
 
+    [RenderIgnore()]
+    public OnlinerString RenderIgnoreAllToghether { get; }
+
+    [RenderIgnore("Control")]
+    public OnlinerString RenderIgnoreWhenControl { get; }
+
+    [RenderIgnore("Display")]
+    public OnlinerString RenderIgnoreWhenDisplay { get; }
+
+    [RenderIgnore("Control", "ShadowControl")]
+    public OnlinerString RenderIgnoreWhenControlAndShadow { get; }
+
+    [RenderIgnore("Display", "ShadowDisplay")]
+    public OnlinerString RenderIgnoreWhenDisplayAndShadow { get; }
+
     public weatherBase(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -37,6 +52,16 @@ public partial class weatherBase : Ix.Connector.ITwinObject
         StartCounter = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "this has [ReadOnce()] attribute will be readon only once...", "StartCounter");
         StartCounter.AttributeName = "this has [ReadOnce()] attribute will be readon only once...";
         StartCounter.MakeReadOnce();
+        RenderIgnoreAllToghether = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "[RenderIgnore()] must not be displayed!", "RenderIgnoreAllToghether");
+        RenderIgnoreAllToghether.AttributeName = "[RenderIgnore()] must not be displayed!";
+        RenderIgnoreWhenControl = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "[RenderIgnore(''Control'')]", "RenderIgnoreWhenControl");
+        RenderIgnoreWhenControl.AttributeName = "[RenderIgnore(''Control'')]";
+        RenderIgnoreWhenDisplay = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "[RenderIgnore(''Display'')]", "RenderIgnoreWhenDisplay");
+        RenderIgnoreWhenDisplay.AttributeName = "[RenderIgnore(''Display'')]";
+        RenderIgnoreWhenControlAndShadow = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "[RenderIgnore(''Control'', ''ShadowControl'')]", "RenderIgnoreWhenControlAndShadow");
+        RenderIgnoreWhenControlAndShadow.AttributeName = "[RenderIgnore(''Control'', ''ShadowControl'')]";
+        RenderIgnoreWhenDisplayAndShadow = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "[RenderIgnore(''Display'', ''ShadowDisplay'')]", "RenderIgnoreWhenDisplayAndShadow");
+        RenderIgnoreWhenDisplayAndShadow.AttributeName = "[RenderIgnore(''Display'', ''ShadowDisplay'')]";
         parent.AddChild(this);
         parent.AddKid(this);
     }
