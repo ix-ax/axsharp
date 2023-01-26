@@ -22,6 +22,7 @@ using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.Clean;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
+using Cake.Core.Tooling;
 using Cake.Frosting;
 using Cake.Powershell;
 using CliWrap;
@@ -234,7 +235,24 @@ public sealed class CreateArtifactsTask : FrostingTask<BuildContext>
 
         foreach (var templateCsProjFile in templateCsProjFiles)
         {
-            var packagesToUpdate = new List<string>() { "Ix.Abstractions", "Ix.Connector", "Ix.Connector.Sax.WebAPI" };
+            var packagesToUpdate = new List<string>()
+            {
+                "Ix.Abstractions", 
+                "Ix.Connector", 
+                "Ix.Connector.S71500.WebAPI", 
+                "Ix.Presentation.Blazor.Controls", 
+                "Ix.Presentation.Blazor"
+            };
+
+            foreach (var packageId in packagesToUpdate)
+            {
+                ix.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
+            }
+        }
+        var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories); 
+        foreach (var templateCsProjFile in templateToolDotnetTools)
+        {
+            var packagesToUpdate = new List<string>() { "ix.ixc" };
             foreach (var packageId in packagesToUpdate)
             {
                 ix.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
@@ -377,7 +395,7 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        if (!context.BuildParameters.DoPublish)
+        if (!context.BuildParameters.DoPublishRelease)
         {
             context.Log.Warning($"Skipping package release.");
             return;

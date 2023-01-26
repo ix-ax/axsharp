@@ -1,6 +1,6 @@
-# RenderableContent
+# RenderableContentControl
 
-This file describes the purpose, features and usage of the **RenderableContentControl** component. After reading this documentation, you will grasp the idea behind this component, see its purpose, features and how it can be used in real applications.
+This file describes the purpose, features and usage of the **RenderableContentControl** component.
 
 ## Table of Contents
 1. [What is RenderableContentControl?](#id-RenderableContentControl)
@@ -17,7 +17,11 @@ This file describes the purpose, features and usage of the **RenderableContentCo
 <div id='id-RenderableContentControl'/>
 
 ## What is RenderableContentControl?
-RenderableContentControl is a Blazor component, which is able to automatically generate UI from C# objects acquired within Ix Framework. Ix compiler will create twin C# objects of PLC objects, which instances can be pass to RenderableContentControl to generate corresponding views. It's able to generate both complex objects (*IIxObject* type) and primitive objects containing values (*IValueTag* type).
+
+RenderableContentControl is a Blazor component, which is able to automatically generate UI from C# objects acquired within Ix Framework. 
+Ix compiler will create twin C# classes of PLC classes, which instances can be pass to RenderableContentControl to generate corresponding views. 
+It can render both complex objects (*ITwinObject* type) and primitive objects containing values (*ITwinPrimitive* type).
+In addition, resulting UI can be adjusted with attributes from PLC code.
 
  ---   
 
@@ -27,16 +31,16 @@ RenderableContentControl is a Blazor component, which is able to automatically g
 ## Basic example
 Let's have following PLC structure *stExample*:
 ```T
-TYPE stExample :
-STRUCT
-	testInteger : INT;
-	testEnum : stTestEnum;
-	testString : STRING := 'Hello World';
-	testBool : BOOL;
-END_STRUCT
-END_TYPE
+CLASS stExample :
+	VAR PUBLIC 
+		testInteger : INT;
+		testEnum : stTestEnum;
+		testString : STRING := 'Hello World';
+		testBool : BOOL;
+	END_VAR    
+END_CLASS
 ```
-We can create an instance of stExample struct and run Ix build. After that, we can access instance of this struct and pass it as a parameter to the *RenderableContentControl* component like this:
+IxCompiler will create *stExample* counterpart in C#. After that, this new object can be passed as parameter to `RenderableContentControl`.
 ```C#
 <RenderableContentControl Presentation="Control"
                           Context="@Entry.Plc.MAIN.instanceOfstExample"/>
@@ -45,13 +49,12 @@ We will get the following auto-generated UI:
 
 ![alt text](assets/test_example.png "Generated UI from stExample")
 
-As you can see, the parameter *Presentation* is set to *Control*. Because of the presentation type *Control* we can modify PLC values within Blazor application. We'll get to *Presentation types* later on.
-
  ---   
 <!-- ----------------------------------------------------------------------------------- -->
 <div id='id-howitworks'/>
 
-## How it works
+## How automatic generation of UI works
+
 Ix.Presentation.Blazor framework contains two libraries: 
 - **Ix.Presentation.Blazor**
     - Base classes
@@ -61,67 +64,68 @@ Ix.Presentation.Blazor framework contains two libraries:
     - Styles
     - Layouts
     - UI templates of primitive types
-    - RenderableContentControl component
+    - *RenderableContentControl* component
 
 The diagram below represent fundamental logic of UI generation:
 
 ![alt text](assets/logic.png "Diagram of UI logic generation")
 
-- When we use *RenderableContentControl* component it accepts context in form of **IIxObject/IValueTag** instance and presentation type.
-- *RenderableContentControl* will parse the input and set presentation type for objects. 
-- It will determine, whether input instance is of type **IValueTag** or **IIxObject**:
-    - **IValueTag:** The framework will find a corresponding UI primitive template and then render the UI.
-    - **IIxObject:** The framework will try to find a corresponding UI complex template. If the complex template is found, UI will be rendered. Otherwise, **IIxObject** will be iterated down to primitive types, which then will be rendered with primitive UI templates.
+- The *RenderableContentControl* accepts as parameters instance of plc structure and presentation type.
+- Renderer will determine, whether input instance is of type **ITwinPrimitive** or **ITwinObject**:
+    - **ITwinPrimitive:** The renderer will find a corresponding UI primitive template and then render the UI.
+    - **ITwinObject:** The renderer will try to find a corresponding UI of complex template. If the complex template is found, UI will be rendered. Otherwise, **ITwinObject** will be iterated down to primitive types, which then will be rendered with primitive UI templates.
 
-There is a lot of magic under the hood, but the main idea should be clear from the diagram above. This approach can save a lot of time when doing repetitive work.
 <!-- ----------------------------------------------------------------------------------- -->
 
 ---
 <div id='id-features'/>
 
 ## Features
-This section describes features, which RenderableContentControl currently posses.
+
 <div id='id-presentation'/>
 
-### **Presentation types and Presentation pipeline**
+### **Presentation types**
 
-**Presentation types** serve for specifying mode in which UI will be rendered. Within *Ix.Presentation.Blazor* framework following presentation types are supported.
-- Display
-- Control
-- ShadowDisplay
-- ShadowControl
+**Presentation types** specify mode in which UI will be rendered. Within *Ix.Presentation.Blazor* framework following presentation types are supported.
+- `Display`
+- `Control`
+- `ShadowDisplay`
+- `ShadowControl`
 
-In the **Control** presentation type, you can modify the values of objects. On the other hand, the **Display** presentation type serves for displaying values only -> they are read-only. If no presentation type is specified, Display presentation type will be used.
+In the **Control** presentation type, values of rendered structure can be modified. 
+On the other hand, the **Display** presentation type serves for displaying values. 
+If no presentation type is specified, Display presentation type will be used.
 
-> You can create components with your own presentation types, in which you wish to generate UI. 
+### **Presentation pipeline**
 
-**Presentation pipeline** is represented by a string, where we can combine different presentation types in which UI will be rendered. 
-Each presentation type is separated by a dash '-'. RenderableContentControl will parse this string and will look for UI templates specified by presentation types in the pipeline. If the first presentation type is not found, it'll look for other one in the pipeline and so on... See the example below:
+**Presentation pipeline** is represented by a string of presentation types.
+Each presentation type is separated by a dash '-'. RenderableContentControl will parse this string and will look for UI templates specified by presentation types in the pipeline. If the first presentation type is not found, it'll look for other one in the pipeline and so on... 
 
-Let's add `testIxComponent: IxComponent` to the `stExample` structure. `IxComponent` is a component from an external library whose UI implementation is of **Manual** presentation type.
+See the example below:
+
+Let's add new property to the `stExample` structure. New type `IxComponent` is a component from an external library whose UI implementation is of **Manual** presentation type.
 
 ```
-TYPE stExample :
-STRUCT
-	testInteger : INT;
-	testEnum : stTestEnum;
-	testString : STRING := 'Hello World';
-	testBool : BOOL;
-	testIxComponent: IxComponent;  //added property
-END_STRUCT
-END_TYPE
-
+CLASS stExample :
+	VAR PUBLIC 
+		testInteger : INT;
+		testEnum : stTestEnum;
+		testString : STRING := 'Hello World';
+		testBool : BOOL;
+		testIxComponent: IxComponent;  //added property
+	END_VAR    
+END_CLASS
 ```
 Let's have the following code, where we specify the presentation pipeline:
 ```C#
 <RenderableContentControl Presentation="Manual-Control"
                           Context="@Entry.Plc.MAIN.instanceOfstExample"/>
 ```
-You will get the following auto-generated UI:
+Renderer will generate following UI:
 
 ![alt text](assets/pipeline.png "UI generated with presentation pipeline")
 
-You can see, primitive types are generated in **Control** presentation type whereas IxComponent is generated in **Manual** presentation type.
+Primitive types are generated in **Control** presentation type whereas IxComponent is generated in **Manual** presentation type, because Manual view have been found first.
 
 <div id='id-renderingore'/>
 
@@ -132,44 +136,44 @@ Thanks to the support of custom attributes in the PLC code you can specify, whic
 
 Let's have the following PLC code with attributes:
 ```
-TYPE stExample :
-STRUCT
-	{attribute addProperty Name "<#Custom label Integer#>"}
-	testInteger : INT;
+CLASS stExample :
+	VAR PUBLIC 
+		{#ix-set:AttributeName = "Custom label Integer"}
+		testInteger : INT;
 
-	{attribute clr [RenderIgnore()]}
-	testEnum : stTestEnum;
+		{#ix-attr:[RenderIgnore()]}   
+		testEnum : stTestEnum;
 
-	{attribute addProperty Name "<#Custom label String#>"}
-	testString : STRING := 'Hello World';
+		{#ix-set:AttributeName = "Custom label String"}
+		testString : STRING := 'Hello World';
 
-	{attribute addProperty Name "<#Custom label Bool#>"}
-	testBool : BOOL;
+		{#ix-set:AttributeName = "Custom label Bool"}
+		testBool : BOOL;
 
-	{attribute clr [RenderIgnore()]}
-	testIxComponent: IxComponent;
-END_STRUCT
-END_TYPE
+		{#ix-attr:[RenderIgnore()]}   
+		testIxComponent: IxComponent;
+	END_VAR  
+END_CLASS
 ```
 
-After rendering with RenderableContentControl you will get the following UI:
+Renderer will render following UI:
 
 ![alt text](assets/renderignore_labels.png "Renderignore and custom labels")
 
-You can see, *testEnum* and *testIxComponent* are ignored and the rest of the elements have custom labels.
+Properties *testEnum* and *testIxComponent* are ignored and the rest of the elements have custom labels.
 
-You can also specify `RenderIgnore` on an element, which will be ignored in the specific presentation types. For example, you can do it like this:
+It is possible to ignore properties only in specific presentation types:
 
 ```
-{attribute clr [RenderIgnore("Display","ShadowDisplay")]}
+{#ix-attr:[RenderIgnore("Display","ShadowDisplay")]}  
 testIxComponent: IxComponent;
 ```
 
 <div id='id-layouts'/>
 
 ### **Layouts**
-In the PLC code, you can use layouts attributes to customize auto-generated UI. 
-For more info about layouts and for examples look into **[LAYOUTS](LAYOUTS.MD)** file.
+Auto-generated UI can be customized by layouts.
+More information about layout is in **[LAYOUTS](LAYOUTS.md)** file.
 <div id='id-styling'/>
 
 ### **Styling**
@@ -178,14 +182,17 @@ Ix.Presentation.Blazor contains in-built styles. Styling is provided by [Bootstr
 Currently, the framework contains a default style that can be added as a reference in the Blazor application file *_Host.cshtml* in the following way:
 
 ```
- <link rel="stylesheet" href="/_content/Ix.Ix.Presentation.Controls.Blazor-experimental/css/Ix-bootstrap.min.css">
+ <link rel="stylesheet" href="/_content/IX.Presentation.Blazor.Controls/css/ix-bootstrap.min.css">
 ```
-
-> It supports a generic Bootstrap library too
-
+It is possible to add built-in javascript libraries as well:
+```
+    <script src="/_content/IX.Presentation.Blazor.Controls/js/ix-bootstrap.bundle.min.js"></script>
+    <script src="/_content/IX.Presentation.Blazor.Controls/js/jquery-3.6.0.min.js"></script>
+```
 ### **Custom components libraries**
 
-You can create a custom library of your components with corresponding views. When you reference the library from your Blazor project, the framework will automatically load its views, which then can be auto-generated with the RenderableContentControl component.
+Ix.Presentation.Controls framework provides possibility to create a custom library of components with corresponding views. 
+When library is referenced from your Blazor project, the framework will automatically load its views, which then can be auto-generated with the RenderableContentControl component.
 
 For more information about custom libraries and how to create them, look into **[LIBRARIES](LIBRARIES.md)** file.
 
