@@ -144,6 +144,9 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             if (primitiveComponent == null) return;
             __builder.OpenComponent(1, primitiveComponent.GetType());
             __builder.AddAttribute(2, "Onliner", twinPrimitive);
+
+            bool hasReadOnly = twinPrimitive.ReadWriteAccess == Connector.ValueTypes.ReadWriteAccess.Read;
+            __builder.AddAttribute(3, "IsReadOnly", hasReadOnly);
             __builder.CloseComponent();
         };
 

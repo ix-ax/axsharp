@@ -1,29 +1,44 @@
-﻿@inherits RenderableComponentBase
-@typeparam T
+﻿@typeparam T
+@inherits TemplateBase<T>
 
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
-        <label for="@(Onliner.AttributeName + "_" + id)" class="form-label">@Onliner.AttributeName</label>
+        <label for="@ComponentId" class="form-label">@Onliner.AttributeName</label>
     </div>
     <div>
-        @if (IsNumeric(typeof(T)))
-        {
-            <input id="@(Onliner.AttributeName + "_" + id)"
-               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
-                   type="number"
+            <input id="@ComponentId"
+               readonly="@IsReadOnly"
+               class="w-100 form-control @AccessStatus"
+                   type=@IsNumeric(typeof(T))
                    step=any
                    @bind=@Onliner.Cyclic />
-        }
-        else
-        {
-            <input id="@(Onliner.AttributeName + "_" + id)"
-               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
-                   type="text"
-                   step=any
-                   @bind=@Onliner.Cyclic />
-        }
+    
         <div class="invalid-feedback">
             @Onliner.AccessStatus.FailureReason
         </div>
     </div>
 </div>
+
+@code{
+
+    private string IsNumeric(Type type)
+    {
+        if (type == null) return "text";
+        switch (Type.GetTypeCode(type))
+        {
+            case TypeCode.Byte:
+            case TypeCode.Decimal:
+            case TypeCode.Double:
+            case TypeCode.Int16:
+            case TypeCode.Int32:
+            case TypeCode.Int64:
+            case TypeCode.SByte:
+            case TypeCode.Single:
+            case TypeCode.UInt16:
+            case TypeCode.UInt32:
+            case TypeCode.UInt64:
+                return "number";
+        }
+        return "text";
+    }
+}

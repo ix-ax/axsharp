@@ -79,36 +79,6 @@ namespace Ix.Presentation.Blazor.Services
             return null;
         }
 
-        public ReadOnlyAttribute GetReadOnlyAttribute(ITwinElement twinObject)
-        {
-            if (twinObject == null) return null;
-            try
-            {
-                var propertyInfo = GetPropertyViaSymbol(twinObject);
-                if (propertyInfo != null)
-                {
-                    if (propertyInfo
-                            .GetCustomAttributes().FirstOrDefault(p => p is ReadOnlyAttribute) is ReadOnlyAttribute propertyAttribute)
-                    {
-                        return propertyAttribute;
-                    }
-                }
-
-                var typeAttribute = twinObject
-                    .GetType()
-                    .GetCustomAttributes(true)
-                    .FirstOrDefault(p => p is ReadOnlyAttribute) as ReadOnlyAttribute;
-
-                return typeAttribute;
-            }
-            catch (Exception)
-            {
-                //throw;
-            }
-
-            return null;
-        }
-
         public PropertyInfo GetPropertyViaSymbol(ITwinElement twinObject)
         {
             if (twinObject == null) return null;

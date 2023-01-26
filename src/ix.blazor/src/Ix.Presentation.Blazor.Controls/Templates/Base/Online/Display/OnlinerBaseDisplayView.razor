@@ -1,13 +1,12 @@
-﻿@inherits RenderableComponentBase
-@typeparam T
-
+﻿@typeparam T
+@inherits TemplateBase<T>
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
-        <label for="@(Onliner.AttributeName + "_" + id)">@Onliner.AttributeName</label>
+        <label for="@(ComponentId)">@Onliner.AttributeName</label>
     </div>
     <div>
-        <input id="@(Onliner.AttributeName + "_" + id)" 
-               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+        <input id="@(ComponentId)" 
+               class="w-100 form-control @AccessStatus"
                style="background-color:transparent"
                readonly="readonly"
                type="text"
