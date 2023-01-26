@@ -235,7 +235,15 @@ public sealed class CreateArtifactsTask : FrostingTask<BuildContext>
 
         foreach (var templateCsProjFile in templateCsProjFiles)
         {
-            var packagesToUpdate = new List<string>() { "Ix.Abstractions", "Ix.Connector", "Ix.Connector.S71500.WebAPI" };
+            var packagesToUpdate = new List<string>()
+            {
+                "Ix.Abstractions", 
+                "Ix.Connector", 
+                "Ix.Connector.S71500.WebAPI", 
+                "Ix.Presentation.Blazor.Controls", 
+                "Ix.Presentation.Blazor"
+            };
+
             foreach (var packageId in packagesToUpdate)
             {
                 ix.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
