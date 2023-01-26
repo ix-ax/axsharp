@@ -62,3 +62,8 @@ CLASS PUBLIC MyClass
     END_VAR
 END_CLASS
 ~~~
+
+
+### See also 
+
+#### [RenderIgnore](../blazor/RENDERABLECONTENT.md#renderignore-and-custom-labels)

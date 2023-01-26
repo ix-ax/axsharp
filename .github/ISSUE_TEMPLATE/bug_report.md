@@ -26,7 +26,8 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. Microsoft Windows [Version 10.0.18363.1082]]
  - ix version
- - simatix-ax version [eg. 4024.10]
+ - simatix-ax version (attach apax.yml file)
+ - hardware/software target type and version (e.g. S71516, PLCSIM Advanced)
  - other tools used (visual studio, vscode)
 
 **Additional context**

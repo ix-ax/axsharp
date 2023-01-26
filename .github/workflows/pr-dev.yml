@@ -1,12 +1,12 @@
-name: dev
+name: pr-dev
 
-on:
-  push:
+on:  
+  pull_request:
     branches: [ "dev" ]
     paths:
      - 'src/**'
      - 'cake/**'
-     - '.github/**'  
+     - '.github/**'
   workflow_dispatch:
 
 jobs:
@@ -27,7 +27,5 @@ jobs:
       run: dotnet build cake/Build.csproj
                        
     - name: "Run build script"
-      env:
-          GH_TOKEN : ${{ secrets.GH_TOKEN }}
-      run: dotnet run --project cake/Build.csproj --do-test true --do-pack true --test-level 2 --do-publish true    
+      run: dotnet run --project cake/Build.csproj --do-test true --do-pack true --test-level 1      
 
