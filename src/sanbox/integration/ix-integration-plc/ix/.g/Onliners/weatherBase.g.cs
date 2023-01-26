@@ -21,6 +21,21 @@ public partial class weatherBase : Ix.Connector.ITwinObject
     [ReadOnce()]
     public OnlinerInt StartCounter { get; }
 
+    [RenderIgnore()]
+    public OnlinerString RenderIgnoreAllToghether { get; }
+
+    [RenderIgnore("Control")]
+    public OnlinerString RenderIgnoreWhenControl { get; }
+
+    [RenderIgnore("Display")]
+    public OnlinerString RenderIgnoreWhenDisplay { get; }
+
+    [RenderIgnore("Control", "ShadowControl")]
+    public OnlinerString RenderIgnoreWhenControlAndShadow { get; }
+
+    [RenderIgnore("Display", "ShadowDisplay")]
+    public OnlinerString RenderIgnoreWhenDisplayAndShadow { get; }
+
     public weatherBase(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -37,6 +52,16 @@ public partial class weatherBase : Ix.Connector.ITwinObject
         StartCounter = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "this has [ReadOnce()] attribute will be readon only once...", "StartCounter");
         StartCounter.AttributeName = "this has [ReadOnce()] attribute will be readon only once...";
         StartCounter.MakeReadOnce();
+        RenderIgnoreAllToghether = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "THIS HAS [RenderIgnore()] must not be displayed!", "RenderIgnoreAllToghether");
+        RenderIgnoreAllToghether.AttributeName = "THIS HAS [RenderIgnore()] must not be displayed!";
+        RenderIgnoreWhenControl = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "THIS HAS [RenderIgnore(''Control'')] must not be displayed in 'Control' presentation type!", "RenderIgnoreWhenControl");
+        RenderIgnoreWhenControl.AttributeName = "THIS HAS [RenderIgnore(''Control'')] must not be displayed in 'Control' presentation type!";
+        RenderIgnoreWhenDisplay = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "THIS HAS [RenderIgnore(''Display'')] must not be displayed in 'Display' presentation type!", "RenderIgnoreWhenDisplay");
+        RenderIgnoreWhenDisplay.AttributeName = "THIS HAS [RenderIgnore(''Display'')] must not be displayed in 'Display' presentation type!";
+        RenderIgnoreWhenControlAndShadow = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "THIS HAS [RenderIgnore(''Control'', ''ShadowControl'')] must not be displayed in 'Control' and 'ShadowControl' presentation type!", "RenderIgnoreWhenControlAndShadow");
+        RenderIgnoreWhenControlAndShadow.AttributeName = "THIS HAS [RenderIgnore(''Control'', ''ShadowControl'')] must not be displayed in 'Control' and 'ShadowControl' presentation type!";
+        RenderIgnoreWhenDisplayAndShadow = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "THIS HAS [RenderIgnore(''Display'', ''ShadowDisplay'')] must not be displayed in 'Display' and 'ShadowDisplay' presentation type!", "RenderIgnoreWhenDisplayAndShadow");
+        RenderIgnoreWhenDisplayAndShadow.AttributeName = "THIS HAS [RenderIgnore(''Display'', ''ShadowDisplay'')] must not be displayed in 'Display' and 'ShadowDisplay' presentation type!";
         parent.AddChild(this);
         parent.AddKid(this);
     }

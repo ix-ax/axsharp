@@ -46,6 +46,28 @@
                           Context="@Entry.Plc.weather_readOnly" />
 
 
+<h1>This structure has [ReadOnly()] attribute</h1>
+<p>
+    The structure values won't be written in the PLC.
+</p>
+
+
+<h1>This structures presentation type is Control attribute</h1>
+<p>
+    Members annotated with [RenderIgnore("Control")] must not be displayed.
+</p>
+
+<RenderableContentControl Presentation="Control"
+                          Context="@Entry.Plc.weather_wrapped" />
+
+
+<h1>This structures presentation type is Display attribute</h1>
+<p>
+    Members annotated with [RenderIgnore("Display")] must not be displayed.
+</p>
+
+<RenderableContentControl Presentation="Display"
+                          Context="@Entry.Plc.weather_wrapped" />
 @code {
     
 }
