@@ -1,13 +1,15 @@
-﻿@inherits RenderableComponentBase
-@typeparam T
+﻿@typeparam T
+@inherits EnumeratorsBaseOnline<T>
 
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
-        <label>@Onliner.AttributeName</label>
+        <label for="@ComponentId">@Onliner.AttributeName</label>
     </div>
     <div>
-        <select class="w-100 form-select @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
-                @bind="@Onliner.Cyclic">
+        <select id="@ComponentId"
+                class="w-100 form-select @AccessStatus"
+                @bind="@Onliner.Cyclic"
+                disabled="@IsReadOnly">
             @foreach (var name in Names)
             {
                 <option class="form-control" value=@EnumToIntConverter.ConvertBack(name,null,null,null)>@name</option>

@@ -144,6 +144,9 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             if (primitiveComponent == null) return;
             __builder.OpenComponent(1, primitiveComponent.GetType());
             __builder.AddAttribute(2, "Onliner", twinPrimitive);
+
+            bool hasReadOnly = twinPrimitive.ReadWriteAccess == Connector.ValueTypes.ReadWriteAccess.Read;
+            __builder.AddAttribute(3, "IsReadOnly", hasReadOnly);
             __builder.CloseComponent();
         };
 
@@ -167,12 +170,14 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             __builder.CloseComponent();
         };
 
-        private RenderFragment CreateEnumComponent(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinElement kid, IRenderableComponent component) => __builder =>
+        private RenderFragment CreateEnumComponent(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinPrimitive kid, IRenderableComponent component) => __builder =>
         {
             if (component == null) return;
             __builder.OpenComponent(0, component.GetType());
             __builder.AddAttribute(1, "Onliner", kid);
             __builder.AddAttribute(2, "EnumDiscriminatorAttribute", enumDiscriminatorAttribute);
+            bool hasReadOnly = kid.ReadWriteAccess == Connector.ValueTypes.ReadWriteAccess.Read;
+            __builder.AddAttribute(3, "IsReadOnly", hasReadOnly);
             __builder.CloseComponent();
         };
 

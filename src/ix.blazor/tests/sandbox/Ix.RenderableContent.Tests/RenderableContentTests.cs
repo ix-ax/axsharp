@@ -89,10 +89,10 @@ namespace Ix.RenderableContent.Tests
         }
 
         [Fact]
-        public void Render_stTestRenderIgnore_UniformGrid_TwoIgnored()
+        public void Render_stTestRenderIgnore_Display_Date_Ignored()
         {
             // Arrange
-            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestRenderIgnore.html");
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestRenderIgnoreDisplay.html");
             var html = File.ReadAllText(path);
             // Act
             var cut = RenderComponent<RenderableContentControl>(param => param
@@ -101,6 +101,35 @@ namespace Ix.RenderableContent.Tests
             // Assert
             cut.MarkupMatches(html);
         }
+
+        [Fact]
+        public void Render_stTestRenderIgnore_Control_Bool_Ignored()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestRenderIgnoreControl.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testRenderIgnore)
+            .Add(p => p.Presentation, "Control"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestRenderIgnore_ShadowDisplayControl_DateAndBool_Ignored()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestRenderIgnoreShadowDisplayControl.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testRenderIgnore)
+            .Add(p => p.Presentation, "ShadowDisplay-ShadowControl"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
 
         [Fact]
         public void Render_stTestEmpty_Success()

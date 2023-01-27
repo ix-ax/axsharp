@@ -4,7 +4,6 @@ CLASS stTestRenderIgnore
         {#ix-set:AttributeName = "<#Integer From PLC#>"}	
         testInteger : INT;
         {#ix-set:AttributeName = "<#UInteger From PLC#>"}	
-        {#ix-attr:[RenderIgnore("Display","ShadowDisplay")]}
         testUInteger : INT;
         {#ix-set:AttributeName = "<#STRING From PLC#>"}	
         testString : STRING;
@@ -16,8 +15,10 @@ CLASS stTestRenderIgnore
         testReal : REAL;
         {#ix-set:AttributeName = "<#LREAL From PLC#>"}	
         testLReal : LREAL;
+        {#ix-attr:[RenderIgnore("Display","ShadowDisplay")]}
         {#ix-set:AttributeName = "<#BOOL From PLC#>"}	
         testBool : BOOL;
+        {#ix-attr:[RenderIgnore("Control","ShadowControl")]}
         {#ix-set:AttributeName = "<#DATE From PLC#>"}
         TestDate : DATE;	
         {#ix-set:AttributeName = "<#DATE_AND_TIME From PLC#>"}	
