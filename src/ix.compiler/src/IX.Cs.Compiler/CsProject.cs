@@ -88,9 +88,32 @@ public class CsProject : ITargetProject
             .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
             .Execute(() =>
             {
+                var prjtemplate = $@"<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include=""Ix.Abstractions"" Version=""{GitVersionInformation.SemVer}"" />
+		<PackageReference Include=""Ix.Connector"" Version=""{GitVersionInformation.SemVer}"" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="".g\**"" />
+	</ItemGroup>
+</Project>";
+
                 if (!File.Exists(expectedCsProjFile))
-                    File.Copy(Path.Combine(GetExecutingAssemblyPath(), "Cs", "csproj-template.xml"),
-                        expectedCsProjFile);
+                {
+                    using (var swr = new StreamWriter(expectedCsProjFile))
+                    {
+                        swr.Write(prjtemplate);
+                    }
+                }
+                    //File.Copy(Path.Combine(GetExecutingAssemblyPath(), "Cs", "csproj-template.xml"),
+                    //    expectedCsProjFile);
             });
     }
 
