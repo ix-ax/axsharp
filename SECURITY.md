@@ -14,6 +14,6 @@ ix is in development; we will address the security issues in the latest pre-rele
 ## Reporting a Vulnerability
 
 **Please do not disclose the vulnerability in the publicly available parts of this repo.**
-The vulnerabilities should be reported to the following email ix-team@kurhajec.com
+The vulnerabilities should be reported to the following email team@ixcite.tech
 We will address the security issue in a separate workflow.
 
