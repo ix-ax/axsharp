@@ -8,7 +8,6 @@ public partial class stTestRenderIgnore : Ix.Connector.ITwinObject
     [RenderIgnore()]
     public OnlinerInt testInteger { get; }
 
-    [RenderIgnore("Display", "ShadowDisplay")]
     public OnlinerInt testUInteger { get; }
 
     public OnlinerString testString { get; }
@@ -21,8 +20,10 @@ public partial class stTestRenderIgnore : Ix.Connector.ITwinObject
 
     public OnlinerLReal testLReal { get; }
 
+    [RenderIgnore("Display", "ShadowDisplay")]
     public OnlinerBool testBool { get; }
 
+    [RenderIgnore("Control", "ShadowControl")]
     public OnlinerDate TestDate { get; }
 
     public OnlinerDateTime TestDateTime { get; }

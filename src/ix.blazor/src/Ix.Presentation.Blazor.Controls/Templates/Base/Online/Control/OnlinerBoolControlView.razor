@@ -1,12 +1,13 @@
-﻿@inherits RenderableComponentBase
+﻿@inherits TemplateBaseOnline<bool>
 
 <div class="form-group @CssSymbol(Onliner.Symbol)">
     <div>
-        <label for="@(Onliner.AttributeName + "_" + id)">@Onliner.AttributeName</label>
+        <label for="@ComponentId">@Onliner.AttributeName</label>
     </div>
     <div class="form-check form-switch">
-        <input id="@(Onliner.AttributeName + "_" + id)" 
-               class="form-check-input @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+        <input id="@ComponentId"
+               disabled="@IsReadOnly"
+               class="form-check-input @AccessStatus"
                type="checkbox"
                @bind="Onliner.Cyclic">
         <div class="invalid-feedback">

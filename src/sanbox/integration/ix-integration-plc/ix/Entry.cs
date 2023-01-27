@@ -19,7 +19,7 @@ namespace ix_integration_plc
 {
     public static class Entry
     {
-#if !dummy
+#if dummy
         public static ix_integration_plcTwinController Plc { get; } = new (ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable("AXTARGET") ?? "10.10.101.1", "Everybody", "", true));
 #else
         public static ix_integration_plcTwinController Plc { get; } = new(ConnectorAdapterBuilder.Build().CreateDummy());

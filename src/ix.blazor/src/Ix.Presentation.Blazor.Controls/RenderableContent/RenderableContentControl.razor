@@ -118,7 +118,7 @@
         if (IsEnumerator(kid))
         {
             var enumDiscriminatorAttribute = AttributesHandler.GetEnumeratorDiscriminatorAttribute(kid);
-            @GenerateEnum(enumDiscriminatorAttribute, kid)
+            @GenerateEnum(enumDiscriminatorAttribute, (ITwinPrimitive)kid)
         }
         else if (kid is OnlinerBase)
         {
@@ -186,7 +186,7 @@
     };
 
 
-     private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinElement kid) => __builder =>
+     private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinPrimitive kid) => __builder =>
      {
         var enumKidType = kid.GetType();
         var (baseName, genericTypeArg) = GetGenericInfo(enumKidType);
@@ -199,7 +199,7 @@
     {
         if (IsEnumerator(element))
         {
-            @GenerateEnum(AttributesHandler.GetEnumeratorDiscriminatorAttribute(element), element)
+            @GenerateEnum(AttributesHandler.GetEnumeratorDiscriminatorAttribute(element), (ITwinPrimitive)element)
         }
         else
         {
