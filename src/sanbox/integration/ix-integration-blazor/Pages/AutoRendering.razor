@@ -47,5 +47,24 @@
 
 <p>--------------------------------</p>
 
+<h1>Render ignore(s)</h1>
+
+<h2>This structures presentation type is Control attribute</h2>
+<p>
+    Members annotated with [RenderIgnore("Control")] must not be displayed.
+</p>
+
 <RenderableContentControl Presentation="Control"
-                          Context="@Entry.Plc.all_primitives" />
+                          Context="@Entry.Plc.weather_wrapped" />
+
+
+<h2>This structures presentation type is Display attribute</h2>
+<p>
+    Members annotated with [RenderIgnore("Display")] must not be displayed.
+</p>
+
+<RenderableContentControl Presentation="Display"
+                          Context="@Entry.Plc.weather_wrapped" />
+@code {
+    
+}
