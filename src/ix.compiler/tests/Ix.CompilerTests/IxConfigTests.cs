@@ -85,7 +85,6 @@ namespace Ix.CompilerTests
             Assert.True(File.Exists(ixConfigFile));
             Assert.Equal($"..{Path.DirectorySeparatorChar}ix", result.OutputProjectFolder);
             Assert.True(result.AxProjectFolder.EndsWith(Path.Combine("samples", "plt", "lib3")));
-           // Assert.Equal(Path.Combine("samples","plt","lib3"), result.AxProjectFolder);
         }
 
         [Fact]

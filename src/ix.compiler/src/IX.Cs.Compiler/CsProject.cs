@@ -83,12 +83,8 @@ public class CsProject : ITargetProject
         var expectedCsProjFile = Path.Combine(IxProject.OutputFolder,
             $"{MakeValidFileName(IxProject.AxProject.ProjectInfo.Name)}.csproj");
 
-        Policy
-            .Handle<IOException>()
-            .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
-            .Execute(() =>
-            {
-                var prjtemplate = $@"<Project Sdk=""Microsoft.NET.Sdk"">
+var defaultCsProjectWhenNotProvidedByTemplate =
+$@"<Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -105,15 +101,19 @@ public class CsProject : ITargetProject
 	</ItemGroup>
 </Project>";
 
+
+        Policy
+            .Handle<IOException>()
+            .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
+            .Execute(() =>
+            {
                 if (!File.Exists(expectedCsProjFile))
                 {
                     using (var swr = new StreamWriter(expectedCsProjFile))
                     {
-                        swr.Write(prjtemplate);
+                        swr.Write(defaultCsProjectWhenNotProvidedByTemplate);
                     }
                 }
-                    //File.Copy(Path.Combine(GetExecutingAssemblyPath(), "Cs", "csproj-template.xml"),
-                    //    expectedCsProjFile);
             });
     }
 
