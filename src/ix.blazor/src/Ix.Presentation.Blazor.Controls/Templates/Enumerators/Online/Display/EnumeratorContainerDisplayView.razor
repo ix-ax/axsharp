@@ -1,14 +1,15 @@
-﻿@inherits RenderableComponentBase
-@typeparam T
+﻿@typeparam T
+@inherits EnumeratorsBaseOnline<T>
 
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
-        <label>@Onliner.AttributeName</label>
+        <label for="@ComponentId">@Onliner.AttributeName</label>
     </div>
     <div>
-        <input class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+        <input id="@ComponentId"
+               class="w-100 form-control @AccessStatus"
                readonly="readonly"
-               style="background-color: transparent"
+               style=@(IsReadOnly ? "" : "background-color:transparent")
                value="@EnumToIntConverter.Convert(@Onliner.Cyclic,null,null,null)  " />
         <div class="invalid-feedback">
             @Onliner.AccessStatus.FailureReason

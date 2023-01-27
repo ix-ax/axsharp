@@ -1,34 +1,34 @@
-﻿// Ix.Presentation.Blazor.Controls
-// Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
-// See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
-
-using System;
-using Microsoft.AspNetCore.Components;
-using Ix.Connector;
+﻿using Ix.Connector;
 using Ix.Connector.ValueTypes;
-using Ix.Presentation.Blazor;
+using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online.Control
+namespace Ix.Presentation.Blazor.Controls.Templates.Enumerators.Shadow
 {
-    public partial class EnumeratorContainerControlView<T>
+    public partial class EnumeratorsBaseShadow<T>
     {
         [Parameter]
         public OnlinerBase<T> Onliner { get; set; }
         [Parameter]
         public EnumeratorDiscriminatorAttribute EnumDiscriminatorAttribute { get; set; }
+        [Parameter]
+        public bool IsReadOnly { get; set; }
+        public string AccessStatus { get; set; }
         public Array Names { get; set; }
         public EnumToIntConverter EnumToIntConverter { get; set; }
-
+        internal string ComponentId { get; set; }
         protected override void OnInitialized()
         {
             EnumToIntConverter = new EnumToIntConverter(EnumDiscriminatorAttribute);
             Names = Enum.GetNames(EnumDiscriminatorAttribute.EnumeratorType);
             UpdateValuesOnChange(Onliner);
+            AccessStatus = Onliner.AccessStatus.Failure ? "is-invalid" : "";
+            ComponentId = Onliner.GetSymbolTail() + "_" + Guid.NewGuid().ToString();
             base.OnInitialized();
         }
-        
     }
 }

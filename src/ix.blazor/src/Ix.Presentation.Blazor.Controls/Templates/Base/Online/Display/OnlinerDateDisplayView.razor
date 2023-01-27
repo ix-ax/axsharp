@@ -1,4 +1,4 @@
-﻿@inherits TemplateBase<DateOnly>
+﻿@inherits TemplateBaseOnline<DateOnly>
 
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
@@ -6,9 +6,9 @@
     </div>
     <div>
         <input id="@(ComponentId)" 
-               class="w-100 form-control @AccessStatus"
-               style="background-color:transparent"
                readonly="readonly"
+               class="w-100 form-control @AccessStatus"
+               style=@(IsReadOnly? "" : "background-color:transparent")
                type="date"
                value=@Onliner.Cyclic />
         <div class="invalid-feedback">

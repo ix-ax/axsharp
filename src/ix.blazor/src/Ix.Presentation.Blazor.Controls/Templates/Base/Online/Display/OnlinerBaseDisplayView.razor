@@ -1,14 +1,14 @@
 ﻿@typeparam T
-@inherits TemplateBase<T>
+@inherits TemplateBaseOnline<T>
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
         <label for="@(ComponentId)">@Onliner.AttributeName</label>
     </div>
     <div>
-        <input id="@(ComponentId)" 
-               class="w-100 form-control @AccessStatus"
-               style="background-color:transparent"
+        <input id="@(ComponentId)"
                readonly="readonly"
+               class="w-100 form-control @AccessStatus"
+               style=@(IsReadOnly? "" : "background-color:transparent")
                type="text"
                step=any
                value=@Onliner.Cyclic />

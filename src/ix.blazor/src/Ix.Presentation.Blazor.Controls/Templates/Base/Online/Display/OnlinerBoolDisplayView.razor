@@ -1,11 +1,11 @@
-﻿@inherits TemplateBase<bool>
+﻿@inherits TemplateBaseOnline<bool>
 
 <div class="form-group @CssSymbol(Onliner.Symbol)">
     <div>
         <label for="@(ComponentId)">@Onliner.AttributeName</label>
     </div>
     <div class="form-check form-switch">
-        <input id="@(ComponentId)" 
+        <input id="@(ComponentId)"
                class="form-check-input @AccessStatus"
                type="checkbox"
                @bind="Onliner.Cyclic"

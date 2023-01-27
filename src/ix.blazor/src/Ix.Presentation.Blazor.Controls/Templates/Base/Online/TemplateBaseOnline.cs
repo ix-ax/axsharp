@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ix.Presentation.Blazor.Controls.Templates.Base
+namespace Ix.Presentation.Blazor.Controls.Templates.Base.Online
 {
-    public partial class TemplateBase<T>
+    public partial class TemplateBaseOnline<T>
     {
         [Parameter]
         public OnlinerBase<T> Onliner { get; set; }
@@ -23,8 +23,7 @@ namespace Ix.Presentation.Blazor.Controls.Templates.Base
         {
             UpdateValuesOnChange(Onliner);
             AccessStatus = Onliner.AccessStatus.Failure ? "is-invalid" : "";
-            ComponentId = Onliner.AttributeName + "_" + Guid.NewGuid().ToString();
+            ComponentId = Onliner.GetSymbolTail() + "_" + Guid.NewGuid().ToString();
         }
     }
-    
 }

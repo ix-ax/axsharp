@@ -1,4 +1,4 @@
-﻿@inherits TemplateBase<bool>
+﻿@inherits TemplateBaseOnline<bool>
 
 <div class="form-group @CssSymbol(Onliner.Symbol)">
     <div>
@@ -6,7 +6,7 @@
     </div>
     <div class="form-check form-switch">
         <input id="@ComponentId"
-               readonly="@IsReadOnly"
+               disabled="@IsReadOnly"
                class="form-check-input @AccessStatus"
                type="checkbox"
                @bind="Onliner.Cyclic">
