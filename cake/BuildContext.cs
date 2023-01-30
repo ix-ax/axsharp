@@ -19,6 +19,8 @@ public class BuildContext : FrostingContext
 {
     public string Artifacts  => Path.Combine(Environment.WorkingDirectory.FullPath, "..//artifacts//");
 
+    public string TestResults => Path.Combine(Environment.WorkingDirectory.FullPath, "..//artifacts//TestResults.xml");
+
     public string WorkDirName => Environment.WorkingDirectory.GetDirectoryName();
 
     public string ApiDocumentationDir => Path.GetFullPath(Path.Combine(Environment.WorkingDirectory.FullPath, "..//docs//api//"));
@@ -55,8 +57,9 @@ public class BuildContext : FrostingContext
             Verbosity = buildParameters.Verbosity,
             Configuration = buildParameters.Configuration,
             NoRestore = true,
-            NoBuild = true
-
+            NoBuild = true,
+            DiagnosticOutput = true,
+            VSTestReportPath = TestResults,
         };
 
         DotNetRunSettings = new DotNetRunSettings()
