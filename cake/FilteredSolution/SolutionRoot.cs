@@ -9,5 +9,5 @@ using Build.FilteredSolution;
 
 public class SolutionRoot
 {
-    public FilteredSolution FilteredSolution { get; set; }
+    public FilteredSolution solution { get; set; }
 }

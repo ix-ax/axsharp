@@ -62,7 +62,8 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         context.DotNetClean(Path.Combine(context.RootDir, "ix.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
-        context.CleanDirectory(context.Artifacts);       
+        context.CleanDirectory(context.Artifacts);
+        context.CleanDirectory(context.TestResults);
     }
 }
 
@@ -171,9 +172,9 @@ public sealed class TestsTask : FrostingTask<BuildContext>
 
     private static void RunTestsFromFilteredSolution(BuildContext context, string filteredSolutionFile)
     {
-        foreach (var project in FilteredSolution.Parse(filteredSolutionFile).FilteredSolution.projects
-                     .Where(p => p.ToUpperInvariant().Contains("TEST"))
-                     .Select(p => new FileInfo(Path.Combine(context.RootDir, p))))
+        foreach (var project in FilteredSolution.Parse(filteredSolutionFile).solution.projects
+                     .Select(p => new FileInfo(Path.Combine(context.RootDir, p)))
+                     .Where(p => p.Name.ToUpperInvariant().Contains("TEST")))
         {
             foreach (var framework in context.TargetFrameworks)
             {
