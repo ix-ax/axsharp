@@ -141,15 +141,15 @@ public sealed class TestsTask : FrostingTask<BuildContext>
       
         if (context.BuildParameters.TestLevel == 1)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L1-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L1-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 2)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L2-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L2-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 3)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L3-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
         else
         {
@@ -161,11 +161,26 @@ public sealed class TestsTask : FrostingTask<BuildContext>
 
             UploadTestPlc(context, workingDirectory, targetIp, targetPlatform);
 
-            context.DotNetTest(Path.Combine(context.RootDir, "ix.sln"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
 
         
 
+    }
+
+    private static void RunTestsFromFilteredSolution(BuildContext context, string filteredSolutionFile)
+    {
+        foreach (var project in Solution.Parse(filteredSolutionFile).solution.projects
+                     .Where(p => p.ToUpperInvariant().Contains("TEST"))
+                     .Select(p => new FileInfo(Path.Combine(context.RootDir, p))))
+        {
+            foreach (var framework in context.TargetFrameworks)
+            {
+                context.DotNetTestSettings.VSTestReportPath = Path.Combine(context.TestResults, $"{project.Name}_{framework}.xml");
+                context.DotNetTestSettings.Framework = framework;
+                context.DotNetTest(Path.Combine(project.FullName), context.DotNetTestSettings);
+            }
+        }
     }
 
     private static void UploadTestPlc(BuildContext context, string workingDirectory, string targetIp,
