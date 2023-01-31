@@ -71,5 +71,27 @@ namespace Ix.CompilerTests
 
             Assert.Equal("@ax/sdk : 3.0.8", string.Join(",", apaxWorkspaceFile.DevDependencies.Select(p => $"{p.Key} : {p.Value}")));
         }
+
+        [Fact()]
+        public void should_update_apax_version()
+        {
+            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//app//apax.yml"));
+            Assert.Equal("plt-app", apaxWorkspaceFile.Name);
+            Assert.Equal("app", apaxWorkspaceFile.Type);
+            Assert.Equal("0.1.0", apaxWorkspaceFile.Version);
+
+            Apax.UpdateVersion(Path.Combine(testFolder, @"samples//plt//app//apax.yml"), "33.88.50");
+            apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//app//apax.yml"));
+
+            Assert.Equal("plt-app", apaxWorkspaceFile.Name);
+            Assert.Equal("app", apaxWorkspaceFile.Type);
+            Assert.Equal("33.88.50", apaxWorkspaceFile.Version);
+
+            Assert.Equal("1500,axunit-llvm", string.Join(",", apaxWorkspaceFile.Targets.Select(p => p)));
+
+            Assert.Equal("plt-lib : ^0.1.0,plt-lib2 : ^0.1.0", string.Join(",", apaxWorkspaceFile.Dependencies.Select(p => $"{p.Key} : {p.Value}")));
+
+            Assert.Equal("@ax/sdk : 3.0.8", string.Join(",", apaxWorkspaceFile.DevDependencies.Select(p => $"{p.Key} : {p.Value}")));
+        }
     }
 }
