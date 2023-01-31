@@ -8,19 +8,103 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
+<div class="col p-2 m-1 bg-light rounded-3 shadow">
+    <h2 class="text-secondary">Component</h2>
+
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <button type="button" class="nav-link @(Active == "Details" ? "active" : "")" @onclick=@(() => Activate("Details"))>Details</button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="nav-link @(Active == "Tasks" ? "active" : "")" @onclick=@(() => Activate("Tasks"))>Tasks</button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="nav-link @(Active == "Settings" ? "active" : "")" @onclick=@(() => Activate("Settings"))>Settings</button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="nav-link @(Active == "Diagnostics" ? "active" : "")" @onclick=@(() => Activate("Diagnostics"))>Diagnostics</button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="nav-link @(Active == "Help" ? "active" : "")" @onclick=@(() => Activate("Help"))>Help</button>
+        </li>
+    </ul>
+    @if (Active == "Details")
+    {
+        <div>
+            <p>Details</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    }
+    @if (Active == "Tasks")
+    {
+        <div>
+            <p>Tasks</p>
+            <a href="#" class="btn btn-primary">Task1</a>
+            <a href="#" class="btn btn-primary">Task2</a>
+            <a href="#" class="btn btn-primary">Task3</a>
+        </div>
+    }
+    @if (Active == "Diagnostics")
+    {
+        <div>
+            <p>Diagnostics</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    }
+</div>
+
+<div class="card mt-5">
+    <div class="card-body">
+        <h5 class="card-title">Component</h5>
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <button type="button" class="nav-link @(Active == "Details" ? "active" : "")" @onclick=@(() => Activate("Details"))>Details</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="nav-link @(Active == "Tasks" ? "active" : "")" @onclick=@(() => Activate("Tasks"))>Tasks</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="nav-link @(Active == "Settings" ? "active" : "")" @onclick=@(() => Activate("Settings"))>Settings</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="nav-link @(Active == "Diagnostics" ? "active" : "")" @onclick=@(() => Activate("Diagnostics"))>Diagnostics</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="nav-link @(Active == "Help" ? "active" : "")" @onclick=@(() => Activate("Help"))>Help</button>
+            </li>
+        </ul>
+        @if (Active == "Details")
+        {
+            <div>
+                <p class="card-text">Details</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        }
+        @if (Active == "Tasks")
+        {
+            <div>
+                <p class="card-text">Tasks</p>
+                <a href="#" class="btn btn-primary">Task1</a>
+                <a href="#" class="btn btn-primary">Task2</a>
+                <a href="#" class="btn btn-primary">Task3</a>
+            </div>
+        }
+        @if (Active == "Diagnostics")
+        {
+            <div>
+                <p class="card-text">Diagnostics</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        }
+    </div>
+</div>
 
 
- <div class="col p-5 m-4 bg-light rounded-3 shadow">
-                <h2 class="text-secondary">Control Presentation Type</h2>
+@code {
+    public string Active { get; set; } = "Details";
 
-                <button class="btn btn-primary" 
-                        type="button"
-                        id="tooltip1">Info</button>
-
-               
-
-               
-             
- </div>
-
-   
+    void Activate(string tab)
+    {
+        Active = tab;
+    }
+}

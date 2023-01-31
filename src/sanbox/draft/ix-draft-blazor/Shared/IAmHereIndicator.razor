@@ -1,9 +1,20 @@
-﻿<div class="ms-3">
-    @foreach (var link in uri)
-    {
-        <a href="@link" class="text-decoration-none">/@link</a>
-    }
-    
+﻿<div class="ms-1">
+    <nav aria-label="breadcrumb" class="ms-3">
+        <ol class="breadcrumb">
+            @foreach (var link in uri)
+            {
+                if (link != uri.Last())
+                {
+                    partialLink += "/" + link;
+                    <li class="breadcrumb-item"><a href="@partialLink">@link</a></li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@link</li>
+                }
+            }
+        </ol>
+    </nav>
 </div>
 
 @code {
@@ -11,6 +22,8 @@
     private NavigationManager? MyNavigationManager { get; set; }
 
     public string[] uri { get; set; }
+
+    private string partialLink { get; set; }
 
     protected override void OnInitialized()
     {
