@@ -35,6 +35,6 @@ jobs:
       if: success() || failure()
       with:
         name: Test report
-        path: 'artifacts/TestResults.xml'   
+        path: 'TestResults/*.xml'     
         reporter: dotnet-trx
 
