@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using NuGet.Versioning;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization;
 
@@ -76,6 +77,36 @@ public class Apax
                 .Build();
 
             return deserializer.Deserialize<Apax>(File.ReadAllText(projectFile));
+        }
+        catch (FileNotFoundException)
+        {
+            throw new FileNotFoundException(
+                "'apax.yml' file was not found in the working directory. Make sure your current directory is simatic-ax project directory or provide source directory argument (for details see ixc --help)");
+        }
+    }
+
+    /// <summary>
+    /// Update version in an apax.yml file
+    /// </summary>
+    /// <param name="apaxFile">Apax file to update.</param>
+    /// <param name="version">Version.</param>
+    /// <exception cref="FileNotFoundException"></exception>
+    public static void UpdateVersion(string apaxFile, string version)
+    {
+        try
+        {
+            var apax = CreateApax(apaxFile);
+            apax.Version = version;
+
+
+            using (var tw = new StreamWriter(apaxFile))
+            {
+                var serializer = new SerializerBuilder()
+                    .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                    .Build();
+
+                serializer.Serialize(tw, apax);
+            }
         }
         catch (FileNotFoundException)
         {
