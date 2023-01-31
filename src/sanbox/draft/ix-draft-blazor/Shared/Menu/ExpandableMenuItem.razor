@@ -1,0 +1,65 @@
+﻿<div>
+    <div class="nav-item">
+        <NavLink class="nav-link" @onclick='() => Collapse()' >
+            @if (Icon != null)
+            {
+                <span class="oi @Icon" aria-hidden="true"></span>
+            }
+            <strong>@Name</strong>
+            <span class="ms-auto oi @(_isCollapsed ? "oi-chevron-bottom" : "oi-chevron-top")" aria-hidden="true"></span>
+        </NavLink>
+    </div>
+
+
+    <div class="ps-2 @(_isCollapsed ? "collapse" : null)">
+        <CascadingValue Value="@this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    private NavigationManager? MyNavigationManager { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; } = null;
+    [Parameter]
+    public string? Icon { get; set; } = null;
+
+    private bool _isCollapsed = true;
+
+    private string _dashedName { get; set; } 
+
+    [CascadingParameter]
+    protected ExpandableMenuItem? SubMenu { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _dashedName = Name?.Replace(' ', '-').ToLower();
+        var parentName = $"{ GetLink() }/";
+        var relativePath = MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri);
+
+        if (relativePath.Contains(parentName))
+        {
+            _isCollapsed = false;
+        }
+    }
+
+    public string? GetLink()
+    {
+        if (SubMenu != null)
+        {
+            return $"{SubMenu.GetLink()}/{_dashedName}";
+        }
+        return $"{_dashedName}";
+    }
+  
+    private void Collapse()
+    {
+        _isCollapsed = !_isCollapsed;
+    }
+}

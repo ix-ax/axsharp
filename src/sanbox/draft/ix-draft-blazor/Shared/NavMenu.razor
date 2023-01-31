@@ -1,0 +1,39 @@
+﻿<div class="nav-menu">
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="oi oi-menu" aria-hidden="true"></span>
+    </button>
+
+    <div class="@NavMenuCssClass nav-scrollable">
+        <nav class="flex-column">
+
+            <MenuItem Name="Home" Link="/" Icon="oi-home" />
+
+            <MenuItem Name="Counter" Link="counter" Icon="oi-list-rich" />
+            <MenuItem Name="Fetchdata" Link="fetchdata" Icon="oi-plus" />
+
+            <ExpandableMenuItem Name="data" Icon="oi-plus">
+                <MenuItem Name="First data" Icon="oi-plus" />
+                <MenuItem Name="Second data" Icon="oi-plus" />
+                <MenuItem Name="Third data" Icon="oi-plus" />
+
+                <ExpandableMenuItem Name="More Data">
+                    <MenuItem Name="First more data" Icon="oi-plus" />
+                    <MenuItem Name="Second more data" Icon="oi-plus" />
+                    <MenuItem Name="Third more data" Icon="oi-plus" />
+                </ExpandableMenuItem>
+
+            </ExpandableMenuItem>
+        </nav>
+    </div>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

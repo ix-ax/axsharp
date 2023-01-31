@@ -1,0 +1,19 @@
+﻿<div class="ms-3">
+    @foreach (var link in uri)
+    {
+        <a href="@link" class="text-decoration-none">/@link</a>
+    }
+    
+</div>
+
+@code {
+    [Inject]
+    private NavigationManager? MyNavigationManager { get; set; }
+
+    public string[] uri { get; set; }
+
+    protected override void OnInitialized()
+    {
+        uri = MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri).Split('/');
+    }
+}

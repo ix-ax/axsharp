@@ -1,0 +1,74 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>ix-draft-blazor</PageTitle>
+
+<div class="page">
+
+
+    <main>
+        <TopRow />
+
+        <IAmHereIndicator />
+
+        <article class="content px-4">
+            @Body
+            <Toasts />
+        </article>
+
+    </main>
+
+    <NavMenu />
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="languageModalLabel">Language</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="select" class="form-label">Select language</label>
+                <select id="select" class="form-select">
+                    <option>EN</option>
+                    <option>SK</option>
+                    <option>CZ</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="labelModal" tabindex="-1" aria-labelledby="labelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="labelModalLabel">Label</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="number" class="form-label">Number</label>
+                    <input type="text" id="number" class="form-control" placeholder="20001547" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Text</label>
+                    <input type="text" id="text" class="form-control" placeholder="dfsaafa" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="servis" class="form-label">Servis Number</label>
+                    <input type="text" id="servis" class="form-control" placeholder="+421 000 000" disabled>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
