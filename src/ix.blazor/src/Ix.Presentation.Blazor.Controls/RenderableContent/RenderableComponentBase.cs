@@ -21,7 +21,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
     public partial class RenderableComponentBase : ComponentBase, IRenderableComponent
     {
 
-        public bool IsFocus { get; set; }
+        public bool HasFocus { get; set; }
         public string CssSymbol(string symbol) => symbol.Replace(".", "-");
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
 
         protected void HandlePropertyChangedOnOutFocus(object sender, PropertyChangedEventArgs a)
         {
-            if(!IsFocus) InvokeAsync(StateHasChanged);
+            if(!HasFocus) InvokeAsync(StateHasChanged);
         }
 
       

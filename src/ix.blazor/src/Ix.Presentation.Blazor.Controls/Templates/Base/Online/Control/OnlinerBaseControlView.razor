@@ -11,8 +11,8 @@
                class="w-100 form-control @AccessStatus"
                type=@IsNumeric(typeof(T))
                step=any
-               @onfocus="@( () => IsFocus = true )"
-               @onblur="@( () => IsFocus = false )"
+               @onfocus="@( () => HasFocus = true )"
+               @onblur="@( () => HasFocus = false )"
                @bind="Value" />
    
         <div class="invalid-feedback">
