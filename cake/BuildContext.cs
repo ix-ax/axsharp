@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using System.Collections.Generic;
 using System.IO;
 using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.Build;
@@ -18,6 +19,8 @@ using Cake.Frosting;
 public class BuildContext : FrostingContext
 {
     public string Artifacts  => Path.Combine(Environment.WorkingDirectory.FullPath, "..//artifacts//");
+
+    public string TestResults => Path.Combine(Environment.WorkingDirectory.FullPath, "..//TestResults//");
 
     public string WorkDirName => Environment.WorkingDirectory.GetDirectoryName();
 
@@ -55,8 +58,9 @@ public class BuildContext : FrostingContext
             Verbosity = buildParameters.Verbosity,
             Configuration = buildParameters.Configuration,
             NoRestore = true,
-            NoBuild = true
-
+            NoBuild = true,
+            DiagnosticOutput = true,
+            VSTestReportPath = TestResults,
         };
 
         DotNetRunSettings = new DotNetRunSettings()
@@ -68,4 +72,6 @@ public class BuildContext : FrostingContext
             NoRestore = true,
         };
     }
+
+    public IEnumerable<string> TargetFrameworks { get; } = new List<string>() { "net6.0", "net7.0" };
 }

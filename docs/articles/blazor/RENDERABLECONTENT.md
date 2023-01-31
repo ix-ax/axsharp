@@ -173,7 +173,7 @@ testIxComponent: IxComponent;
 
 ### **Edit Property**
 
-Renderer binds variables to `Cyclic` or `Edit` property of Onliner. When element get focus, value is bind to `Edit` property and UI updates stops. After focus is lost, value is binded to `Cyclic` property and UI is continuously updating. 
+Then renderer binds variables to `Cyclic` or `Edit` property of an Onliner. When an element gets focus, value is bound to `Edit` property and UI updates stops. After the focus is lost, the value is bound back to `Cyclic` property and the value in the UI start updating again. 
 
 ![alt text](assets/edit-property.gif "Edit property")
 
