@@ -1,6 +1,12 @@
-# [WIP] RUNNING SOME POST PUBLISH TESTS
-
 ![](assets/pics/banner_wider.png)
+
+[![dev](https://github.com/ix-ax/ix/actions/workflows/dev.yml/badge.svg?branch=dev)](https://github.com/ix-ax/ix/actions/workflows/dev.yml)
+[![preview](https://github.com/ix-ax/ix/actions/workflows/release.yml/badge.svg?branch=releases%2Fv0)](https://github.com/ix-ax/ix/actions/workflows/release.yml)
+[![master](https://github.com/ix-ax/ix/actions/workflows/master.yml/badge.svg?branch=master)](https://github.com/ix-ax/ix/actions/workflows/master.yml)
+![semver](https://img.shields.io/badge/semver-0.10.0-blue)
+[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/ix-ax/ix/blob/master/LICENSE)
+
+
 # IX
 
 The **IX** is a series of tools that extend SIMATIC AX (Automation Xpansion) with a flexible and powerful connection with .NET ecosystem. IX includes a compiler (`ixc`) that translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application. Furthermore, presentation libraries provide additional features for the automated rendering of PLC data in the UI/HMI.

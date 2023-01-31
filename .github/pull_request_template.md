@@ -23,10 +23,13 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] Test B
 
 **Test Configuration**:
-* simatix-ax version:
+
+* simatix-ax version (apax.yml):
 * ix version:
-* Hardware PLC:
-* Other hardware:
+* PLC Target system:
+* PLC Firmware version:
+* OS System:
+* Other relevant hardware:
 
 # Checklist:
 

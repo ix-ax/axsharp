@@ -173,7 +173,7 @@ testIxComponent: IxComponent;
 
 ### **Layouts**
 Auto-generated UI can be customized by layouts.
-More information about layout is in **[LAYOUTS](LAYOUTS.MD)** file.
+More information about layout is in **[LAYOUTS](LAYOUTS.md)** file.
 <div id='id-styling'/>
 
 ### **Styling**

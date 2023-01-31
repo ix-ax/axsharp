@@ -16,12 +16,14 @@ using System.Management.Automation;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Build.FilteredSolution;
 using Cake.Common;
 using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.Clean;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
+using Cake.Core.Tooling;
 using Cake.Frosting;
 using Cake.Powershell;
 using CliWrap;
@@ -60,7 +62,8 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         context.DotNetClean(Path.Combine(context.RootDir, "ix.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
-        context.CleanDirectory(context.Artifacts);       
+        context.CleanDirectory(context.Artifacts);
+        context.CleanDirectory(context.TestResults);
     }
 }
 
@@ -140,15 +143,15 @@ public sealed class TestsTask : FrostingTask<BuildContext>
       
         if (context.BuildParameters.TestLevel == 1)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L1-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L1-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 2)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L2-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L2-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 3)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L3-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
         else
         {
@@ -160,11 +163,26 @@ public sealed class TestsTask : FrostingTask<BuildContext>
 
             UploadTestPlc(context, workingDirectory, targetIp, targetPlatform);
 
-            context.DotNetTest(Path.Combine(context.RootDir, "ix.sln"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
 
         
 
+    }
+
+    private static void RunTestsFromFilteredSolution(BuildContext context, string filteredSolutionFile)
+    {
+        foreach (var project in FilteredSolution.Parse(filteredSolutionFile).solution.projects
+                     .Select(p => new FileInfo(Path.Combine(context.RootDir, p)))
+                     .Where(p => p.Name.ToUpperInvariant().Contains("TEST")))
+        {
+            foreach (var framework in context.TargetFrameworks)
+            {
+                context.DotNetTestSettings.VSTestReportPath = Path.Combine(context.TestResults, $"{project.Name}_{framework}.xml");
+                context.DotNetTestSettings.Framework = framework;
+                context.DotNetTest(Path.Combine(project.FullName), context.DotNetTestSettings);
+            }
+        }
     }
 
     private static void UploadTestPlc(BuildContext context, string workingDirectory, string targetIp,
@@ -234,7 +252,24 @@ public sealed class CreateArtifactsTask : FrostingTask<BuildContext>
 
         foreach (var templateCsProjFile in templateCsProjFiles)
         {
-            var packagesToUpdate = new List<string>() { "Ix.Abstractions", "Ix.Connector", "Ix.Connector.Sax.WebAPI" };
+            var packagesToUpdate = new List<string>()
+            {
+                "Ix.Abstractions", 
+                "Ix.Connector", 
+                "Ix.Connector.S71500.WebAPI", 
+                "Ix.Presentation.Blazor.Controls", 
+                "Ix.Presentation.Blazor"
+            };
+
+            foreach (var packageId in packagesToUpdate)
+            {
+                ix.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
+            }
+        }
+        var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories); 
+        foreach (var templateCsProjFile in templateToolDotnetTools)
+        {
+            var packagesToUpdate = new List<string>() { "ix.ixc" };
             foreach (var packageId in packagesToUpdate)
             {
                 ix.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
@@ -377,7 +412,7 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        if (!context.BuildParameters.DoPublish)
+        if (!context.BuildParameters.DoPublishRelease)
         {
             context.Log.Warning($"Skipping package release.");
             return;

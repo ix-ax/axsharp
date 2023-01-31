@@ -1,12 +1,13 @@
-﻿@inherits RenderableComponentBase
+﻿@inherits TemplateBaseOnline<DateTime>
 
 <div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
     <div>
-        <label for="@(Onliner.AttributeName + "_" + id)">@Onliner.AttributeName</label>
+        <label for="@ComponentId">@Onliner.AttributeName</label>
     </div>
     <div class="w-100">
-        <input id="@(Onliner.AttributeName + "_" + id)" 
-               class="w-100 form-control @(Onliner.AccessStatus.Failure ? "is-invalid" : "")"
+        <input id="@ComponentId"
+               readonly="@IsReadOnly"
+               class="w-100 form-control @AccessStatus"
                type="datetime-local"
                step=1
                name="onlineDateTime"

@@ -31,38 +31,30 @@ public class IxConfig : ICompilerOptions
     /// </summary>
     public const string CONFIG_FILE_NAME = "ix.config.json";
 
-    /// <summary>
-    /// Gets or sets the output folder for the Ix project.
-    /// </summary>
+   
     private string _outputProjectFolder = "ix";
 
+    /// <summary>
+    /// Gets or sets the output folder for the Ix project.
+    /// </summary>
     public string OutputProjectFolder
     {
-        get { return _outputProjectFolder.Replace("\\", Path.DirectorySeparatorChar.ToString()); }
-        set { _outputProjectFolder = value; }
+        get => _outputProjectFolder.Replace("\\", Path.DirectorySeparatorChar.ToString());
+        set => _outputProjectFolder = value;
     }
 
-    //public string OutputProjectFolder { get; set; } = "ix";
+    
+    private string _axProjectFolder;
 
     /// <summary>
     /// Gets or sets the output folder for the Ix project.
     /// </summary>
-    private string _axProjectFolder;
-
+    [JsonIgnore]
     public string AxProjectFolder
     {
-        get { 
-                if(_axProjectFolder != null)
-                {
-                    return _axProjectFolder.Replace("\\",Path.DirectorySeparatorChar.ToString());
-                } 
-
-                return _axProjectFolder;
-            }
-        set { _axProjectFolder = value; }
+        get => _axProjectFolder.Replace("\\",Path.DirectorySeparatorChar.ToString());
+        set => _axProjectFolder = value;
     }
-
-    //public string AxProjectFolder { get; set; }
 
     /// <summary>
     /// Gets updated or creates default config for given AX project.
@@ -101,6 +93,11 @@ public class IxConfig : ICompilerOptions
             ixConfig = JsonConvert.DeserializeObject<IxConfig>(r.ReadToEnd());
         }
 
+        if (ixConfig != null)
+        {
+            ixConfig.AxProjectFolder = directory;
+        }
+
         return ixConfig;
     }
 
@@ -110,7 +107,14 @@ public class IxConfig : ICompilerOptions
         try
         {
             using StreamReader r = new StreamReader(ixConfigFilePath);
-            return JsonConvert.DeserializeObject<IxConfig>(r.ReadToEnd());
+            var config = JsonConvert.DeserializeObject<IxConfig>(r.ReadToEnd());
+            if (config != null)
+            {
+                var fi = new FileInfo(ixConfigFilePath);
+                config.AxProjectFolder = fi.DirectoryName;
+            }
+
+            return config;
         }
         catch (Exception ex)
         {
