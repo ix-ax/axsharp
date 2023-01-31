@@ -16,6 +16,7 @@ using System.Management.Automation;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Build.FilteredSolution;
 using Cake.Common;
 using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
@@ -170,7 +171,7 @@ public sealed class TestsTask : FrostingTask<BuildContext>
 
     private static void RunTestsFromFilteredSolution(BuildContext context, string filteredSolutionFile)
     {
-        foreach (var project in Solution.Parse(filteredSolutionFile).solution.projects
+        foreach (var project in FilteredSolution.Parse(filteredSolutionFile).FilteredSolution.projects
                      .Where(p => p.ToUpperInvariant().Contains("TEST"))
                      .Select(p => new FileInfo(Path.Combine(context.RootDir, p))))
         {

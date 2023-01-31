@@ -5,7 +5,9 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using Build.FilteredSolution;
+
 public class SolutionRoot
 {
-    public Solution solution { get; set; }
+    public FilteredSolution FilteredSolution { get; set; }
 }
