@@ -5,6 +5,8 @@
       "ix.abstractions\\src\\Ix.Abstractions\\Ix.Abstractions.csproj",
       "ix.blazor\\src\\Ix.Presentation.Blazor.Controls\\Ix.Presentation.Blazor.Controls.csproj",
       "ix.blazor\\src\\Ix.Presentation.Blazor\\Ix.Presentation.Blazor.csproj",
+      "ix.compiler\\src\\IX.Compiler\\Ix.Compiler.csproj",
+	"ix.compiler\\src\\Ix.Compiler.Abstractions\\Ix.Compiler.Abstractions.csproj",
       "ix.compiler\\src\\ixc\\Ix.ixc.csproj",
       "ix.connectors\\src\\Ix.Connector.S71500.WebAPI\\Ix.Connector.S71500.WebAPI.csproj",
       "ix.connectors\\src\\Ix.Connector\\Ix.Connector.csproj"
