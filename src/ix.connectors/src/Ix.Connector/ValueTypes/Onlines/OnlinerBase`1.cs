@@ -156,9 +156,10 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
 
         set
         {
+
             if (Validator.Validate(value, CultureInfo.InvariantCulture).IsValid)
             {
-                EditValue(GetAsync().Result, value);
+                EditValue(this.Cyclic, value);
                 Cyclic = value;
             }
         }
@@ -535,12 +536,12 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
 
     private void EditValue(T origin, T newValue)
     {
-        if (origin == null || !origin.Equals(newValue))
-        {
-            Parent.GetConnector()?.Logger.Verbose($"Value change; online; {Symbol};{origin};{newValue}'.");
-            EditValueChange?.Invoke(this, origin, newValue);
-            NotifyPropertyChanged(nameof(Edit));
-        }
+        //if (origin == null || !origin.Equals(newValue))
+        //{
+        //    Parent.GetConnector()?.Logger.Verbose($"Value change; online; {Symbol};{origin};{newValue}'.");
+        //    EditValueChange?.Invoke(this, origin, newValue);
+        //    NotifyPropertyChanged(nameof(Edit));
+        //}
     }
 
     private void ChangeShadowValue(T origin, T newValue)

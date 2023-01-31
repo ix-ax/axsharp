@@ -6,13 +6,15 @@
         <label for="@ComponentId" class="form-label">@Onliner.AttributeName</label>
     </div>
     <div>
-            <input id="@ComponentId"
+            <input id="@ComponentId"    
                readonly="@IsReadOnly"
                class="w-100 form-control @AccessStatus"
-                   type=@IsNumeric(typeof(T))
-                   step=any
-                   @bind=@Onliner.Cyclic />
-    
+               type=@IsNumeric(typeof(T))
+               step=any
+               @onfocus="@( () => IsFocus = true )"
+               @onblur="@( () => IsFocus = false )"
+               @bind="Value" />
+   
         <div class="invalid-feedback">
             @Onliner.AccessStatus.FailureReason
         </div>

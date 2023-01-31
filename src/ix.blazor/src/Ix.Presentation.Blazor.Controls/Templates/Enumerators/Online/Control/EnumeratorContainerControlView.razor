@@ -8,7 +8,7 @@
     <div>
         <select id="@ComponentId"
                 class="w-100 form-select @AccessStatus"
-                @bind="@Onliner.Cyclic"
+                @bind="Value"
                 disabled="@IsReadOnly">
             @foreach (var name in Names)
             {

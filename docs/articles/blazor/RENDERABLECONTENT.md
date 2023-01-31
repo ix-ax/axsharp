@@ -9,6 +9,7 @@ This file describes the purpose, features and usage of the **RenderableContentCo
 4. [Features](#id-features)
     - [Presentation Type and Presentation pipeline](#id-presentation)
     - [RenderIgnore and custom labels](#id-renderingore)
+	- [Edit property](#id-editprop)
     - [Layouts](#id-layouts)
     - [Styling](#id-styling)
     
@@ -168,6 +169,13 @@ It is possible to ignore properties only in specific presentation types:
 {#ix-attr:[RenderIgnore("Display","ShadowDisplay")]}  
 testIxComponent: IxComponent;
 ```
+<div id='id-editprop'/>
+
+### **Edit Property**
+
+Renderer binds variables to `Cyclic` or `Edit` property of Onliner. When element get focus, value is bind to `Edit` property and UI updates stops. After focus is lost, value is binded to `Cyclic` property and UI is continuously updating. 
+
+![alt text](assets/edit-property.gif "Edit property")
 
 <div id='id-layouts'/>
 
