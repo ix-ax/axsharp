@@ -20,5 +20,8 @@ CONFIGURATION MyConfiguration
         weather_readOnly : Layouts.Stacked.weather;
         test_example:example;
       
+
+        measurements : MeasurementExample.Measurements;
+
     END_VAR
 END_CONFIGURATION
