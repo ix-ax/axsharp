@@ -26,6 +26,7 @@ public partial class ix_integration_plcTwinController : ITwinController
     public Layouts.Stacked.weather weather_readOnly { get; }
 
     public example test_example { get; }
+
     public MeasurementExample.Measurements measurements { get; }
 
     public ix_integration_plcTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
