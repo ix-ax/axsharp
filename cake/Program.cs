@@ -317,10 +317,10 @@ public sealed class GenerateApiDocumentationTask : FrostingTask<BuildContext>
 
         if (Helpers.CanReleaseInternal())
             GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
-            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAP\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.Sax.WebAPI.dll", @"Ix.Connector.Sax.WebAPI");
+            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
 
-            GenerateApiDocumentation(context, @$"ix.builder\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
-            GenerateApiDocumentation(context, @$"ix.builder\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
+            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
+            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
 
             GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
             GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");

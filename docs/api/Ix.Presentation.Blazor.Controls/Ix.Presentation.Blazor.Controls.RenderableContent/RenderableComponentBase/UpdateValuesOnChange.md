@@ -18,7 +18,7 @@ public void UpdateValuesOnChange(ITwinObject element)
 Method, which updates primitive value. IValueTag instance.
 
 ```csharp
-public void UpdateValuesOnChange(ITwinPrimitive tag)
+public void UpdateValuesOnChange(OnlinerBase tag)
 ```
 
 ## See Also
