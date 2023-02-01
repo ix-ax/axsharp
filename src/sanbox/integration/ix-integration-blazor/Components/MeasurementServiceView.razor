@@ -1,0 +1,16 @@
+﻿@namespace MeasurementExample
+@inherits RenderableComplexComponentBase<Measurement>
+
+<h3>IxComponentServiceView</h3>
+
+<p>IxBool serviceView: @Component.Min.Cyclic</p>
+<p>IxInt serviceView: @Component.Acquired.Cyclic</p>
+<p>IxString serviceView: @Component.Max.Cyclic</p>
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        UpdateValuesOnChange(Component);
+    }
+}
