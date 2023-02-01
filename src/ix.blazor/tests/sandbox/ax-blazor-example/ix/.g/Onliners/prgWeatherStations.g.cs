@@ -10,7 +10,7 @@ public partial class prgWeatherStations : Ix.Connector.ITwinObject
     public fbWorldWeatherWatch _weatherStations { get; }
 
     [Container(Layout.Stack)]
-    [Group(Layout.GroupBox)]
+    [Group(GroupLayout.GroupBox)]
     public OnlinerString PlcCommentOnCurrentWeather { get; }
 
     public prgWeatherStations(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)

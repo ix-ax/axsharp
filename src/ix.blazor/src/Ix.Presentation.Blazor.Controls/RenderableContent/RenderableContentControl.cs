@@ -69,14 +69,16 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         }
         protected override void OnParametersSet()
         {
-
+            
             Type layoutType = TryLoadLayoutTypeFromProperty(_context);
             if (layoutType == null)
             { 
                 layoutType = TryLoadLayoutType(_context);
             }
             if (layoutType != null) MainLayoutType = layoutType;
-            _groupContainer = TryLoadGroupType(_context);
+
+            _groupContainer = TryLoadGroupTypeFromProperty(_context);
+            if(_groupContainer == null) _groupContainer = TryLoadGroupType(_context);
 
             if (String.IsNullOrEmpty(Presentation)) Presentation = "";
             _viewModelCache.ResetCounter();

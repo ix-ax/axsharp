@@ -26,7 +26,7 @@ namespace Ix.Presentation.Blazor.Services
         /// </summary>
         public ComponentService()
         {
-            PresentationProvider.Create(new BlazorLayoutProvider());
+            PresentationProvider.Create(new BlazorLayoutProvider(), new BlazorGroupLayoutProvider());
             LoadComponents();
         }
 
