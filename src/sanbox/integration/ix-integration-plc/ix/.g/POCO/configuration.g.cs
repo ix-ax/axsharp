@@ -12,5 +12,6 @@ namespace Pocos
         public Layouts.Tabbed.weather weather_tabbed { get; set; } = new Layouts.Tabbed.weather();
         public Layouts.Stacked.weather weather_readOnce { get; set; } = new Layouts.Stacked.weather();
         public Layouts.Stacked.weather weather_readOnly { get; set; } = new Layouts.Stacked.weather();
+        public MeasurementExample.Measurements measurements { get; set; } = new MeasurementExample.Measurements();
     }
 }
