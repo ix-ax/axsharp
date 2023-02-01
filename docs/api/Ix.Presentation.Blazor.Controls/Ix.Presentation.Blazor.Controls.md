@@ -43,6 +43,12 @@
 | class [RenderableContentControl](./Ix.Presentation.Blazor.Controls.RenderableContent/RenderableContentControl.md) | This class implements main logic behind auto-generated UI. |
 | class [RenderableViewModelComponentBase&lt;T&gt;](./Ix.Presentation.Blazor.Controls.RenderableContent/RenderableViewModelComponentBase-1.md) | Base class for complex componenets with viewmodel support. |
 
+## Ix.Presentation.Blazor.Controls.Templates.Base.Online namespace
+
+| public type | description |
+| --- | --- |
+| class [TemplateBaseOnline&lt;T&gt;](./Ix.Presentation.Blazor.Controls.Templates.Base.Online/TemplateBaseOnline-1.md) |  |
+
 ## Ix.Presentation.Blazor.Controls.Templates.Base.Online.Control namespace
 
 | public type | description |
@@ -62,6 +68,12 @@
 | class [OnlinerDateDisplayView](./Ix.Presentation.Blazor.Controls.Templates.Base.Online.Display/OnlinerDateDisplayView.md) |  |
 | class [OnlinerDateTimeDisplayView](./Ix.Presentation.Blazor.Controls.Templates.Base.Online.Display/OnlinerDateTimeDisplayView.md) |  |
 | class [OnlinerTimeOfDayDisplayView](./Ix.Presentation.Blazor.Controls.Templates.Base.Online.Display/OnlinerTimeOfDayDisplayView.md) |  |
+
+## Ix.Presentation.Blazor.Controls.Templates.Base.Shadow namespace
+
+| public type | description |
+| --- | --- |
+| class [TemplateBaseShadow&lt;T&gt;](./Ix.Presentation.Blazor.Controls.Templates.Base.Shadow/TemplateBaseShadow-1.md) |  |
 
 ## Ix.Presentation.Blazor.Controls.Templates.Base.Shadow.Control namespace
 
@@ -83,11 +95,11 @@
 | class [OnlinerDateTimeShadowDisplayView](./Ix.Presentation.Blazor.Controls.Templates.Base.Shadow.Display/OnlinerDateTimeShadowDisplayView.md) |  |
 | class [OnlinerTimeOfDayShadowDisplayView](./Ix.Presentation.Blazor.Controls.Templates.Base.Shadow.Display/OnlinerTimeOfDayShadowDisplayView.md) |  |
 
-## Ix.Presentation.Blazor.Controls.Templates.Complex namespace
+## Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online namespace
 
 | public type | description |
 | --- | --- |
-| class [StComplexControlView](./Ix.Presentation.Blazor.Controls.Templates.Complex/StComplexControlView.md) |  |
+| class [EnumeratorsBaseOnline&lt;T&gt;](./Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online/EnumeratorsBaseOnline-1.md) |  |
 
 ## Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online.Control namespace
 
@@ -100,6 +112,12 @@
 | public type | description |
 | --- | --- |
 | class [EnumeratorContainerDisplayView&lt;T&gt;](./Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online.Display/EnumeratorContainerDisplayView-1.md) |  |
+
+## Ix.Presentation.Blazor.Controls.Templates.Enumerators.Shadow namespace
+
+| public type | description |
+| --- | --- |
+| class [EnumeratorsBaseShadow&lt;T&gt;](./Ix.Presentation.Blazor.Controls.Templates.Enumerators.Shadow/EnumeratorsBaseShadow-1.md) |  |
 
 ## Ix.Presentation.Blazor.Controls.Templates.Enumerators.Shadow.Control namespace
 
