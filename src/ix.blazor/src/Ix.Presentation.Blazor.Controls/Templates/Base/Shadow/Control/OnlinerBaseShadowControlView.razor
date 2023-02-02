@@ -1,25 +1,16 @@
 ﻿@typeparam T
 @inherits TemplateBaseShadow<T>
 
-<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
-    <div>
-        <label for="@ComponentId" class="form-label">@Onliner.AttributeName</label>
-    </div>
-    <div>
-      
-        <input id="@ComponentId"
-            readonly="@IsReadOnly"
-            class="w-100 form-control @AccessStatus"
-            type="@IsNumeric(typeof(T))"
-                step=any
-                @bind=@Onliner.Shadow />
-      
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
-    </div>
-</div>
+<TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
 
+    <label for="@ComponentId" >@Onliner.AttributeName</label>
+    <input id="@ComponentId"
+        readonly="@IsReadOnly"
+        class="w-100 form-control @AccessStatus"
+        type="@IsNumeric(typeof(T))"
+            step=any
+            @bind=@Onliner.Shadow /> 
+</TemplateView>
 @code
 {
     private string IsNumeric(Type type)

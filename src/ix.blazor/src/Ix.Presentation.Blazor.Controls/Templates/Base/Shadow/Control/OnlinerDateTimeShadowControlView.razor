@@ -1,19 +1,14 @@
 ﻿@inherits TemplateBaseShadow<DateTime>
 
-<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
-    <div>
-        <label for="@ComponentId" class="form-label">@Onliner.AttributeName</label>
-    </div>
-    <div class="w-100">
-        <input id="@ComponentId"
-               readonly="@IsReadOnly"
-               class="w-100 form-control @AccessStatus"
-               type="datetime-local"
-               step=1
-               name="onlineDateTime"
-               @bind="Onliner.Shadow">
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
-    </div>
-</div>
+<TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
+   
+    <label for="@ComponentId" >@Onliner.AttributeName</label>
+    <input id="@ComponentId"
+            readonly="@IsReadOnly"
+            class="w-100 form-control @AccessStatus"
+            type="datetime-local"
+            step=1
+            name="onlineDateTime"
+            @bind="Onliner.Shadow">
+      
+</TemplateView>

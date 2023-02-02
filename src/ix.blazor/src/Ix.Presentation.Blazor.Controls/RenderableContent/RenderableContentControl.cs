@@ -64,7 +64,6 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
                 throw new ParameterWrongTypeRendererException(Context.GetType().ToString());
             }
             
-            Class += " " + _context.Symbol.Replace(".","-");
             base.OnInitialized();
         }
         protected override void OnParametersSet()

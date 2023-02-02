@@ -1,24 +1,18 @@
 ﻿@inherits TemplateBaseShadow<TimeSpan>
 
-<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
-    <div>
-        <label for="@ComponentId" class="form-label">@Onliner.AttributeName</label>
-    </div>
-    <div class="w-100">
-        <input id="@ComponentId"
-               readonly="@IsReadOnly"
-               class="w-100 form-control @AccessStatus"
-               type="time"
-               step="1"
-               name="onlineTime"
-               value="@Onliner.Shadow"
-               @onchange="ValueChanged">
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
-    </div>
-</div>
-
+<TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
+ 
+    <label for="@ComponentId" >@Onliner.AttributeName</label>
+    <input id="@ComponentId"
+            readonly="@IsReadOnly"
+            class="w-100 form-control @AccessStatus"
+            type="time"
+            step="1"
+            name="onlineTime"
+            value="@Onliner.Shadow"
+            @onchange="ValueChanged">
+    
+</TemplateView>
 @code
 {
     private void ValueChanged(ChangeEventArgs args)
