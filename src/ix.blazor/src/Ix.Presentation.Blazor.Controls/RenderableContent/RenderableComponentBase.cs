@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Components;
 using Ix.Connector;
 using Ix.Connector.ValueTypes;
 using Ix.Presentation.Blazor.Interfaces;
-
+using Ix.Connector.ValueTypes.Online;
 
 namespace Ix.Presentation.Blazor.Controls.RenderableContent
 {
@@ -20,6 +20,10 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
     /// </summary>
     public partial class RenderableComponentBase : ComponentBase, IRenderableComponent
     {
+
+        public bool HasFocus { get; set; }
+        public string CssSymbol(string symbol) => symbol.Replace(".", "-");
+
         /// <summary>
         ///  Method, which updates are primitive values of ITwinObject instance
         /// <param name="element">ITwinObject instance.</param>
@@ -29,9 +33,10 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             if (element != null)
             {
                 var tags = element.GetValueTags();
-                foreach (dynamic tag in tags)
+                foreach (OnlinerBase tag in tags)
                 {
                     tag.PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChanged);
+                   
                 }
             }
         }
@@ -39,10 +44,11 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         ///  Method, which updates primitive value.
         /// <param name="tag">IValueTag instance.</param>
         /// </summary>
-        public void UpdateValuesOnChange(ITwinPrimitive tag)
+        public void UpdateValuesOnChange(OnlinerBase tag)
         {
-            ((dynamic)tag).PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChanged);
+            tag.PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChanged);
         }
+
         /// <summary>
         ///  Method, which updates are primitive shadow values of ITwinObject
         /// <param name="element">ITwinObject instance.</param>
@@ -67,6 +73,17 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             ((dynamic)tag).ShadowValueChangeEvent += new ValueChangedEventHandlerDelegate(HandleShadowPropertyChanged);
         }
 
+
+        /// <summary>
+        ///  Method, which updates primitive value only, when element is out of focus.
+        ///  Public property IsFocus can be set. If is true, element won't be updated.
+        /// <param name="tag">IValueTag instance.</param>
+        /// </summary>
+        public void UpdateValuesOnChangeOutFocus(OnlinerBase tag)
+        {
+            tag.PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChangedOnOutFocus);
+        }
+
         protected void HandlePropertyChanged(object sender, PropertyChangedEventArgs a)
         {
             InvokeAsync(StateHasChanged);
@@ -77,6 +94,11 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             InvokeAsync(StateHasChanged);
         }
 
-        public string CssSymbol(string symbol) => symbol.Replace(".", "-");
+        protected void HandlePropertyChangedOnOutFocus(object sender, PropertyChangedEventArgs a)
+        {
+            if(!HasFocus) InvokeAsync(StateHasChanged);
+        }
+
+      
     }
 }

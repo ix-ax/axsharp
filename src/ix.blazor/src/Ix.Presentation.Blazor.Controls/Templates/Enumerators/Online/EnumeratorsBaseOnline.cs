@@ -17,6 +17,17 @@ namespace Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online
         public EnumeratorDiscriminatorAttribute EnumDiscriminatorAttribute { get; set; }
         [Parameter]
         public bool IsReadOnly { get; set; }
+        protected T Value
+        {
+            get
+            {
+                return Onliner.Cyclic;
+            }
+            set
+            {
+                Onliner.Edit = value;
+            }
+        }
         public string AccessStatus { get; set; }
         public Array Names { get; set; }
         public EnumToIntConverter EnumToIntConverter { get; set; }
