@@ -44,6 +44,55 @@ Welcome to your new app.
             <a href="#" class="btn btn-primary">Task3</a>
         </div>
     }
+    @if (Active == "Settings")
+        {
+            <div>
+                <div class="w-100 form-group">
+                    <div>
+                        <label for="speed" class="form-label">Speed</label>
+                    </div>
+                    <div>
+                        <input id="speed"
+                           class="w-100 form-control"
+                           type=text
+                           step=any
+                           value="10.5" />
+                    </div>
+                </div>
+                <div class="w-100 form-group">
+                    <div>
+                        <label for="max" class="form-label">Max</label>
+                    </div>
+                    <div>
+                        <input id="max"
+                           class="w-100 form-control"
+                           type=number
+                           step=any
+                           value="100" />
+                    </div>
+                </div>
+                <div class="w-100 form-group">
+                    <div>
+                        <label for="min" class="form-label">Min</label>
+                    </div>
+                    <div>
+                        <input id="min"
+                           class="w-100 form-control"
+                           type=number
+                           step=any
+                           value="0" />
+                    </div>
+                </div>
+                <div>
+                    <label for="automatic">Automatic</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input id="automatic"
+                       class="form-check-input"
+                       type="checkbox">
+                </div>
+            </div>
+        }
     @if (Active == "Diagnostics")
     {
         <div>
@@ -87,6 +136,55 @@ Welcome to your new app.
                 <a href="#" class="btn btn-primary">Task1</a>
                 <a href="#" class="btn btn-primary">Task2</a>
                 <a href="#" class="btn btn-primary">Task3</a>
+            </div>
+        }
+        @if (Active == "Settings")
+        {
+            <div>
+                <div class="w-100 form-group">
+                    <div>
+                        <label for="speed" class="form-label">Speed</label>
+                    </div>
+                    <div>
+                        <input id="speed"
+                           class="w-100 form-control"
+                           type=text
+                           step=any
+                           value="10.5" />
+                    </div>
+                </div>
+                <div class="w-100 form-group">
+                    <div>
+                        <label for="max" class="form-label">Max</label>
+                    </div>
+                    <div>
+                        <input id="max"
+                           class="w-100 form-control"
+                           type=number
+                           step=any
+                           value="100" />
+                    </div>
+                </div>
+                <div class="w-100 form-group">
+                    <div>
+                        <label for="min" class="form-label">Min</label>
+                    </div>
+                    <div>
+                        <input id="min"
+                           class="w-100 form-control"
+                           type=number
+                           step=any
+                           value="0" />
+                    </div>
+                </div>
+                <div>
+                    <label for="automatic">Automatic</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input id="automatic"
+                       class="form-check-input"
+                       type="checkbox">
+                </div>
             </div>
         }
         @if (Active == "Diagnostics")

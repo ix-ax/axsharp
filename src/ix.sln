@@ -131,6 +131,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "draft", "draft", "{D1B1209E-746C-43EC-9F6C-B206D1CBF7CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ix-draft-blazor", "sanbox\draft\ix-draft-blazor\ix-draft-blazor.csproj", "{1B89BB94-918C-47FB-BD07-559EA896FC5C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07EAF5E1-F423-4D64-B1F2-B174A81E157B} = {07EAF5E1-F423-4D64-B1F2-B174A81E157B}
+		{DD9F947B-1086-46A3-B02C-B1DC8E6AAD4F} = {DD9F947B-1086-46A3-B02C-B1DC8E6AAD4F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -26,4 +26,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ix.blazor\src\Ix.Presentation.Blazor.Controls\Ix.Presentation.Blazor.Controls.csproj" />
+  </ItemGroup>
+
 </Project>
