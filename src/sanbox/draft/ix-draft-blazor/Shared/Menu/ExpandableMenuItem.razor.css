@@ -38,3 +38,14 @@
             background-color: rgba(13, 110, 253, 0.6);
             color: #000000;
         }
+
+.oi-chevron-top {
+    transform: rotate(0deg);
+    transition: transform .2s linear;
+    transform-origin: 25.3% 62%;
+}
+    .oi-chevron-top.open {
+        transform: rotate(180deg);
+        transition: transform .2s linear;
+        transform-origin: 25.3% 62%;
+    }
