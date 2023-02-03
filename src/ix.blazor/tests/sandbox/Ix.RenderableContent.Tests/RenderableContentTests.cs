@@ -243,9 +243,176 @@ namespace Ix.RenderableContent.Tests
             cut.MarkupMatches(html);
         }
 
+        [Fact]
+        public void Render_stTestLayouts_Stack_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsStack.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_stack)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Wrap_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsWrap.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_wrap)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Tabs_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsTabs.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_tabs)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Uniform_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsUniform.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_uniform)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_GroupBox_Stack_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsGroupBoxStack.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_groupbox_stack)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Border_Stack_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsBorderStack.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_border_stack)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_GroupBox_Wrap_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsGroupBoxWrap.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_groupbox_wrap)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Border_Wrap_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsBorderWrap.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_border_wrap)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_GroupBox_Tabs_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsGroupBoxTabs.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_groupbox_tabs)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Border_Tabs_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsBorderTabs.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_border_tabs)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_GroupBox_UniformGrid_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsGroupBoxUniformGrid.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_groupbox_uniformGrid)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
+
+        [Fact]
+        public void Render_stTestLayouts_Border_UniformGrid_Successfull()
+        {
+            // Arrange
+            var path = Path.Combine(_projectDirectory, "HtmlFiles", "stTestLayoutsBorderUniformGrid.html");
+            var html = File.ReadAllText(path);
+            // Act
+            var cut = RenderComponent<RenderableContentControl>(param => param
+            .Add(p => p.Context, _fixture.Connector.testingProgram.testLayouts.test_border_uniformGrid)
+            .Add(p => p.Presentation, "Display"));
+            // Assert
+            cut.MarkupMatches(html);
+        }
 
 
-     
+
         //[Fact]
         //public void GetGroupElements_TestEmpty_NoLayouts_OneGroupSuccesfull()
         //{
@@ -286,7 +453,7 @@ namespace Ix.RenderableContent.Tests
 
         //}
 
-        
+
 
     }
 }

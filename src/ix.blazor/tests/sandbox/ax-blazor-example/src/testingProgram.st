@@ -19,6 +19,8 @@ CLASS testingProgram
         testSimpleNested: TestSimpleNested;
         {#ix-attr:[Container(Layout.Tabs)]}
         testMultipleNested: stTestMultipleNested;
+
+        testLayouts : stTestLayouts;
     END_VAR
     
 END_CLASS
