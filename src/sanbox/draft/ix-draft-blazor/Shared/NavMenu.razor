@@ -5,27 +5,27 @@
 
     <div class="@NavMenuCssClass nav-scrollable">
         <nav class="flex-column">
+            <MenuItem Name="Home" Link="/" Icon="oi oi-home" />
+            <MenuItem Name="Control" Link="control" Icon="oi oi-cog" />
 
-            <MenuItem Name="Home" Link="/" Icon="oi-home" />
-
-            <MenuItem Name="Counter" Link="counter" Icon="oi-list-rich" />
-            <MenuItem Name="Fetchdata" Link="fetchdata" Icon="oi-plus" />
-            <MenuItem Name="Components" Link="components" Icon="oi-plus" />
-
-            <ExpandableMenuItem Name="data" Icon="oi-plus">
-                <MenuItem Name="First data" Icon="oi-plus" />
-                <MenuItem Name="Second data" Icon="oi-plus" />
-                <MenuItem Name="Third data" Icon="oi-plus" />
+            <ExpandableMenuItem Name="data" Icon="oi oi-align-center">
+                <MenuItem Name="Process settings" Icon="oi oi-plus" />
+                <MenuItem Name="Production data" Icon="oi oi-data-transfer-download" />
+                <MenuItem Name="Tech data" Icon="oi oi-signal" />
 
                 <ExpandableMenuItem Name="More Data">
-                    <MenuItem Name="First more data" Icon="oi-plus" />
-                    <MenuItem Name="Second more data" Icon="oi-plus" />
-                    <MenuItem Name="Third more data" Icon="oi-plus" />
+                    <MenuItem Name="First more data" Icon="oi oi-plus" />
+                    <MenuItem Name="Second more data" />
+                    <MenuItem Name="Third more data" Link="data/more-data/third-more-data" Icon="oi oi-plus" />
                 </ExpandableMenuItem>
 
             </ExpandableMenuItem>
 
-            <MenuItem Name="Home" Link="/" Icon="oi-home" />
+            <MenuItem Name="Components" Link="components" Icon="oi oi-grid-three-up" />
+
+            <MenuItem Name="Diagnostics" Icon="oi oi-pulse" />
+
+            <MenuItem Name="Users" Link="users" Icon="oi oi-person" />
         </nav>
     </div>
 </div>
