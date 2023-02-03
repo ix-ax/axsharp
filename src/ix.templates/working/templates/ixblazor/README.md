@@ -1,4 +1,4 @@
-﻿# IX Console template 
+﻿# IX Blazor template 
 
 **IMPORTANT!!! When you create the project from Visual Studio, you will need to run `install.ps1` manually to finish the creation of the project.**
 
@@ -9,7 +9,7 @@
 ### .NET
 
 
-Go to [Entry.cs](ixconsole.twin/Entry.cs) and setup the following parameters
+Go to [Entry.cs](ixblazor/Entry.cs) and setup the following parameters
 
 ~~~C#
 private const string TargetIp = "192.168.0.1"; // <- replace by your IP 
