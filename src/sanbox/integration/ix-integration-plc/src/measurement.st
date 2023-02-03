@@ -1,6 +1,6 @@
 NAMESPACE MeasurementExample
     {#ix-attr:[Container(Layout.Wrap)]}
-    {#ix-attr:[Group(Layout.GroupBox)]}
+    {#ix-attr:[Group(GroupLayout.GroupBox)]}
     CLASS PUBLIC Measurement
         VAR PUBLIC
             {#ix-set:AttributeName = "Minimum"}
@@ -27,22 +27,22 @@ NAMESPACE MeasurementExample
     CLASS PUBLIC Measurements
         VAR PUBLIC
             {#ix-attr:[Container(Layout.Stack)]}
-            {#ix-attr:[Group(Layout.GroupBox)]}
+            {#ix-attr:[Group(GroupLayout.GroupBox)]}
             {#ix-set:AttributeName = "Stack panel"}
             measurement_stack : Measurement;
 
             {#ix-attr:[Container(Layout.Wrap)]}
-            {#ix-attr:[Group(Layout.GroupBox)]}
+            {#ix-attr:[Group(GroupLayout.GroupBox)]}
             {#ix-set:AttributeName = "Wrap panel"}
             measurement_wrap : Measurement;
             
             {#ix-attr:[Container(Layout.UniformGrid)]}
-            {#ix-attr:[Group(Layout.GroupBox)]}
+            {#ix-attr:[Group(GroupLayout.GroupBox)]}
             {#ix-set:AttributeName = "Grid"}
             measurement_grid : Measurement;
             
             {#ix-attr:[Container(Layout.Tabs)]}
-            {#ix-attr:[Group(Layout.GroupBox)]}
+            {#ix-attr:[Group(GroupLayout.GroupBox)]}
             {#ix-set:AttributeName = "Tabs"}
             measurement_tabs : Measurement;
         END_VAR    

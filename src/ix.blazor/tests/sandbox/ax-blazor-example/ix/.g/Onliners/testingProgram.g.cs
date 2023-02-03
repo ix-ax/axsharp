@@ -8,7 +8,6 @@ public partial class testingProgram : Ix.Connector.ITwinObject
     [Container(Layout.Wrap)]
     public stTestPrimitive testPrimitive { get; }
 
-    [Container(Layout.Border)]
     public stTestComplex testComplex { get; }
 
     [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(stTestEnum))]

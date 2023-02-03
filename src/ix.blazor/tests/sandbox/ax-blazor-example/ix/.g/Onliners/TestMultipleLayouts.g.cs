@@ -37,7 +37,6 @@ public partial class TestMultipleLayouts : Ix.Connector.ITwinObject
 
     public OnlinerReal Piston_A34 { get; }
 
-    [Container(Layout.GroupBox)]
     public OnlinerBool Piston_A41 { get; }
 
     public OnlinerBool Piston_A42 { get; }

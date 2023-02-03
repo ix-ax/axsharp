@@ -1,5 +1,5 @@
 {#ix-attr:[Container(Layout.Stack)]}
-{#ix-attr:[Group(Layout.GroupBox)]}
+{#ix-attr:[Group(GroupLayout.GroupBox)]}
 {#ix-set:AttributeName = "Location"}
 CLASS  GeoLocation
     VAR PUBLIC

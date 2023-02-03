@@ -22,7 +22,6 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
     {
 
         public bool HasFocus { get; set; }
-        public string CssSymbol(string symbol) => symbol.Replace(".", "-");
 
         /// <summary>
         ///  Method, which updates are primitive values of ITwinObject instance

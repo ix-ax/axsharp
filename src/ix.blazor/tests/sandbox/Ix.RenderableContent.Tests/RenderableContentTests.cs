@@ -97,7 +97,7 @@ namespace Ix.RenderableContent.Tests
             // Act
             var cut = RenderComponent<RenderableContentControl>(param => param
             .Add(p => p.Context, _fixture.Connector.testingProgram.testRenderIgnore)
-            .Add(p => p.Presentation, "Display"));
+            .Add(p => p.Presentation, "Control"));
             // Assert
             cut.MarkupMatches(html);
         }
@@ -111,7 +111,7 @@ namespace Ix.RenderableContent.Tests
             // Act
             var cut = RenderComponent<RenderableContentControl>(param => param
             .Add(p => p.Context, _fixture.Connector.testingProgram.testRenderIgnore)
-            .Add(p => p.Presentation, "Control"));
+            .Add(p => p.Presentation, "Display"));
             // Assert
             cut.MarkupMatches(html);
         }

@@ -1,17 +1,13 @@
 ﻿@inherits TemplateBaseOnline<bool>
 
-<div class="form-group @CssSymbol(Onliner.Symbol)">
-    <div>
-        <label for="@ComponentId">@Onliner.AttributeName</label>
-    </div>
+<TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
+    <label for="@ComponentId" >@Onliner.AttributeName</label>
     <div class="form-check form-switch">
         <input id="@ComponentId"
                disabled="@IsReadOnly"
                class="form-check-input @AccessStatus"
                type="checkbox"
                @bind="Value">
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
+     
     </div>
-</div>
+</TemplateView>
