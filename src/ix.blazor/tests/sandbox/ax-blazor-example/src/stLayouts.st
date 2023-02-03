@@ -35,7 +35,6 @@ CLASS stLayouts
 	{#ix-set:AttributeName = "A10"}
 	Piston_A34 : REAL;
 	
-	{#ix-attr:[Container(Layout.GroupBox)]}
 	Piston_A41 : BOOL;
 	{#ix-set:AttributeName = "A11"}
 	Piston_A42 : BOOL;
@@ -43,7 +42,7 @@ CLASS stLayouts
 	Piston_A43 : BOOL;
 	{#ix-set:AttributeName = "A13"}
 	Piston_A44 : BOOL;
-	{#ix-attr:[Container(Layout.GroupBox)]}
+
 	{#ix-set:AttributeName = "Servo S1"}	
 	Servo_S1: TestStructOneGroupWithLayout;
 	{#ix-attr:[Container(Layout.Stack)]}	

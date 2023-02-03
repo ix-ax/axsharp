@@ -1,6 +1,6 @@
 
     {#ix-attr:[Container(Layout.Stack)]}
-    {#ix-attr:[Group(Layout.GroupBox)]}    
+    {#ix-attr:[Group(GroupLayout.GroupBox)]}    
     CLASS PUBLIC weatherBase
       VAR PUBLIC
         Latitude : REAL;       

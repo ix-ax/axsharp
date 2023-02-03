@@ -35,7 +35,6 @@ CLASS TestMultipleLayouts
         {#ix-set:AttributeName = "A10"}
         Piston_A34 : REAL;
         
-        {#ix-attr:[Container(Layout.GroupBox)]}
         Piston_A41 : BOOL;
         {#ix-set:AttributeName = "A11"}
         Piston_A42 : BOOL;

@@ -4,7 +4,7 @@ using Ix.Connector.ValueTypes;
 using System.Collections.Generic;
 
 [Container(Layout.Stack)]
-[Group(Layout.GroupBox)]
+[Group(GroupLayout.GroupBox)]
 public partial class weatherBase : Ix.Connector.ITwinObject
 {
     public OnlinerReal Latitude { get; }

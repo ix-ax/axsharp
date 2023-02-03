@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public partial class stExample : Ix.Connector.ITwinObject
 {
     [Container(Layout.Tabs)]
-    [Group(Layout.GroupBox)]
+    [Group(GroupLayout.GroupBox)]
     public OnlinerInt testInteger { get; }
 
     [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(stTestEnum))]
