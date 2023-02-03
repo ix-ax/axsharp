@@ -17,5 +17,6 @@ namespace Pocos
         public TestWithoutLayouts testWithoutLayouts { get; set; } = new TestWithoutLayouts();
         public TestSimpleNested testSimpleNested { get; set; } = new TestSimpleNested();
         public stTestMultipleNested testMultipleNested { get; set; } = new stTestMultipleNested();
+        public stTestLayouts testLayouts { get; set; } = new stTestLayouts();
     }
 }
