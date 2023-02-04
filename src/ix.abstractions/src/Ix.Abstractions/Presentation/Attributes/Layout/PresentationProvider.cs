@@ -13,17 +13,22 @@ namespace Ix.Abstractions.Presentation
 {
     public class PresentationProvider  
     {
-        private PresentationProvider(ILayoutProvider layoutProvider)
+        private PresentationProvider(ILayoutProvider layoutProvider, IGroupLayoutProvider groupLayoutProvider)
         {
             LayoutProvider = layoutProvider;
+            GroupLayoutProvider = groupLayoutProvider;
         }
 
         public ILayoutProvider LayoutProvider
         {
             get;
         }
+        public IGroupLayoutProvider GroupLayoutProvider
+        {
+            get;
+        }
 
-        private static readonly PresentationProvider emptyPresentationProvider = new PresentationProvider(new EmptyPresentationProvider());
+        private static readonly PresentationProvider emptyPresentationProvider = new PresentationProvider(new EmptyPresentationProvider(), new EmptyGroupProvider());
 
         private static PresentationProvider provider;
         private static volatile object mutex = new object();
@@ -41,7 +46,7 @@ namespace Ix.Abstractions.Presentation
             }
         }
 
-        public static PresentationProvider Create(ILayoutProvider layoutProvider)
+        public static PresentationProvider Create(ILayoutProvider layoutProvider, IGroupLayoutProvider groupLayoutProvider)
         {
             if (provider == null)
             {
@@ -49,7 +54,7 @@ namespace Ix.Abstractions.Presentation
                 {
                     if (provider == null)
                     {
-                        provider = new PresentationProvider(layoutProvider);
+                        provider = new PresentationProvider(layoutProvider, groupLayoutProvider);
                     }
                 }
             }

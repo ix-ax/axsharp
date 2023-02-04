@@ -22,5 +22,6 @@ namespace Ix.Abstractions.Presentation
                     "You must assign appropriate presentation provider by using 'Ix.Abstractions.Presentation.PresentationProvider.Create method'");
 
         }
+
     }
 }

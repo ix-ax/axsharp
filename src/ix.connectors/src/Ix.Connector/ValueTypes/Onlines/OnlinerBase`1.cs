@@ -156,9 +156,10 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
 
         set
         {
+
             if (Validator.Validate(value, CultureInfo.InvariantCulture).IsValid)
             {
-                EditValue(GetAsync().Result, value);
+                EditValue(this.Cyclic, value);
                 Cyclic = value;
             }
         }

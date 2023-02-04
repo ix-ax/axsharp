@@ -19,19 +19,19 @@
 
 <div>
     <RenderableContentControl Presentation="Control"
-                              Context="@Entry.Plc.weather_stacked" />
+                              Context="@Entry.Plc.weather_stacked" />                  
 </div>
 
 
 
 @code {
-
+    
     private MarkupString text;
     private string code_example = 
     @"
     NAMESPACE Layouts.Stacked
         {#ix-attr:[Container(Layout.Stack)]}
-        {#ix-attr:[Group(Layout.GroupBox)]}
+        {#ix-attr:[Group(GroupLayout.GroupBox)]}
         CLASS PUBLIC weather 
           VAR PUBLIC
             Latitude : REAL;       

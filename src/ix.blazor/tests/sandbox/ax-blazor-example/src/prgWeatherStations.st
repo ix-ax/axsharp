@@ -5,7 +5,7 @@ CLASS prgWeatherStations
         {#ix-set:AttributeName = "Weather Cyclic"}
         _weatherStations : fbWorldWeatherWatch;	
         {#ix-attr:[Container(Layout.Stack)]}
-        {#ix-attr:[Group(Layout.GroupBox)]}
+        {#ix-attr:[Group(GroupLayout.GroupBox)]}
         {#ix-set:AttributeName = "What plc says"}	
         PlcCommentOnCurrentWeather : STRING[254] := 'TEST';	
     END_VAR    

@@ -25,6 +25,10 @@ public partial class ix_integration_plcTwinController : ITwinController
     [ReadOnly()]
     public Layouts.Stacked.weather weather_readOnly { get; }
 
+    public example test_example { get; }
+
+    public MeasurementExample.Measurements measurements { get; }
+
     public ix_integration_plcTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -43,6 +47,8 @@ public partial class ix_integration_plcTwinController : ITwinController
         weather_readOnly = new Layouts.Stacked.weather(this.Connector, "", "weather_readOnly");
         weather_readOnly.AttributeName = "Weather structure set to read only";
         weather_readOnly.MakeReadOnly();
+        test_example = new example(this.Connector, "", "test_example");
+        measurements = new MeasurementExample.Measurements(this.Connector, "", "measurements");
     }
 
     public ix_integration_plcTwinController(Ix.Connector.ConnectorAdapter adapter)
@@ -63,5 +69,7 @@ public partial class ix_integration_plcTwinController : ITwinController
         weather_readOnly = new Layouts.Stacked.weather(this.Connector, "", "weather_readOnly");
         weather_readOnly.AttributeName = "Weather structure set to read only";
         weather_readOnly.MakeReadOnly();
+        test_example = new example(this.Connector, "", "test_example");
+        measurements = new MeasurementExample.Measurements(this.Connector, "", "measurements");
     }
 }

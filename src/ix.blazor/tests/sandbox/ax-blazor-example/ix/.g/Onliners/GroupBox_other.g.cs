@@ -37,7 +37,6 @@ public partial class GroupBox_other : Ix.Connector.ITwinObject
 
     public OnlinerReal Piston_A34 { get; }
 
-    [Container(Layout.GroupBox)]
     public OnlinerBool Piston_A41 { get; }
 
     public OnlinerBool Piston_A42 { get; }
@@ -46,7 +45,6 @@ public partial class GroupBox_other : Ix.Connector.ITwinObject
 
     public OnlinerBool Piston_A44 { get; }
 
-    [Container(Layout.GroupBox)]
     public TestStructOneGroupWithLayout Servo_S1 { get; }
 
     [Container(Layout.Stack)]

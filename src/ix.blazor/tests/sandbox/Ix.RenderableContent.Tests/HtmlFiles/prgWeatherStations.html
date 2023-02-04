@@ -1,120 +1,83 @@
-﻿<div class=" prgWeatherStations" b-rmzjqyxhw7>
+﻿<div name="prgWeatherStations">
     <div name="StackPanel" class="content p-3">
         <div name="TabControl" class="w-100 ">
             <ul class="nav nav-tabs mb-3">
                 <li class="nav-item">
-
-                    <button type="button" class="nav-link active" blazor:onclick="1">
+                    <button type="button" class="nav-link active">
                         <b>North pole station</b>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="nav-link" blazor:onclick="2">
+                    <button type="button" class="nav-link">
                         <b>South pole station</b>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="nav-link" blazor:onclick="3">
+                    <button type="button" class="nav-link">
                         <b>Verl, Germany</b>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="nav-link" blazor:onclick="4">
+                    <button type="button" class="nav-link">
                         <b>Kriva, Slovakia</b>
                     </button>
                 </li>
             </ul>
             <div class="content">
                 <div name="StackPanel" class="content p-3">
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-StationICAO">
-                        <div>
-                            <label for:ignore="Station name (ICAO)_c4ed34f6-bcd9-4820-aace-954439b387ea">Station name (ICAO)</label>
-                        </div>
-                        <div>
-                            <input id:ignore="Station name (ICAO)_c4ed34f6-bcd9-4820-aace-954439b387ea" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-StationICAO" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="StationICAO_56cc96bc-cf7f-42ca-874a-6c84ad6cfa0e">Station name (ICAO)</label>
+                        <input id:ignore:ignore="StationICAO_56cc96bc-cf7f-42ca-874a-6c84ad6cfa0e" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="">
+                        <div class="invalid-feedback" ></div>
                     </div>
                     <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-StationStatus">
                         <div>
-                            <label for:ignore="Station status_054e7ec3-c202-4789-927b-f67791c86024">Station status</label>
+                            <label for:ignore:ignore="StationStatus_5f857556-a0b8-4b4a-a881-f8d413788d77">Station status</label>
                         </div>
                         <div>
-                            <input id:ignore="Station status_054e7ec3-c202-4789-927b-f67791c86024" class="w-100 form-control" readonly="readonly" style="background-color: transparent" value="Unknown  " />
+                            <input id:ignore:ignore="StationStatus_5f857556-a0b8-4b4a-a881-f8d413788d77" class="w-100 form-control " readonly="readonly" style="background-color:transparent" value:ignore="Unknown  ">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-Pressure">
-                        <div>
-                            <label for:ignore="Pressure_a7b07bc3-3ac5-4c86-b918-f2b145a5069a">Pressure</label>
-                        </div>
-                        <div>
-                            <input id:ignore="Pressure_a7b07bc3-3ac5-4c86-b918-f2b145a5069a" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="0" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-Pressure" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="Pressure_4bd88f17-f631-49ab-913f-9965e0e8a1eb">Pressure</label>
+                        <input id:ignore:ignore="Pressure_4bd88f17-f631-49ab-913f-9965e0e8a1eb" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="0">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-Temp">
-                        <div>
-                            <label for:ignore="Temperature_d2713fdb-c22a-4495-a56b-2988d02d20d4">Temperature</label>
-                        </div>
-                        <div>
-                            <input id:ignore="Temperature_d2713fdb-c22a-4495-a56b-2988d02d20d4" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="0" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-Temp" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="Temp_8a2b9ace-6a56-4ee6-b94c-3e07d3f611b2">Temperature</label>
+                        <input id:ignore:ignore="Temp_8a2b9ace-6a56-4ee6-b94c-3e07d3f611b2" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="0">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-Visibility">
-                        <div>
-                            <label for:ignore="Visibility_f3ca6559-5cf9-4120-b3f0-fe110ead116a">Visibility</label>
-                        </div>
-                        <div>
-                            <input id:ignore="Visibility_f3ca6559-5cf9-4120-b3f0-fe110ead116a" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="0" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-Visibility" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="Visibility_cd8900cb-21ef-4099-becb-5f85c0aeb17f">Visibility</label>
+                        <input id:ignore:ignore="Visibility_cd8900cb-21ef-4099-becb-5f85c0aeb17f" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="0">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-WindHeading">
-                        <div>
-                            <label for:ignore="Wind heading_1b84e155-9530-48c7-99f8-1f38df262747">Wind heading</label>
-                        </div>
-                        <div>
-                            <input id:ignore="Wind heading_1b84e155-9530-48c7-99f8-1f38df262747" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="0" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-WindHeading" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="WindHeading_8b508e7c-5149-48b0-9819-b0c9922524ff">Wind heading</label>
+                        <input id:ignore:ignore="WindHeading_8b508e7c-5149-48b0-9819-b0c9922524ff" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="0">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-WindSpeed">
-                        <div>
-                            <label for:ignore="Wind speed_617bfe51-0585-4ffa-87c0-b494cbe67054">Wind speed</label>
-                        </div>
-                        <div>
-                            <input id:ignore="Wind speed_617bfe51-0585-4ffa-87c0-b494cbe67054" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="0" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-WindSpeed" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="WindSpeed_a3612695-5248-41b4-91eb-a29efd53e337">Wind speed</label>
+                        <input id:ignore:ignore="WindSpeed_a3612695-5248-41b4-91eb-a29efd53e337" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="0">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-TestDate">
-                        <div>
-                            <label for:ignore="TestDate_9b7d2cff-2dc4-4d6c-b6b4-fe3a26c4a14e">TestDate</label>
-                        </div>
-                        <div>
-                            <input id:ignore="TestDate_9b7d2cff-2dc4-4d6c-b6b4-fe3a26c4a14e" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="date" value:ignore="1. 1. 0001" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-TestDate" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="TestDate_ec87a84b-b33e-4571-a66a-e71f847dcbd7">TestDate</label>
+                        <input id:ignore:ignore="TestDate_ec87a84b-b33e-4571-a66a-e71f847dcbd7" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="date" value:ignore="1. 1. 0001">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-TestDateTime">
-                        <div>
-                            <label for:ignore="TestDateTime_d86d813f-01a5-47ef-8b52-b852a60cdb6d">TestDateTime</label>
-                        </div>
-                        <div>
-                            <input id:ignore="TestDateTime_d86d813f-01a5-47ef-8b52-b852a60cdb6d" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="datetime" value:ignore="1. 1. 0001 0:00:00" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-TestDateTime" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="TestDateTime_fab5aa02-00c2-46fb-84b9-84815867a696">TestDateTime</label>
+                        <input id:ignore:ignore="TestDateTime_fab5aa02-00c2-46fb-84b9-84815867a696" class="w-100 form-control " style="background-color:transparent" readonly="readonly" type="datetime" value:ignore="1. 1. 0001 0:00:00">
+                        <div class="invalid-feedback" ></div>
                     </div>
-                    <div class="w-100 form-group prgWeatherStations-_weatherStations-NorthPole-TestTimeOfDay">
-                        <div>
-                            <label for:ignore="TestTimeOfDay_e7df4eb4-8695-452a-b926-efcb80100f56">TestTimeOfDay</label>
-                        </div>
-                        <div>
-                            <input id:ignore="TestTimeOfDay_e7df4eb4-8695-452a-b926-efcb80100f56" class="w-100 form-control" style="background-color:transparent" type="text" value:ignore="00:00:00" readonly="readonly" />
-                            <div class="invalid-feedback"></div>
-                        </div>
+                    <div name="prgWeatherStations-_weatherStations-NorthPole-TestTimeOfDay" class="w-100 form-group mb-2" >
+                        <label for:ignore:ignore="TestTimeOfDay_273c797e-0d17-435a-9573-a0638e6d8c39">TestTimeOfDay</label>
+                        <input id:ignore:ignore="TestTimeOfDay_273c797e-0d17-435a-9573-a0638e6d8c39" class="w-100 form-control " style="background-color:transparent" type="text" value:ignore="00:00:00" readonly="readonly">
+                        <div class="invalid-feedback" ></div>
                     </div>
                 </div>
             </div>
@@ -122,17 +85,12 @@
         <div name="GroupBox" class="card w-100 p-2">
             <span style="font-weight: bold; padding-bottom:2px;">What plc says</span>
             <div name="StackPanel" class="content p-3">
-                <div class="w-100 form-group prgWeatherStations-PlcCommentOnCurrentWeather">
-                    <div>
-                        <label for:ignore="What plc says_4b602a4b-641b-493b-8033-f18ae022fd7e">What plc says</label>
-                    </div>
-                    <div>
-                        <input id:ignore="What plc says_4b602a4b-641b-493b-8033-f18ae022fd7e" class="w-100 form-control" style="background-color:transparent" readonly="readonly" type="text" step="any" value="" />
-                        <div class="invalid-feedback"></div>
-                    </div>
+                <div name="prgWeatherStations-PlcCommentOnCurrentWeather" class="w-100 form-group mb-2" >
+                    <label for:ignore:ignore="PlcCommentOnCurrentWeather_514d1944-9434-4bbd-8943-209574b86975">What plc says</label>
+                    <input id:ignore:ignore="PlcCommentOnCurrentWeather_514d1944-9434-4bbd-8943-209574b86975" readonly="readonly" class="w-100 form-control " style="background-color:transparent" type="text" step="any" value:ignore="">
+                    <div class="invalid-feedback" ></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

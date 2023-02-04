@@ -13,16 +13,16 @@ using Ix.Presentation.Attributes;
 public class GroupAttribute : PresentationGroupAttribute
 {    
     /// <summary>Initializes a new instance of the <see cref="ContainerAttribute" /> class.</summary>
-    public GroupAttribute(Layout layoutType) : base()
+    public GroupAttribute(GroupLayout layoutType) : base()
     {
-        var containterInfo = PresentationProvider.Get.LayoutProvider.GetControl(layoutType);
+        var containterInfo = PresentationProvider.Get.GroupLayoutProvider.GetControl(layoutType);
         this.Assembly = containterInfo.assembly;
         this.FullTypeName = containterInfo.fullTypeName;
     }
 
-    public GroupAttribute(Layout layoutType, object parentHeader) : base()
+    public GroupAttribute(GroupLayout layoutType, object parentHeader) : base()
     {
-        var containterInfo = PresentationProvider.Get.LayoutProvider.GetControl(layoutType);
+        var containterInfo = PresentationProvider.Get.GroupLayoutProvider.GetControl(layoutType);
         this.Assembly = containterInfo.assembly;
         this.FullTypeName = containterInfo.fullTypeName;
         this.ParentHeader = parentHeader;
