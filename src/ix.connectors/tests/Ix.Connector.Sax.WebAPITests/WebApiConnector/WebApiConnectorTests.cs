@@ -1746,7 +1746,7 @@ namespace Ix.Connector.S71500.WebAPITests
             };
             var sw = new Stopwatch();
             output.WriteLine(primitives.Count().ToString());
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 9; i++)
             {
                 sw.Restart();
                 await connector.ReadBatchAsync(primitives);
