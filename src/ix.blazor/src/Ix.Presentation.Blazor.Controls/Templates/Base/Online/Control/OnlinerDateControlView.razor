@@ -1,17 +1,12 @@
 ﻿@inherits TemplateBaseOnline<DateOnly>
 
-<div class="w-100 form-group @CssSymbol(Onliner.Symbol)">
-    <div>
-        <label for="@ComponentId">@Onliner.AttributeName</label>
-    </div>
-    <div class="w-100">
-        <input id="@ComponentId"
-               readonly="@IsReadOnly"
-               class="w-100 form-control @AccessStatus"
-               type="date"
-               @bind="Value" />
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
-    </div>
-</div>
+<TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
+ 
+    <label for="@ComponentId" >@Onliner.AttributeName</label>
+    <input id="@ComponentId"
+            readonly="@IsReadOnly"
+            class="w-100 form-control @AccessStatus"
+            type="date"
+            @bind="Value" />
+        
+</TemplateView>

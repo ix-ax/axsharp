@@ -13,4 +13,5 @@
     <ProjectReference Include="..\ix-integration-plc\ix\ix-integration-plc.csproj" />
   </ItemGroup>
 
+	
 </Project>

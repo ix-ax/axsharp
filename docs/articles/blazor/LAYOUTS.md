@@ -1,6 +1,6 @@
 # Layouts
 
-This file describes layouts, which are supported by Ix.Presentation.Blazor framework. 
+Layouts serves for adjustment of rendered UI.
 
 Following layouts are supported within the framework:
 
@@ -8,15 +8,25 @@ Following layouts are supported within the framework:
 - UniformGrid
 - Wrap
 - Tabs
+
+The framework also contains a special layouts for grouping purposes.
+
+Following group layouts are supported:
+
 - Border
 - GroupBox
 
-Layout can by specified in PLC code with the following attribute:
+Layout can be specified in PLC code with the following attribute:
 ```
 {#ix-attr:[Container(Layout.Name)]}
 ```
 Where *Name* is replaced with the name of one of the supported layouts.
 
+Group layouts can be used only together with layouts and are specified with following attribute:
+
+```
+{#ix-attr:[Container(GroupLayout.Name)]}
+```
 ---
 
 ## Stack
@@ -24,8 +34,7 @@ Stack is the default layout, where UI elements are placed into the stack contain
 
 ---
 ## UniformGrid
-UniformGrid will place elements in a row, where each element is of uniform width - so width of all elements is the same. 
-
+UniformGrid will place elements in a row, where each element has uniform width.
 Let's have the following PLC code with a container attribute:
 ```
 {#ix-attr:[Container(Layout.UniformGrid)]}
@@ -39,13 +48,13 @@ CLASS stExample :
 END_CLASS
 ```
 
-And this is the result:
+Renderer will create following UI:
 
 ![alt text](assets/uniform.png "RenderIgnore and custom labels")
 
 ---
 ## Wrap
-Wrap layout will create a wrapper around the elements. It will place the elements in a row. However width of all elements isn't same and when window is resized, elements will be placed below each other. So wrap layout is responsive layout.
+Wrap layout creates a wrapper around the elements. Elements are placed in a row. Width of all elements isn't the same and when window is resized, elements will be placed below each other. So wrap layout is responsive layout.
 
 This is the example behavior of wrap panel:
 
@@ -53,7 +62,7 @@ This is the example behavior of wrap panel:
 
 ---
 ## Tabs
-Tabs layout will place each element in its own tab. You are able to switch between tabs to see corresponding UI. In example below, you can see PLC code with Layout.Tabs container attribute and corresponding auto-generated UI.
+Tabs layout creates tabbed interface. In example below, UI is generated in Tabs layout.
 ```
 {#ix-attr:[Container(Layout.Tabs)]}
 CLASS fbWorldWeatherWatch
@@ -76,20 +85,56 @@ END_CLASS
 ![alt text](assets/tabs.gif "Tabs layout")
 
 ---
-## Border
-Border layout will create border around auto-generated elements. 
+## Group layout Border
+Border layout will create box around auto-generated elements in specified layout. 
+
+
+```
+{#ix-attr:[Container(Layout.Stack)]}
+{#ix-attr:[Group(GroupLayout.Border)]}   
+CLASS border
+    VAR PUBLIC
+        {#ix-set:AttributeName = "<#Integer From PLC#>"}	
+        testInteger : INT;
+        {#ix-set:AttributeName = "<#STRING From PLC#>"}	
+        testString : STRING;
+        {#ix-set:AttributeName = "<#BOOL From PLC#>"}	
+        testBool : BOOL;
+        {#ix-set:AttributeName = "<#DATE From PLC#>"}
+        TestDate : DATE;	
+    END_VAR
+END_CLASS
+```
 
 ![alt text](assets/border.png "Border layout")
 
 ---
-## GroupBox
-GroupBox layout will create border with name of first element around auto-generated elements. 
+## Group layout GroupBox
+GroupBox layout will create box with name around auto-generated elements. 
+
+```
+{#ix-attr:[Container(Layout.Stack)]}
+{#ix-attr:[Group(GroupLayout.GroupBox)]}   
+CLASS border
+    VAR PUBLIC
+        {#ix-set:AttributeName = "<#Integer From PLC#>"}	
+        testInteger : INT;
+        {#ix-set:AttributeName = "<#STRING From PLC#>"}	
+        testString : STRING;
+        {#ix-set:AttributeName = "<#BOOL From PLC#>"}	
+        testBool : BOOL;
+        {#ix-set:AttributeName = "<#DATE From PLC#>"}
+        TestDate : DATE;	
+    END_VAR
+END_CLASS
+```
 
 ![alt text](assets/groupbox.png "GroupBox layout")
 
 ---
 ## Nested and multiple layouts
-It is possible to nest multiple container attributes in PLC code to create a complex layouts.
+Layouts can be nested to create more complex UI.
+
 Consider following the plc code:
 ```
 {#ix-attr:[Container(Layout.Tabs)]}
@@ -118,7 +163,7 @@ CLASS stMultipleLayouts
 END_CLASS
 
 ```
-You will get the following auto-generated UI:
+Renderer will generate following UI:
 
 ![alt text](assets/multiple_layouts.gif "Mulitple layouts")
 

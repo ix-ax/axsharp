@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace MeasurementExample
 {
     [Container(Layout.Wrap)]
-    [Group(Layout.GroupBox)]
+    [Group(GroupLayout.GroupBox)]
     public partial class Measurement : Ix.Connector.ITwinObject
     {
         public OnlinerReal Min { get; }
@@ -110,19 +110,19 @@ namespace MeasurementExample
     public partial class Measurements : Ix.Connector.ITwinObject
     {
         [Container(Layout.Stack)]
-        [Group(Layout.GroupBox)]
+        [Group(GroupLayout.GroupBox)]
         public MeasurementExample.Measurement measurement_stack { get; }
 
         [Container(Layout.Wrap)]
-        [Group(Layout.GroupBox)]
+        [Group(GroupLayout.GroupBox)]
         public MeasurementExample.Measurement measurement_wrap { get; }
 
         [Container(Layout.UniformGrid)]
-        [Group(Layout.GroupBox)]
+        [Group(GroupLayout.GroupBox)]
         public MeasurementExample.Measurement measurement_grid { get; }
 
         [Container(Layout.Tabs)]
-        [Group(Layout.GroupBox)]
+        [Group(GroupLayout.GroupBox)]
         public MeasurementExample.Measurement measurement_tabs { get; }
 
         public Measurements(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)

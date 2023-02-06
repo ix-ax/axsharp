@@ -8,7 +8,6 @@ public partial class testingProgram : Ix.Connector.ITwinObject
     [Container(Layout.Wrap)]
     public stTestPrimitive testPrimitive { get; }
 
-    [Container(Layout.Border)]
     public stTestComplex testComplex { get; }
 
     [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(stTestEnum))]
@@ -34,6 +33,8 @@ public partial class testingProgram : Ix.Connector.ITwinObject
     [Container(Layout.Tabs)]
     public stTestMultipleNested testMultipleNested { get; }
 
+    public stTestLayouts testLayouts { get; }
+
     public testingProgram(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -57,6 +58,7 @@ public partial class testingProgram : Ix.Connector.ITwinObject
         testWithoutLayouts = new TestWithoutLayouts(this, "testWithoutLayouts", "testWithoutLayouts");
         testSimpleNested = new TestSimpleNested(this, "testSimpleNested", "testSimpleNested");
         testMultipleNested = new stTestMultipleNested(this, "testMultipleNested", "testMultipleNested");
+        testLayouts = new stTestLayouts(this, "testLayouts", "testLayouts");
         parent.AddChild(this);
         parent.AddKid(this);
     }
