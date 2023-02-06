@@ -40,14 +40,18 @@
     Toggle static offcanvas
 </button>
 
-<div class="offcanvas offcanvas-bottom" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+<div class="offcanvas offcanvas-bottom" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel" style="height: 20vh">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <div>
-            I will not close if you click outside of me.
+            Do you want close this offcanvas?
+        </div>
+        <div class="ms-5">
+            <button type="button" class="btn btn-primary px-5" data-bs-dismiss="offcanvas">Yes</button>
+            <button type="button" class="btn btn-danger px-5">No</button>
         </div>
     </div>
 </div>

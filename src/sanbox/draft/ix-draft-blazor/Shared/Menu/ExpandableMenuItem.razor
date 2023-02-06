@@ -1,13 +1,27 @@
 ﻿<div>
     <div class="nav-item">
-        <NavLink class="nav-link" @onclick='() => Collapse()' >
-            @if (Icon != null)
-            {
-                <span class="oi @Icon" aria-hidden="true"></span>
-            }
-            <strong>@Name</strong>
-            <span class="ms-auto oi oi-chevron-top @(_isCollapsed ? "open" : "")" aria-hidden="true"></span>
-        </NavLink>
+        @if (Link != null)
+        {
+            <NavLink class="nav-link" href="@Link" Match="NavLinkMatch.All">
+                @if (Icon != null)
+                {
+                    <span class="oi @Icon" aria-hidden="true"></span>
+                }
+                <strong>@Name</strong>
+                <span class="ms-auto oi oi-chevron-top @(_isCollapsed ? "open" : "")" aria-hidden="true"></span>
+            </NavLink>
+        }
+        else
+        {
+            <NavLink class="nav-link" @onclick='() => Collapse()'>
+                @if (Icon != null)
+                {
+                    <span class="oi @Icon" aria-hidden="true"></span>
+                }
+                <strong>@Name</strong>
+                <span class="ms-auto oi oi-chevron-top @(_isCollapsed ? "open" : "")" aria-hidden="true"></span>
+            </NavLink>
+        }
     </div>
 
 
@@ -28,36 +42,41 @@
     [Parameter]
     public string? Name { get; set; } = null;
     [Parameter]
+    public string? Link { get; set; } = null;
+    [Parameter]
     public string? Icon { get; set; } = null;
 
     private bool _isCollapsed = true;
 
-    private string _dashedName { get; set; } 
+    private string? _dashedName { get; set; }
 
     [CascadingParameter]
-    protected ExpandableMenuItem? SubMenu { get; set; }
+    protected ExpandableMenuItem? parent { get; set; }
 
     protected override void OnInitialized()
     {
         _dashedName = Name?.Replace(' ', '-').ToLower();
-        var parentName = $"{ GetLink() }/";
-        var relativePath = MyNavigationManager.ToBaseRelativePath(MyNavigationManager.Uri);
 
-        if (relativePath.Contains(parentName))
+        var relativePath = MyNavigationManager!.ToBaseRelativePath(MyNavigationManager.Uri);
+
+        if (relativePath.Contains(GetLink()))
         {
             _isCollapsed = false;
         }
     }
 
-    public string? GetLink()
+    public string GetLink()
     {
-        if (SubMenu != null)
+        if (Link != null)
+            return Link;
+
+        if (parent != null)
         {
-            return $"{SubMenu.GetLink()}/{_dashedName}";
+            return $"{parent.GetLink()}/{_dashedName}";
         }
         return $"{_dashedName}";
     }
-  
+
     private void Collapse()
     {
         _isCollapsed = !_isCollapsed;

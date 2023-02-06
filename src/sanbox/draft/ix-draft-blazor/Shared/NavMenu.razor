@@ -1,6 +1,6 @@
-﻿<div class="nav-menu">
+﻿<div class="nav-menu bg-light">
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="oi oi-menu" aria-hidden="true"></span>
+        <span class="oi oi-menu ms-2 p-2" style="font-size: 1.5rem" aria-hidden="true"></span>
     </button>
 
     <div class="@NavMenuCssClass nav-scrollable">
@@ -13,7 +13,7 @@
                 <MenuItem Name="Production data" Icon="oi oi-data-transfer-download" />
                 <MenuItem Name="Tech data" Icon="oi oi-signal" />
 
-                <ExpandableMenuItem Name="More Data">
+                <ExpandableMenuItem Name="More Data" Link="data/more-data">
                     <MenuItem Name="First more data" Icon="oi oi-plus" />
                     <MenuItem Name="Second more data" />
                     <MenuItem Name="Third more data" Link="data/more-data/third-more-data" Icon="oi oi-plus" />

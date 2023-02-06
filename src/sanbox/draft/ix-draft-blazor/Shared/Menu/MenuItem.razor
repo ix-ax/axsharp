@@ -1,6 +1,6 @@
 ﻿<div class="nav-item">
 
-    <NavLink class="nav-link" href="@ComputeLink()" Match="NavLinkMatch.All">
+    <NavLink class="nav-link" href="@GetLink()" Match="NavLinkMatch.All">
         @if (Icon != null)
         {
             <span class="@Icon" aria-hidden="true"></span>
@@ -16,28 +16,27 @@
     [Parameter]
     public string? Icon { get; set; } = null;
 
+    private string? _dashedName { get; set; }
+
     [CascadingParameter]
-    protected ExpandableMenuItem? ExpandableMenuItemPar { get; set; }
+    protected ExpandableMenuItem? parent { get; set; }
 
     protected override void OnInitialized()
     {
+        _dashedName = Name?.Replace(' ', '-').ToLower();
+
         base.OnInitialized();
     }
 
-
-    private string ComputeLink()
+    public string GetLink()
     {
         if (Link != null)
-        {
-            return Link;   
-        }
-        var dashedName = Name?.Replace(' ', '-').ToLower();
+            return Link;
 
-        if (ExpandableMenuItemPar != null)
+        if (parent != null)
         {
-            return $"{ExpandableMenuItemPar.GetLink()}/{dashedName}";
+            return $"{parent.GetLink()}/{_dashedName}";
         }
-       
-        return dashedName;
+        return $"{_dashedName}";
     }
 }

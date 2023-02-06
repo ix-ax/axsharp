@@ -2,12 +2,25 @@
 
 <PageTitle>Control</PageTitle>
 
-<div class="row bg-success rounded">
-    <h5 class="col-3 text-white d-inline-block d-flex align-items-center">Automat</h5>
-    <div class="col-9 my-3 row">
-        <button type="button" class="btn btn-primary mx-2 col-3">Manual</button>
-        <button type="button" class="btn btn-primary mx-2 col-3">Ground</button>
-        <button type="button" class="btn btn-primary mx-2 col-3">Automat</button>
+<Sequencer />
+
+
+<div class="shadow">
+    <div class="row bg-success rounded-top py-2">
+        <h5 class="col-3 text-white d-inline-block d-flex align-items-center">Automat</h5>
+        <div class="col-9 d-flex justify-content-evenly">
+            <button type="button" class="btn btn-primary mx-4 w-50" @onclick='() => Collapse()'>Manual</button>
+            <button type="button" class="btn btn-primary mx-4 w-50">Ground</button>
+            <button type="button" class="btn btn-primary mx-4 w-50">Automat</button>
+        </div>
+    </div>
+    <div class="row bg-light rounded-bottom py-2 @(_isCollapsed ? "collapse" : null)">
+        <div class="col-3"></div>
+        <div class="col-3 d-flex justify-content-evenly">
+            <button type="button" class="btn btn-primary mx-2">&lt;&lt;</button>
+            <button type="button" class="btn btn-primary mx-2">&gt;&lt;</button>
+            <button type="button" class="btn btn-primary mx-2">&gt;&gt;</button>
+        </div>
     </div>
 </div>
 
@@ -27,7 +40,7 @@
             <td>First step</td>
             <td>00.00.00</td>
         </tr>
-        <tr>
+        <tr class="bg-primary text-white">
             <th scope="row">2</th>
             <td>200</td>
             <td>Second step</td>
@@ -47,3 +60,12 @@
         </tr>
     </tbody>
 </table>
+
+@code {
+    private bool _isCollapsed = true;
+
+    private void Collapse()
+    {
+        _isCollapsed = !_isCollapsed;
+    }
+}
