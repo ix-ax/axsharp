@@ -1,6 +1,9 @@
 PROGRAM MyProgram
-    VAR_EXTERNAL      
-        oop_counter : counter_oop;
+    VAR_EXTERNAL          
+        counters : counters;                
     END_VAR        
-    oop_counter.RunCounter();
+    counters.wrap.RunCounter();
+    counters.stack.RunCounter();
+    counters.grid.RunCounter();
+    counters.tabs.RunCounter();
 END_PROGRAM

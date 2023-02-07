@@ -4,6 +4,6 @@ namespace Pocos
 {
     public partial class ixblazor
     {
-        public counter_oop oop_counter { get; set; } = new counter_oop();
+        public Counters counters { get; set; } = new Counters();
     }
 }

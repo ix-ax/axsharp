@@ -4,6 +4,7 @@ type: app
 targets:
   - "1500"
   - axunit-llvm
+  - plcsim
 devDependencies:
   "@ax/sdk": 3.0.8
 variables:
@@ -18,5 +19,5 @@ scripts:
     - apax build
     # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
     # --default-server-interface is a must if you are using WebAPI      
-    - apax sld --accept-security-disclaimer -t 192.168.0.1 -i .\\bin\\1500\\ -r --default-server-interface    
+    - apax sld --accept-security-disclaimer -t 192.168.0.4 -i .\\bin\\plcsim\\ -r --default-server-interface    
 
