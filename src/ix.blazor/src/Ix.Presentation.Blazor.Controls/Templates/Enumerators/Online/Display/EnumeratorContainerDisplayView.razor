@@ -1,18 +1,14 @@
-﻿@typeparam T
+﻿@namespace Ix.Presentation.Blazor.Controls.Templates
+@typeparam T
 @inherits EnumeratorsBaseOnline<T>
 
-<div class="w-100 form-group @OnlinerSymbol">
-    <div>
+<TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
         <label for="@ComponentId" >@Onliner.AttributeName</label>
-    </div>
-    <div>
+
+
         <input id="@ComponentId"
                class="w-100 form-control @AccessStatus"
                readonly="readonly"
                style=@(IsReadOnly ? "" : "background-color:transparent")
                value="@EnumToIntConverter.Convert(@Onliner.Cyclic,null,null,null)  " />
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
-    </div>
-</div>
+</TemplateView>

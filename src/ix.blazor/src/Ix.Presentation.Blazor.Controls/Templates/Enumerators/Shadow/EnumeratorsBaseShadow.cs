@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ix.Presentation.Blazor.Controls.Templates.Enumerators.Shadow
+namespace Ix.Presentation.Blazor.Controls.Templates
 {
     public partial class EnumeratorsBaseShadow<T> : TemplateBase<T>
     {

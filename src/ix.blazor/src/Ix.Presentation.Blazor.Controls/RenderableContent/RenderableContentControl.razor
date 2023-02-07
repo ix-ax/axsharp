@@ -21,7 +21,7 @@
         //try to find complex component (also try predecessors) and generate it
         var twin = (ITwinObject)element;
         var twinType = twin.GetType();
-        var component = ViewLocatorBuilder(twinType, Presentation, ComponentService.GetComponent);
+        var component = ViewLocatorBuilder(twinType, Presentation);
         if (component != null)
         {
             @CreateComplexComponent(twin, component);
@@ -137,7 +137,7 @@
     {
         Type mainLayout = null;
       
-        var component = ViewLocatorBuilder(twin.GetType(), Presentation, ComponentService.GetComponent);
+        var component = ViewLocatorBuilder(twin.GetType(), Presentation);
         if (component != null)
         {
             var name = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
@@ -174,14 +174,7 @@
     private RenderFragment GeneratePrimitive(ITwinPrimitive primitiveKid) => __builder =>
     {
         var primitiveKidType = primitiveKid.GetType();
-        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, Presentation, ComponentService.GetBaseComponent);
-        //if component not found, use BaseGenericComponent
-        if (primitiveComponent == null)
-        {
-            var (baseName, genericTypeArg) = GetGenericInfo(primitiveKidType);
-            bool IsEnum = false;
-            primitiveComponent = ViewGenericLocatorBuilder(baseName, Presentation, genericTypeArg, IsEnum);
-        }
+        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, Presentation);
         @CreatePrimitiveComponent(primitiveKid, primitiveComponent)
     };
 
@@ -189,9 +182,7 @@
      private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinPrimitive kid) => __builder =>
      {
         var enumKidType = kid.GetType();
-        var (baseName, genericTypeArg) = GetGenericInfo(enumKidType);
-        bool IsEnum = true;
-        var component = ViewGenericLocatorBuilder(baseName, Presentation, genericTypeArg, IsEnum);
+        var component = ViewEnumLocatorBuilder(enumKidType, Presentation);
         @CreateEnumComponent(enumDiscriminatorAttribute, kid, component)
      };
 

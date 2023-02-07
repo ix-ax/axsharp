@@ -1,0 +1,18 @@
+﻿@namespace Ix.Presentation.Blazor.Controls.Templates
+@inherits RenderableComplexComponentBase<ixcomponent>
+
+<h3>Should overwrite IxComponent from integration library</h3>
+
+<div class="card">
+    <p>IxBool: @Component.my_bool.Cyclic</p>
+    <p>IxInt: @Component.my_int.Cyclic</p>
+    <p>IxString: @Component.my_string.Cyclic</p>
+</div>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        UpdateValuesOnChange(Component);
+    }
+}

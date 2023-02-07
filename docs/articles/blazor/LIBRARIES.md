@@ -1,130 +1,186 @@
-# Custom libraries
-Custom libraries are a way to store own created views with different presentation types.
+# External libraries
 
-To create a custom components library, two projects must be created:
-- **Connector project** - which will contain PLC compiled classes from Ix Builder.
-- **Razor components project** - Razor class library, which will contain the implementation of corresponding views with dependency on Connector project.
+External libraries can store user defined views in different presentation types, which then can be dynamically rendered. 
 
-It is important to note that the generated classes in the Connector project and created Razor views must be in **same namespace** to correctly locate views.
+This file describes how to create external library and connect it to the PLC project. Look at **integration-blazor** project example.
 
-See the example below:
+Make sure Blazor server project and PLC projects are created.
 
-We have three projects:
-- *ComponentsExamples* - custom components library 
-- *IxBlazor.App* - Blazor Server application
-- *PlcConnector* - class library containing generated files from IX Builder
+## Razor class library setup
 
-Files in the *ComponentsExample* and the *PlcConnector* are in the same namespace. *IxBlazor.App* has a reference to the *ComponentsExample* project.
+### 1. Create library
 
-![alt text](assets/external.png "Renderignore and custom labels")
+Create Razor class library in your solution.
 
-*ComponentsExamples* library must contain `RenderableBlazorAssemblyAttribute()`. Thanks to this attribute RenderableContentControl is able to load its assembly and find all created custom view. 
 
-This attribute can be added to `AssemblyInfo.cs` class located in `Properties` folder. If there is no `Properties` folder, just create it with `AssemblyInfo.cs` class and paste there following code:
+### 2. Add references 
 
-```C#
+
+- Install `Ix.Presentation.Blazor.Controls` nuget package or if you are using raw projects, add reference to `Ix.Presentation.Blazor.Controls` project.
+
+- Add reference from Razor Class library to PLC project.
+
+- In Blazor Server app, add reference to newly created Razor class library.
+
+Dependency graph should look like this:
+
+![alt text](assets/dependency-graph.png "Dependency graph")
+
+
+### 3. Add namespace
+
+Add namespace of renderer to `_Imports.razor` in razor class library.
+```
+@using Ix.Presentation.Blazor.Controls.RenderableContent
+```
+### 4. Add renderable attribute
+
+Add `RenderableBlazorAssemblyAttribute` to Razor class library.
+
+1. Create folder named `Properties`
+2. Inside folder create `AssemblyInfo.cs` class
+3. Copy following code into `AssemblyInfo.cs` class:
+
+```
+using System.Reflection;
 using Ix.Presentation.Blazor.Attributes;
 
 [assembly: RenderableBlazorAssemblyAttribute()]
-```
-
-
-
-There are two ways for implementation of custom component:
-- Custom component with **code-behind**
-- Custom component with **ViewModel** support
-
-## Component with code-behind
-This is simple approach, where Blazor view inherits from `RenderableComplexComponentBase<T>` base class, where `T` is your custom component PLC type. However logic of your component must be specified in code-behind of view class. Important is, that both view and code-behind must be in same namespace as your `PlcConnector`. 
-
-Look at the example below:
-
-Blazor view `IxComponentServiceView.razor`:
-
-```C#
-@namespace Plc
-@inherits RenderableComplexComponentBase<IxComponent>
-
-<h3>IxComponentServiceView</h3>
-
-<p>IxBool serviceView: @Component.ix_bool.Cyclic</p>
-<p>IxInt serviceView: @Component.ix_int.Cyclic</p>
-<p>IxString serviceView: @Component.ix_string.Cyclic</p>
 
 ```
-`IxComponentServiceView.razor` view inherits from `RenderableComplexComponentBase<IxComponent>`. Thanks to this, framework will inject instance of *IxComponent* type into *Component* variable. After that, you can access values of *Component* variable and define logic of your custom component in code-behind. Code-behind must be partial class with the same name as view.
 
-Code-behind `IxComponentServiceView.cs`:
+Thanks to this attribute, renderer will load assembly of created class library and it is able to look for custom defined views.
+
+---
+## Create custom view
+
+### 1. Create PLC structure and its instance
+
+```
+CLASS ixcomponent
+    VAR PUBLIC
+        {#ix-set:AttributeName = "My integer"}
+        my_int : INT;
+        {#ix-set:AttributeName = "My string"}
+        my_string : STRING;
+        {#ix-set:AttributeName = "My bool"}	
+        my_bool : BOOL;
+    END_VAR
+END_CLASS
+```
+
+```
+ixcomponent_instance: ixcomponent;
+```
+
+Build plc project with `apax build` and compile it with `apax ixc` command.
+
+### 2. Create IxComponentView in Razor class library
+
+- Create folder with name `IxComponentView`.
+- Create `IxComponentView.razor` class inside folder.
+- Define your view.
+
 ```C#
-namespace Plc
-{
-    public partial class IxComponentServiceView
+@inherits RenderableComplexComponentBase<ixcomponent>
+
+<h1>IxComponentView</h1>
+
+<div class="card">
+    <p>IxBool: @Component.my_bool.Cyclic</p>
+    <p>IxInt: @Component.my_int.Cyclic</p>
+    <p>IxString: @Component.my_string.Cyclic</p>
+</div>
+
+
+@code{
+    protected override void OnInitialized()
     {
-        protected override void OnInitialized()
-        {
-            UpdateValuesOnChange(Component);
-        }
+        UpdateValuesOnChange(Component);
     }
 }
 
 ```
 
-If you want your UI to be updated everytime, when PLC values change, you must call `UpdateValuesOnChange(Component)` method in `OnInitialized()` method in code-behind.
 
-## Component with ViewModel
+At the end, structure of external library should look like this:
 
-With this approach it is possible to create component using MVVM design pattern.
+![alt text](assets/project-structure.png "Structure")
 
-First, ViewModel must be created, which will inherits from abstract class `RenderableViewModelBase`:
+### Render custom component in your application
 
-ViewModel `IxComponentBaseViewModel.cs`
+```
+<RenderableContentControl Context="@Entry.Plc.test_example.ixcomponent_instance"/>
+```
+
+If everything was done correctly, custom view defined in external library should be rendered.
+
+![alt text](assets/rendered-ui.png "Rendered UI")
+
+---
+
+
+
+## ViewModel approach
+
+Renderer also supports injecting view-model classes into views. This enables to create custom components with MVVM pattern, where component logic can be placed into viewmodel class. Therefore, the code will be less coupled and more testable.
+
+
+### 1. Create IxComponentServiceViewModel folder
+Create `IxComponentServiceView.razor` file and `IxComponentViewModel.cs` file inside folder.
+
+
+### 2. Define your viewmodel
+Make sure, that viewmodel inherits from `RenderableViewModelBase`.
+Copy following code into `IxComponentViewModel.cs` viewmodel class.
 ```C#
-namespace Plc
+using Ix.Presentation;
+
+namespace ix_integration_plc
 {
-    public class IxComponentBaseViewModel : RenderableViewModelBase
+    public class IxComponentServiceViewModel : RenderableViewModelBase
     {
-        public IxComponentBaseViewModel()
+        public IxComponentServiceViewModel()
         {
         }
-        public IxComponent Component { get;  set; }
-        public override object Model { get => this.Component; set { this.Component = value as IxComponent; } }
+        public ixcomponent Component { get; set; }
+        public override object Model { get => this.Component; set { this.Component = value as ixcomponent; } }
     }
 }
 ```
-After that, Blazor view `IxComponentBaseView.razor` can be created:
+Note: Replace namespace with namespace of your plc library.
+
+Copy following code into `IxComponentServiceView.razor` file. Make sure, that `RenderableViewModelComponentBase` class is inherited with generic type parameter of your viewmodel.
 
 ```C#
-@namespace Plc
-@inherits RenderableViewModelComponentBase<IxComponentBaseViewModel>
+@using ix_integration_plc
+@inherits RenderableViewModelComponentBase<IxComponentViewModel>
 
-<h3>IxComponentBaseView</h3>
+<h1>IxComponentView with ViewModel</h1>
 
-<p>IxBool baseView: @ViewModel.Component.ix_bool.Cyclic</p>
-<p>IxInt baseView: @ViewModel.Component.ix_int.Cyclic</p>
-<p>IxString baseView: @ViewModel.Component.ix_string.Cyclic</p>
+<div class="card">
+    <p>IxBool: @ViewModel.Component.my_bool.Cyclic</p>
+    <p>IxInt: @ViewModel.Component.my_int.Cyclic</p>
+    <p>IxString: @ViewModel.Component.my_string.Cyclic</p>
+</div>
 
-@code
-{
+
+@code {
     protected override void OnInitialized()
     {
         UpdateValuesOnChange(ViewModel.Component);
     }
 }
-
 ```
-The view must inherits from `RenderableViewModelComponentBase<T>` base class, where `T` is type of your ViewModel. Thanks to this, ViewModel instance is created and initialized with PLC type instance acquired within `RenderableContentControl`. After that, ViewModel can be accessed within Blazor view.
+Note: viewmodel properties and variables can be accessed with inherited `ViewModel` variable.
 
-If you want your UI update everytime, when PLC values change, you can add `UpdatesValuesOnChange(ViewModel.Component)` directly to code section in view, or you can create partial class same as in previous example.
+### 3. Render created component
 
-When you call RenderableContentControl component like this:
-
-```
-<RenderableContentControl Presentation="Base"
-                          Context="@Entry.Plc.MAIN.instanceOfIxComponent">
-
-</RenderableContentControl>
+```C#
+<RenderableContentControl 
+    Presentation="Service" 
+    Context="@Entry.Plc.test_example.ixcomponent_instance" />
 ```
 
-You will get generated UI, which you specified in your custom view:
+![alt text](assets/viewmodel-service.png "UI with viewmodel")
 
-![alt text](assets/baseview.png "Renderignore and custom labels")
