@@ -29,4 +29,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ixblazor.twin\ixblazor.csproj" />
+  </ItemGroup>
+
 </Project>
