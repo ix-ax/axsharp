@@ -20,7 +20,7 @@ namespace Ix.RenderableContent.Tests
 
         private RenderableContentTestsFixture _fixture;
         private string _projectDirectory;
-
+     
         public RenderableContentTests(RenderableContentTestsFixture fixture)
         {
             _fixture = fixture;

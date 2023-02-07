@@ -13,5 +13,17 @@ namespace Layouts.Wrapped
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         }
+
+        public Pocos.Layouts.Wrapped.weather OnlineToPlain()
+        {
+            Pocos.Layouts.Wrapped.weather plain = new Pocos.Layouts.Wrapped.weather();
+            plain = (Pocos.Layouts.Wrapped.weather)base.OnlineToPlain();
+            return plain;
+        }
+
+        public void PlainToOnline(Pocos.Layouts.Wrapped.weather plain)
+        {
+            base.PlainToOnline(plain);
+        }
     }
 }

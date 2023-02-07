@@ -25,6 +25,7 @@ public static class SemanticsHelpers
     public static bool IsMemberEligibleForTranspile(this IFieldDeclaration field, Compilation compilation)
     {
         return field.AccessModifier == AccessModifier.Public
+               && !(field.Type is IReferenceTypeDeclaration)
                &&
                (field.Type is IScalarTypeDeclaration ||
                 field.Type is IStringTypeDeclaration ||
@@ -40,6 +41,7 @@ public static class SemanticsHelpers
     public static bool IsMemberEligibleForTranspile(this IVariableDeclaration variable, Compilation compilation)
     {
         return variable.IsInGlobalMemory
+               && !(variable.Type is IReferenceTypeDeclaration)
                &&
                (variable.Type is IScalarTypeDeclaration ||
                 variable.Type is IStringTypeDeclaration ||

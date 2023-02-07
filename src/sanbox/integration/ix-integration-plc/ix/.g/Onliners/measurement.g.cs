@@ -39,6 +39,24 @@ namespace MeasurementExample
             parent.AddKid(this);
         }
 
+        public Pocos.MeasurementExample.Measurement OnlineToPlain()
+        {
+            Pocos.MeasurementExample.Measurement plain = new Pocos.MeasurementExample.Measurement();
+            plain.Min = Min.LastValue;
+            plain.Acquired = Acquired.LastValue;
+            plain.Max = Max.LastValue;
+            plain.Result = Result.LastValue;
+            return plain;
+        }
+
+        public void PlainToOnline(Pocos.MeasurementExample.Measurement plain)
+        {
+            Min.Cyclic = plain.Min;
+            Acquired.Cyclic = plain.Acquired;
+            Max.Cyclic = plain.Max;
+            Result.Cyclic = plain.Result;
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -142,6 +160,24 @@ namespace MeasurementExample
             measurement_tabs.AttributeName = "Tabs";
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public Pocos.MeasurementExample.Measurements OnlineToPlain()
+        {
+            Pocos.MeasurementExample.Measurements plain = new Pocos.MeasurementExample.Measurements();
+            plain.measurement_stack = measurement_stack.OnlineToPlain();
+            plain.measurement_wrap = measurement_wrap.OnlineToPlain();
+            plain.measurement_grid = measurement_grid.OnlineToPlain();
+            plain.measurement_tabs = measurement_tabs.OnlineToPlain();
+            return plain;
+        }
+
+        public void PlainToOnline(Pocos.MeasurementExample.Measurements plain)
+        {
+            this.measurement_stack.PlainToOnline(plain.measurement_stack);
+            this.measurement_wrap.PlainToOnline(plain.measurement_wrap);
+            this.measurement_grid.PlainToOnline(plain.measurement_grid);
+            this.measurement_tabs.PlainToOnline(plain.measurement_tabs);
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

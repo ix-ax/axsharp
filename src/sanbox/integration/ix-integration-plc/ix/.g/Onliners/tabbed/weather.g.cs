@@ -13,5 +13,17 @@ namespace Layouts.Tabbed
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         }
+
+        public Pocos.Layouts.Tabbed.weather OnlineToPlain()
+        {
+            Pocos.Layouts.Tabbed.weather plain = new Pocos.Layouts.Tabbed.weather();
+            plain = (Pocos.Layouts.Tabbed.weather)base.OnlineToPlain();
+            return plain;
+        }
+
+        public void PlainToOnline(Pocos.Layouts.Tabbed.weather plain)
+        {
+            base.PlainToOnline(plain);
+        }
     }
 }

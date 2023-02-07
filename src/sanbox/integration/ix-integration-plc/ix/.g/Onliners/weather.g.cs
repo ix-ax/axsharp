@@ -35,6 +35,29 @@ public partial class weather : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public Pocos.weather OnlineToPlain()
+    {
+        Pocos.weather plain = new Pocos.weather();
+        plain.GeoLocation = GeoLocation.OnlineToPlain();
+        plain.Temperature = Temperature.LastValue;
+        plain.Humidity = Humidity.LastValue;
+        plain.Location = Location.LastValue;
+        plain.ChillFactor = ChillFactor.LastValue;
+        plain.Feeling = (Feeling)Feeling.LastValue;
+        ;
+        return plain;
+    }
+
+    public void PlainToOnline(Pocos.weather plain)
+    {
+        this.GeoLocation.PlainToOnline(plain.GeoLocation);
+        Temperature.Cyclic = plain.Temperature;
+        Humidity.Cyclic = plain.Humidity;
+        Location.Cyclic = plain.Location;
+        ChillFactor.Cyclic = plain.ChillFactor;
+        Feeling.Cyclic = (short)plain.Feeling;
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
@@ -111,6 +134,18 @@ public partial class weathers : Ix.Connector.ITwinObject
         Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(i, this, "i", "i", (p, rt, st) => new weatherBase(p, rt, st));
         parent.AddChild(this);
         parent.AddKid(this);
+    }
+
+    public Pocos.weathers OnlineToPlain()
+    {
+        Pocos.weathers plain = new Pocos.weathers();
+        Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<weatherBase, Pocos.weatherBase>(plain.i, i);
+        return plain;
+    }
+
+    public void PlainToOnline(Pocos.weathers plain)
+    {
+        Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.weatherBase, weatherBase>(plain.i, i);
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

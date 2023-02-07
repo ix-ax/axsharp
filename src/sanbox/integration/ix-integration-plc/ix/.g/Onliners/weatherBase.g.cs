@@ -66,6 +66,38 @@ public partial class weatherBase : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public Pocos.weatherBase OnlineToPlain()
+    {
+        Pocos.weatherBase plain = new Pocos.weatherBase();
+        plain.Latitude = Latitude.LastValue;
+        plain.Longitude = Longitude.LastValue;
+        plain.Altitude = Altitude.LastValue;
+        plain.Description = Description.LastValue;
+        plain.LongDescription = LongDescription.LastValue;
+        plain.StartCounter = StartCounter.LastValue;
+        plain.RenderIgnoreAllToghether = RenderIgnoreAllToghether.LastValue;
+        plain.RenderIgnoreWhenControl = RenderIgnoreWhenControl.LastValue;
+        plain.RenderIgnoreWhenDisplay = RenderIgnoreWhenDisplay.LastValue;
+        plain.RenderIgnoreWhenControlAndShadow = RenderIgnoreWhenControlAndShadow.LastValue;
+        plain.RenderIgnoreWhenDisplayAndShadow = RenderIgnoreWhenDisplayAndShadow.LastValue;
+        return plain;
+    }
+
+    public void PlainToOnline(Pocos.weatherBase plain)
+    {
+        Latitude.Cyclic = plain.Latitude;
+        Longitude.Cyclic = plain.Longitude;
+        Altitude.Cyclic = plain.Altitude;
+        Description.Cyclic = plain.Description;
+        LongDescription.Cyclic = plain.LongDescription;
+        StartCounter.Cyclic = plain.StartCounter;
+        RenderIgnoreAllToghether.Cyclic = plain.RenderIgnoreAllToghether;
+        RenderIgnoreWhenControl.Cyclic = plain.RenderIgnoreWhenControl;
+        RenderIgnoreWhenDisplay.Cyclic = plain.RenderIgnoreWhenDisplay;
+        RenderIgnoreWhenControlAndShadow.Cyclic = plain.RenderIgnoreWhenControlAndShadow;
+        RenderIgnoreWhenDisplayAndShadow.Cyclic = plain.RenderIgnoreWhenDisplayAndShadow;
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

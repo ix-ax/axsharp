@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Ix.Presentation.Blazor.Controls.Templates.Base.Online
+namespace Ix.Presentation.Blazor.Controls.Templates
 {
     public partial class TemplateBaseOnline<T> : TemplateBase<T>
     {

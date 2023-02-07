@@ -1,0 +1,19 @@
+﻿@namespace Ix.Presentation.Blazor.Controls.Templates
+@using ix_integration_library.IxComponentServiceViewModel
+@inherits RenderableViewModelComponentBase<IxComponentViewModel>
+
+<h1>IxComponentView with ViewModel</h1>
+
+<div class="card">
+    <p>IxBool: @ViewModel.Component.my_bool.Cyclic</p>
+    <p>IxInt: @ViewModel.Component.my_int.Cyclic</p>
+    <p>IxString: @ViewModel.Component.my_string.Cyclic</p>
+</div>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        UpdateValuesOnChange(ViewModel.Component);
+    }
+}

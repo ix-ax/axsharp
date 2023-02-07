@@ -67,6 +67,41 @@ public partial class test_primitive : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public Pocos.test_primitive OnlineToPlain()
+    {
+        Pocos.test_primitive plain = new Pocos.test_primitive();
+        plain.testInteger = testInteger.LastValue;
+        plain.testUInteger = testUInteger.LastValue;
+        plain.testString = testString.LastValue;
+        plain.testWord = testWord.LastValue;
+        plain.testByte = testByte.LastValue;
+        plain.testReal = testReal.LastValue;
+        plain.testLReal = testLReal.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        plain.TestDateTime = TestDateTime.LastValue;
+        plain.TestTimeOfDay = TestTimeOfDay.LastValue;
+        plain.Status = (enumStationStatus)Status.LastValue;
+        ;
+        return plain;
+    }
+
+    public void PlainToOnline(Pocos.test_primitive plain)
+    {
+        testInteger.Cyclic = plain.testInteger;
+        testUInteger.Cyclic = plain.testUInteger;
+        testString.Cyclic = plain.testString;
+        testWord.Cyclic = plain.testWord;
+        testByte.Cyclic = plain.testByte;
+        testReal.Cyclic = plain.testReal;
+        testLReal.Cyclic = plain.testLReal;
+        testBool.Cyclic = plain.testBool;
+        TestDate.Cyclic = plain.TestDate;
+        TestDateTime.Cyclic = plain.TestDateTime;
+        TestTimeOfDay.Cyclic = plain.TestTimeOfDay;
+        Status.Cyclic = (short)plain.Status;
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

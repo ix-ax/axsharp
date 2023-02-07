@@ -5,6 +5,7 @@ PROGRAM MyProgram
         weather_wrapped : Layouts.Wrapped.weather;        
         weather_tabbed : Layouts.Tabbed.weather;
         weather_readOnce : Layouts.Stacked.weather;
+        test_example: example;
     END_VAR
 
     VAR
@@ -25,5 +26,6 @@ PROGRAM MyProgram
     weather_tabbed.StartCounter := all_primitives.myINT;    
     weather_readOnce.StartCounter := all_primitives.myINT; 
 
+    test_example.ReferenceToComponent();
     
 END_PROGRAM

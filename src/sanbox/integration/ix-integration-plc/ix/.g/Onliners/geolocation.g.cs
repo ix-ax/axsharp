@@ -43,6 +43,26 @@ public partial class GeoLocation : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public Pocos.GeoLocation OnlineToPlain()
+    {
+        Pocos.GeoLocation plain = new Pocos.GeoLocation();
+        plain.Latitude = Latitude.LastValue;
+        plain.Longitude = Longitude.LastValue;
+        plain.Altitude = Altitude.LastValue;
+        plain.Description = Description.LastValue;
+        plain.LongDescription = LongDescription.LastValue;
+        return plain;
+    }
+
+    public void PlainToOnline(Pocos.GeoLocation plain)
+    {
+        Latitude.Cyclic = plain.Latitude;
+        Longitude.Cyclic = plain.Longitude;
+        Altitude.Cyclic = plain.Altitude;
+        Description.Cyclic = plain.Description;
+        LongDescription.Cyclic = plain.LongDescription;
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

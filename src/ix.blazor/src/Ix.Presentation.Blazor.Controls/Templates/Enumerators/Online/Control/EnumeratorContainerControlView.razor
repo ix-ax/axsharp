@@ -1,11 +1,11 @@
-﻿@typeparam T
+﻿@namespace Ix.Presentation.Blazor.Controls.Templates
+@typeparam T
 @inherits EnumeratorsBaseOnline<T>
 
-<div class="w-100 form-group @OnlinerSymbol">
-    <div>
-        <label for="@ComponentId"  >@Onliner.AttributeName</label>
-    </div>
-    <div>
+
+ <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
+     <label for="@ComponentId"  >@Onliner.AttributeName</label>
+  
         <select id="@ComponentId"
                 class="w-100 form-select @AccessStatus"
                 @bind="Value"
@@ -15,8 +15,5 @@
                 <option class="form-control" value=@EnumToIntConverter.ConvertBack(name,null,null,null)>@name</option>
             }
         </select>
-        <div class="invalid-feedback">
-            @Onliner.AccessStatus.FailureReason
-        </div>
-    </div>
-</div>
+ 
+</TemplateView>
