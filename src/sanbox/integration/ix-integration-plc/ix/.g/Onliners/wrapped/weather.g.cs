@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Layouts.Wrapped
 {
     [Container(Layout.Wrap)]
-    [Group(Layout.GroupBox)]
+    [Group(GroupLayout.GroupBox)]
     public partial class weather : weatherBase
     {
         public weather(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")

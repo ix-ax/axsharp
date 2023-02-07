@@ -1,0 +1,84 @@
+﻿<div>
+    <div class="nav-item">
+        @if (Link != null)
+        {
+            <NavLink class="nav-link" href="@Link" Match="NavLinkMatch.All">
+                @if (Icon != null)
+                {
+                    <span class="oi @Icon" aria-hidden="true"></span>
+                }
+                <strong>@Name</strong>
+                <span class="ms-auto oi oi-chevron-top @(_isCollapsed ? "open" : "")" aria-hidden="true"></span>
+            </NavLink>
+        }
+        else
+        {
+            <NavLink class="nav-link" @onclick='() => Collapse()'>
+                @if (Icon != null)
+                {
+                    <span class="oi @Icon" aria-hidden="true"></span>
+                }
+                <strong>@Name</strong>
+                <span class="ms-auto oi oi-chevron-top @(_isCollapsed ? "open" : "")" aria-hidden="true"></span>
+            </NavLink>
+        }
+    </div>
+
+
+    <div class="ps-2 @(_isCollapsed ? "collapse" : null)">
+        <CascadingValue Value="@this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    private NavigationManager? MyNavigationManager { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; } = null;
+    [Parameter]
+    public string? Link { get; set; } = null;
+    [Parameter]
+    public string? Icon { get; set; } = null;
+
+    private bool _isCollapsed = true;
+
+    private string? _dashedName { get; set; }
+
+    [CascadingParameter]
+    protected ExpandableMenuItem? parent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _dashedName = Name?.Replace(' ', '-').ToLower();
+
+        var relativePath = MyNavigationManager!.ToBaseRelativePath(MyNavigationManager.Uri);
+
+        if (relativePath.Contains(GetLink()))
+        {
+            _isCollapsed = false;
+        }
+    }
+
+    public string GetLink()
+    {
+        if (Link != null)
+            return Link;
+
+        if (parent != null)
+        {
+            return $"{parent.GetLink()}/{_dashedName}";
+        }
+        return $"{_dashedName}";
+    }
+
+    private void Collapse()
+    {
+        _isCollapsed = !_isCollapsed;
+    }
+}

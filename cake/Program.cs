@@ -16,6 +16,7 @@ using System.Management.Automation;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Build.FilteredSolution;
 using Cake.Common;
 using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
@@ -61,7 +62,8 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         context.DotNetClean(Path.Combine(context.RootDir, "ix.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
-        context.CleanDirectory(context.Artifacts);       
+        context.CleanDirectory(context.Artifacts);
+        context.CleanDirectory(context.TestResults);
     }
 }
 
@@ -141,15 +143,15 @@ public sealed class TestsTask : FrostingTask<BuildContext>
       
         if (context.BuildParameters.TestLevel == 1)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L1-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L1-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 2)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L2-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L2-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 3)
         {
-            context.DotNetTest(Path.Combine(context.RootDir, "ix-L3-tests.slnf"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
         else
         {
@@ -161,11 +163,26 @@ public sealed class TestsTask : FrostingTask<BuildContext>
 
             UploadTestPlc(context, workingDirectory, targetIp, targetPlatform);
 
-            context.DotNetTest(Path.Combine(context.RootDir, "ix.sln"), context.DotNetTestSettings);
+            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
 
         
 
+    }
+
+    private static void RunTestsFromFilteredSolution(BuildContext context, string filteredSolutionFile)
+    {
+        foreach (var project in FilteredSolution.Parse(filteredSolutionFile).solution.projects
+                     .Select(p => new FileInfo(Path.Combine(context.RootDir, p)))
+                     .Where(p => p.Name.ToUpperInvariant().Contains("TEST")))
+        {
+            foreach (var framework in context.TargetFrameworks)
+            {
+                context.DotNetTestSettings.VSTestReportPath = Path.Combine(context.TestResults, $"{project.Name}_{framework}.xml");
+                context.DotNetTestSettings.Framework = framework;
+                context.DotNetTest(Path.Combine(project.FullName), context.DotNetTestSettings);
+            }
+        }
     }
 
     private static void UploadTestPlc(BuildContext context, string workingDirectory, string targetIp,
@@ -300,10 +317,10 @@ public sealed class GenerateApiDocumentationTask : FrostingTask<BuildContext>
 
         if (Helpers.CanReleaseInternal())
             GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
-            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAP\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.Sax.WebAPI.dll", @"Ix.Connector.Sax.WebAPI");
+            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
 
-            GenerateApiDocumentation(context, @$"ix.builder\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
-            GenerateApiDocumentation(context, @$"ix.builder\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
+            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
+            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
 
             GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
             GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");

@@ -3,12 +3,13 @@ using Ix.Connector;
 using Ix.Connector.ValueTypes;
 using System.Collections.Generic;
 
-[Container(Layout.Wrap)]
 public partial class counter_oop : Ix.Connector.ITwinObject
 {
     public OnlinerULInt Counter { get; }
 
     public OnlinerBool AllowCounter { get; }
+
+    public OnlinerBool ResetCounter { get; }
 
     public counter_oop(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
@@ -19,6 +20,7 @@ public partial class counter_oop : Ix.Connector.ITwinObject
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         Counter = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Counter", "Counter");
         AllowCounter = @Connector.ConnectorAdapter.AdapterFactory.CreateBOOL(this, "AllowCounter", "AllowCounter");
+        ResetCounter = @Connector.ConnectorAdapter.AdapterFactory.CreateBOOL(this, "ResetCounter", "ResetCounter");
         parent.AddChild(this);
         parent.AddKid(this);
     }

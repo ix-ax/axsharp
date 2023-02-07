@@ -24,11 +24,8 @@ namespace Ix.Presentation.Blazor
                 _layoutDictionary[Layout.Stack] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.StackPanelLayout");
                 _layoutDictionary[Layout.Wrap] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.WrapPanelLayout");
                 _layoutDictionary[Layout.Tabs] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.TabControlLayout");
-                _layoutDictionary[Layout.Border] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.BorderLayout");
-                _layoutDictionary[Layout.GroupBox] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.GroupBoxLayout");
                 _layoutDictionary[Layout.UniformGrid] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.UniformGridLayout");
-                _layoutDictionary[Layout.Scroll] = ("Ix.Presentation.Blazor.Controls", "Ix.Presentation.Blazor.Controls.Layouts.ScrollLayout");
-        }
+            }
             private readonly Dictionary<Layout, (string assembly, string fullTypeName)> _layoutDictionary;
         
             /// <summary>

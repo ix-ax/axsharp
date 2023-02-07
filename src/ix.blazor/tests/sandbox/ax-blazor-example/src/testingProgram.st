@@ -4,7 +4,6 @@ CLASS testingProgram
         {#ix-attr:[Container(Layout.Wrap)]}
         testPrimitive: stTestPrimitive;
         {#ix-set:AttributeName = "instanceOfStPrimitive"}
-        {#ix-attr:[Container(Layout.Border)]}
         testComplex: stTestComplex; 
         {#ix-set:AttributeName = "instanceOfStEnum"}
         testEnum: stTestEnum;
@@ -20,6 +19,8 @@ CLASS testingProgram
         testSimpleNested: TestSimpleNested;
         {#ix-attr:[Container(Layout.Tabs)]}
         testMultipleNested: stTestMultipleNested;
+
+        testLayouts : stTestLayouts;
     END_VAR
     
 END_CLASS

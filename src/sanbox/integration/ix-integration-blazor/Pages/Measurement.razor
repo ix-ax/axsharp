@@ -1,0 +1,94 @@
+﻿@page "/Measurement"
+
+
+<PageTitle>Rendering</PageTitle>
+
+<RenderableContentControl Presentation="Display"
+                          Context="@Entry.Plc.measurements" />
+
+<RenderableContentControl Presentation="Control"
+                          Context="@Entry.Plc.measurements" />
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Control - can edit</span>
+                <RenderableContentControl Presentation="Control"
+                                          Context="@Entry.Plc.measurements.measurement_stack" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Display - cannot edit</span>
+                <RenderableContentControl Presentation="Display"
+                                          Context="@Entry.Plc.measurements.measurement_stack" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Control - can edit</span>
+                <RenderableContentControl Presentation="Control"
+                                          Context="@Entry.Plc.measurements.measurement_wrap" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Display - cannot edit</span>
+                <RenderableContentControl Presentation="Display"
+                                          Context="@Entry.Plc.measurements.measurement_wrap" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Control - can edit</span>
+                <RenderableContentControl Presentation="Control"
+                                          Context="@Entry.Plc.measurements.measurement_grid" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Display - cannot edit</span>
+                <RenderableContentControl Presentation="Display"
+                                          Context="@Entry.Plc.measurements.measurement_grid" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Control - can edit</span>
+                <RenderableContentControl Presentation="Control"
+                                          Context="@Entry.Plc.measurements.measurement_tabs" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="border border-success p-2 mb-2">
+                <span>Display - cannot edit</span>
+                <RenderableContentControl Presentation="Display"
+                                          Context="@Entry.Plc.measurements.measurement_tabs" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    
+}

@@ -1,7 +1,7 @@
 CLASS stExample
     VAR PUBLIC
         {#ix-attr:[Container(Layout.Tabs)]}
-        {#ix-attr:[Group(Layout.GroupBox)]}
+        {#ix-attr:[Group(GroupLayout.GroupBox)]}
         {#ix-set:AttributeName = "Group name"}
         testInteger : INT;
         testEnum : stTestEnum;

@@ -1,0 +1,42 @@
+﻿<div class="nav-item">
+
+    <NavLink class="nav-link" href="@GetLink()" Match="NavLinkMatch.All">
+        @if (Icon != null)
+        {
+            <span class="@Icon" aria-hidden="true"></span>
+        }
+        @Name
+    </NavLink>
+</div>
+@code {
+    [Parameter]
+    public string? Name { get; set; } = null;
+    [Parameter]
+    public string? Link { get; set; } = null;
+    [Parameter]
+    public string? Icon { get; set; } = null;
+
+    private string? _dashedName { get; set; }
+
+    [CascadingParameter]
+    protected ExpandableMenuItem? parent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _dashedName = Name?.Replace(' ', '-').ToLower();
+
+        base.OnInitialized();
+    }
+
+    public string GetLink()
+    {
+        if (Link != null)
+            return Link;
+
+        if (parent != null)
+        {
+            return $"{parent.GetLink()}/{_dashedName}";
+        }
+        return $"{_dashedName}";
+    }
+}
