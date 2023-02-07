@@ -82,6 +82,7 @@ Build plc project with `apax build` and compile it with `apax ixc` command.
 - Define your view.
 
 ```C#
+@namespace Ix.Presentation.Blazor.Controls.Templates
 @inherits RenderableComplexComponentBase<ixcomponent>
 
 <h1>IxComponentView</h1>
@@ -102,6 +103,9 @@ Build plc project with `apax build` and compile it with `apax ixc` command.
 
 ```
 
+Note: If your plc variable is declared in global namespace, `Ix.Presentation.Blazor.Controls.Templates` namespace must be used to correctly locate view. 
+
+If you plc variable is declared in your own namespace, make sure **namespace of custom view is the same as the namespace in plc file**.
 
 At the end, structure of external library should look like this:
 
@@ -136,7 +140,7 @@ Copy following code into `IxComponentViewModel.cs` viewmodel class.
 ```C#
 using Ix.Presentation;
 
-namespace ix_integration_plc
+namespace ix_integration_library.IxComponentServiceViewModel
 {
     public class IxComponentServiceViewModel : RenderableViewModelBase
     {
@@ -153,7 +157,8 @@ Note: Replace namespace with namespace of your plc library.
 Copy following code into `IxComponentServiceView.razor` file. Make sure, that `RenderableViewModelComponentBase` class is inherited with generic type parameter of your viewmodel.
 
 ```C#
-@using ix_integration_plc
+@namespace Ix.Presentation.Blazor.Controls.Templates
+@using ix_integration_library.IxComponentServiceViewModel
 @inherits RenderableViewModelComponentBase<IxComponentViewModel>
 
 <h1>IxComponentView with ViewModel</h1>
