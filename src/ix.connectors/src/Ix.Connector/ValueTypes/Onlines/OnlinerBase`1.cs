@@ -396,7 +396,10 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     /// <param name="val">Updated value.</param>
     protected void UpdateRead(T val)
     {
-        CwCycle = Parent.GetConnector().RwCycleCount;
+        if (Parent != null && Parent.GetConnector() != null)
+        {
+            CwCycle = Parent.GetConnector().RwCycleCount;
+        }
 
         if (_cyclic == null)
         {
@@ -564,5 +567,15 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     public Assembly GetDeclaringAssembly()
     {
         return Assembly.GetAssembly(Parent.GetType());
+    }
+
+    public override void FromOnlineToShadow()
+    {
+        this.Shadow = this.LastValue;
+    }
+
+    public override void FromShadowToOnline()
+    {
+        this.Cyclic = this.Shadow;
     }
 }

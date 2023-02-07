@@ -290,4 +290,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
+
+    public abstract void FromOnlineToShadow();
+    public abstract void FromShadowToOnline();
 }

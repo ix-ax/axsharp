@@ -46,6 +46,15 @@ namespace Ix.Connector.ValueTypes.Tests
 
             public string PublicSymbolTail { get => base.SymbolTail; set => base.SymbolTail = value; }
             public ITwinObject PublicParent { get => base.Parent; set => base.Parent = value; }
+            public override void FromOnlineToShadow()
+            {
+                
+            }
+
+            public override void FromShadowToOnline()
+            {
+                
+            }
         }
 
         private TestOnlinerBase _testClass;
