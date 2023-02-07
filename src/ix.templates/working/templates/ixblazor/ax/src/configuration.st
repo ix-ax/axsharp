@@ -3,6 +3,6 @@ CONFIGURATION MyConfiguration
     PROGRAM P1 WITH Main: MyProgram;
 
     VAR_GLOBAL      
-        oop_counter : counter_oop;
+       counters : counters;
     END_VAR
 END_CONFIGURATION
