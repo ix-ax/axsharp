@@ -18,9 +18,8 @@ CONFIGURATION MyConfiguration
         {#ix-set:AttributeName = "Weather structure set to read only"}
         {#ix-attr:[ReadOnly()]}
         weather_readOnly : Layouts.Stacked.weather;
-        test_example:example;
-      
 
+        test_example: example;
         measurements : MeasurementExample.Measurements;
 
     END_VAR

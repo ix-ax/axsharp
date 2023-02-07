@@ -11,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Components.Rendering;
 using Xunit;
+using System.Runtime.InteropServices;
 
 namespace Ix.RenderableContent.Tests
 {
@@ -21,6 +22,7 @@ namespace Ix.RenderableContent.Tests
         private string _control = "Control";
         private string _shadowDisplay = "ShadowDisplay";
         private string _shadowControl = "ShadowControl";
+        private string _templatesNamespace = "Ix.Presentation.Blazor.Controls.Templates";
         public ComponentServiceTests(RenderableContentTestsFixture fixture)
         {
             this._fixture = fixture;
@@ -34,8 +36,10 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             Type typeArg = typeof(int);
+            var name = "OnlinerBaseControlView`1";
+            var buildedComponentName =  $"{_templatesNamespace}.{name}";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetGenericComponent("OnlinerBaseControlView`1", typeArg);
+            var component = _fixture.RenderableContent.ComponentService.GetGenericComponent(buildedComponentName, typeArg);
             //Assert
             Assert.NotNull(component);
             Assert.Equal("OnlinerBaseControlView`1", component.GetType().Name);
@@ -46,8 +50,10 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             Type typeArg = typeof(int);
+            var name = "OnlinerBaseDisplayView`1";
+            var buildedComponentName = $"{_templatesNamespace}.{name}";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetGenericComponent("OnlinerBaseDisplayView`1", typeArg);
+            var component = _fixture.RenderableContent.ComponentService.GetGenericComponent(buildedComponentName, typeArg);
             //Assert
             Assert.NotNull(component);
             Assert.Equal("OnlinerBaseDisplayView`1", component.GetType().Name);
@@ -59,52 +65,56 @@ namespace Ix.RenderableContent.Tests
         public void Get_BoolDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerBool";
-            var buildedComponentName = $"{primitiveTypeName}{_display}View";
+            var name = "OnlinerBool";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_display}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateTimeDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDateTime";
-            var buildedComponentName = $"{primitiveTypeName}{_display}View";
+            var name = "OnlinerDateTime";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_display}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDate";
-            var buildedComponentName = $"{primitiveTypeName}{_display}View";
+            var name = "OnlinerDate";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_display}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_TimeOfDayDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerTimeOfDay";
-            var buildedComponentName = $"{primitiveTypeName}{_display}View";
+            var name = "OnlinerTimeOfDay";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_display}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         //-----------------------------------------------------------------//
@@ -114,52 +124,56 @@ namespace Ix.RenderableContent.Tests
         public void Get_BoolControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerBool";
-            var buildedComponentName = $"{primitiveTypeName}{_control}View";
+            var name = "OnlinerBool";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_control}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateTimeControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDateTime";
-            var buildedComponentName = $"{primitiveTypeName}{_control}View";
+            var name = "OnlinerDateTime";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_control}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDate";
-            var buildedComponentName = $"{primitiveTypeName}{_control}View";
+            var name = "OnlinerDateTime";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_control}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_TimeOfDayControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerTimeOfDay";
-            var buildedComponentName = $"{primitiveTypeName}{_control}View";
+            var name = "OnlinerTimeOfDay";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_control}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         //-----------------------------------------------------------------//
@@ -169,52 +183,57 @@ namespace Ix.RenderableContent.Tests
         public void Get_BoolShadowDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerBool";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowDisplay}View";
+            var name = "OnlinerBool";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowDisplay}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateTimeShadowDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDateTime";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowDisplay}View";
+            var name = "OnlinerDateTime";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowDisplay}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateShadowDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDate";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowDisplay}View";
+            var name = "OnlinerDate";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowDisplay}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            //Act
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_TimeOfDayShadowDisplayView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerTimeOfDay";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowDisplay}View";
+            var name = "OnlinerTimeOfDay";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowDisplay}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         //-----------------------------------------------------------------//
@@ -224,52 +243,56 @@ namespace Ix.RenderableContent.Tests
         public void Get_BoolShadowControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerBool";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowControl}View";
+            var name = "OnlinerBool";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowControl}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateTimeShadowControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDateTime";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowControl}View";
+            var name = "OnlinerDateTime";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowControl}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_DateShadowControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerDate";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowControl}View";
+            var name = "OnlinerDate";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowControl}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
         public void Get_TimeOfDayShadowControlView_NotNullAreEqual()
         {
             //Arrange
-            var primitiveTypeName = "OnlinerTimeOfDay";
-            var buildedComponentName = $"{primitiveTypeName}{_shadowControl}View";
+            var name = "OnlinerTimeOfDay";
+            var buildedComponentName = $"{_templatesNamespace}.{name}{_shadowControl}View";
             //Act
-            var component = _fixture.RenderableContent.ComponentService.GetBaseComponent(buildedComponentName);
+            var component = _fixture.RenderableContent.ComponentService.GetComponent(buildedComponentName);
             //Assert
             Assert.NotNull(component);
-            Assert.Equal(buildedComponentName, component.GetType().Name);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
+            Assert.Equal(buildedComponentName, expected);
 
         }
         [Fact]
@@ -277,10 +300,9 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testBool.GetType();
-            var name = testedObjType.Name;
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _control, _fixture.RenderableContent.ComponentService.GetBaseComponent);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _control);
 
             //Assert
             Assert.NotNull(component);
@@ -293,11 +315,10 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testBool.GetType();
-            var name = testedObjType.Name;
 
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display, _fixture.RenderableContent.ComponentService.GetBaseComponent);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -309,11 +330,10 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
-            var name = testedObjType.Name;
 
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display, _fixture.RenderableContent.ComponentService.GetBaseComponent);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -325,14 +345,13 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
-            var name = testedObjType.Name;
-
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Base-Display", _fixture.RenderableContent.ComponentService.GetBaseComponent);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Base-Display");
 
             //Assert
             Assert.NotNull(component);
+            var expected = $"{_templatesNamespace}.{component.GetType().Name}";
             Assert.Equal("OnlinerDateTimeDisplayView", component.GetType().Name);
 
         }
@@ -342,9 +361,8 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
-            var name = testedObjType.Name;
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Bases-Displays", _fixture.RenderableContent.ComponentService.GetBaseComponent);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Bases-Displays");
             //Assert
             Assert.Null(component);
 
@@ -355,27 +373,23 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
-            var name = testedObjType.Name;
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "", _fixture.RenderableContent.ComponentService.GetBaseComponent);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "");
             //Assert
             Assert.Null(component);
 
         }
         //-----------------------------------------------------------------//
-        //ViewGenericLocatorBuilder
+        // Test for getting generics
         //-----------------------------------------------------------------//
         [Fact]
         public void Get_GenericBaseControlComponentWithBuilder_NotNullAreEqual()
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testInteger.GetType();
-            var genericName = testedObjType.BaseType.BaseType.Name;
-            var typeArg = testedObjType.BaseType.GenericTypeArguments[0];
-            var isEnum = false;
 
             //Act
-            var component = _fixture.RenderableContent.ViewGenericLocatorBuilder(genericName, _control, typeArg, isEnum);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _control);
 
             //Assert
             Assert.NotNull(component);
@@ -387,12 +401,9 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testInteger.GetType();
-            var genericName = testedObjType.BaseType.BaseType.Name;
-            var typeArg = testedObjType.BaseType.GenericTypeArguments[0];
-            var isEnum = false;
 
             //Act
-            var component = _fixture.RenderableContent.ViewGenericLocatorBuilder(genericName, _display, typeArg, isEnum);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -404,12 +415,9 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testInteger.GetType();
-            var genericName = testedObjType.BaseType.BaseType.Name;
-            var typeArg = testedObjType.BaseType.GenericTypeArguments[0];
-            var isEnum = false;
 
             //Act
-            var component = _fixture.RenderableContent.ViewGenericLocatorBuilder(genericName, "Base-Manual-Service-Control", typeArg, isEnum);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Base-Manual-Service-Control");
 
             //Assert
             Assert.NotNull(component);
@@ -421,13 +429,8 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testEnum.GetType();
-            var genericName = testedObjType.BaseType.BaseType.Name;
-            var typeArg = testedObjType.BaseType.GenericTypeArguments[0];
-            var isEnum = true;
-
             //Act
-            var component = _fixture.RenderableContent.ViewGenericLocatorBuilder(genericName, "ahoj-cau-control", typeArg, isEnum);
-
+            var component = _fixture.RenderableContent.ViewEnumLocatorBuilder(testedObjType, "ahoj-cau-control");
             //Assert
             Assert.NotNull(component);
             Assert.Equal("EnumeratorContainerControlView`1", component.GetType().Name);
@@ -439,12 +442,8 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testEnum.GetType();
-            var genericName = testedObjType.BaseType.BaseType.Name;
-            var typeArg = testedObjType.BaseType.GenericTypeArguments[0];
-            var isEnum = true;
-
             //Act
-            var component = _fixture.RenderableContent.ViewGenericLocatorBuilder(genericName, _display, typeArg, isEnum);
+            var component = _fixture.RenderableContent.ViewEnumLocatorBuilder(testedObjType, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -457,11 +456,8 @@ namespace Ix.RenderableContent.Tests
         {
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testEnum.GetType();
-            var genericName = testedObjType.BaseType.BaseType.Name;
-            var typeArg = testedObjType.BaseType.GenericTypeArguments[0];
-            var isEnum = true;
             //Act
-            var component = _fixture.RenderableContent.ViewGenericLocatorBuilder(genericName, "fadfa=-faf", typeArg, isEnum);
+            var component = _fixture.RenderableContent.ViewEnumLocatorBuilder(testedObjType, "fadfa=-faf");
             //Assert
             Assert.Null(component);
 

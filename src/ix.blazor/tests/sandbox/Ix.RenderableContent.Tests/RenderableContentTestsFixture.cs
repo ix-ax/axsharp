@@ -25,8 +25,6 @@ namespace Ix.RenderableContent.Tests
             RenderableContent = new RenderableContentControl();
             RenderableContent.ComponentService = new ComponentService();
             RenderableContent.AttributesHandler = new AttributesHandler();
-            RenderableContent.ComponentService.LoadComponents();
-
         }
         public ax_blazor_exampleTwinController Connector { get; set; }
         public RenderableContentControl RenderableContent { get; set; }

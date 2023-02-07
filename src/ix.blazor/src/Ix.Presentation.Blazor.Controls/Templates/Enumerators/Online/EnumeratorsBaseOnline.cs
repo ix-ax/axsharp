@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ix.Presentation.Blazor.Controls.Templates.Enumerators.Online
+namespace Ix.Presentation.Blazor.Controls.Templates
 {
     public partial class EnumeratorsBaseOnline<T> : TemplateBase<T>
     {

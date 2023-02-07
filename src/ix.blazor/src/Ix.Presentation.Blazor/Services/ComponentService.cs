@@ -30,50 +30,32 @@ namespace Ix.Presentation.Blazor.Services
             LoadComponents();
         }
 
-        private readonly string _baseAssemblyName = "Ix.Presentation.Controls.Blazor";
-        internal IEnumerable<Type> Components { get; private set; }
-        internal IEnumerable<Type> BaseComponents { get; private set; }
-
+        internal IDictionary<string, Type> Components { get; private set; } = new Dictionary<string, Type>();
+        private bool _isEntryAssemblyPresent { get; set; }
         /// <summary>
-        ///  Method to get instance dynamically of blazor component.
-        /// <param name="fullName">Name of the component.</param>
+        ///  Method to get dynamically instance of blazor component.
+        /// <param name="fullName">Full name of the component.</param>
         /// </summary>
         public IRenderableComponent GetComponent(string fullName)
         {
-
-            var foundedType = Components.FirstOrDefault(x=> String.Equals(x.FullName, fullName, StringComparison.CurrentCultureIgnoreCase));
-           
-            if (foundedType != null)
-            {
-                return (IRenderableComponent)Activator.CreateInstance(foundedType);
-            }
-            else return null;
-        }
-
-        /// <summary>
-        ///  Method to get base instance dynamically of blazor component.
-        /// <param name="name">Name of the component.</param>
-        /// </summary>
-        public IRenderableComponent GetBaseComponent(string name)
-        {
-            name = name.Split('.').Last();
-            var foundedType = BaseComponents.FirstOrDefault(x => String.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase));
-          
-            if (foundedType != null)
+            Type foundedType;
+            var isFound = Components.TryGetValue(fullName.ToLower(), out foundedType);
+            if (isFound)
             {
                 return (IRenderableComponent)Activator.CreateInstance(foundedType);
             }
             else return null;
         }
         /// <summary>
-        ///  Method to get generic instance dynamically of blazor component.
-        /// <param name="name">Name of the component.</param>
+        ///  Method to get dynamically generic instance of blazor component.
+        /// <param name="fullName">Full name of the component.</param>
         /// <param name="typeArg">Generic type.</param>
         /// </summary>
-        public IRenderableComponent GetGenericComponent(string name, Type typeArg)
+        public IRenderableComponent GetGenericComponent(string fullName, Type typeArg)
         {
-            var foundedType = BaseComponents.FirstOrDefault(x => String.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase));
-            if (foundedType != null)
+            Type foundedType;
+            var isFound = Components.TryGetValue(fullName.ToLower(), out foundedType);
+            if (isFound)
             {
                 Type genericType = foundedType.MakeGenericType(typeArg);
                 return (IRenderableComponent)Activator.CreateInstance(genericType);
@@ -86,32 +68,45 @@ namespace Ix.Presentation.Blazor.Services
         public void LoadComponents()
         {
             var loadedAssemblies = LoadAssemblies();
-            var components = new List<Type>();
-            var baseComponents = new List<Type>();
-            var customBaseComponents = new List<Type>();
-
+            // get assemblies with renderable attribute
             var filteredAssemblies = loadedAssemblies.Where(p => p.CustomAttributes.Any(a => a.AttributeType == typeof(RenderableBlazorAssemblyAttribute)));
-
+            var entryAssembly = Assembly.GetEntryAssembly();
             foreach (var assembly in filteredAssemblies)
             {
-                if (assembly.GetName().Name == _baseAssemblyName)
+                //if entry assembly contains custom components, skip them and add them at the end
+                if (assembly.FullName == entryAssembly.FullName)
                 {
-                    baseComponents.AddRange(GetTypesWithInterface(assembly));
+                    _isEntryAssemblyPresent = true;
+                    continue;
                 }
-                else
-                {
-                    var types = GetTypesWithInterface(assembly);
-                    var customBaseTypes = types.Where(x => x.Name.Contains("Onliner"));
-                    types = types.Except(customBaseTypes);
-                    customBaseComponents.AddRange(customBaseTypes);
-                    components.AddRange(types);
-                }
+                //get assembly types which contains renderable interface
+                AddTypesToDictionary(assembly);
             }
 
-            Components = components;
-            BaseComponents = customBaseComponents.Concat(baseComponents).Concat(components);
+            if (_isEntryAssemblyPresent)
+            {
+                AddTypesToDictionary(entryAssembly);
+            }
         }
 
+        private void AddTypesToDictionary(Assembly assembly)
+        {
+            var types = GetTypesWithInterface(assembly);
+            foreach (var type in types)
+            {
+                //calculate id
+                var id = $"{type.FullName.ToLower()}";
+                try
+                {
+                    Components.Add(id, type);
+                }
+                catch (ArgumentException)
+                {
+                    //overwrite view if is already present
+                    Components[id] = type;
+                }
+            }
+        }
         private List<Assembly> LoadAssemblies()
         {
             var loadedAssemblies = AppDomain

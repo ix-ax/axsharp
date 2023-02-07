@@ -15,9 +15,6 @@ namespace Ix.Presentation.Blazor
     /// <summary>
     ///  Class containing list of grouped elements by layout.
     /// </summary>
-
-   
- 
     public class Group
     {
        

@@ -31,6 +31,12 @@ public partial class example : Ix.Connector.ITwinObject
 
     public border testborder { get; }
 
+    public ixcomponent ixcomponent_instance { get; }
+
+    public MySecondNamespace.ixcomponent ixcomponent_instance2 { get; }
+
+    public ThirdNamespace.ixcomponent ixcomponent_instance3 { get; }
+
     public example(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -46,6 +52,9 @@ public partial class example : Ix.Connector.ITwinObject
         test_border = new test_primitive(this, "test_border", "test_border");
         testgroupbox = new groupbox(this, "testgroupbox", "testgroupbox");
         testborder = new border(this, "testborder", "testborder");
+        ixcomponent_instance = new ixcomponent(this, "ixcomponent_instance", "ixcomponent_instance");
+        ixcomponent_instance2 = new MySecondNamespace.ixcomponent(this, "ixcomponent_instance2", "ixcomponent_instance2");
+        ixcomponent_instance3 = new ThirdNamespace.ixcomponent(this, "ixcomponent_instance3", "ixcomponent_instance3");
         parent.AddChild(this);
         parent.AddKid(this);
     }
