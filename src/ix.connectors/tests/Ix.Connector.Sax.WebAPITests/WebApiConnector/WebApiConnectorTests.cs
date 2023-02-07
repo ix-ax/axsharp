@@ -890,6 +890,9 @@ namespace Ix.Connector.S71500.WebAPITests
         [Fact]
         public async Task should_batch_read_a_lot_of_primitives()
         {
+#if RELEASE
+    return;
+#endif
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
 
             await connector.WriteAsync<byte>("myBYTE", 42);

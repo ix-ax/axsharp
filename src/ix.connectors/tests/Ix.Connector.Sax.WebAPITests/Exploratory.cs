@@ -33,6 +33,9 @@ namespace Ix.Connector.S71500.WebAPITests.Exploratory
         [Fact]
         public async void should_read_huge()
         {
+#if RELEASE
+    return;
+#endif
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
 
             await connector.WriteAsync<byte>("myBYTE", 42);

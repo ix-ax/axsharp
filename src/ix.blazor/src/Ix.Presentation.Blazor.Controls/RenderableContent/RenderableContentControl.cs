@@ -17,7 +17,9 @@ using System.Runtime.CompilerServices;
 using Ix.Presentation.Blazor.Services;
 using System.Collections.Generic;
 using Ix.Presentation.Blazor.Exceptions;
-
+using System.Reflection;
+using System.ComponentModel;
+using Ix.Connector.ValueTypes;
 
 namespace Ix.Presentation.Blazor.Controls.RenderableContent
 {
@@ -82,6 +84,8 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             if (String.IsNullOrEmpty(Presentation)) Presentation = "";
             _viewModelCache.ResetCounter();
         }
+
+
         /// <summary>
         /// Method to build component name from passed parameters, which instance will be found in assembly.
         /// <param name="twinType">Type of passed object.</param>
@@ -89,25 +93,28 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         /// <param name="getComponent">Delegate to specify method, from which get component.</param>
         /// </summary>
 
-        internal IRenderableComponent ViewLocatorBuilder(Type twinType, string presentationType, Func<string, IRenderableComponent> getComponent)
+        internal IRenderableComponent ViewLocatorBuilder(Type twinType, string presentationType)
         {
-            var name = twinType.FullName;
+            var namespc = twinType.Namespace;
+            //set default namespace if is namespace of primitive types or empty
+            if (string.IsNullOrEmpty(namespc) || namespc == "Ix.Connector.ValueTypes")
+                namespc = "Ix.Presentation.Blazor.Controls.Templates";
+
             //end recursion if we are at object type
-            if (name == "System.Object") return null;
+            if (twinType.FullName == "System.Object") return null;
+
             var pipeline = presentationType.Split('-');
 
             foreach (var item in pipeline)
             {
                 var presentationName = item;
-                // try to find view
                 if (presentationName.ToLower() == "base") presentationName = "";
-                var buildedComponentName = $"{name}{presentationName}View";
-                var component = getComponent(buildedComponentName);
-                //if not found, render as display presentation only when presentationType is empty string
+                // try to find component view
+                var component = GetComponent(twinType, presentationName, namespc);
                 if (component == null)
                 {
                     //if not found, look at predecessor
-                    component = ViewLocatorBuilder(twinType.BaseType, presentationName, getComponent);
+                    component = ViewLocatorBuilder(twinType.BaseType, presentationName);
                 }
                 if (component != null) return component;
             }
@@ -115,27 +122,30 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             if (string.IsNullOrEmpty(Presentation)) Presentation = "Display";                 
             return null;
         }
+
+
+       
+
         /// <summary>
         /// Method to build Generic component name from passed parameters, which instance will be found in assembly.
-        /// <param name="genericName">Name of generic type.</param>
+        /// <param name="twinType">Generic type.</param>
         /// <param name="presentationType">Type of presentation.</param>
-        /// <param name="typeArg">Passed generic type.</param>
-        /// <param name="isEnum">Indicator whether passed type is enum.</param>
         /// </summary>
-        internal IRenderableComponent ViewGenericLocatorBuilder(string genericName, string presentationType, Type typeArg, bool isEnum)
+        internal IRenderableComponent ViewEnumLocatorBuilder(Type twinType, string presentationType)
         {
+            var namespc = twinType.Namespace;
+            //set default namespace if is primitive type or unknown namespace
+            if (string.IsNullOrEmpty(namespc) || namespc == "Ix.Connector.ValueTypes")
+                namespc = "Ix.Presentation.Blazor.Controls.Templates";
+
+            var genericTypeArg = GetGenericInfo(twinType).Item2;
             var pipeline = presentationType.Split('-');
             foreach (var item in pipeline)
             {
                 var presentationName = item;
-                if (presentationName.ToLower() == "base") presentationName = "";
-
                 string buildedComponentName;
-                if (isEnum)
-                    buildedComponentName = $"EnumeratorContainer{presentationName}View`1";
-                else
-                    buildedComponentName = $"{genericName}{presentationName}View`1";
-                var component = ComponentService.GetGenericComponent(buildedComponentName, typeArg);
+                buildedComponentName = $"{namespc}.EnumeratorContainer{presentationName}View`1";
+                var component = ComponentService.GetGenericComponent(buildedComponentName, genericTypeArg);
                 if (component != null) return component;
             }
             return null;
@@ -145,9 +155,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             if (primitiveComponent == null) return;
             __builder.OpenComponent(1, primitiveComponent.GetType());
             __builder.AddAttribute(2, "Onliner", twinPrimitive);
-
-            bool hasReadOnly = twinPrimitive.ReadWriteAccess == Connector.ValueTypes.ReadWriteAccess.Read;
-            __builder.AddAttribute(3, "IsReadOnly", hasReadOnly);
+            __builder.AddAttribute(3, "IsReadOnly", HasReadAccess(twinPrimitive));
             __builder.CloseComponent();
         };
 
@@ -161,7 +169,6 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             }
             else if(component is IRenderableViewModelBase)
             {
-               
                 __builder.AddAttribute(1, "TwinContainer", new TwinContainerObject(twin, _viewModelCache.CreateCacheId(_navigationManager.Uri, twin.Symbol, Presentation.ToLower())));
             }
             else
@@ -177,8 +184,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             __builder.OpenComponent(0, component.GetType());
             __builder.AddAttribute(1, "Onliner", kid);
             __builder.AddAttribute(2, "EnumDiscriminatorAttribute", enumDiscriminatorAttribute);
-            bool hasReadOnly = kid.ReadWriteAccess == Connector.ValueTypes.ReadWriteAccess.Read;
-            __builder.AddAttribute(3, "IsReadOnly", hasReadOnly);
+            __builder.AddAttribute(3, "IsReadOnly", HasReadAccess(kid));
             __builder.CloseComponent();
         };
 
@@ -297,6 +303,25 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
                 return GetGenericInfo(primitiveKidType.BaseType);
             }
         }
+        private IRenderableComponent GetComponent(Type twinType, string presentationName, string namespc)
+        {
+            // if is generic type, render generic component
+            if (twinType.IsGenericType)
+            {
+                var (baseName, genericTypeArg) = GetGenericInfo(twinType);
+                var name = $"{namespc}.{baseName}";
+                var buildedComponentName = $"{name}{presentationName}View`1";
+                return ComponentService.GetGenericComponent(buildedComponentName, genericTypeArg);
+            }
+            else
+            {
+                var name = $"{namespc}.{twinType.Name}";
+                var buildedComponentName = $"{name}{presentationName}View";
+                return ComponentService.GetComponent(buildedComponentName);
+            }
+
+        }
+        private bool HasReadAccess(ITwinPrimitive kid) => kid.ReadWriteAccess == ReadWriteAccess.Read;
 
         public void Dispose()
         {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ix.Presentation.Blazor.Controls.Templates.Base.Shadow
+namespace Ix.Presentation.Blazor.Controls.Templates
 {
     public partial class TemplateBaseShadow<T> : TemplateBase<T>
     {

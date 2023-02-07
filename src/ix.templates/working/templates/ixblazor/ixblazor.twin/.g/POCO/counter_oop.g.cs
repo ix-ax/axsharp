@@ -7,5 +7,7 @@ namespace Pocos
         public UInt64 Counter { get; set; }
 
         public Boolean AllowCounter { get; set; }
+
+        public Boolean ResetCounter { get; set; }
     }
 }

@@ -1,4 +1,3 @@
-
 CLASS example
     VAR PUBLIC
         {#ix-attr:[Container(Layout.Stack)]}
@@ -22,5 +21,9 @@ CLASS example
         {#ix-attr:[Group(GroupLayout.GroupBox)]}   
         testgroupbox: groupbox;
         testborder: border;
+
+        ixcomponent_instance: ixcomponent;
+        ixcomponent_instance2: MySecondNamespace.ixcomponent;
+        ixcomponent_instance3: ThirdNamespace.ixcomponent;
     END_VAR    
 END_CLASS

@@ -77,12 +77,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ix.Presentation.Blazor\Ix.Presentation.Blazor.csproj"/>
+    <ProjectReference Include="..\Ix.Presentation.Blazor\Ix.Presentation.Blazor.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+	    <Folder Include="wwwroot\css\" />
 	    <Folder Include="wwwroot\js\" />
   </ItemGroup>
-
+	
 
 </Project>
