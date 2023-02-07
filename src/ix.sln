@@ -130,6 +130,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ix-integration-library", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixblazor.hmi", "ix.templates\working\templates\ixblazor\ixblazor.app\ixblazor.hmi.csproj", "{1235FD19-AAC2-40A0-AE08-6D77A5E40B54}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ixblazor (2)", "ixblazor (2)", "{76982E07-8EDC-4D4C-9977-DF3EB581C4C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -591,6 +593,7 @@ Global
 		{0B5A5A88-C5D1-428A-9FAA-D11A5210E0BF} = {618AA558-E14A-4152-90D2-DF718974B9A1}
 		{EB9F8B25-DA74-441F-9A0D-450B005DD418} = {F30D5DD0-F259-49E0-AB1B-84DD8766A37A}
 		{1235FD19-AAC2-40A0-AE08-6D77A5E40B54} = {618AA558-E14A-4152-90D2-DF718974B9A1}
+		{76982E07-8EDC-4D4C-9977-DF3EB581C4C7} = {A53DC85B-CBBA-4C1D-B5C3-5BBB52A6AB85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99D50E81-8A37-4BB9-A435-C2C98430D600}
