@@ -1,0 +1,22 @@
+name: "integrated"
+version: 0.0.0
+type: app
+targets:
+  - "1500"
+  - axunit-llvm
+  - plcsim
+devDependencies:
+  "@ax/sdk": 3.0.8
+variables:
+  APAX_BUILD_ARGS: [ -d ]    
+scripts:
+  ixc: 
+  - dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
+  postbuild: dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
+  download :   
+    - apax install    
+    - apax build
+    # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
+    # --default-server-interface is a must if you are using WebAPI      
+    - apax sld --accept-security-disclaimer -t 192.168.0.4 -i .\\bin\\plcsim\\ -r --default-server-interface    
+

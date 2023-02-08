@@ -35,10 +35,18 @@ public partial class weather : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public Pocos.weather OnlineToPlain()
+    public async Task<Pocos.weather> OnlineToPlain()
     {
         Pocos.weather plain = new Pocos.weather();
-        plain.GeoLocation = GeoLocation.OnlineToPlain();
+        await this.ReadAsync();
+        plain.GeoLocation = await GeoLocation.OnlineToPlain();
+        plain.Temperature = Temperature.LastValue;
+        plain.Humidity = Humidity.LastValue;
+        plain.Location = Location.LastValue;
+        plain.ChillFactor = ChillFactor.LastValue;
+        plain.Feeling = (Feeling)Feeling.LastValue;
+        ;
+        plain.GeoLocation = await GeoLocation.OnlineToPlain();
         plain.Temperature = Temperature.LastValue;
         plain.Humidity = Humidity.LastValue;
         plain.Location = Location.LastValue;
@@ -48,14 +56,15 @@ public partial class weather : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline(Pocos.weather plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.weather plain)
     {
-        this.GeoLocation.PlainToOnline(plain.GeoLocation);
+        await this.GeoLocation.PlainToOnline(plain.GeoLocation);
         Temperature.Cyclic = plain.Temperature;
         Humidity.Cyclic = plain.Humidity;
         Location.Cyclic = plain.Location;
         ChillFactor.Cyclic = plain.ChillFactor;
         Feeling.Cyclic = (short)plain.Feeling;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -136,16 +145,19 @@ public partial class weathers : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public Pocos.weathers OnlineToPlain()
+    public async Task<Pocos.weathers> OnlineToPlain()
     {
         Pocos.weathers plain = new Pocos.weathers();
+        await this.ReadAsync();
+        Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<weatherBase, Pocos.weatherBase>(plain.i, i);
         Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<weatherBase, Pocos.weatherBase>(plain.i, i);
         return plain;
     }
 
-    public void PlainToOnline(Pocos.weathers plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.weathers plain)
     {
         Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.weatherBase, weatherBase>(plain.i, i);
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

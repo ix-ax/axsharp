@@ -39,9 +39,14 @@ namespace MeasurementExample
             parent.AddKid(this);
         }
 
-        public Pocos.MeasurementExample.Measurement OnlineToPlain()
+        public async Task<Pocos.MeasurementExample.Measurement> OnlineToPlain()
         {
             Pocos.MeasurementExample.Measurement plain = new Pocos.MeasurementExample.Measurement();
+            await this.ReadAsync();
+            plain.Min = Min.LastValue;
+            plain.Acquired = Acquired.LastValue;
+            plain.Max = Max.LastValue;
+            plain.Result = Result.LastValue;
             plain.Min = Min.LastValue;
             plain.Acquired = Acquired.LastValue;
             plain.Max = Max.LastValue;
@@ -49,12 +54,13 @@ namespace MeasurementExample
             return plain;
         }
 
-        public void PlainToOnline(Pocos.MeasurementExample.Measurement plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MeasurementExample.Measurement plain)
         {
             Min.Cyclic = plain.Min;
             Acquired.Cyclic = plain.Acquired;
             Max.Cyclic = plain.Max;
             Result.Cyclic = plain.Result;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -162,22 +168,28 @@ namespace MeasurementExample
             parent.AddKid(this);
         }
 
-        public Pocos.MeasurementExample.Measurements OnlineToPlain()
+        public async Task<Pocos.MeasurementExample.Measurements> OnlineToPlain()
         {
             Pocos.MeasurementExample.Measurements plain = new Pocos.MeasurementExample.Measurements();
-            plain.measurement_stack = measurement_stack.OnlineToPlain();
-            plain.measurement_wrap = measurement_wrap.OnlineToPlain();
-            plain.measurement_grid = measurement_grid.OnlineToPlain();
-            plain.measurement_tabs = measurement_tabs.OnlineToPlain();
+            await this.ReadAsync();
+            plain.measurement_stack = await measurement_stack.OnlineToPlain();
+            plain.measurement_wrap = await measurement_wrap.OnlineToPlain();
+            plain.measurement_grid = await measurement_grid.OnlineToPlain();
+            plain.measurement_tabs = await measurement_tabs.OnlineToPlain();
+            plain.measurement_stack = await measurement_stack.OnlineToPlain();
+            plain.measurement_wrap = await measurement_wrap.OnlineToPlain();
+            plain.measurement_grid = await measurement_grid.OnlineToPlain();
+            plain.measurement_tabs = await measurement_tabs.OnlineToPlain();
             return plain;
         }
 
-        public void PlainToOnline(Pocos.MeasurementExample.Measurements plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MeasurementExample.Measurements plain)
         {
-            this.measurement_stack.PlainToOnline(plain.measurement_stack);
-            this.measurement_wrap.PlainToOnline(plain.measurement_wrap);
-            this.measurement_grid.PlainToOnline(plain.measurement_grid);
-            this.measurement_tabs.PlainToOnline(plain.measurement_tabs);
+            await this.measurement_stack.PlainToOnline(plain.measurement_stack);
+            await this.measurement_wrap.PlainToOnline(plain.measurement_wrap);
+            await this.measurement_grid.PlainToOnline(plain.measurement_grid);
+            await this.measurement_tabs.PlainToOnline(plain.measurement_tabs);
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

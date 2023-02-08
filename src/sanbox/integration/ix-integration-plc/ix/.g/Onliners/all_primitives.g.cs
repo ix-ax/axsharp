@@ -82,9 +82,32 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public Pocos.all_primitives OnlineToPlain()
+    public async Task<Pocos.all_primitives> OnlineToPlain()
     {
         Pocos.all_primitives plain = new Pocos.all_primitives();
+        await this.ReadAsync();
+        plain.myBOOL = myBOOL.LastValue;
+        plain.myBYTE = myBYTE.LastValue;
+        plain.myWORD = myWORD.LastValue;
+        plain.myDWORD = myDWORD.LastValue;
+        plain.myLWORD = myLWORD.LastValue;
+        plain.mySINT = mySINT.LastValue;
+        plain.myINT = myINT.LastValue;
+        plain.myDINT = myDINT.LastValue;
+        plain.myLINT = myLINT.LastValue;
+        plain.myUSINT = myUSINT.LastValue;
+        plain.myUINT = myUINT.LastValue;
+        plain.myUDINT = myUDINT.LastValue;
+        plain.myULINT = myULINT.LastValue;
+        plain.myREAL = myREAL.LastValue;
+        plain.myLREAL = myLREAL.LastValue;
+        plain.myTIME = myTIME.LastValue;
+        plain.myLTIME = myLTIME.LastValue;
+        plain.myDATE = myDATE.LastValue;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.LastValue;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
+        plain.mySTRING = mySTRING.LastValue;
+        plain.myWSTRING = myWSTRING.LastValue;
         plain.myBOOL = myBOOL.LastValue;
         plain.myBYTE = myBYTE.LastValue;
         plain.myWORD = myWORD.LastValue;
@@ -110,7 +133,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline(Pocos.all_primitives plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.all_primitives plain)
     {
         myBOOL.Cyclic = plain.myBOOL;
         myBYTE.Cyclic = plain.myBYTE;
@@ -134,6 +157,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
         mySTRING.Cyclic = plain.mySTRING;
         myWSTRING.Cyclic = plain.myWSTRING;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

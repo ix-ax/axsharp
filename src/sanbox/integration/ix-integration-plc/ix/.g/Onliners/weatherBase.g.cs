@@ -66,9 +66,21 @@ public partial class weatherBase : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public Pocos.weatherBase OnlineToPlain()
+    public async Task<Pocos.weatherBase> OnlineToPlain()
     {
         Pocos.weatherBase plain = new Pocos.weatherBase();
+        await this.ReadAsync();
+        plain.Latitude = Latitude.LastValue;
+        plain.Longitude = Longitude.LastValue;
+        plain.Altitude = Altitude.LastValue;
+        plain.Description = Description.LastValue;
+        plain.LongDescription = LongDescription.LastValue;
+        plain.StartCounter = StartCounter.LastValue;
+        plain.RenderIgnoreAllToghether = RenderIgnoreAllToghether.LastValue;
+        plain.RenderIgnoreWhenControl = RenderIgnoreWhenControl.LastValue;
+        plain.RenderIgnoreWhenDisplay = RenderIgnoreWhenDisplay.LastValue;
+        plain.RenderIgnoreWhenControlAndShadow = RenderIgnoreWhenControlAndShadow.LastValue;
+        plain.RenderIgnoreWhenDisplayAndShadow = RenderIgnoreWhenDisplayAndShadow.LastValue;
         plain.Latitude = Latitude.LastValue;
         plain.Longitude = Longitude.LastValue;
         plain.Altitude = Altitude.LastValue;
@@ -83,7 +95,7 @@ public partial class weatherBase : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline(Pocos.weatherBase plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.weatherBase plain)
     {
         Latitude.Cyclic = plain.Latitude;
         Longitude.Cyclic = plain.Longitude;
@@ -96,6 +108,7 @@ public partial class weatherBase : Ix.Connector.ITwinObject
         RenderIgnoreWhenDisplay.Cyclic = plain.RenderIgnoreWhenDisplay;
         RenderIgnoreWhenControlAndShadow.Cyclic = plain.RenderIgnoreWhenControlAndShadow;
         RenderIgnoreWhenDisplayAndShadow.Cyclic = plain.RenderIgnoreWhenDisplayAndShadow;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

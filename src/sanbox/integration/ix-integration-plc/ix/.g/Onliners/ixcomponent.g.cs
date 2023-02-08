@@ -28,20 +28,25 @@ public partial class ixcomponent : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public Pocos.ixcomponent OnlineToPlain()
+    public async Task<Pocos.ixcomponent> OnlineToPlain()
     {
         Pocos.ixcomponent plain = new Pocos.ixcomponent();
+        await this.ReadAsync();
+        plain.my_int = my_int.LastValue;
+        plain.my_string = my_string.LastValue;
+        plain.my_bool = my_bool.LastValue;
         plain.my_int = my_int.LastValue;
         plain.my_string = my_string.LastValue;
         plain.my_bool = my_bool.LastValue;
         return plain;
     }
 
-    public void PlainToOnline(Pocos.ixcomponent plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.ixcomponent plain)
     {
         my_int.Cyclic = plain.my_int;
         my_string.Cyclic = plain.my_string;
         my_bool.Cyclic = plain.my_bool;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -132,20 +137,25 @@ namespace MySecondNamespace
             parent.AddKid(this);
         }
 
-        public Pocos.MySecondNamespace.ixcomponent OnlineToPlain()
+        public async Task<Pocos.MySecondNamespace.ixcomponent> OnlineToPlain()
         {
             Pocos.MySecondNamespace.ixcomponent plain = new Pocos.MySecondNamespace.ixcomponent();
+            await this.ReadAsync();
+            plain.my_int = my_int.LastValue;
+            plain.my_string = my_string.LastValue;
+            plain.my_bool = my_bool.LastValue;
             plain.my_int = my_int.LastValue;
             plain.my_string = my_string.LastValue;
             plain.my_bool = my_bool.LastValue;
             return plain;
         }
 
-        public void PlainToOnline(Pocos.MySecondNamespace.ixcomponent plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MySecondNamespace.ixcomponent plain)
         {
             my_int.Cyclic = plain.my_int;
             my_string.Cyclic = plain.my_string;
             my_bool.Cyclic = plain.my_bool;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -237,20 +247,25 @@ namespace ThirdNamespace
             parent.AddKid(this);
         }
 
-        public Pocos.ThirdNamespace.ixcomponent OnlineToPlain()
+        public async Task<Pocos.ThirdNamespace.ixcomponent> OnlineToPlain()
         {
             Pocos.ThirdNamespace.ixcomponent plain = new Pocos.ThirdNamespace.ixcomponent();
+            await this.ReadAsync();
+            plain.my_int = my_int.LastValue;
+            plain.my_string = my_string.LastValue;
+            plain.my_bool = my_bool.LastValue;
             plain.my_int = my_int.LastValue;
             plain.my_string = my_string.LastValue;
             plain.my_bool = my_bool.LastValue;
             return plain;
         }
 
-        public void PlainToOnline(Pocos.ThirdNamespace.ixcomponent plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.ThirdNamespace.ixcomponent plain)
         {
             my_int.Cyclic = plain.my_int;
             my_string.Cyclic = plain.my_string;
             my_bool.Cyclic = plain.my_bool;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

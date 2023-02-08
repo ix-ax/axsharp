@@ -14,16 +14,18 @@ namespace Layouts.Wrapped
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         }
 
-        public Pocos.Layouts.Wrapped.weather OnlineToPlain()
+        public async Task<Pocos.Layouts.Wrapped.weather> OnlineToPlain()
         {
             Pocos.Layouts.Wrapped.weather plain = new Pocos.Layouts.Wrapped.weather();
-            plain = (Pocos.Layouts.Wrapped.weather)base.OnlineToPlain();
+            await this.ReadAsync();
+            plain = (Pocos.Layouts.Wrapped.weather)await base.OnlineToPlain();
             return plain;
         }
 
-        public void PlainToOnline(Pocos.Layouts.Wrapped.weather plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.Layouts.Wrapped.weather plain)
         {
-            base.PlainToOnline(plain);
+            await base.PlainToOnline(plain);
+            return await this.WriteAsync();
         }
     }
 }

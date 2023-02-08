@@ -16,6 +16,7 @@ using IX.Compiler.Core;
 using Ix.Compiler.Cs.Helpers;
 using Ix.Compiler.Cs.Helpers.Onliners;
 using AX.ST.Syntax.Tree;
+using Ix.Compiler.Cs.Helpers.Plain;
 
 namespace Ix.Compiler.Cs.Onliner;
 
@@ -62,10 +63,23 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:
-                AddToSource($" this.{declaration.Name}.{MethodName}(plain.{declaration.Name});");
+                AddToSource($" await this.{declaration.Name}.{MethodName}(plain.{declaration.Name});");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
-                AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}, {arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});");
+                
+
+                switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                {
+                    case IClassDeclaration classDeclaration:
+                    case IStructuredTypeDeclaration structuredTypeDeclaration:
+                        AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}, {arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});"); 
+                        break;
+                    case IScalarTypeDeclaration scalarTypeDeclaration:
+                    case IStringTypeDeclaration stringTypeDeclaration:
+                        AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}, {IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>(plain.{declaration.Name}, {declaration.Name});");
+                        break;
+                }
+                break;
                 break;
             case IReferenceTypeDeclaration referenceTypeDeclaration:
                 break;
@@ -104,8 +118,12 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         Compilation compilation)
     {
         var builder = new CsOnlinerPlainerPlainToOnlineBuilder(compilation);
-        builder.AddToSource($"public void {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+        builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+
+        builder.AddToSource("return await this.WriteAsync();");
+
         builder.AddToSource($"}}");
         return builder;
     }
@@ -114,15 +132,17 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         Compilation compilation, bool isExtended)
     {
         var builder = new CsOnlinerPlainerPlainToOnlineBuilder(compilation);
-        builder.AddToSource($"public void {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+        builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
        
 
         if (isExtended)
         {
-            builder.AddToSource($"base.{MethodName}(plain);");
+            builder.AddToSource($"await base.{MethodName}(plain);");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+
+        builder.AddToSource("return await this.WriteAsync();");
 
         builder.AddToSource($"}}");
         return builder;

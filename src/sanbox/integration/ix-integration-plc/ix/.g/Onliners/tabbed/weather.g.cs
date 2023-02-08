@@ -14,16 +14,18 @@ namespace Layouts.Tabbed
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         }
 
-        public Pocos.Layouts.Tabbed.weather OnlineToPlain()
+        public async Task<Pocos.Layouts.Tabbed.weather> OnlineToPlain()
         {
             Pocos.Layouts.Tabbed.weather plain = new Pocos.Layouts.Tabbed.weather();
-            plain = (Pocos.Layouts.Tabbed.weather)base.OnlineToPlain();
+            await this.ReadAsync();
+            plain = (Pocos.Layouts.Tabbed.weather)await base.OnlineToPlain();
             return plain;
         }
 
-        public void PlainToOnline(Pocos.Layouts.Tabbed.weather plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.Layouts.Tabbed.weather plain)
         {
-            base.PlainToOnline(plain);
+            await base.PlainToOnline(plain);
+            return await this.WriteAsync();
         }
     }
 }

@@ -43,9 +43,15 @@ public partial class GeoLocation : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public Pocos.GeoLocation OnlineToPlain()
+    public async Task<Pocos.GeoLocation> OnlineToPlain()
     {
         Pocos.GeoLocation plain = new Pocos.GeoLocation();
+        await this.ReadAsync();
+        plain.Latitude = Latitude.LastValue;
+        plain.Longitude = Longitude.LastValue;
+        plain.Altitude = Altitude.LastValue;
+        plain.Description = Description.LastValue;
+        plain.LongDescription = LongDescription.LastValue;
         plain.Latitude = Latitude.LastValue;
         plain.Longitude = Longitude.LastValue;
         plain.Altitude = Altitude.LastValue;
@@ -54,13 +60,14 @@ public partial class GeoLocation : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline(Pocos.GeoLocation plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GeoLocation plain)
     {
         Latitude.Cyclic = plain.Latitude;
         Longitude.Cyclic = plain.Longitude;
         Altitude.Cyclic = plain.Altitude;
         Description.Cyclic = plain.Description;
         LongDescription.Cyclic = plain.LongDescription;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
