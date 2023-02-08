@@ -90,7 +90,6 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         /// Method to build component name from passed parameters, which instance will be found in assembly.
         /// <param name="twinType">Type of passed object.</param>
         /// <param name="presentationType">Type of presentation.</param>
-        /// <param name="getComponent">Delegate to specify method, from which get component.</param>
         /// </summary>
 
         internal IRenderableComponent ViewLocatorBuilder(Type twinType, string presentationType)
@@ -117,9 +116,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
                     component = ViewLocatorBuilder(twinType.BaseType, presentationName);
                 }
                 if (component != null) return component;
-            }
-            //if Presentation is empty and view wasn't found, set presentation to Display and generate children
-            if (string.IsNullOrEmpty(Presentation)) Presentation = "Display";                 
+            }                
             return null;
         }
 
@@ -323,6 +320,25 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         }
         private bool HasReadAccess(ITwinPrimitive kid) => kid.ReadWriteAccess == ReadWriteAccess.Read;
 
+        private bool CheckForArray(ITwinObject twinObject)
+        {
+            var tail = twinObject.GetSymbolTail();
+            if (tail.Last() == ']')
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private string GetDisplayPresentationIfEmpty()
+        {
+            if (string.IsNullOrEmpty(Presentation))
+            {
+                return "Display";
+            }
+            return Presentation;
+            
+        }
         public void Dispose()
         {
             _viewModelCache.ResetCounter();
