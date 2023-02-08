@@ -16,6 +16,7 @@ using IX.Compiler.Core;
 using Ix.Compiler.Cs.Helpers;
 using Ix.Compiler.Cs.Helpers.Onliners;
 using Ix.Compiler.Cs.Helpers.Plain;
+using Ix.Connector;
 
 namespace Ix.Compiler.Cs.Onliner;
 
@@ -54,7 +55,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         }
     }
 
-    private void CreateAssignment(ITypeDeclaration typeDeclaration, IDeclaration declaration)
+    internal void CreateAssignment(ITypeDeclaration typeDeclaration, IDeclaration declaration)
     {
         switch (typeDeclaration)
         {
@@ -69,13 +70,16 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
                 {
                     case IClassDeclaration classDeclaration:
                     case IStructuredTypeDeclaration structuredTypeDeclaration:
-                        AddToSource(
-                            $"Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName},Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});");
+                        //plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}()).Select(p => p.Result).ToArray();");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:
-                        AddToSource(
-                            $"Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<{IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)},{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>(plain.{declaration.Name}, {declaration.Name});");
+                        //plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
+
+                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(p => p.LastValue).ToArray();");
+                        //AddToSource(
+                        //    $"Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<{IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)},{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>({declaration.Name}, plain.{declaration.Name});");
                         break;
                 }
                 break;
@@ -110,7 +114,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         AddToSource(parametersString);
     }
 
-    private static readonly string MethodName = "OnlineToPlain";
+    protected static readonly string MethodName = TwinObjectExtensions.OnlineToPlainMethodName;
 
     public static CsOnlinerPlainerOnlineToPlainBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
         Compilation compilation)
@@ -119,6 +123,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
         builder.AddToSource("await this.ReadAsync();");
+
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
         builder.AddToSource($"return plain;");
@@ -133,11 +138,10 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
         builder.AddToSource("await this.ReadAsync();");
-        semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
         if (isExtended)
         {
-            builder.AddToSource($"plain = (Pocos.{semantics.FullyQualifiedName}) await base.{MethodName}();");
+            builder.AddToSource($"await base.{MethodName}(plain);");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));

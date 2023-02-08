@@ -86,7 +86,9 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
 
         AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
         AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
+   
         if (!isExtended) CreateITwinObjectImplementation();
 
         AddToSource("}");
@@ -206,7 +208,9 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerConstructorBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
 
         AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
         AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        
 
         CreateITwinObjectImplementation();
 

@@ -43,7 +43,7 @@ public partial class GeoLocation : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.GeoLocation> OnlineToPlain()
+    public async Task<Pocos.GeoLocation> OnlineToPlainAsync()
     {
         Pocos.GeoLocation plain = new Pocos.GeoLocation();
         await this.ReadAsync();
@@ -52,6 +52,11 @@ public partial class GeoLocation : Ix.Connector.ITwinObject
         plain.Altitude = Altitude.LastValue;
         plain.Description = Description.LastValue;
         plain.LongDescription = LongDescription.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.GeoLocation> OnlineToPlainAsync(Pocos.GeoLocation plain)
+    {
         plain.Latitude = Latitude.LastValue;
         plain.Longitude = Longitude.LastValue;
         plain.Altitude = Altitude.LastValue;
@@ -60,7 +65,7 @@ public partial class GeoLocation : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GeoLocation plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GeoLocation plain)
     {
         Latitude.Cyclic = plain.Latitude;
         Longitude.Cyclic = plain.Longitude;

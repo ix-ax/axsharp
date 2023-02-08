@@ -82,7 +82,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.all_primitives> OnlineToPlain()
+    public async Task<Pocos.all_primitives> OnlineToPlainAsync()
     {
         Pocos.all_primitives plain = new Pocos.all_primitives();
         await this.ReadAsync();
@@ -108,6 +108,11 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
         plain.mySTRING = mySTRING.LastValue;
         plain.myWSTRING = myWSTRING.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.all_primitives> OnlineToPlainAsync(Pocos.all_primitives plain)
+    {
         plain.myBOOL = myBOOL.LastValue;
         plain.myBYTE = myBYTE.LastValue;
         plain.myWORD = myWORD.LastValue;
@@ -133,7 +138,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.all_primitives plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.all_primitives plain)
     {
         myBOOL.Cyclic = plain.myBOOL;
         myBYTE.Cyclic = plain.myBYTE;

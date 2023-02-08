@@ -68,7 +68,7 @@ public partial class groupbox : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.groupbox> OnlineToPlain()
+    public async Task<Pocos.groupbox> OnlineToPlainAsync()
     {
         Pocos.groupbox plain = new Pocos.groupbox();
         await this.ReadAsync();
@@ -85,6 +85,11 @@ public partial class groupbox : Ix.Connector.ITwinObject
         plain.TestTimeOfDay = TestTimeOfDay.LastValue;
         plain.Status = (enumStationStatus)Status.LastValue;
         ;
+        return plain;
+    }
+
+    protected async Task<Pocos.groupbox> OnlineToPlainAsync(Pocos.groupbox plain)
+    {
         plain.testInteger = testInteger.LastValue;
         plain.testUInteger = testUInteger.LastValue;
         plain.testString = testString.LastValue;
@@ -101,7 +106,7 @@ public partial class groupbox : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.groupbox plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.groupbox plain)
     {
         testInteger.Cyclic = plain.testInteger;
         testUInteger.Cyclic = plain.testUInteger;

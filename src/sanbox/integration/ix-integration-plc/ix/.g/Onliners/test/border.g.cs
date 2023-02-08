@@ -68,7 +68,7 @@ public partial class border : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.border> OnlineToPlain()
+    public async Task<Pocos.border> OnlineToPlainAsync()
     {
         Pocos.border plain = new Pocos.border();
         await this.ReadAsync();
@@ -85,6 +85,11 @@ public partial class border : Ix.Connector.ITwinObject
         plain.TestTimeOfDay = TestTimeOfDay.LastValue;
         plain.Status = (enumStationStatus)Status.LastValue;
         ;
+        return plain;
+    }
+
+    protected async Task<Pocos.border> OnlineToPlainAsync(Pocos.border plain)
+    {
         plain.testInteger = testInteger.LastValue;
         plain.testUInteger = testUInteger.LastValue;
         plain.testString = testString.LastValue;
@@ -101,7 +106,7 @@ public partial class border : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.border plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.border plain)
     {
         testInteger.Cyclic = plain.testInteger;
         testUInteger.Cyclic = plain.testUInteger;

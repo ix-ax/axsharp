@@ -4,6 +4,10 @@ CONFIGURATION MyConfiguration
 
     VAR_GLOBAL      
        Monster : MonsterData.Monster;
+       OnlineToPlain_should_copy_entire_structure : MonsterData.Monster;
+       PlainToOnline_should_copy_entire_structure : MonsterData.Monster;
+       OnlineToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
+       ShadowToOnlineAsync_should_copy_entire_structure : MonsterData.Monster;
        Pokus : Pokus;
     END_VAR
 END_CONFIGURATION

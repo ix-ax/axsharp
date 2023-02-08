@@ -14,17 +14,23 @@ namespace Layouts.Stacked
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         }
 
-        public async Task<Pocos.Layouts.Stacked.weather> OnlineToPlain()
+        public async Task<Pocos.Layouts.Stacked.weather> OnlineToPlainAsync()
         {
             Pocos.Layouts.Stacked.weather plain = new Pocos.Layouts.Stacked.weather();
             await this.ReadAsync();
-            plain = (Pocos.Layouts.Stacked.weather)await base.OnlineToPlain();
+            await base.OnlineToPlainAsync(plain);
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.Layouts.Stacked.weather plain)
+        protected async Task<Pocos.Layouts.Stacked.weather> OnlineToPlainAsync(Pocos.Layouts.Stacked.weather plain)
         {
-            await base.PlainToOnline(plain);
+            await base.OnlineToPlainAsync(plain);
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Layouts.Stacked.weather plain)
+        {
+            await base.PlainToOnlineAsync(plain);
             return await this.WriteAsync();
         }
     }

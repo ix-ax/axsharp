@@ -39,7 +39,7 @@ namespace MeasurementExample
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.MeasurementExample.Measurement> OnlineToPlain()
+        public async Task<Pocos.MeasurementExample.Measurement> OnlineToPlainAsync()
         {
             Pocos.MeasurementExample.Measurement plain = new Pocos.MeasurementExample.Measurement();
             await this.ReadAsync();
@@ -47,6 +47,11 @@ namespace MeasurementExample
             plain.Acquired = Acquired.LastValue;
             plain.Max = Max.LastValue;
             plain.Result = Result.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.MeasurementExample.Measurement> OnlineToPlainAsync(Pocos.MeasurementExample.Measurement plain)
+        {
             plain.Min = Min.LastValue;
             plain.Acquired = Acquired.LastValue;
             plain.Max = Max.LastValue;
@@ -54,7 +59,7 @@ namespace MeasurementExample
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MeasurementExample.Measurement plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MeasurementExample.Measurement plain)
         {
             Min.Cyclic = plain.Min;
             Acquired.Cyclic = plain.Acquired;
@@ -168,27 +173,32 @@ namespace MeasurementExample
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.MeasurementExample.Measurements> OnlineToPlain()
+        public async Task<Pocos.MeasurementExample.Measurements> OnlineToPlainAsync()
         {
             Pocos.MeasurementExample.Measurements plain = new Pocos.MeasurementExample.Measurements();
             await this.ReadAsync();
-            plain.measurement_stack = await measurement_stack.OnlineToPlain();
-            plain.measurement_wrap = await measurement_wrap.OnlineToPlain();
-            plain.measurement_grid = await measurement_grid.OnlineToPlain();
-            plain.measurement_tabs = await measurement_tabs.OnlineToPlain();
-            plain.measurement_stack = await measurement_stack.OnlineToPlain();
-            plain.measurement_wrap = await measurement_wrap.OnlineToPlain();
-            plain.measurement_grid = await measurement_grid.OnlineToPlain();
-            plain.measurement_tabs = await measurement_tabs.OnlineToPlain();
+            plain.measurement_stack = await measurement_stack.OnlineToPlainAsync();
+            plain.measurement_wrap = await measurement_wrap.OnlineToPlainAsync();
+            plain.measurement_grid = await measurement_grid.OnlineToPlainAsync();
+            plain.measurement_tabs = await measurement_tabs.OnlineToPlainAsync();
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MeasurementExample.Measurements plain)
+        protected async Task<Pocos.MeasurementExample.Measurements> OnlineToPlainAsync(Pocos.MeasurementExample.Measurements plain)
         {
-            await this.measurement_stack.PlainToOnline(plain.measurement_stack);
-            await this.measurement_wrap.PlainToOnline(plain.measurement_wrap);
-            await this.measurement_grid.PlainToOnline(plain.measurement_grid);
-            await this.measurement_tabs.PlainToOnline(plain.measurement_tabs);
+            plain.measurement_stack = await measurement_stack.OnlineToPlainAsync();
+            plain.measurement_wrap = await measurement_wrap.OnlineToPlainAsync();
+            plain.measurement_grid = await measurement_grid.OnlineToPlainAsync();
+            plain.measurement_tabs = await measurement_tabs.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MeasurementExample.Measurements plain)
+        {
+            await this.measurement_stack.PlainToOnlineAsync(plain.measurement_stack);
+            await this.measurement_wrap.PlainToOnlineAsync(plain.measurement_wrap);
+            await this.measurement_grid.PlainToOnlineAsync(plain.measurement_grid);
+            await this.measurement_tabs.PlainToOnlineAsync(plain.measurement_tabs);
             return await this.WriteAsync();
         }
 

@@ -7,6 +7,10 @@ namespace MonsterData
 {
     public partial class MonsterBase : Ix.Connector.ITwinObject
     {
+        public OnlinerString Description { get; }
+
+        public OnlinerULInt Id { get; }
+
         public OnlinerByte[] ArrayOfBytes { get; }
 
         public MonsterData.DriveBase[] ArrayOfDrives { get; }
@@ -18,6 +22,8 @@ namespace MonsterData
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            Description = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "Description", "Description");
+            Id = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Id", "Id");
             ArrayOfBytes = new OnlinerByte[4];
             Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfBytes, this, "ArrayOfBytes", "ArrayOfBytes", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st));
             ArrayOfDrives = new MonsterData.DriveBase[4];
@@ -26,21 +32,34 @@ namespace MonsterData
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.MonsterData.MonsterBase> OnlineToPlain()
+        public async Task<Pocos.MonsterData.MonsterBase> OnlineToPlainAsync()
         {
             Pocos.MonsterData.MonsterBase plain = new Pocos.MonsterData.MonsterBase();
             await this.ReadAsync();
-            Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<OnlinerByte, Byte>(plain.ArrayOfBytes, ArrayOfBytes);
-            Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<MonsterData.DriveBase, Pocos.MonsterData.DriveBase>(plain.ArrayOfDrives, ArrayOfDrives);
-            Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<OnlinerByte, Byte>(plain.ArrayOfBytes, ArrayOfBytes);
-            Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<MonsterData.DriveBase, Pocos.MonsterData.DriveBase>(plain.ArrayOfDrives, ArrayOfDrives);
+            plain.Description = Description.LastValue;
+            plain.Id = Id.LastValue;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MonsterData.MonsterBase plain)
+        protected async Task<Pocos.MonsterData.MonsterBase> OnlineToPlainAsync(Pocos.MonsterData.MonsterBase plain)
         {
-            Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Byte, OnlinerByte>(plain.ArrayOfBytes, ArrayOfBytes);
-            Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.MonsterData.DriveBase, MonsterData.DriveBase>(plain.ArrayOfDrives, ArrayOfDrives);
+            plain.Description = Description.LastValue;
+            plain.Id = Id.LastValue;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.MonsterBase plain)
+        {
+            Description.Cyclic = plain.Description;
+            Id.Cyclic = plain.Id;
+            var _ArrayOfBytes_i_FE8484DAB3 = 0;
+            ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+            var _ArrayOfDrives_i_FE8484DAB3 = 0;
+            ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
             return await this.WriteAsync();
         }
 
@@ -115,20 +134,26 @@ namespace MonsterData
             DriveA = new MonsterData.DriveBase(this, "DriveA", "DriveA");
         }
 
-        public async Task<Pocos.MonsterData.Monster> OnlineToPlain()
+        public async Task<Pocos.MonsterData.Monster> OnlineToPlainAsync()
         {
             Pocos.MonsterData.Monster plain = new Pocos.MonsterData.Monster();
             await this.ReadAsync();
-            plain.DriveA = await DriveA.OnlineToPlain();
-            plain = (Pocos.MonsterData.Monster)await base.OnlineToPlain();
-            plain.DriveA = await DriveA.OnlineToPlain();
+            await base.OnlineToPlainAsync(plain);
+            plain.DriveA = await DriveA.OnlineToPlainAsync();
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MonsterData.Monster plain)
+        protected async Task<Pocos.MonsterData.Monster> OnlineToPlainAsync(Pocos.MonsterData.Monster plain)
         {
-            await base.PlainToOnline(plain);
-            await this.DriveA.PlainToOnline(plain.DriveA);
+            await base.OnlineToPlainAsync(plain);
+            plain.DriveA = await DriveA.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.Monster plain)
+        {
+            await base.PlainToOnlineAsync(plain);
+            await this.DriveA.PlainToOnlineAsync(plain.DriveA);
             return await this.WriteAsync();
         }
     }
@@ -158,7 +183,7 @@ namespace MonsterData
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.MonsterData.DriveBase> OnlineToPlain()
+        public async Task<Pocos.MonsterData.DriveBase> OnlineToPlainAsync()
         {
             Pocos.MonsterData.DriveBase plain = new Pocos.MonsterData.DriveBase();
             await this.ReadAsync();
@@ -166,6 +191,11 @@ namespace MonsterData
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.MonsterData.DriveBase> OnlineToPlainAsync(Pocos.MonsterData.DriveBase plain)
+        {
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -173,7 +203,7 @@ namespace MonsterData
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.MonsterData.DriveBase plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.DriveBase plain)
         {
             Position.Cyclic = plain.Position;
             Velo.Cyclic = plain.Velo;

@@ -59,48 +59,53 @@ public partial class example : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.example> OnlineToPlain()
+    public async Task<Pocos.example> OnlineToPlainAsync()
     {
         Pocos.example plain = new Pocos.example();
         await this.ReadAsync();
-        plain.primitives_stack = await primitives_stack.OnlineToPlain();
-        plain.primitives_wrap = await primitives_wrap.OnlineToPlain();
-        plain.primitives_tabs = await primitives_tabs.OnlineToPlain();
-        plain.primitives_uniform = await primitives_uniform.OnlineToPlain();
-        plain.test_groupbox = await test_groupbox.OnlineToPlain();
-        plain.test_border = await test_border.OnlineToPlain();
-        plain.testgroupbox = await testgroupbox.OnlineToPlain();
-        plain.testborder = await testborder.OnlineToPlain();
-        plain.ixcomponent_instance = await ixcomponent_instance.OnlineToPlain();
-        plain.ixcomponent_instance2 = await ixcomponent_instance2.OnlineToPlain();
-        plain.ixcomponent_instance3 = await ixcomponent_instance3.OnlineToPlain();
-        plain.primitives_stack = await primitives_stack.OnlineToPlain();
-        plain.primitives_wrap = await primitives_wrap.OnlineToPlain();
-        plain.primitives_tabs = await primitives_tabs.OnlineToPlain();
-        plain.primitives_uniform = await primitives_uniform.OnlineToPlain();
-        plain.test_groupbox = await test_groupbox.OnlineToPlain();
-        plain.test_border = await test_border.OnlineToPlain();
-        plain.testgroupbox = await testgroupbox.OnlineToPlain();
-        plain.testborder = await testborder.OnlineToPlain();
-        plain.ixcomponent_instance = await ixcomponent_instance.OnlineToPlain();
-        plain.ixcomponent_instance2 = await ixcomponent_instance2.OnlineToPlain();
-        plain.ixcomponent_instance3 = await ixcomponent_instance3.OnlineToPlain();
+        plain.primitives_stack = await primitives_stack.OnlineToPlainAsync();
+        plain.primitives_wrap = await primitives_wrap.OnlineToPlainAsync();
+        plain.primitives_tabs = await primitives_tabs.OnlineToPlainAsync();
+        plain.primitives_uniform = await primitives_uniform.OnlineToPlainAsync();
+        plain.test_groupbox = await test_groupbox.OnlineToPlainAsync();
+        plain.test_border = await test_border.OnlineToPlainAsync();
+        plain.testgroupbox = await testgroupbox.OnlineToPlainAsync();
+        plain.testborder = await testborder.OnlineToPlainAsync();
+        plain.ixcomponent_instance = await ixcomponent_instance.OnlineToPlainAsync();
+        plain.ixcomponent_instance2 = await ixcomponent_instance2.OnlineToPlainAsync();
+        plain.ixcomponent_instance3 = await ixcomponent_instance3.OnlineToPlainAsync();
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.example plain)
+    protected async Task<Pocos.example> OnlineToPlainAsync(Pocos.example plain)
     {
-        await this.primitives_stack.PlainToOnline(plain.primitives_stack);
-        await this.primitives_wrap.PlainToOnline(plain.primitives_wrap);
-        await this.primitives_tabs.PlainToOnline(plain.primitives_tabs);
-        await this.primitives_uniform.PlainToOnline(plain.primitives_uniform);
-        await this.test_groupbox.PlainToOnline(plain.test_groupbox);
-        await this.test_border.PlainToOnline(plain.test_border);
-        await this.testgroupbox.PlainToOnline(plain.testgroupbox);
-        await this.testborder.PlainToOnline(plain.testborder);
-        await this.ixcomponent_instance.PlainToOnline(plain.ixcomponent_instance);
-        await this.ixcomponent_instance2.PlainToOnline(plain.ixcomponent_instance2);
-        await this.ixcomponent_instance3.PlainToOnline(plain.ixcomponent_instance3);
+        plain.primitives_stack = await primitives_stack.OnlineToPlainAsync();
+        plain.primitives_wrap = await primitives_wrap.OnlineToPlainAsync();
+        plain.primitives_tabs = await primitives_tabs.OnlineToPlainAsync();
+        plain.primitives_uniform = await primitives_uniform.OnlineToPlainAsync();
+        plain.test_groupbox = await test_groupbox.OnlineToPlainAsync();
+        plain.test_border = await test_border.OnlineToPlainAsync();
+        plain.testgroupbox = await testgroupbox.OnlineToPlainAsync();
+        plain.testborder = await testborder.OnlineToPlainAsync();
+        plain.ixcomponent_instance = await ixcomponent_instance.OnlineToPlainAsync();
+        plain.ixcomponent_instance2 = await ixcomponent_instance2.OnlineToPlainAsync();
+        plain.ixcomponent_instance3 = await ixcomponent_instance3.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.example plain)
+    {
+        await this.primitives_stack.PlainToOnlineAsync(plain.primitives_stack);
+        await this.primitives_wrap.PlainToOnlineAsync(plain.primitives_wrap);
+        await this.primitives_tabs.PlainToOnlineAsync(plain.primitives_tabs);
+        await this.primitives_uniform.PlainToOnlineAsync(plain.primitives_uniform);
+        await this.test_groupbox.PlainToOnlineAsync(plain.test_groupbox);
+        await this.test_border.PlainToOnlineAsync(plain.test_border);
+        await this.testgroupbox.PlainToOnlineAsync(plain.testgroupbox);
+        await this.testborder.PlainToOnlineAsync(plain.testborder);
+        await this.ixcomponent_instance.PlainToOnlineAsync(plain.ixcomponent_instance);
+        await this.ixcomponent_instance2.PlainToOnlineAsync(plain.ixcomponent_instance2);
+        await this.ixcomponent_instance3.PlainToOnlineAsync(plain.ixcomponent_instance3);
         return await this.WriteAsync();
     }
 

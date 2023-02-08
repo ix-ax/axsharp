@@ -18,6 +18,11 @@ namespace Ix.Connector;
 /// </summary>
 public static class TwinObjectExtensions
 {
+
+    public static readonly string OnlineToPlainMethodName = "OnlineToPlainAsync";
+
+    public static readonly string PlainToOnlineMethodName = "PlainToOnlineAsync";
+
     /// <summary>
     ///     Makes <see cref="Ix.Connector.ITwinObject" /> readonly for this application.
     /// </summary>

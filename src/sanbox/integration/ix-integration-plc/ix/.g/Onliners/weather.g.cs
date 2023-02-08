@@ -35,18 +35,11 @@ public partial class weather : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.weather> OnlineToPlain()
+    public async Task<Pocos.weather> OnlineToPlainAsync()
     {
         Pocos.weather plain = new Pocos.weather();
         await this.ReadAsync();
-        plain.GeoLocation = await GeoLocation.OnlineToPlain();
-        plain.Temperature = Temperature.LastValue;
-        plain.Humidity = Humidity.LastValue;
-        plain.Location = Location.LastValue;
-        plain.ChillFactor = ChillFactor.LastValue;
-        plain.Feeling = (Feeling)Feeling.LastValue;
-        ;
-        plain.GeoLocation = await GeoLocation.OnlineToPlain();
+        plain.GeoLocation = await GeoLocation.OnlineToPlainAsync();
         plain.Temperature = Temperature.LastValue;
         plain.Humidity = Humidity.LastValue;
         plain.Location = Location.LastValue;
@@ -56,9 +49,21 @@ public partial class weather : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.weather plain)
+    protected async Task<Pocos.weather> OnlineToPlainAsync(Pocos.weather plain)
     {
-        await this.GeoLocation.PlainToOnline(plain.GeoLocation);
+        plain.GeoLocation = await GeoLocation.OnlineToPlainAsync();
+        plain.Temperature = Temperature.LastValue;
+        plain.Humidity = Humidity.LastValue;
+        plain.Location = Location.LastValue;
+        plain.ChillFactor = ChillFactor.LastValue;
+        plain.Feeling = (Feeling)Feeling.LastValue;
+        ;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.weather plain)
+    {
+        await this.GeoLocation.PlainToOnlineAsync(plain.GeoLocation);
         Temperature.Cyclic = plain.Temperature;
         Humidity.Cyclic = plain.Humidity;
         Location.Cyclic = plain.Location;
@@ -145,18 +150,24 @@ public partial class weathers : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.weathers> OnlineToPlain()
+    public async Task<Pocos.weathers> OnlineToPlainAsync()
     {
         Pocos.weathers plain = new Pocos.weathers();
         await this.ReadAsync();
-        Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<weatherBase, Pocos.weatherBase>(plain.i, i);
-        Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<weatherBase, Pocos.weatherBase>(plain.i, i);
+        plain.i = i.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.weathers plain)
+    protected async Task<Pocos.weathers> OnlineToPlainAsync(Pocos.weathers plain)
     {
-        Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.weatherBase, weatherBase>(plain.i, i);
+        plain.i = i.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.weathers plain)
+    {
+        var _i_i_FE8484DAB3 = 0;
+        i.Select(p => p.PlainToOnlineAsync(plain.i[_i_i_FE8484DAB3++])).ToArray();
         return await this.WriteAsync();
     }
 

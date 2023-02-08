@@ -17,6 +17,7 @@ using Ix.Compiler.Cs.Helpers;
 using Ix.Compiler.Cs.Helpers.Onliners;
 using AX.ST.Syntax.Tree;
 using Ix.Compiler.Cs.Helpers.Plain;
+using Ix.Connector;
 
 namespace Ix.Compiler.Cs.Onliner;
 
@@ -72,11 +73,17 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                 {
                     case IClassDeclaration classDeclaration:
                     case IStructuredTypeDeclaration structuredTypeDeclaration:
-                        AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}, {arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});"); 
+                        //ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[index++]).ToArray();
+                        //AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}, {arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});"); 
+                        AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
+                        AddToSource($"{declaration.Name}.Select(p => p.{MethodName}(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:
-                        AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}, {IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>(plain.{declaration.Name}, {declaration.Name});");
+                        //ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[index++])).ToArray();
+                        AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
+                        AddToSource($"{declaration.Name}.Select(p => p.Cyclic = plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++]).ToArray();");
+                        //AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}, {IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>(plain.{declaration.Name}, {declaration.Name});");
                         break;
                 }
                 break;
@@ -112,7 +119,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         AddToSource(parametersString);
     }
 
-    private static readonly string MethodName = "PlainToOnline";
+    private static readonly string MethodName = TwinObjectExtensions.PlainToOnlineMethodName;
 
     public static CsOnlinerPlainerPlainToOnlineBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
         Compilation compilation)

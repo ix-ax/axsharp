@@ -67,7 +67,7 @@ public partial class test_primitive : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.test_primitive> OnlineToPlain()
+    public async Task<Pocos.test_primitive> OnlineToPlainAsync()
     {
         Pocos.test_primitive plain = new Pocos.test_primitive();
         await this.ReadAsync();
@@ -84,6 +84,11 @@ public partial class test_primitive : Ix.Connector.ITwinObject
         plain.TestTimeOfDay = TestTimeOfDay.LastValue;
         plain.Status = (enumStationStatus)Status.LastValue;
         ;
+        return plain;
+    }
+
+    protected async Task<Pocos.test_primitive> OnlineToPlainAsync(Pocos.test_primitive plain)
+    {
         plain.testInteger = testInteger.LastValue;
         plain.testUInteger = testUInteger.LastValue;
         plain.testString = testString.LastValue;
@@ -100,7 +105,7 @@ public partial class test_primitive : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.test_primitive plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.test_primitive plain)
     {
         testInteger.Cyclic = plain.testInteger;
         testUInteger.Cyclic = plain.testUInteger;

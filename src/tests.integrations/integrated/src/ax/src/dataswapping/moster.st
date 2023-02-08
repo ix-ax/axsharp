@@ -1,6 +1,8 @@
 NAMESPACE MonsterData
     CLASS MonsterBase
         VAR PUBLIC
+            Description : STRING;
+            Id : ULINT;
             ArrayOfBytes : ARRAY[0..3] OF BYTE;
             ArrayOfDrives : ARRAY[0..3] OF DriveBase;
         END_VAR        

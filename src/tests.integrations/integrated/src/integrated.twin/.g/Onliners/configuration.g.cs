@@ -9,12 +9,24 @@ public partial class integratedTwinController : ITwinController
 
     public MonsterData.Monster Monster { get; }
 
+    public MonsterData.Monster OnlineToPlain_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster PlainToOnline_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster OnlineToShadowAsync_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster ShadowToOnlineAsync_should_copy_entire_structure { get; }
+
     public Pokus Pokus { get; }
 
     public integratedTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
         Monster = new MonsterData.Monster(this.Connector, "", "Monster");
+        OnlineToPlain_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToPlain_should_copy_entire_structure");
+        PlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToOnline_should_copy_entire_structure");
+        OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
+        ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
     }
 
@@ -22,6 +34,10 @@ public partial class integratedTwinController : ITwinController
     {
         this.Connector = adapter.GetConnector(adapter.Parameters);
         Monster = new MonsterData.Monster(this.Connector, "", "Monster");
+        OnlineToPlain_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToPlain_should_copy_entire_structure");
+        PlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToOnline_should_copy_entire_structure");
+        OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
+        ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
     }
 }
@@ -42,18 +58,23 @@ public partial class Pokus : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.Pokus> OnlineToPlain()
+    public async Task<Pocos.Pokus> OnlineToPlainAsync()
     {
         Pocos.Pokus plain = new Pocos.Pokus();
         await this.ReadAsync();
-        plain.Nested = await Nested.OnlineToPlain();
-        plain.Nested = await Nested.OnlineToPlain();
+        plain.Nested = await Nested.OnlineToPlainAsync();
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.Pokus plain)
+    protected async Task<Pocos.Pokus> OnlineToPlainAsync(Pocos.Pokus plain)
     {
-        await this.Nested.PlainToOnline(plain.Nested);
+        plain.Nested = await Nested.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Pokus plain)
+    {
+        await this.Nested.PlainToOnlineAsync(plain.Nested);
         return await this.WriteAsync();
     }
 
@@ -140,20 +161,25 @@ public partial class Nested : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
-    public async Task<Pocos.Nested> OnlineToPlain()
+    public async Task<Pocos.Nested> OnlineToPlainAsync()
     {
         Pocos.Nested plain = new Pocos.Nested();
         await this.ReadAsync();
         plain.SomeString = SomeString.LastValue;
         plain.SomeInt = SomeInt.LastValue;
         plain.SomeByte = SomeByte.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.Nested> OnlineToPlainAsync(Pocos.Nested plain)
+    {
         plain.SomeString = SomeString.LastValue;
         plain.SomeInt = SomeInt.LastValue;
         plain.SomeByte = SomeByte.LastValue;
         return plain;
     }
 
-    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.Nested plain)
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Nested plain)
     {
         SomeString.Cyclic = plain.SomeString;
         SomeInt.Cyclic = plain.SomeInt;

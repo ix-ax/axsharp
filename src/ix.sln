@@ -144,6 +144,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated", "tests.integra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated.hmi", "tests.integrations\integrated\src\integrated.app\integrated.hmi.csproj", "{5F49C3EC-6097-4FC4-B71A-212AE048DA5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integrated.tests", "tests.integrations\integrated\tests\integrated.tests\integrated.tests.csproj", "{783937D2-322E-47F7-9B22-FCDCBF4091A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -570,6 +572,18 @@ Global
 		{5F49C3EC-6097-4FC4-B71A-212AE048DA5D}.Release|x64.Build.0 = Release|Any CPU
 		{5F49C3EC-6097-4FC4-B71A-212AE048DA5D}.Release|x86.ActiveCfg = Release|Any CPU
 		{5F49C3EC-6097-4FC4-B71A-212AE048DA5D}.Release|x86.Build.0 = Release|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Debug|x64.Build.0 = Debug|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Debug|x86.Build.0 = Debug|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Release|x64.ActiveCfg = Release|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Release|x64.Build.0 = Release|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -635,6 +649,7 @@ Global
 		{EF64D1E4-2334-4824-B6EB-25C6818C480E} = {2DE7EDD9-A5A0-44C3-8CBB-994B6BEF30AF}
 		{B596D5CC-6CD3-4EC4-AE50-827D277B2C30} = {C3155176-0F14-4189-8EB2-F5648604364F}
 		{5F49C3EC-6097-4FC4-B71A-212AE048DA5D} = {C3155176-0F14-4189-8EB2-F5648604364F}
+		{783937D2-322E-47F7-9B22-FCDCBF4091A4} = {EF64D1E4-2334-4824-B6EB-25C6818C480E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99D50E81-8A37-4BB9-A435-C2C98430D600}
