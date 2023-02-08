@@ -1,3 +1,4 @@
+USING MonsterData;
 CONFIGURATION MyConfiguration
     TASK Main(Interval := T#10ms, Priority := 1);
     PROGRAM P1 WITH Main: MyProgram;
@@ -21,6 +22,6 @@ CONFIGURATION MyConfiguration
 
         test_example: example;
         measurements : MeasurementExample.Measurements;
-
+        monster : Monster;
     END_VAR
 END_CONFIGURATION

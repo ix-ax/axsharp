@@ -151,36 +151,40 @@
             {
                 mainLayout = TryLoadLayoutType(twin);
             }
-
-            if (mainLayout != null)
-            {
-                //try load group type from twin
-                var groupContainer = TryLoadGroupType(twin);
-                var groupName = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
-                <GroupContainerAttributeSetter GroupType="groupContainer" GroupName="@groupName">
-                    <MainLayoutSetter LayoutType="mainLayout" GroupBoxName="@groupName">
-                        @RenderChildren(twin, mainLayout)
-                    </MainLayoutSetter>
-                </GroupContainerAttributeSetter>
-            }
-            else
-            {
-                @RenderChildren(twin, layout)
-            }
+           
+            <ArrayBorderSetter IsArray="@CheckForArray(twin)" Name="@twin.GetSymbolTail()">
+                @if (mainLayout != null)
+                {
+                    //try load group type from twin
+                    var groupContainer = TryLoadGroupType(twin);
+                    var groupName = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
+                    <GroupContainerAttributeSetter GroupType="groupContainer" GroupName="@groupName">
+                        <MainLayoutSetter LayoutType="mainLayout" GroupBoxName="@groupName">
+                            @RenderChildren(twin, mainLayout)
+                        </MainLayoutSetter>
+                    </GroupContainerAttributeSetter>
+                }
+                else
+                {
+                    @RenderChildren(twin, layout)
+                }
+            </ArrayBorderSetter>
         }
     };
 
 
     private RenderFragment GeneratePrimitive(ITwinPrimitive primitiveKid) => __builder =>
     {
+        string presentationType = GetDisplayPresentationIfEmpty();
         var primitiveKidType = primitiveKid.GetType();
-        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, Presentation);
+        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, presentationType);
         @CreatePrimitiveComponent(primitiveKid, primitiveComponent)
     };
 
 
-     private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinPrimitive kid) => __builder =>
-     {
+    private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinPrimitive kid) => __builder =>
+    {
+        string presentationType = GetDisplayPresentationIfEmpty();
         var enumKidType = kid.GetType();
         var component = ViewEnumLocatorBuilder(enumKidType, Presentation);
         @CreateEnumComponent(enumDiscriminatorAttribute, kid, component)
