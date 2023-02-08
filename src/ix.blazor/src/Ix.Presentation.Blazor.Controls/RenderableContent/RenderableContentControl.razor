@@ -186,7 +186,7 @@
     {
         string presentationType = GetDisplayPresentationIfEmpty();
         var enumKidType = kid.GetType();
-        var component = ViewEnumLocatorBuilder(enumKidType, Presentation);
+        var component = ViewEnumLocatorBuilder(enumKidType, presentationType);
         @CreateEnumComponent(enumDiscriminatorAttribute, kid, component)
      };
 
