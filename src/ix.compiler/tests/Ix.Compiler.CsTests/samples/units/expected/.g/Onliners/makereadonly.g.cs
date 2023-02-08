@@ -34,6 +34,35 @@ namespace makereadonly
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync()
+        {
+            Pocos.makereadonly.MembersWithMakeReadOnly plain = new Pocos.makereadonly.MembersWithMakeReadOnly();
+            await this.ReadAsync();
+            plain.makeReadOnceMember = makeReadOnceMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.OnlineToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
+        {
+            plain.makeReadOnceMember = makeReadOnceMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
+        {
+            makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
+            someOtherMember.Cyclic = plain.someOtherMember;
+            await this.makeReadComplexMember.PlainToOnlineAsync(plain.makeReadComplexMember);
+            await this.someotherComplexMember.PlainToOnlineAsync(plain.someotherComplexMember);
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -112,6 +141,29 @@ namespace makereadonly
             someOtherMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someOtherMember", "someOtherMember");
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync()
+        {
+            Pocos.makereadonly.ComplexMember plain = new Pocos.makereadonly.ComplexMember();
+            await this.ReadAsync();
+            plain.someMember = someMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync(Pocos.makereadonly.ComplexMember plain)
+        {
+            plain.someMember = someMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.ComplexMember plain)
+        {
+            someMember.Cyclic = plain.someMember;
+            someOtherMember.Cyclic = plain.someOtherMember;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

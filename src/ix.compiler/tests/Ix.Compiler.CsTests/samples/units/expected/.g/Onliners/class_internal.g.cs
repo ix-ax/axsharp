@@ -16,6 +16,23 @@ internal partial class ClassWithComplexTypes : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.ClassWithComplexTypes> OnlineToPlainAsync()
+    {
+        Pocos.ClassWithComplexTypes plain = new Pocos.ClassWithComplexTypes();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.ClassWithComplexTypes> OnlineToPlainAsync(Pocos.ClassWithComplexTypes plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypes plain)
+    {
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

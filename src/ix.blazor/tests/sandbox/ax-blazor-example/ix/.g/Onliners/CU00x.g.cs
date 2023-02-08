@@ -12,6 +12,29 @@ public partial class CU00x : CUBase
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         _cuName = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "_cuName", "_cuName");
     }
+
+    public async Task<Pocos.CU00x> OnlineToPlainAsync()
+    {
+        Pocos.CU00x plain = new Pocos.CU00x();
+        await this.ReadAsync();
+        await base.OnlineToPlainAsync(plain);
+        plain._cuName = _cuName.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.CU00x> OnlineToPlainAsync(Pocos.CU00x plain)
+    {
+        await base.OnlineToPlainAsync(plain);
+        plain._cuName = _cuName.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.CU00x plain)
+    {
+        await base.PlainToOnlineAsync(plain);
+        _cuName.Cyclic = plain._cuName;
+        return await this.WriteAsync();
+    }
 }
 
 public partial class CUBase : Ix.Connector.ITwinObject
@@ -28,6 +51,26 @@ public partial class CUBase : Ix.Connector.ITwinObject
         _baseName = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "_baseName", "_baseName");
         parent.AddChild(this);
         parent.AddKid(this);
+    }
+
+    public async Task<Pocos.CUBase> OnlineToPlainAsync()
+    {
+        Pocos.CUBase plain = new Pocos.CUBase();
+        await this.ReadAsync();
+        plain._baseName = _baseName.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.CUBase> OnlineToPlainAsync(Pocos.CUBase plain)
+    {
+        plain._baseName = _baseName.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.CUBase plain)
+    {
+        _baseName.Cyclic = plain._baseName;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

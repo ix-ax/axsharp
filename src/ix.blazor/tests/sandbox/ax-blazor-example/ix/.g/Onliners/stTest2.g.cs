@@ -16,6 +16,23 @@ public partial class stTest2 : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stTest2> OnlineToPlainAsync()
+    {
+        Pocos.stTest2 plain = new Pocos.stTest2();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.stTest2> OnlineToPlainAsync(Pocos.stTest2 plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stTest2 plain)
+    {
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

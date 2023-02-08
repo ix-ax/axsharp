@@ -63,6 +63,64 @@ public partial class testingProgram : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.testingProgram> OnlineToPlainAsync()
+    {
+        Pocos.testingProgram plain = new Pocos.testingProgram();
+        await this.ReadAsync();
+        plain.testPrimitive = await testPrimitive.OnlineToPlainAsync();
+        plain.testComplex = await testComplex.OnlineToPlainAsync();
+        plain.testEnum = (stTestEnum)testEnum.LastValue;
+        ;
+        plain.testRenderIgnore = await testRenderIgnore.OnlineToPlainAsync();
+        plain.testEmpty = await testEmpty.OnlineToPlainAsync();
+        plain.testLayoutOverwrite = await testLayoutOverwrite.OnlineToPlainAsync();
+        plain.testMixed = await testMixed.OnlineToPlainAsync();
+        plain.testMultipleLayouts = await testMultipleLayouts.OnlineToPlainAsync();
+        plain.testSimple = await testSimple.OnlineToPlainAsync();
+        plain.testWithoutLayouts = await testWithoutLayouts.OnlineToPlainAsync();
+        plain.testSimpleNested = await testSimpleNested.OnlineToPlainAsync();
+        plain.testMultipleNested = await testMultipleNested.OnlineToPlainAsync();
+        plain.testLayouts = await testLayouts.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.testingProgram> OnlineToPlainAsync(Pocos.testingProgram plain)
+    {
+        plain.testPrimitive = await testPrimitive.OnlineToPlainAsync();
+        plain.testComplex = await testComplex.OnlineToPlainAsync();
+        plain.testEnum = (stTestEnum)testEnum.LastValue;
+        ;
+        plain.testRenderIgnore = await testRenderIgnore.OnlineToPlainAsync();
+        plain.testEmpty = await testEmpty.OnlineToPlainAsync();
+        plain.testLayoutOverwrite = await testLayoutOverwrite.OnlineToPlainAsync();
+        plain.testMixed = await testMixed.OnlineToPlainAsync();
+        plain.testMultipleLayouts = await testMultipleLayouts.OnlineToPlainAsync();
+        plain.testSimple = await testSimple.OnlineToPlainAsync();
+        plain.testWithoutLayouts = await testWithoutLayouts.OnlineToPlainAsync();
+        plain.testSimpleNested = await testSimpleNested.OnlineToPlainAsync();
+        plain.testMultipleNested = await testMultipleNested.OnlineToPlainAsync();
+        plain.testLayouts = await testLayouts.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.testingProgram plain)
+    {
+        await this.testPrimitive.PlainToOnlineAsync(plain.testPrimitive);
+        await this.testComplex.PlainToOnlineAsync(plain.testComplex);
+        testEnum.Cyclic = (short)plain.testEnum;
+        await this.testRenderIgnore.PlainToOnlineAsync(plain.testRenderIgnore);
+        await this.testEmpty.PlainToOnlineAsync(plain.testEmpty);
+        await this.testLayoutOverwrite.PlainToOnlineAsync(plain.testLayoutOverwrite);
+        await this.testMixed.PlainToOnlineAsync(plain.testMixed);
+        await this.testMultipleLayouts.PlainToOnlineAsync(plain.testMultipleLayouts);
+        await this.testSimple.PlainToOnlineAsync(plain.testSimple);
+        await this.testWithoutLayouts.PlainToOnlineAsync(plain.testWithoutLayouts);
+        await this.testSimpleNested.PlainToOnlineAsync(plain.testSimpleNested);
+        await this.testMultipleNested.PlainToOnlineAsync(plain.testMultipleNested);
+        await this.testLayouts.PlainToOnlineAsync(plain.testLayouts);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

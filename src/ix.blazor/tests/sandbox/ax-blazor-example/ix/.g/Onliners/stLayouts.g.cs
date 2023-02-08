@@ -16,6 +16,23 @@ public partial class stLayouts : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stLayouts> OnlineToPlainAsync()
+    {
+        Pocos.stLayouts plain = new Pocos.stLayouts();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.stLayouts> OnlineToPlainAsync(Pocos.stLayouts plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stLayouts plain)
+    {
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

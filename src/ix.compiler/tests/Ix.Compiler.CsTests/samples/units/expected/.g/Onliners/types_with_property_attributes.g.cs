@@ -25,6 +25,26 @@ namespace TypesWithPropertyAttributes
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.TypesWithPropertyAttributes.SomeAddedProperties> OnlineToPlainAsync()
+        {
+            Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain = new Pocos.TypesWithPropertyAttributes.SomeAddedProperties();
+            await this.ReadAsync();
+            plain.Counter = Counter.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypesWithPropertyAttributes.SomeAddedProperties> OnlineToPlainAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)
+        {
+            plain.Counter = Counter.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)
+        {
+            Counter.Cyclic = plain.Counter;
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

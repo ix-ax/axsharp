@@ -31,6 +31,38 @@ public partial class stTest : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stTest> OnlineToPlainAsync()
+    {
+        Pocos.stTest plain = new Pocos.stTest();
+        await this.ReadAsync();
+        plain.p1 = p1.LastValue;
+        plain.p2 = p2.LastValue;
+        plain.stTest3Struct = await stTest3Struct.OnlineToPlainAsync();
+        plain.DateVar2 = DateVar2.LastValue;
+        plain.complexInstanceNested = await complexInstanceNested.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.stTest> OnlineToPlainAsync(Pocos.stTest plain)
+    {
+        plain.p1 = p1.LastValue;
+        plain.p2 = p2.LastValue;
+        plain.stTest3Struct = await stTest3Struct.OnlineToPlainAsync();
+        plain.DateVar2 = DateVar2.LastValue;
+        plain.complexInstanceNested = await complexInstanceNested.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stTest plain)
+    {
+        p1.Cyclic = plain.p1;
+        p2.Cyclic = plain.p2;
+        await this.stTest3Struct.PlainToOnlineAsync(plain.stTest3Struct);
+        DateVar2.Cyclic = plain.DateVar2;
+        await this.complexInstanceNested.PlainToOnlineAsync(plain.complexInstanceNested);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

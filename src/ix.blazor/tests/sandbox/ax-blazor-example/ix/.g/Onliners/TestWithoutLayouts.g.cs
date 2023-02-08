@@ -25,6 +25,32 @@ public partial class TestWithoutLayouts : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.TestWithoutLayouts> OnlineToPlainAsync()
+    {
+        Pocos.TestWithoutLayouts plain = new Pocos.TestWithoutLayouts();
+        await this.ReadAsync();
+        plain.ix_bool = ix_bool.LastValue;
+        plain.ix_int = ix_int.LastValue;
+        plain.ix_string = ix_string.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.TestWithoutLayouts> OnlineToPlainAsync(Pocos.TestWithoutLayouts plain)
+    {
+        plain.ix_bool = ix_bool.LastValue;
+        plain.ix_int = ix_int.LastValue;
+        plain.ix_string = ix_string.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TestWithoutLayouts plain)
+    {
+        ix_bool.Cyclic = plain.ix_bool;
+        ix_int.Cyclic = plain.ix_int;
+        ix_string.Cyclic = plain.ix_string;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

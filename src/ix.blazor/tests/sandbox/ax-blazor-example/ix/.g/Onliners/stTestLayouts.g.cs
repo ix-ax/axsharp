@@ -72,6 +72,59 @@ public partial class stTestLayouts : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stTestLayouts> OnlineToPlainAsync()
+    {
+        Pocos.stTestLayouts plain = new Pocos.stTestLayouts();
+        await this.ReadAsync();
+        plain.test_stack = await test_stack.OnlineToPlainAsync();
+        plain.test_wrap = await test_wrap.OnlineToPlainAsync();
+        plain.test_tabs = await test_tabs.OnlineToPlainAsync();
+        plain.test_uniform = await test_uniform.OnlineToPlainAsync();
+        plain.test_groupbox_stack = await test_groupbox_stack.OnlineToPlainAsync();
+        plain.test_border_stack = await test_border_stack.OnlineToPlainAsync();
+        plain.test_groupbox_wrap = await test_groupbox_wrap.OnlineToPlainAsync();
+        plain.test_border_wrap = await test_border_wrap.OnlineToPlainAsync();
+        plain.test_groupbox_tabs = await test_groupbox_tabs.OnlineToPlainAsync();
+        plain.test_border_tabs = await test_border_tabs.OnlineToPlainAsync();
+        plain.test_groupbox_uniformGrid = await test_groupbox_uniformGrid.OnlineToPlainAsync();
+        plain.test_border_uniformGrid = await test_border_uniformGrid.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.stTestLayouts> OnlineToPlainAsync(Pocos.stTestLayouts plain)
+    {
+        plain.test_stack = await test_stack.OnlineToPlainAsync();
+        plain.test_wrap = await test_wrap.OnlineToPlainAsync();
+        plain.test_tabs = await test_tabs.OnlineToPlainAsync();
+        plain.test_uniform = await test_uniform.OnlineToPlainAsync();
+        plain.test_groupbox_stack = await test_groupbox_stack.OnlineToPlainAsync();
+        plain.test_border_stack = await test_border_stack.OnlineToPlainAsync();
+        plain.test_groupbox_wrap = await test_groupbox_wrap.OnlineToPlainAsync();
+        plain.test_border_wrap = await test_border_wrap.OnlineToPlainAsync();
+        plain.test_groupbox_tabs = await test_groupbox_tabs.OnlineToPlainAsync();
+        plain.test_border_tabs = await test_border_tabs.OnlineToPlainAsync();
+        plain.test_groupbox_uniformGrid = await test_groupbox_uniformGrid.OnlineToPlainAsync();
+        plain.test_border_uniformGrid = await test_border_uniformGrid.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stTestLayouts plain)
+    {
+        await this.test_stack.PlainToOnlineAsync(plain.test_stack);
+        await this.test_wrap.PlainToOnlineAsync(plain.test_wrap);
+        await this.test_tabs.PlainToOnlineAsync(plain.test_tabs);
+        await this.test_uniform.PlainToOnlineAsync(plain.test_uniform);
+        await this.test_groupbox_stack.PlainToOnlineAsync(plain.test_groupbox_stack);
+        await this.test_border_stack.PlainToOnlineAsync(plain.test_border_stack);
+        await this.test_groupbox_wrap.PlainToOnlineAsync(plain.test_groupbox_wrap);
+        await this.test_border_wrap.PlainToOnlineAsync(plain.test_border_wrap);
+        await this.test_groupbox_tabs.PlainToOnlineAsync(plain.test_groupbox_tabs);
+        await this.test_border_tabs.PlainToOnlineAsync(plain.test_border_tabs);
+        await this.test_groupbox_uniformGrid.PlainToOnlineAsync(plain.test_groupbox_uniformGrid);
+        await this.test_border_uniformGrid.PlainToOnlineAsync(plain.test_border_uniformGrid);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

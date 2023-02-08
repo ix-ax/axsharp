@@ -9,6 +9,26 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
     }
+
+    public async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync()
+    {
+        Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
+        await this.ReadAsync();
+        await base.OnlineToPlainAsync(plain);
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.OnlineToPlainAsync(plain);
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.PlainToOnlineAsync(plain);
+        return await this.WriteAsync();
+    }
 }
 
 public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
@@ -22,6 +42,23 @@ public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         parent.AddChild(this);
         parent.AddKid(this);
+    }
+
+    public async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync()
+    {
+        Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

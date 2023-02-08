@@ -19,11 +19,36 @@ namespace ArrayDeclarationSimpleNamespace
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             primitive = new OnlinerInt[100];
-            Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(primitive, this, "primitive", "primitive", (p, rt, st) => new OnlinerInt(p, rt, st));
+            Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(primitive, this, "primitive", "primitive", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateINT(p, rt, st));
             complex = new ArrayDeclarationSimpleNamespace.some_complex_type[100];
             Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(complex, this, "complex", "complex", (p, rt, st) => new ArrayDeclarationSimpleNamespace.some_complex_type(p, rt, st));
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> OnlineToPlainAsync()
+        {
+            Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain = new Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class();
+            await this.ReadAsync();
+            plain.primitive = primitive.Select(p => p.LastValue).ToArray();
+            plain.complex = complex.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> OnlineToPlainAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
+        {
+            plain.primitive = primitive.Select(p => p.LastValue).ToArray();
+            plain.complex = complex.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
+        {
+            var _primitive_i_FE8484DAB3 = 0;
+            primitive.Select(p => p.Cyclic = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
+            var _complex_i_FE8484DAB3 = 0;
+            complex.Select(p => p.PlainToOnlineAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -98,6 +123,23 @@ namespace ArrayDeclarationSimpleNamespace
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> OnlineToPlainAsync()
+        {
+            Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain = new Pocos.ArrayDeclarationSimpleNamespace.some_complex_type();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> OnlineToPlainAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
+        {
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

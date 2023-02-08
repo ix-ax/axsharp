@@ -19,6 +19,26 @@ public partial class Motor : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.Motor> OnlineToPlainAsync()
+    {
+        Pocos.Motor plain = new Pocos.Motor();
+        await this.ReadAsync();
+        plain.isRunning = isRunning.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.Motor> OnlineToPlainAsync(Pocos.Motor plain)
+    {
+        plain.isRunning = isRunning.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Motor plain)
+    {
+        isRunning.Cyclic = plain.isRunning;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
@@ -96,6 +116,29 @@ public partial class Vehicle : Ix.Connector.ITwinObject
         displacement = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "displacement", "displacement");
         parent.AddChild(this);
         parent.AddKid(this);
+    }
+
+    public async Task<Pocos.Vehicle> OnlineToPlainAsync()
+    {
+        Pocos.Vehicle plain = new Pocos.Vehicle();
+        await this.ReadAsync();
+        plain.m = await m.OnlineToPlainAsync();
+        plain.displacement = displacement.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.Vehicle> OnlineToPlainAsync(Pocos.Vehicle plain)
+    {
+        plain.m = await m.OnlineToPlainAsync();
+        plain.displacement = displacement.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Vehicle plain)
+    {
+        await this.m.PlainToOnlineAsync(plain.m);
+        displacement.Cyclic = plain.displacement;
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

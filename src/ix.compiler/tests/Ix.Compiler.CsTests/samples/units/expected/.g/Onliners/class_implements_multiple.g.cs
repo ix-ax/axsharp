@@ -16,6 +16,23 @@ public partial class _NULL_CONTEXT_MULTIPLE : Ix.Connector.ITwinObject, IContext
         parent.AddKid(this);
     }
 
+    public async Task<Pocos._NULL_CONTEXT_MULTIPLE> OnlineToPlainAsync()
+    {
+        Pocos._NULL_CONTEXT_MULTIPLE plain = new Pocos._NULL_CONTEXT_MULTIPLE();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos._NULL_CONTEXT_MULTIPLE> OnlineToPlainAsync(Pocos._NULL_CONTEXT_MULTIPLE plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos._NULL_CONTEXT_MULTIPLE plain)
+    {
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

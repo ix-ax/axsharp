@@ -7,10 +7,6 @@ namespace RefToSimple
 {
     public partial class ref_to_simple : Ix.Connector.ITwinObject
     {
-        public OnlinerInt a { get; }
-
-        public RefToSimple.referenced b { get; }
-
         public ref_to_simple(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -20,6 +16,23 @@ namespace RefToSimple
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync()
+        {
+            Pocos.RefToSimple.ref_to_simple plain = new Pocos.RefToSimple.ref_to_simple();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -97,6 +110,26 @@ namespace RefToSimple
             b = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "b", "b");
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync()
+        {
+            Pocos.RefToSimple.referenced plain = new Pocos.RefToSimple.referenced();
+            await this.ReadAsync();
+            plain.b = b.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync(Pocos.RefToSimple.referenced plain)
+        {
+            plain.b = b.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.referenced plain)
+        {
+            b.Cyclic = plain.b;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

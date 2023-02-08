@@ -36,6 +36,35 @@ public partial class fbWorldWeatherWatch : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.fbWorldWeatherWatch> OnlineToPlainAsync()
+    {
+        Pocos.fbWorldWeatherWatch plain = new Pocos.fbWorldWeatherWatch();
+        await this.ReadAsync();
+        plain.NorthPole = await NorthPole.OnlineToPlainAsync();
+        plain.SouthPole = await SouthPole.OnlineToPlainAsync();
+        plain.Verl = await Verl.OnlineToPlainAsync();
+        plain.Kriva = await Kriva.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.fbWorldWeatherWatch> OnlineToPlainAsync(Pocos.fbWorldWeatherWatch plain)
+    {
+        plain.NorthPole = await NorthPole.OnlineToPlainAsync();
+        plain.SouthPole = await SouthPole.OnlineToPlainAsync();
+        plain.Verl = await Verl.OnlineToPlainAsync();
+        plain.Kriva = await Kriva.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.fbWorldWeatherWatch plain)
+    {
+        await this.NorthPole.PlainToOnlineAsync(plain.NorthPole);
+        await this.SouthPole.PlainToOnlineAsync(plain.SouthPole);
+        await this.Verl.PlainToOnlineAsync(plain.Verl);
+        await this.Kriva.PlainToOnlineAsync(plain.Kriva);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

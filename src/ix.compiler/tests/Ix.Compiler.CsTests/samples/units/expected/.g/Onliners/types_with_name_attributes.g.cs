@@ -22,6 +22,26 @@ namespace TypeWithNameAttributes
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.TypeWithNameAttributes.Motor> OnlineToPlainAsync()
+        {
+            Pocos.TypeWithNameAttributes.Motor plain = new Pocos.TypeWithNameAttributes.Motor();
+            await this.ReadAsync();
+            plain.isRunning = isRunning.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypeWithNameAttributes.Motor> OnlineToPlainAsync(Pocos.TypeWithNameAttributes.Motor plain)
+        {
+            plain.isRunning = isRunning.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.Motor plain)
+        {
+            isRunning.Cyclic = plain.isRunning;
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -101,6 +121,29 @@ namespace TypeWithNameAttributes
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.TypeWithNameAttributes.Vehicle> OnlineToPlainAsync()
+        {
+            Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
+            await this.ReadAsync();
+            plain.m = await m.OnlineToPlainAsync();
+            plain.displacement = displacement.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypeWithNameAttributes.Vehicle> OnlineToPlainAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
+        {
+            plain.m = await m.OnlineToPlainAsync();
+            plain.displacement = displacement.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
+        {
+            await this.m.PlainToOnlineAsync(plain.m);
+            displacement.Cyclic = plain.displacement;
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -178,6 +221,26 @@ namespace TypeWithNameAttributes
             SomeClassVariable = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "SomeClassVariable", "SomeClassVariable");
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> OnlineToPlainAsync()
+        {
+            Pocos.TypeWithNameAttributes.NoAccessModifierClass plain = new Pocos.TypeWithNameAttributes.NoAccessModifierClass();
+            await this.ReadAsync();
+            plain.SomeClassVariable = SomeClassVariable.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> OnlineToPlainAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
+        {
+            plain.SomeClassVariable = SomeClassVariable.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
+        {
+            SomeClassVariable.Cyclic = plain.SomeClassVariable;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

@@ -28,6 +28,29 @@ public partial class prgWeatherStations : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.prgWeatherStations> OnlineToPlainAsync()
+    {
+        Pocos.prgWeatherStations plain = new Pocos.prgWeatherStations();
+        await this.ReadAsync();
+        plain._weatherStations = await _weatherStations.OnlineToPlainAsync();
+        plain.PlcCommentOnCurrentWeather = PlcCommentOnCurrentWeather.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.prgWeatherStations> OnlineToPlainAsync(Pocos.prgWeatherStations plain)
+    {
+        plain._weatherStations = await _weatherStations.OnlineToPlainAsync();
+        plain.PlcCommentOnCurrentWeather = PlcCommentOnCurrentWeather.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.prgWeatherStations plain)
+    {
+        await this._weatherStations.PlainToOnlineAsync(plain._weatherStations);
+        PlcCommentOnCurrentWeather.Cyclic = plain.PlcCommentOnCurrentWeather;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

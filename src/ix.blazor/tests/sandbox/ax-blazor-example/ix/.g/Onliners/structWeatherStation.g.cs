@@ -66,6 +66,58 @@ public partial class structWeatherStation : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.structWeatherStation> OnlineToPlainAsync()
+    {
+        Pocos.structWeatherStation plain = new Pocos.structWeatherStation();
+        await this.ReadAsync();
+        plain.StationICAO = StationICAO.LastValue;
+        plain.StationStatus = (enumStationStatus)StationStatus.LastValue;
+        ;
+        plain.DewPoint = DewPoint.LastValue;
+        plain.Pressure = Pressure.LastValue;
+        plain.Temp = Temp.LastValue;
+        plain.Visibility = Visibility.LastValue;
+        plain.WindHeading = WindHeading.LastValue;
+        plain.WindSpeed = WindSpeed.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        plain.TestDateTime = TestDateTime.LastValue;
+        plain.TestTimeOfDay = TestTimeOfDay.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.structWeatherStation> OnlineToPlainAsync(Pocos.structWeatherStation plain)
+    {
+        plain.StationICAO = StationICAO.LastValue;
+        plain.StationStatus = (enumStationStatus)StationStatus.LastValue;
+        ;
+        plain.DewPoint = DewPoint.LastValue;
+        plain.Pressure = Pressure.LastValue;
+        plain.Temp = Temp.LastValue;
+        plain.Visibility = Visibility.LastValue;
+        plain.WindHeading = WindHeading.LastValue;
+        plain.WindSpeed = WindSpeed.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        plain.TestDateTime = TestDateTime.LastValue;
+        plain.TestTimeOfDay = TestTimeOfDay.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.structWeatherStation plain)
+    {
+        StationICAO.Cyclic = plain.StationICAO;
+        StationStatus.Cyclic = (short)plain.StationStatus;
+        DewPoint.Cyclic = plain.DewPoint;
+        Pressure.Cyclic = plain.Pressure;
+        Temp.Cyclic = plain.Temp;
+        Visibility.Cyclic = plain.Visibility;
+        WindHeading.Cyclic = plain.WindHeading;
+        WindSpeed.Cyclic = plain.WindSpeed;
+        TestDate.Cyclic = plain.TestDate;
+        TestDateTime.Cyclic = plain.TestDateTime;
+        TestTimeOfDay.Cyclic = plain.TestTimeOfDay;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

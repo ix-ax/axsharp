@@ -32,6 +32,35 @@ public partial class stComplexUnknown : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stComplexUnknown> OnlineToPlainAsync()
+    {
+        Pocos.stComplexUnknown plain = new Pocos.stComplexUnknown();
+        await this.ReadAsync();
+        plain.stComplexUnknownString = stComplexUnknownString.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.stComplexUnknowInteger = stComplexUnknowInteger.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.stComplexUnknown> OnlineToPlainAsync(Pocos.stComplexUnknown plain)
+    {
+        plain.stComplexUnknownString = stComplexUnknownString.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.stComplexUnknowInteger = stComplexUnknowInteger.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stComplexUnknown plain)
+    {
+        stComplexUnknownString.Cyclic = plain.stComplexUnknownString;
+        testBool.Cyclic = plain.testBool;
+        stComplexUnknowInteger.Cyclic = plain.stComplexUnknowInteger;
+        TestDate.Cyclic = plain.TestDate;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

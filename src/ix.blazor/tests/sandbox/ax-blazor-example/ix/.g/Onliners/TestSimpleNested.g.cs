@@ -20,6 +20,26 @@ public partial class TestSimpleNested : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.TestSimpleNested> OnlineToPlainAsync()
+    {
+        Pocos.TestSimpleNested plain = new Pocos.TestSimpleNested();
+        await this.ReadAsync();
+        plain.str = await str.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.TestSimpleNested> OnlineToPlainAsync(Pocos.TestSimpleNested plain)
+    {
+        plain.str = await str.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TestSimpleNested plain)
+    {
+        await this.str.PlainToOnlineAsync(plain.str);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

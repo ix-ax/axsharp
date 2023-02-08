@@ -21,6 +21,26 @@ namespace ClassWithNonTraspilableMemberssNamespace
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers plain = new Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers();
+            await this.ReadAsync();
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers> OnlineToPlainAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers plain)
+        {
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers plain)
+        {
+            await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -93,6 +113,23 @@ namespace ClassWithNonTraspilableMemberssNamespace
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain = new Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1> OnlineToPlainAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain)
+        {
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

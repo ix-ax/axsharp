@@ -33,6 +33,35 @@ public partial class stTestComplex : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stTestComplex> OnlineToPlainAsync()
+    {
+        Pocos.stTestComplex plain = new Pocos.stTestComplex();
+        await this.ReadAsync();
+        plain.testInteger = testInteger.LastValue;
+        plain.testComplexInstance = await testComplexInstance.OnlineToPlainAsync();
+        plain.testString = testString.LastValue;
+        plain.testComplexUnknownInstance = await testComplexUnknownInstance.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.stTestComplex> OnlineToPlainAsync(Pocos.stTestComplex plain)
+    {
+        plain.testInteger = testInteger.LastValue;
+        plain.testComplexInstance = await testComplexInstance.OnlineToPlainAsync();
+        plain.testString = testString.LastValue;
+        plain.testComplexUnknownInstance = await testComplexUnknownInstance.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stTestComplex plain)
+    {
+        testInteger.Cyclic = plain.testInteger;
+        await this.testComplexInstance.PlainToOnlineAsync(plain.testComplexInstance);
+        testString.Cyclic = plain.testString;
+        await this.testComplexUnknownInstance.PlainToOnlineAsync(plain.testComplexUnknownInstance);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

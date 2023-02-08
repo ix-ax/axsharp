@@ -69,7 +69,7 @@ public partial class MAIN : Ix.Connector.ITwinObject
         arr1 = new stTest[3];
         Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(arr1, this, "arr1", "arr1", (p, rt, st) => new stTest(p, rt, st));
         arr2 = new OnlinerInt[6];
-        Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(arr2, this, "arr2", "arr2", (p, rt, st) => new OnlinerInt(p, rt, st));
+        Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(arr2, this, "arr2", "arr2", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateINT(p, rt, st));
         dateVar = @Connector.ConnectorAdapter.AdapterFactory.CreateDATE(this, "dateVar", "dateVar");
         instanceOfstComplex = new stComplex(this, "instanceOfComplex", "instanceOfstComplex");
         instanceOfstComplex.AttributeName = "instanceOfComplex";
@@ -84,6 +84,82 @@ public partial class MAIN : Ix.Connector.ITwinObject
         cuBase = new CUBase(this, "cuBase", "cuBase");
         parent.AddChild(this);
         parent.AddKid(this);
+    }
+
+    public async Task<Pocos.MAIN> OnlineToPlainAsync()
+    {
+        Pocos.MAIN plain = new Pocos.MAIN();
+        await this.ReadAsync();
+        plain.Hello_World = Hello_World.LastValue;
+        plain.cislo = cislo.LastValue;
+        plain.boolValue = boolValue.LastValue;
+        plain.Position = Position.LastValue;
+        plain.instanceOfstTest = await instanceOfstTest.OnlineToPlainAsync();
+        plain.instanceOfstTest2 = await instanceOfstTest2.OnlineToPlainAsync();
+        plain.instanceOfstTest3 = await instanceOfstTest3.OnlineToPlainAsync();
+        plain.instanceOfstBlazor = await instanceOfstBlazor.OnlineToPlainAsync();
+        plain.arr1 = arr1.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+        plain.arr2 = arr2.Select(p => p.LastValue).ToArray();
+        plain.dateVar = dateVar.LastValue;
+        plain.instanceOfstComplex = await instanceOfstComplex.OnlineToPlainAsync();
+        plain.instanceOfstPrimitive = await instanceOfstPrimitive.OnlineToPlainAsync();
+        plain.instanceOfstMultipleLayouts = await instanceOfstMultipleLayouts.OnlineToPlainAsync();
+        plain.instanceOfstMultipleLayouts2 = await instanceOfstMultipleLayouts2.OnlineToPlainAsync();
+        plain.instanceOfIxComponent = await instanceOfIxComponent.OnlineToPlainAsync();
+        plain.groupBox_test = await groupBox_test.OnlineToPlainAsync();
+        plain.cu00 = await cu00.OnlineToPlainAsync();
+        plain.cuBase = await cuBase.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.MAIN> OnlineToPlainAsync(Pocos.MAIN plain)
+    {
+        plain.Hello_World = Hello_World.LastValue;
+        plain.cislo = cislo.LastValue;
+        plain.boolValue = boolValue.LastValue;
+        plain.Position = Position.LastValue;
+        plain.instanceOfstTest = await instanceOfstTest.OnlineToPlainAsync();
+        plain.instanceOfstTest2 = await instanceOfstTest2.OnlineToPlainAsync();
+        plain.instanceOfstTest3 = await instanceOfstTest3.OnlineToPlainAsync();
+        plain.instanceOfstBlazor = await instanceOfstBlazor.OnlineToPlainAsync();
+        plain.arr1 = arr1.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+        plain.arr2 = arr2.Select(p => p.LastValue).ToArray();
+        plain.dateVar = dateVar.LastValue;
+        plain.instanceOfstComplex = await instanceOfstComplex.OnlineToPlainAsync();
+        plain.instanceOfstPrimitive = await instanceOfstPrimitive.OnlineToPlainAsync();
+        plain.instanceOfstMultipleLayouts = await instanceOfstMultipleLayouts.OnlineToPlainAsync();
+        plain.instanceOfstMultipleLayouts2 = await instanceOfstMultipleLayouts2.OnlineToPlainAsync();
+        plain.instanceOfIxComponent = await instanceOfIxComponent.OnlineToPlainAsync();
+        plain.groupBox_test = await groupBox_test.OnlineToPlainAsync();
+        plain.cu00 = await cu00.OnlineToPlainAsync();
+        plain.cuBase = await cuBase.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MAIN plain)
+    {
+        Hello_World.Cyclic = plain.Hello_World;
+        cislo.Cyclic = plain.cislo;
+        boolValue.Cyclic = plain.boolValue;
+        Position.Cyclic = plain.Position;
+        await this.instanceOfstTest.PlainToOnlineAsync(plain.instanceOfstTest);
+        await this.instanceOfstTest2.PlainToOnlineAsync(plain.instanceOfstTest2);
+        await this.instanceOfstTest3.PlainToOnlineAsync(plain.instanceOfstTest3);
+        await this.instanceOfstBlazor.PlainToOnlineAsync(plain.instanceOfstBlazor);
+        var _arr1_i_FE8484DAB3 = 0;
+        arr1.Select(p => p.PlainToOnlineAsync(plain.arr1[_arr1_i_FE8484DAB3++])).ToArray();
+        var _arr2_i_FE8484DAB3 = 0;
+        arr2.Select(p => p.Cyclic = plain.arr2[_arr2_i_FE8484DAB3++]).ToArray();
+        dateVar.Cyclic = plain.dateVar;
+        await this.instanceOfstComplex.PlainToOnlineAsync(plain.instanceOfstComplex);
+        await this.instanceOfstPrimitive.PlainToOnlineAsync(plain.instanceOfstPrimitive);
+        await this.instanceOfstMultipleLayouts.PlainToOnlineAsync(plain.instanceOfstMultipleLayouts);
+        await this.instanceOfstMultipleLayouts2.PlainToOnlineAsync(plain.instanceOfstMultipleLayouts2);
+        await this.instanceOfIxComponent.PlainToOnlineAsync(plain.instanceOfIxComponent);
+        await this.groupBox_test.PlainToOnlineAsync(plain.groupBox_test);
+        await this.cu00.PlainToOnlineAsync(plain.cu00);
+        await this.cuBase.PlainToOnlineAsync(plain.cuBase);
+        return await this.WriteAsync();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

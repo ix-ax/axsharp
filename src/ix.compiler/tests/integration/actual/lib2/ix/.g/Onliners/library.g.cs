@@ -24,6 +24,29 @@ namespace lib2
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.lib2.MyClass> OnlineToPlainAsync()
+        {
+            Pocos.lib2.MyClass plain = new Pocos.lib2.MyClass();
+            await this.ReadAsync();
+            plain.MyString = MyString.LastValue;
+            plain.MyInt = MyInt.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.lib2.MyClass> OnlineToPlainAsync(Pocos.lib2.MyClass plain)
+        {
+            plain.MyString = MyString.LastValue;
+            plain.MyInt = MyInt.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.lib2.MyClass plain)
+        {
+            MyString.Cyclic = plain.MyString;
+            MyInt.Cyclic = plain.MyInt;
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

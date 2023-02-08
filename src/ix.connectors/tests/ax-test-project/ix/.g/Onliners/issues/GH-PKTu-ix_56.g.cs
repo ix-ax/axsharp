@@ -21,16 +21,21 @@ namespace GH.PKTu.ix_56
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.GH.PKTu.ix_56.ComplexMember> OnlineToPlain()
+        public async Task<Pocos.GH.PKTu.ix_56.ComplexMember> OnlineToPlainAsync()
         {
             Pocos.GH.PKTu.ix_56.ComplexMember plain = new Pocos.GH.PKTu.ix_56.ComplexMember();
             await this.ReadAsync();
             plain.Counter = Counter.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.GH.PKTu.ix_56.ComplexMember> OnlineToPlainAsync(Pocos.GH.PKTu.ix_56.ComplexMember plain)
+        {
             plain.Counter = Counter.LastValue;
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GH.PKTu.ix_56.ComplexMember plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GH.PKTu.ix_56.ComplexMember plain)
         {
             Counter.Cyclic = plain.Counter;
             return await this.WriteAsync();
@@ -119,24 +124,29 @@ namespace GH.PKTu.ix_56
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.GH.PKTu.ix_56.Base> OnlineToPlain()
+        public async Task<Pocos.GH.PKTu.ix_56.Base> OnlineToPlainAsync()
         {
             Pocos.GH.PKTu.ix_56.Base plain = new Pocos.GH.PKTu.ix_56.Base();
             await this.ReadAsync();
             plain.baseMember = baseMember.LastValue;
-            plain.baseComplexMember = await baseComplexMember.OnlineToPlain();
-            plain.BaseDavid = await BaseDavid.OnlineToPlain();
-            plain.baseMember = baseMember.LastValue;
-            plain.baseComplexMember = await baseComplexMember.OnlineToPlain();
-            plain.BaseDavid = await BaseDavid.OnlineToPlain();
+            plain.baseComplexMember = await baseComplexMember.OnlineToPlainAsync();
+            plain.BaseDavid = await BaseDavid.OnlineToPlainAsync();
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GH.PKTu.ix_56.Base plain)
+        protected async Task<Pocos.GH.PKTu.ix_56.Base> OnlineToPlainAsync(Pocos.GH.PKTu.ix_56.Base plain)
+        {
+            plain.baseMember = baseMember.LastValue;
+            plain.baseComplexMember = await baseComplexMember.OnlineToPlainAsync();
+            plain.BaseDavid = await BaseDavid.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GH.PKTu.ix_56.Base plain)
         {
             baseMember.Cyclic = plain.baseMember;
-            await this.baseComplexMember.PlainToOnline(plain.baseComplexMember);
-            await this.BaseDavid.PlainToOnline(plain.BaseDavid);
+            await this.baseComplexMember.PlainToOnlineAsync(plain.baseComplexMember);
+            await this.BaseDavid.PlainToOnlineAsync(plain.BaseDavid);
             return await this.WriteAsync();
         }
 
@@ -217,26 +227,32 @@ namespace GH.PKTu.ix_56
             FirstDavid = new GH.PKTu.ix_56.DavidBase(this, "FirstDavid", "FirstDavid");
         }
 
-        public async Task<Pocos.GH.PKTu.ix_56.FirstInheritance> OnlineToPlain()
+        public async Task<Pocos.GH.PKTu.ix_56.FirstInheritance> OnlineToPlainAsync()
         {
             Pocos.GH.PKTu.ix_56.FirstInheritance plain = new Pocos.GH.PKTu.ix_56.FirstInheritance();
             await this.ReadAsync();
+            await base.OnlineToPlainAsync(plain);
             plain.FirstInheritanceMember = FirstInheritanceMember.LastValue;
-            plain.FirstInheritanceComplexMember = await FirstInheritanceComplexMember.OnlineToPlain();
-            plain.FirstDavid = await FirstDavid.OnlineToPlain();
-            plain = (Pocos.GH.PKTu.ix_56.FirstInheritance)await base.OnlineToPlain();
-            plain.FirstInheritanceMember = FirstInheritanceMember.LastValue;
-            plain.FirstInheritanceComplexMember = await FirstInheritanceComplexMember.OnlineToPlain();
-            plain.FirstDavid = await FirstDavid.OnlineToPlain();
+            plain.FirstInheritanceComplexMember = await FirstInheritanceComplexMember.OnlineToPlainAsync();
+            plain.FirstDavid = await FirstDavid.OnlineToPlainAsync();
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GH.PKTu.ix_56.FirstInheritance plain)
+        protected async Task<Pocos.GH.PKTu.ix_56.FirstInheritance> OnlineToPlainAsync(Pocos.GH.PKTu.ix_56.FirstInheritance plain)
         {
-            await base.PlainToOnline(plain);
+            await base.OnlineToPlainAsync(plain);
+            plain.FirstInheritanceMember = FirstInheritanceMember.LastValue;
+            plain.FirstInheritanceComplexMember = await FirstInheritanceComplexMember.OnlineToPlainAsync();
+            plain.FirstDavid = await FirstDavid.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GH.PKTu.ix_56.FirstInheritance plain)
+        {
+            await base.PlainToOnlineAsync(plain);
             FirstInheritanceMember.Cyclic = plain.FirstInheritanceMember;
-            await this.FirstInheritanceComplexMember.PlainToOnline(plain.FirstInheritanceComplexMember);
-            await this.FirstDavid.PlainToOnline(plain.FirstDavid);
+            await this.FirstInheritanceComplexMember.PlainToOnlineAsync(plain.FirstInheritanceComplexMember);
+            await this.FirstDavid.PlainToOnlineAsync(plain.FirstDavid);
             return await this.WriteAsync();
         }
     }
@@ -257,26 +273,32 @@ namespace GH.PKTu.ix_56
             SecodnDavid = new GH.PKTu.ix_56.DavidBase(this, "SecodnDavid", "SecodnDavid");
         }
 
-        public async Task<Pocos.GH.PKTu.ix_56.SecondInheritance> OnlineToPlain()
+        public async Task<Pocos.GH.PKTu.ix_56.SecondInheritance> OnlineToPlainAsync()
         {
             Pocos.GH.PKTu.ix_56.SecondInheritance plain = new Pocos.GH.PKTu.ix_56.SecondInheritance();
             await this.ReadAsync();
+            await base.OnlineToPlainAsync(plain);
             plain.SecondInheritanceMember = SecondInheritanceMember.LastValue;
-            plain.SecondInheritanceComplexMember = await SecondInheritanceComplexMember.OnlineToPlain();
-            plain.SecodnDavid = await SecodnDavid.OnlineToPlain();
-            plain = (Pocos.GH.PKTu.ix_56.SecondInheritance)await base.OnlineToPlain();
-            plain.SecondInheritanceMember = SecondInheritanceMember.LastValue;
-            plain.SecondInheritanceComplexMember = await SecondInheritanceComplexMember.OnlineToPlain();
-            plain.SecodnDavid = await SecodnDavid.OnlineToPlain();
+            plain.SecondInheritanceComplexMember = await SecondInheritanceComplexMember.OnlineToPlainAsync();
+            plain.SecodnDavid = await SecodnDavid.OnlineToPlainAsync();
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GH.PKTu.ix_56.SecondInheritance plain)
+        protected async Task<Pocos.GH.PKTu.ix_56.SecondInheritance> OnlineToPlainAsync(Pocos.GH.PKTu.ix_56.SecondInheritance plain)
         {
-            await base.PlainToOnline(plain);
+            await base.OnlineToPlainAsync(plain);
+            plain.SecondInheritanceMember = SecondInheritanceMember.LastValue;
+            plain.SecondInheritanceComplexMember = await SecondInheritanceComplexMember.OnlineToPlainAsync();
+            plain.SecodnDavid = await SecodnDavid.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GH.PKTu.ix_56.SecondInheritance plain)
+        {
+            await base.PlainToOnlineAsync(plain);
             SecondInheritanceMember.Cyclic = plain.SecondInheritanceMember;
-            await this.SecondInheritanceComplexMember.PlainToOnline(plain.SecondInheritanceComplexMember);
-            await this.SecodnDavid.PlainToOnline(plain.SecodnDavid);
+            await this.SecondInheritanceComplexMember.PlainToOnlineAsync(plain.SecondInheritanceComplexMember);
+            await this.SecodnDavid.PlainToOnlineAsync(plain.SecodnDavid);
             return await this.WriteAsync();
         }
     }
@@ -297,16 +319,21 @@ namespace GH.PKTu.ix_56
             parent.AddKid(this);
         }
 
-        public async Task<Pocos.GH.PKTu.ix_56.PedroBase> OnlineToPlain()
+        public async Task<Pocos.GH.PKTu.ix_56.PedroBase> OnlineToPlainAsync()
         {
             Pocos.GH.PKTu.ix_56.PedroBase plain = new Pocos.GH.PKTu.ix_56.PedroBase();
             await this.ReadAsync();
             plain.p = p.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.GH.PKTu.ix_56.PedroBase> OnlineToPlainAsync(Pocos.GH.PKTu.ix_56.PedroBase plain)
+        {
             plain.p = p.LastValue;
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GH.PKTu.ix_56.PedroBase plain)
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GH.PKTu.ix_56.PedroBase plain)
         {
             p.Cyclic = plain.p;
             return await this.WriteAsync();
@@ -383,19 +410,25 @@ namespace GH.PKTu.ix_56
             d = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "d", "d");
         }
 
-        public async Task<Pocos.GH.PKTu.ix_56.DavidBase> OnlineToPlain()
+        public async Task<Pocos.GH.PKTu.ix_56.DavidBase> OnlineToPlainAsync()
         {
             Pocos.GH.PKTu.ix_56.DavidBase plain = new Pocos.GH.PKTu.ix_56.DavidBase();
             await this.ReadAsync();
-            plain.d = d.LastValue;
-            plain = (Pocos.GH.PKTu.ix_56.DavidBase)await base.OnlineToPlain();
+            await base.OnlineToPlainAsync(plain);
             plain.d = d.LastValue;
             return plain;
         }
 
-        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnline(Pocos.GH.PKTu.ix_56.DavidBase plain)
+        protected async Task<Pocos.GH.PKTu.ix_56.DavidBase> OnlineToPlainAsync(Pocos.GH.PKTu.ix_56.DavidBase plain)
         {
-            await base.PlainToOnline(plain);
+            await base.OnlineToPlainAsync(plain);
+            plain.d = d.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.GH.PKTu.ix_56.DavidBase plain)
+        {
+            await base.PlainToOnlineAsync(plain);
             d.Cyclic = plain.d;
             return await this.WriteAsync();
         }

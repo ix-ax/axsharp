@@ -82,6 +82,89 @@ public partial class class_all_primitives : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.class_all_primitives> OnlineToPlainAsync()
+    {
+        Pocos.class_all_primitives plain = new Pocos.class_all_primitives();
+        await this.ReadAsync();
+        plain.myBOOL = myBOOL.LastValue;
+        plain.myBYTE = myBYTE.LastValue;
+        plain.myWORD = myWORD.LastValue;
+        plain.myDWORD = myDWORD.LastValue;
+        plain.myLWORD = myLWORD.LastValue;
+        plain.mySINT = mySINT.LastValue;
+        plain.myINT = myINT.LastValue;
+        plain.myDINT = myDINT.LastValue;
+        plain.myLINT = myLINT.LastValue;
+        plain.myUSINT = myUSINT.LastValue;
+        plain.myUINT = myUINT.LastValue;
+        plain.myUDINT = myUDINT.LastValue;
+        plain.myULINT = myULINT.LastValue;
+        plain.myREAL = myREAL.LastValue;
+        plain.myLREAL = myLREAL.LastValue;
+        plain.myTIME = myTIME.LastValue;
+        plain.myLTIME = myLTIME.LastValue;
+        plain.myDATE = myDATE.LastValue;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.LastValue;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
+        plain.mySTRING = mySTRING.LastValue;
+        plain.myWSTRING = myWSTRING.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.class_all_primitives> OnlineToPlainAsync(Pocos.class_all_primitives plain)
+    {
+        plain.myBOOL = myBOOL.LastValue;
+        plain.myBYTE = myBYTE.LastValue;
+        plain.myWORD = myWORD.LastValue;
+        plain.myDWORD = myDWORD.LastValue;
+        plain.myLWORD = myLWORD.LastValue;
+        plain.mySINT = mySINT.LastValue;
+        plain.myINT = myINT.LastValue;
+        plain.myDINT = myDINT.LastValue;
+        plain.myLINT = myLINT.LastValue;
+        plain.myUSINT = myUSINT.LastValue;
+        plain.myUINT = myUINT.LastValue;
+        plain.myUDINT = myUDINT.LastValue;
+        plain.myULINT = myULINT.LastValue;
+        plain.myREAL = myREAL.LastValue;
+        plain.myLREAL = myLREAL.LastValue;
+        plain.myTIME = myTIME.LastValue;
+        plain.myLTIME = myLTIME.LastValue;
+        plain.myDATE = myDATE.LastValue;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.LastValue;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
+        plain.mySTRING = mySTRING.LastValue;
+        plain.myWSTRING = myWSTRING.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.class_all_primitives plain)
+    {
+        myBOOL.Cyclic = plain.myBOOL;
+        myBYTE.Cyclic = plain.myBYTE;
+        myWORD.Cyclic = plain.myWORD;
+        myDWORD.Cyclic = plain.myDWORD;
+        myLWORD.Cyclic = plain.myLWORD;
+        mySINT.Cyclic = plain.mySINT;
+        myINT.Cyclic = plain.myINT;
+        myDINT.Cyclic = plain.myDINT;
+        myLINT.Cyclic = plain.myLINT;
+        myUSINT.Cyclic = plain.myUSINT;
+        myUINT.Cyclic = plain.myUINT;
+        myUDINT.Cyclic = plain.myUDINT;
+        myULINT.Cyclic = plain.myULINT;
+        myREAL.Cyclic = plain.myREAL;
+        myLREAL.Cyclic = plain.myLREAL;
+        myTIME.Cyclic = plain.myTIME;
+        myLTIME.Cyclic = plain.myLTIME;
+        myDATE.Cyclic = plain.myDATE;
+        myTIME_OF_DAY.Cyclic = plain.myTIME_OF_DAY;
+        myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
+        mySTRING.Cyclic = plain.mySTRING;
+        myWSTRING.Cyclic = plain.myWSTRING;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

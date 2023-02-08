@@ -11,6 +11,26 @@ namespace Simatic.Ax.StateFramework
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
+            await this.ReadAsync();
+            await base.OnlineToPlainAsync(plain);
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        {
+            await base.OnlineToPlainAsync(plain);
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        {
+            await base.PlainToOnlineAsync(plain);
+            return await this.WriteAsync();
+        }
     }
 }
 
@@ -33,6 +53,29 @@ namespace Simatic.Ax.StateFramework
             StateName = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "StateName", "StateName");
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.AbstractState plain = new Pocos.Simatic.Ax.StateFramework.AbstractState();
+            await this.ReadAsync();
+            plain.StateID = StateID.LastValue;
+            plain.StateName = StateName.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
+        {
+            plain.StateID = StateID.LastValue;
+            plain.StateName = StateName.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
+        {
+            StateID.Cyclic = plain.StateID;
+            StateName.Cyclic = plain.StateName;
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

@@ -25,6 +25,32 @@ public partial class stTest3 : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stTest3> OnlineToPlainAsync()
+    {
+        Pocos.stTest3 plain = new Pocos.stTest3();
+        await this.ReadAsync();
+        plain.ix_bool = ix_bool.LastValue;
+        plain.ix_int = ix_int.LastValue;
+        plain.ix_string = ix_string.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.stTest3> OnlineToPlainAsync(Pocos.stTest3 plain)
+    {
+        plain.ix_bool = ix_bool.LastValue;
+        plain.ix_int = ix_int.LastValue;
+        plain.ix_string = ix_string.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stTest3 plain)
+    {
+        ix_bool.Cyclic = plain.ix_bool;
+        ix_int.Cyclic = plain.ix_int;
+        ix_string.Cyclic = plain.ix_string;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

@@ -21,6 +21,26 @@ namespace ClassWithComplexTypesNamespace
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain = new Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes();
+            await this.ReadAsync();
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> OnlineToPlainAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
+        {
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
+        {
+            await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
+            return await this.WriteAsync();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -93,6 +113,23 @@ namespace ClassWithComplexTypesNamespace
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain = new Pocos.ClassWithComplexTypesNamespace.ComplexType1();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> OnlineToPlainAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
+        {
+            return await this.WriteAsync();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

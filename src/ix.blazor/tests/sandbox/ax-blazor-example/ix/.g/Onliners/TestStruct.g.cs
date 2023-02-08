@@ -28,6 +28,35 @@ public partial class TestStruct : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.TestStruct> OnlineToPlainAsync()
+    {
+        Pocos.TestStruct plain = new Pocos.TestStruct();
+        await this.ReadAsync();
+        plain.e = e.LastValue;
+        plain.r44 = r44.LastValue;
+        plain.k21 = k21.LastValue;
+        plain.example = await example.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.TestStruct> OnlineToPlainAsync(Pocos.TestStruct plain)
+    {
+        plain.e = e.LastValue;
+        plain.r44 = r44.LastValue;
+        plain.k21 = k21.LastValue;
+        plain.example = await example.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TestStruct plain)
+    {
+        e.Cyclic = plain.e;
+        r44.Cyclic = plain.r44;
+        k21.Cyclic = plain.k21;
+        await this.example.PlainToOnlineAsync(plain.example);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

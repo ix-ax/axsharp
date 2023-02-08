@@ -99,6 +99,83 @@ public partial class TestMultipleLayouts : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.TestMultipleLayouts> OnlineToPlainAsync()
+    {
+        Pocos.TestMultipleLayouts plain = new Pocos.TestMultipleLayouts();
+        await this.ReadAsync();
+        plain.B1 = B1.LastValue;
+        plain.B2 = B2.LastValue;
+        plain.Piston_A1 = Piston_A1.LastValue;
+        plain.Piston_A2 = Piston_A2.LastValue;
+        plain.Piston_A3 = Piston_A3.LastValue;
+        plain.Piston_A4 = Piston_A4.LastValue;
+        plain.Piston_A21 = Piston_A21.LastValue;
+        plain.Piston_A22 = Piston_A22.LastValue;
+        plain.Piston_A23 = Piston_A23.LastValue;
+        plain.Piston_A24 = Piston_A24.LastValue;
+        plain.Piston_A31 = Piston_A31.LastValue;
+        plain.Piston_A32 = Piston_A32.LastValue;
+        plain.Piston_A33 = Piston_A33.LastValue;
+        plain.Piston_A34 = Piston_A34.LastValue;
+        plain.Piston_A41 = Piston_A41.LastValue;
+        plain.Piston_A42 = Piston_A42.LastValue;
+        plain.Piston_A43 = Piston_A43.LastValue;
+        plain.Piston_A44 = Piston_A44.LastValue;
+        plain.Servo_S1 = Servo_S1.LastValue;
+        plain.Servo_S2 = Servo_S2.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.TestMultipleLayouts> OnlineToPlainAsync(Pocos.TestMultipleLayouts plain)
+    {
+        plain.B1 = B1.LastValue;
+        plain.B2 = B2.LastValue;
+        plain.Piston_A1 = Piston_A1.LastValue;
+        plain.Piston_A2 = Piston_A2.LastValue;
+        plain.Piston_A3 = Piston_A3.LastValue;
+        plain.Piston_A4 = Piston_A4.LastValue;
+        plain.Piston_A21 = Piston_A21.LastValue;
+        plain.Piston_A22 = Piston_A22.LastValue;
+        plain.Piston_A23 = Piston_A23.LastValue;
+        plain.Piston_A24 = Piston_A24.LastValue;
+        plain.Piston_A31 = Piston_A31.LastValue;
+        plain.Piston_A32 = Piston_A32.LastValue;
+        plain.Piston_A33 = Piston_A33.LastValue;
+        plain.Piston_A34 = Piston_A34.LastValue;
+        plain.Piston_A41 = Piston_A41.LastValue;
+        plain.Piston_A42 = Piston_A42.LastValue;
+        plain.Piston_A43 = Piston_A43.LastValue;
+        plain.Piston_A44 = Piston_A44.LastValue;
+        plain.Servo_S1 = Servo_S1.LastValue;
+        plain.Servo_S2 = Servo_S2.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TestMultipleLayouts plain)
+    {
+        B1.Cyclic = plain.B1;
+        B2.Cyclic = plain.B2;
+        Piston_A1.Cyclic = plain.Piston_A1;
+        Piston_A2.Cyclic = plain.Piston_A2;
+        Piston_A3.Cyclic = plain.Piston_A3;
+        Piston_A4.Cyclic = plain.Piston_A4;
+        Piston_A21.Cyclic = plain.Piston_A21;
+        Piston_A22.Cyclic = plain.Piston_A22;
+        Piston_A23.Cyclic = plain.Piston_A23;
+        Piston_A24.Cyclic = plain.Piston_A24;
+        Piston_A31.Cyclic = plain.Piston_A31;
+        Piston_A32.Cyclic = plain.Piston_A32;
+        Piston_A33.Cyclic = plain.Piston_A33;
+        Piston_A34.Cyclic = plain.Piston_A34;
+        Piston_A41.Cyclic = plain.Piston_A41;
+        Piston_A42.Cyclic = plain.Piston_A42;
+        Piston_A43.Cyclic = plain.Piston_A43;
+        Piston_A44.Cyclic = plain.Piston_A44;
+        Servo_S1.Cyclic = plain.Servo_S1;
+        Servo_S2.Cyclic = plain.Servo_S2;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

@@ -59,6 +59,53 @@ public partial class stTestRenderIgnore : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stTestRenderIgnore> OnlineToPlainAsync()
+    {
+        Pocos.stTestRenderIgnore plain = new Pocos.stTestRenderIgnore();
+        await this.ReadAsync();
+        plain.testInteger = testInteger.LastValue;
+        plain.testUInteger = testUInteger.LastValue;
+        plain.testString = testString.LastValue;
+        plain.testWord = testWord.LastValue;
+        plain.testByte = testByte.LastValue;
+        plain.testReal = testReal.LastValue;
+        plain.testLReal = testLReal.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        plain.TestDateTime = TestDateTime.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.stTestRenderIgnore> OnlineToPlainAsync(Pocos.stTestRenderIgnore plain)
+    {
+        plain.testInteger = testInteger.LastValue;
+        plain.testUInteger = testUInteger.LastValue;
+        plain.testString = testString.LastValue;
+        plain.testWord = testWord.LastValue;
+        plain.testByte = testByte.LastValue;
+        plain.testReal = testReal.LastValue;
+        plain.testLReal = testLReal.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.TestDate = TestDate.LastValue;
+        plain.TestDateTime = TestDateTime.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stTestRenderIgnore plain)
+    {
+        testInteger.Cyclic = plain.testInteger;
+        testUInteger.Cyclic = plain.testUInteger;
+        testString.Cyclic = plain.testString;
+        testWord.Cyclic = plain.testWord;
+        testByte.Cyclic = plain.testByte;
+        testReal.Cyclic = plain.testReal;
+        testLReal.Cyclic = plain.testLReal;
+        testBool.Cyclic = plain.testBool;
+        TestDate.Cyclic = plain.TestDate;
+        TestDateTime.Cyclic = plain.TestDateTime;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

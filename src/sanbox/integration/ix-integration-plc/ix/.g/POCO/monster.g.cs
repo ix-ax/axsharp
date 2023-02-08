@@ -6,11 +6,9 @@ namespace Pocos
     {
         public partial class MonsterBase
         {
-            public Byte[] ArrayOfBytes { get; set; }
-
-            public MonsterData.DriveBase[] ArrayOfDrives { get; set; }
-
-            public ixcomponent[] ArrayOfIxComponent { get; set; }
+            public Byte[] ArrayOfBytes { get; set; } = new Byte[4];
+            public MonsterData.DriveBase[] ArrayOfDrives { get; set; } = new MonsterData.DriveBase[4];
+            public ixcomponent[] ArrayOfIxComponent { get; set; } = new ixcomponent[4];
         }
 
         public partial class Monster : MonsterBase

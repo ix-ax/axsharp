@@ -13,7 +13,6 @@ namespace Pocos
     {
         public partial class CompareGuardLint : IGuard
         {
-            public Int64 Value { get; set; } = new Int64();
             public Int64 CompareToValue { get; set; }
 
             public units.Simatic.Ax.StateFramework.Condition Condition { get; set; }

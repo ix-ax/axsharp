@@ -57,6 +57,55 @@ public partial class stBlazor : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stBlazor> OnlineToPlainAsync()
+    {
+        Pocos.stBlazor plain = new Pocos.stBlazor();
+        await this.ReadAsync();
+        plain.testInteger = testInteger.LastValue;
+        plain.testEnum = (stTestEnum)testEnum.LastValue;
+        ;
+        plain.testString = testString.LastValue;
+        plain.testReal = testReal.LastValue;
+        plain.testLReal = testLReal.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.complexInstance = await complexInstance.OnlineToPlainAsync();
+        plain.testInstance = await testInstance.OnlineToPlainAsync();
+        plain.testInstance2 = await testInstance2.OnlineToPlainAsync();
+        plain.testInstance3 = await testInstance3.OnlineToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.stBlazor> OnlineToPlainAsync(Pocos.stBlazor plain)
+    {
+        plain.testInteger = testInteger.LastValue;
+        plain.testEnum = (stTestEnum)testEnum.LastValue;
+        ;
+        plain.testString = testString.LastValue;
+        plain.testReal = testReal.LastValue;
+        plain.testLReal = testLReal.LastValue;
+        plain.testBool = testBool.LastValue;
+        plain.complexInstance = await complexInstance.OnlineToPlainAsync();
+        plain.testInstance = await testInstance.OnlineToPlainAsync();
+        plain.testInstance2 = await testInstance2.OnlineToPlainAsync();
+        plain.testInstance3 = await testInstance3.OnlineToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stBlazor plain)
+    {
+        testInteger.Cyclic = plain.testInteger;
+        testEnum.Cyclic = (short)plain.testEnum;
+        testString.Cyclic = plain.testString;
+        testReal.Cyclic = plain.testReal;
+        testLReal.Cyclic = plain.testLReal;
+        testBool.Cyclic = plain.testBool;
+        await this.complexInstance.PlainToOnlineAsync(plain.complexInstance);
+        await this.testInstance.PlainToOnlineAsync(plain.testInstance);
+        await this.testInstance2.PlainToOnlineAsync(plain.testInstance2);
+        await this.testInstance3.PlainToOnlineAsync(plain.testInstance3);
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

@@ -24,6 +24,29 @@ public partial class stComplex : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.stComplex> OnlineToPlainAsync()
+    {
+        Pocos.stComplex plain = new Pocos.stComplex();
+        await this.ReadAsync();
+        plain.stComplexInteger = stComplexInteger.LastValue;
+        plain.stComplexString = stComplexString.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.stComplex> OnlineToPlainAsync(Pocos.stComplex plain)
+    {
+        plain.stComplexInteger = stComplexInteger.LastValue;
+        plain.stComplexString = stComplexString.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.stComplex plain)
+    {
+        stComplexInteger.Cyclic = plain.stComplexInteger;
+        stComplexString.Cyclic = plain.stComplexString;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

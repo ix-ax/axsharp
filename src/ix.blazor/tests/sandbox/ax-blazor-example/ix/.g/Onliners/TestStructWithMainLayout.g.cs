@@ -25,6 +25,32 @@ public partial class TestStructWithMainLayout : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.TestStructWithMainLayout> OnlineToPlainAsync()
+    {
+        Pocos.TestStructWithMainLayout plain = new Pocos.TestStructWithMainLayout();
+        await this.ReadAsync();
+        plain.e = e.LastValue;
+        plain.r44 = r44.LastValue;
+        plain.k21 = k21.LastValue;
+        return plain;
+    }
+
+    protected async Task<Pocos.TestStructWithMainLayout> OnlineToPlainAsync(Pocos.TestStructWithMainLayout plain)
+    {
+        plain.e = e.LastValue;
+        plain.r44 = r44.LastValue;
+        plain.k21 = k21.LastValue;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TestStructWithMainLayout plain)
+    {
+        e.Cyclic = plain.e;
+        r44.Cyclic = plain.r44;
+        k21.Cyclic = plain.k21;
+        return await this.WriteAsync();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
