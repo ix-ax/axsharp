@@ -2,6 +2,7 @@ using System;
 using Ix.Connector;
 using Ix.Connector.ValueTypes;
 using System.Collections.Generic;
+using MonsterData;
 
 public partial class ix_integration_plcTwinController : ITwinController
 {
@@ -29,6 +30,8 @@ public partial class ix_integration_plcTwinController : ITwinController
 
     public MeasurementExample.Measurements measurements { get; }
 
+    public MonsterData.Monster monster { get; }
+
     public ix_integration_plcTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -49,6 +52,7 @@ public partial class ix_integration_plcTwinController : ITwinController
         weather_readOnly.MakeReadOnly();
         test_example = new example(this.Connector, "", "test_example");
         measurements = new MeasurementExample.Measurements(this.Connector, "", "measurements");
+        monster = new MonsterData.Monster(this.Connector, "", "monster");
     }
 
     public ix_integration_plcTwinController(Ix.Connector.ConnectorAdapter adapter)
@@ -71,5 +75,6 @@ public partial class ix_integration_plcTwinController : ITwinController
         weather_readOnly.MakeReadOnly();
         test_example = new example(this.Connector, "", "test_example");
         measurements = new MeasurementExample.Measurements(this.Connector, "", "measurements");
+        monster = new MonsterData.Monster(this.Connector, "", "monster");
     }
 }
