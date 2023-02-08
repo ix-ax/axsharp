@@ -2,7 +2,7 @@
   "profiles": {
     "ixc": {
       "commandName": "Project",
-      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\ix\\src\\sanbox\\integration\\ix-integration-plc\\"
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\ix\\src\\tests.integrations\\integrated\\src\\ax\\"
     }
   }
 }
