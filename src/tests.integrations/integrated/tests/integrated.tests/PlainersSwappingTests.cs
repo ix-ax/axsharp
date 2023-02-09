@@ -110,5 +110,35 @@ namespace integrated.tests
             Assert.Equal(monster.ArrayOfDrives[2].Dcc.Cyclic, p.ArrayOfDrives[2].Dcc);
             Assert.Equal(monster.ArrayOfDrives[2].Position.Cyclic, p.ArrayOfDrives[2].Position);
         }
+
+
+
+
+        [Fact]
+        public async Task OnlineToPlain_RealMonster_should_copy()
+        {
+            var monster = Entry.Plc.OnlineToPlain_should_copy;
+            var today = DateTime.UtcNow;
+            var date = new DateOnly(1999, 2, 13);
+            var timespan = new TimeSpan(13, 13, 13);
+
+            monster.TestDateTime.Cyclic = today;
+            monster.TestDate.Cyclic = date;
+            monster.TestTimeSpan.Cyclic = timespan;
+            monster.Description.Cyclic = "from plain to online";
+
+            monster.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Acc.Cyclic = 123;
+            await monster.WriteAsync();
+
+
+            var p = await monster.OnlineToPlainAsync();
+
+
+            Assert.Equal(monster.Description.Cyclic, p.Description);
+            Assert.Equal(monster.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Acc.Cyclic, p.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Acc);
+            Assert.Equal(monster.TestDate.Cyclic, p.TestDate);
+            Assert.Equal(monster.TestDateTime.Cyclic, p.TestDateTime);
+            Assert.Equal(monster.TestTimeSpan.Cyclic, p.TestTimeSpan);
+        }
     }
 }

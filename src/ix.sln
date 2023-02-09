@@ -144,7 +144,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated", "tests.integra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated.hmi", "tests.integrations\integrated\src\integrated.app\integrated.hmi.csproj", "{5F49C3EC-6097-4FC4-B71A-212AE048DA5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "integrated.tests", "tests.integrations\integrated\tests\integrated.tests\integrated.tests.csproj", "{783937D2-322E-47F7-9B22-FCDCBF4091A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated.tests", "tests.integrations\integrated\tests\integrated.tests\integrated.tests.csproj", "{783937D2-322E-47F7-9B22-FCDCBF4091A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@ using System;
 using Ix.Connector;
 using Ix.Connector.ValueTypes;
 using System.Collections.Generic;
+using RealMonsterData;
 
 public partial class integratedTwinController : ITwinController
 {
@@ -19,6 +20,16 @@ public partial class integratedTwinController : ITwinController
 
     public Pokus Pokus { get; }
 
+    public RealMonsterData.RealMonster RealMonster { get; }
+
+    public RealMonsterData.RealMonster OnlineToShadow_should_copy { get; }
+
+    public RealMonsterData.RealMonster ShadowToOnline_should_copy { get; }
+
+    public RealMonsterData.RealMonster OnlineToPlain_should_copy { get; }
+
+    public RealMonsterData.RealMonster PlainToOnline_should_copy { get; }
+
     public integratedTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -28,6 +39,11 @@ public partial class integratedTwinController : ITwinController
         OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
         ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
+        RealMonster = new RealMonsterData.RealMonster(this.Connector, "", "RealMonster");
+        OnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToShadow_should_copy");
+        ShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ShadowToOnline_should_copy");
+        OnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToPlain_should_copy");
+        PlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "PlainToOnline_should_copy");
     }
 
     public integratedTwinController(Ix.Connector.ConnectorAdapter adapter)
@@ -39,6 +55,11 @@ public partial class integratedTwinController : ITwinController
         OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
         ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
+        RealMonster = new RealMonsterData.RealMonster(this.Connector, "", "RealMonster");
+        OnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToShadow_should_copy");
+        ShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ShadowToOnline_should_copy");
+        OnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToPlain_should_copy");
+        PlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "PlainToOnline_should_copy");
     }
 }
 
