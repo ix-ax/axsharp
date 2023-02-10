@@ -121,8 +121,8 @@ namespace integrated.tests
         [Fact]
         public async Task OnlineToShadow_RealMonster_should_copy()
         {
-            var monster = Entry.Plc.OnlineToPlain_should_copy;
-            var today = DateTime.UtcNow;
+            var monster = Entry.Plc.OnlineToShadow_should_copy;
+            var today = new DateTime(2022,12,15);
             var date = new DateOnly(1999, 2, 13);
             var timespan = new TimeSpan(13, 13, 13);
 
@@ -148,8 +148,8 @@ namespace integrated.tests
         [Fact]
         public async Task ShadowToOnline_RealMonster_should_copy()
         {
-            var monster = Entry.Plc.OnlineToPlain_should_copy;
-            var today = DateTime.UtcNow;
+            var monster = Entry.Plc.ShadowToOnline_should_copy;
+            var today = new DateTime(2022, 12, 15);
             var date = new DateOnly(1999, 2, 13);
             var timespan = new TimeSpan(13, 13, 13);
 
