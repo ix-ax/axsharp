@@ -35,6 +35,22 @@ namespace RefToSimple
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.RefToSimple.ref_to_simple> ShadowToPlainAsync()
+        {
+            Pocos.RefToSimple.ref_to_simple plain = new Pocos.RefToSimple.ref_to_simple();
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.ref_to_simple> ShadowToPlainAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -130,6 +146,25 @@ namespace RefToSimple
         {
             b.Cyclic = plain.b;
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.RefToSimple.referenced> ShadowToPlainAsync()
+        {
+            Pocos.RefToSimple.referenced plain = new Pocos.RefToSimple.referenced();
+            plain.b = b.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.referenced> ShadowToPlainAsync(Pocos.RefToSimple.referenced plain)
+        {
+            plain.b = b.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RefToSimple.referenced plain)
+        {
+            b.Shadow = plain.b;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

@@ -51,6 +51,25 @@ namespace Simatic.Ax.StateFramework
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> ShadowToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.using_type_named_values plain = new Pocos.Simatic.Ax.StateFramework.using_type_named_values();
+            plain.LColors = LColors.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> ShadowToPlainAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
+        {
+            plain.LColors = LColors.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
+        {
+            LColors.Shadow = plain.LColors;
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

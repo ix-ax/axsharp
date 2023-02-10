@@ -29,6 +29,25 @@ public partial class Extended : Extendee
         await base.PlainToOnlineAsync(plain);
         return await this.WriteAsync();
     }
+
+    public async Task<Pocos.Extended> ShadowToPlainAsync()
+    {
+        Pocos.Extended plain = new Pocos.Extended();
+        await base.ShadowToPlainAsync(plain);
+        return plain;
+    }
+
+    protected async Task<Pocos.Extended> ShadowToPlainAsync(Pocos.Extended plain)
+    {
+        await base.ShadowToPlainAsync(plain);
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Extended plain)
+    {
+        await base.PlainToShadowAsync(plain);
+        return this.RetrievePrimitives();
+    }
 }
 
 public partial class Extendee : Ix.Connector.ITwinObject
@@ -59,6 +78,22 @@ public partial class Extendee : Ix.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Extendee plain)
     {
         return await this.WriteAsync();
+    }
+
+    public async Task<Pocos.Extendee> ShadowToPlainAsync()
+    {
+        Pocos.Extendee plain = new Pocos.Extendee();
+        return plain;
+    }
+
+    protected async Task<Pocos.Extendee> ShadowToPlainAsync(Pocos.Extendee plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Extendee plain)
+    {
+        return this.RetrievePrimitives();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

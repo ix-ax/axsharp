@@ -36,6 +36,22 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         return await this.WriteAsync();
     }
 
+    public async Task<Pocos.ClassWithUsingDirectives> ShadowToPlainAsync()
+    {
+        Pocos.ClassWithUsingDirectives plain = new Pocos.ClassWithUsingDirectives();
+        return plain;
+    }
+
+    protected async Task<Pocos.ClassWithUsingDirectives> ShadowToPlainAsync(Pocos.ClassWithUsingDirectives plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithUsingDirectives plain)
+    {
+        return this.RetrievePrimitives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
