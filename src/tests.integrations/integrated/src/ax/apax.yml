@@ -12,7 +12,7 @@ variables:
 scripts:
   ixc: 
   - dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
-  postbuild: dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
+  # postbuild: dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
   download :   
     - apax install    
     - apax build

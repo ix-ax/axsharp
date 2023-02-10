@@ -42,15 +42,24 @@ public class WebApiLDateTime : OnlinerLDateTime, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        DateTime dt;
-        if (DateTime.TryParse(value, out dt))
-            UpdateRead(dt);
+        UpdateRead(GetFromBinary(value));
     }
 
     /// <inheritdoc />
     public override async Task<DateTime> GetAsync()
     {
-        var dt = await _webApiConnector.ReadAsync<long>(this) / 100;
+        var dt = await _webApiConnector.ReadAsync<long>(this);
+        return GetFromBinary(dt);
+    }
+
+    private DateTime GetFromBinary(string val)
+    {
+        return GetFromBinary(long.Parse(val));
+    }
+
+    private DateTime GetFromBinary(long val)
+    {
+        var dt = val / 100;
         return DateTime.FromBinary(dt).AddYears(1969);
     }
 

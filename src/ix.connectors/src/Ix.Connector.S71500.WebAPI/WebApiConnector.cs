@@ -234,6 +234,13 @@ public class WebApiConnector : Connector
         await Task.Run(() => true);
     }
 
+    internal void ClearPeriodicReadSet()
+    {
+        base.ClearPeriodicReadSet();
+        var hitCount = RwCycleCount;
+        Task.Delay(250).Wait();
+    }
+
 
     internal async Task<(T result, ApiResultResponse<T> response)> ReadAsync<T>(string symbol)
     {

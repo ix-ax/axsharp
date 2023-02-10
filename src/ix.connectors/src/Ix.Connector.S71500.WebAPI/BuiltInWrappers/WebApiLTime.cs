@@ -44,7 +44,7 @@ public class WebApiLTime : OnlinerLTime, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(TimeSpan.FromMilliseconds(long.Parse(value) / 1000000));
+        UpdateRead(TimeSpan.FromTicks(long.Parse(value)));
     }
 
     /// <inheritdoc />

@@ -372,4 +372,9 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     {
         NextCycleWriteSet.Clear();
     }
+
+    protected void ClearPeriodicReadSet()
+    {
+        PeriodicReadSet.Clear();
+    }
 }

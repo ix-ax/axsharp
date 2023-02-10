@@ -23,7 +23,7 @@ namespace Ix.Connector.S71500.WebAPITests.Exploratory
     {
         private readonly ITestOutputHelper output;
 
-        private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AXTARGET") ?? "10.10.101.1";
+        private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET") ?? "10.10.101.1";
 
         public Exploratory(ITestOutputHelper output)
         {
