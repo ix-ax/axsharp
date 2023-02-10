@@ -111,15 +111,20 @@ public sealed class BuildTask : FrostingTask<BuildContext>
     {
         context.DotNetBuild(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetBuildSettings);
 
-        context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, "ix.blazor\\tests\\sandbox\\ax-blazor-example\\");
-        
-        context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
+        var axprojects = new List<string>()
+        {
+            Path.Combine(context.RootDir, "ix.blazor\\tests\\sandbox\\ax-blazor-example\\"),
+            Path.Combine(context.RootDir, "sanbox\\integration\\ix-integration-plc\\"),
+            Path.Combine(context.RootDir, "ix.examples\\hello.world.console\\hello.world.console.plc"),
+            Path.Combine(context.RootDir, "ix.connectors\\tests\\ax-test-project\\")
+        };
 
-        context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, "sanbox\\integration\\ix-integration-plc\\");
-        context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
 
-        context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, "ix.examples\\hello.world.console\\hello.world.console.plc");
-        context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
+        foreach (var axproject in axprojects)
+        {
+            context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, axproject);
+            context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
+        }
 
         context.DotNetBuild(Path.Combine(context.RootDir, "ix.sln"), context.DotNetBuildSettings);
         
