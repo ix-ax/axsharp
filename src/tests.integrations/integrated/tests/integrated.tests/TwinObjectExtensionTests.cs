@@ -121,8 +121,8 @@ namespace integrated.tests
         [Fact]
         public async Task OnlineToShadow_RealMonster_should_copy()
         {
-            var monster = Entry.Plc.OnlineToPlain_should_copy;
-            var today = DateTime.UtcNow;
+            var monster = Entry.Plc.OnlineToShadow_should_copy;
+            var today = new DateTime(2022,12,15);
             var date = new DateOnly(1999, 2, 13);
             var timespan = new TimeSpan(13, 13, 13);
 
@@ -148,8 +148,8 @@ namespace integrated.tests
         [Fact]
         public async Task ShadowToOnline_RealMonster_should_copy()
         {
-            var monster = Entry.Plc.OnlineToPlain_should_copy;
-            var today = DateTime.UtcNow;
+            var monster = Entry.Plc.ShadowToOnline_should_copy;
+            var today = new DateTime(2022, 12, 15);
             var date = new DateOnly(1999, 2, 13);
             var timespan = new TimeSpan(13, 13, 13);
 
@@ -171,33 +171,155 @@ namespace integrated.tests
             Assert.Equal(monster.TestTimeSpan.Shadow, monster.TestTimeSpan.Cyclic);
         }
 
+     
+
+        //tests primitives all
+
+        //SHADOW_TO_ONLINE/ONLINE_TO_SHADOW
         [Fact]
-        public async Task ShadowToOnline_primitives_should_copy()
+        public async Task ShadowToOnline_primitives_should_copy_entire_structure()
         {
-            var monster = Entry.Plc.OnlineToShadow_should_copy;
-            var today = DateTime.UtcNow;
+            //arrange
+            var primitives = Entry.Plc.p_shadow_online;
+            primitives = SetShadow(primitives);
+
+
+            //act
+            await primitives.ShadowToOnlineAsync();
+
+
+            //assert
+            Assert.Equal(primitives.myBOOL.Shadow, primitives.myBOOL.Cyclic);
+            Assert.Equal(primitives.myBYTE.Shadow, primitives.myBYTE.Cyclic);
+            Assert.Equal(primitives.myWORD.Shadow, primitives.myWORD.Cyclic);
+            Assert.Equal(primitives.myDWORD.Shadow, primitives.myDWORD.Cyclic);
+            Assert.Equal(primitives.myLWORD.Shadow, primitives.myLWORD.Cyclic);
+            Assert.Equal(primitives.mySINT.Shadow, primitives.mySINT.Cyclic);
+            Assert.Equal(primitives.myINT.Shadow, primitives.myINT.Cyclic);
+            Assert.Equal(primitives.myDINT.Shadow, primitives.myDINT.Cyclic);
+            Assert.Equal(primitives.myLINT.Shadow, primitives.myLINT.Cyclic);
+            Assert.Equal(primitives.myUSINT.Shadow, primitives.myUSINT.Cyclic);
+            Assert.Equal(primitives.myUINT.Shadow, primitives.myUINT.Cyclic);
+            Assert.Equal(primitives.myUDINT.Shadow, primitives.myUDINT.Cyclic);
+            Assert.Equal(primitives.myULINT.Shadow, primitives.myULINT.Cyclic);
+            Assert.Equal(primitives.myREAL.Shadow, primitives.myREAL.Cyclic);
+            Assert.Equal(primitives.myLREAL.Shadow, primitives.myLREAL.Cyclic);
+            Assert.Equal(primitives.myTIME.Shadow, primitives.myTIME.Cyclic);
+            Assert.Equal(primitives.myLTIME.Shadow, primitives.myLTIME.Cyclic);
+            Assert.Equal(primitives.myDATE.Shadow, primitives.myDATE.Cyclic);
+            Assert.Equal(primitives.myTIME_OF_DAY.Shadow, primitives.myTIME_OF_DAY.Cyclic);
+            Assert.Equal(primitives.myDATE_AND_TIME.Shadow, primitives.myDATE_AND_TIME.Cyclic);
+            Assert.Equal(primitives.mySTRING.Shadow, primitives.mySTRING.Cyclic);
+            Assert.Equal(primitives.myWSTRING.Shadow, primitives.myWSTRING.Cyclic);
+            Assert.Equal(primitives.myEnum.Shadow  , primitives.myEnum.Cyclic);
+
+        }
+
+        [Fact]
+        public async Task OnlineToShadow_primitives_should_copy_entire_structure()
+        {
+            //arrange
+            var primitives = Entry.Plc.p_online_shadow;
+            primitives = SetOnline(primitives);
+
+
+            //act
+            await primitives.OnlineToShadowAsync();
+
+
+            //assert
+            Assert.Equal(primitives.myBOOL.Shadow, primitives.myBOOL.Cyclic);
+            Assert.Equal(primitives.myBYTE.Shadow, primitives.myBYTE.Cyclic);
+            Assert.Equal(primitives.myWORD.Shadow, primitives.myWORD.Cyclic);
+            Assert.Equal(primitives.myDWORD.Shadow, primitives.myDWORD.Cyclic);
+            Assert.Equal(primitives.myLWORD.Shadow, primitives.myLWORD.Cyclic);
+            Assert.Equal(primitives.mySINT.Shadow, primitives.mySINT.Cyclic);
+            Assert.Equal(primitives.myINT.Shadow, primitives.myINT.Cyclic);
+            Assert.Equal(primitives.myDINT.Shadow, primitives.myDINT.Cyclic);
+            Assert.Equal(primitives.myLINT.Shadow, primitives.myLINT.Cyclic);
+            Assert.Equal(primitives.myUSINT.Shadow, primitives.myUSINT.Cyclic);
+            Assert.Equal(primitives.myUINT.Shadow, primitives.myUINT.Cyclic);
+            Assert.Equal(primitives.myUDINT.Shadow, primitives.myUDINT.Cyclic);
+            Assert.Equal(primitives.myULINT.Shadow, primitives.myULINT.Cyclic);
+            Assert.Equal(primitives.myREAL.Shadow, primitives.myREAL.Cyclic);
+            Assert.Equal(primitives.myLREAL.Shadow, primitives.myLREAL.Cyclic);
+            Assert.Equal(primitives.myTIME.Shadow, primitives.myTIME.Cyclic);
+            Assert.Equal(primitives.myLTIME.Shadow, primitives.myLTIME.Cyclic);
+            Assert.Equal(primitives.myDATE.Shadow, primitives.myDATE.Cyclic);
+            Assert.Equal(primitives.myTIME_OF_DAY.Shadow, primitives.myTIME_OF_DAY.Cyclic);
+            Assert.Equal(primitives.myDATE_AND_TIME.Shadow, primitives.myDATE_AND_TIME.Cyclic);
+            Assert.Equal(primitives.mySTRING.Shadow, primitives.mySTRING.Cyclic);
+            Assert.Equal(primitives.myWSTRING.Shadow, primitives.myWSTRING.Cyclic);
+            Assert.Equal(primitives.myEnum.Shadow, primitives.myEnum.Cyclic);
+
+        }
+
+
+
+        private all_primitives SetShadow(all_primitives p)
+        {
+            var today = new DateTime(2023, 12, 15);
             var date = new DateOnly(1999, 2, 13);
+            var timespan = new TimeSpan(13, 13, 13);
 
-            monster.primitives.mySTRING.Shadow = "from plain to online";
-            monster.primitives.myBOOL.Shadow = true;
-            monster.primitives.mySINT.Shadow = 13;
-            monster.primitives.myTIME.Shadow = new TimeSpan(13, 13, 13);
-            monster.primitives.myTIME_OF_DAY.Shadow = new TimeSpan(13, 13, 13);
-            monster.primitives.myDATE.Shadow = date;
-            monster.primitives.myDATE_AND_TIME.Shadow = today;
-           
+            p.myBOOL.Shadow = true;
+            p.myBYTE.Shadow = 1;
+            p.myWORD.Shadow = 2;
+            p.myDWORD.Shadow = 3;
+            p.myLWORD.Shadow = 4;
+            p.mySINT.Shadow = 5;
+            p.myINT.Shadow = 6;
+            p.myDINT.Shadow = 7;
+            p.myLINT.Shadow = 8;
+            p.myUSINT.Shadow = 9;
+            p.myUINT.Shadow = 10;
+            p.myUDINT.Shadow = 11;
+            p.myULINT.Shadow = 12;
+            p.myREAL.Shadow = 13;
+            p.myLREAL.Shadow = 14;
+            p.myTIME.Shadow = timespan;
+            p.myLTIME.Shadow = timespan;
+            p.myDATE.Shadow = date;
+            p.myTIME_OF_DAY.Shadow = timespan;
+            p.myDATE_AND_TIME.Shadow = today;
+            p.mySTRING.Shadow = "anakin skywalker";
+            p.myWSTRING.Shadow = "anakin skywalker";
+            p.myEnum.Shadow = 2;
 
-            await monster.ShadowToOnlineAsync();
+            return p;
+        }
 
+        private all_primitives SetOnline(all_primitives p)
+        {
+            var today = new DateTime(2023, 12, 15);
+            var date = new DateOnly(1999, 2, 13);
+            var timespan = new TimeSpan(13, 13, 13);
 
-            Assert.Equal(monster.primitives.mySTRING.Shadow, monster.primitives.mySTRING.Cyclic);
-            Assert.Equal(monster.primitives.myBOOL.Shadow, monster.primitives.myBOOL.Cyclic);
-            Assert.Equal(monster.primitives.mySINT.Shadow, monster.primitives.mySINT.Cyclic);
-            Assert.Equal(monster.primitives.myTIME.Shadow, monster.primitives.myTIME.Cyclic);
-            Assert.Equal(monster.primitives.myTIME_OF_DAY.Shadow, monster.primitives.myTIME_OF_DAY.Cyclic);
-            Assert.Equal(monster.primitives.myDATE.Shadow, monster.primitives.myDATE.Cyclic);
-            Assert.Equal(monster.primitives.myDATE_AND_TIME.Shadow, monster.primitives.myDATE_AND_TIME.Cyclic);
-           
+            p.myBOOL.Cyclic = true;
+            p.myBYTE.Cyclic = 1;
+            p.myWORD.Cyclic = 2;
+            p.myDWORD.Cyclic = 3;
+            p.myLWORD.Cyclic = 4;
+            p.mySINT.Cyclic = 5;
+            p.myINT.Cyclic = 6;
+            p.myDINT.Cyclic = 7;
+            p.myLINT.Cyclic = 8;
+            p.myUSINT.Cyclic = 9;
+            p.myUINT.Cyclic = 10;
+            p.myUDINT.Cyclic = 11;
+            p.myULINT.Cyclic = 12;
+            p.myREAL.Cyclic = 13;
+            p.myLREAL.Cyclic = 14;
+            p.myTIME.Cyclic = timespan;
+            p.myLTIME.Cyclic = timespan;
+            p.myDATE.Cyclic = date;
+            p.myTIME_OF_DAY.Cyclic = timespan;
+            p.myDATE_AND_TIME.Cyclic = today;
+            p.mySTRING.Cyclic = "anakin skywalker";
+            p.myWSTRING.Cyclic = "anakin skywalker";
+            p.myEnum.Cyclic = 2;
+
+            return p;
         }
     }
 }

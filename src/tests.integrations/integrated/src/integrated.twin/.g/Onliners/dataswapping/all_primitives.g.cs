@@ -49,6 +49,9 @@ public partial class all_primitives : Ix.Connector.ITwinObject
 
     public OnlinerWString myWSTRING { get; }
 
+    [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(myEnum))]
+    public OnlinerInt myEnum { get; }
+
     public all_primitives(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -78,6 +81,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         myDATE_AND_TIME = @Connector.ConnectorAdapter.AdapterFactory.CreateDATE_AND_TIME(this, "myDATE_AND_TIME", "myDATE_AND_TIME");
         mySTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "mySTRING", "mySTRING");
         myWSTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateWSTRING(this, "myWSTRING", "myWSTRING");
+        myEnum = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "myEnum", "myEnum");
         parent.AddChild(this);
         parent.AddKid(this);
     }
@@ -108,6 +112,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
         plain.mySTRING = mySTRING.LastValue;
         plain.myWSTRING = myWSTRING.LastValue;
+        plain.myEnum = (myEnum)myEnum.LastValue;
         return plain;
     }
 
@@ -135,6 +140,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
         plain.mySTRING = mySTRING.LastValue;
         plain.myWSTRING = myWSTRING.LastValue;
+        plain.myEnum = (myEnum)myEnum.LastValue;
         return plain;
     }
 
@@ -162,6 +168,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
         mySTRING.Cyclic = plain.mySTRING;
         myWSTRING.Cyclic = plain.myWSTRING;
+        myEnum.Cyclic = (short)plain.myEnum;
         return await this.WriteAsync();
     }
 
@@ -190,6 +197,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         plain.myDATE_AND_TIME = myDATE_AND_TIME.Shadow;
         plain.mySTRING = mySTRING.Shadow;
         plain.myWSTRING = myWSTRING.Shadow;
+        plain.myEnum = (myEnum)myEnum.Shadow;
         return plain;
     }
 
@@ -217,6 +225,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         plain.myDATE_AND_TIME = myDATE_AND_TIME.Shadow;
         plain.mySTRING = mySTRING.Shadow;
         plain.myWSTRING = myWSTRING.Shadow;
+        plain.myEnum = (myEnum)myEnum.Shadow;
         return plain;
     }
 
@@ -244,6 +253,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         myDATE_AND_TIME.Shadow = plain.myDATE_AND_TIME;
         mySTRING.Shadow = plain.mySTRING;
         myWSTRING.Shadow = plain.myWSTRING;
+        myEnum.Shadow = (short)plain.myEnum;
         return this.RetrievePrimitives();
     }
 

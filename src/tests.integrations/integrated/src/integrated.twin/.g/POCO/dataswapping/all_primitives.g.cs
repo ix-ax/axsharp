@@ -41,5 +41,6 @@ namespace Pocos
         public DateTime myDATE_AND_TIME { get; set; } = default(DateTime);
         public string mySTRING { get; set; } = string.Empty;
         public string myWSTRING { get; set; } = string.Empty;
+        public myEnum myEnum { get; set; }
     }
 }

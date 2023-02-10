@@ -19,7 +19,6 @@ namespace Pocos
         public partial class RealMonster : RealMonsterBase
         {
             public RealMonsterData.DriveBaseNested DriveA { get; set; } = new RealMonsterData.DriveBaseNested();
-            public all_primitives primitives { get; set; } = new all_primitives();
         }
 
         public partial class DriveBaseNested

@@ -34,6 +34,18 @@ public partial class integratedTwinController : ITwinController
 
     public RealMonsterData.RealMonster PlainToOnline_should_copy { get; }
 
+    public all_primitives p_online_shadow { get; }
+
+    public all_primitives p_shadow_online { get; }
+
+    public all_primitives p_online_plain { get; }
+
+    public all_primitives p_plain_online { get; }
+
+    public all_primitives p_shadow_plain { get; }
+
+    public all_primitives p_plain_shadow { get; }
+
     public integratedTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -50,6 +62,12 @@ public partial class integratedTwinController : ITwinController
         ShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ShadowToOnline_should_copy");
         OnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToPlain_should_copy");
         PlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "PlainToOnline_should_copy");
+        p_online_shadow = new all_primitives(this.Connector, "", "p_online_shadow");
+        p_shadow_online = new all_primitives(this.Connector, "", "p_shadow_online");
+        p_online_plain = new all_primitives(this.Connector, "", "p_online_plain");
+        p_plain_online = new all_primitives(this.Connector, "", "p_plain_online");
+        p_shadow_plain = new all_primitives(this.Connector, "", "p_shadow_plain");
+        p_plain_shadow = new all_primitives(this.Connector, "", "p_plain_shadow");
     }
 
     public integratedTwinController(Ix.Connector.ConnectorAdapter adapter)
@@ -68,6 +86,12 @@ public partial class integratedTwinController : ITwinController
         ShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ShadowToOnline_should_copy");
         OnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToPlain_should_copy");
         PlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "PlainToOnline_should_copy");
+        p_online_shadow = new all_primitives(this.Connector, "", "p_online_shadow");
+        p_shadow_online = new all_primitives(this.Connector, "", "p_shadow_online");
+        p_online_plain = new all_primitives(this.Connector, "", "p_online_plain");
+        p_plain_online = new all_primitives(this.Connector, "", "p_plain_online");
+        p_shadow_plain = new all_primitives(this.Connector, "", "p_shadow_plain");
+        p_plain_shadow = new all_primitives(this.Connector, "", "p_plain_shadow");
     }
 }
 

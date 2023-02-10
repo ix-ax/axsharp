@@ -19,6 +19,12 @@ namespace Pocos
         public RealMonsterData.RealMonster ShadowToOnline_should_copy { get; set; } = new RealMonsterData.RealMonster();
         public RealMonsterData.RealMonster OnlineToPlain_should_copy { get; set; } = new RealMonsterData.RealMonster();
         public RealMonsterData.RealMonster PlainToOnline_should_copy { get; set; } = new RealMonsterData.RealMonster();
+        public all_primitives p_online_shadow { get; set; } = new all_primitives();
+        public all_primitives p_shadow_online { get; set; } = new all_primitives();
+        public all_primitives p_online_plain { get; set; } = new all_primitives();
+        public all_primitives p_plain_online { get; set; } = new all_primitives();
+        public all_primitives p_shadow_plain { get; set; } = new all_primitives();
+        public all_primitives p_plain_shadow { get; set; } = new all_primitives();
     }
 
     public partial class Pokus
