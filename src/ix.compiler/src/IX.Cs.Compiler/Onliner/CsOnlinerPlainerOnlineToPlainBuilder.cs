@@ -86,7 +86,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
             case IReferenceTypeDeclaration referenceTypeDeclaration:
                 break;
             case IEnumTypeDeclaration enumTypeDeclaration:
-                AddToSource($" plain.{declaration.Name} = ({declaration.Type.FullyQualifiedName}){declaration.Name}.LastValue;;");
+                AddToSource($" plain.{declaration.Name} = ({declaration.Type.FullyQualifiedName}){declaration.Name}.LastValue;");
                 break;
             case INamedValueTypeDeclaration namedValueTypeDeclaration:
                 AddToSource($" plain.{declaration.Name} = {declaration.Name}.LastValue;");

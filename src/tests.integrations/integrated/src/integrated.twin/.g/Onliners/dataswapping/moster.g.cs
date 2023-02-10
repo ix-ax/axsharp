@@ -63,6 +63,36 @@ namespace MonsterData
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.MonsterData.MonsterBase> ShadowToPlainAsync()
+        {
+            Pocos.MonsterData.MonsterBase plain = new Pocos.MonsterData.MonsterBase();
+            plain.Description = Description.Shadow;
+            plain.Id = Id.Shadow;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        protected async Task<Pocos.MonsterData.MonsterBase> ShadowToPlainAsync(Pocos.MonsterData.MonsterBase plain)
+        {
+            plain.Description = Description.Shadow;
+            plain.Id = Id.Shadow;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.MonsterData.MonsterBase plain)
+        {
+            Description.Shadow = plain.Description;
+            Id.Shadow = plain.Id;
+            var _ArrayOfBytes_i_FE8484DAB3 = 0;
+            ArrayOfBytes.Select(p => p.Shadow = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+            var _ArrayOfDrives_i_FE8484DAB3 = 0;
+            ArrayOfDrives.Select(p => p.PlainToShadowAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -156,6 +186,28 @@ namespace MonsterData
             await this.DriveA.PlainToOnlineAsync(plain.DriveA);
             return await this.WriteAsync();
         }
+
+        public async Task<Pocos.MonsterData.Monster> ShadowToPlainAsync()
+        {
+            Pocos.MonsterData.Monster plain = new Pocos.MonsterData.Monster();
+            await base.ShadowToPlainAsync(plain);
+            plain.DriveA = await DriveA.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.MonsterData.Monster> ShadowToPlainAsync(Pocos.MonsterData.Monster plain)
+        {
+            await base.ShadowToPlainAsync(plain);
+            plain.DriveA = await DriveA.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.MonsterData.Monster plain)
+        {
+            await base.PlainToShadowAsync(plain);
+            await this.DriveA.PlainToShadowAsync(plain.DriveA);
+            return this.RetrievePrimitives();
+        }
     }
 
     public partial class DriveBase : Ix.Connector.ITwinObject
@@ -210,6 +262,34 @@ namespace MonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.MonsterData.DriveBase> ShadowToPlainAsync()
+        {
+            Pocos.MonsterData.DriveBase plain = new Pocos.MonsterData.DriveBase();
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.MonsterData.DriveBase> ShadowToPlainAsync(Pocos.MonsterData.DriveBase plain)
+        {
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.MonsterData.DriveBase plain)
+        {
+            Position.Shadow = plain.Position;
+            Velo.Shadow = plain.Velo;
+            Acc.Shadow = plain.Acc;
+            Dcc.Shadow = plain.Dcc;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

@@ -9,6 +9,9 @@ CONFIGURATION MyConfiguration
        PlainToOnline_should_copy_entire_structure : MonsterData.Monster;
        OnlineToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
        ShadowToOnlineAsync_should_copy_entire_structure : MonsterData.Monster;
+       
+       ShadowToPlainAsync_should_copy_entire_structure : MonsterData.Monster;
+       PlainToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
        Pokus : Pokus;
 
        RealMonster : RealMonsterData.RealMonster;
@@ -16,7 +19,7 @@ CONFIGURATION MyConfiguration
        ShadowToOnline_should_copy : RealMonsterData.RealMonster;
        OnlineToPlain_should_copy: RealMonsterData.RealMonster;
        PlainToOnline_should_copy: RealMonsterData.RealMonster;
-       
+
     END_VAR
 END_CONFIGURATION
 

@@ -11,6 +11,8 @@ namespace Pocos
         public MonsterData.Monster PlainToOnline_should_copy_entire_structure { get; set; } = new MonsterData.Monster();
         public MonsterData.Monster OnlineToShadowAsync_should_copy_entire_structure { get; set; } = new MonsterData.Monster();
         public MonsterData.Monster ShadowToOnlineAsync_should_copy_entire_structure { get; set; } = new MonsterData.Monster();
+        public MonsterData.Monster ShadowToPlainAsync_should_copy_entire_structure { get; set; } = new MonsterData.Monster();
+        public MonsterData.Monster PlainToShadowAsync_should_copy_entire_structure { get; set; } = new MonsterData.Monster();
         public Pokus Pokus { get; set; } = new Pokus();
         public RealMonsterData.RealMonster RealMonster { get; set; } = new RealMonsterData.RealMonster();
         public RealMonsterData.RealMonster OnlineToShadow_should_copy { get; set; } = new RealMonsterData.RealMonster();

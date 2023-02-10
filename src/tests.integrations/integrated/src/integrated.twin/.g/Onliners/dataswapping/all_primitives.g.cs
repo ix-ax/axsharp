@@ -165,6 +165,88 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         return await this.WriteAsync();
     }
 
+    public async Task<Pocos.all_primitives> ShadowToPlainAsync()
+    {
+        Pocos.all_primitives plain = new Pocos.all_primitives();
+        plain.myBOOL = myBOOL.Shadow;
+        plain.myBYTE = myBYTE.Shadow;
+        plain.myWORD = myWORD.Shadow;
+        plain.myDWORD = myDWORD.Shadow;
+        plain.myLWORD = myLWORD.Shadow;
+        plain.mySINT = mySINT.Shadow;
+        plain.myINT = myINT.Shadow;
+        plain.myDINT = myDINT.Shadow;
+        plain.myLINT = myLINT.Shadow;
+        plain.myUSINT = myUSINT.Shadow;
+        plain.myUINT = myUINT.Shadow;
+        plain.myUDINT = myUDINT.Shadow;
+        plain.myULINT = myULINT.Shadow;
+        plain.myREAL = myREAL.Shadow;
+        plain.myLREAL = myLREAL.Shadow;
+        plain.myTIME = myTIME.Shadow;
+        plain.myLTIME = myLTIME.Shadow;
+        plain.myDATE = myDATE.Shadow;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.Shadow;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.Shadow;
+        plain.mySTRING = mySTRING.Shadow;
+        plain.myWSTRING = myWSTRING.Shadow;
+        return plain;
+    }
+
+    protected async Task<Pocos.all_primitives> ShadowToPlainAsync(Pocos.all_primitives plain)
+    {
+        plain.myBOOL = myBOOL.Shadow;
+        plain.myBYTE = myBYTE.Shadow;
+        plain.myWORD = myWORD.Shadow;
+        plain.myDWORD = myDWORD.Shadow;
+        plain.myLWORD = myLWORD.Shadow;
+        plain.mySINT = mySINT.Shadow;
+        plain.myINT = myINT.Shadow;
+        plain.myDINT = myDINT.Shadow;
+        plain.myLINT = myLINT.Shadow;
+        plain.myUSINT = myUSINT.Shadow;
+        plain.myUINT = myUINT.Shadow;
+        plain.myUDINT = myUDINT.Shadow;
+        plain.myULINT = myULINT.Shadow;
+        plain.myREAL = myREAL.Shadow;
+        plain.myLREAL = myLREAL.Shadow;
+        plain.myTIME = myTIME.Shadow;
+        plain.myLTIME = myLTIME.Shadow;
+        plain.myDATE = myDATE.Shadow;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.Shadow;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.Shadow;
+        plain.mySTRING = mySTRING.Shadow;
+        plain.myWSTRING = myWSTRING.Shadow;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.all_primitives plain)
+    {
+        myBOOL.Shadow = plain.myBOOL;
+        myBYTE.Shadow = plain.myBYTE;
+        myWORD.Shadow = plain.myWORD;
+        myDWORD.Shadow = plain.myDWORD;
+        myLWORD.Shadow = plain.myLWORD;
+        mySINT.Shadow = plain.mySINT;
+        myINT.Shadow = plain.myINT;
+        myDINT.Shadow = plain.myDINT;
+        myLINT.Shadow = plain.myLINT;
+        myUSINT.Shadow = plain.myUSINT;
+        myUINT.Shadow = plain.myUINT;
+        myUDINT.Shadow = plain.myUDINT;
+        myULINT.Shadow = plain.myULINT;
+        myREAL.Shadow = plain.myREAL;
+        myLREAL.Shadow = plain.myLREAL;
+        myTIME.Shadow = plain.myTIME;
+        myLTIME.Shadow = plain.myLTIME;
+        myDATE.Shadow = plain.myDATE;
+        myTIME_OF_DAY.Shadow = plain.myTIME_OF_DAY;
+        myDATE_AND_TIME.Shadow = plain.myDATE_AND_TIME;
+        mySTRING.Shadow = plain.mySTRING;
+        myWSTRING.Shadow = plain.myWSTRING;
+        return this.RetrievePrimitives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
