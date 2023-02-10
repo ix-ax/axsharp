@@ -293,4 +293,9 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     public abstract void FromOnlineToShadow();
     public abstract void FromShadowToOnline();
+
+    public void AddToPeriodicQueue()
+    {
+        this.Parent?.GetConnector()?.AddToPeriodicReadSet(this);
+    }
 }

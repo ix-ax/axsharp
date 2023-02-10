@@ -37,7 +37,7 @@ public class WebApiWString : OnlinerWString, IWebApiPrimitive
 
     /// <inheritdoc />
     ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
-        WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+        WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite ?? string.Empty, _webApiConnector.DBName);
 
     /// <inheritdoc />
     public void Read(string value)

@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
 using Ix.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace Ix.Connector.S71500.WebApi;
 
@@ -39,20 +40,30 @@ public class WebApiLDate : OnlinerDate, IWebApiPrimitive
     ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
         WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
 
-    public void Read(string result)
+    public void Read(string value)
     {
-        DateOnly dt;
-        if (DateOnly.TryParse(result, out dt))
-            UpdateRead(dt);
+        UpdateRead(GetFromBinary(value));
     }
 
     /// <inheritdoc />
     public override async Task<DateOnly> GetAsync()
     {
-        var dt = await _webApiConnector.ReadAsync<long>(this) / 100;
-        return DateOnly.FromDateTime(DateTime.FromBinary(dt).AddYears(1969));
+        var dt = await _webApiConnector.ReadAsync<long>(this);
+        return GetFromBinary(dt);
     }
 
+
+    private DateOnly GetFromBinary(string value)
+    {
+        var val = long.Parse(value);
+        return GetFromBinary(val);
+    }
+
+    private DateOnly GetFromBinary(long value)
+    {
+        var val = value / 100;
+        return DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
+    }
 
     private string GetFromDate(DateOnly date)
     {

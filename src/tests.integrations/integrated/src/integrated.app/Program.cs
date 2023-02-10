@@ -25,7 +25,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 
 builder.Services.AddIxBlazorServices();
 
-Entry.Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
+Entry.Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.Ignore;
 
 Entry.Plc.Connector.BuildAndStart().ReadWriteCycleDelay = 100;
 
