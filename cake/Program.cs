@@ -155,13 +155,15 @@ public sealed class TestsTask : FrostingTask<BuildContext>
         }
         else
         {
-            var workingDirectory = Path.GetFullPath(Path.Combine(context.WorkDirName,
-                "..//..//src//ix.connectors//tests//ax-test-project//"));
+            UploadTestPlc(context, 
+                Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//ix.connectors//tests//ax-test-project//")),
+                Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"),
+                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
-            var targetIp = Environment.GetEnvironmentVariable("AXTARGET");
-            var targetPlatform = Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT");
-
-            UploadTestPlc(context, workingDirectory, targetIp, targetPlatform);
+            UploadTestPlc(context,
+                Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//tests.integrations//integrated//src//ax")),
+                Environment.GetEnvironmentVariable("AXTARGET"),
+                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
             RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
