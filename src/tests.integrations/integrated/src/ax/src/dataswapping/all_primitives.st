@@ -27,6 +27,7 @@ CLASS all_primitives
      //   myWCHAR	        :       WCHAR	      ;
         mySTRING	        :   STRING	      ;
         myWSTRING	    :       WSTRING	      ;
+        myEnum : myEnum;
     END_VAR
     
 END_CLASS

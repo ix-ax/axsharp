@@ -20,6 +20,14 @@ CONFIGURATION MyConfiguration
        OnlineToPlain_should_copy: RealMonsterData.RealMonster;
        PlainToOnline_should_copy: RealMonsterData.RealMonster;
 
+       p_online_shadow: all_primitives;
+       p_shadow_online: all_primitives;
+
+       p_online_plain: all_primitives;
+       p_plain_online: all_primitives;
+
+       p_shadow_plain: all_primitives;
+       p_plain_shadow: all_primitives;
     END_VAR
 END_CONFIGURATION
 

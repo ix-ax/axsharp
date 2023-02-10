@@ -14,7 +14,6 @@ NAMESPACE RealMonsterData
     CLASS RealMonster EXTENDS RealMonsterBase
         VAR PUBLIC
             DriveA : DriveBaseNested;
-            primitives: all_primitives;
         END_VAR        
     END_CLASS
 

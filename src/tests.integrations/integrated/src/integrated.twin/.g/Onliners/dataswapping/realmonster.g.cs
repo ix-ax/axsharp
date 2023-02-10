@@ -185,13 +185,10 @@ namespace RealMonsterData
     {
         public RealMonsterData.DriveBaseNested DriveA { get; }
 
-        public all_primitives primitives { get; }
-
         public RealMonster(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             DriveA = new RealMonsterData.DriveBaseNested(this, "DriveA", "DriveA");
-            primitives = new all_primitives(this, "primitives", "primitives");
         }
 
         public async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
@@ -200,7 +197,6 @@ namespace RealMonsterData
             await this.ReadAsync();
             await base.OnlineToPlainAsync(plain);
             plain.DriveA = await DriveA.OnlineToPlainAsync();
-            plain.primitives = await primitives.OnlineToPlainAsync();
             return plain;
         }
 
@@ -208,7 +204,6 @@ namespace RealMonsterData
         {
             await base.OnlineToPlainAsync(plain);
             plain.DriveA = await DriveA.OnlineToPlainAsync();
-            plain.primitives = await primitives.OnlineToPlainAsync();
             return plain;
         }
 
@@ -216,7 +211,6 @@ namespace RealMonsterData
         {
             await base.PlainToOnlineAsync(plain);
             await this.DriveA.PlainToOnlineAsync(plain.DriveA);
-            await this.primitives.PlainToOnlineAsync(plain.primitives);
             return await this.WriteAsync();
         }
 
@@ -225,7 +219,6 @@ namespace RealMonsterData
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
             await base.ShadowToPlainAsync(plain);
             plain.DriveA = await DriveA.ShadowToPlainAsync();
-            plain.primitives = await primitives.ShadowToPlainAsync();
             return plain;
         }
 
@@ -233,7 +226,6 @@ namespace RealMonsterData
         {
             await base.ShadowToPlainAsync(plain);
             plain.DriveA = await DriveA.ShadowToPlainAsync();
-            plain.primitives = await primitives.ShadowToPlainAsync();
             return plain;
         }
 
@@ -241,7 +233,6 @@ namespace RealMonsterData
         {
             await base.PlainToShadowAsync(plain);
             await this.DriveA.PlainToShadowAsync(plain.DriveA);
-            await this.primitives.PlainToShadowAsync(plain.primitives);
             return this.RetrievePrimitives();
         }
     }

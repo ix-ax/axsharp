@@ -18,5 +18,5 @@ scripts:
     - apax build
     # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
     # --default-server-interface is a must if you are using WebAPI      
-    - apax sld --accept-security-disclaimer -t 192.168.0.4 -i .\\bin\\plcsim\\ -r --default-server-interface    
+    - apax sld --accept-security-disclaimer -t 172.20.30.110 -i .\\bin\\plcsim\\ -r --default-server-interface    
 
