@@ -238,7 +238,7 @@ public class WebApiConnector : Connector
     {
         base.ClearPeriodicReadSet();
         var hitCount = RwCycleCount;
-        Task.Delay(250).Wait();
+        Task.Delay(300).Wait(); //TODO: we have to address this differently... preventing concurrency...
     }
 
 
