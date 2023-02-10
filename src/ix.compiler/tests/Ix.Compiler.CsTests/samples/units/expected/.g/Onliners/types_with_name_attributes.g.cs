@@ -243,6 +243,25 @@ namespace TypeWithNameAttributes
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> ShadowToPlainAsync()
+        {
+            Pocos.TypeWithNameAttributes.NoAccessModifierClass plain = new Pocos.TypeWithNameAttributes.NoAccessModifierClass();
+            plain.SomeClassVariable = SomeClassVariable.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> ShadowToPlainAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
+        {
+            plain.SomeClassVariable = SomeClassVariable.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
+        {
+            SomeClassVariable.Shadow = plain.SomeClassVariable;
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

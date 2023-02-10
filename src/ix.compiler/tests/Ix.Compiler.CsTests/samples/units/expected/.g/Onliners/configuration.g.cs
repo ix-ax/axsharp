@@ -350,6 +350,103 @@ public partial class ComplexForConfig : Ix.Connector.ITwinObject
         return await this.WriteAsync();
     }
 
+    public async Task<Pocos.ComplexForConfig> ShadowToPlainAsync()
+    {
+        Pocos.ComplexForConfig plain = new Pocos.ComplexForConfig();
+        plain.myBOOL = myBOOL.Shadow;
+        plain.myBYTE = myBYTE.Shadow;
+        plain.myWORD = myWORD.Shadow;
+        plain.myDWORD = myDWORD.Shadow;
+        plain.myLWORD = myLWORD.Shadow;
+        plain.mySINT = mySINT.Shadow;
+        plain.myINT = myINT.Shadow;
+        plain.myDINT = myDINT.Shadow;
+        plain.myLINT = myLINT.Shadow;
+        plain.myUSINT = myUSINT.Shadow;
+        plain.myUINT = myUINT.Shadow;
+        plain.myUDINT = myUDINT.Shadow;
+        plain.myULINT = myULINT.Shadow;
+        plain.myREAL = myREAL.Shadow;
+        plain.myLREAL = myLREAL.Shadow;
+        plain.myTIME = myTIME.Shadow;
+        plain.myLTIME = myLTIME.Shadow;
+        plain.myDATE = myDATE.Shadow;
+        plain.myLDATE = myLDATE.Shadow;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.Shadow;
+        plain.myLTIME_OF_DAY = myLTIME_OF_DAY.Shadow;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.Shadow;
+        plain.myLDATE_AND_TIME = myLDATE_AND_TIME.Shadow;
+        plain.myCHAR = myCHAR.Shadow;
+        plain.myWCHAR = myWCHAR.Shadow;
+        plain.mySTRING = mySTRING.Shadow;
+        plain.myWSTRING = myWSTRING.Shadow;
+        return plain;
+    }
+
+    protected async Task<Pocos.ComplexForConfig> ShadowToPlainAsync(Pocos.ComplexForConfig plain)
+    {
+        plain.myBOOL = myBOOL.Shadow;
+        plain.myBYTE = myBYTE.Shadow;
+        plain.myWORD = myWORD.Shadow;
+        plain.myDWORD = myDWORD.Shadow;
+        plain.myLWORD = myLWORD.Shadow;
+        plain.mySINT = mySINT.Shadow;
+        plain.myINT = myINT.Shadow;
+        plain.myDINT = myDINT.Shadow;
+        plain.myLINT = myLINT.Shadow;
+        plain.myUSINT = myUSINT.Shadow;
+        plain.myUINT = myUINT.Shadow;
+        plain.myUDINT = myUDINT.Shadow;
+        plain.myULINT = myULINT.Shadow;
+        plain.myREAL = myREAL.Shadow;
+        plain.myLREAL = myLREAL.Shadow;
+        plain.myTIME = myTIME.Shadow;
+        plain.myLTIME = myLTIME.Shadow;
+        plain.myDATE = myDATE.Shadow;
+        plain.myLDATE = myLDATE.Shadow;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.Shadow;
+        plain.myLTIME_OF_DAY = myLTIME_OF_DAY.Shadow;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.Shadow;
+        plain.myLDATE_AND_TIME = myLDATE_AND_TIME.Shadow;
+        plain.myCHAR = myCHAR.Shadow;
+        plain.myWCHAR = myWCHAR.Shadow;
+        plain.mySTRING = mySTRING.Shadow;
+        plain.myWSTRING = myWSTRING.Shadow;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ComplexForConfig plain)
+    {
+        myBOOL.Shadow = plain.myBOOL;
+        myBYTE.Shadow = plain.myBYTE;
+        myWORD.Shadow = plain.myWORD;
+        myDWORD.Shadow = plain.myDWORD;
+        myLWORD.Shadow = plain.myLWORD;
+        mySINT.Shadow = plain.mySINT;
+        myINT.Shadow = plain.myINT;
+        myDINT.Shadow = plain.myDINT;
+        myLINT.Shadow = plain.myLINT;
+        myUSINT.Shadow = plain.myUSINT;
+        myUINT.Shadow = plain.myUINT;
+        myUDINT.Shadow = plain.myUDINT;
+        myULINT.Shadow = plain.myULINT;
+        myREAL.Shadow = plain.myREAL;
+        myLREAL.Shadow = plain.myLREAL;
+        myTIME.Shadow = plain.myTIME;
+        myLTIME.Shadow = plain.myLTIME;
+        myDATE.Shadow = plain.myDATE;
+        myLDATE.Shadow = plain.myLDATE;
+        myTIME_OF_DAY.Shadow = plain.myTIME_OF_DAY;
+        myLTIME_OF_DAY.Shadow = plain.myLTIME_OF_DAY;
+        myDATE_AND_TIME.Shadow = plain.myDATE_AND_TIME;
+        myLDATE_AND_TIME.Shadow = plain.myLDATE_AND_TIME;
+        myCHAR.Shadow = plain.myCHAR;
+        myWCHAR.Shadow = plain.myWCHAR;
+        mySTRING.Shadow = plain.mySTRING;
+        myWSTRING.Shadow = plain.myWSTRING;
+        return this.RetrievePrimitives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

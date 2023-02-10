@@ -33,6 +33,22 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
         return await this.WriteAsync();
     }
 
+    public async Task<Pocos._NULL_CONTEXT> ShadowToPlainAsync()
+    {
+        Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
+        return plain;
+    }
+
+    protected async Task<Pocos._NULL_CONTEXT> ShadowToPlainAsync(Pocos._NULL_CONTEXT plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos._NULL_CONTEXT plain)
+    {
+        return this.RetrievePrimitives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

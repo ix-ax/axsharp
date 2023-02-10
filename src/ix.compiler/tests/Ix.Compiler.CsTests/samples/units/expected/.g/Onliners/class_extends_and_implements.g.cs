@@ -29,6 +29,25 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
         await base.PlainToOnlineAsync(plain);
         return await this.WriteAsync();
     }
+
+    public async Task<Pocos.ExtendsAndImplements> ShadowToPlainAsync()
+    {
+        Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
+        await base.ShadowToPlainAsync(plain);
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendsAndImplements> ShadowToPlainAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.ShadowToPlainAsync(plain);
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.PlainToShadowAsync(plain);
+        return this.RetrievePrimitives();
+    }
 }
 
 public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
@@ -59,6 +78,22 @@ public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendeeExtendsAndImplements plain)
     {
         return await this.WriteAsync();
+    }
+
+    public async Task<Pocos.ExtendeeExtendsAndImplements> ShadowToPlainAsync()
+    {
+        Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendeeExtendsAndImplements> ShadowToPlainAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return this.RetrievePrimitives();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

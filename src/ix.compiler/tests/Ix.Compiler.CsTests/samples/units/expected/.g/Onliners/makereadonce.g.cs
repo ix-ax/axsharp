@@ -63,6 +63,34 @@ namespace makereadonce
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.makereadonce.MembersWithMakeReadOnce> ShadowToPlainAsync()
+        {
+            Pocos.makereadonce.MembersWithMakeReadOnce plain = new Pocos.makereadonce.MembersWithMakeReadOnce();
+            plain.makeReadOnceMember = makeReadOnceMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            plain.makeReadComplexMember = await makeReadComplexMember.ShadowToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonce.MembersWithMakeReadOnce> ShadowToPlainAsync(Pocos.makereadonce.MembersWithMakeReadOnce plain)
+        {
+            plain.makeReadOnceMember = makeReadOnceMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            plain.makeReadComplexMember = await makeReadComplexMember.ShadowToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonce.MembersWithMakeReadOnce plain)
+        {
+            makeReadOnceMember.Shadow = plain.makeReadOnceMember;
+            someOtherMember.Shadow = plain.someOtherMember;
+            await this.makeReadComplexMember.PlainToShadowAsync(plain.makeReadComplexMember);
+            await this.someotherComplexMember.PlainToShadowAsync(plain.someotherComplexMember);
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -164,6 +192,28 @@ namespace makereadonce
             someMember.Cyclic = plain.someMember;
             someOtherMember.Cyclic = plain.someOtherMember;
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.makereadonce.ComplexMember> ShadowToPlainAsync()
+        {
+            Pocos.makereadonce.ComplexMember plain = new Pocos.makereadonce.ComplexMember();
+            plain.someMember = someMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonce.ComplexMember> ShadowToPlainAsync(Pocos.makereadonce.ComplexMember plain)
+        {
+            plain.someMember = someMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonce.ComplexMember plain)
+        {
+            someMember.Shadow = plain.someMember;
+            someOtherMember.Shadow = plain.someOtherMember;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

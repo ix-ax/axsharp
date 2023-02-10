@@ -31,6 +31,25 @@ namespace Simatic.Ax.StateFramework
             await base.PlainToOnlineAsync(plain);
             return await this.WriteAsync();
         }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> ShadowToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
+            await base.ShadowToPlainAsync(plain);
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> ShadowToPlainAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        {
+            await base.ShadowToPlainAsync(plain);
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        {
+            await base.PlainToShadowAsync(plain);
+            return this.RetrievePrimitives();
+        }
     }
 }
 
@@ -76,6 +95,28 @@ namespace Simatic.Ax.StateFramework
             StateID.Cyclic = plain.StateID;
             StateName.Cyclic = plain.StateName;
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> ShadowToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.AbstractState plain = new Pocos.Simatic.Ax.StateFramework.AbstractState();
+            plain.StateID = StateID.Shadow;
+            plain.StateName = StateName.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> ShadowToPlainAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
+        {
+            plain.StateID = StateID.Shadow;
+            plain.StateName = StateName.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
+        {
+            StateID.Shadow = plain.StateID;
+            StateName.Shadow = plain.StateName;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

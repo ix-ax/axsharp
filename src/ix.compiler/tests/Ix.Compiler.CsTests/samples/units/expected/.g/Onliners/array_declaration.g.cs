@@ -51,6 +51,30 @@ namespace ArrayDeclarationSimpleNamespace
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> ShadowToPlainAsync()
+        {
+            Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain = new Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class();
+            plain.primitive = primitive.Select(p => p.Shadow).ToArray();
+            plain.complex = complex.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> ShadowToPlainAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
+        {
+            plain.primitive = primitive.Select(p => p.Shadow).ToArray();
+            plain.complex = complex.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
+        {
+            var _primitive_i_FE8484DAB3 = 0;
+            primitive.Select(p => p.Shadow = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
+            var _complex_i_FE8484DAB3 = 0;
+            complex.Select(p => p.PlainToShadowAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -140,6 +164,22 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
         {
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> ShadowToPlainAsync()
+        {
+            Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain = new Pocos.ArrayDeclarationSimpleNamespace.some_complex_type();
+            return plain;
+        }
+
+        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> ShadowToPlainAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
+        {
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
