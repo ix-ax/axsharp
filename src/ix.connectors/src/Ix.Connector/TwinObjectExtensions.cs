@@ -23,6 +23,10 @@ public static class TwinObjectExtensions
 
     public static readonly string PlainToOnlineMethodName = "PlainToOnlineAsync";
 
+    public static readonly string ShadowToPlainMethodName = "ShadowToPlainAsync";
+
+    public static readonly string PlainToShadowMethodName = "PlainToShadowAsync";
+
     /// <summary>
     ///     Makes <see cref="Ix.Connector.ITwinObject" /> readonly for this application.
     /// </summary>

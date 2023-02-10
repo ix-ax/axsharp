@@ -18,6 +18,10 @@ public partial class integratedTwinController : ITwinController
 
     public MonsterData.Monster ShadowToOnlineAsync_should_copy_entire_structure { get; }
 
+    public MonsterData.Monster ShadowToPlainAsync_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster PlainToShadowAsync_should_copy_entire_structure { get; }
+
     public Pokus Pokus { get; }
 
     public RealMonsterData.RealMonster RealMonster { get; }
@@ -38,6 +42,8 @@ public partial class integratedTwinController : ITwinController
         PlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToOnline_should_copy_entire_structure");
         OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
         ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
+        ShadowToPlainAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToPlainAsync_should_copy_entire_structure");
+        PlainToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToShadowAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
         RealMonster = new RealMonsterData.RealMonster(this.Connector, "", "RealMonster");
         OnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToShadow_should_copy");
@@ -54,6 +60,8 @@ public partial class integratedTwinController : ITwinController
         PlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToOnline_should_copy_entire_structure");
         OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
         ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
+        ShadowToPlainAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToPlainAsync_should_copy_entire_structure");
+        PlainToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToShadowAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
         RealMonster = new RealMonsterData.RealMonster(this.Connector, "", "RealMonster");
         OnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToShadow_should_copy");
@@ -97,6 +105,25 @@ public partial class Pokus : Ix.Connector.ITwinObject
     {
         await this.Nested.PlainToOnlineAsync(plain.Nested);
         return await this.WriteAsync();
+    }
+
+    public async Task<Pocos.Pokus> ShadowToPlainAsync()
+    {
+        Pocos.Pokus plain = new Pocos.Pokus();
+        plain.Nested = await Nested.ShadowToPlainAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.Pokus> ShadowToPlainAsync(Pocos.Pokus plain)
+    {
+        plain.Nested = await Nested.ShadowToPlainAsync();
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Pokus plain)
+    {
+        await this.Nested.PlainToShadowAsync(plain.Nested);
+        return this.RetrievePrimitives();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -206,6 +233,31 @@ public partial class Nested : Ix.Connector.ITwinObject
         SomeInt.Cyclic = plain.SomeInt;
         SomeByte.Cyclic = plain.SomeByte;
         return await this.WriteAsync();
+    }
+
+    public async Task<Pocos.Nested> ShadowToPlainAsync()
+    {
+        Pocos.Nested plain = new Pocos.Nested();
+        plain.SomeString = SomeString.Shadow;
+        plain.SomeInt = SomeInt.Shadow;
+        plain.SomeByte = SomeByte.Shadow;
+        return plain;
+    }
+
+    protected async Task<Pocos.Nested> ShadowToPlainAsync(Pocos.Nested plain)
+    {
+        plain.SomeString = SomeString.Shadow;
+        plain.SomeInt = SomeInt.Shadow;
+        plain.SomeByte = SomeByte.Shadow;
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Nested plain)
+    {
+        SomeString.Shadow = plain.SomeString;
+        SomeInt.Shadow = plain.SomeInt;
+        SomeByte.Shadow = plain.SomeByte;
+        return this.RetrievePrimitives();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

@@ -81,6 +81,45 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.RealMonsterData.RealMonsterBase> ShadowToPlainAsync()
+        {
+            Pocos.RealMonsterData.RealMonsterBase plain = new Pocos.RealMonsterData.RealMonsterBase();
+            plain.Description = Description.Shadow;
+            plain.Id = Id.Shadow;
+            plain.TestDate = TestDate.Shadow;
+            plain.TestDateTime = TestDateTime.Shadow;
+            plain.TestTimeSpan = TestTimeSpan.Shadow;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        protected async Task<Pocos.RealMonsterData.RealMonsterBase> ShadowToPlainAsync(Pocos.RealMonsterData.RealMonsterBase plain)
+        {
+            plain.Description = Description.Shadow;
+            plain.Id = Id.Shadow;
+            plain.TestDate = TestDate.Shadow;
+            plain.TestDateTime = TestDateTime.Shadow;
+            plain.TestTimeSpan = TestTimeSpan.Shadow;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.RealMonsterBase plain)
+        {
+            Description.Shadow = plain.Description;
+            Id.Shadow = plain.Id;
+            TestDate.Shadow = plain.TestDate;
+            TestDateTime.Shadow = plain.TestDateTime;
+            TestTimeSpan.Shadow = plain.TestTimeSpan;
+            var _ArrayOfBytes_i_FE8484DAB3 = 0;
+            ArrayOfBytes.Select(p => p.Shadow = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+            var _ArrayOfDrives_i_FE8484DAB3 = 0;
+            ArrayOfDrives.Select(p => p.PlainToShadowAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -180,6 +219,31 @@ namespace RealMonsterData
             await this.primitives.PlainToOnlineAsync(plain.primitives);
             return await this.WriteAsync();
         }
+
+        public async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
+        {
+            Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
+            await base.ShadowToPlainAsync(plain);
+            plain.DriveA = await DriveA.ShadowToPlainAsync();
+            plain.primitives = await primitives.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync(Pocos.RealMonsterData.RealMonster plain)
+        {
+            await base.ShadowToPlainAsync(plain);
+            plain.DriveA = await DriveA.ShadowToPlainAsync();
+            plain.primitives = await primitives.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.RealMonster plain)
+        {
+            await base.PlainToShadowAsync(plain);
+            await this.DriveA.PlainToShadowAsync(plain.DriveA);
+            await this.primitives.PlainToShadowAsync(plain.primitives);
+            return this.RetrievePrimitives();
+        }
     }
 
     public partial class DriveBaseNested : Ix.Connector.ITwinObject
@@ -240,6 +304,37 @@ namespace RealMonsterData
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelOne.PlainToOnlineAsync(plain.NestedLevelOne);
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.RealMonsterData.DriveBaseNested> ShadowToPlainAsync()
+        {
+            Pocos.RealMonsterData.DriveBaseNested plain = new Pocos.RealMonsterData.DriveBaseNested();
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            plain.NestedLevelOne = await NestedLevelOne.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.RealMonsterData.DriveBaseNested> ShadowToPlainAsync(Pocos.RealMonsterData.DriveBaseNested plain)
+        {
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            plain.NestedLevelOne = await NestedLevelOne.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.DriveBaseNested plain)
+        {
+            Position.Shadow = plain.Position;
+            Velo.Shadow = plain.Velo;
+            Acc.Shadow = plain.Acc;
+            Dcc.Shadow = plain.Dcc;
+            await this.NestedLevelOne.PlainToShadowAsync(plain.NestedLevelOne);
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -363,6 +458,37 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.RealMonsterData.NestedLevelOne> ShadowToPlainAsync()
+        {
+            Pocos.RealMonsterData.NestedLevelOne plain = new Pocos.RealMonsterData.NestedLevelOne();
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            plain.NestedLevelTwo = await NestedLevelTwo.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.RealMonsterData.NestedLevelOne> ShadowToPlainAsync(Pocos.RealMonsterData.NestedLevelOne plain)
+        {
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            plain.NestedLevelTwo = await NestedLevelTwo.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelOne plain)
+        {
+            Position.Shadow = plain.Position;
+            Velo.Shadow = plain.Velo;
+            Acc.Shadow = plain.Acc;
+            Dcc.Shadow = plain.Dcc;
+            await this.NestedLevelTwo.PlainToShadowAsync(plain.NestedLevelTwo);
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -484,6 +610,37 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.RealMonsterData.NestedLevelTwo> ShadowToPlainAsync()
+        {
+            Pocos.RealMonsterData.NestedLevelTwo plain = new Pocos.RealMonsterData.NestedLevelTwo();
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            plain.NestedLevelThree = await NestedLevelThree.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.RealMonsterData.NestedLevelTwo> ShadowToPlainAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
+        {
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            plain.NestedLevelThree = await NestedLevelThree.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
+        {
+            Position.Shadow = plain.Position;
+            Velo.Shadow = plain.Velo;
+            Acc.Shadow = plain.Acc;
+            Dcc.Shadow = plain.Dcc;
+            await this.NestedLevelThree.PlainToShadowAsync(plain.NestedLevelThree);
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -597,6 +754,34 @@ namespace RealMonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.RealMonsterData.NestedLevelThree> ShadowToPlainAsync()
+        {
+            Pocos.RealMonsterData.NestedLevelThree plain = new Pocos.RealMonsterData.NestedLevelThree();
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.RealMonsterData.NestedLevelThree> ShadowToPlainAsync(Pocos.RealMonsterData.NestedLevelThree plain)
+        {
+            plain.Position = Position.Shadow;
+            plain.Velo = Velo.Shadow;
+            plain.Acc = Acc.Shadow;
+            plain.Dcc = Dcc.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelThree plain)
+        {
+            Position.Shadow = plain.Position;
+            Velo.Shadow = plain.Velo;
+            Acc.Shadow = plain.Acc;
+            Dcc.Shadow = plain.Dcc;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
