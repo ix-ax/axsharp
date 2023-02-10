@@ -11,6 +11,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Newtonsoft.Json;
+using Siemens.Simatic.S7.Webserver.API.Exceptions;
 using Siemens.Simatic.S7.Webserver.API.Models.Responses;
 using Siemens.Simatic.S7.Webserver.API.Services;
 using Siemens.Simatic.S7.Webserver.API.Services.IdGenerator;
@@ -119,13 +120,26 @@ public class WebApiConnector : Connector
     }
 
     internal void HandleCommFailure(Exception exception, string description, IEnumerable<ITwinPrimitive> primitives,
-        ApiBulkResponse response)
+        ApiBulkResponse response, IEnumerable<ApiRequestBase> originalRequest)
     {
-        foreach (var primitive in primitives)
-            primitive.AccessStatus.Update(RwCycleCount, $"{description}: '{exception.Message}'");
+        string firstFailedItemParams = string.Empty;
 
         foreach (var errorResponse in response.ErrorResponses)
-            Logger.Error($"{errorResponse.Error.Message} [{errorResponse.Error.Code}]");
+        {
+            var failedItem = originalRequest.FirstOrDefault(p => p.Id ==errorResponse.Id);
+            var failedItemParams = string.Join(";", failedItem.Params.Select(p => $"{p.Key} : {p.Value}"));
+            if(string.IsNullOrEmpty(firstFailedItemParams))
+            {
+                firstFailedItemParams = failedItemParams;
+            }
+
+            Logger.Error($"{failedItemParams} : {errorResponse.Error.Message} [{errorResponse.Error.Code}]");
+        }
+
+        foreach (var primitive in primitives)
+        {
+            primitive?.AccessStatus.Update(RwCycleCount, $"{description}: '{exception.Message}' [{firstFailedItemParams}] ");
+        }
 
         switch (ExceptionBehaviour)
         {
@@ -163,13 +177,14 @@ public class WebApiConnector : Connector
         if (primitives == null) return;
         var responseData = new ApiBulkResponse();
 
+        var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+        if (!twinPrimitives.Any()) return;
+        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
+        var request = webApiPrimitives.Select(p => p.PlcReadRequestData).ToList();
+
         try
         {
-            var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-            if (!twinPrimitives.Any()) return;
-            var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
-            responseData = await RequestHandler.ApiBulkAsync(webApiPrimitives.Select(p => p.PlcReadRequestData));
-
+            responseData = await RequestHandler.ApiBulkAsync(request);
             var position = 0;
             webApiPrimitives.ToList()
                 .ForEach(p =>
@@ -178,9 +193,13 @@ public class WebApiConnector : Connector
                     p.AccessStatus.Update(RwCycleCount);
                 });
         }
+        catch (ApiBulkRequestException apiException)
+        {
+            HandleCommFailure(apiException, "Batch read failed.", primitives, apiException.BulkResponse, request);
+        }
         catch (Exception e)
         {
-            HandleCommFailure(e, "Batch read failed.", primitives, responseData);
+            HandleCommFailure(e, "Batch read failed.", primitives, responseData, request);
         }
     }
 
@@ -189,17 +208,23 @@ public class WebApiConnector : Connector
     {
         if (primitives == null) return;
         var responseData = new ApiBulkResponse();
+        var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+        if (!twinPrimitives.Any()) return;
+        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
+        var request = webApiPrimitives.Select(p => p.PlcWriteRequestData).ToList();
 
         try
         {
-            var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-            if (!twinPrimitives.Any()) return;
-            var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
-            responseData = await RequestHandler.ApiBulkAsync(webApiPrimitives.Select(p => p.PlcWriteRequestData));
+           
+            responseData = await RequestHandler.ApiBulkAsync(request);
+        }
+        catch (ApiBulkRequestException apiException)
+        {
+            HandleCommFailure(apiException, "Batch write failed.", primitives, apiException.BulkResponse, request);
         }
         catch (Exception e)
         {
-            HandleCommFailure(e, "Batch write failed.", primitives, responseData);
+            HandleCommFailure(e, "Batch write failed.", primitives, responseData, request);
         }
     }
 
