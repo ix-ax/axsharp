@@ -18,6 +18,39 @@ namespace sampleNamespace
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> OnlineToPlainAsync()
+        {
+            Pocos.sampleNamespace.simple_empty_class_within_namespace plain = new Pocos.sampleNamespace.simple_empty_class_within_namespace();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> OnlineToPlainAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
+        {
+            return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> ShadowToPlainAsync()
+        {
+            Pocos.sampleNamespace.simple_empty_class_within_namespace plain = new Pocos.sampleNamespace.simple_empty_class_within_namespace();
+            return plain;
+        }
+
+        protected async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> ShadowToPlainAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
+        {
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

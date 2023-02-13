@@ -16,6 +16,39 @@ public partial class simple_class : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public async Task<Pocos.simple_class> OnlineToPlainAsync()
+    {
+        Pocos.simple_class plain = new Pocos.simple_class();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.simple_class> OnlineToPlainAsync(Pocos.simple_class plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.simple_class plain)
+    {
+        return await this.WriteAsync();
+    }
+
+    public async Task<Pocos.simple_class> ShadowToPlainAsync()
+    {
+        Pocos.simple_class plain = new Pocos.simple_class();
+        return plain;
+    }
+
+    protected async Task<Pocos.simple_class> ShadowToPlainAsync(Pocos.simple_class plain)
+    {
+        return plain;
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.simple_class plain)
+    {
+        return this.RetrievePrimitives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

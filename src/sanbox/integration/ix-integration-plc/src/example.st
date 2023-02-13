@@ -25,5 +25,12 @@ CLASS example
         ixcomponent_instance: ixcomponent;
         ixcomponent_instance2: MySecondNamespace.ixcomponent;
         ixcomponent_instance3: ThirdNamespace.ixcomponent;
-    END_VAR    
+
+        refIxComponent : REF_TO ixcomponent;
+    END_VAR 
+        
+    METHOD PUBLIC ReferenceToComponent : Int
+        refIxComponent^ := ixcomponent_instance;        
+    END_METHOD
+
 END_CLASS

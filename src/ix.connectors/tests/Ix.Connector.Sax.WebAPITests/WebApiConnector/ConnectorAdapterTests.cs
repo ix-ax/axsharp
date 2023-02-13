@@ -23,7 +23,7 @@ namespace Ix.Connector.S71500.WebAPITests
         [Fact]
         public void should_create_new_instance_of_adapter_with_webapi_factory_via_extension_method()
         {
-            var adapter = ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable("AXTARGET"), 
+            var adapter = ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"), 
                                                             "Everyone", 
                                                             string.Empty, 
                                                             true);
@@ -35,7 +35,7 @@ namespace Ix.Connector.S71500.WebAPITests
         public void should_create_new_instance_of_adapter_with_webapi_factory_via_extension_method_2()
         {
             var adapter = ConnectorAdapterBuilder.Build()
-                .CreateWebApi(Environment.GetEnvironmentVariable("AXTARGET"), 
+                .CreateWebApi(Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"), 
                                 "Everyone", string.Empty, 
                                  ((message, certificate2, arg3, arg4) => true));
 

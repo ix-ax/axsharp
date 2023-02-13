@@ -290,4 +290,12 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
+
+    public abstract void FromOnlineToShadow();
+    public abstract void FromShadowToOnline();
+
+    public void AddToPeriodicQueue()
+    {
+        this.Parent?.GetConnector()?.AddToPeriodicReadSet(this);
+    }
 }

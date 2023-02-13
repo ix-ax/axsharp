@@ -219,8 +219,26 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
                     "this, " +
                     $"\"{field.GetAttributeNameValue(field.Name)}\", " +
                     $"\"{field.Name}\", " +
-                    "(p, rt, st) => new");
-        type.ElementTypeAccess.Type.Accept(visitor, this);
+                    "(p, rt, st) => ");
+
+        switch (type.ElementTypeAccess.Type)
+        {
+            
+            case IClassDeclaration classDeclaration:
+            case IStructuredTypeDeclaration structuredTypeDeclaration:
+            case IEnumTypeDeclaration enumTypeDeclaration:
+            case INamedValueTypeDeclaration namedValueTypeDeclaration:
+                AddToSource("new");
+                type.ElementTypeAccess.Type.Accept(visitor, this);
+                break;
+            case IScalarTypeDeclaration scalarTypeDeclaration:
+                AddToSource($"@Connector.ConnectorAdapter.AdapterFactory.Create{IecToAdapterExtensions.ToAdapterType(scalarTypeDeclaration)}");
+                break;
+            case IStringTypeDeclaration stringTypeDeclaration:
+                AddToSource($"@Connector.ConnectorAdapter.AdapterFactory.Create{IecToAdapterExtensions.ToAdapterType(stringTypeDeclaration)}");
+                break;
+        }
+
         AddToSource("(p, rt, st));");
     }
 

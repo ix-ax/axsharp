@@ -103,6 +103,13 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
                     fieldDeclaration.Type.Accept(visitor, this);
                     AddToSource("();");
                     break;
+                case IArrayTypeDeclaration arrayType:
+                    AddToSource($"= new");
+                    arrayType.ElementTypeAccess.Type.Accept(visitor, this);
+                    AddToSource($"[");
+                    AddToSource(string.Join(",", arrayType.Dimensions.Select(p => p.CountOfElements)));
+                    AddToSource($"];");
+                    break;
             }
         }
     }

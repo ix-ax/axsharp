@@ -18,6 +18,15 @@ namespace Ix.Connector;
 /// </summary>
 public static class TwinObjectExtensions
 {
+
+    public static readonly string OnlineToPlainMethodName = "OnlineToPlainAsync";
+
+    public static readonly string PlainToOnlineMethodName = "PlainToOnlineAsync";
+
+    public static readonly string ShadowToPlainMethodName = "ShadowToPlainAsync";
+
+    public static readonly string PlainToShadowMethodName = "PlainToShadowAsync";
+
     /// <summary>
     ///     Makes <see cref="Ix.Connector.ITwinObject" /> readonly for this application.
     /// </summary>
@@ -230,5 +239,25 @@ public static class TwinObjectExtensions
     {
         var valueTags = obj.RetrievePrimitives();
         foreach (var tag in valueTags) tag.EditValueChange = null;
+    }
+
+    /// <summary>
+    /// Copies the data from Online primitive items (PLC) of an <see cref="ITwinObject"/> to shadow value holders.
+    /// </summary>
+    /// <param name="obj">Twin object to copy.</param>
+    public static async Task OnlineToShadowAsync(this ITwinObject obj)
+    {
+        await obj.ReadAsync();
+        obj.RetrievePrimitives().ToList().ForEach(p => p.FromOnlineToShadow());
+    }
+
+    /// <summary>
+    /// Copies the data from Shadow value holder to online primitive items (PLC) of an <see cref="ITwinObject"/>.
+    /// </summary>
+    /// <param name="obj">Twin object to copy.</param>
+    public static async Task ShadowToOnlineAsync(this ITwinObject obj)
+    {
+        obj.RetrievePrimitives().ToList().ForEach(p => p.FromShadowToOnline());
+        await obj.WriteAsync();
     }
 }

@@ -23,6 +23,45 @@ namespace ClassWithPragmasNamespace
             parent.AddKid(this);
         }
 
+        public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain = new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
+            await this.ReadAsync();
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> OnlineToPlainAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
+            return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> ShadowToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain = new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
+            plain.myComplexType = await myComplexType.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> ShadowToPlainAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            plain.myComplexType = await myComplexType.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            await this.myComplexType.PlainToShadowAsync(plain.myComplexType);
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -95,6 +134,39 @@ namespace ClassWithPragmasNamespace
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ComplexType1 plain = new Pocos.ClassWithPragmasNamespace.ComplexType1();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> OnlineToPlainAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> ShadowToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ComplexType1 plain = new Pocos.ClassWithPragmasNamespace.ComplexType1();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> ShadowToPlainAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

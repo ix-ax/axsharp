@@ -39,8 +39,8 @@ namespace Pocos
         public TimeSpan myLTIME { get; set; } = default(TimeSpan);
         public DateOnly myDATE { get; set; } = default(DateOnly);
         public DateOnly myLDATE { get; set; } = default(DateOnly);
-        public TimeOnly myTIME_OF_DAY { get; set; } = default(TimeOnly);
-        public TimeOnly myLTIME_OF_DAY { get; set; } = default(TimeOnly);
+        public TimeSpan myTIME_OF_DAY { get; set; } = default(TimeSpan);
+        public TimeSpan myLTIME_OF_DAY { get; set; } = default(TimeSpan);
         public DateTime myDATE_AND_TIME { get; set; } = default(DateTime);
         public DateTime myLDATE_AND_TIME { get; set; } = default(DateTime);
         public Char myCHAR { get; set; }
@@ -91,8 +91,8 @@ namespace Pocos
         public TimeSpan myLTIME { get; set; } = default(TimeSpan);
         public DateOnly myDATE { get; set; } = default(DateOnly);
         public DateOnly myLDATE { get; set; } = default(DateOnly);
-        public TimeOnly myTIME_OF_DAY { get; set; } = default(TimeOnly);
-        public TimeOnly myLTIME_OF_DAY { get; set; } = default(TimeOnly);
+        public TimeSpan myTIME_OF_DAY { get; set; } = default(TimeSpan);
+        public TimeSpan myLTIME_OF_DAY { get; set; } = default(TimeSpan);
         public DateTime myDATE_AND_TIME { get; set; } = default(DateTime);
         public DateTime myLDATE_AND_TIME { get; set; } = default(DateTime);
         public Char myCHAR { get; set; }

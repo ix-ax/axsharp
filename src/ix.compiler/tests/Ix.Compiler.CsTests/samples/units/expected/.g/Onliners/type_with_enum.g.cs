@@ -24,8 +24,6 @@ namespace Simatic.Ax.StateFramework
 
     public partial class CompareGuardLint : Ix.Connector.ITwinObject, IGuard
     {
-        public OnlinerLInt Value { get; }
-
         public OnlinerLInt CompareToValue { get; }
 
         [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(Simatic.Ax.StateFramework.Condition))]
@@ -42,6 +40,51 @@ namespace Simatic.Ax.StateFramework
             Condition = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "Condition", "Condition");
             parent.AddChild(this);
             parent.AddKid(this);
+        }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> OnlineToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain = new Pocos.Simatic.Ax.StateFramework.CompareGuardLint();
+            await this.ReadAsync();
+            plain.CompareToValue = CompareToValue.LastValue;
+            plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
+        {
+            plain.CompareToValue = CompareToValue.LastValue;
+            plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.LastValue;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
+        {
+            CompareToValue.Cyclic = plain.CompareToValue;
+            Condition.Cyclic = (short)plain.Condition;
+            return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> ShadowToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain = new Pocos.Simatic.Ax.StateFramework.CompareGuardLint();
+            plain.CompareToValue = CompareToValue.Shadow;
+            plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> ShadowToPlainAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
+        {
+            plain.CompareToValue = CompareToValue.Shadow;
+            plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
+        {
+            CompareToValue.Shadow = plain.CompareToValue;
+            Condition.Shadow = (short)plain.Condition;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

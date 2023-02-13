@@ -80,4 +80,7 @@ public interface ITwinPrimitive : ITwinElement
     ///     Subscribes this item for periodic reading.
     /// </summary>
     void SubscribeForPeriodicReading();
+
+    void FromOnlineToShadow();
+    void FromShadowToOnline();
 }

@@ -47,8 +47,8 @@ internal static class IecToClrConverter
         { "DATE_TIME", typeof(DateTime) },
         { "TIME", typeof(TimeSpan) },
         { "LTIME", typeof(TimeSpan) },
-        { "TIME_OF_DAY", typeof(TimeOnly) },
-        { "LTIME_OF_DAY", typeof(TimeOnly) },
+        { "TIME_OF_DAY", typeof(TimeSpan) },
+        { "LTIME_OF_DAY", typeof(TimeSpan) },
         { "TOD", typeof(TimeSpan) }
     };
 

@@ -15,10 +15,8 @@ namespace Pocos
         public stTest2 instanceOfstTest2 { get; set; } = new stTest2();
         public stTest3 instanceOfstTest3 { get; set; } = new stTest3();
         public stBlazor instanceOfstBlazor { get; set; } = new stBlazor();
-        public stTest[] arr1 { get; set; }
-
-        public Int16[] arr2 { get; set; }
-
+        public stTest[] arr1 { get; set; } = new stTest[3];
+        public Int16[] arr2 { get; set; } = new Int16[6];
         public DateOnly dateVar { get; set; } = default(DateOnly);
         public stComplex instanceOfstComplex { get; set; } = new stComplex();
         public stTestPrimitive instanceOfstPrimitive { get; set; } = new stTestPrimitive();

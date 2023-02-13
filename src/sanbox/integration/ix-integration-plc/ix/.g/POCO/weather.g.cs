@@ -17,6 +17,6 @@ namespace Pocos
 
     public partial class weathers
     {
-        public weatherBase[] i { get; set; }
+        public weatherBase[] i { get; set; } = new weatherBase[51];
     }
 }

@@ -321,5 +321,55 @@ namespace Ix.Connector.Tests
         {
             Assert.Throws<ArgumentNullException>(() => default(ITwinObject).MakeReadOnce());
         }
+
+        [Fact]
+        public static async Task CanCallOnlineToShadowAsync()
+        {
+            // Arrange
+            var connector = new DummyConnector();
+            var obj = Substitute.For<ITwinObject>();
+            var onlinerb = new OnlinerByte();
+            obj.GetValueTags().Returns(new[] { onlinerb });
+            obj.GetConnector().Returns(connector);
+            onlinerb.Cyclic = 155;
+
+
+            // Act
+            await obj.OnlineToShadowAsync();
+
+            // Assert
+            Assert.Equal(155, onlinerb.Shadow);
+        }
+
+        [Fact]
+        public static async Task CannotCallOnlineToShadowAsyncWithNullObj()
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(() => default(ITwinObject).OnlineToShadowAsync());
+        }
+
+        [Fact]
+        public static async Task CanCallShadowToOnlineAsync()
+        {
+            // Arrange
+            var connector = new DummyConnector();
+            var obj = Substitute.For<ITwinObject>();
+            var onlinerb = new OnlinerByte();
+            obj.GetValueTags().Returns(new[] { onlinerb });
+            obj.GetConnector().Returns(connector);
+            onlinerb.Shadow = 180;
+
+
+            // Act
+            await obj.ShadowToOnlineAsync();
+
+            // Assert
+            Assert.Equal(180, onlinerb.Cyclic);
+        }
+
+        [Fact]
+        public static async Task CannotCallShadowToOnlineAsyncWithNullObj()
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(() => default(ITwinObject).ShadowToOnlineAsync());
+        }
     }
 }
