@@ -289,7 +289,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
 
         private (string, Type) GetGenericInfo(Type primitiveKidType)
         {
-            var baseName = primitiveKidType.BaseType.Name;
+            var baseName = primitiveKidType?.BaseType.Name;
 
             if (baseName == "OnlinerBase")
             {
