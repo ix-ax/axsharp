@@ -185,7 +185,7 @@
     private RenderFragment GenerateEnum(EnumeratorDiscriminatorAttribute enumDiscriminatorAttribute, ITwinPrimitive kid) => __builder =>
     {
         string presentationType = GetDisplayPresentationIfEmpty();
-        var enumKidType = kid.GetType();
+        var enumKidType = kid.GetType()?.BaseType ?? kid.GetType();
         var component = ViewEnumLocatorBuilder(enumKidType, presentationType);
         @CreateEnumComponent(enumDiscriminatorAttribute, kid, component)
      };
