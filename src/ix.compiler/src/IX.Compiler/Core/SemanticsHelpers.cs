@@ -29,6 +29,7 @@ public static class SemanticsHelpers
                &&
                (field.Type is IScalarTypeDeclaration ||
                 field.Type is IStringTypeDeclaration ||
+                field.Type is IStructuredTypeDeclaration ||
                 compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == field.Type.FullyQualifiedName));
     }
 
