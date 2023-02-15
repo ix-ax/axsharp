@@ -42,6 +42,25 @@ namespace TypeWithNameAttributes
             return await this.WriteAsync();
         }
 
+        public async Task<Pocos.TypeWithNameAttributes.Motor> ShadowToPlainAsync()
+        {
+            Pocos.TypeWithNameAttributes.Motor plain = new Pocos.TypeWithNameAttributes.Motor();
+            plain.isRunning = isRunning.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypeWithNameAttributes.Motor> ShadowToPlainAsync(Pocos.TypeWithNameAttributes.Motor plain)
+        {
+            plain.isRunning = isRunning.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypeWithNameAttributes.Motor plain)
+        {
+            isRunning.Shadow = plain.isRunning;
+            return this.RetrievePrimitives();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -142,6 +161,28 @@ namespace TypeWithNameAttributes
             await this.m.PlainToOnlineAsync(plain.m);
             displacement.Cyclic = plain.displacement;
             return await this.WriteAsync();
+        }
+
+        public async Task<Pocos.TypeWithNameAttributes.Vehicle> ShadowToPlainAsync()
+        {
+            Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
+            plain.m = await m.ShadowToPlainAsync();
+            plain.displacement = displacement.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.TypeWithNameAttributes.Vehicle> ShadowToPlainAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
+        {
+            plain.m = await m.ShadowToPlainAsync();
+            plain.displacement = displacement.Shadow;
+            return plain;
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
+        {
+            await this.m.PlainToShadowAsync(plain.m);
+            displacement.Shadow = plain.displacement;
+            return this.RetrievePrimitives();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
