@@ -51,6 +51,9 @@
 	  <Compile Include="samples\units\expected\.g\Onliners\makereadonly.g.cs">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Compile>
+	  <Compile Include="samples\units\expected\.g\Onliners\misc.g.cs">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Compile>
 	  <Compile Include="samples\units\expected\.g\POCO\file_with_unsupported.g.cs">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Compile>
@@ -58,6 +61,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Compile>
 	  <Compile Include="samples\units\expected\.g\POCO\makereadonly.g.cs">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Compile>
+	  <Compile Include="samples\units\expected\.g\POCO\misc.g.cs">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Compile>
 	</ItemGroup>
@@ -351,6 +357,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="samples\units\src\makereadonly.st">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="samples\units\src\misc.st">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
