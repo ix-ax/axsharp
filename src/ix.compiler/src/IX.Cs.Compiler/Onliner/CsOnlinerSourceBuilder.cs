@@ -93,9 +93,16 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
 
+        AddPollingMethod();
+
         if (!isExtended) CreateITwinObjectImplementation();
 
         AddToSource("}");
+    }
+
+    private void AddPollingMethod()
+    {
+        AddToSource(" public void Poll()\r\n    {\r\n        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());\r\n    }");
     }
 
     /// <inheritdoc />
@@ -214,7 +221,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
         AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
         AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
-        
+
+        AddPollingMethod();
 
         CreateITwinObjectImplementation();
 

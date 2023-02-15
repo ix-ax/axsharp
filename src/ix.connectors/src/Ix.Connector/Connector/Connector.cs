@@ -6,6 +6,8 @@
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
 using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -88,6 +90,8 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// Gets or sets how the connector should handle communication exceptions.
     /// </summary>
     public CommExceptionBehaviour ExceptionBehaviour { get; set; } = CommExceptionBehaviour.ReThrow;
+
+    public ReadSubscriptionMode SubscriptionMode { get; set; } = ReadSubscriptionMode.AutoSubscribeUsedVariables;
 
     /// <summary>
     ///     Gets or sets error counter of the adapter.
@@ -185,9 +189,11 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// <summary>
     ///     Get
     /// </summary>
-    internal Dictionary<string, ITwinPrimitive> PeriodicReadSet { get; } = new();
+    internal ConcurrentDictionary<string, ITwinPrimitive> NextPeriodicReadSet { get; } = new();
 
-    internal Dictionary<string, ITwinPrimitive> NextCycleWriteSet { get; } = new();
+    internal ConcurrentDictionary<string, ITwinPrimitive> Subscribed { get; } = new();
+
+    internal ConcurrentDictionary<string, ITwinPrimitive> NextCycleWriteSet { get; } = new();
 
     /// <summary>
     ///     Implementation of <see cref="INotifyPropertyChanged" />
@@ -305,9 +311,9 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         NextCycleWriteSet[primitive.Symbol] = primitive;
     }
 
-    internal void AddToPeriodicReadSet(ITwinPrimitive primitive)
+    internal void AddToNextPeriodicReadSet(ITwinPrimitive primitive)
     {
-        PeriodicReadSet[primitive.Symbol] = primitive;
+        NextPeriodicReadSet[primitive.Symbol] = primitive;
     }
 
     /// <summary>
@@ -355,8 +361,15 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// </summary>
     protected async Task CyclicRead()
     {
-        await ReadBatchAsync(PeriodicReadSet.Values
+        var primitivesToRead = new List<ITwinPrimitive>();
+        primitivesToRead.AddRange(NextPeriodicReadSet.Values);
+        primitivesToRead.AddRange(Subscribed.Values);
+        var distinctPrimitivesToRead = primitivesToRead.Distinct();
+        
+        await ReadBatchAsync(distinctPrimitivesToRead
             .Where(p => !(p.ReadOnce && p.AccessStatus.LastAccess != OnlinerBase.DefaultDateTime)));
+
+        this.ClearPeriodicReadSet();
     }
 
     /// <summary>
@@ -375,6 +388,11 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
 
     protected void ClearPeriodicReadSet()
     {
-        PeriodicReadSet.Clear();
+        NextPeriodicReadSet.Clear();
+    }
+
+    internal void Subscribe(ITwinPrimitive primitive)
+    {
+        this.Subscribed[primitive.Symbol] = primitive;
     }
 }

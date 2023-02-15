@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ public class DummyConnector : Connector
                         RwCycleCount++;
                         Thread.Sleep((int)CyclicRwDuration);
                         WriteBatchAsync(NextCycleWriteSet.Values).Wait();
-                        ReadBatchAsync(PeriodicReadSet.Values).Wait();
+                        ReadBatchAsync(NextPeriodicReadSet.Values).Wait();
                     }
                 }
                 // ReSharper disable once FunctionNeverReturns

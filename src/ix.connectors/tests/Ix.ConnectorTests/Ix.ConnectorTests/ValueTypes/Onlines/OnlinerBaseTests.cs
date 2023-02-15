@@ -140,7 +140,7 @@ namespace Ix.Connector.ValueTypes.Tests
             // Act
             testClass.SubscribeForPeriodicReading();
 
-            Assert.True(testClass.PublicParent.GetConnector().PeriodicReadSet.ContainsKey(symbol));
+            Assert.True(testClass.PublicParent.GetConnector().Subscribed.ContainsKey(symbol));
 
         }
 
