@@ -1,0 +1,153 @@
+## YamlMime:ManagedReference
+items:
+- uid: MyConfiguration
+  id: MyConfiguration
+  name: MyConfiguration
+  fullName: MyConfiguration
+  type: Class
+  namespace: MyConfiguration
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example
+  id: example
+  children:
+  - example.primitives_stack
+  - example.primitives_wrap
+  - example.primitives_tabs
+  - example.primitives_uniform
+  - example.test_groupbox
+  - example.test_border
+  - example.testgroupbox
+  - example.testborder
+  - example.ixcomponent_instance
+  - example.ixcomponent_instance2
+  - example.ixcomponent_instance3
+  - example.refIxComponent
+  - example.ReferenceToComponent
+  name: example
+  fullName: example
+  type: Class
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS example
+- uid: example.primitives_stack
+  id: primitives_stack
+  name: primitives_stack
+  fullName: example.primitives_stack
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.primitives_wrap
+  id: primitives_wrap
+  name: primitives_wrap
+  fullName: example.primitives_wrap
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.primitives_tabs
+  id: primitives_tabs
+  name: primitives_tabs
+  fullName: example.primitives_tabs
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.primitives_uniform
+  id: primitives_uniform
+  name: primitives_uniform
+  fullName: example.primitives_uniform
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.test_groupbox
+  id: test_groupbox
+  name: test_groupbox
+  fullName: example.test_groupbox
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.test_border
+  id: test_border
+  name: test_border
+  fullName: example.test_border
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.testgroupbox
+  id: testgroupbox
+  name: testgroupbox
+  fullName: example.testgroupbox
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.testborder
+  id: testborder
+  name: testborder
+  fullName: example.testborder
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.ixcomponent_instance
+  id: ixcomponent_instance
+  name: ixcomponent_instance
+  fullName: example.ixcomponent_instance
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.ixcomponent_instance2
+  id: ixcomponent_instance2
+  name: ixcomponent_instance2
+  fullName: example.ixcomponent_instance2
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.ixcomponent_instance3
+  id: ixcomponent_instance3
+  name: ixcomponent_instance3
+  fullName: example.ixcomponent_instance3
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.refIxComponent
+  id: refIxComponent
+  name: refIxComponent
+  fullName: example.refIxComponent
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: example.ReferenceToComponent
+  id: ReferenceToComponent
+  name: ReferenceToComponent
+  fullName: example.ReferenceToComponent
+  type: Method
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

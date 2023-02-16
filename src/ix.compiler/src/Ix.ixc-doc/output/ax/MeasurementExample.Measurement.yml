@@ -1,0 +1,54 @@
+## YamlMime:ManagedReference
+items:
+- uid: MeasurementExample.Measurement
+  id: Measurement
+  children:
+  - MeasurementExample.Measurement.Min
+  - MeasurementExample.Measurement.Acquired
+  - MeasurementExample.Measurement.Max
+  - MeasurementExample.Measurement.Result
+  name: Measurement
+  fullName: MeasurementExample.Measurement
+  type: Class
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS Measurement
+- uid: MeasurementExample.Measurement.Min
+  id: Min
+  name: Min
+  fullName: MeasurementExample.Measurement.Min
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MeasurementExample.Measurement.Acquired
+  id: Acquired
+  name: Acquired
+  fullName: MeasurementExample.Measurement.Acquired
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MeasurementExample.Measurement.Max
+  id: Max
+  name: Max
+  fullName: MeasurementExample.Measurement.Max
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MeasurementExample.Measurement.Result
+  id: Result
+  name: Result
+  fullName: MeasurementExample.Measurement.Result
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

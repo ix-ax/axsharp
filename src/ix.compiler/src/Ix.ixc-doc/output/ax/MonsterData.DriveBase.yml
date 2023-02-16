@@ -1,0 +1,54 @@
+## YamlMime:ManagedReference
+items:
+- uid: MonsterData.DriveBase
+  id: DriveBase
+  children:
+  - MonsterData.DriveBase.Position
+  - MonsterData.DriveBase.Velo
+  - MonsterData.DriveBase.Acc
+  - MonsterData.DriveBase.Dcc
+  name: DriveBase
+  fullName: MonsterData.DriveBase
+  type: Class
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS DriveBase
+- uid: MonsterData.DriveBase.Position
+  id: Position
+  name: Position
+  fullName: MonsterData.DriveBase.Position
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MonsterData.DriveBase.Velo
+  id: Velo
+  name: Velo
+  fullName: MonsterData.DriveBase.Velo
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MonsterData.DriveBase.Acc
+  id: Acc
+  name: Acc
+  fullName: MonsterData.DriveBase.Acc
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MonsterData.DriveBase.Dcc
+  id: Dcc
+  name: Dcc
+  fullName: MonsterData.DriveBase.Dcc
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

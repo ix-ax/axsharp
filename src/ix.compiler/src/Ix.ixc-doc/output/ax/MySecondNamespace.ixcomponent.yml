@@ -1,0 +1,44 @@
+## YamlMime:ManagedReference
+items:
+- uid: MySecondNamespace.ixcomponent
+  id: ixcomponent
+  children:
+  - MySecondNamespace.ixcomponent.my_int
+  - MySecondNamespace.ixcomponent.my_string
+  - MySecondNamespace.ixcomponent.my_bool
+  name: ixcomponent
+  fullName: MySecondNamespace.ixcomponent
+  type: Class
+  namespace: MySecondNamespace
+  summary: Test class doc
+  syntax:
+    content: CLASS ixcomponent
+- uid: MySecondNamespace.ixcomponent.my_int
+  id: my_int
+  name: my_int
+  fullName: MySecondNamespace.ixcomponent.my_int
+  type: Property
+  namespace: MySecondNamespace
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MySecondNamespace.ixcomponent.my_string
+  id: my_string
+  name: my_string
+  fullName: MySecondNamespace.ixcomponent.my_string
+  type: Property
+  namespace: MySecondNamespace
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MySecondNamespace.ixcomponent.my_bool
+  id: my_bool
+  name: my_bool
+  fullName: MySecondNamespace.ixcomponent.my_bool
+  type: Property
+  namespace: MySecondNamespace
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

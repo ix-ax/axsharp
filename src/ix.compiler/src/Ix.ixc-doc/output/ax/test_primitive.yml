@@ -1,0 +1,134 @@
+## YamlMime:ManagedReference
+items:
+- uid: test_primitive
+  id: test_primitive
+  children:
+  - test_primitive.testInteger
+  - test_primitive.testUInteger
+  - test_primitive.testString
+  - test_primitive.testWord
+  - test_primitive.testByte
+  - test_primitive.testReal
+  - test_primitive.testLReal
+  - test_primitive.testBool
+  - test_primitive.TestDate
+  - test_primitive.TestDateTime
+  - test_primitive.TestTimeOfDay
+  - test_primitive.Status
+  name: test_primitive
+  fullName: test_primitive
+  type: Class
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS test_primitive
+- uid: test_primitive.testInteger
+  id: testInteger
+  name: testInteger
+  fullName: test_primitive.testInteger
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testUInteger
+  id: testUInteger
+  name: testUInteger
+  fullName: test_primitive.testUInteger
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testString
+  id: testString
+  name: testString
+  fullName: test_primitive.testString
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testWord
+  id: testWord
+  name: testWord
+  fullName: test_primitive.testWord
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testByte
+  id: testByte
+  name: testByte
+  fullName: test_primitive.testByte
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testReal
+  id: testReal
+  name: testReal
+  fullName: test_primitive.testReal
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testLReal
+  id: testLReal
+  name: testLReal
+  fullName: test_primitive.testLReal
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.testBool
+  id: testBool
+  name: testBool
+  fullName: test_primitive.testBool
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.TestDate
+  id: TestDate
+  name: TestDate
+  fullName: test_primitive.TestDate
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.TestDateTime
+  id: TestDateTime
+  name: TestDateTime
+  fullName: test_primitive.TestDateTime
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.TestTimeOfDay
+  id: TestTimeOfDay
+  name: TestTimeOfDay
+  fullName: test_primitive.TestTimeOfDay
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: test_primitive.Status
+  id: Status
+  name: Status
+  fullName: test_primitive.Status
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

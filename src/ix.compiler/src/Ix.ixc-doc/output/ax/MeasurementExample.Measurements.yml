@@ -1,0 +1,54 @@
+## YamlMime:ManagedReference
+items:
+- uid: MeasurementExample.Measurements
+  id: Measurements
+  children:
+  - MeasurementExample.Measurements.measurement_stack
+  - MeasurementExample.Measurements.measurement_wrap
+  - MeasurementExample.Measurements.measurement_grid
+  - MeasurementExample.Measurements.measurement_tabs
+  name: Measurements
+  fullName: MeasurementExample.Measurements
+  type: Class
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS Measurements
+- uid: MeasurementExample.Measurements.measurement_stack
+  id: measurement_stack
+  name: measurement_stack
+  fullName: MeasurementExample.Measurements.measurement_stack
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MeasurementExample.Measurements.measurement_wrap
+  id: measurement_wrap
+  name: measurement_wrap
+  fullName: MeasurementExample.Measurements.measurement_wrap
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MeasurementExample.Measurements.measurement_grid
+  id: measurement_grid
+  name: measurement_grid
+  fullName: MeasurementExample.Measurements.measurement_grid
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MeasurementExample.Measurements.measurement_tabs
+  id: measurement_tabs
+  name: measurement_tabs
+  fullName: MeasurementExample.Measurements.measurement_tabs
+  type: Property
+  namespace: MeasurementExample
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

@@ -1,0 +1,234 @@
+## YamlMime:ManagedReference
+items:
+- uid: all_primitives
+  id: all_primitives
+  children:
+  - all_primitives.myBOOL
+  - all_primitives.myBYTE
+  - all_primitives.myWORD
+  - all_primitives.myDWORD
+  - all_primitives.myLWORD
+  - all_primitives.mySINT
+  - all_primitives.myINT
+  - all_primitives.myDINT
+  - all_primitives.myLINT
+  - all_primitives.myUSINT
+  - all_primitives.myUINT
+  - all_primitives.myUDINT
+  - all_primitives.myULINT
+  - all_primitives.myREAL
+  - all_primitives.myLREAL
+  - all_primitives.myTIME
+  - all_primitives.myLTIME
+  - all_primitives.myDATE
+  - all_primitives.myTIME_OF_DAY
+  - all_primitives.myDATE_AND_TIME
+  - all_primitives.mySTRING
+  - all_primitives.myWSTRING
+  name: all_primitives
+  fullName: all_primitives
+  type: Class
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS all_primitives
+- uid: all_primitives.myBOOL
+  id: myBOOL
+  name: myBOOL
+  fullName: all_primitives.myBOOL
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myBYTE
+  id: myBYTE
+  name: myBYTE
+  fullName: all_primitives.myBYTE
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myWORD
+  id: myWORD
+  name: myWORD
+  fullName: all_primitives.myWORD
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myDWORD
+  id: myDWORD
+  name: myDWORD
+  fullName: all_primitives.myDWORD
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myLWORD
+  id: myLWORD
+  name: myLWORD
+  fullName: all_primitives.myLWORD
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.mySINT
+  id: mySINT
+  name: mySINT
+  fullName: all_primitives.mySINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myINT
+  id: myINT
+  name: myINT
+  fullName: all_primitives.myINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myDINT
+  id: myDINT
+  name: myDINT
+  fullName: all_primitives.myDINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myLINT
+  id: myLINT
+  name: myLINT
+  fullName: all_primitives.myLINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myUSINT
+  id: myUSINT
+  name: myUSINT
+  fullName: all_primitives.myUSINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myUINT
+  id: myUINT
+  name: myUINT
+  fullName: all_primitives.myUINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myUDINT
+  id: myUDINT
+  name: myUDINT
+  fullName: all_primitives.myUDINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myULINT
+  id: myULINT
+  name: myULINT
+  fullName: all_primitives.myULINT
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myREAL
+  id: myREAL
+  name: myREAL
+  fullName: all_primitives.myREAL
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myLREAL
+  id: myLREAL
+  name: myLREAL
+  fullName: all_primitives.myLREAL
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myTIME
+  id: myTIME
+  name: myTIME
+  fullName: all_primitives.myTIME
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myLTIME
+  id: myLTIME
+  name: myLTIME
+  fullName: all_primitives.myLTIME
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myDATE
+  id: myDATE
+  name: myDATE
+  fullName: all_primitives.myDATE
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myTIME_OF_DAY
+  id: myTIME_OF_DAY
+  name: myTIME_OF_DAY
+  fullName: all_primitives.myTIME_OF_DAY
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myDATE_AND_TIME
+  id: myDATE_AND_TIME
+  name: myDATE_AND_TIME
+  fullName: all_primitives.myDATE_AND_TIME
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.mySTRING
+  id: mySTRING
+  name: mySTRING
+  fullName: all_primitives.mySTRING
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: all_primitives.myWSTRING
+  id: myWSTRING
+  name: myWSTRING
+  fullName: all_primitives.myWSTRING
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

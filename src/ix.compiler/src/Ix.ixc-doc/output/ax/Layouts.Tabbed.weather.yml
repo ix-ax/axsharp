@@ -1,0 +1,15 @@
+## YamlMime:ManagedReference
+items:
+- uid: Layouts.Tabbed.weather
+  id: weather
+  parent: weatherBase
+  children: []
+  name: weather
+  fullName: Layouts.Tabbed.weather
+  type: Class
+  namespace: Tabbed
+  summary: Test class doc
+  syntax:
+    content: CLASS weather
+
+

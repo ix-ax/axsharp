@@ -1,0 +1,44 @@
+## YamlMime:ManagedReference
+items:
+- uid: MonsterData.MonsterBase
+  id: MonsterBase
+  children:
+  - MonsterData.MonsterBase.ArrayOfBytes
+  - MonsterData.MonsterBase.ArrayOfDrives
+  - MonsterData.MonsterBase.ArrayOfIxComponent
+  name: MonsterBase
+  fullName: MonsterData.MonsterBase
+  type: Class
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MonsterBase
+- uid: MonsterData.MonsterBase.ArrayOfBytes
+  id: ArrayOfBytes
+  name: ArrayOfBytes
+  fullName: MonsterData.MonsterBase.ArrayOfBytes
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MonsterData.MonsterBase.ArrayOfDrives
+  id: ArrayOfDrives
+  name: ArrayOfDrives
+  fullName: MonsterData.MonsterBase.ArrayOfDrives
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: MonsterData.MonsterBase.ArrayOfIxComponent
+  id: ArrayOfIxComponent
+  name: ArrayOfIxComponent
+  fullName: MonsterData.MonsterBase.ArrayOfIxComponent
+  type: Property
+  namespace: MonsterData
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

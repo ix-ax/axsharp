@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "ixc-doc": {
+      "commandName": "Project",
+      "commandLineArgs": "ixc-doc --file Samples/MyTestClass.st"
+    },
+    "ixc-doc-2": {
+      "commandName": "Project",
+      "commandLineArgs": "ixc-doc" 
+    }
+
+  }
+}

@@ -1,0 +1,83 @@
+## YamlMime:ManagedReference
+items:
+- uid: MyProgram
+  id: MyProgram
+  name: MyProgram
+  fullName: MyProgram
+  type: Class
+  namespace: MyProgram
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weather
+  id: weather
+  children:
+  - weather.GeoLocation
+  - weather.Temperature
+  - weather.Humidity
+  - weather.Location
+  - weather.ChillFactor
+  - weather.Feeling
+  name: weather
+  fullName: weather
+  type: Class
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS weather
+- uid: weather.GeoLocation
+  id: GeoLocation
+  name: GeoLocation
+  fullName: weather.GeoLocation
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weather.Temperature
+  id: Temperature
+  name: Temperature
+  fullName: weather.Temperature
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weather.Humidity
+  id: Humidity
+  name: Humidity
+  fullName: weather.Humidity
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weather.Location
+  id: Location
+  name: Location
+  fullName: weather.Location
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weather.ChillFactor
+  id: ChillFactor
+  name: ChillFactor
+  fullName: weather.ChillFactor
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weather.Feeling
+  id: Feeling
+  name: Feeling
+  fullName: weather.Feeling
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+

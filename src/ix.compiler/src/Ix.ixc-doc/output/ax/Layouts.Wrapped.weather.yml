@@ -1,0 +1,15 @@
+## YamlMime:ManagedReference
+items:
+- uid: Layouts.Wrapped.weather
+  id: weather
+  parent: weatherBase
+  children: []
+  name: weather
+  fullName: Layouts.Wrapped.weather
+  type: Class
+  namespace: Wrapped
+  summary: Test class doc
+  syntax:
+    content: CLASS weather
+
+

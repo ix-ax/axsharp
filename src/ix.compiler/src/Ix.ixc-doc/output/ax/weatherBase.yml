@@ -1,0 +1,124 @@
+## YamlMime:ManagedReference
+items:
+- uid: weatherBase
+  id: weatherBase
+  children:
+  - weatherBase.Latitude
+  - weatherBase.Longitude
+  - weatherBase.Altitude
+  - weatherBase.Description
+  - weatherBase.LongDescription
+  - weatherBase.StartCounter
+  - weatherBase.RenderIgnoreAllToghether
+  - weatherBase.RenderIgnoreWhenControl
+  - weatherBase.RenderIgnoreWhenDisplay
+  - weatherBase.RenderIgnoreWhenControlAndShadow
+  - weatherBase.RenderIgnoreWhenDisplayAndShadow
+  name: weatherBase
+  fullName: weatherBase
+  type: Class
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS weatherBase
+- uid: weatherBase.Latitude
+  id: Latitude
+  name: Latitude
+  fullName: weatherBase.Latitude
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.Longitude
+  id: Longitude
+  name: Longitude
+  fullName: weatherBase.Longitude
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.Altitude
+  id: Altitude
+  name: Altitude
+  fullName: weatherBase.Altitude
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.Description
+  id: Description
+  name: Description
+  fullName: weatherBase.Description
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.LongDescription
+  id: LongDescription
+  name: LongDescription
+  fullName: weatherBase.LongDescription
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.StartCounter
+  id: StartCounter
+  name: StartCounter
+  fullName: weatherBase.StartCounter
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.RenderIgnoreAllToghether
+  id: RenderIgnoreAllToghether
+  name: RenderIgnoreAllToghether
+  fullName: weatherBase.RenderIgnoreAllToghether
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.RenderIgnoreWhenControl
+  id: RenderIgnoreWhenControl
+  name: RenderIgnoreWhenControl
+  fullName: weatherBase.RenderIgnoreWhenControl
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.RenderIgnoreWhenDisplay
+  id: RenderIgnoreWhenDisplay
+  name: RenderIgnoreWhenDisplay
+  fullName: weatherBase.RenderIgnoreWhenDisplay
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.RenderIgnoreWhenControlAndShadow
+  id: RenderIgnoreWhenControlAndShadow
+  name: RenderIgnoreWhenControlAndShadow
+  fullName: weatherBase.RenderIgnoreWhenControlAndShadow
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+- uid: weatherBase.RenderIgnoreWhenDisplayAndShadow
+  id: RenderIgnoreWhenDisplayAndShadow
+  name: RenderIgnoreWhenDisplayAndShadow
+  fullName: weatherBase.RenderIgnoreWhenDisplayAndShadow
+  type: Property
+  namespace: $GLOBAL
+  summary: Test class doc
+  syntax:
+    content: CLASS MyTestClass
+
+
