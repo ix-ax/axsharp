@@ -1,12 +1,14 @@
 # PresentationProvider.Create method
 
 ```csharp
-public static PresentationProvider Create(ILayoutProvider layoutProvider)
+public static PresentationProvider Create(ILayoutProvider layoutProvider, 
+    IGroupLayoutProvider groupLayoutProvider)
 ```
 
 ## See Also
 
 * interface [ILayoutProvider](../ILayoutProvider.md)
+* interface [IGroupLayoutProvider](../IGroupLayoutProvider.md)
 * class [PresentationProvider](../PresentationProvider.md)
 * namespace [Ix.Abstractions.Presentation](../../Ix.Abstractions.md)
 

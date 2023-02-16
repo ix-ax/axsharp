@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using Ix.Connector.ValueTypes;
 
 namespace Ix.Connector;
@@ -259,5 +260,26 @@ public static class TwinObjectExtensions
     {
         obj.RetrievePrimitives().ToList().ForEach(p => p.FromShadowToOnline());
         await obj.WriteAsync();
+    }
+
+    /// <summary>
+    /// Starts polling data from a <see cref="ITwinElement"/> at given interval.
+    /// </summary>
+    /// <param name="obj">Object to be polled.</param>
+    /// <param name="interval">Polling interval in ms.</param>
+    public static void StartPolling(this ITwinElement obj, int interval)
+    {
+        Polling.Add(obj, interval);
+    }
+
+    /// <summary>
+    /// Stop polling data from a <see cref="ITwinElement"/>.
+    /// Polling mechanism checks whether there is another polling instance active for the given object.
+    /// If there is any remaining instance active the polling will continue until the last instance is stopped.
+    /// </summary>
+    /// <param name="obj">Object for which the polling should be stopped.</param>
+    public static void StopPolling(this ITwinObject obj)
+    {
+        Polling.Remove(obj);
     }
 }

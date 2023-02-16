@@ -58,6 +58,11 @@ public partial class Motor : Ix.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
@@ -180,6 +185,11 @@ public partial class Vehicle : Ix.Connector.ITwinObject
         await this.m.PlainToShadowAsync(plain.m);
         displacement.Shadow = plain.displacement;
         return this.RetrievePrimitives();
+    }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

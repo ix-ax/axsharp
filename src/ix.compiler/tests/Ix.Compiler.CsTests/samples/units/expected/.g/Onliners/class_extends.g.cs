@@ -48,6 +48,11 @@ public partial class Extended : Extendee
         await base.PlainToShadowAsync(plain);
         return this.RetrievePrimitives();
     }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
 }
 
 public partial class Extendee : Ix.Connector.ITwinObject
@@ -94,6 +99,11 @@ public partial class Extendee : Ix.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Extendee plain)
     {
         return this.RetrievePrimitives();
+    }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

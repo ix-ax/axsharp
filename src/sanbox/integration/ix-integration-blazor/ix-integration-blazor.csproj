@@ -7,6 +7,10 @@
     <RootNamespace>ix_integration_blazor</RootNamespace>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="System.Interactive" Version="6.0.1" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\ix.blazor\src\Ix.Presentation.Blazor.Controls\Ix.Presentation.Blazor.Controls.csproj" />
     <ProjectReference Include="..\..\..\ix.blazor\src\Ix.Presentation.Blazor\Ix.Presentation.Blazor.csproj" />

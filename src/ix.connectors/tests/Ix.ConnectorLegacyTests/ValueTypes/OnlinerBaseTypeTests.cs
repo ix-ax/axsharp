@@ -74,7 +74,7 @@ namespace Ix.Connector.Onliners.Tests
         
 
         [Test()]
-        public void SubscribeTest()
+        public void SubscribeWithHandlerTest()
         {
             //-- Arrange
 
@@ -84,6 +84,16 @@ namespace Ix.Connector.Onliners.Tests
 
             //-- Assert
             Assert.AreEqual(1, Onliner.GetValueChangeEventSubscribers().Count());
+        }
+
+        [Test()]
+        public void SubscribeTest()
+        {
+            //-- Act Subscribe
+            Onliner.Subscribe();
+
+            //-- Assert
+            Assert.True(Onliner.IsSubscribed);
         }
 
         [Test()]

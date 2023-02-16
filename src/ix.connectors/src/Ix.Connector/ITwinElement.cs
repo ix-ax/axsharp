@@ -40,4 +40,9 @@ public interface ITwinElement
     /// </summary>
     /// <returns></returns>
     string GetSymbolTail();
+
+    /// <summary>
+    /// Add this element for polling the in the next connector read cycle.
+    /// </summary>
+    void Poll();
 }

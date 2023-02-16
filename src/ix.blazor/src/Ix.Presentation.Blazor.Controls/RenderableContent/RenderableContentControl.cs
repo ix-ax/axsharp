@@ -43,6 +43,13 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter]
         public string Class { get; set; }
+
+        /// <summary>
+        /// Gets or sets polling interval for PLC variables of this controls context in ms.
+        /// </summary>
+        [Parameter]
+        public int PollingInterval { get; set; } = 250;
+
         [Inject]
         public ComponentService ComponentService { get; set; }
         [Inject]
@@ -60,6 +67,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             try
             {
                 _context = (ITwinElement)Context;
+                (Context as ITwinObject).StartPolling(PollingInterval);
             }
             catch 
             {
@@ -341,6 +349,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         }
         public void Dispose()
         {
+            (this.Context as ITwinObject)?.StopPolling();
             _viewModelCache.ResetCounter();
         }
     }

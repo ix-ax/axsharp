@@ -10,6 +10,7 @@ public class PresentationProvider
 | --- | --- |
 | static [Get](PresentationProvider/Get.md) { get; } |  |
 | static [Create](PresentationProvider/Create.md)(…) |  |
+| [GroupLayoutProvider](PresentationProvider/GroupLayoutProvider.md) { get; } |  |
 | [LayoutProvider](PresentationProvider/LayoutProvider.md) { get; } |  |
 
 ## See Also

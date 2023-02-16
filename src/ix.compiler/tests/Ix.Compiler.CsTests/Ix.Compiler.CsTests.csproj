@@ -42,30 +42,195 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Include="samples\units\expected\.g\Onliners\file_with_unsupported.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\Onliners\makereadonce.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\Onliners\makereadonly.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\Onliners\misc.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\POCO\file_with_unsupported.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\POCO\makereadonce.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\POCO\makereadonly.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
-	  <Compile Include="samples\units\expected\.g\POCO\misc.g.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Compile>
+	  <None Include="samples\units\expected\.g\Onliners\class_with_using_directives.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="samples\units\expected\.g\Onliners\array_declaration.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_all_primitives.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_extended_by_known_type.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_extends.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_extends_and_implements.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_implements.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_implements_multiple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_internal.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_no_access_modifier.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_with_complex_members.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_with_non_public_members.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_with_pragmas.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\class_with_primitive_members.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\configuration.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\enum_simple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\file_with_unsupported.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\file_with_usings.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\makereadonce.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\makereadonly.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\misc.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\program.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\ref_to_simple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\simple_empty_class.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\simple_empty_class_within_namespace.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\struct_simple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\types_with_name_attributes.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\types_with_property_attributes.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\type_named_values.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\type_named_values_literals.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\Onliners\type_with_enum.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\array_declaration.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_all_primitives.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_extended_by_known_type.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_extends.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_extends_and_implements.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_implements.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_implements_multiple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_internal.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_no_access_modifier.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_with_complex_members.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_with_non_public_members.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_with_pragmas.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_with_primitive_members.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\class_with_using_directives.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\configuration.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\enum_simple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\file_with_unsupported.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\file_with_usings.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\makereadonce.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\makereadonly.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\misc.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\program.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\ref_to_simple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\simple_empty_class.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\simple_empty_class_within_namespace.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\struct_simple.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\types_with_name_attributes.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\types_with_property_attributes.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\type_named_values.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\type_named_values_literals.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="samples\units\expected\.g\POCO\type_with_enum.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,168 +238,6 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="samples\units\apax.yml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\array_declaration.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_all_primitives.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_extended_by_known_type.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_extends.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_extends_and_implements.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_implements.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_implements_multiple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_internal.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_no_access_modifier.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_with_complex_members.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_with_non_public_members.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_with_pragmas.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_with_primitive_members.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\class_with_using_directives.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\configuration.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\enum_simple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\file_with_usings.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\program.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\ref_to_simple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\simple_empty_class.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\simple_empty_class_within_namespace.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\struct_simple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\types_with_name_attributes.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\types_with_property_attributes.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\type_named_values.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\type_named_values_literals.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\Onliners\type_with_enum.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\array_declaration.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_all_primitives.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_extended_by_known_type.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_extends.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_extends_and_implements.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_implements.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_implements_multiple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_internal.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_no_access_modifier.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_with_complex_members.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_with_non_public_members.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_with_pragmas.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_with_primitive_members.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\class_with_using_directives.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\configuration.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\enum_simple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\file_with_usings.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\program.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\ref_to_simple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\simple_empty_class.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\simple_empty_class_within_namespace.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\struct_simple.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\types_with_name_attributes.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\types_with_property_attributes.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\type_named_values.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\type_named_values_literals.g.cs">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="samples\units\expected\.g\POCO\type_with_enum.g.cs">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="samples\units\src\array_declaration.st">
@@ -337,6 +340,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\ix.abstractions\src\Ix.Abstractions\Ix.Abstractions.csproj" />
 		<ProjectReference Include="..\..\src\IX.Cs.Compiler\Ix.Compiler.Cs.csproj" />
 	</ItemGroup>
 

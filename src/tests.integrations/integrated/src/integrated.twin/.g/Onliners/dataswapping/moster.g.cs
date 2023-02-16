@@ -93,6 +93,11 @@ namespace MonsterData
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -208,6 +213,11 @@ namespace MonsterData
             await this.DriveA.PlainToShadowAsync(plain.DriveA);
             return this.RetrievePrimitives();
         }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
     }
 
     public partial class DriveBase : Ix.Connector.ITwinObject
@@ -290,6 +300,11 @@ namespace MonsterData
             Acc.Shadow = plain.Acc;
             Dcc.Shadow = plain.Dcc;
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

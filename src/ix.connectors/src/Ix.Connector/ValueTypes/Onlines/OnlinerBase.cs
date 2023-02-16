@@ -100,7 +100,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     /// <inheritdoc />
     public void SubscribeForPeriodicReading()
     {
-        this.Parent?.GetConnector()?.AddToPeriodicReadSet(this);
+        this.Parent?.GetConnector()?.Subscribe(this);
     }
 
 
@@ -179,6 +179,15 @@ public abstract class OnlinerBase : ITwinPrimitive
     }
 
     /// <summary>
+    /// Add this primitive to next periodic read queue.
+    /// </summary>
+    public void Poll()
+    {
+        this.Parent.GetConnector().AddToNextPeriodicReadSet(this);
+    }
+
+
+    /// <summary>
     ///     Subscribes this tag for cyclical reading and invokes <see cref="ValueChangedEventHandlerDelegate" /> when the value
     ///     changes.
     /// </summary>
@@ -187,6 +196,14 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         SubscribeForPeriodicReading();
         ValueChangeEvent += handler;
+    }
+
+    /// <summary>
+    /// Subscribes for periodic reading of this variable.
+    /// </summary>
+    public void Subscribe()
+    {
+        SubscribeForPeriodicReading();
     }
 
 
@@ -296,6 +313,6 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     public void AddToPeriodicQueue()
     {
-        this.Parent?.GetConnector()?.AddToPeriodicReadSet(this);
+        this.Parent?.GetConnector()?.AddToNextPeriodicReadSet(this);
     }
 }

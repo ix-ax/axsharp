@@ -177,6 +177,17 @@ Then renderer binds variables to `Cyclic` or `Edit` property of an Onliner. When
 
 ![alt text](assets/edit-property.gif "Edit property")
 
+### Renderable content control Polling 
+
+When the twin connector is in polling mode, `RenderableContentControl` will take the parameter `PollingInterval` into consideration. The polling will start automatically when the content is rendered and will unsubscribe when it is disposed.
+
+[More about polling here](../connectors/README.md#polling)
+
+**Example**
+```XML
+<RenderableContentControl Context="@Entry.Plc.measurements" Presentation="Display" PollingInterval="1000"/>
+```
+
 <div id='id-layouts'/>
 
 ### **Layouts**

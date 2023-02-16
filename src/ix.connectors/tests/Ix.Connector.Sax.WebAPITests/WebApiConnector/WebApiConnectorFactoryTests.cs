@@ -43,6 +43,11 @@ namespace Ix.Connector.S71500.WebAPITests
                 throw new NotImplementedException();
             }
 
+            public void Poll()
+            {
+                throw new NotImplementedException();
+            }
+
             public IEnumerable<ITwinObject> GetChildren()
             {
                 throw new NotImplementedException();

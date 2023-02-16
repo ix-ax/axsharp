@@ -152,6 +152,11 @@ namespace Ix.Connector.Tests
             throw new NotImplementedException();
         }
 
+        public void Poll()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ITwinPrimitive> GetValueTags()
         {
             throw new NotImplementedException();
@@ -217,6 +222,11 @@ namespace Ix.Connector.Tests
             throw new NotImplementedException();
         }
 
+        public void Poll()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ITwinPrimitive> GetValueTags()
         {
             throw new NotImplementedException();
@@ -261,6 +271,11 @@ namespace Ix.Connector.Tests
         }
 
         public string GetSymbolTail()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Poll()
         {
             throw new NotImplementedException();
         }

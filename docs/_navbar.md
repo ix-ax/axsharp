@@ -1,9 +1,18 @@
-* # About
-  * [Introduction](/articles/conceptual/Conceptual.md)
-  * [Getting started](/README.md#getting-started)
-  * ---
-  * [Compiler](/articles/compiler/README.md)
-  * [Blazor rendering](/articles/blazor/README.md)
+* [Introduction](/articles/conceptual/Conceptual.md)
+* [Getting started](/README.md#getting-started)
+* ---
+* [Compiler](/articles/compiler/README.md)
+    * [Attributes](/articles/compiler/ATTRIBUTES.md)
+    * [Added members](/articles/compiler/ADDED_MEMBERS.md)
+    * [Config file](/articles/compiler/CONFIG_FILE.md)
+    
+* ---
+* [Connectors](/articles/connectors/README.md)
+* ---
+* [Blazor rendering](/articles/blazor/README.md)
+    * [Blazor layouts](/articles/blazor/LAYOUTS.md)
+    * [Blazor controls](/articles/blazor/LIBRARIES.md)
+* ---
 * # API
   * [Connector API](/api/Ix.Connector/Ix.Connector.md)
   * [Connector.S71500 API](/api/Ix.Connector.S71500.WebAPI/Ix.Connector.S71500.WebAPI.md)
