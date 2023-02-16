@@ -222,6 +222,10 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
         AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
 
+        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+
         AddPollingMethod();
 
         CreateITwinObjectImplementation();
