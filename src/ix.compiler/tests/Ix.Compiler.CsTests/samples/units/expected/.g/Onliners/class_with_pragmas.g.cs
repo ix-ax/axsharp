@@ -62,6 +62,11 @@ namespace ClassWithPragmasNamespace
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -167,6 +172,11 @@ namespace ClassWithPragmasNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
         {
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

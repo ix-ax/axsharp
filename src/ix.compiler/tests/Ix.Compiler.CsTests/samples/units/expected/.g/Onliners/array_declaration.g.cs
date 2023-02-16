@@ -75,6 +75,11 @@ namespace ArrayDeclarationSimpleNamespace
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -180,6 +185,11 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
         {
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

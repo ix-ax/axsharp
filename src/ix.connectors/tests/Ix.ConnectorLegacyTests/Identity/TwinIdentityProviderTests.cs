@@ -206,6 +206,11 @@ namespace Ix.Connector.Identity.Tests
             return string.Empty;
         }
 
+        public void Poll()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddKid(ITwinElement kid)
         {
             throw new NotImplementedException();
@@ -280,6 +285,11 @@ namespace Ix.Connector.Identity.Tests
         public string GetSymbolTail()
         {
             return this.SymbolTail;
+        }
+
+        public void Poll()
+        {
+            throw new NotImplementedException();
         }
 
         public void AddKid(ITwinElement kid)

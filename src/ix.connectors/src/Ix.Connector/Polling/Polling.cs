@@ -19,7 +19,7 @@ namespace Ix.Connector
             {
                 while (KeepPolling)
                 {
-                    twinObject.Poll();
+                    twinObject?.Poll();
                     Task.Delay(Interval).Wait();
                 }
             });
@@ -27,6 +27,7 @@ namespace Ix.Connector
 
         public static void Add(ITwinElement obj, int interval)
         {
+            if (obj == null) return;
             // Object itself is being polled already.
             var po = pollings.FirstOrDefault(p => p.TwinObject == obj);
             if (po != null) po.Interval = interval < po.Interval ? interval : po.Interval;

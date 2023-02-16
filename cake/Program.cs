@@ -1,3 +1,4 @@
+
 // Build
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
 // Contributors: https://github.com/ix-ax/ix/graphs/contributors
@@ -116,7 +117,8 @@ public sealed class BuildTask : FrostingTask<BuildContext>
             Path.Combine(context.RootDir, "ix.blazor\\tests\\sandbox\\ax-blazor-example\\"),
             Path.Combine(context.RootDir, "sanbox\\integration\\ix-integration-plc\\"),
             Path.Combine(context.RootDir, "ix.examples\\hello.world.console\\hello.world.console.plc"),
-            Path.Combine(context.RootDir, "ix.connectors\\tests\\ax-test-project\\")
+            Path.Combine(context.RootDir, "ix.connectors\\tests\\ax-test-project\\"),
+            Path.Combine(context.RootDir, "tests.integrations\\integrated\\src\\ax\\")
         };
 
 

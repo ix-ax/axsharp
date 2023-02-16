@@ -120,6 +120,11 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -235,6 +240,11 @@ namespace RealMonsterData
             await this.DriveA.PlainToShadowAsync(plain.DriveA);
             return this.RetrievePrimitives();
         }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
     }
 
     public partial class DriveBaseNested : Ix.Connector.ITwinObject
@@ -326,6 +336,11 @@ namespace RealMonsterData
             Dcc.Shadow = plain.Dcc;
             await this.NestedLevelOne.PlainToShadowAsync(plain.NestedLevelOne);
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -480,6 +495,11 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -632,6 +652,11 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -773,6 +798,11 @@ namespace RealMonsterData
             Acc.Shadow = plain.Acc;
             Dcc.Shadow = plain.Dcc;
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
