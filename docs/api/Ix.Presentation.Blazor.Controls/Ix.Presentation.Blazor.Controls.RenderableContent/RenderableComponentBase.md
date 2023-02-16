@@ -12,7 +12,6 @@ public class RenderableComponentBase : ComponentBase, IRenderableComponent
 | --- | --- |
 | [RenderableComponentBase](RenderableComponentBase/RenderableComponentBase.md)() | The default constructor. |
 | [HasFocus](RenderableComponentBase/HasFocus.md) { get; set; } |  |
-| [CssSymbol](RenderableComponentBase/CssSymbol.md)(…) |  |
 | [UpdateShadowValuesOnChange](RenderableComponentBase/UpdateShadowValuesOnChange.md)(…) | Method, which updates are primitive shadow values of ITwinObject ITwinObject instance. (2 methods) |
 | [UpdateValuesOnChange](RenderableComponentBase/UpdateValuesOnChange.md)(…) | Method, which updates are primitive values of ITwinObject instance ITwinObject instance. (2 methods) |
 | [UpdateValuesOnChangeOutFocus](RenderableComponentBase/UpdateValuesOnChangeOutFocus.md)(…) | Method, which updates primitive value only, when element is out of focus. Public property IsFocus can be set. If is true, element won't be updated. IValueTag instance. |

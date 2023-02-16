@@ -1,7 +1,7 @@
 # WebApiLDate.Read method
 
 ```csharp
-public void Read(string result)
+public void Read(string value)
 ```
 
 ## See Also

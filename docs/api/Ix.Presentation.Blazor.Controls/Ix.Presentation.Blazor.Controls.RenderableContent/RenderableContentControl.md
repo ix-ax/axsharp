@@ -16,6 +16,7 @@ public class RenderableContentControl : ComponentBase, IDisposable
 | [ComponentService](RenderableContentControl/ComponentService.md) { get; set; } |  |
 | [Context](RenderableContentControl/Context.md) { get; set; } | Parameter Context accept ITwinElement instance, which is used as base model for UI generation. |
 | [MainLayoutType](RenderableContentControl/MainLayoutType.md) { get; set; } |  |
+| [PollingInterval](RenderableContentControl/PollingInterval.md) { get; set; } | Gets or sets polling interval for PLC variables of this controls context in ms. |
 | [Presentation](RenderableContentControl/Presentation.md) { get; set; } | Parameter Presentation specify mode, in which view UI is generated. Type PresentationType is used. |
 | [Dispose](RenderableContentControl/Dispose.md)() |  |
 

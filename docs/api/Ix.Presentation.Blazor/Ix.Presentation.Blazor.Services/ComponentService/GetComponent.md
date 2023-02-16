@@ -1,6 +1,6 @@
 # ComponentService.GetComponent method
 
-Method to get instance dynamically of blazor component. Name of the component.
+Method to get dynamically instance of blazor component. Full name of the component.
 
 ```csharp
 public IRenderableComponent GetComponent(string fullName)

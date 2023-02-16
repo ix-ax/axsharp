@@ -3,12 +3,12 @@
 Initializes a new instance of the [`ContainerAttribute`](../ContainerAttribute.md) class.
 
 ```csharp
-public GroupAttribute(Layout layoutType)
+public GroupAttribute(GroupLayout layoutType)
 ```
 
 ## See Also
 
-* enum [Layout](../Layout.md)
+* enum [GroupLayout](../GroupLayout.md)
 * class [GroupAttribute](../GroupAttribute.md)
 * namespace [global](../../Ix.Abstractions.md)
 
@@ -17,12 +17,12 @@ public GroupAttribute(Layout layoutType)
 # GroupAttribute constructor (2 of 4)
 
 ```csharp
-public GroupAttribute(Layout layoutType, object parentHeader)
+public GroupAttribute(GroupLayout layoutType, object parentHeader)
 ```
 
 ## See Also
 
-* enum [Layout](../Layout.md)
+* enum [GroupLayout](../GroupLayout.md)
 * class [GroupAttribute](../GroupAttribute.md)
 * namespace [global](../../Ix.Abstractions.md)
 

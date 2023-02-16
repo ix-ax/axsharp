@@ -6,6 +6,7 @@
 | --- | --- |
 | class [ContainerAttribute](./global/ContainerAttribute.md) | Provides description of the container that shall contain the controls for data items. |
 | class [GroupAttribute](./global/GroupAttribute.md) |  |
+| enum [GroupLayout](./global/GroupLayout.md) |  |
 | enum [Layout](./global/Layout.md) |  |
 | class [RenderAuthorizedAttribute](./global/RenderAuthorizedAttribute.md) |  |
 | class [RenderIgnoreAttribute](./global/RenderIgnoreAttribute.md) |  |
@@ -15,7 +16,9 @@
 
 | public type | description |
 | --- | --- |
+| class [EmptyGroupProvider](./Ix.Abstractions.Presentation/EmptyGroupProvider.md) |  |
 | class [EmptyPresentationProvider](./Ix.Abstractions.Presentation/EmptyPresentationProvider.md) |  |
+| interface [IGroupLayoutProvider](./Ix.Abstractions.Presentation/IGroupLayoutProvider.md) |  |
 | interface [ILayoutProvider](./Ix.Abstractions.Presentation/ILayoutProvider.md) |  |
 | class [PresentationProvider](./Ix.Abstractions.Presentation/PresentationProvider.md) |  |
 | class [PresentationProviderNotAssignedException](./Ix.Abstractions.Presentation/PresentationProviderNotAssignedException.md) |  |
