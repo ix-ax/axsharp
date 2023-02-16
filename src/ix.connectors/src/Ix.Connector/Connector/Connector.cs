@@ -91,6 +91,9 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// </summary>
     public CommExceptionBehaviour ExceptionBehaviour { get; set; } = CommExceptionBehaviour.ReThrow;
 
+    /// <summary>
+    /// Gets or sets subscription mode for reading data from the controller.
+    /// </summary>
     public ReadSubscriptionMode SubscriptionMode { get; set; } = ReadSubscriptionMode.AutoSubscribeUsedVariables;
 
     /// <summary>

@@ -5,8 +5,6 @@ namespace integrated.tests
 {
     public class TwinObjectExtensionTests
     {
-
- 
         [Fact]
         public async  Task OnlineToShadowAsync_should_copy_entire_structure()
         {
@@ -320,6 +318,84 @@ namespace integrated.tests
             p.myEnum.Cyclic = 2;
 
             return p;
+        }
+
+
+        [Fact]
+        public async Task StartPolling_should_update_cyclic_property()
+        {
+            //arrange
+            var polling = Entry.Plc.StartPolling_should_update_cyclic_property;
+            polling.GetParent().GetConnector().SubscriptionMode = ReadSubscriptionMode.Polling;
+            Entry.Plc.Connector.BuildAndStart();
+            
+            var id = await polling.Id.GetAsync();
+            var pos = await polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.GetAsync();
+
+            polling.StartPolling(50);
+
+            Task.Delay(250).Wait();
+
+            Assert.True(polling.Id.Cyclic != id);
+            Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
+
+            polling.StopPolling();
+
+            Task.Delay(250).Wait();
+
+            id = polling.Id.Cyclic;
+            pos = polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic;
+
+            Task.Delay(250).Wait();
+
+            Assert.Equal(id, polling.Id.Cyclic);
+            Assert.Equal(pos, polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic);
+        }
+
+        [Fact]
+        public async Task StartPolling_polling_should_continue_until_last_subscriber()
+        {
+            //arrange
+            var polling = Entry.Plc.StartPolling_should_update_cyclic_property;
+            polling.GetParent().GetConnector().SubscriptionMode = ReadSubscriptionMode.Polling;
+            Entry.Plc.Connector.BuildAndStart();
+
+            var id = await polling.Id.GetAsync();
+            var pos = await polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.GetAsync();
+
+            polling.StartPolling(50);
+            polling.StartPolling(150);
+
+            Task.Delay(250).Wait();
+
+            Assert.True(polling.Id.Cyclic != id);
+            Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
+
+            polling.StopPolling();
+
+            Task.Delay(250).Wait();
+
+            id = polling.Id.Cyclic;
+            pos = polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic;
+
+            Task.Delay(250).Wait();
+
+            Assert.True(polling.Id.Cyclic != id);
+            Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
+
+
+            polling.StopPolling();
+
+            Task.Delay(250).Wait();
+
+            id = polling.Id.Cyclic;
+            pos = polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic;
+
+            Task.Delay(250).Wait();
+
+
+            Assert.Equal(id, polling.Id.Cyclic);
+            Assert.Equal(pos, polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic);
         }
     }
 }

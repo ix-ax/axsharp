@@ -25,6 +25,7 @@ namespace Pocos
         public all_primitives p_plain_online { get; set; } = new all_primitives();
         public all_primitives p_shadow_plain { get; set; } = new all_primitives();
         public all_primitives p_plain_shadow { get; set; } = new all_primitives();
+        public RealMonsterData.RealMonster StartPolling_should_update_cyclic_property { get; set; } = new RealMonsterData.RealMonster();
     }
 
     public partial class Pokus
