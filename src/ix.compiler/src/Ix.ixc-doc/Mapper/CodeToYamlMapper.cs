@@ -1,18 +1,11 @@
 ﻿using AX.ST.Semantic.Model.Declarations;
+using AX.ST.Semantic.Model.Declarations.Types;
 using AX.Text;
 using Ix.ixc_doc.Enums;
 using Ix.ixc_doc.Schemas;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using YamlDotNet.Core.Events;
-using YamlDotNet.Serialization.ObjectGraphVisitors;
-using static Ix.ixc_doc.Visitors.YamlBuilder;
 
 namespace Ix.ixc_doc.Mapper
 {
@@ -23,7 +16,7 @@ namespace Ix.ixc_doc.Mapper
         public Item PopulateItem(IDeclaration declaration)
         {
 
-           
+
             return new Item
             {
                 Uid = declaration.Name,
@@ -63,7 +56,7 @@ namespace Ix.ixc_doc.Mapper
 
 
                 //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
-            };   
+            };
         }
 
         public Item PopulateItem(IFieldDeclaration fieldDeclaration)
@@ -100,15 +93,51 @@ namespace Ix.ixc_doc.Mapper
                 Namespace = methodDeclaration.ContainingNamespace.Name,
                 Summary = "Test class doc",
                 Syntax = new Syntax { Content = "CLASS MyTestClass" },
+            };
+        }
 
+        public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
+        {
+            return new Item
+            {
+                Uid = namedValueTypeDeclaration.FullyQualifiedName,
+                Id = namedValueTypeDeclaration.Name,
+                //Parent = classDeclaration.;
+                //Children = children.Concat(methods).ToArray(),
+                Name = namedValueTypeDeclaration.Name,
+                FullName = namedValueTypeDeclaration.FullyQualifiedName,
+                Type = "Struct",
+                Namespace = namedValueTypeDeclaration.Name,
+                Summary = GetComments(namedValueTypeDeclaration.Location).summary,
+                Syntax = new Syntax { Content = "CLASS MyTestClass" },
+
+                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
+            };
+        }
+
+        public Item PopulateItem(IStructuredTypeDeclaration structuredTypeDeclaration)
+        {
+            return new Item
+            {
+                Uid = structuredTypeDeclaration.FullyQualifiedName,
+                Id = structuredTypeDeclaration.Name,
+                //Parent = classDeclaration.;
+                //Children = children.Concat(methods).ToArray(),
+                Name = structuredTypeDeclaration.Name,
+                FullName = structuredTypeDeclaration.FullyQualifiedName,
+                Type = "Struct",
+                Namespace = structuredTypeDeclaration.Name,
+                Summary = GetComments(structuredTypeDeclaration.Location).summary,
+                Syntax = new Syntax { Content = "CLASS MyTestClass" },
+
+                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
             };
         }
 
         private Comments GetComments(Location location)
         {
-            int start = location.FullSpan.Start;
             string text = ((SourceLocation)location).SourceText.ToString();
-            int lineStart = text.Take(start).Count(a => a == '\n');
+            int lineStart = location.GetFullLineSpan().StartLinePosition.Line;
             string commentsSection = "";
             string[] lines = text.Split('\n');
 
