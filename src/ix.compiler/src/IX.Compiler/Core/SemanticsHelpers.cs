@@ -46,6 +46,7 @@ public static class SemanticsHelpers
                &&
                (variable.Type is IScalarTypeDeclaration ||
                 variable.Type is IStringTypeDeclaration ||
+                variable.Type is IStructuredTypeDeclaration ||
                 compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == variable.Type.FullyQualifiedName));
     }
 
@@ -57,8 +58,7 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForConstructor(this IFieldDeclaration field, Compilation compilation)
     {
-        return field.IsMemberEligibleForTranspile(compilation) &&
-               !(field.Type is IInterfaceDeclaration);
+        return IsMemberEligibleForTranspile(field, compilation);
     }
 
     /// <summary>
@@ -69,7 +69,6 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForConstructor(this IVariableDeclaration variable, Compilation compilation)
     {
-        return variable.IsMemberEligibleForTranspile(compilation) && !(variable.Type is IEnumTypeDeclaration) &&
-               !(variable.Type is IInterfaceDeclaration);
+        return IsMemberEligibleForTranspile(variable, compilation);
     }
 }
