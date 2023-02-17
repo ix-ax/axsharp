@@ -7,106 +7,138 @@ using AX.Text.Diagnostics;
 using Ix.Compiler;
 using Ix.ixc_doc;
 using Ix.ixc_doc.Interfaces;
-using ix_doc_compiler;
+using Ix.ixc_doc.Visitors;
 using System;
+using CommandLine;
 using System.CommandLine;
-using System.Linq.Expressions;
 
 
 
 
-var fileOption = new Option<FileInfo?>(
-    name: "--file",
-    description: "The ST file to use.")
-{ IsRequired = false };
+//var fileOption = new Option<FileInfo?>(
+//    name: "--file",
+//    description: "The ST file to use.")
+//{ IsRequired = false };
 
-var fileOptionFolder = new Option<FileInfo?>(
-    name: "--source-project-folder",
-    description: "Apax source folder.")
-{ IsRequired = false };
+//var fileOptionFolder = new Option<FileInfo?>(
+//    name: "--source-project-folder",
+//    description: "Apax source folder.")
+//{ IsRequired = false };
 
-//setup cmd command
-var rootCommand = new RootCommand("ixc-doc - st to yml compiler for Docfx documentation");
+////setup cmd command
+//var rootCommand = new RootCommand("ixc-doc - st to yml compiler for Docfx documentation");
 
-var generate = new Command("ixc-doc");
+//var generate = new Command("ixc-doc");
 //generate.AddOption(fileOption);
 //generate.AddOption(fileOptionFolder);
 //generate.SetHandler(async file => { await Generate(file!); }, fileOption);
-generate.SetHandler(async () => { await GenerateProject(); });
-rootCommand.Add(generate);
+////generate.SetHandler(async () => { await GenerateProject(); });
+////rootCommand.Add(generate);
+
+//await rootCommand.InvokeAsync(args);
+
+const string Logo =
+@"| \ / 
+=  =  
+| / \
+";
 
 
+Console.WriteLine(Logo);
+Console.WriteLine("ixc-doc compiler - st to yml compiler for Docfx");
+Parser.Default.ParseArguments<Options>(args)
+            .WithParsed(o =>
+            {
+                var recoverCurrentDirectory = Environment.CurrentDirectory;
+                try
+                {
+                   GenerateYamls(o);
+                   Console.WriteLine("Done.");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                finally
+                {
+                    Environment.CurrentDirectory = recoverCurrentDirectory;
+                }
+            });
 
 
-await rootCommand.InvokeAsync(args);
-
-
-
-async Task GenerateProject()
+void GenerateYamls(Options o)
 {
-    var axProject = new AxProject("D:\\Inxton\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\samples\\ax\\");
+    //var axProject = new AxProject("D:\\Inxton\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\samples\\ax\\");
+    // check for null ox axsourceprojectfolder
+    var axProject = new AxProject(o.AxSourceProjectFolder);
 
     var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
+
     var toCompile = projectSources.Select(p => p.parseTree);
 
     var compilation = Compilation.Create(toCompile, Compilation.Settings.Default).Result;
+
     var semanticTree = compilation.GetSemanticTree();
 
     //visit
     var myNodeVisitor = new MyNodeVisitor();
-    var treeWalker = new YamlBuilder();
+    var yamlSerializer = new YamlSerializer(o);
+    var treeWalker = new YamlBuilder(yamlSerializer);
 
     semanticTree.GetRoot().Accept(myNodeVisitor, treeWalker);
-    var x = new YamlSerializer();
+
+    //serialize
+    var x = 
     myNodeVisitor.TocSchema.Items = myNodeVisitor.TocSchemaItems.ToArray();
-    x.TocToYaml(myNodeVisitor.TocSchema);
+    yamlSerializer.TocToYaml(myNodeVisitor.TocSchema);
 
 }
-    async Task Generate(FileInfo file)
-{
-    
 
-    Console.WriteLine("ixc-doc Compiler");
-    Console.WriteLine($"Using source ${file.FullName}");
-    Console.WriteLine("Parsing...");
+//for one file
+async Task GenerateYamlFromFile(FileInfo file, Options o)
+{
+
     var syntaxTree = await ParseST(file);
 
     if (!CheckSyntaxErrors(syntaxTree))
         return;
 
-    var syntaxTrees = new List<ISyntaxTree>();
-    syntaxTrees.Add(syntaxTree);
+    var syntaxTrees = new List<ISyntaxTree>{syntaxTree};
+
     var compilation = Compilation.Create(syntaxTrees, Compilation.Settings.Default).Result;
     var semanticTree = compilation.GetSemanticTree();
-    Console.WriteLine("Compiling...");
+
+
     //visit
     var myNodeVisitor = new MyNodeVisitor();
-    var treeWalker = new YamlBuilder();
+    var yamlSerializer = new YamlSerializer(o);
+    var treeWalker = new YamlBuilder(yamlSerializer);
     semanticTree.GetRoot().Accept(myNodeVisitor, treeWalker);
 
 
     //dump yaml schema
-    var x = new YamlSerializer();
-    x.SchemaToYaml(myNodeVisitor.Schema, file.Name.Split('.').First());
+    yamlSerializer.SchemaToYaml(myNodeVisitor.Schema, file.Name.Split('.').First());
 
-    Console.WriteLine("Done.");
+    
 
-}
-
-Task<ISyntaxTree> ParseST(FileInfo file)
-{
-    var sourceText = new SourceFileText(file.FullName);
-    return STParser.ParseTextAsync(sourceText);
-}
-
-bool CheckSyntaxErrors(ISyntaxTree syntaxTree)
-{
-    if (!syntaxTree.HasDiagnosticsOfSeverity(DiagnosticSeverity.Error)) return true;
-
-    foreach (Diagnostic diagnostic in syntaxTree.GetDiagnostics(DiagnosticSeverity.Error))
+    Task<ISyntaxTree> ParseST(FileInfo file)
     {
-        Console.WriteLine($"Syntax error: {diagnostic}");
+        var sourceText = new SourceFileText(file.FullName);
+        return STParser.ParseTextAsync(sourceText);
     }
 
-    return false;
+    bool CheckSyntaxErrors(ISyntaxTree syntaxTree)
+    {
+        if (!syntaxTree.HasDiagnosticsOfSeverity(DiagnosticSeverity.Error)) return true;
+
+        foreach (Diagnostic diagnostic in syntaxTree.GetDiagnostics(DiagnosticSeverity.Error))
+        {
+            Console.WriteLine($"Syntax error: {diagnostic}");
+        }
+
+        return false;
+    }
 }
+
+

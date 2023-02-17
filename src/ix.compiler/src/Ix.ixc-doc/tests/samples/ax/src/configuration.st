@@ -25,3 +25,4 @@ CONFIGURATION MyConfiguration
         monster : Monster;
     END_VAR
 END_CONFIGURATION
+

@@ -1,3 +1,6 @@
+///<summary>
+/// Gets the state of this command.
+///</summary>
 CLASS example
     VAR PUBLIC
         {#ix-attr:[Container(Layout.Stack)]}

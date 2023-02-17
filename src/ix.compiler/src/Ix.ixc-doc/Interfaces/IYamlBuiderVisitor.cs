@@ -8,11 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ix_doc_compiler;
+using Ix.ixc_doc.Visitors;
 
 namespace Ix.ixc_doc.Interfaces
 {
-    public interface MyTreeVisitor
+    public interface IYamlBuiderVisitor
     {
         /// <summary>
         ///     Creates file declaration from <see cref="IFileSyntax" /> node of given syntax tree.

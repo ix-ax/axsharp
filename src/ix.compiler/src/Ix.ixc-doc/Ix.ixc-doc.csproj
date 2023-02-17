@@ -12,6 +12,7 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="System.CommandLine" Version="2.*-*" />
 		<PackageReference Include="YamlDotNet" Version="13.0.0" />
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
 	</ItemGroup>
 
 	
@@ -29,18 +30,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Samples\TestStruct.st">
+		<None Update="tests\samples\TestStruct.st">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="samples\MyTestClass.st">
+		<None Update="tests\samples\MyTestClass.st">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="docfx\" />
-	  <Folder Include="output\ax\" />
-	  <Folder Include="samples\ax\" />
+	  <Folder Include="tests\docfx\" />
 	</ItemGroup>
 
 	<ItemGroup>

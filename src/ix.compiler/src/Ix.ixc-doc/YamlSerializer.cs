@@ -11,18 +11,25 @@ namespace Ix.ixc_doc
 {
     internal class YamlSerializer
     {
+        private Options _options { get; set; }
+
+        public YamlSerializer(Options o)
+        {
+            _options = o;
+        }
         public string TocToYaml(TocSchema schema)
         {
             var stringBuilder = new StringBuilder();
             var serializer = new SerializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull).Build();
             stringBuilder.AppendLine(serializer.Serialize(schema));
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"D:\Inxton\ix-ax\ix\src\ix.compiler\src\Ix.ixc-doc\output\ax\toc.yml"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"{_options.OutputProjectFolder}\toc.yml"))
             {
 
                 file.WriteLine("### YamlMime:TableOfContent");
                 file.WriteLine(stringBuilder.ToString());
             }
+
             Console.WriteLine("");
             Console.WriteLine("### YamlMime:TableOfContent");
             Console.WriteLine(stringBuilder);
@@ -37,7 +44,7 @@ namespace Ix.ixc_doc
             var serializer = new SerializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull).Build();
             stringBuilder.AppendLine(serializer.Serialize(model));
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"D:\Inxton\ix-ax\ix\src\ix.compiler\src\Ix.ixc-doc\output\ax\{fileName}.yml"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"{_options.OutputProjectFolder}\{fileName}.yml"))
             {
 
                 file.WriteLine("## YamlMime:ManagedReference");
