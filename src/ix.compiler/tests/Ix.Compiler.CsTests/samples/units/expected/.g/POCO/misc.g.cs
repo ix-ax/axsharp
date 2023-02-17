@@ -26,4 +26,19 @@ namespace Pocos
             public Int16 displacement { get; set; }
         }
     }
+
+    namespace UnknownArraysShouldNotBeTraspiled
+    {
+        public partial class ClassWithArrays
+        {
+            public UnknownArraysShouldNotBeTraspiled.Complex[] _complexKnown { get; set; } = new UnknownArraysShouldNotBeTraspiled.Complex[11];
+            public Byte[] _primitive { get; set; } = new Byte[11];
+        }
+
+        public partial class Complex
+        {
+            public string HelloString { get; set; } = string.Empty;
+            public UInt64 Id { get; set; }
+        }
+    }
 }

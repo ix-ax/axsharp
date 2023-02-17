@@ -24,13 +24,19 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForTranspile(this IFieldDeclaration field, Compilation compilation)
     {
-        return field.AccessModifier == AccessModifier.Public
-               && !(field.Type is IReferenceTypeDeclaration)
+        return field.AccessModifier == AccessModifier.Public && field.Type.IsMemberEligibleForTranspile(compilation);
+    }
+
+    public static bool IsMemberEligibleForTranspile(this ITypeDeclaration typeDeclaration, Compilation compilation)
+    {
+        return !(typeDeclaration is IReferenceTypeDeclaration) 
                &&
-               (field.Type is IScalarTypeDeclaration ||
-                field.Type is IStringTypeDeclaration ||
-                field.Type is IStructuredTypeDeclaration ||
-                compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == field.Type.FullyQualifiedName));
+               (typeDeclaration is IScalarTypeDeclaration ||
+                typeDeclaration is IStringTypeDeclaration ||
+                typeDeclaration is IStructuredTypeDeclaration ||
+                compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == typeDeclaration.FullyQualifiedName))
+
+               ;
     }
 
     /// <summary>
@@ -41,13 +47,7 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForTranspile(this IVariableDeclaration variable, Compilation compilation)
     {
-        return variable.IsInGlobalMemory
-               && !(variable.Type is IReferenceTypeDeclaration)
-               &&
-               (variable.Type is IScalarTypeDeclaration ||
-                variable.Type is IStringTypeDeclaration ||
-                variable.Type is IStructuredTypeDeclaration ||
-                compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == variable.Type.FullyQualifiedName));
+        return variable.IsInGlobalMemory && variable.Type.IsMemberEligibleForTranspile(compilation);
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForConstructor(this IFieldDeclaration field, Compilation compilation)
     {
-        return IsMemberEligibleForTranspile(field, compilation);
+        return field.IsMemberEligibleForTranspile(compilation);// && !(field.Type is IEnumTypeDeclaration);
     }
 
     /// <summary>
@@ -69,6 +69,11 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForConstructor(this IVariableDeclaration variable, Compilation compilation)
     {
-        return IsMemberEligibleForTranspile(variable, compilation);
+        return variable.IsMemberEligibleForTranspile(compilation);
+    }
+
+    public static bool IsMemberEligibleForConstructor(this IArrayTypeDeclaration arrayTypeDeclaration, Compilation compilation)
+    {
+        return arrayTypeDeclaration.ElementTypeAccess.Type.IsMemberEligibleForTranspile(compilation);
     }
 }

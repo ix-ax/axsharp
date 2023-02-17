@@ -72,6 +72,15 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
                     AddToSource($" {fieldDeclaration.Name}");
                     AddToSource("{get;}");
                     break;
+                case IArrayTypeDeclaration array:
+                    if (array.ElementTypeAccess.Type.IsMemberEligibleForTranspile(Compilation))
+                    {
+                        AddToSource($"{fieldDeclaration.AccessModifier.Transform()} ");
+                        fieldDeclaration.Type.Accept(visitor, this);
+                        AddToSource($" {fieldDeclaration.Name}");
+                        AddToSource("{get;}");
+                    }
+                    break;
                 default:
                     AddToSource($"{fieldDeclaration.AccessModifier.Transform()} ");
                     fieldDeclaration.Type.Accept(visitor, this);

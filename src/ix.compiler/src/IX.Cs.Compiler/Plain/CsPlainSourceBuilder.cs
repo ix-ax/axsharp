@@ -80,38 +80,51 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateFieldDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)
     {
-        if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
+        if (fieldDeclaration.Type.IsMemberEligibleForTranspile(Compilation))
         {
-            fieldDeclaration.Pragmas.AddAttributes();
-            AddToSource($"{fieldDeclaration.AccessModifier.Transform()}");
-            fieldDeclaration.Type.Accept(visitor, this);
-            AddToSource($" {fieldDeclaration.Name}");
-            AddToSource("{get; set;}");
-
             switch (fieldDeclaration.Type)
             {
                 case IStringTypeDeclaration:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
                     AddToSource(" = string.Empty;");
                     break;
                 case IScalarTypeDeclaration scalar:
                     if (scalar.IsNullablePrimitive())
+                    {
+                        AddPropertyDeclaration(fieldDeclaration, visitor);
                         AddToSource($" = default({scalar.TransformType()});\n");
+                    }
+
                     break;
                 case IReferenceTypeDeclaration d:
                 case IStructuredTypeDeclaration s:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
                     AddToSource(" = new ");
                     fieldDeclaration.Type.Accept(visitor, this);
                     AddToSource("();");
                     break;
                 case IArrayTypeDeclaration arrayType:
-                    AddToSource($"= new");
-                    arrayType.ElementTypeAccess.Type.Accept(visitor, this);
-                    AddToSource($"[");
-                    AddToSource(string.Join(",", arrayType.Dimensions.Select(p => p.CountOfElements)));
-                    AddToSource($"];");
+                    if (arrayType.ElementTypeAccess.Type.IsMemberEligibleForTranspile(Compilation))
+                    {
+                        AddPropertyDeclaration(fieldDeclaration, visitor);
+                        AddToSource($"= new");
+                        arrayType.ElementTypeAccess.Type.Accept(visitor, this);
+                        AddToSource($"[");
+                        AddToSource(string.Join(",", arrayType.Dimensions.Select(p => p.CountOfElements)));
+                        AddToSource($"];");
+                    }
                     break;
             }
         }
+    }
+
+    private void AddPropertyDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)
+    {
+        fieldDeclaration.Pragmas.AddAttributes();
+        AddToSource($"{fieldDeclaration.AccessModifier.Transform()}");
+        fieldDeclaration.Type.Accept(visitor, this);
+        AddToSource($" {fieldDeclaration.Name}");
+        AddToSource("{get; set;}");
     }
 
     /// <inheritdoc />
@@ -261,6 +274,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor)
     {
+        if (arrayTypeDeclaration.ElementTypeAccess.Type.IsMemberEligibleForTranspile(Compilation)) return;
+
         arrayTypeDeclaration.ElementTypeAccess.Type.Accept(visitor, this);
         AddToSource("[]");
     }
