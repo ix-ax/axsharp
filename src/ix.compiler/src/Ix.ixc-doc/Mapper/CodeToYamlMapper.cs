@@ -1,7 +1,10 @@
 ﻿using AX.ST.Semantic.Model.Declarations;
+using AX.ST.Semantic.Model.Declarations.Types;
 using AX.Text;
+using CommandLine;
 using Ix.ixc_doc.Enums;
 using Ix.ixc_doc.Schemas;
+using Microsoft.CodeAnalysis.Operations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +26,7 @@ namespace Ix.ixc_doc.Mapper
         public Item PopulateItem(IDeclaration declaration)
         {
 
-           
+
             return new Item
             {
                 Uid = declaration.Name,
@@ -44,15 +47,25 @@ namespace Ix.ixc_doc.Mapper
         public Item PopulateItem(IClassDeclaration classDeclaration)
         {
 
+
+
             var children = classDeclaration.Fields.Select(p => p.FullyQualifiedName);
             var methods = classDeclaration.Methods.Select(p => p.FullyQualifiedName);
             var comments = GetComments(classDeclaration.Location);
+
+            var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();
+            List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
+            classDeclaration.GetAllExtendedTypes().ToList()
+                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList()
+                .ForEach(list => extendedFields.Concat(list));
+
+
 
             return new Item
             {
                 Uid = classDeclaration.FullyQualifiedName,
                 Id = classDeclaration.Name,
-                Parent = classDeclaration.ExtendedType?.FullyQualifiedName,
+                Parent = classDeclaration.ContainingNamespace.Name,
                 Children = children.Concat(methods).ToArray(),
                 Name = classDeclaration.Name,
                 FullName = classDeclaration.FullyQualifiedName,
@@ -60,10 +73,11 @@ namespace Ix.ixc_doc.Mapper
                 Namespace = classDeclaration.ContainingNamespace.Name,
                 Summary = comments.summary,
                 Syntax = new Syntax { Content = $"CLASS {classDeclaration.Name}" },
+                Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => p.FullyQualifiedName).ToArray(),
+                InheritedMembers = GetInheritedMembers(classDeclaration),
 
 
-                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
-            };   
+            };
         }
 
         public Item PopulateItem(IFieldDeclaration fieldDeclaration)
@@ -81,14 +95,28 @@ namespace Ix.ixc_doc.Mapper
                 Summary = "Test class doc",
                 Syntax = new Syntax { Content = "CLASS MyTestClass" },
 
-                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
             };
         }
 
 
         public Item PopulateItem(IMethodDeclaration methodDeclaration)
         {
+            //TODO implement documentation for methods parameters and return values
+            // when xml documentation is detected, add only description
 
+          
+
+            //var inputVariables = methodDeclaration.Variables.Where(v => v.Section == Section.Input)
+            //    .Select(v => v.Section.ToString()).ToArray();
+
+            //var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return)
+            //    .Select(v => v.Section.ToString()).ToArray();
+
+            //foreach (var item in x)
+            //{
+            //    var section = item.Section;
+            //}
+            var methods = methodDeclaration.GetDescendentNodes();
             return new Item
             {
                 Uid = methodDeclaration.FullyQualifiedName,
@@ -99,10 +127,38 @@ namespace Ix.ixc_doc.Mapper
                 Type = ItemType.Method.ToString(),
                 Namespace = methodDeclaration.ContainingNamespace.Name,
                 Summary = "Test class doc",
-                Syntax = new Syntax { Content = "CLASS MyTestClass" },
+                Syntax = new Syntax
+                {
+                    Content = "CLASS MyTestClass"
+
+                },
+
 
             };
         }
+
+
+        private string[] GetInheritedMembers(IClassDeclaration classDeclaration)
+        {
+            var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();
+            var extendedFields = new List<IFieldDeclaration>();
+
+            // TODO check, if IClassDeclaration in sufficient
+            classDeclaration.GetAllExtendedTypes().ToList()
+                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList()
+                .ForEach(list => extendedFields.Concat(list));
+
+            return extendedFields.Select(f => f.FullyQualifiedName)
+                                 .Concat(extendedMethods.Select(m => m.FullyQualifiedName)).ToArray();
+        }
+        private bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
+        {
+         
+            return field.AccessModifier == AccessModifier.Public || 
+                (field.AccessModifier == AccessModifier.Internal && subClass.ContainingNamespace == baseClass.ContainingNamespace);
+        }
+
+     
 
         private Comments GetComments(Location location)
         {

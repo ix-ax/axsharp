@@ -27,6 +27,22 @@ CLASS all_primitives
      //   myWCHAR	        :       WCHAR	      ;
         mySTRING	        :   STRING	      ;
         myWSTRING	    :       WSTRING	      ;
+
+
+       
+
     END_VAR
     
+    METHOD PUBLIC Start : INT
+        VAR_INPUT
+            value : INT;
+            value2 : INT;
+        END_VAR
+
+        myINT := value;
+    END_METHOD
+
+    METHOD PUBLIC Stop
+        ;
+    END_METHOD
 END_CLASS
