@@ -35,8 +35,8 @@ namespace Ix.ixc_doc.Helpers
         internal bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
         {
 
-            return field.AccessModifier == AccessModifier.Public;
-                //(field.AccessModifier == AccessModifier.Internal && subClass.ContainingNamespace == baseClass.ContainingNamespace);
+            return field.AccessModifier == AccessModifier.Public ||
+                (field.AccessModifier == AccessModifier.Internal && subClass.ContainingNamespace == baseClass.ContainingNamespace);
         }
 
 
