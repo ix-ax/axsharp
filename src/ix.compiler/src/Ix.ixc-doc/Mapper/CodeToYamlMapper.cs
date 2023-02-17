@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YamlDotNet.Core.Events;
+using YamlDotNet.Serialization.ObjectGraphVisitors;
+using static Ix.ixc_doc.YamlBuilder;
 
 namespace Ix.ixc_doc.Mapper
 {
@@ -34,13 +37,13 @@ namespace Ix.ixc_doc.Mapper
             };
         }
 
-        public Item PopulateItem(IClassDeclaration classDeclaration)
+        public Item PopulateItem(IClassDeclaration classDeclaration, Comments comments)
         {
 
             var children = classDeclaration.Fields.Select(p => p.FullyQualifiedName);
             var methods = classDeclaration.Methods.Select(p => p.FullyQualifiedName);
 
-            
+
             return new Item
             {
                 Uid = classDeclaration.FullyQualifiedName,
@@ -51,7 +54,7 @@ namespace Ix.ixc_doc.Mapper
                 FullName = classDeclaration.FullyQualifiedName,
                 Type = ItemType.Class.ToString(),
                 Namespace = classDeclaration.ContainingNamespace.Name,
-                Summary = "Test class doc",
+                Summary = comments.summary,
                 Syntax = new Syntax { Content = $"CLASS {classDeclaration.Name}" },
 
 
