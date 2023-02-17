@@ -131,9 +131,9 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IStructuredTypeDeclaration structuredTypeDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateStructuredTypeYaml(structuredTypeDeclaration, this);
             //Console.WriteLine("structured type!");
             //data.CreateBaseYaml(structuredTypeDeclaration, this);
-
         }
 
         public void Visit(IArrayTypeDeclaration arrayTypeDeclaration, IYamlBuiderVisitor data)
@@ -148,6 +148,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(INamedValueTypeDeclaration namedValueTypeDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateNamedValueTypeYaml(namedValueTypeDeclaration, this);
             //throw new NotImplementedException();
         }
 

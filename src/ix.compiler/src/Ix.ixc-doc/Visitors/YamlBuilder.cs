@@ -72,7 +72,57 @@ namespace Ix.ixc_doc.Visitors
             visitor.Items.Add(item);
         }
 
+        public virtual void CreateNamedValueTypeYaml(
+          INamedValueTypeDeclaration namedValueTypeDeclaration,
+          MyNodeVisitor visitor)
+        {
 
+            var item = _mp.PopulateItem(namedValueTypeDeclaration);
+            visitor.Items.Add(item);
+
+            var tocSchemaItem = new TocSchema.Item
+            {
+                Uid = item.Uid,
+                Name = item.FullName
+
+            };
+
+            visitor.TocSchemaItems.Add(tocSchemaItem);
+
+            //classDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(visitor, this));
+
+
+            visitor.Schema.Items = visitor.Items.ToArray();
+
+            _s.SchemaToYaml(visitor.Schema, namedValueTypeDeclaration.FullyQualifiedName);
+            visitor.Schema = new YamlSchema();
+            visitor.Items.Clear();
+        }
+
+        public virtual void CreateStructuredTypeYaml(
+          IStructuredTypeDeclaration structuredTypeDeclaration,
+          MyNodeVisitor visitor)
+        {
+
+            var item = _mp.PopulateItem(structuredTypeDeclaration);
+            visitor.Items.Add(item);
+
+            var tocSchemaItem = new TocSchema.Item
+            {
+                Uid = item.Uid,
+                Name = item.FullName
+
+            };
+
+            visitor.TocSchemaItems.Add(tocSchemaItem);
+
+
+            visitor.Schema.Items = visitor.Items.ToArray();
+
+            _s.SchemaToYaml(visitor.Schema, structuredTypeDeclaration.FullyQualifiedName);
+            visitor.Schema = new YamlSchema();
+            visitor.Items.Clear();
+        }
     }
 
 
