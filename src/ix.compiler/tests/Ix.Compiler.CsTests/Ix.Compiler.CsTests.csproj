@@ -234,6 +234,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="samples\packaging\contentFiles\any\net6.0\.meta\meta.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="samples\packaging\contentFiles\any\net6.0\.meta\sourceinfo.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="samples\packaging\content\.meta\meta.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="samples\packaging\content\.meta\sourceinfo.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="samples\units\.gitignore">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -354,6 +366,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="samples\packaging\ix.framework.core.nuspec">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="samples\packaging\lib\net6.0\ix.framework.core.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="samples\packaging\[Content_Types].xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="samples\units\src\file_with_unsupported.st">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
