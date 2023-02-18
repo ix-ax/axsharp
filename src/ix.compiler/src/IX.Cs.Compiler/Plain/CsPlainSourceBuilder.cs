@@ -82,36 +82,65 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
         {
-            fieldDeclaration.Pragmas.AddAttributes();
-            AddToSource($"{fieldDeclaration.AccessModifier.Transform()}");
-            fieldDeclaration.Type.Accept(visitor, this);
-            AddToSource($" {fieldDeclaration.Name}");
-            AddToSource("{get; set;}");
-
             switch (fieldDeclaration.Type)
             {
+                case IArrayTypeDeclaration arrayType:
+                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation))
+                    {
+                        fieldDeclaration.Pragmas.AddAttributes();
+                        AddToSource($"{fieldDeclaration.AccessModifier.Transform()}");
+                        arrayType.ElementTypeAccess.Type.Accept(visitor, this);
+                        AddToSource("[]");
+                        AddToSource($" {fieldDeclaration.Name}");
+                        AddToSource("{get; set;}");
+                        
+                        AddToSource($"= new");
+                        arrayType.ElementTypeAccess.Type.Accept(visitor, this);
+                        AddToSource($"[");
+                        AddToSource(string.Join(",", arrayType.Dimensions.Select(p => p.CountOfElements)));
+                        AddToSource($"];");
+                    }
+                    break;
                 case IStringTypeDeclaration:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
                     AddToSource(" = string.Empty;");
                     break;
+                case INamedValueTypeDeclaration namedValueType:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
+                    break;
                 case IScalarTypeDeclaration scalar:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
                     if (scalar.IsNullablePrimitive())
+                    {
                         AddToSource($" = default({scalar.TransformType()});\n");
+                    }
                     break;
                 case IReferenceTypeDeclaration d:
                 case IStructuredTypeDeclaration s:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
                     AddToSource(" = new ");
                     fieldDeclaration.Type.Accept(visitor, this);
                     AddToSource("();");
                     break;
-                case IArrayTypeDeclaration arrayType:
-                    AddToSource($"= new");
-                    arrayType.ElementTypeAccess.Type.Accept(visitor, this);
-                    AddToSource($"[");
-                    AddToSource(string.Join(",", arrayType.Dimensions.Select(p => p.CountOfElements)));
-                    AddToSource($"];");
-                    break;
             }
         }
+    }
+
+    private void AddPropertyDeclaration(IDeclaration fieldDeclaration, IxNodeVisitor visitor)
+    {
+        fieldDeclaration.Pragmas.AddAttributes();
+        switch (fieldDeclaration)
+        {
+            case IFieldDeclaration f:
+                AddToSource($"{f.AccessModifier.Transform()}");
+                break;
+            case IVariableDeclaration v:
+                AddToSource($"public");
+                break;
+        }
+        fieldDeclaration.Type.Accept(visitor, this);
+        AddToSource($" {fieldDeclaration.Name}");
+        AddToSource("{get; set;}");
     }
 
     /// <inheritdoc />
@@ -189,31 +218,53 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     }
 
     /// <inheritdoc />
-    public void CreateVariableDeclaration(IVariableDeclaration semantics, IxNodeVisitor visitor)
+    public void CreateVariableDeclaration(IVariableDeclaration fieldDeclaration, IxNodeVisitor visitor)
     {
-        if (semantics.IsMemberEligibleForTranspile(Compilation))
+        if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
         {
-            semantics.Pragmas.ToList().ForEach(p => p.Accept(visitor, this));
-
-            switch (semantics.Type)
+            switch (fieldDeclaration.Type)
             {
-                case IStringTypeDeclaration d:
-                    AddToSource($"public String {semantics.Name} {{get; set;}} = string.Empty;");
+                case IArrayTypeDeclaration arrayType:
+                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation))
+                    {
+                        fieldDeclaration.Pragmas.AddAttributes();
+                        AddToSource($"public");
+                        arrayType.ElementTypeAccess.Type.Accept(visitor, this);
+                        AddToSource("[]");
+                        AddToSource($" {fieldDeclaration.Name}");
+                        AddToSource("{get; set;}");
+
+                        AddToSource($"= new");
+                        arrayType.ElementTypeAccess.Type.Accept(visitor, this);
+                        AddToSource($"[");
+                        AddToSource(string.Join(",", arrayType.Dimensions.Select(p => p.CountOfElements)));
+                        AddToSource($"];");
+                    }
                     break;
-                case IScalarTypeDeclaration d:
-                    if (d.IsNonNullablePrimitive())
-                        AddToSource(
-                            $"public {d.TransformType()} {semantics.Name} {{get; set;}}");
-                    else if (d.IsNullablePrimitive())
-                        AddToSource(
-                            $"public {d.TransformType()} {semantics.Name} {{get; set;}} = default({d.TransformType()});\n");
+                case IStringTypeDeclaration:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
+                    AddToSource(" = string.Empty;");
                     break;
-                case ITypeDeclaration d:
-                    AddToSource(
-                        $"public {ShortedQualifiedIfPossible(semantics)} {semantics.Name} {{get; set;}} = new {ShortedQualifiedIfPossible(semantics)}();");
+                case INamedValueTypeDeclaration namedValueType:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
+                    break;
+                case IScalarTypeDeclaration scalar:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
+                    if (scalar.IsNullablePrimitive())
+                    {
+                        AddToSource($" = default({scalar.TransformType()});\n");
+                    }
+                    break;
+                case IReferenceTypeDeclaration d:
+                case IStructuredTypeDeclaration s:
+                    AddPropertyDeclaration(fieldDeclaration, visitor);
+                    AddToSource(" = new ");
+                    fieldDeclaration.Type.Accept(visitor, this);
+                    AddToSource("();");
                     break;
             }
         }
+    
     }
 
     /// <inheritdoc />
@@ -261,6 +312,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor)
     {
+        if (arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation)) return;
+
         arrayTypeDeclaration.ElementTypeAccess.Type.Accept(visitor, this);
         AddToSource("[]");
     }

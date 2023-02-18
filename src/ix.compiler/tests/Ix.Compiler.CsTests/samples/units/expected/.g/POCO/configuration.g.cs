@@ -47,12 +47,15 @@ namespace Pocos
 
         public Char myWCHAR { get; set; }
 
-        public String mySTRING { get; set; } = string.Empty;
-        public String myWSTRING { get; set; } = string.Empty;
-        public String myWSTRING_readOnce { get; set; } = string.Empty;
-        public String myWSTRING_readOnly { get; set; } = string.Empty;
+        public string mySTRING { get; set; } = string.Empty;
+        public string myWSTRING { get; set; } = string.Empty;
+        public string myWSTRING_readOnce { get; set; } = string.Empty;
+        public string myWSTRING_readOnly { get; set; } = string.Empty;
         public ComplexForConfig cReadOnce { get; set; } = new ComplexForConfig();
         public ComplexForConfig cReadOnly { get; set; } = new ComplexForConfig();
+        public Colorss Colorss { get; set; }
+
+        public UInt64 Colorsss { get; set; }
     }
 
     public partial class ComplexForConfig

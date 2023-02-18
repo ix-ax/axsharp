@@ -209,6 +209,9 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
     private void AddArrayMemberInitialization(IArrayTypeDeclaration type, IFieldDeclaration field,
         IxNodeVisitor visitor)
     {
+        if(!type.IsMemberEligibleForConstructor(this.Compilation))
+            return;
+
         AddToSource($"{field.Name}");
         AddToSource("= new");
         type.Accept(visitor, this);
