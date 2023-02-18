@@ -6,6 +6,6 @@ namespace Pocos
     {
         public UInt64 Counter { get; set; }
 
-        public String HelloWorld { get; set; } = string.Empty;
+        public string HelloWorld { get; set; } = string.Empty;
     }
 }
