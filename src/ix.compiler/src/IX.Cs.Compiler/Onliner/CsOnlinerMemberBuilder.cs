@@ -73,7 +73,7 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
                     AddToSource("{get;}");
                     break;
                 case IArrayTypeDeclaration array:
-                    if (array.ElementTypeAccess.Type.IsMemberEligibleForTranspile(Compilation))
+                    if (array.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation))
                     {
                         AddToSource($"{fieldDeclaration.AccessModifier.Transform()} ");
                         fieldDeclaration.Type.Accept(visitor, this);
@@ -142,10 +142,41 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
         if (semantics.IsMemberEligibleForTranspile(Compilation))
         {
             AddToSource(semantics.Pragmas.AddAttributes());
-            AddToSource("public ");
-            semantics.Type.Accept(visitor, this);
-            AddToSource($" {semantics.Name}");
-            AddToSource("{get;}");
+
+            // TODO: This is not nice refactor, also we should embed the int wrapper into actual member of enum type!
+            switch (semantics.Type)
+            {
+                case IEnumTypeDeclaration @enum:
+                    AddToSource($"[Ix.Connector.EnumeratorDiscriminatorAttribute(typeof({@enum.GetQualifiedName()}))]");
+                    AddToSource($"public");
+                    AddToSource("OnlinerInt");
+                    AddToSource($" {semantics.Name}");
+                    AddToSource("{get;}");
+                    break;
+                case INamedValueTypeDeclaration namedValue:
+                    AddToSource(
+                        $"[Ix.Connector.EnumeratorDiscriminatorAttribute(typeof({namedValue.GetQualifiedName()}))]");
+                    AddToSource($"public");
+                    semantics.Type.Accept(visitor, this);
+                    AddToSource($" {semantics.Name}");
+                    AddToSource("{get;}");
+                    break;
+                case IArrayTypeDeclaration array:
+                    if (array.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation))
+                    {
+                        AddToSource($"public");
+                        semantics.Type.Accept(visitor, this);
+                        AddToSource($" {semantics.Name}");
+                        AddToSource("{get;}");
+                    }
+                    break;
+                default:
+                    AddToSource($"public");
+                    semantics.Type.Accept(visitor, this);
+                    AddToSource($" {semantics.Name}");
+                    AddToSource("{get;}");
+                    break;
+            }
         }
     }
 

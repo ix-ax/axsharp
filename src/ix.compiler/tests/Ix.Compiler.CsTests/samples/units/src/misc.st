@@ -1,3 +1,22 @@
+NAMESPACE Enums
+    CLASS ClassWithEnums
+        VAR PUBLIC              
+            colors : Colors;            
+            NamedValuesColors : NamedValuesColors;           
+        END_VAR
+        
+    END_CLASS
+
+    TYPE
+        Colors : (Red, Green, Blue) := Red;
+    END_TYPE
+
+    TYPE
+        NamedValuesColors : STRING (Red := '1', Green := '2', Blue := '3') := Red;
+    END_TYPE
+      
+END_NAMESPACE
+
 NAMESPACE misc
     CLASS PUBLIC VariousMembers
         VAR PUBLIC
@@ -40,7 +59,5 @@ NAMESPACE UnknownArraysShouldNotBeTraspiled
             HelloString : STRING;
             Id : ULINT;
         END_VAR        
-    END_CLASS
-
-    
+    END_CLASS    
 END_NAMESPACE

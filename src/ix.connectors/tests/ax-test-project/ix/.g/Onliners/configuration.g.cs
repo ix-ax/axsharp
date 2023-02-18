@@ -69,7 +69,8 @@ public partial class ax_test_projectTwinController : ITwinController
 
     public OnlinerWString myWSTRING { get; }
 
-    public Colors myColors { get; }
+    [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(Colors))]
+    public OnlinerInt myColors { get; }
 
     public GH.PKTu.ix_56.SecondInheritance GH_PKTu_ix_56_SecondInheritance { get; }
 
@@ -107,6 +108,7 @@ public partial class ax_test_projectTwinController : ITwinController
         myWCHAR = @Connector.ConnectorAdapter.AdapterFactory.CreateWCHAR(this.Connector, "", "myWCHAR");
         mySTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this.Connector, "", "mySTRING");
         myWSTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateWSTRING(this.Connector, "", "myWSTRING");
+        myColors = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this.Connector, "", "myColors");
         GH_PKTu_ix_56_SecondInheritance = new GH.PKTu.ix_56.SecondInheritance(this.Connector, "", "GH_PKTu_ix_56_SecondInheritance");
     }
 
@@ -144,6 +146,7 @@ public partial class ax_test_projectTwinController : ITwinController
         myWCHAR = @Connector.ConnectorAdapter.AdapterFactory.CreateWCHAR(this.Connector, "", "myWCHAR");
         mySTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this.Connector, "", "mySTRING");
         myWSTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateWSTRING(this.Connector, "", "myWSTRING");
+        myColors = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this.Connector, "", "myColors");
         GH_PKTu_ix_56_SecondInheritance = new GH.PKTu.ix_56.SecondInheritance(this.Connector, "", "GH_PKTu_ix_56_SecondInheritance");
     }
 }

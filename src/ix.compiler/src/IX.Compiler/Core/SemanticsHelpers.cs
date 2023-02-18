@@ -24,16 +24,17 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForTranspile(this IFieldDeclaration field, Compilation compilation)
     {
-        return field.AccessModifier == AccessModifier.Public && field.Type.IsMemberEligibleForTranspile(compilation);
+        return field.AccessModifier == AccessModifier.Public && field.Type.IsTypeEligibleForTranspile(compilation);
     }
 
-    public static bool IsMemberEligibleForTranspile(this ITypeDeclaration typeDeclaration, Compilation compilation)
+    public static bool IsTypeEligibleForTranspile(this ITypeDeclaration typeDeclaration, Compilation compilation)
     {
         return !(typeDeclaration is IReferenceTypeDeclaration) 
                &&
                (typeDeclaration is IScalarTypeDeclaration ||
                 typeDeclaration is IStringTypeDeclaration ||
                 typeDeclaration is IStructuredTypeDeclaration ||
+                typeDeclaration is INamedValueTypeDeclaration ||
                 compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == typeDeclaration.FullyQualifiedName))
 
                ;
@@ -47,7 +48,7 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForTranspile(this IVariableDeclaration variable, Compilation compilation)
     {
-        return variable.IsInGlobalMemory && variable.Type.IsMemberEligibleForTranspile(compilation);
+        return variable.IsInGlobalMemory && variable.Type.IsTypeEligibleForTranspile(compilation);
     }
 
     /// <summary>
@@ -58,7 +59,7 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForConstructor(this IFieldDeclaration field, Compilation compilation)
     {
-        return field.IsMemberEligibleForTranspile(compilation);// && !(field.Type is IEnumTypeDeclaration);
+        return field.AccessModifier == AccessModifier.Public && field.IsMemberEligibleForTranspile(compilation);
     }
 
     /// <summary>
@@ -74,6 +75,6 @@ public static class SemanticsHelpers
 
     public static bool IsMemberEligibleForConstructor(this IArrayTypeDeclaration arrayTypeDeclaration, Compilation compilation)
     {
-        return arrayTypeDeclaration.ElementTypeAccess.Type.IsMemberEligibleForTranspile(compilation);
+        return arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(compilation);
     }
 }
