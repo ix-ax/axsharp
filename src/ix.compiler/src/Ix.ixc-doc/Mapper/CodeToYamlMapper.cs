@@ -23,41 +23,32 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(IDeclaration declaration)
         {
-
-
             return new Item
             {
                 Uid = declaration.Name,
                 Id = declaration.Name,
-                //Parent = classDeclaration.;
+                Parent = declaration.ContainingNamespace.Name,
                 //Children = children.Concat(methods).ToArray(),
                 Name = declaration.Name,
-                FullName = declaration.Name,
-                Type = "Class",
-                Namespace = declaration.Name,
-                Summary = "Test class doc",
-                Syntax = new Syntax { Content = "CLASS MyTestClass" },
-
+                FullName = declaration.FullyQualifiedName,
+                //Type = "Class",
+                Namespace = declaration.ContainingNamespace.Name,
+                Summary = _yh.GetComments(declaration.Location).summary,
+                //Syntax = new Syntax { Content = "CLASS MyTestClass" },
                 //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
             };
         }
 
         public Item PopulateItem(IClassDeclaration classDeclaration)
         {
-
-
-
             var children = classDeclaration.Fields.Select(p => p.FullyQualifiedName);
             var methods = classDeclaration.Methods.Select(p => p.FullyQualifiedName);
-            var comments = _yh.GetComments(classDeclaration.Location);
 
             var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();
             List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
             classDeclaration.GetAllExtendedTypes().ToList()
                 .Select(p => ((IClassDeclaration)p).Fields.Where(f => _yh.CanBeFieldInherited(f, classDeclaration, p))).ToList()
                 .ForEach(list => extendedFields.Concat(list));
-
-            var members = _yh.GetInheritedMembers(classDeclaration);
 
             return new Item
             {
@@ -69,30 +60,26 @@ namespace Ix.ixc_doc.Mapper
                 FullName = classDeclaration.FullyQualifiedName,
                 Type = ItemType.Class.ToString(),
                 Namespace = classDeclaration.ContainingNamespace.Name,
-                Summary = comments.summary,
+                Summary = _yh.GetComments(classDeclaration.Location).summary,
                 Syntax = new Syntax { Content = $"CLASS {classDeclaration.Name}" },
                 Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => p.FullyQualifiedName).ToArray(),
                 InheritedMembers = _yh.GetInheritedMembers(classDeclaration),
-
-
             };
         }
 
         public Item PopulateItem(IFieldDeclaration fieldDeclaration)
         {
-
             return new Item
             {
                 Uid = fieldDeclaration.FullyQualifiedName,
                 Id = fieldDeclaration.Name,
-                //Parent = ,
+                Parent = fieldDeclaration.ContainingScope.Name,
                 Name = fieldDeclaration.Name,
                 FullName = fieldDeclaration.FullyQualifiedName,
                 Type = ItemType.Property.ToString(),
                 Namespace = fieldDeclaration.ContainingNamespace.Name,
-                Summary = "Test class doc",
-                Syntax = new Syntax { Content = "CLASS MyTestClass" },
-
+                Summary = _yh.GetComments(fieldDeclaration.Location).summary,
+                Syntax = new Syntax { Content = $"{fieldDeclaration.Name} : {fieldDeclaration.Type.FullyQualifiedName}", Return = new Return { Type = $"{fieldDeclaration.Type.FullyQualifiedName}" } },
             };
         }
 

@@ -2,7 +2,7 @@
   "profiles": {
     "ixc-doc": {
       "commandName": "Project",
-      "commandLineArgs": "ixc-doc -x D:\\Inxton\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\samples\\ax\\ -o D:\\Inxton\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\docfx\\docfx_project\\api\\"
+      "commandLineArgs": "ixc-doc -x C:\\MTS\\ix\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\samples\\ax\\ -o C:\\MTS\\ix\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\docfx\\docfx_project\\api\\"
     }
   }
 }
