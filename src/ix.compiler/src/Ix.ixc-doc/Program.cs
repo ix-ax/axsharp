@@ -11,6 +11,7 @@ using Ix.ixc_doc.Visitors;
 using System;
 using CommandLine;
 using System.CommandLine;
+using Ix.ixc_doc.Schemas;
 
 
 
@@ -90,9 +91,18 @@ void GenerateYamls(Options o)
 
     //serialize
     var x = 
-    myNodeVisitor.TocSchema.Items = myNodeVisitor.TocSchemaItems.ToArray();
+    myNodeVisitor.TocSchema.Items = TocItemListToTocItem(myNodeVisitor.TocSchemaList.Items);
     yamlSerializer.TocToYaml(myNodeVisitor.TocSchema);
+}
 
+TocSchema.Item[] TocItemListToTocItem(List<TocSchemaList.ItemList> itemLists)
+{
+    List<TocSchema.Item> items = new List<TocSchema.Item>();
+    foreach (var item in itemLists)
+    {
+        items.Add(new TocSchema.Item() { Uid = item.Uid, Name = item.Name, Items = TocItemListToTocItem(item.Items) });
+    }
+    return items.ToArray();
 }
 
 //for one file

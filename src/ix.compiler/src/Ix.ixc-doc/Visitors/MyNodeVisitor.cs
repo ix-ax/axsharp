@@ -23,18 +23,22 @@ namespace Ix.ixc_doc.Visitors
     public partial class MyNodeVisitor : ISemanticNodeVisitor<IYamlBuiderVisitor>
     {
         public List<Item> Items { get; set; }
+        public List<Item> NamespaceItems { get; set; }
         public YamlSchema Schema { get; set; }
         public TocSchema TocSchema { get; set; }
 
         public List<Reference> References { get; set; }
         public List<TocSchema.Item> TocSchemaItems { get; set; }
+        public TocSchemaList TocSchemaList { get; set; }
         public MyNodeVisitor()
         {
             Schema = new YamlSchema();
+            NamespaceItems = new List<Item>();
             TocSchema = new TocSchema();
             Items = new List<Item>();
             TocSchemaItems = new List<TocSchema.Item>();
             References= new List<Reference>();
+            TocSchemaList = new TocSchemaList();
         }
         public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)
         {
@@ -76,7 +80,8 @@ namespace Ix.ixc_doc.Visitors
         public void Visit(INamespaceDeclaration namespaceDeclaration, IYamlBuiderVisitor data)
         {
             //Console.WriteLine("namespace declaration!");
-            namespaceDeclaration.Declarations.ToList().ForEach(p => p.Accept(this, data));
+            data.CreateNamespaceYaml(namespaceDeclaration, this);
+            //namespaceDeclaration.Declarations.ToList().ForEach(p => p.Accept(this, data));
         }
 
         public void Visit(IUsingDirective usingDirective, IYamlBuiderVisitor data)
@@ -134,7 +139,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IStructuredTypeDeclaration structuredTypeDeclaration, IYamlBuiderVisitor data)
         {
-            data.CreateStructuredTypeYaml(structuredTypeDeclaration, this);
+            //data.CreateStructuredTypeYaml(structuredTypeDeclaration, this);
             //Console.WriteLine("structured type!");
             //data.CreateBaseYaml(structuredTypeDeclaration, this);
         }
@@ -151,7 +156,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(INamedValueTypeDeclaration namedValueTypeDeclaration, IYamlBuiderVisitor data)
         {
-            data.CreateNamedValueTypeYaml(namedValueTypeDeclaration, this);
+            //data.CreateNamedValueTypeYaml(namedValueTypeDeclaration, this);
             //throw new NotImplementedException();
         }
 
