@@ -14,6 +14,7 @@ namespace Ix.ixc_doc.Helpers
 {
     internal class YamlHelpers
     {
+
         internal string[] GetInheritedMembers(IClassDeclaration classDeclaration)
         {
             var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();

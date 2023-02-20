@@ -8,6 +8,7 @@ using AX.ST.Semantic.Symbols;
 using AX.ST.Semantic.Tree;
 using AX.ST.Syntax.Tree;
 using AX.Text;
+using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Interfaces;
 using Ix.ixc_doc.Schemas;
 using System;
@@ -22,23 +23,17 @@ namespace Ix.ixc_doc.Visitors
     //semantic
     public partial class MyNodeVisitor : ISemanticNodeVisitor<IYamlBuiderVisitor>
     {
-        public List<Item> Items { get; set; }
-        public List<Item> NamespaceItems { get; set; }
-        public YamlSchema Schema { get; set; }
-        public TocSchema TocSchema { get; set; }
 
-        public List<Reference> References { get; set; }
-        public List<TocSchema.Item> TocSchemaItems { get; set; }
-        public TocSchemaList TocSchemaList { get; set; }
+        public void MapYamlHelperToSchema()
+        {
+            YamlHelper.Schema.Items = YamlHelper.Items.ToArray();
+            YamlHelper.Schema.References = YamlHelper.References.ToArray();
+        }
+        public YamlSerializerHelper YamlHelper { get; set; }
+        private YamlSerializer _s { get; set; }
         public MyNodeVisitor()
         {
-            Schema = new YamlSchema();
-            NamespaceItems = new List<Item>();
-            TocSchema = new TocSchema();
-            Items = new List<Item>();
-            TocSchemaItems = new List<TocSchema.Item>();
-            References= new List<Reference>();
-            TocSchemaList = new TocSchemaList();
+            YamlHelper = new YamlSerializerHelper();
         }
         public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)
         {

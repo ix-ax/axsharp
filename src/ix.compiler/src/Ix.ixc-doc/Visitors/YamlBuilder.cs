@@ -2,6 +2,7 @@
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Syntax.Tree;
 using CommandLine;
+using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Interfaces;
 using Ix.ixc_doc.Mapper;
 using Ix.ixc_doc.Schemas;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Ix.ixc_doc.Visitors
@@ -24,43 +26,121 @@ namespace Ix.ixc_doc.Visitors
             _mp = new CodeToYamlMapper();
             _s = serializer;
         }
-
-        public virtual void CreateNamespaceYaml(INamespaceDeclaration namespaceDeclaration, MyNodeVisitor visitor)
+        private void TryAddToNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
         {
-            var item = _mp.PopulateItem(namespaceDeclaration);
-            //visitor.NamespaceItems.Add(item);
+            if(declaration.ContainingNamespace?.Name != "$GLOBAL")
+            { 
+                var reference = new Reference
+                {
+                    Uid = declaration.FullyQualifiedName,
+                    Name = declaration.Name,
+                    FullName = declaration.FullyQualifiedName,
+                    NameWithType = declaration.Name
 
-            var tocSchemaItem = new TocSchemaList.ItemList
-            {
-                Uid = namespaceDeclaration.FullyQualifiedName,
-                Name = namespaceDeclaration.Name
-            };
-
-            if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
-                if(FindTocClass(visitor.TocSchemaList.Items, namespaceDeclaration.FullyQualifiedName) == null)
-                    AddToTocSchema(visitor, tocSchemaItem, namespaceDeclaration.ContainingNamespace.FullyQualifiedName);
-
-            namespaceDeclaration.Declarations.ToList().ForEach(p => p.Accept(visitor, this));
-
-            visitor.Schema.Items = new Item[] { item };
-
-            _s.SchemaToYaml(visitor.Schema, namespaceDeclaration.FullyQualifiedName);
-            visitor.Schema = new YamlSchema();
-            //visitor.NamespaceItems.Clear();
+                };
+                v.YamlHelper.NamespaceReferences.Add(reference);
+            }
         }
 
-        //operation on semantic tree
-        public virtual void CreateClassYaml(IClassDeclaration classDeclaration, MyNodeVisitor visitor)
+        public virtual void CreateNamespaceYaml(INamespaceDeclaration namespaceDeclaration, MyNodeVisitor v)
         {
-            //var mapper = new CodeToYamlMapper();
+            //populate item of namepsace
+            var item = _mp.PopulateItem(namespaceDeclaration);
+         
+            // create toc item
+            var tocSchemaItem = new TocSchemaList.ItemList(namespaceDeclaration.FullyQualifiedName,namespaceDeclaration.Name);
+           
+            // add to namespace group if is not global
+            if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
+                if(FindTocGroup(v.YamlHelper.TocSchemaList.Items, namespaceDeclaration.FullyQualifiedName) == null)
+                    AddToTocSchema(v, tocSchemaItem, namespaceDeclaration.ContainingNamespace.FullyQualifiedName);
+
+            // iterate through children
+            namespaceDeclaration.Declarations.ToList().ForEach(p =>
+            { 
+                p.Accept(v, this);
+                 var reference = new Reference
+                 {
+                    Uid = p.FullyQualifiedName,
+                    Name = p.Name,
+                    FullName = p.FullyQualifiedName,
+                    NameWithType = p.Name
+
+                };
+                v.YamlHelper.NamespaceReferences.Add(reference);
+            });
+            
+
+            if(namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
+            { 
+                v.YamlHelper.Schema.Items = new Item[] { item };
+                v.YamlHelper.Schema.References = v.YamlHelper.NamespaceReferences.ToArray();
+                _s.SchemaToYaml(v.YamlHelper.Schema, namespaceDeclaration.FullyQualifiedName);
+                v.YamlHelper.Schema = new YamlSchema();
+                v.YamlHelper.NamespaceReferences.Clear();
+            }
+        }
+
+   
+       
+        //operation on semantic tree
+        public virtual void CreateClassYaml(IClassDeclaration classDeclaration, MyNodeVisitor v)
+        {
+
+            
 
             var item = _mp.PopulateItem(classDeclaration);
-            visitor.Items.Add(item);
+            //add to items
+            v.YamlHelper.Items.Add(item);
+            AddInheritedMembersReferences(item, v);
 
-            //var references = new List<Reference>();
+            var tocSchemaItem = new TocSchemaList.ItemList(item.Uid,item.FullName);
+      
+            
+            if (item.Namespace != "$GLOBAL")
+            {
+                //class is grouped in namespace
+                AddToTocSchema(v, tocSchemaItem, item.Namespace);
+            }
+            else
+            {
+                // if global, class is not grouped
+                AddToTocSchema(v, tocSchemaItem, null);
+            }
+
+            classDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(v, this));
+
+            TryAddToNamespaceReference(classDeclaration,v);
+            //map helpers list to schema lists
+            v.MapYamlHelperToSchema();
+
+            //serialize schema to yaml
+            _s.SchemaToYaml(v.YamlHelper.Schema, classDeclaration.FullyQualifiedName);
+            //clear schema for next use
+            v.YamlHelper.Schema = new YamlSchema();
+            v.YamlHelper.Items.Clear();
+        }
+
+      
+
+        //operation on semantic tree
+        public virtual void CreateFieldYaml(IFieldDeclaration fieldDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(fieldDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+        }
+
+        public virtual void CreateMethodYaml(IMethodDeclaration methodDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(methodDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+        }
+
+        private void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
+        {
             foreach (var member in item.InheritedMembers) 
             {
-                visitor.References.Add( new Reference()
+                v.YamlHelper.References.Add( new Reference()
                 {
                     Uid = member,
                     CommentId= member,
@@ -71,51 +151,30 @@ namespace Ix.ixc_doc.Visitors
 
                 });
             }
-
-            var tocSchemaItem = new TocSchema.Item
-            {
-                Uid = item.Uid,
-                Name = item.FullName
-            };
-
-            if (item.Namespace != "$GLOBAL")
-            {
-                AddToTocSchema(visitor, tocSchemaItem, item.Namespace);
-            }
-            else
-            {
-                AddToTocSchema(visitor, tocSchemaItem, null);
-            }
-
-            classDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(visitor, this));
-
-            visitor.Schema.Items = visitor.Items.ToArray();
-            visitor.Schema.References = visitor.References.ToArray();
-            _s.SchemaToYaml(visitor.Schema, classDeclaration.FullyQualifiedName);
-            visitor.Schema = new YamlSchema();
-            visitor.Items.Clear();
         }
 
-        private void AddToTocSchema(MyNodeVisitor visitor, TocSchemaList.ItemList tocSchemaItem, string? tocClass)
+       //create toc schema, grouped if namespace exists, or only global
+       private void AddToTocSchema(MyNodeVisitor visitor, TocSchemaList.ItemList tocSchemaItem, string? tocGroup)
         {
-            if (tocClass == null || tocClass == "" || tocClass == "$GLOBAL")
+            if (tocGroup == null || tocGroup == "" || tocGroup == "$GLOBAL")
             {
-                visitor.TocSchemaList.Items.Add(tocSchemaItem);
+                visitor.YamlHelper.TocSchemaList.Items.Add(tocSchemaItem);
             }
             else
             {
-                FindTocClass(visitor.TocSchemaList.Items, tocClass).Items.Add(tocSchemaItem);
+                FindTocGroup(visitor.YamlHelper.TocSchemaList.Items, tocGroup).Items.Add(tocSchemaItem);
             }
         }
 
-        private TocSchemaList.ItemList? FindTocClass(List<TocSchemaList.ItemList> items, string tocClass)
+        //check for existing group in toc list
+        private TocSchemaList.ItemList? FindTocGroup(List<TocSchemaList.ItemList> items, string tocGroup)
         {
             foreach (var item in Enumerable.Reverse(items).ToList())
             {
-                if (item.Name == tocClass)
+                if (item.Name == tocGroup)
                     return item;
                 if (item.Items.Count > 0){
-                    var itemClass = FindTocClass(item.Items, tocClass);
+                    var itemClass = FindTocGroup(item.Items, tocGroup);
                     if (itemClass != null)
                         return itemClass;
                 }
@@ -123,76 +182,7 @@ namespace Ix.ixc_doc.Visitors
             return null;
         }
 
-        //operation on semantic tree
-        public virtual void CreateFieldYaml(IFieldDeclaration fieldDeclaration, MyNodeVisitor visitor)
-        {
-            var item = _mp.PopulateItem(fieldDeclaration);
-            visitor.Items.Add(item);
-        }
-
-        public virtual void CreateMethodYaml(IMethodDeclaration methodDeclaration, MyNodeVisitor visitor)
-        {
-            var item = _mp.PopulateItem(methodDeclaration);
-            visitor.Items.Add(item);
-        }
-
-        public virtual void CreateBaseYaml(
-        IDeclaration declaration,
-        MyNodeVisitor visitor)
-        {
-            var item = _mp.PopulateItem(declaration);
-            visitor.Items.Add(item);
-        }
-
-        public virtual void CreateNamedValueTypeYaml(
-          INamedValueTypeDeclaration namedValueTypeDeclaration,
-          MyNodeVisitor visitor)
-        {
-
-            var item = _mp.PopulateItem(namedValueTypeDeclaration);
-            visitor.Items.Add(item);
-
-            var tocSchemaItem = new TocSchemaList.ItemList
-            {
-                Uid = item.Uid,
-                Name = item.FullName
-
-            };
-
-            visitor.TocSchemaList.Items.Add(tocSchemaItem);
-
-            //classDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(visitor, this));
-
-
-            visitor.Schema.Items = visitor.Items.ToArray();
-
-            _s.SchemaToYaml(visitor.Schema, namedValueTypeDeclaration.FullyQualifiedName);
-            visitor.Schema = new YamlSchema();
-            visitor.Items.Clear();
-        }
-
-        public virtual void CreateStructuredTypeYaml(
-          IStructuredTypeDeclaration structuredTypeDeclaration,
-          MyNodeVisitor visitor)
-        {
-
-            var item = _mp.PopulateItem(structuredTypeDeclaration);
-            visitor.Items.Add(item);
-
-            var tocSchemaItem = new TocSchemaList.ItemList
-            {
-                Uid = item.Uid,
-                Name = item.FullName
-            };
-
-            visitor.TocSchemaList.Items.Add(tocSchemaItem);
-
-            visitor.Schema.Items = visitor.Items.ToArray();
-
-            _s.SchemaToYaml(visitor.Schema, structuredTypeDeclaration.FullyQualifiedName);
-            visitor.Schema = new YamlSchema();
-            visitor.Items.Clear();
-        }
+       
     }
 
 

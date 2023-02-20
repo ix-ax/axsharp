@@ -92,15 +92,6 @@ namespace Ix.ixc_doc.Schemas
 
         [JsonProperty("overload", NullValueHandling = NullValueHandling.Ignore)]
         public string Overload { get; set; }
-
-        [JsonProperty("nameWithType.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public string NameWithTypeVb { get; set; }
-
-        [JsonProperty("fullName.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public string FullNameVb { get; set; }
-
-        [JsonProperty("name.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public string NameVb { get; set; }
     }
 
     public partial class Source

@@ -90,9 +90,8 @@ void GenerateYamls(Options o)
     semanticTree.GetRoot().Accept(myNodeVisitor, treeWalker);
 
     //serialize
-    var x = 
-    myNodeVisitor.TocSchema.Items = TocItemListToTocItem(myNodeVisitor.TocSchemaList.Items);
-    yamlSerializer.TocToYaml(myNodeVisitor.TocSchema);
+    myNodeVisitor.YamlHelper.TocSchema.Items = TocItemListToTocItem(myNodeVisitor.YamlHelper.TocSchemaList.Items);
+    yamlSerializer.TocToYaml(myNodeVisitor.YamlHelper.TocSchema);
 }
 
 TocSchema.Item[] TocItemListToTocItem(List<TocSchemaList.ItemList> itemLists)
@@ -128,7 +127,7 @@ async Task GenerateYamlFromFile(FileInfo file, Options o)
 
 
     //dump yaml schema
-    yamlSerializer.SchemaToYaml(myNodeVisitor.Schema, file.Name.Split('.').First());
+    yamlSerializer.SchemaToYaml(myNodeVisitor.YamlHelper.Schema, file.Name.Split('.').First());
 
     
 

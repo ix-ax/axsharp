@@ -51,27 +51,6 @@ namespace Ix.ixc_doc.Interfaces
             {
             throw new NotImplementedException();
         }
-
-
-        public virtual void CreateBaseYaml(
-         IDeclaration declaration,
-         MyNodeVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void CreateNamedValueTypeYaml(
-          INamedValueTypeDeclaration namedValueTypeDeclaration,
-          MyNodeVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void CreateStructuredTypeYaml(
-          IStructuredTypeDeclaration structuredTypeDeclaration,
-          MyNodeVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -27,10 +27,17 @@ namespace Ix.ixc_doc.Schemas
 
     public class TocSchemaList
     {
+       
         public List<ItemList> Items { get; set; } = new List<ItemList>();
 
         public partial class ItemList
         {
+
+            public ItemList(string uid, string name)
+            {
+                Uid= uid;
+                Name= name;
+            }
             public string Uid { get; set; }
 
             public string Name { get; set; }
