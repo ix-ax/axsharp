@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Ix.Connector.S71500.WebAPI;
 using Newtonsoft.Json;
 using Siemens.Simatic.S7.Webserver.API.Exceptions;
 using Siemens.Simatic.S7.Webserver.API.Models.Responses;
@@ -171,6 +172,9 @@ public class WebApiConnector : Connector
         }
     }
 
+    private const int MAX_READ_REQUEST_SEGMENT = (64 * 1024) - 628;
+    private const int MAX_WRITE_REQUEST_SEGMENT = (64 * 1024) - 628;
+
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
@@ -179,28 +183,34 @@ public class WebApiConnector : Connector
 
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
         if (!twinPrimitives.Any()) return;
-        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
-        var request = webApiPrimitives.Select(p => p.PlcReadRequestData).ToList();
+        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+        
+        foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
+        {
+            var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
+            var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
+            try
+            {
+                responseData = await RequestHandler.ApiBulkAsync(segment);
+                var position = 0;
+                apiPrimitives.ToList()
+                    .ForEach(p =>
+                    {
+                        p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
+                        p.AccessStatus.Update(RwCycleCount);
+                    });
+            }
+            catch (ApiBulkRequestException apiException)
+            {
+                HandleCommFailure(apiException, "Batch read failed.", apiPrimitives, apiException.BulkResponse, apiPrimitives.Select(p => p.PeekPlcReadRequestData));
+            }
+            catch (Exception e)
+            {
+                HandleCommFailure(e, "Batch read failed.", apiPrimitives, responseData, apiPrimitives.Select(p => p.PeekPlcReadRequestData));
+            }
+        }
 
-        try
-        {
-            responseData = await RequestHandler.ApiBulkAsync(request);
-            var position = 0;
-            webApiPrimitives.ToList()
-                .ForEach(p =>
-                {
-                    p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
-                    p.AccessStatus.Update(RwCycleCount);
-                });
-        }
-        catch (ApiBulkRequestException apiException)
-        {
-            HandleCommFailure(apiException, "Batch read failed.", primitives, apiException.BulkResponse, request);
-        }
-        catch (Exception e)
-        {
-            HandleCommFailure(e, "Batch read failed.", primitives, responseData, request);
-        }
+       
     }
 
     /// <inheritdoc />
@@ -209,22 +219,23 @@ public class WebApiConnector : Connector
         if (primitives == null) return;
         var responseData = new ApiBulkResponse();
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-        if (!twinPrimitives.Any()) return;
-        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
-        var request = webApiPrimitives.Select(p => p.PlcWriteRequestData).ToList();
-
-        try
+        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+        
+        foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))
         {
-           
-            responseData = await RequestHandler.ApiBulkAsync(request);
-        }
-        catch (ApiBulkRequestException apiException)
-        {
-            HandleCommFailure(apiException, "Batch write failed.", primitives, apiException.BulkResponse, request);
-        }
-        catch (Exception e)
-        {
-            HandleCommFailure(e, "Batch write failed.", primitives, responseData, request);
+            var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
+            try
+            {
+                responseData = await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p =>p.PeekPlcWriteRequestData));
+            }
+            catch (ApiBulkRequestException apiException)
+            {
+                HandleCommFailure(apiException, "Batch write failed.", twinPrimitives, apiException.BulkResponse, apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+            }
+            catch (Exception e)
+            {
+                HandleCommFailure(e, "Batch write failed.", twinPrimitives, responseData, apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+            }
         }
     }
 

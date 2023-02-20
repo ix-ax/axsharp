@@ -9,6 +9,10 @@ namespace Ix.Connector.S71500.WebApi;
 
 internal interface IWebApiPrimitive : ITwinPrimitive
 {
+    ApiPlcReadRequest PeekPlcReadRequestData { get; }
+
+    ApiPlcWriteRequest PeekPlcWriteRequestData { get; }
+
     ApiPlcReadRequest PlcReadRequestData { get; }
     ApiPlcWriteRequest PlcWriteRequestData { get; }
 
