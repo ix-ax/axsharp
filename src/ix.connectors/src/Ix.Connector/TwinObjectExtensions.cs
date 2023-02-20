@@ -278,7 +278,7 @@ public static class TwinObjectExtensions
     /// If there is any remaining instance active the polling will continue until the last instance is stopped.
     /// </summary>
     /// <param name="obj">Object for which the polling should be stopped.</param>
-    public static void StopPolling(this ITwinObject obj)
+    public static void StopPolling(this ITwinElement obj)
     {
         Polling.Remove(obj);
     }
