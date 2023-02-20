@@ -23,6 +23,14 @@ namespace Ix.ixc_doc.Interfaces
         {
             throw new NotImplementedException();
         }
+
+        public virtual void CreateNamespaceYaml(
+          INamespaceDeclaration namespaceDeclaration,
+          MyNodeVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void CreateClassYaml(
           IClassDeclaration classDeclaration,
           MyNodeVisitor visitor)

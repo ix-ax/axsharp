@@ -39,6 +39,23 @@ namespace Ix.ixc_doc.Mapper
             };
         }
 
+        public Item PopulateItem(INamespaceDeclaration namespaceDeclaration)
+        {
+            var children = namespaceDeclaration.Declarations.Select(p => p.FullyQualifiedName);
+
+            return new Item
+            {
+                Uid = namespaceDeclaration.FullyQualifiedName,
+                Id = namespaceDeclaration.Name,
+                //Parent = namespaceDeclaration.ContainingNamespace.FullyQualifiedName,
+                Children = children.ToArray(),
+                Name = namespaceDeclaration.Name,
+                FullName = namespaceDeclaration.FullyQualifiedName,
+                Type = "Namespace",
+                Summary = _yh.GetComments(namespaceDeclaration.Location).summary,
+            };
+        }
+
         public Item PopulateItem(IClassDeclaration classDeclaration)
         {
             var children = classDeclaration.Fields.Select(p => p.FullyQualifiedName);
