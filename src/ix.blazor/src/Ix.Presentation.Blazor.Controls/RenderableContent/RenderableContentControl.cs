@@ -67,7 +67,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             try
             {
                 _context = (ITwinElement)Context;
-                (Context as ITwinObject).StartPolling(PollingInterval);
+                _context.StartPolling(this.PollingInterval);
             }
             catch 
             {
@@ -349,7 +349,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         }
         public void Dispose()
         {
-            (this.Context as ITwinObject)?.StopPolling();
+            this._context?.StopPolling();
             _viewModelCache.ResetCounter();
         }
     }
