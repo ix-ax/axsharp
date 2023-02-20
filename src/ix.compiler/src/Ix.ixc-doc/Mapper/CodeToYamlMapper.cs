@@ -50,7 +50,7 @@ namespace Ix.ixc_doc.Mapper
                 //Parent = namespaceDeclaration.ContainingNamespace.FullyQualifiedName,
                 Children = children.ToArray(),
                 Name = namespaceDeclaration.Name,
-                FullName = namespaceDeclaration.FullyQualifiedName,
+                FullName = namespaceDeclaration.Name,
                 Type = "Namespace",
                 Summary = _yh.GetComments(namespaceDeclaration.Location).summary,
             };
@@ -74,7 +74,7 @@ namespace Ix.ixc_doc.Mapper
                 Parent = classDeclaration.ContainingNamespace.Name,
                 Children = children.Concat(methods).ToArray(),
                 Name = classDeclaration.Name,
-                FullName = classDeclaration.FullyQualifiedName,
+                FullName = classDeclaration.Name,
                 Type = ItemType.Class.ToString(),
                 Namespace = classDeclaration.ContainingNamespace.Name,
                 Summary = _yh.GetComments(classDeclaration.Location).summary,
@@ -92,7 +92,7 @@ namespace Ix.ixc_doc.Mapper
                 Id = fieldDeclaration.Name,
                 Parent = fieldDeclaration.ContainingScope.Name,
                 Name = fieldDeclaration.Name,
-                FullName = fieldDeclaration.FullyQualifiedName,
+                FullName = fieldDeclaration.Name,
                 Type = ItemType.Property.ToString(),
                 Namespace = fieldDeclaration.ContainingNamespace.Name,
                 Summary = _yh.GetComments(fieldDeclaration.Location).summary,
@@ -125,7 +125,7 @@ namespace Ix.ixc_doc.Mapper
                 Id = methodDeclaration.Name,
                 //Parent = ,
                 Name = methodDeclaration.Name,
-                FullName = methodDeclaration.FullyQualifiedName,
+                FullName = methodDeclaration.Name,
                 Type = ItemType.Method.ToString(),
                 Namespace = methodDeclaration.ContainingNamespace.Name,
                 Summary = "Test class doc",
@@ -142,7 +142,7 @@ namespace Ix.ixc_doc.Mapper
                 //Parent = classDeclaration.;
                 //Children = children.Concat(methods).ToArray(),
                 Name = namedValueTypeDeclaration.Name,
-                FullName = namedValueTypeDeclaration.FullyQualifiedName,
+                FullName = namedValueTypeDeclaration.Name,
                 Type = "Struct",
                 Namespace = namedValueTypeDeclaration.Name,
                 Summary = _yh.GetComments(namedValueTypeDeclaration.Location).summary,
@@ -161,7 +161,7 @@ namespace Ix.ixc_doc.Mapper
                 //Parent = classDeclaration.;
                 //Children = children.Concat(methods).ToArray(),
                 Name = structuredTypeDeclaration.Name,
-                FullName = structuredTypeDeclaration.FullyQualifiedName,
+                FullName = structuredTypeDeclaration.Name,
                 Type = "Struct",
                 Namespace = structuredTypeDeclaration.Name,
                 Summary = _yh.GetComments(structuredTypeDeclaration.Location).summary,
@@ -170,8 +170,5 @@ namespace Ix.ixc_doc.Mapper
                 //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
             };
         }
-
-
-        
     }
 }
