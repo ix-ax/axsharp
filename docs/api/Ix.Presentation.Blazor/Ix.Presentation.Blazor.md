@@ -4,6 +4,7 @@
 
 | public type | description |
 | --- | --- |
+| class [BlazorGroupLayoutProvider](./Ix.Presentation.Blazor/BlazorGroupLayoutProvider.md) |  |
 | class [BlazorLayoutProvider](./Ix.Presentation.Blazor/BlazorLayoutProvider.md) | Provider class, which contains assembly info about layout types. |
 | class [EnumToIntConverter](./Ix.Presentation.Blazor/EnumToIntConverter.md) | Enum to Integer converter. |
 | class [Group](./Ix.Presentation.Blazor/Group.md) | Class containing list of grouped elements by layout. |

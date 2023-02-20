@@ -91,6 +91,11 @@ namespace makereadonce
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -214,6 +219,11 @@ namespace makereadonce
             someMember.Shadow = plain.someMember;
             someOtherMember.Shadow = plain.someOtherMember;
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

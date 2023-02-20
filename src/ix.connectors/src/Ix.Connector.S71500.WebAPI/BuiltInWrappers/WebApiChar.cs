@@ -31,13 +31,40 @@ public class WebApiChar : OnlinerChar, IWebApiPrimitive
         _webApiConnector = new WebApiConnector();
     }
 
-    /// <inheritdoc />
-    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData =>
-        WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+    private ApiPlcWriteRequest _plcWriteRequestData;
+    private ApiPlcReadRequest _plcReadRequestData;
 
     /// <inheritdoc />
-    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
-        WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+    ApiPlcReadRequest IWebApiPrimitive.PeekPlcReadRequestData => _plcReadRequestData ?? WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
+    {
+        get
+        {
+            _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+            return _plcReadRequestData;
+        }
+
+    }
+
+    private char AdjustToValueValue(char value)
+    {
+        return (char)(value < 0x0020 || value > 0x007F ? 0x0020 : value);
+    }
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData
+    {
+        get
+        {
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, AdjustToValueValue(CyclicToWrite), _webApiConnector.DBName);
+            return _plcWriteRequestData;
+        }
+    }
 
     /// <inheritdoc />
     public void Read(string value)
@@ -54,6 +81,6 @@ public class WebApiChar : OnlinerChar, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<char> SetAsync(char value)
     {
-        return await _webApiConnector.WriteAsync(this, value);
+        return await _webApiConnector.WriteAsync(this, AdjustToValueValue(value));
     }
 }

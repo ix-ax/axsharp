@@ -9,8 +9,7 @@ Some compilation options can be overrided by CLI, such as `OutputProjectFolder` 
 
 ~~~json
 {
-    "OutputProjectFolder":"ix",
-    "AxProjectFolder":"C:\\MyPlcProject"
+    "OutputProjectFolder":"ix",   
 }
 ~~~
 
@@ -26,6 +25,5 @@ Some compilation options can be overrided by CLI, such as `OutputProjectFolder` 
 | ------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
 | OutputProjectFolder | Sets the directory where the ixc will emmit the twin project.Use path relative to apax project folder. | 'ix'    |
 |                     | The value is overridable from the CLI                                                                  |         |
-| AxProjectFolder     | Sets the folder of the source AX project.                                                              |         |
 
 

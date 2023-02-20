@@ -255,30 +255,38 @@ $@"<Project Sdk=""Microsoft.NET.Sdk"">
             .Root!
             .Elements("ItemGroup")
             .SelectMany(ig => ig.Elements("PackageReference"))
-            .Select(pr => new PackageReference(pr, projectFile));
+            .Select(pr => PackageReference.CreateFromReferenceNode(pr, projectFile));
     }
 
     private static string PackageReferenceNugetPath(PackageReference package)
     {
-        return Path.Combine(NugetDir, package.Name, GetBestMatchedVersion(package));
+        return Path.Combine(NugetDir, package.Name, GetBestMatchedVersion(package.Name, package.Version));
     }
 
-    internal static string GetBestMatchedVersion(PackageReference package)
+    internal static string GetBestMatchedVersion(string packageName, string packageVersion)
     {
-        var packageDirectory = Path.Combine(NugetDir, package.Name);
-
-        if (Directory.Exists(packageDirectory))
+        try
         {
-            var packages = Directory.EnumerateDirectories(packageDirectory).Select(p => new DirectoryInfo(p))
-                .Select(v => new NuGetVersion(v.Name));
+            var packageDirectory = Path.Combine(NugetDir, packageName);
 
-            var versionRange = VersionRange.Parse(package.Version);
-            var bestMatch = versionRange.FindBestMatch(packages);
+            if (Directory.Exists(packageDirectory))
+            {
+                var packages = Directory.EnumerateDirectories(packageDirectory).Select(p => new DirectoryInfo(p))
+                    .Select(v => new NuGetVersion(v.Name));
 
-            if (bestMatch != null) return bestMatch.ToNormalizedString();
+                var versionRange = VersionRange.Parse(packageVersion);
+                var bestMatch = versionRange.FindBestMatch(packages);
+
+                if (bestMatch != null) return bestMatch.ToNormalizedString();
+            }
+
+            return packageVersion;
         }
-
-        return package.Version;
+        catch (Exception e)
+        {
+            throw new FailedToDeterminePackageVersion();
+        }
+       
     }
 
     private static IEnumerable<IReference> ProjectReferences(XDocument csproj, string directory)

@@ -81,6 +81,15 @@ public interface ITwinPrimitive : ITwinElement
     /// </summary>
     void SubscribeForPeriodicReading();
 
+    /// <summary>
+    /// Copies the value from the plc to the shadow value holder.
+    /// </summary>
     void FromOnlineToShadow();
+
+    /// <summary>
+    /// Copies the value from the shadow value holder to the respective plc variable.
+    /// </summary>
     void FromShadowToOnline();
+
+  
 }

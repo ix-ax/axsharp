@@ -50,6 +50,11 @@ namespace Simatic.Ax.StateFramework
             await base.PlainToShadowAsync(plain);
             return this.RetrievePrimitives();
         }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
     }
 }
 
@@ -117,6 +122,11 @@ namespace Simatic.Ax.StateFramework
             StateID.Shadow = plain.StateID;
             StateName.Shadow = plain.StateName;
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

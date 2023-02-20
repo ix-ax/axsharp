@@ -1,9 +1,9 @@
 # ComponentService.GetGenericComponent method
 
-Method to get generic instance dynamically of blazor component. Name of the component.Generic type.
+Method to get dynamically generic instance of blazor component. Full name of the component.Generic type.
 
 ```csharp
-public IRenderableComponent GetGenericComponent(string name, Type typeArg)
+public IRenderableComponent GetGenericComponent(string fullName, Type typeArg)
 ```
 
 ## See Also

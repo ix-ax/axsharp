@@ -59,6 +59,11 @@ namespace Ix.Connector.Tests
             return null;
         }
 
+        public void Poll()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ITwinPrimitive> GetValueTags()
         {
             return valueTags;

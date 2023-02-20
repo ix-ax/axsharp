@@ -46,6 +46,12 @@ public class RootTwinObject : ITwinObject
         return SymbolTail;
     }
 
+    /// <inheritdoc />
+    public void Poll()
+    {
+        // We do not allow polling for root objects.
+    }
+
     /// <summary>
     ///     Gets empty name for this root object.
     /// </summary>

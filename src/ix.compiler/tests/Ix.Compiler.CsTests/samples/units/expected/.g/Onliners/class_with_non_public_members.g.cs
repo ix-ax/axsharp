@@ -60,6 +60,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
             return this.RetrievePrimitives();
         }
 
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -165,6 +170,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain)
         {
             return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

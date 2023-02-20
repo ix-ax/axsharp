@@ -75,6 +75,12 @@ public partial class unitsTwinController : ITwinController
     [ReadOnly()]
     public ComplexForConfig cReadOnly { get; }
 
+    [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(Colorss))]
+    public OnlinerInt Colorss { get; }
+
+    [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(Colorsss))]
+    public OnlinerULInt Colorsss { get; }
+
     public unitsTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -114,6 +120,8 @@ public partial class unitsTwinController : ITwinController
         cReadOnce.MakeReadOnce();
         cReadOnly = new ComplexForConfig(this.Connector, "", "cReadOnly");
         cReadOnly.MakeReadOnly();
+        Colorss = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this.Connector, "", "Colorss");
+        Colorsss = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Colorsss", "Colorsss");
     }
 
     public unitsTwinController(Ix.Connector.ConnectorAdapter adapter)
@@ -155,6 +163,8 @@ public partial class unitsTwinController : ITwinController
         cReadOnce.MakeReadOnce();
         cReadOnly = new ComplexForConfig(this.Connector, "", "cReadOnly");
         cReadOnly.MakeReadOnly();
+        Colorss = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this.Connector, "", "Colorss");
+        Colorsss = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Colorsss", "Colorsss");
     }
 }
 
@@ -447,6 +457,11 @@ public partial class ComplexForConfig : Ix.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
@@ -506,4 +521,18 @@ public partial class ComplexForConfig : Ix.Connector.ITwinObject
     protected System.String @SymbolTail { get; set; }
 
     protected Ix.Connector.ITwinObject @Parent { get; set; }
+}
+
+public enum Colorss
+{
+    Red,
+    Green,
+    Blue
+}
+
+public enum Colorsss : UInt64
+{
+    Red = 1,
+    Green = 2,
+    Blue = 3
 }

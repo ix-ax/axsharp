@@ -28,6 +28,8 @@ CONFIGURATION MyConfiguration
 
        p_shadow_plain: all_primitives;
        p_plain_shadow: all_primitives;
+
+       StartPolling_should_update_cyclic_property : RealMonsterData.RealMonster;  
     END_VAR
 END_CONFIGURATION
 

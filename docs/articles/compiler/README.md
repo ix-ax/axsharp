@@ -74,6 +74,7 @@ Entry.Plc.weather.GeoLocation.Write();
 - [Attributes](ATTRIBUTES.md)
 - [Added members](ADDED_MEMBERS.md)
 - [Config file](CONFIG_FILE.md)
+- [Packaging and dependency management](PACKAGING.md)
 
 IX compiles transpiles following project blocks:
 
@@ -84,3 +85,8 @@ IX compiles transpiles following project blocks:
 - [Strucured types](https://console.simatic-ax.siemens.io/docs/st/language/types-and-variables#structured-type-without-relative-addressing)
 - [Data type with named values as enums](https://console.simatic-ax.siemens.io/docs/st/language/types-and-variables#data-type-with-named-values)
 -[Enumerations](https://console.simatic-ax.siemens.io/docs/st/language/types-and-variables#enumeration)
+
+
+
+
+

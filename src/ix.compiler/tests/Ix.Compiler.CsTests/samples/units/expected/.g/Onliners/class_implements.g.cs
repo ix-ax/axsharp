@@ -49,6 +49,11 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
         return this.RetrievePrimitives();
     }
 
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

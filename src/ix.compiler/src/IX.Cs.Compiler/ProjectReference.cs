@@ -46,4 +46,13 @@ public class ProjectReference : IProjectReference
     ///     Returns version (defaults to 0.0.0.0);
     /// </summary>
     public string Version => "0.0.0.0";
+
+    /// <inheritdoc />
+    public string MetadataPath => Path.Combine(ReferencePath, ".meta", "meta.json");
+
+    /// <inheritdoc />
+    public string ProjectInfo => Path.Combine(ReferencePath, ".meta", "sourceinfo.json");
+
+    /// <inheritdoc />
+    public bool IsIxDependency => File.Exists(MetadataPath);
 }

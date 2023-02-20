@@ -6,6 +6,8 @@
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ix.Connector;
 
@@ -66,6 +68,6 @@ public interface ITwinObject : ITwinElement
     ///     Gets the instance of the <see cref="Connector" /> class to which this <see cref="Ix.Connector.ITwinObject" />
     ///     belongs.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Connector</returns>
     Connector GetConnector();
 }

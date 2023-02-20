@@ -11,9 +11,8 @@ public sealed class ComponentService : IComponentService
 | name | description |
 | --- | --- |
 | [ComponentService](ComponentService/ComponentService.md)() | Creates new instance of [`ComponentService`](./ComponentService.md). |
-| [GetBaseComponent](ComponentService/GetBaseComponent.md)(…) | Method to get base instance dynamically of blazor component. Name of the component. |
-| [GetComponent](ComponentService/GetComponent.md)(…) | Method to get instance dynamically of blazor component. Name of the component. |
-| [GetGenericComponent](ComponentService/GetGenericComponent.md)(…) | Method to get generic instance dynamically of blazor component. Name of the component.Generic type. |
+| [GetComponent](ComponentService/GetComponent.md)(…) | Method to get dynamically instance of blazor component. Full name of the component. |
+| [GetGenericComponent](ComponentService/GetGenericComponent.md)(…) | Method to get dynamically generic instance of blazor component. Full name of the component.Generic type. |
 | [LoadComponents](ComponentService/LoadComponents.md)() | Method to Load all implemented components types from assembly. |
 
 ## See Also
