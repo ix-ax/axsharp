@@ -182,21 +182,6 @@ namespace Ix.ixc_doc.Schemas
 
         [JsonProperty("isExternal", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IsExternal { get; set; }
-
-        [JsonProperty("nameWithType.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public string NameWithTypeVb { get; set; }
-
-        [JsonProperty("fullName.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public string FullNameVb { get; set; }
-
-        [JsonProperty("name.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public string NameVb { get; set; }
-
-        [JsonProperty("spec.csharp", NullValueHandling = NullValueHandling.Ignore)]
-        public Spec[] SpecCsharp { get; set; }
-
-        [JsonProperty("spec.vb", NullValueHandling = NullValueHandling.Ignore)]
-        public Spec[] SpecVb { get; set; }
     }
 
     public partial class Spec

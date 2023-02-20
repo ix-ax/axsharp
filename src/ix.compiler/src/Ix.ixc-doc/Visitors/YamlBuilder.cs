@@ -1,6 +1,7 @@
 ﻿using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Syntax.Tree;
+using CommandLine;
 using Ix.ixc_doc.Interfaces;
 using Ix.ixc_doc.Mapper;
 using Ix.ixc_doc.Schemas;
@@ -29,6 +30,20 @@ namespace Ix.ixc_doc.Visitors
             var item = _mp.PopulateItem(classDeclaration);
             visitor.Items.Add(item);
 
+            //var references = new List<Reference>();
+            foreach (var member in item.InheritedMembers) 
+            {
+                visitor.References.Add( new Reference()
+                {
+                    Uid = member,
+                    CommentId= member,
+                    Parent = member,
+                    Name= member.Split('.').Last(),
+                    NameWithType = member.Split('.').Last(),
+                    FullName = member
+
+                });
+            }
 
             var tocSchemaItem = new TocSchema.Item
             {
@@ -42,7 +57,7 @@ namespace Ix.ixc_doc.Visitors
 
 
             visitor.Schema.Items = visitor.Items.ToArray();
-
+            visitor.Schema.References = visitor.References.ToArray();
             _s.SchemaToYaml(visitor.Schema, classDeclaration.FullyQualifiedName);
             visitor.Schema = new YamlSchema();
             visitor.Items.Clear();

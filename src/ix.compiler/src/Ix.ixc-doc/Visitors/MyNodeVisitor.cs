@@ -25,6 +25,8 @@ namespace Ix.ixc_doc.Visitors
         public List<Item> Items { get; set; }
         public YamlSchema Schema { get; set; }
         public TocSchema TocSchema { get; set; }
+
+        public List<Reference> References { get; set; }
         public List<TocSchema.Item> TocSchemaItems { get; set; }
         public MyNodeVisitor()
         {
@@ -32,6 +34,7 @@ namespace Ix.ixc_doc.Visitors
             TocSchema = new TocSchema();
             Items = new List<Item>();
             TocSchemaItems = new List<TocSchema.Item>();
+            References= new List<Reference>();
         }
         public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)
         {
