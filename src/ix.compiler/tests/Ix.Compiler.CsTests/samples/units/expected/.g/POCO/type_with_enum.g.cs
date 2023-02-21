@@ -15,7 +15,7 @@ namespace Pocos
         {
             public Int64 CompareToValue { get; set; }
 
-            public units.Simatic.Ax.StateFramework.Condition Condition { get; set; }
+            public global::Simatic.Ax.StateFramework.Condition Condition { get; set; }
         }
     }
 }

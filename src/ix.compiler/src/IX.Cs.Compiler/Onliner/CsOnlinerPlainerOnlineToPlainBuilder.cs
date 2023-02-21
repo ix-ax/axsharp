@@ -60,6 +60,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         switch (typeDeclaration)
         {
             case IInterfaceDeclaration interfaceDeclaration:
+                break;
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:

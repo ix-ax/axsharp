@@ -53,7 +53,7 @@ namespace Pocos
         public string myWSTRING_readOnly { get; set; } = string.Empty;
         public ComplexForConfig cReadOnce { get; set; } = new ComplexForConfig();
         public ComplexForConfig cReadOnly { get; set; } = new ComplexForConfig();
-        public Colorss Colorss { get; set; }
+        public global::Colorss Colorss { get; set; }
 
         public UInt64 Colorsss { get; set; }
     }
