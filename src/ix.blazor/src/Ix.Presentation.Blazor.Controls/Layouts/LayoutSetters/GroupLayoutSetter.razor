@@ -1,5 +1,6 @@
 ﻿@*if it's only one group and the group layout it's not set, just render group and let set layout on kids setter*@
 
+<CascadingValue Value="@LayoutClass">
 @switch (LayoutName)
 {
     case "TabControlLayout":
@@ -67,7 +68,7 @@
         break;
 
 }
-
+</CascadingValue>
 @code
 {
     [Parameter]
@@ -84,6 +85,9 @@
     public Type ParentLayout { get; set; }
     [Parameter]
     public int GroupedCount { get; set; }
+
+    [Parameter]
+    public string LayoutClass { get; set; }
 
     public string LayoutName { get; set; }
 
