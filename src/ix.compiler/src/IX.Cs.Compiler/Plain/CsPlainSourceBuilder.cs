@@ -335,10 +335,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateEnumTypeDeclaration(IEnumTypeDeclaration enumTypeDeclaration, IxNodeVisitor visitor)
     {
-        if (enumTypeDeclaration.Type.FullyQualifiedName == enumTypeDeclaration.Type.Name)
-            AddToSource($"{enumTypeDeclaration.Type.FullyQualifiedName}");
-        else
-            AddToSource($"{Project.TargetProject.ProjectRootNamespace}.{enumTypeDeclaration.Type.FullyQualifiedName}");
+        AddToSource($"global::{enumTypeDeclaration.Type.FullyQualifiedName}");
     }
 
     /// <inheritdoc />

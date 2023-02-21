@@ -53,6 +53,7 @@ namespace Ix.Compiler.Cs.Onliner
             switch (typeDeclaration)
             {
                 case IInterfaceDeclaration interfaceDeclaration:
+                    break;
                 case IClassDeclaration classDeclaration:
                 //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
                 case IStructuredTypeDeclaration structuredTypeDeclaration:
@@ -63,16 +64,12 @@ namespace Ix.Compiler.Cs.Onliner
                     {
                         case IClassDeclaration classDeclaration:
                         case IStructuredTypeDeclaration structuredTypeDeclaration:
-                            //plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
                             AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}()).Select(p => p.Result).ToArray();");
                             break;
                         case IScalarTypeDeclaration scalarTypeDeclaration:
                         case IStringTypeDeclaration stringTypeDeclaration:
-                            //plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
 
                             AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(p => p.Shadow).ToArray();");
-                            //AddToSource(
-                            //    $"Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<{IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)},{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>({declaration.Name}, plain.{declaration.Name});");
                             break;
                     }
                     break;
