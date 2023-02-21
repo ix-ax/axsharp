@@ -1,5 +1,11 @@
 ﻿@inherits LayoutComponentBase
 
-<div name="WrapPanel" class="d-flex flex-wrap">
+<div name="WrapPanel" class="d-flex flex-wrap @LayoutClass">
     @Body  
 </div>
+
+@code
+{
+    [CascadingParameter]
+    protected string? LayoutClass { get; set; }
+}
