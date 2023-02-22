@@ -103,6 +103,8 @@ namespace Ix.ixc_doc.Visitors
         {
             var item = _mp.PopulateItem(methodDeclaration);
             visitor.YamlHelper.Items.Add(item);
+
+            AddInputParameterItems(item, visitor);
         }
 
         public virtual void CreateNamedValueTypeYaml(INamedValueTypeDeclaration namedValueTypeDeclaration, MyNodeVisitor visitor)
@@ -124,7 +126,28 @@ namespace Ix.ixc_doc.Visitors
             visitor.YamlHelper.Items.Clear();
             visitor.YamlHelper.References.Clear();
         }
+        private void AddInputParameterItems(Item item, MyNodeVisitor v) 
+        {
+            var myParams = item.Syntax.Parameters.ToList();
+            foreach (var param in myParams)
+            {
+                var paramItem = new Item()
+                {
+                    Uid = param.Type,
+                    CommentId = $"T:{param.Type}",
+                    Name = param.Type,
+                    NameWithType = param.Type,
+                    FullName = param.Type,
+                };
+                //add only if item doesn't exists
+                if(v.YamlHelper.Items.Find(p => p.Uid == paramItem.Uid) == null)
+                {
+                    v.YamlHelper.Items.Add(paramItem);
+                }
+            }
+                
 
+        }
         private void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
         {
             foreach (var member in item.InheritedMembers)

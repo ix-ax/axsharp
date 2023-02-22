@@ -15,13 +15,13 @@ NAMESPACE MeasurementExample
         END_VAR    
     END_CLASS
 
-    TYPE
-         Result : INT (
-             None := 0,
-             Passed := 10,
-             Failed := 20
-         );
-     END_TYPE
+    // TYPE
+    //      Result : INT (
+    //          None := 0,
+    //          Passed := 10,
+    //          Failed := 20
+    //      );
+    //  END_TYPE
 
 
     CLASS PUBLIC Measurements

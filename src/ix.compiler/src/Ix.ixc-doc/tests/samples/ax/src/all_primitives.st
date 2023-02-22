@@ -33,13 +33,35 @@ CLASS all_primitives
 
     END_VAR
     
-    METHOD PUBLIC Start : INT
+    ///<summary>
+    /// Start method
+    ///</summary>
+    /// <param name="value">Describe parameter value.</param>
+    /// <param name="value2">Describe parameter value2.</param>
+    /// <returns>Return value of int.</returns>
+
+    METHOD PUBLIC MyMethod : INT
         VAR_INPUT
             value : INT;
             value2 : INT;
         END_VAR
 
         myINT := value;
+
+        VAR_OUTPUT
+            varout1 : INT;
+            varout2 : INT;
+        END_VAR
+    END_METHOD
+
+    METHOD PUBLIC Start : STRING
+        VAR_INPUT
+            firstName : STRING;
+            lastName : STRING;
+        END_VAR
+
+        myString := firstName;
+
     END_METHOD
 
     METHOD PUBLIC Stop

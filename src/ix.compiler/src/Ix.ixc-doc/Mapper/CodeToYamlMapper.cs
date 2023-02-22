@@ -4,12 +4,15 @@ using AX.Text;
 using CommandLine;
 using Ix.ixc_doc.Enums;
 using Ix.ixc_doc.Helpers;
+using Ix.ixc_doc.Models;
 using Ix.ixc_doc.Schemas;
 using Microsoft.CodeAnalysis.Operations;
 using System;
 using System.Collections;
 using System.Reflection;
+using System.Text;
 using System.Xml;
+using static Ix.ixc_doc.Helpers.YamlHelpers;
 
 namespace Ix.ixc_doc.Mapper
 {
@@ -56,10 +59,14 @@ namespace Ix.ixc_doc.Mapper
             };
         }
 
+      
+
+
+
         public Item PopulateItem(IClassDeclaration classDeclaration)
         {
             var children = classDeclaration.Fields.Select(p => p.FullyQualifiedName);
-            var methods = classDeclaration.Methods.Select(p => p.FullyQualifiedName);
+            var methods = classDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
 
             var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();
             List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
@@ -90,7 +97,7 @@ namespace Ix.ixc_doc.Mapper
             {
                 Uid = fieldDeclaration.FullyQualifiedName,
                 Id = fieldDeclaration.Name,
-                Parent = fieldDeclaration.ContainingScope.Name,
+                Parent = fieldDeclaration.ContainingScope.FullyQualifiedName,
                 Name = fieldDeclaration.Name,
                 FullName = fieldDeclaration.Name,
                 Type = ItemType.Property.ToString(),
@@ -100,39 +107,46 @@ namespace Ix.ixc_doc.Mapper
             };
         }
 
-
+       
         public Item PopulateItem(IMethodDeclaration methodDeclaration)
         {
-            //TODO implement documentation for methods parameters and return values
-            // when xml documentation is detected, add only description
+
+            var comments = _yh.GetComments(methodDeclaration.Location);
+            
+            var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+            
+
+            var inputDeclaration = _yh.CreateParametersAndDeclarationString(inputParamsDeclaration,comments);        
+            string declaration = $"{methodDeclaration.AccessModifier} {returnType?.Type} {methodDeclaration.Name}({inputDeclaration.Item2})";
 
 
-
-            //var inputVariables = methodDeclaration.Variables.Where(v => v.Section == Section.Input)
-            //    .Select(v => v.Section.ToString()).ToArray();
-
-            //var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return)
-            //    .Select(v => v.Section.ToString()).ToArray();
-
-            //foreach (var item in x)
-            //{
-            //    var section = item.Section;
-            //}
-            var methods = methodDeclaration.GetDescendentNodes();
+           
             return new Item
             {
-                Uid = methodDeclaration.FullyQualifiedName,
+                Uid = _yh.GetMethodUId(methodDeclaration),
                 Id = methodDeclaration.Name,
-                //Parent = ,
+                Parent = methodDeclaration.ContainingClass.FullyQualifiedName,
                 Name = methodDeclaration.Name,
                 FullName = methodDeclaration.Name,
                 Type = ItemType.Method.ToString(),
                 Namespace = methodDeclaration.ContainingNamespace.Name,
-                Summary = "Test class doc",
-                Syntax = new Syntax { Content = "CLASS MyTestClass" },
+                Summary = comments.summary,
+                Syntax = new Syntax 
+                { 
+                    Content = declaration,
+                    Parameters = inputDeclaration.Item1.ToArray() ,
+                    Return =  new Return
+                    { 
+                        Type = returnType?.Type.FullyQualifiedName, 
+                        Description = comments.returns
+                    }
+                    
+                },
+               
             };
         }
-
+        
         public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
         {
             return new Item
@@ -147,6 +161,8 @@ namespace Ix.ixc_doc.Mapper
                 Namespace = namedValueTypeDeclaration.ContainingNamespace.Name,
                 Summary = _yh.GetComments(namedValueTypeDeclaration.Location).summary,
                 Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Type.FullyQualifiedName}" },
+
+                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
             };
         }
 
@@ -156,16 +172,12 @@ namespace Ix.ixc_doc.Mapper
             {
                 Uid = structuredTypeDeclaration.FullyQualifiedName,
                 Id = structuredTypeDeclaration.Name,
-                //Parent = classDeclaration.;
-                //Children = children.Concat(methods).ToArray(),
                 Name = structuredTypeDeclaration.Name,
                 FullName = structuredTypeDeclaration.Name,
                 Type = "Struct",
                 Namespace = structuredTypeDeclaration.Name,
                 Summary = _yh.GetComments(structuredTypeDeclaration.Location).summary,
                 Syntax = new Syntax { Content = "CLASS MyTestClass" },
-
-                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
             };
         }
     }
