@@ -80,7 +80,7 @@ namespace Ix.ixc_doc.Helpers
             {
                 if (typeof(IEnumerable).IsAssignableFrom(prop.PropertyType) && prop.PropertyType != typeof(string))
                 {
-                    prop.PropertyType.GetMethod("Add").Invoke(prop.GetValue(comments, null), new[] { element.ChildNodes[0].Value });
+                    prop.PropertyType.GetMethod("Add").Invoke(prop.GetValue(comments, null), new[] { element.Attributes[0].Value, element.ChildNodes[0].Value });
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace Ix.ixc_doc.Helpers
         public class Comments
         {
             public string summary { get; set; }
-            public List<string> param { get; set; } = new List<string>();
+            public Dictionary<string, string> param { get; set; } = new();
             public string example { get; set; }
             public string returns { get; set; }
         }

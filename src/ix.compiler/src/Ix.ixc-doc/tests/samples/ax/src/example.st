@@ -3,6 +3,12 @@
 ///</summary>
 CLASS example
     VAR PUBLIC
+        ///<summary>
+        /// Summary of property primitives_stack
+        ///</summary>
+        ///<returns>
+        /// Some return comment for property primitives_stack
+        ///</returns>
         {#ix-attr:[Container(Layout.Stack)]}
         primitives_stack: test_primitive;
         {#ix-attr:[Container(Layout.Wrap)]}

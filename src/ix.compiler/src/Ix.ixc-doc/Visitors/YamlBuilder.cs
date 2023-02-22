@@ -88,6 +88,7 @@ namespace Ix.ixc_doc.Visitors
             //clear schema for next use
             v.YamlHelper.Schema = new YamlSchema();
             v.YamlHelper.Items.Clear();
+            v.YamlHelper.References.Clear();
         }
 
         //operation on semantic tree
@@ -95,6 +96,7 @@ namespace Ix.ixc_doc.Visitors
         {
             var item = _mp.PopulateItem(fieldDeclaration);
             visitor.YamlHelper.Items.Add(item);
+            AddFieldReference(fieldDeclaration, visitor);
         }
 
         public virtual void CreateMethodYaml(IMethodDeclaration methodDeclaration, MyNodeVisitor visitor)
@@ -183,6 +185,18 @@ namespace Ix.ixc_doc.Visitors
                 NameWithType = declaration.Name
             };
             v.YamlHelper.NamespaceReferences.Add(reference);
+        }
+
+        private void AddFieldReference(IDeclaration declaration, MyNodeVisitor v)
+        {
+            var reference = new Reference
+            {
+                Uid = declaration.Type.FullyQualifiedName,
+                Name = declaration.Type.Name,
+                FullName = declaration.Type.FullyQualifiedName,
+                NameWithType = declaration.Type.Name
+            };
+            v.YamlHelper.References.Add(reference);
         }
     }
 }
