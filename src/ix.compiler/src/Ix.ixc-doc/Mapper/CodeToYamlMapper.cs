@@ -96,7 +96,7 @@ namespace Ix.ixc_doc.Mapper
                 Type = ItemType.Property.ToString(),
                 Namespace = fieldDeclaration.ContainingNamespace.Name,
                 Summary = _yh.GetComments(fieldDeclaration.Location).summary,
-                Syntax = new Syntax { Content = $"{fieldDeclaration.Name} : {fieldDeclaration.Type.FullyQualifiedName}", Return = new Return { Type = $"{fieldDeclaration.Type.FullyQualifiedName}" } },
+                Syntax = new Syntax { Content = $"{fieldDeclaration.Name} : {fieldDeclaration.Type.FullyQualifiedName}", Return = new Return { Type = $"{fieldDeclaration.Type.FullyQualifiedName}", Description = _yh.GetComments(fieldDeclaration.Location).returns, } },
             };
         }
 
