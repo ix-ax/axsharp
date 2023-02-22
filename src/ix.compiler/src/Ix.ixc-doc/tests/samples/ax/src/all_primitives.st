@@ -36,11 +36,11 @@ CLASS all_primitives
     ///<summary>
     /// Start method
     ///</summary>
-    /// <param name="value">Describe parameter.</param>
-    /// <param name="value2">Describe parameter.</param>
+    /// <param name="value">Describe parameter value.</param>
+    /// <param name="value2">Describe parameter value2.</param>
     /// <returns>Return value of int.</returns>
 
-    METHOD PUBLIC Start : INT
+    METHOD PUBLIC MyMethod : INT
         VAR_INPUT
             value : INT;
             value2 : INT;
@@ -54,7 +54,7 @@ CLASS all_primitives
         END_VAR
     END_METHOD
 
-       METHOD PUBLIC Start : STRING
+    METHOD PUBLIC Start : STRING
         VAR_INPUT
             firstName : STRING;
             lastName : STRING;

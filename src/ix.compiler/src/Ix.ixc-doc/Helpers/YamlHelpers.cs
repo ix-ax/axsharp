@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Ix.ixc_doc.Schemas;
 
 namespace Ix.ixc_doc.Helpers
 {
@@ -97,6 +98,54 @@ namespace Ix.ixc_doc.Helpers
                     }
                 }
             }
+        }
+
+        //creates parameter types for serialize purposes and creates declaration string
+        public (List<Parameter>,string) CreateParametersAndDeclarationString(IList<IVariableDeclaration> variableDeclarations, Comments comments)
+        { 
+            var inputParams = new List<Parameter>();
+            StringBuilder fullDeclaration = new StringBuilder();
+            foreach (var p in variableDeclarations)
+            {
+                var parameter = new Parameter
+                {
+                    Id = p.Name,
+                    Type = p.Type.FullyQualifiedName 
+                 };
+
+                //TODO add filtering by name
+                string description = string.Empty;
+                comments.param.TryGetValue(p.Name, out description);
+                parameter.Description = description;
+
+                inputParams.Add(parameter);
+                fullDeclaration.Append($"in {parameter.Type} {parameter.Id}");
+                if(variableDeclarations.Last() != p) 
+                { 
+                    fullDeclaration.Append(",");
+                }
+                
+            }
+
+            return(inputParams, fullDeclaration.ToString());
+        }
+
+        //get uid of method
+        public string GetMethodUId(IMethodDeclaration methodDeclaration)
+        {
+            StringBuilder typeDeclaration = new StringBuilder();
+            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+            foreach (var p in inputParamsDeclaration)
+            {
+                    
+                typeDeclaration.Append(p.Type);
+                if(inputParamsDeclaration.Last() != p) 
+                { 
+                    typeDeclaration.Append(",");
+                }
+                
+            }
+            return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
         }
 
         public class Comments
