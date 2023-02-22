@@ -4,12 +4,15 @@ using AX.Text;
 using CommandLine;
 using Ix.ixc_doc.Enums;
 using Ix.ixc_doc.Helpers;
+using Ix.ixc_doc.Models;
 using Ix.ixc_doc.Schemas;
 using Microsoft.CodeAnalysis.Operations;
 using System;
 using System.Collections;
 using System.Reflection;
+using System.Text;
 using System.Xml;
+using static Ix.ixc_doc.Helpers.YamlHelpers;
 
 namespace Ix.ixc_doc.Mapper
 {
@@ -100,25 +103,48 @@ namespace Ix.ixc_doc.Mapper
             };
         }
 
+        private (List<Parameter>,string) CreateParametersAndDeclarationString(IList<IVariableDeclaration> variableDeclarations, Comments comments)
+        { 
+            var inputParams = new List<Parameter>();
+            StringBuilder sb = new StringBuilder();
+            foreach (var p in variableDeclarations)
+            {
+                var parameter = new Parameter
+                {
+                    Id = p.Name,
+                    Type = p.Type.FullyQualifiedName 
+                 };
 
+                //TODO add filtering by name
+                var description = comments.param.FirstOrDefault();
+                parameter.Description = description;
+                inputParams.Add(parameter);
+
+                sb.Append($"in {parameter.Type} {parameter.Id}");
+                if(variableDeclarations.Last() != p) sb.Append(", ");
+                
+            }
+
+            return(inputParams, sb.ToString());
+        }
         public Item PopulateItem(IMethodDeclaration methodDeclaration)
         {
             //TODO implement documentation for methods parameters and return values
             // when xml documentation is detected, add only description
+            var comments = _yh.GetComments(methodDeclaration.Location);
+            
+            var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+            var outputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Output).ToList();
+            
 
-          
+           var inputDeclaration = CreateParametersAndDeclarationString(inputParamsDeclaration,comments);
+           var outputDeclaration = CreateParametersAndDeclarationString(outputParamsDeclaration,comments);
+            
+           string declaration = $"{methodDeclaration.AccessModifier} {returnType?.Type} {methodDeclaration.Name}({inputDeclaration.Item2}{outputDeclaration.Item2})";
 
-            //var inputVariables = methodDeclaration.Variables.Where(v => v.Section == Section.Input)
-            //    .Select(v => v.Section.ToString()).ToArray();
 
-            //var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return)
-            //    .Select(v => v.Section.ToString()).ToArray();
-
-            //foreach (var item in x)
-            //{
-            //    var section = item.Section;
-            //}
-            var methods = methodDeclaration.GetDescendentNodes();
+           
             return new Item
             {
                 Uid = methodDeclaration.FullyQualifiedName,
@@ -128,11 +154,22 @@ namespace Ix.ixc_doc.Mapper
                 FullName = methodDeclaration.Name,
                 Type = ItemType.Method.ToString(),
                 Namespace = methodDeclaration.ContainingNamespace.Name,
-                Summary = "Test class doc",
-                Syntax = new Syntax { Content = "CLASS MyTestClass" },
+                Summary = comments.summary,
+                Syntax = new Syntax 
+                { 
+                    Content = declaration,
+                    Parameters = inputDeclaration.Item1.ToArray() ,
+                    Return =  new Return
+                    { 
+                        Type = returnType?.Type.FullyQualifiedName, 
+                        Description = comments.returns
+                    }
+                    
+                    },
+               
             };
         }
-
+        
         public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
         {
             return new Item
