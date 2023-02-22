@@ -51,6 +51,13 @@ namespace Ix.ixc_doc.Interfaces
             {
             throw new NotImplementedException();
         }
-       
+
+        public virtual void CreateNamedValueTypeYaml(
+          INamedValueTypeDeclaration namedValueTypeDeclaration,
+          MyNodeVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

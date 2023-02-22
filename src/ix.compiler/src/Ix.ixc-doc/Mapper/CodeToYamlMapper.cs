@@ -106,7 +106,7 @@ namespace Ix.ixc_doc.Mapper
             //TODO implement documentation for methods parameters and return values
             // when xml documentation is detected, add only description
 
-          
+
 
             //var inputVariables = methodDeclaration.Variables.Where(v => v.Section == Section.Input)
             //    .Select(v => v.Section.ToString()).ToArray();
@@ -140,15 +140,13 @@ namespace Ix.ixc_doc.Mapper
                 Uid = namedValueTypeDeclaration.FullyQualifiedName,
                 Id = namedValueTypeDeclaration.Name,
                 //Parent = classDeclaration.;
-                //Children = children.Concat(methods).ToArray(),
+                //Children = namedValueTypeDeclaration.Values.Select(p => p.FullyQualifiedName).ToArray(),
                 Name = namedValueTypeDeclaration.Name,
                 FullName = namedValueTypeDeclaration.Name,
-                Type = "Struct",
-                Namespace = namedValueTypeDeclaration.Name,
+                Type = "Enum",
+                Namespace = namedValueTypeDeclaration.ContainingNamespace.Name,
                 Summary = _yh.GetComments(namedValueTypeDeclaration.Location).summary,
-                Syntax = new Syntax { Content = "CLASS MyTestClass" },
-
-                //Inheritance = new string[] { classDeclaration?.ExtendedType?.Name },
+                Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Type.FullyQualifiedName}" },
             };
         }
 

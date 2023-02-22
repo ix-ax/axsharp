@@ -105,6 +105,26 @@ namespace Ix.ixc_doc.Visitors
             visitor.YamlHelper.Items.Add(item);
         }
 
+        public virtual void CreateNamedValueTypeYaml(INamedValueTypeDeclaration namedValueTypeDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(namedValueTypeDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+
+            var tocSchemaItem = new TocSchemaList.ItemList(item.Uid, item.FullName);
+
+            AddToTocSchema(visitor, tocSchemaItem, item.Namespace);
+
+            //map helpers list to schema lists
+            visitor.MapYamlHelperToSchema();
+
+            //serialize schema to yaml
+            _s.SchemaToYaml(visitor.YamlHelper.Schema, namedValueTypeDeclaration.FullyQualifiedName);
+            //clear schema for next use
+            visitor.YamlHelper.Schema = new YamlSchema();
+            visitor.YamlHelper.Items.Clear();
+            visitor.YamlHelper.References.Clear();
+        }
+
         private void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
         {
             foreach (var member in item.InheritedMembers)

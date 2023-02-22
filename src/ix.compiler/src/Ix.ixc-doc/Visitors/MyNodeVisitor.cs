@@ -151,7 +151,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(INamedValueTypeDeclaration namedValueTypeDeclaration, IYamlBuiderVisitor data)
         {
-            //data.CreateNamedValueTypeYaml(namedValueTypeDeclaration, this);
+            data.CreateNamedValueTypeYaml(namedValueTypeDeclaration, this);
             //throw new NotImplementedException();
         }
 
