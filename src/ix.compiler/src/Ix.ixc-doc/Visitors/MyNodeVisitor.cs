@@ -23,18 +23,19 @@ namespace Ix.ixc_doc.Visitors
     //semantic
     public partial class MyNodeVisitor : ISemanticNodeVisitor<IYamlBuiderVisitor>
     {
+        public YamlSerializerHelper YamlHelper { get; set; }
+        
+        public MyNodeVisitor()
+        {
+            YamlHelper = new YamlSerializerHelper();
+        }
 
         public void MapYamlHelperToSchema()
         {
             YamlHelper.Schema.Items = YamlHelper.Items.ToArray();
             YamlHelper.Schema.References = YamlHelper.References.ToArray();
         }
-        public YamlSerializerHelper YamlHelper { get; set; }
-        private YamlSerializer _s { get; set; }
-        public MyNodeVisitor()
-        {
-            YamlHelper = new YamlSerializerHelper();
-        }
+
         public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)
         {
             partialSemanticTree.ChildNodes.ToList().ForEach(p => p.Accept(this, data));

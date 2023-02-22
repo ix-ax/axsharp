@@ -126,6 +126,7 @@ namespace Ix.ixc_doc.Visitors
             visitor.YamlHelper.Items.Clear();
             visitor.YamlHelper.References.Clear();
         }
+
         private void AddInputParameterItems(Item item, MyNodeVisitor v) 
         {
             var myParams = item.Syntax.Parameters.ToList();
@@ -145,9 +146,8 @@ namespace Ix.ixc_doc.Visitors
                     v.YamlHelper.Items.Add(paramItem);
                 }
             }
-                
-
         }
+
         private void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
         {
             foreach (var member in item.InheritedMembers)
@@ -160,7 +160,6 @@ namespace Ix.ixc_doc.Visitors
                     Name = member.Split('.').Last(),
                     NameWithType = member.Split('.').Last(),
                     FullName = member
-
                 });
             }
         }

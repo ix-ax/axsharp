@@ -15,7 +15,6 @@ namespace Ix.ixc_doc.Helpers
 {
     internal class YamlHelpers
     {
-
         internal string[] GetInheritedMembers(IClassDeclaration classDeclaration)
         {
             var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();
@@ -29,19 +28,14 @@ namespace Ix.ixc_doc.Helpers
                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList()
                .ForEach(member => extendedFields = extendedFields.Concat(member));
 
-           
-
             return extendedFields.Select(f => f.FullyQualifiedName)
                                  .Concat(extendedMethods.Select(m => m.FullyQualifiedName)).ToArray();
         }
         internal bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
         {
-
             return field.AccessModifier == AccessModifier.Public ||
                 (field.AccessModifier == AccessModifier.Internal && subClass.ContainingNamespace == baseClass.ContainingNamespace);
         }
-
-
 
         internal Comments GetComments(Location location)
         {
@@ -124,7 +118,6 @@ namespace Ix.ixc_doc.Helpers
                 { 
                     fullDeclaration.Append(",");
                 }
-                
             }
 
             return(inputParams, fullDeclaration.ToString());
@@ -137,13 +130,11 @@ namespace Ix.ixc_doc.Helpers
             var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
             foreach (var p in inputParamsDeclaration)
             {
-                    
                 typeDeclaration.Append(p.Type);
                 if(inputParamsDeclaration.Last() != p) 
                 { 
                     typeDeclaration.Append(",");
                 }
-                
             }
             return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
         }
