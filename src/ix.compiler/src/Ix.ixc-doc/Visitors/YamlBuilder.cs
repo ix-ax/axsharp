@@ -44,7 +44,7 @@ namespace Ix.ixc_doc.Visitors
             namespaceDeclaration.Declarations.ToList().ForEach(p =>
             {
                 p.Accept(v, this);
-                AddToNamespaceReference(p, v);
+                AddNamespaceReference(p, v);
             });
 
             if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
@@ -96,7 +96,7 @@ namespace Ix.ixc_doc.Visitors
         {
             var item = _mp.PopulateItem(fieldDeclaration);
             visitor.YamlHelper.Items.Add(item);
-            AddFieldReference(fieldDeclaration, visitor);
+            AddReference(fieldDeclaration.Type, visitor);
         }
 
         public virtual void CreateMethodYaml(IMethodDeclaration methodDeclaration, MyNodeVisitor visitor)
@@ -105,6 +105,9 @@ namespace Ix.ixc_doc.Visitors
             visitor.YamlHelper.Items.Add(item);
 
             AddInputParameterItems(item, visitor);
+            var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+            if (returnType != null)
+                AddReference(returnType.Type, visitor);
         }
 
         public virtual void CreateNamedValueTypeYaml(INamedValueTypeDeclaration namedValueTypeDeclaration, MyNodeVisitor visitor)
@@ -195,7 +198,7 @@ namespace Ix.ixc_doc.Visitors
         }
 
         //add references for namespace
-        private void AddToNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
+        private void AddNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
         {
             var reference = new Reference
             {
@@ -207,14 +210,14 @@ namespace Ix.ixc_doc.Visitors
             v.YamlHelper.NamespaceReferences.Add(reference);
         }
 
-        private void AddFieldReference(IDeclaration declaration, MyNodeVisitor v)
+        private void AddReference(IDeclaration declaration, MyNodeVisitor v)
         {
             var reference = new Reference
             {
-                Uid = declaration.Type.FullyQualifiedName,
-                Name = declaration.Type.Name,
-                FullName = declaration.Type.FullyQualifiedName,
-                NameWithType = declaration.Type.Name
+                Uid = declaration.FullyQualifiedName,
+                Name = declaration.Name,
+                FullName = declaration.FullyQualifiedName,
+                NameWithType = declaration.Name
             };
             v.YamlHelper.References.Add(reference);
         }

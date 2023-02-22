@@ -2,7 +2,6 @@
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.Text;
 using CommandLine;
-using Ix.ixc_doc.Enums;
 using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Models;
 using Ix.ixc_doc.Schemas;
