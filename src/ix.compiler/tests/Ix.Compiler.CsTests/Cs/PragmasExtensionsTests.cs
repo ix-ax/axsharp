@@ -43,7 +43,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_get_attribute_source()
     {
-        var expected = "[Container(Layoyt.Wrap)]\r\n[Group(Layoyt.GroupBox)]\r\n";
+        var expected = "[Container(Layoyt.Wrap)]\r\n[Group(Layoyt.GroupBox)]";
         IEnumerable<IPragma> pragmas = new[]
         {
             new("#ix-attr:[Container(Layoyt.Wrap)]"),
@@ -58,7 +58,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_declare_property()
     {
-        var expected = "public string AttributeName { get; set; }\r\n";
+        var expected = "public string AttributeName { get; set; }";
         var field = new TypeMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {
@@ -74,7 +74,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_set_property_source()
     {
-        var expected = "someField.AttributeName = \"This is name\";\r\n";
+        var expected = "someField.AttributeName = \"This is name\";";
         var field = new FieldMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {
