@@ -185,6 +185,21 @@ namespace Ix.ixc_doc.Helpers
             return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
         }
 
+        public string GetMethodUId(IMethodPrototypeDeclaration methodDeclaration)
+        {
+            StringBuilder typeDeclaration = new StringBuilder();
+            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+            foreach (var p in inputParamsDeclaration)
+            {
+                typeDeclaration.Append(p.Type);
+                if (inputParamsDeclaration.Last() != p)
+                {
+                    typeDeclaration.Append(",");
+                }
+            }
+            return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
+        }
+
         public class Comments
         {
             public string summary { get; set; }

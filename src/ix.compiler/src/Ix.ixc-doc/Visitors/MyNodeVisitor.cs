@@ -106,6 +106,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IInterfaceDeclaration interfaceDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateInterfaceYaml(interfaceDeclaration, this);
             //throw new NotImplementedException();
         }
 
@@ -127,6 +128,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IMethodPrototypeDeclaration methodPrototypeDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateMethodPrototypeYaml(methodPrototypeDeclaration, this);
             //throw new NotImplementedException();
         }
 

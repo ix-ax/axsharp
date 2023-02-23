@@ -126,5 +126,46 @@ namespace Ix.ixc_doc.Mapper
 
             return item;
         }
+
+        public Item PopulateItem(IInterfaceDeclaration interfaceDeclaration)
+        {
+            var methods = interfaceDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
+
+            var item = PopulateItem((IDeclaration)interfaceDeclaration);
+            item.Parent = interfaceDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Children = methods.ToArray();
+            item.Type = "Interface";
+            item.Syntax = new Syntax { Content = $"INTERFACE {interfaceDeclaration.Name}" };
+
+            return item;
+        }
+
+        public Item PopulateItem(IMethodPrototypeDeclaration methodPrototypeDeclaration)
+        {
+            var comments = _yh.GetComments(methodPrototypeDeclaration.Location);
+
+            var returnType = methodPrototypeDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+            var inputParamsDeclaration = methodPrototypeDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+
+            var inputDeclaration = _yh.CreateParametersAndDeclarationString(inputParamsDeclaration, comments);
+            string declaration = $"{methodPrototypeDeclaration.AccessModifier} {returnType?.Type} {methodPrototypeDeclaration.Name}({inputDeclaration.Item2})";
+
+            var item = PopulateItem((IDeclaration)methodPrototypeDeclaration);
+            item.Uid = _yh.GetMethodUId(methodPrototypeDeclaration);
+            //item.Parent = methodPrototypeDeclaration.ContainingClass.FullyQualifiedName;
+            item.Type = "Method";
+            item.Syntax = new Syntax
+            {
+                Content = declaration,
+                Parameters = inputDeclaration.Item1.ToArray(),
+                Return = new Return
+                {
+                    Type = returnType?.Type.FullyQualifiedName,
+                    Description = comments.returns
+                }
+            };
+
+            return item;
+        }
     }
 }

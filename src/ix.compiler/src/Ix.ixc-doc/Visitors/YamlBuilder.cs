@@ -133,6 +133,48 @@ namespace Ix.ixc_doc.Visitors
             visitor.YamlHelper.References.Clear();
         }
 
+        public virtual void CreateInterfaceYaml(IInterfaceDeclaration interfaceDeclaration, MyNodeVisitor v)
+        {
+            var item = _mp.PopulateItem(interfaceDeclaration);
+            item.Assemblies = new string[] { GetAssembly(v) };
+            v.YamlHelper.Items.Add(item);
+
+            var tocSchemaItem = new TocSchemaList.ItemList(item.Uid, item.FullName);
+
+            if (item.Namespace != "$GLOBAL")
+            {
+                //interface is grouped in namespace
+                AddToTocSchema(v, tocSchemaItem, item.Namespace);
+            }
+            else
+            {
+                // if global, interface is not grouped
+                AddToTocSchema(v, tocSchemaItem, null);
+            }
+
+            interfaceDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(v, this));
+
+            //map helpers list to schema lists
+            v.MapYamlHelperToSchema();
+
+            //serialize schema to yaml
+            _s.SchemaToYaml(v.YamlHelper.Schema, interfaceDeclaration.FullyQualifiedName);
+            //clear schema for next use
+            v.YamlHelper.Schema = new YamlSchema();
+            v.YamlHelper.Items.Clear();
+            v.YamlHelper.References.Clear();
+        }
+
+        public virtual void CreateMethodPrototypeYaml(IMethodPrototypeDeclaration methodPrototypeDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(methodPrototypeDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+
+            var returnType = methodPrototypeDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+            if (returnType != null)
+                AddReference(returnType.Type, visitor);
+        }
+
         private void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
         {
             foreach (var member in item.InheritedMembers)
@@ -158,7 +200,15 @@ namespace Ix.ixc_doc.Visitors
             }
             else
             {
-                FindTocGroup(visitor.YamlHelper.TocSchemaList.Items, tocGroup).Items.Add(tocSchemaItem);
+                var item = FindTocGroup(visitor.YamlHelper.TocSchemaList.Items, tocGroup);
+                if (item != null)
+                {
+                    item.Items.Add(tocSchemaItem);
+                }
+                else
+                {
+                    visitor.YamlHelper.TocSchemaList.Items.Add(tocSchemaItem);
+                }
             }
         }
 
@@ -167,7 +217,7 @@ namespace Ix.ixc_doc.Visitors
         {
             foreach (var item in Enumerable.Reverse(items).ToList())
             {
-                if (item.Name == tocGroup)
+                if (item.Uid == tocGroup || item.Name == tocGroup)
                     return item;
                 if (item.Items.Count > 0)
                 {
@@ -196,7 +246,7 @@ namespace Ix.ixc_doc.Visitors
 
         private void AddReference(IDeclaration declaration, MyNodeVisitor v)
         {
-            if(v.YamlHelper.References.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+            if (v.YamlHelper.References.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
                 return;
             var reference = new Reference
             {

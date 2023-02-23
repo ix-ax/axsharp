@@ -59,5 +59,19 @@ namespace Ix.ixc_doc.Interfaces
             throw new NotImplementedException();
         }
 
+        public virtual void CreateInterfaceYaml(
+          IInterfaceDeclaration InterfaceDeclaration,
+          MyNodeVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void CreateMethodPrototypeYaml(
+          IMethodPrototypeDeclaration methodPrototypeDeclaration,
+          MyNodeVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
