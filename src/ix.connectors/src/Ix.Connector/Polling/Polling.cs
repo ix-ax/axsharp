@@ -1,92 +1,106 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Ix.Connector.ValueTypes;
 
 namespace Ix.Connector
 {
-    internal class Polling : IEquatable<Polling>
+    internal class Polling
     {
+
+        private static HashSet<ITwinPrimitive> PollingPool { get; } = new HashSet<ITwinPrimitive>();
+
         private Polling(ITwinElement twinObject,
                             object holdingObject,
                             int interval)
         {
-            TwinObject = twinObject;
-            KeepPolling = true;
-            Interval = interval;
-            PollingTask = new Task(() =>
-            {
-                while (KeepPolling)
-                {
-                    twinObject?.Poll();
-                    Task.Delay(Interval).Wait();
-                }
-            });
+
         }
+
+        private static Dictionary<int, Task> PollingTasks { get; } = new();
 
         public static void Add(ITwinElement obj, int interval)
         {
-            if (obj == null) return;
-            // Object itself is being polled already.
-            var po = pollings.FirstOrDefault(p => p.TwinObject == obj);
-            if (po != null) po.Interval = interval < po.Interval ? interval : po.Interval;
-            // Some parent being polled already.
-            po = po ?? pollings.FirstOrDefault(p => p.TwinObject.Symbol.StartsWith(obj.Symbol));
-            // Object is not currently polled.
-            po = po ?? new Polling(obj, null, interval);
+            switch (obj)
+            {
+                case ITwinPrimitive primitive:
+                    if (PollingPool.Add(primitive))
+                    {
+                        AddToPolling(interval, primitive as OnlinerBase);
+                    }
+                    else
+                    {
+                        UpdatePolling(interval, primitive as OnlinerBase);
+                    }
+                    break;
+                case ITwinObject twinObject:
+                    foreach (var primitive in twinObject.RetrievePrimitives())
+                    {
+                        if (PollingPool.Add(primitive))
+                        {
+                            AddToPolling(interval, primitive as OnlinerBase);
+                        }
+                        else
+                        {
+                            UpdatePolling(interval, primitive as OnlinerBase);
+                        }
+                    }
+                    break;
+            }
 
-            if (pollings.Add(po))
+            if (!PollingTasks.ContainsKey(interval))
             {
-                po.PollingTask.Start();
+                PollingTasks[interval] = Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        List<ITwinPrimitive> list = new List<ITwinPrimitive>();
+                        foreach (var primitive in PollingPool) list.Add(primitive);
+                        foreach (var twinPrimitive in list.Where(p => p.PollingInterval == interval))
+                        {
+                            twinPrimitive.Poll();
+                        }
+
+                        Task.Delay(interval).Wait();
+                    }
+                });
             }
-            else
-            {
-                po.Instances++;
-            }
+        }
+
+        private static void UpdatePolling(int interval, OnlinerBase primitive)
+        {
+            primitive.PollingsCount++;
+            primitive.PollingInterval = primitive.PollingInterval > interval
+                ? interval
+                : primitive.PollingInterval;
+        }
+
+        private static void AddToPolling(int interval, OnlinerBase primitive)
+        {
+            primitive.PollingInterval = interval;
+            primitive.PollingsCount = 1;
         }
 
         public static void Remove(ITwinElement obj)
         {
-            var po = pollings.FirstOrDefault(p => p.TwinObject == obj);
-            if (po == null) return;
-            po.Instances--;
-            if (po.Instances > 0) return;
-            po.KeepPolling = false;
-            pollings.Remove(po);
-        }
+            switch (obj)
+            {
+                case ITwinPrimitive primitive:
+                    if (--((OnlinerBase)primitive).PollingsCount <= 0)
+                        PollingPool.Remove(primitive);
+                    break;
+                case ITwinObject twinObject:
+                    foreach (var primitive in twinObject.RetrievePrimitives())
+                    {
+                        if (--((OnlinerBase)primitive).PollingsCount <= 0)
+                            PollingPool.Remove(primitive);
 
-        private int Instances { get; set; } = 1;
-
-        private static HashSet<Polling> pollings = new();
-
-        private ITwinElement TwinObject { get; }
-
-        private Task PollingTask { get; }
-
-        private bool KeepPolling { get; set; }
-
-        private int Interval { get; set; }
-
-        public bool Equals(Polling other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Equals(TwinObject.Symbol, other.TwinObject.Symbol);
-            //&& HoldingObject.GetType() == other.HoldingObject.GetType();
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Polling)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(TwinObject);
+                    }
+                    break;
+            }
         }
     }
 }

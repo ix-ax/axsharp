@@ -6,7 +6,7 @@ namespace Pocos
     {
         public Int16 testInteger { get; set; }
 
-        public stTestEnum testEnum { get; set; }
+        public global::stTestEnum testEnum { get; set; }
 
         public string testString { get; set; } = string.Empty;
         public Boolean testBool { get; set; }
