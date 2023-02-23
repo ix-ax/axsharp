@@ -74,7 +74,11 @@ public interface ITwinPrimitive : ITwinElement
     /// </summary>
     PrimitiveAccessStatus AccessStatus { get; }
 
-    
+    /// <summary>
+    /// Gets current polling interval.
+    /// </summary>
+    int PollingInterval { get;  }
+
 
     /// <summary>
     ///     Subscribes this item for periodic reading.
