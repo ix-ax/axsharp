@@ -18,6 +18,9 @@ CLASS example
         {#ix-attr:[Container(Layout.UniformGrid)]}
         primitives_uniform: test_primitive;
 
+        /// <remarks>
+        /// Uses polar coordinates
+        /// </remarks>
         {#ix-attr:[Container(Layout.Stack)]}
         {#ix-attr:[Group(GroupLayout.GroupBox)]}    
         test_groupbox: test_primitive;

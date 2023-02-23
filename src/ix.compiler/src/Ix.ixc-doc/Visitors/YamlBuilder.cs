@@ -6,13 +6,17 @@ using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Interfaces;
 using Ix.ixc_doc.Mapper;
 using Ix.ixc_doc.Schemas;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Ix.ixc_doc.Visitors
@@ -31,7 +35,6 @@ namespace Ix.ixc_doc.Visitors
         {
             //populate item of namepsace
             var item = _mp.PopulateItem(namespaceDeclaration);
-
             // create toc item
             var tocSchemaItem = new TocSchemaList.ItemList(namespaceDeclaration.FullyQualifiedName, namespaceDeclaration.Name);
 
@@ -61,6 +64,7 @@ namespace Ix.ixc_doc.Visitors
         public virtual void CreateClassYaml(IClassDeclaration classDeclaration, MyNodeVisitor v)
         {
             var item = _mp.PopulateItem(classDeclaration);
+            item.Assemblies = new string[] { GetAssembly(v) };
             //add to items
             v.YamlHelper.Items.Add(item);
             AddInheritedMembersReferences(item, v);
@@ -202,6 +206,17 @@ namespace Ix.ixc_doc.Visitors
                 NameWithType = declaration.Name
             };
             v.YamlHelper.References.Add(reference);
+        }
+
+        private string GetAssembly(MyNodeVisitor visitor)
+        {
+            var reader = new StringReader(File.ReadAllText(visitor.axProject.ProjectFile));
+            var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+            Dictionary<string, object> deserializeDictionary = deserializer.Deserialize<Dictionary<string, object>>(reader);
+
+            object name;
+            deserializeDictionary.TryGetValue("name", out name);
+            return name.ToString();
         }
     }
 }

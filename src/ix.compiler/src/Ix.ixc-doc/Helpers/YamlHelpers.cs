@@ -79,7 +79,7 @@ namespace Ix.ixc_doc.Helpers
                 }
                 else
                 {
-                    prop.SetValue(comments, element.ChildNodes[0].Value, null);
+                    prop.SetValue(comments, GetTextFromXml(element, prop), null);
                 }
             }
             else
@@ -92,6 +92,52 @@ namespace Ix.ixc_doc.Helpers
                     }
                 }
             }
+        }
+
+        private string GetTextFromXml(XmlNode element, PropertyInfo? prop)
+        {
+            string text = "";
+
+            if (element.HasChildNodes)
+            {
+                foreach (XmlNode node in element.ChildNodes)
+                {
+                    if(node.Value != null)
+                    {
+                        text += node.Value;
+                    } else
+                    {
+                        switch (node.Name)
+                        {
+                            case "code":
+                                text += "<pre><code>";
+                                break;
+                            case "c":
+                                text += "<code>";
+                                break;
+                            default:
+                                text += "<" + node.Name + ">";
+                                break;
+                        }
+                        
+                        text += GetTextFromXml(node, prop);
+                        
+                        switch (node.Name)
+                        {
+                            case "code":
+                                text += "</code></pre>";
+                                break;
+                            case "c":
+                                text += "</code>";
+                                break;
+                            default:
+                                text += "</" + node.Name + ">";
+                                break;
+                        }
+                    }
+                }
+            }
+            return text;
         }
 
         //creates parameter types for serialize purposes and creates declaration string
@@ -145,6 +191,7 @@ namespace Ix.ixc_doc.Helpers
             public Dictionary<string, string> param { get; set; } = new();
             public string example { get; set; }
             public string returns { get; set; }
+            public string remarks { get; set; }
         }
     }
 }

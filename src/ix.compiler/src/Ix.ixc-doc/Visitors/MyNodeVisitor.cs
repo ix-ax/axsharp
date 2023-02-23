@@ -24,9 +24,11 @@ namespace Ix.ixc_doc.Visitors
     public partial class MyNodeVisitor : ISemanticNodeVisitor<IYamlBuiderVisitor>
     {
         public YamlSerializerHelper YamlHelper { get; set; }
-        
-        public MyNodeVisitor()
+        public Compiler.AxProject axProject { get; set; }
+
+        public MyNodeVisitor(Compiler.AxProject axProject = null)
         {
+            this.axProject = axProject;
             YamlHelper = new YamlSerializerHelper();
         }
 

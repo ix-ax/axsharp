@@ -5,6 +5,7 @@ using CommandLine;
 using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Models;
 using Ix.ixc_doc.Schemas;
+using Ix.ixc_doc.Visitors;
 using Microsoft.CodeAnalysis.Operations;
 using System;
 using System.Collections;
@@ -34,6 +35,7 @@ namespace Ix.ixc_doc.Mapper
                 FullName = declaration.Name,
                 Namespace = declaration.ContainingNamespace?.Name,
                 Summary = _yh.GetComments(declaration.Location).summary,
+                Remarks = _yh.GetComments(declaration.Location).remarks,
             };
         }
 

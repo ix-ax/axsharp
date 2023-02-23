@@ -78,6 +78,9 @@ namespace Ix.ixc_doc.Schemas
         [JsonProperty("summary")]
         public string Summary { get; set; }
 
+        [JsonProperty("remakrs")]
+        public string Remarks { get; set; }
+
         [JsonProperty("example")]
         public object[] Example { get; set; }
 
