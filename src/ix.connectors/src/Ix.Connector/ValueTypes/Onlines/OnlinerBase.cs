@@ -32,6 +32,9 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     internal string _humanReadable;
 
+    public int PollingsCount { get; internal set; }
+
+    public int PollingInterval { get; internal set; }
 
     private TranslatorBase _translatorBase;
 
@@ -128,7 +131,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     }
 
     /// <inheritdoc />
-    public bool ReadOnce {get; private set; }
+    public bool ReadOnce { get; private set; }
 
     /// <inheritdoc />
     public void MakeReadOnce()
@@ -224,7 +227,7 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     /// <inheritdoc />
     public PrimitiveAccessStatus AccessStatus { get; } = new PrimitiveAccessStatus()
-        { Cycle = 0, Failure = false, FailureReason = string.Empty, LastAccess = DefaultDateTime };
+    { Cycle = 0, Failure = false, FailureReason = string.Empty, LastAccess = DefaultDateTime };
 
     /// <summary>
     ///     Gets the symbol of this on line variable.
