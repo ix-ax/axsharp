@@ -146,7 +146,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated.hmi", "tests.int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "integrated.tests", "tests.integrations\integrated\tests\integrated.tests\integrated.tests.csproj", "{783937D2-322E-47F7-9B22-FCDCBF4091A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ix.ixc-doc", "ix.compiler\src\Ix.ixc-doc\Ix.ixc-doc.csproj", "{034725D5-4D4F-4BC4-839C-12B03B40D8B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ix.ixd", "ix.compiler\src\Ix.ixc-doc\Ix.ixd.csproj", "{034725D5-4D4F-4BC4-839C-12B03B40D8B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
