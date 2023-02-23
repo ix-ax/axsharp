@@ -6,7 +6,7 @@ namespace Pocos
     {
         public stTestPrimitive testPrimitive { get; set; } = new stTestPrimitive();
         public stTestComplex testComplex { get; set; } = new stTestComplex();
-        public stTestEnum testEnum { get; set; }
+        public global::stTestEnum testEnum { get; set; }
 
         public stTestRenderIgnore testRenderIgnore { get; set; } = new stTestRenderIgnore();
         public TestEmpty testEmpty { get; set; } = new TestEmpty();

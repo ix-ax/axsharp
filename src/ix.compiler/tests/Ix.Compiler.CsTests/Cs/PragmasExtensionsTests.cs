@@ -72,13 +72,28 @@ public class PragmasExtensionsTests
 
 
     [Fact]
-    public void should_set_property_source()
+    public void should_set_property_string()
     {
         var expected = "someField.AttributeName = \"This is name\";";
         var field = new FieldMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {
                 new PragmaMock("#ix-set:AttributeName = \"This is name\"")
+            }));
+
+        var actual = field.SetProperties();
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void should_set_property_number()
+    {
+        var expected = "someField.AttributeMinimum = 10.5f;";
+        var field = new FieldMock("someField",
+            new ReadOnlyCollection<IPragma>(new IPragma[]
+            {
+                new PragmaMock("#ix-set:AttributeMinimum = 10.5f")
             }));
 
         var actual = field.SetProperties();

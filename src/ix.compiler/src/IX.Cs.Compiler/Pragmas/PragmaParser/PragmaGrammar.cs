@@ -19,11 +19,8 @@ public class PragmaGrammar : Grammar
 
     public readonly NonTerminal AddedPropertyInitializer = new (nameof(AddedPropertyInitializer));
 
-    public readonly NumberLiteral AddedPropertyNumberLiteral =
-        new(nameof(AddedPropertyNumberLiteral), NumberOptions.AllowSign | NumberOptions.AllowUnderscore | NumberOptions.Binary | NumberOptions.Hex);
-
-    public readonly StringLiteral AddedPropertyInitializedValueString =
-        new(nameof(AddedPropertyInitializedValueString), "\"");
+    public readonly FreeTextLiteral AddedPropertyFreeTextLiteral =
+        new FreeTextLiteral(nameof(AddedPropertyFreeTextLiteral), FreeTextOptions.AllowEmpty | FreeTextOptions.IncludeTerminator | FreeTextOptions.AllowEof);
 
     public readonly NonTerminal AddedPropertySetter = new(nameof(AddedPropertySetter), typeof(AstAddePropertySetter));
     public readonly Terminal assing = new(nameof(assing));
@@ -71,7 +68,7 @@ public class PragmaGrammar : Grammar
 
         Attribute.Rule = ix_attr + colon + ClrAttribute;
 
-        AddedPropertyInitializer.Rule = AddedPropertyInitializedValueString | AddedPropertyNumberLiteral;
+        AddedPropertyInitializer.Rule = AddedPropertyFreeTextLiteral; 
 
         AddedPropertySetter.Rule =
             ix_set + colon + AddedPropertyIdentifier + assing + AddedPropertyInitializer;
