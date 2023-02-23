@@ -58,7 +58,7 @@ void GenerateYamls(Options o)
     var semanticTree = compilation.GetSemanticTree();
 
     //visit
-    var myNodeVisitor = new MyNodeVisitor();
+    var myNodeVisitor = new MyNodeVisitor(axProject);
     var yamlSerializer = new YamlSerializer(o);
     var treeWalker = new YamlBuilder(yamlSerializer);
 
