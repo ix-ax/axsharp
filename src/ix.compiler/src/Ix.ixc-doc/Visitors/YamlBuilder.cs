@@ -104,7 +104,6 @@ namespace Ix.ixc_doc.Visitors
             var item = _mp.PopulateItem(methodDeclaration);
             visitor.YamlHelper.Items.Add(item);
 
-            AddInputParameterItems(item, visitor);
             var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
             if (returnType != null)
                 AddReference(returnType.Type, visitor);
@@ -128,27 +127,6 @@ namespace Ix.ixc_doc.Visitors
             visitor.YamlHelper.Schema = new YamlSchema();
             visitor.YamlHelper.Items.Clear();
             visitor.YamlHelper.References.Clear();
-        }
-
-        private void AddInputParameterItems(Item item, MyNodeVisitor v) 
-        {
-            var myParams = item.Syntax.Parameters.ToList();
-            foreach (var param in myParams)
-            {
-                var paramItem = new Item()
-                {
-                    Uid = param.Type,
-                    CommentId = $"T:{param.Type}",
-                    Name = param.Type,
-                    NameWithType = param.Type,
-                    FullName = param.Type,
-                };
-                //add only if item doesn't exists
-                if(v.YamlHelper.Items.Find(p => p.Uid == paramItem.Uid) == null)
-                {
-                    v.YamlHelper.Items.Add(paramItem);
-                }
-            }
         }
 
         private void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
@@ -200,6 +178,8 @@ namespace Ix.ixc_doc.Visitors
         //add references for namespace
         private void AddNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
         {
+            if (v.YamlHelper.NamespaceReferences.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+                return;
             var reference = new Reference
             {
                 Uid = declaration.FullyQualifiedName,
@@ -212,6 +192,8 @@ namespace Ix.ixc_doc.Visitors
 
         private void AddReference(IDeclaration declaration, MyNodeVisitor v)
         {
+            if(v.YamlHelper.References.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+                return;
             var reference = new Reference
             {
                 Uid = declaration.FullyQualifiedName,
