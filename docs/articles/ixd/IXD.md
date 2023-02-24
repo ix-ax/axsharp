@@ -33,19 +33,26 @@ Docfx project will be generated with following folder structure:
 ```
 
 
-### 3. Generate documentation with ixd
+### 3. Install ixd tool
+
+~~~
+dotnet tool install Ix.ixd --prerelease --local
+~~~
+
+### 4. Generate documentation with ixd
+
 
 
 ```
-ixd -x $PATH_TO_AX_PROJECT -o $PATH_TO_API_FOLDER
-```
+dotnet ixd -x $PATH_TO_AX_PROJECT -o $PATH_TO_API_FOLDER
+=======
 
 where:
 
 `$PATH_TO_AX_PROJECT` -- is path to AX project, which contains apax.yml file
 `$PATH_TO_API_FOLDER` -- is path to `api` output folder, which is located in docfx project
 
-### 4. Build and run docfx docset
+### 5. Build and run docfx docset
 
 Enter following command in `docfx_project` project directory:
 
