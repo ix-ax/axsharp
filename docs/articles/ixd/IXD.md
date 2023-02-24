@@ -67,6 +67,8 @@ Currently ixd can generate documentation for following elements:
     - Classes
         - Methods
         - Properties
+    - Interfaces
+    - Types
 
 
 
@@ -76,5 +78,9 @@ Ixd supports extracting [XML comment formats](https://learn.microsoft.com/en-us/
 Following XML tags are currently supported:
 
 - `<summary>`
-- `<returns>`
 - `<params>`
+- `<returns>`
+- `<example>`
+- `<remarks>`
+- `<code>`
+- `<c>`
