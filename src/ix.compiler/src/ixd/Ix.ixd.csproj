@@ -8,6 +8,26 @@
     <Nullable>enable</Nullable>
     <PackAsTool>True</PackAsTool>
     <ToolCommandName>ixd</ToolCommandName>
+
+	  <!-- NuGet Common part-->
+	  <PackageProjectUrl>https://github.com/ix-ax/</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/ix-ax/ix</RepositoryUrl>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	  <Authors>ix-ax</Authors>
+	  <Copyright>(c) Peter Kurhajec and Contributors</Copyright>
+	  <PackageTags>simatix-ax, PLC, industrial automation, SCADA, HMI</PackageTags>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <Title>IX documentation compiler CLI</Title>
+	  <PackageIcon>icon_128_128.png</PackageIcon>
+	  <RepositoryType>git</RepositoryType>
+	  <IncludeSymbols>True</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageReleaseNotes>
+		  Release notes are published here:
+		  https://github.com/ix-ax/ix/releases
+	  </PackageReleaseNotes>
+	  <PackageReadmeFile>NUGET-README.md</PackageReadmeFile>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -52,8 +72,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="..\..\..\..\assets\icons\icon_128_128.png" Link="icon_128_128.png">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
 	  <None Include="..\..\..\apax\apax.yml" Link=".apax\apax.yml">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\..\..\NUGET-README.md" Link="NUGET-README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
 	  </None>
 	</ItemGroup>
 
