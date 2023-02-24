@@ -12,6 +12,9 @@ using Irony.Parsing;
 
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
+/// <summary>
+/// Defines AST context.
+/// </summary>
 internal class PragmaAstContext : AstContext
 {
 

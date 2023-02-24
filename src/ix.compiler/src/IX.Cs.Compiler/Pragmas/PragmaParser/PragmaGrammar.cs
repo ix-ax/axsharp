@@ -1,19 +1,21 @@
 ﻿using AX.ST.Semantic.Model.Declarations;
 using Irony.Ast;
-using Irony.Interpreter.Ast;
 using Irony.Parsing;
 using Polly;
 using System.Xml.Linq;
 
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
-public class PragmaGrammar : Grammar
+/// <summary>
+/// Describes formal grammar for pragma expressions. 
+/// </summary>
+internal class PragmaGrammar : Grammar
 {
     public readonly IdentifierTerminal AccessQualifierTerminal =
         new(nameof(AccessQualifierTerminal));
 
     public readonly NonTerminal AddedPropertyDeclaration =
-        new(nameof(AddedPropertyDeclaration), typeof(AstAddedPropertyDeclaration));
+        new(nameof(AddedPropertyDeclaration), typeof(AddedPropertyDeclarationAstNode));
 
     public readonly IdentifierTerminal AddedPropertyIdentifier = new(nameof(AddedPropertyIdentifier));
 
@@ -22,17 +24,17 @@ public class PragmaGrammar : Grammar
     public readonly FreeTextLiteral AddedPropertyFreeTextLiteral =
         new FreeTextLiteral(nameof(AddedPropertyFreeTextLiteral), FreeTextOptions.AllowEmpty | FreeTextOptions.IncludeTerminator | FreeTextOptions.AllowEof);
 
-    public readonly NonTerminal AddedPropertySetter = new(nameof(AddedPropertySetter), typeof(AstAddePropertySetter));
+    public readonly NonTerminal AddedPropertySetter = new(nameof(AddedPropertySetter), typeof(AddedPropertySetterAstNode));
     public readonly Terminal assing = new(nameof(assing));
 
-    public readonly NonTerminal Attribute = new(nameof(Attribute), typeof(AstAttribute));
+    public readonly NonTerminal DeclarationAttribute = new(nameof(DeclarationAttribute), typeof(DeclarationAttributeAstNode));
     public readonly NonTerminal ClrAttribute = new(nameof(ClrAttribute));
 
     public readonly FreeTextLiteral ClrAttributeContent =
         new(nameof(ClrAttributeContent), FreeTextOptions.IncludeTerminator, "]");
 
     
-    public readonly NonTerminal Pragmas = new(nameof(Pragmas), typeof(AstPragma));
+    public readonly NonTerminal Pragmas = new(nameof(Pragmas), typeof(PragmaAstNode));
     public readonly IdentifierTerminal PropertyIdentifierTerminal = new(nameof(PropertyIdentifierTerminal), IdOptions.None);
     public readonly IdentifierTerminal TypeIdentifierTerminal = new(nameof(TypeIdentifierTerminal), IdOptions.None);
 
@@ -50,6 +52,10 @@ public class PragmaGrammar : Grammar
         Declaration = declaration;
     }
 
+
+    /// <summary>
+    /// Creates new instance of <see cref="PragmaGrammar"/>
+    /// </summary>
     public PragmaGrammar()
     {
         colon = ToTerm(":", nameof(colon));
@@ -61,19 +67,23 @@ public class PragmaGrammar : Grammar
         assing = ToTerm("=", nameof(assing));
 
 
+        //{#ix-prop:public string SomeProperty}
         AddedPropertyDeclaration.Rule = ix_prop + ToTerm(":") +
                                         AccessQualifierTerminal + TypeIdentifierTerminal + PropertyIdentifierTerminal;
 
+
+        //{#ix-attr:[ReadOnly()]}
         ClrAttribute.Rule = squareOpen + ClrAttributeContent + squareClose;
 
-        Attribute.Rule = ix_attr + colon + ClrAttribute;
+        DeclarationAttribute.Rule = ix_attr + colon + ClrAttribute;
 
+        // {#ix-set:SomeProperty = "hello"}
         AddedPropertyInitializer.Rule = AddedPropertyFreeTextLiteral; 
 
         AddedPropertySetter.Rule =
             ix_set + colon + AddedPropertyIdentifier + assing + AddedPropertyInitializer;
 
-        Pragmas.Rule = AddedPropertyDeclaration | Attribute | AddedPropertySetter;
+        Pragmas.Rule = AddedPropertyDeclaration | DeclarationAttribute | AddedPropertySetter;
 
         Root = Pragmas;
 
@@ -87,65 +97,6 @@ public class PragmaGrammar : Grammar
         var astContext = new PragmaAstContext(language, parseTree, Declaration);
         var astBuilder = new AstBuilder(astContext);
         astBuilder.BuildAst(parseTree);
-    }
-}
-
-
-
-
-public class AstAddedPropertyDeclaration : AstNode
-{
-    public string AccessQualifier { get; set; }
-    public string Type { get; set; }
-    public string Identifier { get; set; }
-
-    public override void Init(AstContext context, ParseTreeNode treeNode)
-    {
-        AccessQualifier = treeNode.ChildNodes[2].FindTokenAndGetText();
-        Type = treeNode.ChildNodes[3].FindTokenAndGetText();
-        Identifier = treeNode.ChildNodes[4].FindTokenAndGetText();
-    }
-
-    public override void AcceptVisitor(IAstVisitor visitor)
-    {
-        var v = visitor as PragmaVisitor;
-        v.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
-    }
-}
-
-public class AstAttribute : AstNode
-{
-    public string AttributeLiteral { get; set; }
-
-    public override void Init(AstContext context, ParseTreeNode treeNode)
-    {
-        AttributeLiteral = $"[{treeNode.ChildNodes[2].ChildNodes[1].FindTokenAndGetText()}]";
-    }
-
-    public override void AcceptVisitor(IAstVisitor visitor)
-    {
-        var v = visitor as PragmaVisitor;
-        v.Product = AttributeLiteral;
-    }
-}
-
-public class AstAddePropertySetter : AstNode
-{
-    public string? MemberName { get; set; }
-    public string PropertyName { get; set; }
-    public string InitValue { get; set; }
-
-    public override void Init(AstContext context, ParseTreeNode treeNode)
-    {
-        PropertyName = treeNode.GetTheOnlyNode(context.GetGrammar().AddedPropertyIdentifier.Name).FindTokenAndGetText();
-        InitValue = treeNode.GetTheOnlyNode(context.GetGrammar().AddedPropertyInitializer.Name).FindTokenAndGetText();
-        MemberName = context.GetContext()?.Declaration?.Name;
-    }
-
-    public override void AcceptVisitor(IAstVisitor visitor)
-    {
-        var v = visitor as PragmaVisitor;
-        v.Product = MemberName != null ? $"{MemberName}.{PropertyName} = {InitValue};" : $"{PropertyName} = {InitValue};";
     }
 }
 

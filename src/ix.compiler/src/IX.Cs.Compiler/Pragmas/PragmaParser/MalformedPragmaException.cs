@@ -7,6 +7,9 @@
 
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
+/// <summary>
+/// Provides information about failure to parse pragma expression.
+/// </summary>
 internal class MalformedPragmaException : Exception
 {
     public MalformedPragmaException(string message) :base(message)

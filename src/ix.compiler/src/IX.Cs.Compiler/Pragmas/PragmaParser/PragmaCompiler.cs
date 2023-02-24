@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Pragmas;
 using Irony;
+using Irony.Parsing;
 using Microsoft.VisualBasic.FileIO;
 
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser
 {
+    /// <summary>
+    /// Provides entry for parsing and compiling pragma expression into ix.
+    /// </summary>
     internal class PragmaCompiler
     {
         protected PragmaCompiler()
@@ -18,9 +22,15 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser
 
         public static string? Compile(IPragma pragma, IDeclaration declaration)
         {
+            var parser = new Parser(new PragmaGrammar(declaration));
+
+            return Compile(pragma, parser);
+        }
+
+        private static string? Compile(IPragma pragma, Parser parser)
+        {
             try
             {
-                var parser = new PragmaParser(new PragmaGrammar(declaration));
                 var parseTree = parser.Parse(pragma.Content);
 
                 if (parseTree.HasErrors())
@@ -50,32 +60,9 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser
 
         public static string? Compile(IPragma pragma)
         {
-            try
-            {
-                var parser = new PragmaParser(new PragmaGrammar());
-                var parseTree = parser.Parse(pragma.Content);
+            var parser = new Parser(new PragmaGrammar());
 
-                if (parseTree.HasErrors())
-                {
-                    if (parseTree.ParserMessages.Any(p => p.Level >= ErrorLevel.Error))
-                    {
-                        var parserMessges = string.Join("\n",
-                            parseTree.ParserMessages.Select(p => $"{p.Message}:{p.Location.ToUiString()}"));
-                        throw new MalformedPragmaException(parserMessges);
-                    }
-                }
-
-                var visitor = new PragmaVisitor();
-                (parseTree.Root.AstNode as IVisitableNode)?.AcceptVisitor(visitor);
-                return visitor?.Product;
-            }
-            catch (MalformedPragmaException malformedPragmaException)
-            {
-                Log.Logger.Error($"[Error]: {pragma.Location.GetLineSpan().Filename}:{pragma.Location.GetLineSpan().StartLinePosition.Line}, {pragma.Location.GetLineSpan().StartLinePosition.Character} {malformedPragmaException.Message}");
-                throw;
-            }
-
-            return string.Empty;
+            return Compile(pragma, parser);
         }
     }
 }

@@ -11,18 +11,22 @@ using Irony.Parsing;
 
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
-internal class AstPragma : AstNode
+internal class AddedPropertySetterAstNode : AstNode
 {
-    public List<AstNode> Children { get; set; }
+    public string? MemberName { get; set; }
+    public string PropertyName { get; set; }
+    public string InitValue { get; set; }
 
     public override void Init(AstContext context, ParseTreeNode treeNode)
     {
-        Children = treeNode.ChildNodes.Select(p => p.AstNode as AstNode).ToList();
+        PropertyName = treeNode.GetTheOnlyNode(context.GetGrammar().AddedPropertyIdentifier.Name).FindTokenAndGetText();
+        InitValue = treeNode.GetTheOnlyNode(context.GetGrammar().AddedPropertyInitializer.Name).FindTokenAndGetText();
+        MemberName = context.GetContext()?.Declaration?.Name;
     }
 
     public override void AcceptVisitor(IAstVisitor visitor)
     {
-        this.Children.ForEach(p => p.AcceptVisitor(visitor));
-
+        var v = visitor as PragmaVisitor;
+        v.Product = MemberName != null ? $"{MemberName}.{PropertyName} = {InitValue};" : $"{PropertyName} = {InitValue};";
     }
 }
