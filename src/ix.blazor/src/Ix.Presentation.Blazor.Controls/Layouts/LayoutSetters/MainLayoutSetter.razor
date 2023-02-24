@@ -1,5 +1,5 @@
 ﻿
-
+<CascadingValue Value="@LayoutClass">
     @if (_layoutName == "GroupBoxLayout")
     {
         <GroupBoxLayout Body="@ChildContent" GroupName="@GroupBoxName" />
@@ -10,7 +10,7 @@
             @ChildContent
         </LayoutView>
     }
-
+</CascadingValue>
 
 
 
@@ -24,6 +24,8 @@
     public Type LayoutType { get; set; }
     [Parameter]
     public string GroupBoxName { get; set; }
+    [Parameter]
+    public string LayoutClass { get; set; }
 
     private string _layoutName;
 

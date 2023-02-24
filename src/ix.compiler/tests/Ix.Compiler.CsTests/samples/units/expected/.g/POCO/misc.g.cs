@@ -6,7 +6,7 @@ namespace Pocos
     {
         public partial class ClassWithEnums
         {
-            public units.Enums.Colors colors { get; set; }
+            public global::Enums.Colors colors { get; set; }
 
             public String NamedValuesColors { get; set; }
         }

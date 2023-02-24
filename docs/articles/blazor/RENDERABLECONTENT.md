@@ -11,6 +11,7 @@ This file describes the purpose, features and usage of the **RenderableContentCo
     - [RenderIgnore and custom labels](#id-renderingore)
 	- [Edit property](#id-editprop)
     - [Layouts](#id-layouts)
+	- [Layouts adjustment](#id-layouts-adj)
     - [Styling](#id-styling)
     
  ---   
@@ -193,9 +194,40 @@ When the twin connector is in polling mode, `RenderableContentControl` will take
 ### **Layouts**
 Auto-generated UI can be customized by layouts.
 More information about layout is in **[LAYOUTS](LAYOUTS.md)** file.
+
+<div id='id-layouts-adj'/>
+
+### **Layouts adjustment**
+Layouts can be adjusted by **passing CSS classes** as parameters into RenderableContentControl component.
+
+Renderer supports following parameters:
+
+- Class -- class wrapper around entire RenderableContentControl component
+- LayoutClass -- class wrapper around layouts
+- LayoutChildrenClass -- class wrapper around layouts children
+
+**Warning!** Layout classes are passed to all children (and layout wrappers) within RenderableContentControl, so use with caution!
+
+Example:
+```XML
+<RenderableContentControl 
+    Context="@Entry.Plc.test_example.compositeWrap" 
+    Presentation="Base-Control"
+    LayoutClass="align-items-end"
+    LayoutChildrenClass="p-3"
+    Class="p-5 mb-4 bg-light rounded-3 shadow" />
+```
+
+Result:
+
+![alt text](assets/wrap-css-inject.png "Edit property")
+
+
+
 <div id='id-styling'/>
 
 ### **Styling**
+
 Ix.Presentation.Blazor contains in-built styles. Styling is provided by [Bootstrap library](https://getbootstrap.com/). In-built styles can be customized with Sass technology, which will produce SCSS files. SCSS files can be compiled into one CSS file which can be used as application-wide style.
 
 Currently, the framework contains a default style that can be added as a reference in the Blazor application file *_Host.cshtml* in the following way:

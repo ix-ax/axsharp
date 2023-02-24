@@ -61,6 +61,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         switch (typeDeclaration)
         {
             case IInterfaceDeclaration interfaceDeclaration:
+                break;
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:
@@ -73,20 +74,15 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                 {
                     case IClassDeclaration classDeclaration:
                     case IStructuredTypeDeclaration structuredTypeDeclaration:
-                        //ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[index++]).ToArray();
-                        //AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}, {arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});"); 
                         AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
                         AddToSource($"{declaration.Name}.Select(p => p.{MethodName}(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:
-                        //ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[index++])).ToArray();
                         AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
                         AddToSource($"{declaration.Name}.Select(p => p.Cyclic = plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++]).ToArray();");
-                        //AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}, {IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>(plain.{declaration.Name}, {declaration.Name});");
                         break;
                 }
-                break;
                 break;
             case IReferenceTypeDeclaration referenceTypeDeclaration:
                 break;

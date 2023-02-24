@@ -2,7 +2,13 @@
 
 
 
-<div name="UniformGrid" class="d-flex flex-nowrap w-100">
+<div name="UniformGrid" class="d-flex flex-nowrap w-100 @LayoutClass">
     @Body
 
 </div>
+
+@code
+{
+    [CascadingParameter]
+    protected string? LayoutClass { get; set; }
+}

@@ -5,7 +5,7 @@ namespace Pocos
     public partial class structWeatherStation
     {
         public string StationICAO { get; set; } = string.Empty;
-        public enumStationStatus StationStatus { get; set; }
+        public global::enumStationStatus StationStatus { get; set; }
 
         public Single DewPoint { get; set; }
 

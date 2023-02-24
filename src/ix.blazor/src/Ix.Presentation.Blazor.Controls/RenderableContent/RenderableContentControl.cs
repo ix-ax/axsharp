@@ -39,10 +39,20 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         [Parameter]
         public string Presentation { get; set; }
         /// <summary>
-        /// Parameter Class serves for styling of elements.
+        /// Parameter Class, in which RenderableContentenControl will be wrapped.
         /// </summary>
         [Parameter]
         public string Class { get; set; }
+          /// <summary>
+        /// Parameter LayoutClass, in which layouts will be wrapped.
+        /// </summary>
+        [Parameter]
+        public string LayoutClass { get; set; }
+          /// <summary>
+        /// Parameter LayoutChildrenClass, in which children of layouts will be wrapped.
+        /// </summary>
+        [Parameter]
+        public string LayoutChildrenClass { get; set; }
 
         /// <summary>
         /// Gets or sets polling interval for PLC variables of this controls context in ms.

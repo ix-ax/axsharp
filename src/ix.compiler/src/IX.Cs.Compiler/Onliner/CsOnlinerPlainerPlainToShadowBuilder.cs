@@ -1,4 +1,11 @@
-﻿using AX.ST.Semantic.Model.Declarations.Types;
+﻿// Ix.Compiler.Cs
+// Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
+// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// See the LICENSE file in the repository root for more information.
+// https://github.com/ix-ax/ix/blob/master/LICENSE
+// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+
+using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Semantic.Model.Declarations;
 using Ix.Compiler.Cs.Helpers;
 using System;
@@ -53,6 +60,7 @@ namespace Ix.Compiler.Cs.Onliner
             switch (typeDeclaration)
             {
                 case IInterfaceDeclaration interfaceDeclaration:
+                    break;
                 case IClassDeclaration classDeclaration:
                 //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
                 case IStructuredTypeDeclaration structuredTypeDeclaration:
@@ -65,20 +73,15 @@ namespace Ix.Compiler.Cs.Onliner
                     {
                         case IClassDeclaration classDeclaration:
                         case IStructuredTypeDeclaration structuredTypeDeclaration:
-                            //ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[index++]).ToArray();
-                            //AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<Pocos.{arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}, {arrayTypeDeclaration.ElementTypeAccess.Type.FullyQualifiedName}>(plain.{declaration.Name}, {declaration.Name});"); 
                             AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
                             AddToSource($"{declaration.Name}.Select(p => p.{MethodName}(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
                             break;
                         case IScalarTypeDeclaration scalarTypeDeclaration:
                         case IStringTypeDeclaration stringTypeDeclaration:
-                            //ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[index++])).ToArray();
                             AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
                             AddToSource($"{declaration.Name}.Select(p => p.Shadow = plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++]).ToArray();");
-                            //AddToSource($"Ix.Connector.BuilderHelpers.Arrays.CopyPlainToOnline<{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}, {IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>(plain.{declaration.Name}, {declaration.Name});");
                             break;
                     }
-                    break;
                     break;
                 case IReferenceTypeDeclaration referenceTypeDeclaration:
                     break;

@@ -2,7 +2,7 @@
   "profiles": {
     "ixc": {
       "commandName": "Project",
-      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\ix.framework.app.templates\\working\\templates\\ax\\"
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\statemachine\\"
     }
   }
 }

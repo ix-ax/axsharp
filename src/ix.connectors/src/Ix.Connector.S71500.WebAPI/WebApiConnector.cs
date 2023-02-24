@@ -245,7 +245,7 @@ public class WebApiConnector : Connector
         await Task.Run(() => true);
     }
 
-    internal void ClearPeriodicReadSet()
+    internal new void ClearPeriodicReadSet()
     {
         base.ClearPeriodicReadSet();
         var hitCount = RwCycleCount;

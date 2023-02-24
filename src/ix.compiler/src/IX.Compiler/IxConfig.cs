@@ -65,7 +65,7 @@ public class IxConfig : ICompilerOptions
     {
         var ixConfigFilePath = Path.Combine(directory, CONFIG_FILE_NAME);
 
-        IxConfig ixConfig = null;
+        IxConfig? ixConfig = null;
 
         if (File.Exists(ixConfigFilePath))
         {
@@ -111,7 +111,7 @@ public class IxConfig : ICompilerOptions
             if (config != null)
             {
                 var fi = new FileInfo(ixConfigFilePath);
-                config.AxProjectFolder = fi.DirectoryName;
+                if (fi.DirectoryName != null) config.AxProjectFolder = fi.DirectoryName;
             }
 
             return config;

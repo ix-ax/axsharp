@@ -578,11 +578,14 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
         return Assembly.GetAssembly(Parent.GetType());
     }
 
+
+    /// <inheritdoc />
     public override void FromOnlineToShadow()
     {
         this.Shadow = this.LastValue;
     }
 
+    /// <inheritdoc />
     public override void FromShadowToOnline()
     {
         this.Cyclic = this.Shadow;

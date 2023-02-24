@@ -52,7 +52,7 @@ namespace Pocos
 
         public string mySTRING { get; set; } = string.Empty;
         public string myWSTRING { get; set; } = string.Empty;
-        public Colors myColors { get; set; }
+        public global::Colors myColors { get; set; }
 
         public GH.PKTu.ix_56.SecondInheritance GH_PKTu_ix_56_SecondInheritance { get; set; } = new GH.PKTu.ix_56.SecondInheritance();
     }

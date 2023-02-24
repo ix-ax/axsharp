@@ -5,12 +5,14 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using System.Runtime.Serialization;
+
 namespace Ix.Compiler.Exceptions;
 
 
 [Serializable]
 #pragma warning disable CS1591
-public class FailedToCreateTargetProjectException : Exception
+public class FailedToCreateTargetProjectException : Exception, ISerializable
 {
     public FailedToCreateTargetProjectException(string s) : base(s)
     {

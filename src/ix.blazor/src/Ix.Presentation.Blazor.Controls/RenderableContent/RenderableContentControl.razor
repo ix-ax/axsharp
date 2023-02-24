@@ -31,7 +31,7 @@
             var groupName = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
             //otherwise render children and set MainLayout
                 <GroupContainerAttributeSetter GroupType="_groupContainer" GroupName="@groupName">
-                    <MainLayoutSetter LayoutType="@MainLayoutType" GroupBoxName="@groupName">
+                    <MainLayoutSetter LayoutType="@MainLayoutType" GroupBoxName="@groupName" LayoutClass="@LayoutClass">
                         @RenderChildren(twin, MainLayoutType)
                     </MainLayoutSetter>
                 </GroupContainerAttributeSetter>
@@ -68,7 +68,8 @@
                     //otherwise is value tag or has mainLayout set, add children layout and continue
                     <ChildrenLayoutPropSetter ChildName="@name"
                                               ChildrenLayout="@parentLayout"
-                                              ChildContent="@Generator(child,null)" />
+                                              ChildContent="@Generator(child,null)"
+                                              Class="@LayoutChildrenClass"/>
                 }
                 canEnumerate = enumerator.MoveNext();
             }
@@ -81,7 +82,8 @@
                 <GroupLayoutSetter ParentLayout="@parentLayout"
                             GroupLayout="@groupLayout"
                             GroupContainer="@groupContainer"
-                            GroupName="@group.GroupName">
+                            GroupName="@group.GroupName"
+                            LayoutClass="@LayoutClass">
                 @RenderGroup(group, groupLayout)
                 </GroupLayoutSetter>
 
@@ -106,7 +108,8 @@
              var name = String.IsNullOrEmpty(child.AttributeName) ? child.GetSymbolTail() : child.AttributeName;
             <ChildrenLayoutPropSetter ChildName="@name"
                                       ChildrenLayout="@groupLayout"
-                                      ChildContent="@Generator(child, groupLayout)" />
+                                      ChildContent="@Generator(child, groupLayout)"
+                                      Class="@LayoutChildrenClass" />
             }
         }
 
@@ -143,7 +146,8 @@
             var name = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
             <ChildrenLayoutPropSetter ChildName="@name"
                                       ChildrenLayout="layout"
-                                      ChildContent="@CreateComplexComponent(twin, component)" />
+                                      ChildContent="@CreateComplexComponent(twin, component)"
+                                      Class="@LayoutChildrenClass" />
         }
         else
         {
@@ -159,7 +163,7 @@
                     var groupContainer = TryLoadGroupType(twin);
                     var groupName = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
                     <GroupContainerAttributeSetter GroupType="groupContainer" GroupName="@groupName">
-                        <MainLayoutSetter LayoutType="mainLayout" GroupBoxName="@groupName">
+                        <MainLayoutSetter LayoutType="mainLayout" GroupBoxName="@groupName" LayoutClass="@LayoutClass">
                             @RenderChildren(twin, mainLayout)
                         </MainLayoutSetter>
                     </GroupContainerAttributeSetter>
