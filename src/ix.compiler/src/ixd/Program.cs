@@ -51,7 +51,7 @@ Parser.Default.ParseArguments<Options>(args)
 void GenerateYamls(Options o)
 {
     
-    DeleteYmlFilesIfExists(o.OutputProjectFolder);
+    DeleteYamlFilesIfExists(o.OutputProjectFolder);
 
     var axProject = new AxProject(o.AxSourceProjectFolder);
     Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
@@ -75,7 +75,7 @@ void GenerateYamls(Options o)
 }
 
 
-void DeleteYmlFilesIfExists(string outputPath)
+void DeleteYamlFilesIfExists(string outputPath)
 {
     if (!Directory.Exists(outputPath)) return;
 
