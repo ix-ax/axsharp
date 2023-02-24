@@ -9,6 +9,10 @@
     
 * ---
 * [Connectors](/articles/connectors/README.md)
+    * [Dummy](/articles/connectors/Dummy.md)
+    * [WebAPI](/articles/connectors/WebAPI.md)
+* ---
+* [Documenation compiler](/articles/ixd/IXD.md)
 * ---
 * [Blazor rendering](/articles/blazor/README.md)
     * [Blazor layouts](/articles/blazor/LAYOUTS.md)

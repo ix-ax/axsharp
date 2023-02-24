@@ -306,10 +306,8 @@ HumanReadable property is the concatenation of AttributeName properties in the t
 
 HumanReadable from `TurnLightsOff` is `App.Settings.Lights off`
 
-## [Dummy](../../api/Ix.Connector/Ix.Connector/DummyConnector.md)
+See also
 
-Provides the possibility to work with PLC twins without target system.
+[Dummy Connector](Dummy.md)
 
-## [WebAPI](../../api/Ix.Connector.Sax.WebAPI/Ix.Connector.Sax.WebAPI.md)
-
-Provides connectivity to S7-15XX PLC systems using WebAPI interface.
+[WebAPI Connector](WebAPI.md)

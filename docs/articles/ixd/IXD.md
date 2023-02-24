@@ -32,12 +32,18 @@ Docfx project will be generated with following folder structure:
     └───styles
 ```
 
+### 3. Install ixd tool
 
-### 3. Generate documentation with ixd
+~~~
+dotnet tool install Ix.ixd --prerelease --local
+~~~
+
+### 4. Generate documentation with ixd
+
 
 
 ```
-ixd -x $PATH_TO_AX_PROJECT -o $PATH_TO_API_FOLDER
+dotnet ixd -x $PATH_TO_AX_PROJECT -o $PATH_TO_API_FOLDER
 ```
 
 where:
