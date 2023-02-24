@@ -135,7 +135,6 @@ namespace Ix.ixc_doc.Mapper
         public Item PopulateItem(IMethodPrototypeDeclaration methodPrototypeDeclaration)
         {
 
-            //return PopulateItem((Ob)methodPrototypeDeclaration);
             var comments = _yh.GetComments(methodPrototypeDeclaration.Location);
 
             var returnType = methodPrototypeDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();

@@ -10,12 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Ix.ixc_doc.Schemas;
+using Ix.ixc_doc.Visitors;
+using YamlDotNet.Serialization;
+using Ix.ixc_doc.Models;
 
 namespace Ix.ixc_doc.Helpers
 {
-    internal class YamlHelpers
+    public class YamlHelpers
     {
-        internal string[] GetInheritedMembers(IClassDeclaration classDeclaration)
+        // return all inherited members from class declaration
+        public string[] GetInheritedMembers(IClassDeclaration classDeclaration)
         {
             var extendedMethods = classDeclaration.GetMethodsFromExtendedTypes();
             IEnumerable<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
@@ -31,13 +35,15 @@ namespace Ix.ixc_doc.Helpers
             return extendedFields.Select(f => f.FullyQualifiedName)
                                  .Concat(extendedMethods.Select(m => GetMethodUId(m))).ToArray();
         }
-        internal bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
+        // check if field can be inherited
+        public bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
         {
             return field.AccessModifier == AccessModifier.Public ||
                 (field.AccessModifier == AccessModifier.Internal && subClass.ContainingNamespace == baseClass.ContainingNamespace);
         }
 
-        internal Comments GetComments(Location location)
+        //acquire comments from source code
+        public Comments GetComments(Location location)
         {
             string text = ((SourceLocation)location).SourceText.ToString();
             int lineStart = location.GetFullLineSpan().StartLinePosition.Line;
@@ -67,8 +73,8 @@ namespace Ix.ixc_doc.Helpers
 
             return comments;
         }
-
-        internal void GetClassFromXml(XmlNode element, ref Comments comments)
+        // parse xml comments
+        public void GetClassFromXml(XmlNode element, ref Comments comments)
         {
             PropertyInfo? prop = comments.GetType().GetProperty(element.Name, BindingFlags.Public | BindingFlags.Instance);
             if (null != prop && prop.CanWrite)
@@ -93,7 +99,7 @@ namespace Ix.ixc_doc.Helpers
                 }
             }
         }
-
+        // return formatted text from xml comments
         private string GetTextFromXml(XmlNode element, PropertyInfo? prop)
         {
             string text = "";
@@ -153,8 +159,7 @@ namespace Ix.ixc_doc.Helpers
                     Type = p.Type.FullyQualifiedName 
                  };
 
-                //TODO add filtering by name
-                string description = string.Empty;
+                string description;
                 comments.param.TryGetValue(p.Name, out description);
                 parameter.Description = description;
 
@@ -200,13 +205,101 @@ namespace Ix.ixc_doc.Helpers
             return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
         }
 
-        public class Comments
+    
+        //create toc schema, grouped if namespace exists, or only global
+        public void AddToTocSchema(MyNodeVisitor visitor, TocSchema.Item tocSchemaItem, string? tocGroup)
         {
-            public string summary { get; set; }
-            public Dictionary<string, string> param { get; set; } = new();
-            public string example { get; set; }
-            public string returns { get; set; }
-            public string remarks { get; set; }
+            if (tocGroup == null || tocGroup == "" || tocGroup == "$GLOBAL")
+            {
+                visitor.YamlHelper.TocSchema.Items.Add(tocSchemaItem);
+            }
+            else
+            {
+                var item = FindTocGroup(visitor.YamlHelper.TocSchema.Items, tocGroup);
+                if (item != null)
+                {
+                    item.Items.Add(tocSchemaItem);
+                }
+                else
+                {
+                    visitor.YamlHelper.TocSchema.Items.Add(tocSchemaItem);
+                }
+            }
+        }
+
+        //check for existing group in toc list
+        public TocSchema.Item? FindTocGroup(List<TocSchema.Item> items, string tocGroup)
+        {
+            foreach (var item in Enumerable.Reverse(items).ToList())
+            {
+                if (item.Uid == tocGroup || item.Name == tocGroup)
+                    return item;
+                if (item.Items.Count > 0)
+                {
+                    var itemClass = FindTocGroup(item.Items, tocGroup);
+                    if (itemClass != null)
+                        return itemClass;
+                }
+            }
+            return null;
+        }
+
+        //acquiring assembly of ax project
+        public string GetAssembly(MyNodeVisitor visitor)
+        {
+            var reader = new StringReader(File.ReadAllText(visitor.axProject.ProjectFile));
+            var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+            Dictionary<string, object> deserializeDictionary = deserializer.Deserialize<Dictionary<string, object>>(reader);
+
+            object name;
+            deserializeDictionary.TryGetValue("name", out name);
+            return name.ToString();
+        }
+
+          //add references of inherited members
+        public void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
+        {
+            foreach (var member in item.InheritedMembers)
+            {
+                v.YamlHelper.References.Add(new Reference()
+                {
+                    Uid = member,
+                    CommentId = member,
+                    Parent = member,
+                    Name = member.Split('.').Last(),
+                    NameWithType = member.Split('.').Last(),
+                    FullName = member
+                });
+            }
+        }
+
+        //add references for namespace
+        public void AddNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
+        {
+            if (v.YamlHelper.NamespaceReferences.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+                return;
+            var reference = new Reference
+            {
+                Uid = declaration.FullyQualifiedName,
+                Name = declaration.Name,
+                FullName = declaration.FullyQualifiedName,
+                NameWithType = declaration.Name
+            };
+            v.YamlHelper.NamespaceReferences.Add(reference);
+        }
+        //add general reference
+        public void AddReference(IDeclaration declaration, MyNodeVisitor v)
+        {
+            if (v.YamlHelper.References.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+                return;
+            var reference = new Reference
+            {
+                Uid = declaration.FullyQualifiedName,
+                Name = declaration.Name,
+                FullName = declaration.FullyQualifiedName,
+                NameWithType = declaration.Name
+            };
+            v.YamlHelper.References.Add(reference);
         }
     }
 }

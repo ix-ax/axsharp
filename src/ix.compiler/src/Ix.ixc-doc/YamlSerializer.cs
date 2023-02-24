@@ -30,11 +30,9 @@ namespace Ix.ixc_doc
                 file.WriteLine(stringBuilder.ToString());
             }
 
-            Console.WriteLine("");
-            Console.WriteLine("### YamlMime:TableOfContent");
-            Console.WriteLine(stringBuilder);
-
-
+            //Console.WriteLine("");
+            //Console.WriteLine("### YamlMime:TableOfContent");
+            //Console.WriteLine(stringBuilder);
             return stringBuilder.ToString();
         }
 
@@ -50,10 +48,9 @@ namespace Ix.ixc_doc
                 file.WriteLine("## YamlMime:ManagedReference");
                 file.WriteLine(stringBuilder.ToString()); 
             }
-            Console.WriteLine("");
-            Console.WriteLine("## YamlMime:ManagedReference");
-            Console.WriteLine(stringBuilder);
-
+            //Console.WriteLine("");
+            //Console.WriteLine("## YamlMime:ManagedReference");
+            //Console.WriteLine(stringBuilder);
             
             return stringBuilder.ToString();
         }

@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Text;
 using CliWrap;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 const string Logo =
 @"| \ / 
@@ -22,9 +23,9 @@ const string Logo =
 | / \
 ";
 
-LegalAcrobatics.LegalComplianceAcrobatics().Wait();
 
 Console.WriteLine(Logo);
+LegalAcrobatics.LegalComplianceAcrobatics().Wait();
 Console.WriteLine("Ixd compiler - st to yml compiler for Docfx");
 Parser.Default.ParseArguments<Options>(args)
             .WithParsed(o =>
@@ -49,9 +50,11 @@ Parser.Default.ParseArguments<Options>(args)
 
 void GenerateYamls(Options o)
 {
-    // check for null ox axsourceprojectfolder
-    var axProject = new AxProject(o.AxSourceProjectFolder);
+    
+    DeleteYmlFilesIfExists(o.OutputProjectFolder);
 
+    var axProject = new AxProject(o.AxSourceProjectFolder);
+    Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
     var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
 
     var toCompile = projectSources.Select(p => p.parseTree);
@@ -71,16 +74,22 @@ void GenerateYamls(Options o)
     yamlSerializer.TocToYaml(myNodeVisitor.YamlHelper.TocSchema);
 }
 
-TocSchema.Item[] TocItemListToTocItem(List<TocSchemaList.ItemList> itemLists)
-{
-    List<TocSchema.Item> items = new List<TocSchema.Item>();
-    foreach (var item in itemLists)
-    {
-        items.Add(new TocSchema.Item() { Uid = item.Uid, Name = item.Name, Items = TocItemListToTocItem(item.Items) });
-    }
-    return items.ToArray();
-}
 
+void DeleteYmlFilesIfExists(string outputPath)
+{
+    if (!Directory.Exists(outputPath)) return;
+
+    DirectoryInfo di = new DirectoryInfo(outputPath);
+
+    var ymlFiles = di.GetFiles("*.yml");
+    if(ymlFiles != null)
+    { 
+        foreach (FileInfo file in ymlFiles)
+        {
+            file.Delete(); 
+        }
+    }
+ }
 
 public static class LegalAcrobatics
 { 

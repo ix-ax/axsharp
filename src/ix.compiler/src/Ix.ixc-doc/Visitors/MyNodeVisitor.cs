@@ -45,19 +45,17 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(ISymbol symbol, IYamlBuiderVisitor data)
         {
-            //symbol
-            //CreateFieldDocumentation()
+         
         }
 
         public void Visit(IPragma pragma, IYamlBuiderVisitor data)
         {
-            //throw new NotImplementedException();
+
         }
 
         public void Visit(IConfigurationDeclaration configurationDeclaration, IYamlBuiderVisitor data)
         {
-            //Console.WriteLine("Configuration declaration!");
-            //data.CreateBaseYaml(configurationDeclaration, this);
+            
         }
 
         public void Visit(ITaskConfigurationDeclaration taskConfigurationDeclaration, IYamlBuiderVisitor data)
