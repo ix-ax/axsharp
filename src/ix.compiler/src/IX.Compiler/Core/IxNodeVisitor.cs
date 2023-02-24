@@ -408,6 +408,9 @@ public partial class IxNodeVisitor : ISyntaxNodeVisitor<ICombinedThreeVisitor>
         Compilation = compilation;
     }
 
+    /// <summary>
+    /// Creates new instance of <see cref="IxNodeVisitor"/>
+    /// </summary>
     [Obsolete("Use IxNodeVisitor(Compilation) instead.")]
     public IxNodeVisitor()
     {

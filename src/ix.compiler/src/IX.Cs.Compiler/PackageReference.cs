@@ -31,8 +31,8 @@ public class PackageReference : IPackageReference
         string include = string.Empty;
         try
         {
-            include = packageReferenceNode.Attribute(XName.Get(nameof(Include)))?.Value ?? packageReferenceNode.Attribute(XName.Get("Update"))?.Value;
-            var version = packageReferenceNode.Attribute(XName.Get(nameof(Version))).Value;
+            include = (packageReferenceNode.Attribute(XName.Get(nameof(Include)))?.Value ?? packageReferenceNode.Attribute(XName.Get("Update"))?.Value)!;
+            var version = packageReferenceNode.Attribute(XName.Get(nameof(Version)))!.Value;
             var referencePath = PackageReferenceNugetPath(include, version);
 
             return new PackageReference(referencePath, include, version);

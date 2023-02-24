@@ -5,12 +5,19 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
-namespace Ix.Compiler;
+using Irony.Ast;
 
-public class FailedToDeterminePackageVersion : Exception
+namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
+
+internal static class AstNodeHelpers
 {
-    public FailedToDeterminePackageVersion(string message, Exception innerException) : base(message, innerException)
+    public static PragmaAstContext? GetContext(this AstContext context)
     {
-        
+        return context as PragmaAstContext;
+    }
+
+    public static PragmaGrammar? GetGrammar(this AstContext context)
+    {
+        return context.Language.Grammar as PragmaGrammar;
     }
 }

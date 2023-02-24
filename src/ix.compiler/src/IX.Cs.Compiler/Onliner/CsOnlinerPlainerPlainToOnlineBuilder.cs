@@ -84,7 +84,6 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                         break;
                 }
                 break;
-                break;
             case IReferenceTypeDeclaration referenceTypeDeclaration:
                 break;
             case IEnumTypeDeclaration enumTypeDeclaration:

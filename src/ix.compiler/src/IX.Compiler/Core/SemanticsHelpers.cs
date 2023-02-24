@@ -27,6 +27,12 @@ public static class SemanticsHelpers
         return field.AccessModifier == AccessModifier.Public && field.Type.IsTypeEligibleForTranspile(compilation);
     }
 
+    /// <summary>
+    /// Determines whether the member or type is eligible for generation.
+    /// </summary>
+    /// <param name="typeDeclaration"></param>
+    /// <param name="compilation"></param>
+    /// <returns></returns>
     public static bool IsTypeEligibleForTranspile(this ITypeDeclaration typeDeclaration, Compilation compilation)
     {
         return !(typeDeclaration is IReferenceTypeDeclaration) 
@@ -73,6 +79,12 @@ public static class SemanticsHelpers
         return variable.IsMemberEligibleForTranspile(compilation);
     }
 
+    /// <summary>
+    /// Determines whether the member is eligible for generation.
+    /// </summary>
+    /// <param name="arrayTypeDeclaration"></param>
+    /// <param name="compilation"></param>
+    /// <returns></returns>
     public static bool IsMemberEligibleForConstructor(this IArrayTypeDeclaration arrayTypeDeclaration, Compilation compilation)
     {
         return arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(compilation);

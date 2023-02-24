@@ -32,14 +32,8 @@ public static class PragmaExtensions
     /// <returns>Attribute syntax from given ix pragmas.</returns>
     public static string AddAttributes(this IEnumerable<IPragma> pragmas)
     {
-        var sb = new StringBuilder();
-        foreach (var attribute in
-                 pragmas.Where(p => p.Content.StartsWith(PRAGMA_ATTRIBUTE_SIGNATURE))
-                     .Select(p => p.Content.Substring(pragma_attribute_signature_length,
-                         p.Content.Length - pragma_attribute_signature_length)))
-            sb.AppendLine(attribute);
-
-        return sb.ToString();
+        return string.Join("\r\n",
+            pragmas.Where(p => p.Content.StartsWith(PRAGMA_ATTRIBUTE_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p)));
     }
 
     /// <summary>
@@ -49,14 +43,8 @@ public static class PragmaExtensions
     /// <returns>Property syntax from given ix pragmas.</returns>
     public static string DeclareProperties(this ITypeDeclaration typeDeclaration)
     {
-        var sb = new StringBuilder();
-        foreach (var propDeclaration in
-                 typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE))
-                     .Select(p => p.Content.Substring(pragma_declare_property_signature_length,
-                         p.Content.Length - pragma_declare_property_signature_length)))
-            sb.AppendLine($"{propDeclaration} {{ get; set; }}");
-
-        return sb.ToString();
+        return string.Join("\r\n",
+            typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration)));
     }
 
     /// <summary>
@@ -66,14 +54,8 @@ public static class PragmaExtensions
     /// <returns>Property syntax from given ix pragmas.</returns>
     public static string DeclareProperties(this IConfigurationDeclaration configDeclaration)
     {
-        var sb = new StringBuilder();
-        foreach (var propDeclaration in
-                 configDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE))
-                     .Select(p => p.Content.Substring(pragma_declare_property_signature_length,
-                         p.Content.Length - pragma_declare_property_signature_length)))
-            sb.AppendLine(propDeclaration);
-
-        return sb.ToString();
+        return string.Join("\r\n",
+            configDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, configDeclaration)));
     }
 
     /// <summary>
@@ -83,18 +65,8 @@ public static class PragmaExtensions
     /// <returns>Statement setting property to given value.</returns>
     public static string SetProperties(this IFieldDeclaration fieldDeclaration)
     {
-        var sb = new StringBuilder();
-        foreach (var memberToSet in
-                 fieldDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE))
-                     .Select(p => p.Content.Substring(pragma_property_set_signature_length,
-                         p.Content.Length - pragma_property_set_signature_length)))
-        {
-            var setter = $"{fieldDeclaration.Name}.{memberToSet}";
-            setter = !setter.EndsWith(";") ? $"{setter};" : setter;
-            sb.AppendLine(setter);
-        }
-
-        return sb.ToString();
+        return string.Join("\r\n",
+            fieldDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, fieldDeclaration)));
     }
 
     /// <summary>
@@ -104,18 +76,8 @@ public static class PragmaExtensions
     /// <returns>Statement setting property to given value.</returns>
     public static string SetProperties(this IVariableDeclaration variableDeclaration)
     {
-        var sb = new StringBuilder();
-        foreach (var memberToSet in
-                 variableDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE))
-                     .Select(p => p.Content.Substring(pragma_property_set_signature_length,
-                         p.Content.Length - pragma_property_set_signature_length)))
-        {
-            var setter = $"{variableDeclaration.Name}.{memberToSet}";
-            setter = !setter.EndsWith(";") ? $"{setter};" : setter;
-            sb.AppendLine(setter);
-        }
-
-        return sb.ToString();
+        return string.Join("\r\n",
+            variableDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, variableDeclaration)));
     }
 
     /// <summary>
@@ -125,18 +87,8 @@ public static class PragmaExtensions
     /// <returns>Statement setting property to given value.</returns>
     public static string SetProperties(this ITypeDeclaration typeDeclaration)
     {
-        var sb = new StringBuilder();
-        foreach (var memberToSet in
-                 typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE))
-                     .Select(p => p.Content.Substring(pragma_property_set_signature_length,
-                         p.Content.Length - pragma_property_set_signature_length)))
-        {
-            var setter = $"{memberToSet}";
-            setter = !setter.EndsWith(";") ? $"{setter};" : setter;
-            sb.AppendLine(setter);
-        }
-
-        return sb.ToString();
+        return string.Join("\r\n",
+            typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p)));
     }
 
     /// <summary>

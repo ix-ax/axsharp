@@ -74,7 +74,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         }
         else
         {
-            AddToSource(typeof(ITwinObject).n());
+            AddToSource(typeof(ITwinObject).n()!);
         }
 
         AddToSource(classDeclarationSyntax.ImplementsList != null ? ", " : string.Empty);
@@ -210,7 +210,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             $"{structuredTypeDeclaration.AccessModifier.Transform()}partial class {structTypeDeclarationSyntax.Name.Text}");
         AddToSource(":");
 
-        AddToSource(typeof(ITwinObject).n());
+        AddToSource(typeof(ITwinObject).n()!);
 
         AddToSource("\n{");
 
