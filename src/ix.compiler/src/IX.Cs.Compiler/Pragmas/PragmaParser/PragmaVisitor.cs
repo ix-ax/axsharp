@@ -12,7 +12,7 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 internal class PragmaVisitor : IAstVisitor
 {
 
-    public string Product;
+    public string? Product;
 
     public void BeginVisit(IVisitableNode node)
     {

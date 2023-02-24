@@ -5,6 +5,8 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using Irony.Parsing;
+
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
 /// <summary>
@@ -14,6 +16,6 @@ internal class MalformedPragmaException : Exception
 {
     public MalformedPragmaException(string message) :base(message)
     {
-            
+        
     }
 }

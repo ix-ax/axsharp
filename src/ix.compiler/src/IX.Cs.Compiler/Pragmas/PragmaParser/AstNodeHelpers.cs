@@ -11,12 +11,12 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
 internal static class AstNodeHelpers
 {
-    public static PragmaAstContext GetContext(this AstContext context)
+    public static PragmaAstContext? GetContext(this AstContext context)
     {
         return context as PragmaAstContext;
     }
 
-    public static PragmaGrammar GetGrammar(this AstContext context)
+    public static PragmaGrammar? GetGrammar(this AstContext context)
     {
         return context.Language.Grammar as PragmaGrammar;
     }

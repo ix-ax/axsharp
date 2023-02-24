@@ -5,11 +5,13 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using System.Runtime.Serialization;
+
 namespace Ix.Compiler;
 
 #pragma warning disable CS1591
 [Serializable]
-public class FailedToCreateSourceBuilderException : Exception
+public class FailedToCreateSourceBuilderException : Exception, ISerializable
 {
     public FailedToCreateSourceBuilderException(string s) : base(s)
     {

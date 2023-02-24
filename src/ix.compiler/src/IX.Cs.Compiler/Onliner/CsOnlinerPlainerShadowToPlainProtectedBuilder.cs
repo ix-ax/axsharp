@@ -1,4 +1,11 @@
-﻿using AX.ST.Semantic;
+﻿// Ix.Compiler.Cs
+// Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
+// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// See the LICENSE file in the repository root for more information.
+// https://github.com/ix-ax/ix/blob/master/LICENSE
+// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+
+using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Semantic.Model.Declarations;
 using System;
@@ -19,7 +26,7 @@ namespace Ix.Compiler.Cs.Onliner
 
         }
 
-        public static CsOnlinerPlainerShadowToPlainProtectedBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
+        public new static CsOnlinerPlainerShadowToPlainProtectedBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
             Compilation compilation)
         {
             var builder = new CsOnlinerPlainerShadowToPlainProtectedBuilder(compilation);
@@ -31,7 +38,7 @@ namespace Ix.Compiler.Cs.Onliner
             return builder;
         }
 
-        public static CsOnlinerPlainerShadowToPlainProtectedBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
+        public new static CsOnlinerPlainerShadowToPlainProtectedBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
             Compilation compilation, bool isExtended)
         {
             var builder = new CsOnlinerPlainerShadowToPlainProtectedBuilder(compilation);

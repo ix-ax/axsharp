@@ -1,4 +1,11 @@
-﻿using Irony.Interpreter.Ast;
+﻿// Ix.Compiler.Cs
+// Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
+// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// See the LICENSE file in the repository root for more information.
+// https://github.com/ix-ax/ix/blob/master/LICENSE
+// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+
+using Irony.Interpreter.Ast;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,8 +61,6 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser
                 Log.Logger.Error(diagMessage);
                 throw new MalformedPragmaException(diagMessage);
             }
-
-            return string.Empty;
         }
 
         public static string? Compile(IPragma pragma)

@@ -13,7 +13,7 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
 internal class DeclarationAttributeAstNode : AstNode
 {
-    public string AttributeLiteral { get; set; }
+    public string? AttributeLiteral { get; set; }
 
     public override void Init(AstContext context, ParseTreeNode treeNode)
     {
@@ -23,6 +23,8 @@ internal class DeclarationAttributeAstNode : AstNode
     public override void AcceptVisitor(IAstVisitor visitor)
     {
         var v = visitor as PragmaVisitor;
-        v.Product = AttributeLiteral;
+        if (AttributeLiteral != null)
+            if (v != null)
+                v.Product = AttributeLiteral;
     }
 }

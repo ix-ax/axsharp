@@ -5,12 +5,14 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using System.Runtime.Serialization;
+
 namespace Ix.Compiler.Exceptions;
 
 /// <summary>
 /// Provides information about failure to process ix.config.json file.
 /// </summary>
-public class FailedToReadIxConfigurationFileException : Exception
+public class FailedToReadIxConfigurationFileException : Exception, ISerializable
 {
     /// <summary>
     /// Create new instance of <see cref="FailedToReadIxConfigurationFileException"/>

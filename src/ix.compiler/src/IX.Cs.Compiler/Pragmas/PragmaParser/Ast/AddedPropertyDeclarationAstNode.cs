@@ -13,9 +13,9 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
 internal class AddedPropertyDeclarationAstNode : AstNode
 {
-    public string AccessQualifier { get; set; }
-    public string Type { get; set; }
-    public string Identifier { get; set; }
+    public string? AccessQualifier { get; set; }
+    public string? Type { get; set; }
+    public string? Identifier { get; set; }
 
     public override void Init(AstContext context, ParseTreeNode treeNode)
     {
@@ -26,7 +26,6 @@ internal class AddedPropertyDeclarationAstNode : AstNode
 
     public override void AcceptVisitor(IAstVisitor visitor)
     {
-        var v = visitor as PragmaVisitor;
-        v.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
+        if (visitor is PragmaVisitor v) v.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
     }
 }

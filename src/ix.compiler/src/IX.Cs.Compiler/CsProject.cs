@@ -80,11 +80,13 @@ public class CsProject : ITargetProject
 
     private void EnsureCsProjFile()
     {
-        var expectedCsProjFile = Path.Combine(IxProject.OutputFolder,
-            $"{MakeValidFileName(IxProject.AxProject.ProjectInfo.Name)}.csproj");
+        if (IxProject.AxProject.ProjectInfo.Name != null)
+        {
+            var expectedCsProjFile = Path.Combine(IxProject.OutputFolder,
+                $"{MakeValidFileName(IxProject.AxProject.ProjectInfo.Name)}.csproj");
 
-var defaultCsProjectWhenNotProvidedByTemplate =
-$@"<Project Sdk=""Microsoft.NET.Sdk"">
+            var defaultCsProjectWhenNotProvidedByTemplate =
+                $@"<Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -102,19 +104,20 @@ $@"<Project Sdk=""Microsoft.NET.Sdk"">
 </Project>";
 
 
-        Policy
-            .Handle<IOException>()
-            .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
-            .Execute(() =>
-            {
-                if (!File.Exists(expectedCsProjFile))
+            Policy
+                .Handle<IOException>()
+                .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
+                .Execute(() =>
                 {
-                    using (var swr = new StreamWriter(expectedCsProjFile))
+                    if (!File.Exists(expectedCsProjFile))
                     {
-                        swr.Write(defaultCsProjectWhenNotProvidedByTemplate);
+                        using (var swr = new StreamWriter(expectedCsProjFile))
+                        {
+                            swr.Write(defaultCsProjectWhenNotProvidedByTemplate);
+                        }
                     }
-                }
-            });
+                });
+        }
     }
 
     #region Dependencies
@@ -284,7 +287,7 @@ $@"<Project Sdk=""Microsoft.NET.Sdk"">
         }
         catch (Exception e)
         {
-            throw new FailedToDeterminePackageVersion();
+            throw new FailedToDeterminePackageVersion($"Unable to determine package version of '{packageName}::{packageVersion}'", e);
         }
        
     }

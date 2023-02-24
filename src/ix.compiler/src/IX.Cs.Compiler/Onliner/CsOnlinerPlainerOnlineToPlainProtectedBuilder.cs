@@ -29,7 +29,7 @@ internal class CsOnlinerPlainerOnlineToPlainProtectedBuilder : CsOnlinerPlainerO
         
     }
 
-    public static CsOnlinerPlainerOnlineToPlainProtectedBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
+    public new static CsOnlinerPlainerOnlineToPlainProtectedBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
         Compilation compilation)
     {
         var builder = new CsOnlinerPlainerOnlineToPlainProtectedBuilder(compilation);
@@ -41,7 +41,7 @@ internal class CsOnlinerPlainerOnlineToPlainProtectedBuilder : CsOnlinerPlainerO
         return builder;
     }
 
-    public static CsOnlinerPlainerOnlineToPlainProtectedBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
+    public new static CsOnlinerPlainerOnlineToPlainProtectedBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
         Compilation compilation, bool isExtended)
     {
         var builder = new CsOnlinerPlainerOnlineToPlainProtectedBuilder(compilation);

@@ -14,19 +14,25 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 internal class AddedPropertySetterAstNode : AstNode
 {
     public string? MemberName { get; set; }
-    public string PropertyName { get; set; }
-    public string InitValue { get; set; }
+    public string? PropertyName { get; set; }
+    public string? InitValue { get; set; }
 
     public override void Init(AstContext context, ParseTreeNode treeNode)
     {
-        PropertyName = treeNode.GetTheOnlyNode(context.GetGrammar().AddedPropertyIdentifier.Name).FindTokenAndGetText();
-        InitValue = treeNode.GetTheOnlyNode(context.GetGrammar().AddedPropertyInitializer.Name).FindTokenAndGetText();
-        MemberName = context.GetContext()?.Declaration?.Name;
+        var grammar = context.GetGrammar();
+        if (grammar != null)
+        {
+            PropertyName = treeNode.GetTheOnlyNode(grammar.AddedPropertyIdentifier.Name).FindTokenAndGetText();
+            InitValue = treeNode.GetTheOnlyNode(grammar.AddedPropertyInitializer.Name).FindTokenAndGetText();
+            MemberName = context.GetContext()?.Declaration?.Name;
+        }
     }
 
     public override void AcceptVisitor(IAstVisitor visitor)
     {
-        var v = visitor as PragmaVisitor;
-        v.Product = MemberName != null ? $"{MemberName}.{PropertyName} = {InitValue};" : $"{PropertyName} = {InitValue};";
+        if (visitor is PragmaVisitor v)
+            v.Product = MemberName != null
+                ? $"{MemberName}.{PropertyName} = {InitValue};"
+                : $"{PropertyName} = {InitValue};";
     }
 }

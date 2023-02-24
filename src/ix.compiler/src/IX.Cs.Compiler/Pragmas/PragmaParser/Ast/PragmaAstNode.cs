@@ -13,7 +13,7 @@ namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
 internal class PragmaAstNode : AstNode
 {
-    public List<AstNode> Children { get; set; }
+    public List<AstNode?>? Children { get; set; }
 
     public override void Init(AstContext context, ParseTreeNode treeNode)
     {
@@ -22,7 +22,10 @@ internal class PragmaAstNode : AstNode
 
     public override void AcceptVisitor(IAstVisitor visitor)
     {
-        this.Children.ForEach(p => p.AcceptVisitor(visitor));
+        this.Children.ForEach(p =>
+        {
+            if (p != null) p.AcceptVisitor(visitor);
+        });
 
     }
 }
