@@ -65,18 +65,5 @@ void GenerateYamls(Options o)
     semanticTree.GetRoot().Accept(myNodeVisitor, treeWalker);
 
     //serialize
-    myNodeVisitor.YamlHelper.TocSchema.Items = TocItemListToTocItem(myNodeVisitor.YamlHelper.TocSchemaList.Items);
     yamlSerializer.TocToYaml(myNodeVisitor.YamlHelper.TocSchema);
 }
-
-TocSchema.Item[] TocItemListToTocItem(List<TocSchemaList.ItemList> itemLists)
-{
-    List<TocSchema.Item> items = new List<TocSchema.Item>();
-    foreach (var item in itemLists)
-    {
-        items.Add(new TocSchema.Item() { Uid = item.Uid, Name = item.Name, Items = TocItemListToTocItem(item.Items) });
-    }
-    return items.ToArray();
-}
-
-

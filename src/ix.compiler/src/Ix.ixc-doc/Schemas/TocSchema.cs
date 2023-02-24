@@ -10,10 +10,16 @@ namespace Ix.ixc_doc.Schemas
     public class TocSchema
     {
         [JsonProperty("items", NullValueHandling = NullValueHandling.Ignore)]
-        public Item[] Items { get; set; }
-        
+        public List<Item> Items { get; set; } = new List<Item>();
+
         public partial class Item
         {
+            public Item(string uid, string name)
+            {
+                Uid= uid;
+                Name= name;
+            }
+
             [JsonProperty("uid")]
             public string Uid { get; set; }
 
@@ -21,28 +27,7 @@ namespace Ix.ixc_doc.Schemas
             public string Name { get; set; }
 
             [JsonProperty("items", NullValueHandling = NullValueHandling.Ignore)]
-            public Item[] Items { get; set; }
-        }
-    }
-
-    public class TocSchemaList
-    {
-       
-        public List<ItemList> Items { get; set; } = new List<ItemList>();
-
-        public partial class ItemList
-        {
-
-            public ItemList(string uid, string name)
-            {
-                Uid= uid;
-                Name= name;
-            }
-            public string Uid { get; set; }
-
-            public string Name { get; set; }
-
-            public List<ItemList> Items { get; set; } = new List<ItemList>();
+            public List<Item> Items { get; set; } = new List<Item>();
         }
     }
 }
