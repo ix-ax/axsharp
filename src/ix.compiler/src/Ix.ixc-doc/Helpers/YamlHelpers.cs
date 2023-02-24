@@ -29,7 +29,7 @@ namespace Ix.ixc_doc.Helpers
                .ForEach(member => extendedFields = extendedFields.Concat(member));
 
             return extendedFields.Select(f => f.FullyQualifiedName)
-                                 .Concat(extendedMethods.Select(m => m.FullyQualifiedName)).ToArray();
+                                 .Concat(extendedMethods.Select(m => GetMethodUId(m))).ToArray();
         }
         internal bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
         {

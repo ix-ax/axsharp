@@ -3,6 +3,10 @@
     "ixd": {
       "commandName": "Project",
       "commandLineArgs": "ixd -x C:\\MTS\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\samples\\ax\\ -o C:\\MTS\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\docfx\\docfx_project\\api\\"
+    },
+    "ixd-2": {
+      "commandName": "Project",
+      "commandLineArgs": "ixd-2 -x C:\\MTS\\ix.framework\\src\\core\\ctrl -o C:\\MTS\\ix-ax\\ix\\src\\ix.compiler\\src\\Ix.ixc-doc\\tests\\docfx\\docfx_project\\api\\"
     }
   }
 }

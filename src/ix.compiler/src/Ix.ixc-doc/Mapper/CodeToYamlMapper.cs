@@ -3,17 +3,8 @@ using AX.ST.Semantic.Model.Declarations.Types;
 using AX.Text;
 using CommandLine;
 using Ix.ixc_doc.Helpers;
-using Ix.ixc_doc.Models;
 using Ix.ixc_doc.Schemas;
-using Ix.ixc_doc.Visitors;
-using Microsoft.CodeAnalysis.Operations;
-using System;
-using System.Collections;
-using System.Reflection;
-using System.Text;
-using System.Xml;
-using System.Xml.Linq;
-using static Ix.ixc_doc.Helpers.YamlHelpers;
+
 
 namespace Ix.ixc_doc.Mapper
 {
@@ -94,10 +85,11 @@ namespace Ix.ixc_doc.Mapper
             var comments = _yh.GetComments(methodDeclaration.Location);
 
             var returnType = methodDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+         
             var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
 
             var inputDeclaration = _yh.CreateParametersAndDeclarationString(inputParamsDeclaration, comments);
-            string declaration = $"{methodDeclaration.AccessModifier} {returnType?.Type} {methodDeclaration.Name}({inputDeclaration.Item2})";
+            string declaration = $"{methodDeclaration.AccessModifier} {(returnType == null ? "VOID" : returnType.Type.FullyQualifiedName)} {methodDeclaration.Name}({inputDeclaration.Item2})";
 
             var item = PopulateItem((IDeclaration)methodDeclaration);
             item.Uid = _yh.GetMethodUId(methodDeclaration);
@@ -142,17 +134,20 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(IMethodPrototypeDeclaration methodPrototypeDeclaration)
         {
+
+            //return PopulateItem((Ob)methodPrototypeDeclaration);
             var comments = _yh.GetComments(methodPrototypeDeclaration.Location);
 
             var returnType = methodPrototypeDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+       
             var inputParamsDeclaration = methodPrototypeDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
 
             var inputDeclaration = _yh.CreateParametersAndDeclarationString(inputParamsDeclaration, comments);
-            string declaration = $"{methodPrototypeDeclaration.AccessModifier} {returnType?.Type} {methodPrototypeDeclaration.Name}({inputDeclaration.Item2})";
+            string declaration = $"{methodPrototypeDeclaration.AccessModifier} {(returnType == null ? "VOID" : returnType.Type.FullyQualifiedName)} {methodPrototypeDeclaration.Name}({inputDeclaration.Item2})";
 
             var item = PopulateItem((IDeclaration)methodPrototypeDeclaration);
             item.Uid = _yh.GetMethodUId(methodPrototypeDeclaration);
-            //item.Parent = methodPrototypeDeclaration.ContainingClass.FullyQualifiedName;
+            item.Parent = methodPrototypeDeclaration.ContainingInterface.Name;
             item.Type = "Method";
             item.Syntax = new Syntax
             {
