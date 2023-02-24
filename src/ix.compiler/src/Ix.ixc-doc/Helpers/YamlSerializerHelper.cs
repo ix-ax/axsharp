@@ -16,7 +16,6 @@ namespace Ix.ixc_doc.Helpers
         //declared schema. which we serialize
         public YamlSchema Schema { get; set; } = new YamlSchema();
         public TocSchema TocSchema { get; set; } = new TocSchema();
-        public TocSchemaList TocSchemaList { get; set; } = new TocSchemaList();
 
 
         //helpers lists for items

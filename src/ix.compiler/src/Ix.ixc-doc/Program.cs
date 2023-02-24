@@ -68,7 +68,6 @@ void GenerateYamls(Options o)
     semanticTree.GetRoot().Accept(myNodeVisitor, treeWalker);
 
     //serialize
-    myNodeVisitor.YamlHelper.TocSchema.Items = TocItemListToTocItem(myNodeVisitor.YamlHelper.TocSchemaList.Items);
     yamlSerializer.TocToYaml(myNodeVisitor.YamlHelper.TocSchema);
 }
 

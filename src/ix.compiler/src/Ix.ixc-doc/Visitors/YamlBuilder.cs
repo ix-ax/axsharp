@@ -36,11 +36,11 @@ namespace Ix.ixc_doc.Visitors
             //populate item of namepsace
             var item = _mp.PopulateItem(namespaceDeclaration);
             // create toc item
-            var tocSchemaItem = new TocSchemaList.ItemList(namespaceDeclaration.FullyQualifiedName, namespaceDeclaration.Name);
+            var tocSchemaItem = new TocSchema.Item(namespaceDeclaration.FullyQualifiedName, namespaceDeclaration.Name);
 
             // add to namespace group if is not global
             if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
-                if (FindTocGroup(v.YamlHelper.TocSchemaList.Items, namespaceDeclaration.FullyQualifiedName) == null)
+                if (FindTocGroup(v.YamlHelper.TocSchema.Items, namespaceDeclaration.FullyQualifiedName) == null)
                     AddToTocSchema(v, tocSchemaItem, namespaceDeclaration.ContainingNamespace.FullyQualifiedName);
 
             // iterate through children
@@ -69,7 +69,7 @@ namespace Ix.ixc_doc.Visitors
             v.YamlHelper.Items.Add(item);
             AddInheritedMembersReferences(item, v);
 
-            var tocSchemaItem = new TocSchemaList.ItemList(item.Uid, item.FullName);
+            var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
 
             if (item.Namespace != "$GLOBAL")
             {
@@ -118,7 +118,7 @@ namespace Ix.ixc_doc.Visitors
             var item = _mp.PopulateItem(namedValueTypeDeclaration);
             visitor.YamlHelper.Items.Add(item);
 
-            var tocSchemaItem = new TocSchemaList.ItemList(item.Uid, item.FullName);
+            var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
 
             AddToTocSchema(visitor, tocSchemaItem, item.Namespace);
 
@@ -139,7 +139,7 @@ namespace Ix.ixc_doc.Visitors
             item.Assemblies = new string[] { GetAssembly(v) };
             v.YamlHelper.Items.Add(item);
 
-            var tocSchemaItem = new TocSchemaList.ItemList(item.Uid, item.FullName);
+            var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
 
             if (item.Namespace != "$GLOBAL")
             {
@@ -192,28 +192,28 @@ namespace Ix.ixc_doc.Visitors
         }
 
         //create toc schema, grouped if namespace exists, or only global
-        private void AddToTocSchema(MyNodeVisitor visitor, TocSchemaList.ItemList tocSchemaItem, string? tocGroup)
+        private void AddToTocSchema(MyNodeVisitor visitor, TocSchema.Item tocSchemaItem, string? tocGroup)
         {
             if (tocGroup == null || tocGroup == "" || tocGroup == "$GLOBAL")
             {
-                visitor.YamlHelper.TocSchemaList.Items.Add(tocSchemaItem);
+                visitor.YamlHelper.TocSchema.Items.Add(tocSchemaItem);
             }
             else
             {
-                var item = FindTocGroup(visitor.YamlHelper.TocSchemaList.Items, tocGroup);
+                var item = FindTocGroup(visitor.YamlHelper.TocSchema.Items, tocGroup);
                 if (item != null)
                 {
                     item.Items.Add(tocSchemaItem);
                 }
                 else
                 {
-                    visitor.YamlHelper.TocSchemaList.Items.Add(tocSchemaItem);
+                    visitor.YamlHelper.TocSchema.Items.Add(tocSchemaItem);
                 }
             }
         }
 
         //check for existing group in toc list
-        private TocSchemaList.ItemList? FindTocGroup(List<TocSchemaList.ItemList> items, string tocGroup)
+        private TocSchema.Item? FindTocGroup(List<TocSchema.Item> items, string tocGroup)
         {
             foreach (var item in Enumerable.Reverse(items).ToList())
             {
