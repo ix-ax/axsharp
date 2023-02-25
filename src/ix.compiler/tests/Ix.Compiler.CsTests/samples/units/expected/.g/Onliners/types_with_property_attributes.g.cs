@@ -7,7 +7,19 @@ namespace TypesWithPropertyAttributes
 {
     public partial class SomeAddedProperties : Ix.Connector.ITwinObject
     {
-        public string Description { get; set; }
+        private string _Description;
+        public string Description
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_Description);
+            }
+
+            set;
+            {
+                _Description = value;
+            }
+        }
 
         public OnlinerInt Counter { get; }
 

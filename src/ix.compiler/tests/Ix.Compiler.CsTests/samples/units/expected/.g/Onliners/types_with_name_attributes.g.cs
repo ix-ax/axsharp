@@ -258,7 +258,19 @@ namespace TypeWithNameAttributes
 
     public partial class NoAccessModifierClass : Ix.Connector.ITwinObject
     {
-        public string AttributeName { get; set; }
+        private string _AttributeName;
+        public string AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_AttributeName);
+            }
+
+            set;
+            {
+                _AttributeName = value;
+            }
+        }
 
         public OnlinerString SomeClassVariable { get; }
 

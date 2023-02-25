@@ -11,7 +11,7 @@ using Irony.Parsing;
 
 namespace Ix.Compiler.Cs.Pragmas.PragmaParser;
 
-internal class DeclarationAttributeAstNode : AstNode
+internal class AttributeDeclarationAstNode : AstNode
 {
     public string? AttributeLiteral { get; set; }
 

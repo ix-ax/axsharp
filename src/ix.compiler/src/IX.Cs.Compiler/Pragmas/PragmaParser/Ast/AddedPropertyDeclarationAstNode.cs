@@ -26,6 +26,27 @@ internal class AddedPropertyDeclarationAstNode : AstNode
 
     public override void AcceptVisitor(IAstVisitor visitor)
     {
-        if (visitor is PragmaVisitor v) v.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
+        if (visitor is PragmaVisitor v)
+        {
+            if (Type.ToUpperInvariant() == "STRING")
+            {
+                v.Product = $"private {Type} _{Identifier};" +
+                            $"\n{AccessQualifier} {Type} {Identifier} " +
+                            $"{{ " +
+                            $"get" +
+                            $"{{ " +
+                            $"return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_{Identifier}); " +
+                            $"}} " +
+                            $"set; " +
+                            $"{{_{Identifier} = value;" +
+                            $"}} " +
+                            $"}}";
+            }
+            else
+            {
+                v.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
+            }
+           
+        }
     }
 }
