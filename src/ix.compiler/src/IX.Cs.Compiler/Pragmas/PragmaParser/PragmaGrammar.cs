@@ -34,7 +34,7 @@ internal class PragmaGrammar : Grammar
     public readonly NonTerminal AddedPropertySetter = new(nameof(AddedPropertySetter), typeof(AddedPropertySetterAstNode));
     public readonly Terminal assing = new(nameof(assing));
 
-    public readonly NonTerminal DeclarationAttribute = new(nameof(DeclarationAttribute), typeof(DeclarationAttributeAstNode));
+    public readonly NonTerminal DeclarationAttribute = new(nameof(DeclarationAttribute), typeof(AttributeDeclarationAstNode));
     public readonly NonTerminal ClrAttribute = new(nameof(ClrAttribute));
 
     public readonly FreeTextLiteral ClrAttributeContent =

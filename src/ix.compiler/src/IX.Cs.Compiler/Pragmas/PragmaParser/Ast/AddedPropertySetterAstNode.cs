@@ -30,6 +30,7 @@ internal class AddedPropertySetterAstNode : AstNode
 
     public override void AcceptVisitor(IAstVisitor visitor)
     {
+
         if (visitor is PragmaVisitor v)
             v.Product = MemberName != null
                 ? $"{MemberName}.{PropertyName} = {InitValue};"
