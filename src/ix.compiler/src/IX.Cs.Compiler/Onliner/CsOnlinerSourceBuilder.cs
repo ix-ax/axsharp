@@ -266,7 +266,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             "public string GetSymbolTail() { return this.SymbolTail; }" +
             $"public {typeof(ITwinObject).n()} GetParent() {{ return this.@Parent; }}" +
             "public string Symbol { get; protected set; }" +
-            "public System.String AttributeName { get; set; }" +
+            "private string _attributeName;" +
+            "public System.String AttributeName { get {return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName); } set { _attributeName = value; } }" +
             "public string HumanReadable { get; set; }" +
             "protected System.String @SymbolTail { get; set;}" +
             $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"

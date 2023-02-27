@@ -58,7 +58,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_declare_property()
     {
-        var expected = "private string _AttributeName;\npublic string AttributeName { get{ return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_AttributeName); } set; {_AttributeName = value;} }";
+        var expected = "private string _AttributeName;\npublic string AttributeName { get{ return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_AttributeName); } set {_AttributeName = value;} }";
         var field = new TypeMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {

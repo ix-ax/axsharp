@@ -37,7 +37,7 @@ internal class AddedPropertyDeclarationAstNode : AstNode
                             $"{{ " +
                             $"return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_{Identifier}); " +
                             $"}} " +
-                            $"set; " +
+                            $"set " +
                             $"{{_{Identifier} = value;" +
                             $"}} " +
                             $"}}";

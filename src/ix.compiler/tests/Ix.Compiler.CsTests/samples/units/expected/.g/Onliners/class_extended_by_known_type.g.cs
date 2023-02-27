@@ -181,7 +181,19 @@ namespace Simatic.Ax.StateFramework
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 
