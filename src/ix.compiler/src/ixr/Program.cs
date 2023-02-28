@@ -6,7 +6,6 @@ using AX.Text;
 using AX.Text.Diagnostics;
 using Ix.Compiler;
 using Ix.ixc_doc;
-using Ix.ixc_doc.Visitors;
 using System;
 using CommandLine;
 using System.Reflection;
@@ -14,6 +13,9 @@ using System.Text;
 using CliWrap;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using AX.ST.Semantic.Model;
+using Ix.ixr_doc;
+using Microsoft.CodeAnalysis;
 
 const string Logo =
 @"| \ / 
@@ -24,14 +26,14 @@ const string Logo =
 
 Console.WriteLine(Logo);
 LegalAcrobatics.LegalComplianceAcrobatics().Wait();
-Console.WriteLine("Ixr compiler");
+Console.WriteLine("Ixr compiler - compile plc localized strings to resx dictonaries");
 Parser.Default.ParseArguments<Options>(args)
             .WithParsed(o =>
             {
                 var recoverCurrentDirectory = Environment.CurrentDirectory;
                 try
                 {
-                    GenerateResx(o);
+                   Generate(o);
                    Console.WriteLine("Done.");
                 }
                 catch (Exception e)
@@ -46,25 +48,98 @@ Parser.Default.ParseArguments<Options>(args)
             });
 
 
-void GenerateResx(Options o)
+
+void Generate(Options o)
 {
+
     var axProject = new AxProject(o.AxSourceProjectFolder);
     Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
     var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
 
-    var toCompile = projectSources.Select(p => p.parseTree);
+    var syntaxTrees = projectSources.Select(p => p.parseTree);
 
-    var compilation = Compilation.Create(toCompile, Compilation.Settings.Default).Result;
+    //var syntaxTree = toCompile.First(); // all_primitives.st
 
-    var semanticTree = compilation.GetSemanticTree();
+    var lw = new LocalizedStringWrapper();
 
-    //visit
-    var myNodeVisitor = new MyNodeVisitor(axProject);
+    //iterate all syntax trees from project
+    foreach (var syntaxTree in syntaxTrees)
+    {
+        Console.WriteLine(syntaxTree.Filename);
+        IterateSyntaxTree(syntaxTree.GetRoot(),lw);
+    }
 
-    semanticTree.GetRoot().Accept(myNodeVisitor, Console.WriteLine);
 
-    //convert to res <#Test test#> 3 <#Test test#>
-    //CreateResx(list);
+    //print dictonary with localized strings and their ids
+    foreach (var item in lw.LocalizedStringsDictionary)
+    {
+        Console.WriteLine(item);
+    }
+    
+
+}
+
+void IterateSyntaxTree(ISyntaxNode root, LocalizedStringWrapper lw)
+{
+    
+    foreach (var literalSyntax in GetChildNodesRecursive(root).OfType<ILiteralSyntax>())
+    {
+        var token = literalSyntax.Tokens.First();
+        AddToDictionaryIfLocalizedString(token,lw);
+    }
+}
+
+void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper lw)
+{
+    // if is valid string token
+    if(IsStringToken(token))
+    {
+        // try to acquire localized string
+        var localizedString = lw.TryToGetLocalizedString(token.Text);
+        if(localizedString == null) 
+        {
+            return;
+        }
+        //get raw text from localized string
+        var rawText = lw.GetRawTextFromLocalizedString(localizedString);
+
+        //create id
+        var id = lw.CreateId(rawText);
+
+        //check if identifier is valid
+        if(lw.IsValidId(id))
+        { 
+            // add id and raw text to dictionary
+            lw.LocalizedStringsDictionary.Add(id, rawText);
+        }
+            
+    }
+}
+
+bool IsStringToken(ISyntaxToken token)
+{ 
+    if(token.SyntaxKind == SyntaxKind.TypedStringDToken ||
+        token.SyntaxKind == SyntaxKind.TypedStringSToken ||
+        token.SyntaxKind == SyntaxKind.UntypedStringDToken ||
+        token.SyntaxKind == SyntaxKind.UntypedStringSToken) 
+    { 
+        return true;
+    }
+
+    return false; 
+}
+
+IEnumerable<ISyntaxNode> GetChildNodesRecursive(ISyntaxNode syntaxNode)
+{
+    yield return syntaxNode;
+
+    foreach (ISyntaxNode node in syntaxNode.ChildNodes)
+    {
+        foreach (ISyntaxNode childNode in GetChildNodesRecursive(node))
+        {
+            yield return childNode;
+        }
+    }
 }
 
 public static class LegalAcrobatics

@@ -2,7 +2,7 @@
   "profiles": {
     "ixr": {
       "commandName": "Project",
-      "commandLineArgs": "ixr -x C:\\MTS\\ix\\ix\\src\\ix.compiler\\src\\ixd\\tests\\samples\\ax\\"
+      "commandLineArgs": "ixr -x C:\\MTS\\ix-ax\\ix\\src\\ix.compiler\\src\\ixr\\tests\\samples\\ax\\"
     }
   }
 }

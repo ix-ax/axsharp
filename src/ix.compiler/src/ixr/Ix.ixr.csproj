@@ -32,14 +32,12 @@
 
   <ItemGroup>
     <Compile Remove=".apax\**" />
-    <Compile Remove="tests\**" />
     <EmbeddedResource Remove=".apax\**" />
-    <EmbeddedResource Remove="tests\**" />
     <None Remove=".apax\**" />
-    <None Remove="tests\**" />
   </ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="YamlDotNet" Version="13.0.0" />
     <PackageReference Include="CliWrap" Version="3.5.0" />
@@ -72,6 +70,9 @@
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
 	  </None>
+      <None Include="..\..\..\apax\apax.yml" Link=".apax\apax.yml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Include="..\..\..\NUGET-README.md" Link="NUGET-README.md">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
@@ -80,5 +81,14 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\IX.Compiler\Ix.Compiler.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="tests\samples\MyTestClass.st">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="tests\samples\TestStruct.st">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>
