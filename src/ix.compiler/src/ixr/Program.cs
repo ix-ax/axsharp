@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using AX.ST.Semantic.Model;
 using Ix.ixr_doc;
 using Microsoft.CodeAnalysis;
+using Serilog.Parsing;
 
 const string Logo =
 @"| \ / 
@@ -66,34 +67,36 @@ void Generate(Options o)
     foreach (var syntaxTree in syntaxTrees)
     {
         Console.WriteLine(syntaxTree.Filename);
-        IterateSyntaxTree(syntaxTree.GetRoot(),lw);
+        IterateSyntaxTree(syntaxTree.GetRoot(),lw, syntaxTree.Filename);
+
+        //IterateSyntaxTree(syntaxTree.GetRoot(),lw);
     }
 
 
     //print dictonary with localized strings and their ids
     foreach (var item in lw.LocalizedStringsDictionary)
     {
-        Console.WriteLine(item);
+        Console.WriteLine($"{item.Key}: {item.Value.RawValue}, {item.Value.FileName},{item.Value.Line}");
     }
-    
 
 }
 
-void IterateSyntaxTree(ISyntaxNode root, LocalizedStringWrapper lw)
+void IterateSyntaxTree(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
 {
-    
     foreach (var literalSyntax in GetChildNodesRecursive(root).OfType<ILiteralSyntax>())
     {
         var token = literalSyntax.Tokens.First();
-        AddToDictionaryIfLocalizedString(token,lw);
+        //literalSyntax.Location
+        AddToDictionaryIfLocalizedString(token,lw,fileName);
     }
 }
 
-void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper lw)
+void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper lw, string fileName)
 {
     // if is valid string token
     if(IsStringToken(token))
     {
+        
         // try to acquire localized string
         var localizedString = lw.TryToGetLocalizedString(token.Text);
         if(localizedString == null) 
@@ -109,8 +112,10 @@ void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper
         //check if identifier is valid
         if(lw.IsValidId(id))
         { 
-            // add id and raw text to dictionary
-            lw.LocalizedStringsDictionary.Add(id, rawText);
+            var pos = token.Location.GetLineSpan().StartLinePosition;
+            var wrapper = new StringValueWrapper(rawText, fileName, pos.Line);
+            // add id and wrapper to dictionary
+            lw.LocalizedStringsDictionary.Add(id, wrapper);
         }
             
     }

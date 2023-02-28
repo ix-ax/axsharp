@@ -65,6 +65,10 @@ CLASS all_primitives
         mySTRING := "<#hello, i am localized string1#>";
         mySTRING := "<#hello, i am localized string2#>";
         myWSTRING := "<#hello, i am localized string3#>";
+        myWSTRING := "<#helloL i 3m localized string4#>";
+        myWSTRING := "<#hello, i am-localized string6#>";
+
+        myWSTRING := WSTRING#"<#hello, i am localized string7#>";
 
     END_METHOD
 

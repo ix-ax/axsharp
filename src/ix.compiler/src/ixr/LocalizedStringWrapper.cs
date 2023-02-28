@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Ix.ixr_doc
 {
     public class LocalizedStringWrapper
     {
-
-        public Dictionary<string, string> LocalizedStringsDictionary {get; private set; }
+        // composite object with location and raw value
+        public Dictionary<string, StringValueWrapper> LocalizedStringsDictionary {get; private set; }
         public LocalizedStringWrapper()
         {
-            LocalizedStringsDictionary = new Dictionary<string, string>();
+            LocalizedStringsDictionary = new Dictionary<string, StringValueWrapper>();
         }
 
         public string CreateId(string rawText)
@@ -35,8 +34,8 @@ namespace Ix.ixr_doc
                 }
                 else
                 {
-                    // TODO what to do here?
-                    //unknown
+                     //unknown
+                    sb.Append('_'); 
                 }
             }
             return sb.ToString();
@@ -69,5 +68,19 @@ namespace Ix.ixr_doc
            return text.Substring(2,text.Length-4);
     
         }
+    }
+
+    public class StringValueWrapper
+    {
+        public StringValueWrapper(string rawValue, string fileName, int line)
+        {
+            RawValue = rawValue;
+            FileName = fileName;
+            Line = line;
+        }
+
+        public string RawValue { get; set; }
+        public string FileName { get; set; }
+        public int Line {get; set;}
     }
 }
