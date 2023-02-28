@@ -118,7 +118,7 @@ Entry.Plc.weather.GeoLocation.Write();
 
 ## Getting started
 
-To get started, visit the documentation [here](docs/README.md#getting-started).
+To get started, visit the documentation [here](docfx/index.md#getting-started).
 
 
 ## Examples 
