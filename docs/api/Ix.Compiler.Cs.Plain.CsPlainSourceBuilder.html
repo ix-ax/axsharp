@@ -1,0 +1,1216 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CsPlainSourceBuilder
+ | System.Dynamic.ExpandoObject </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CsPlainSourceBuilder
+ | System.Dynamic.ExpandoObject ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="IX">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder">
+
+
+  <h1 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder" class="text-break">Class CsPlainSourceBuilder
+</h1>
+  <div class="markdown level0 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CsPlainSourceBuilder</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Ix.Compiler.Core.ICombinedThreeVisitor.html">ICombinedThreeVisitor</a></div>
+    <div><a class="xref" href="Ix.Compiler.Core.ISourceBuilder.html">ISourceBuilder</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Ix.Compiler.Cs.Plain.html">Ix.Compiler.Cs.Plain</a></h6>
+  <h6><strong>Assembly</strong>: Ix.Compiler.Cs.dll</h6>
+  <h5 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder__ctor_Ix_Compiler_IxProject_AX_ST_Semantic_Compilation_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.%23ctor(Ix.Compiler.IxProject%2CAX.ST.Semantic.Compilation)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L32">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder__ctor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder__ctor_Ix_Compiler_IxProject_AX_ST_Semantic_Compilation_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor(Ix.Compiler.IxProject,AX.ST.Semantic.Compilation)">CsPlainSourceBuilder(IxProject, Compilation)</h4>
+  <div class="markdown level1 summary"><p>Creates new instance of <a class="xref" href="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.html">CsPlainSourceBuilder</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CsPlainSourceBuilder(IxProject project, Compilation compilation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Ix.Compiler.IxProject.html">IxProject</a></td>
+        <td><span class="parametername">project</span></td>
+        <td><p>Ix project</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Compilation</span></td>
+        <td><span class="parametername">compilation</span></td>
+        <td><p>AX compilation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_Group.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.Group%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L345">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_Group_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.Group*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_Group" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.Group">Group</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Group { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_Output.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.Output%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L342">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_Output_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.Output*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_Output" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.Output">Output</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Output { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_OutputFileSuffix.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.OutputFileSuffix%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L348">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_OutputFileSuffix_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.OutputFileSuffix*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_OutputFileSuffix" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.OutputFileSuffix">OutputFileSuffix</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string OutputFileSuffix { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateArrayTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IArrayTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateArrayTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L313">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateArrayTypeDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateArrayTypeDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateArrayTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IArrayTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateArrayTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateArrayTypeDeclaration(IArrayTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration</span></td>
+        <td><span class="parametername">arrayTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateClassDeclaration_AX_ST_Semantic_Model_Declarations_IClassDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateClassDeclaration(AX.ST.Semantic.Model.Declarations.IClassDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L301">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateClassDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateClassDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateClassDeclaration_AX_ST_Semantic_Model_Declarations_IClassDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateClassDeclaration(AX.ST.Semantic.Model.Declarations.IClassDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateClassDeclaration(IClassDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateClassDeclaration(IClassDeclaration classDeclaration, IxNodeVisitor data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IClassDeclaration</span></td>
+        <td><span class="parametername">classDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateClassDeclaration_AX_ST_Syntax_Tree_IClassDeclarationSyntax_AX_ST_Semantic_Model_Declarations_IClassDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateClassDeclaration(AX.ST.Syntax.Tree.IClassDeclarationSyntax%2CAX.ST.Semantic.Model.Declarations.IClassDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L47">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateClassDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateClassDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateClassDeclaration_AX_ST_Syntax_Tree_IClassDeclarationSyntax_AX_ST_Semantic_Model_Declarations_IClassDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateClassDeclaration(AX.ST.Syntax.Tree.IClassDeclarationSyntax,AX.ST.Semantic.Model.Declarations.IClassDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateClassDeclaration(IClassDeclarationSyntax, IClassDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateClassDeclaration(IClassDeclarationSyntax classDeclarationSyntax, IClassDeclaration classDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IClassDeclarationSyntax</span></td>
+        <td><span class="parametername">classDeclarationSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IClassDeclaration</span></td>
+        <td><span class="parametername">classDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateConfigDeclaration_AX_ST_Semantic_Model_Declarations_IConfigurationDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration(AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L213">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateConfigDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateConfigDeclaration_AX_ST_Semantic_Model_Declarations_IConfigurationDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration(AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateConfigDeclaration(IConfigurationDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateConfigDeclaration(IConfigurationDeclaration configurationDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration</span></td>
+        <td><span class="parametername">configurationDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateConfigDeclaration_AX_ST_Syntax_Tree_IConfigDeclarationSyntax_AX_ST_Semantic_Model_Declarations_IConfigurationDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration(AX.ST.Syntax.Tree.IConfigDeclarationSyntax%2CAX.ST.Semantic.Model.Declarations.IConfigurationDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L163">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateConfigDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateConfigDeclaration_AX_ST_Syntax_Tree_IConfigDeclarationSyntax_AX_ST_Semantic_Model_Declarations_IConfigurationDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration(AX.ST.Syntax.Tree.IConfigDeclarationSyntax,AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateConfigDeclaration(IConfigDeclarationSyntax, IConfigurationDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateConfigDeclaration(IConfigDeclarationSyntax configDeclarationSyntax, IConfigurationDeclaration configurationDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IConfigDeclarationSyntax</span></td>
+        <td><span class="parametername">configDeclarationSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration</span></td>
+        <td><span class="parametername">configurationDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L336">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateEnumTypeDeclaration(IEnumTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateEnumTypeDeclaration(IEnumTypeDeclaration enumTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration</span></td>
+        <td><span class="parametername">enumTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_AX_ST_Syntax_Tree_IEnumTypeDeclarationSyntax_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration(AX.ST.Syntax.Tree.IEnumTypeDeclarationSyntax%2CAX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L179">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_AX_ST_Syntax_Tree_IEnumTypeDeclarationSyntax_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration(AX.ST.Syntax.Tree.IEnumTypeDeclarationSyntax,AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateEnumTypeDeclaration(IEnumTypeDeclarationSyntax, ITypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateEnumTypeDeclaration(IEnumTypeDeclarationSyntax enumTypeDeclarationSyntax, ITypeDeclaration typeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IEnumTypeDeclarationSyntax</span></td>
+        <td><span class="parametername">enumTypeDeclarationSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration</span></td>
+        <td><span class="parametername">typeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateFieldDeclaration_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateFieldDeclaration(AX.ST.Semantic.Model.Declarations.IFieldDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L81">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateFieldDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateFieldDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateFieldDeclaration_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateFieldDeclaration(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateFieldDeclaration(IFieldDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateFieldDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IFieldDeclaration</span></td>
+        <td><span class="parametername">fieldDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateFile_AX_ST_Syntax_Tree_IFileSyntax_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateFile(AX.ST.Syntax.Tree.IFileSyntax%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L154">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateFile_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateFile*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateFile_AX_ST_Syntax_Tree_IFileSyntax_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateFile(AX.ST.Syntax.Tree.IFileSyntax,IX.Compiler.Core.IxNodeVisitor)">CreateFile(IFileSyntax, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateFile(IFileSyntax fileSyntax, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IFileSyntax</span></td>
+        <td><span class="parametername">fileSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateImplementsList_AX_ST_Syntax_Tree_IImplementsListSyntax_Ix_Compiler_Core_ICombinedThreeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateImplementsList(AX.ST.Syntax.Tree.IImplementsListSyntax%2CIx.Compiler.Core.ICombinedThreeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L198">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateImplementsList_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateImplementsList*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateImplementsList_AX_ST_Syntax_Tree_IImplementsListSyntax_Ix_Compiler_Core_ICombinedThreeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateImplementsList(AX.ST.Syntax.Tree.IImplementsListSyntax,Ix.Compiler.Core.ICombinedThreeVisitor)">CreateImplementsList(IImplementsListSyntax, ICombinedThreeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateImplementsList(IImplementsListSyntax implementsListSyntax, ICombinedThreeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IImplementsListSyntax</span></td>
+        <td><span class="parametername">implementsListSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Ix.Compiler.Core.ICombinedThreeVisitor.html">ICombinedThreeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateInterfaceDeclaration_AX_ST_Semantic_Model_Declarations_IInterfaceDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateInterfaceDeclaration(AX.ST.Semantic.Model.Declarations.IInterfaceDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L307">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateInterfaceDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateInterfaceDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateInterfaceDeclaration_AX_ST_Semantic_Model_Declarations_IInterfaceDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateInterfaceDeclaration(AX.ST.Semantic.Model.Declarations.IInterfaceDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateInterfaceDeclaration(IInterfaceDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateInterfaceDeclaration(IInterfaceDeclaration interfaceDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IInterfaceDeclaration</span></td>
+        <td><span class="parametername">interfaceDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateInterfaceDeclaration_AX_ST_Syntax_Tree_IInterfaceDeclarationSyntax_AX_ST_Semantic_Model_Declarations_IInterfaceDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateInterfaceDeclaration(AX.ST.Syntax.Tree.IInterfaceDeclarationSyntax%2CAX.ST.Semantic.Model.Declarations.IInterfaceDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L205">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateInterfaceDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateInterfaceDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateInterfaceDeclaration_AX_ST_Syntax_Tree_IInterfaceDeclarationSyntax_AX_ST_Semantic_Model_Declarations_IInterfaceDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateInterfaceDeclaration(AX.ST.Syntax.Tree.IInterfaceDeclarationSyntax,AX.ST.Semantic.Model.Declarations.IInterfaceDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateInterfaceDeclaration(IInterfaceDeclarationSyntax, IInterfaceDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateInterfaceDeclaration(IInterfaceDeclarationSyntax interfaceDeclarationSyntax, IInterfaceDeclaration interfaceDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IInterfaceDeclarationSyntax</span></td>
+        <td><span class="parametername">interfaceDeclarationSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IInterfaceDeclaration</span></td>
+        <td><span class="parametername">interfaceDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateNamedValueTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_INamedValueTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateNamedValueTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.INamedValueTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L147">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateNamedValueTypeDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateNamedValueTypeDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateNamedValueTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_INamedValueTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateNamedValueTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.INamedValueTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateNamedValueTypeDeclaration(INamedValueTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void CreateNamedValueTypeDeclaration(INamedValueTypeDeclaration namedValueTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.INamedValueTypeDeclaration</span></td>
+        <td><span class="parametername">namedValueTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateNamespaceDeclaration_AX_ST_Syntax_Tree_INamespaceDeclarationSyntax_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateNamespaceDeclaration(AX.ST.Syntax.Tree.INamespaceDeclarationSyntax%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L72">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateNamespaceDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateNamespaceDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateNamespaceDeclaration_AX_ST_Syntax_Tree_INamespaceDeclarationSyntax_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateNamespaceDeclaration(AX.ST.Syntax.Tree.INamespaceDeclarationSyntax,IX.Compiler.Core.IxNodeVisitor)">CreateNamespaceDeclaration(INamespaceDeclarationSyntax, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateNamespaceDeclaration(INamespaceDeclarationSyntax namespaceDeclarationSyntax, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.INamespaceDeclarationSyntax</span></td>
+        <td><span class="parametername">namespaceDeclarationSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreatePragma_AX_ST_Semantic_Pragmas_IPragma_Ix_Compiler_Core_ICombinedThreeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreatePragma(AX.ST.Semantic.Pragmas.IPragma%2CIx.Compiler.Core.ICombinedThreeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L173">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreatePragma_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreatePragma*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreatePragma_AX_ST_Semantic_Pragmas_IPragma_Ix_Compiler_Core_ICombinedThreeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreatePragma(AX.ST.Semantic.Pragmas.IPragma,Ix.Compiler.Core.ICombinedThreeVisitor)">CreatePragma(IPragma, ICombinedThreeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreatePragma(IPragma pragma, ICombinedThreeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Pragmas.IPragma</span></td>
+        <td><span class="parametername">pragma</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Ix.Compiler.Core.ICombinedThreeVisitor.html">ICombinedThreeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateReferenceToDeclaration_AX_ST_Semantic_Model_Declarations_Types_IReferenceTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateReferenceToDeclaration(AX.ST.Semantic.Model.Declarations.Types.IReferenceTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L283">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateReferenceToDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateReferenceToDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateReferenceToDeclaration_AX_ST_Semantic_Model_Declarations_Types_IReferenceTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateReferenceToDeclaration(AX.ST.Semantic.Model.Declarations.Types.IReferenceTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateReferenceToDeclaration(IReferenceTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateReferenceToDeclaration(IReferenceTypeDeclaration referenceTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IReferenceTypeDeclaration</span></td>
+        <td><span class="parametername">referenceTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateScalarTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IScalarTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateScalarTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IScalarTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L295">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateScalarTypeDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateScalarTypeDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateScalarTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IScalarTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateScalarTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IScalarTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateScalarTypeDeclaration(IScalarTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateScalarTypeDeclaration(IScalarTypeDeclaration scalarTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IScalarTypeDeclaration</span></td>
+        <td><span class="parametername">scalarTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateSemanticTypeAccess_AX_ST_Semantic_Model_ISemanticTypeAccess_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateSemanticTypeAccess(AX.ST.Semantic.Model.ISemanticTypeAccess%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L289">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateSemanticTypeAccess_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateSemanticTypeAccess*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateSemanticTypeAccess_AX_ST_Semantic_Model_ISemanticTypeAccess_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateSemanticTypeAccess(AX.ST.Semantic.Model.ISemanticTypeAccess,IX.Compiler.Core.IxNodeVisitor)">CreateSemanticTypeAccess(ISemanticTypeAccess, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateSemanticTypeAccess(ISemanticTypeAccess semanticTypeAccess, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticTypeAccess</span></td>
+        <td><span class="parametername">semanticTypeAccess</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStringTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IStringTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStringTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IStringTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L322">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStringTypeDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStringTypeDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStringTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IStringTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStringTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IStringTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateStringTypeDeclaration(IStringTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateStringTypeDeclaration(IStringTypeDeclaration stringTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IStringTypeDeclaration</span></td>
+        <td><span class="parametername">stringTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStructuredType_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStructuredType(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L329">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStructuredType_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStructuredType*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStructuredType_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStructuredType(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateStructuredType(IStructuredTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateStructuredType(IStructuredTypeDeclaration structuredTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration</span></td>
+        <td><span class="parametername">structuredTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStructuredType_AX_ST_Syntax_Tree_IStructTypeDeclarationSyntax_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStructuredType(AX.ST.Syntax.Tree.IStructTypeDeclarationSyntax%2CAX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L271">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStructuredType_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStructuredType*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateStructuredType_AX_ST_Syntax_Tree_IStructTypeDeclarationSyntax_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateStructuredType(AX.ST.Syntax.Tree.IStructTypeDeclarationSyntax,AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateStructuredType(IStructTypeDeclarationSyntax, IStructuredTypeDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateStructuredType(IStructTypeDeclarationSyntax structTypeDeclarationSyntax, IStructuredTypeDeclaration structuredTypeDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IStructTypeDeclarationSyntax</span></td>
+        <td><span class="parametername">structTypeDeclarationSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration</span></td>
+        <td><span class="parametername">structuredTypeDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateUsingDirective_AX_ST_Syntax_Tree_IUsingDirectiveSyntax_Ix_Compiler_Core_ICombinedThreeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateUsingDirective(AX.ST.Syntax.Tree.IUsingDirectiveSyntax%2CIx.Compiler.Core.ICombinedThreeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L187">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateUsingDirective_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateUsingDirective*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateUsingDirective_AX_ST_Syntax_Tree_IUsingDirectiveSyntax_Ix_Compiler_Core_ICombinedThreeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateUsingDirective(AX.ST.Syntax.Tree.IUsingDirectiveSyntax,Ix.Compiler.Core.ICombinedThreeVisitor)">CreateUsingDirective(IUsingDirectiveSyntax, ICombinedThreeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateUsingDirective(IUsingDirectiveSyntax usingDirectiveSyntax, ICombinedThreeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Syntax.Tree.IUsingDirectiveSyntax</span></td>
+        <td><span class="parametername">usingDirectiveSyntax</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Ix.Compiler.Core.ICombinedThreeVisitor.html">ICombinedThreeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateVariableDeclaration_AX_ST_Semantic_Model_Declarations_IVariableDeclaration_IX_Compiler_Core_IxNodeVisitor_.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateVariableDeclaration(AX.ST.Semantic.Model.Declarations.IVariableDeclaration%2CIX.Compiler.Core.IxNodeVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L221">View Source</a>
+  </span>
+  <a id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateVariableDeclaration_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateVariableDeclaration*"></a>
+  <h4 id="Ix_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateVariableDeclaration_AX_ST_Semantic_Model_Declarations_IVariableDeclaration_IX_Compiler_Core_IxNodeVisitor_" data-uid="Ix.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateVariableDeclaration(AX.ST.Semantic.Model.Declarations.IVariableDeclaration,IX.Compiler.Core.IxNodeVisitor)">CreateVariableDeclaration(IVariableDeclaration, IxNodeVisitor)</h4>
+  <div class="markdown level1 summary"><p>Provides builder for Plain twin objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateVariableDeclaration(IVariableDeclaration fieldDeclaration, IxNodeVisitor visitor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IVariableDeclaration</span></td>
+        <td><span class="parametername">fieldDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="IX.Compiler.Core.IxNodeVisitor.html">IxNodeVisitor</a></td>
+        <td><span class="parametername">visitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Ix.Compiler.Core.ICombinedThreeVisitor.html">ICombinedThreeVisitor</a>
+  </div>
+  <div>
+      <a class="xref" href="Ix.Compiler.Core.ISourceBuilder.html">ISourceBuilder</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/new/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/apiSpec/new?filename=Ix_Compiler_Cs_Plain_CsPlainSourceBuilder.md&amp;value=---%0Auid%3A%20Ix.Compiler.Cs.Plain.CsPlainSourceBuilder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/src/ix.compiler/src/IX.Cs.Compiler/Plain/CsPlainSourceBuilder.cs/#L25" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+       Generated by DocFx. © Peter Kurhajec, MTS spol. s r.o., and awesome contributors
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

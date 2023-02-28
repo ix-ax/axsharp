@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Added members | System.Dynamic.ExpandoObject </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Added members | System.Dynamic.ExpandoObject ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="IX">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="added-members">Added members</h1>
+
+<p>The IX Compiler allows the declaration of additional members for any TwinObject. These members will be added to the TwinObject but not accessible from the PLC. Added members are useful when we want to provide additional usually static information about the object (description, humanized annotation, etc), but we do not want to put additional load on the communication between the application and the PLC.
+Added members are also a useful feature to provide additional context about the type or its particular instance.</p>
+<h2 id="added-member-declaration">Added member declaration</h2>
+<p>Syntax</p>
+<pre><code class="lang-iecst">{#ix-prop:access_modifier type member_name}
+</code></pre>
+<p>Example</p>
+<pre><code class="lang-iecst">{#ix-prop:public string Description}
+CLASS PUBLIC MyClass
+    VAR PUBLIC
+        Nested : MyNestedStructure;
+    END_VAR
+END_CLASS
+</code></pre>
+<p>This will translate into C# as</p>
+<pre><code class="lang-C#">public MyClass 
+{
+    public string Description { get; set; }
+    .
+    .
+    .
+}
+</code></pre>
+<h2 id="added-member-value-setter">Added member value setter</h2>
+<p>The value of any added property will be set in the type constructor.</p>
+<h2 id="setting-value-on-type-declaration-default-value">Setting value on type declaration (default value).</h2>
+<p>Syntax declaring at the type level</p>
+<pre><code class="lang-iecst">{#ix-set:member_name = value}
+CLASS_DECLARATION | STRUCTURED_TYPE_DECLARATION
+</code></pre>
+<p>Example</p>
+<pre><code class="lang-iecst">{#ix-prop:public string Description}
+{#ix-set:Description = &quot;This is my classy description.&quot;}
+CLASS PUBLIC MyClass
+    VAR PUBLIC
+        Nested : MyNestedStructure;
+    END_VAR
+END_CLASS
+</code></pre>
+<p>This will translate in the type constructor as</p>
+<pre><code class="lang-C#">    public MyClass(....)
+    {
+        Description = &quot;This is my classy decsription.&quot;;
+        .
+        .
+        .
+    }
+</code></pre>
+<h2 id="setting-value-on-member-declaration">Setting value on member declaration</h2>
+<p>Syntax</p>
+<pre><code class="lang-iecst">{#ix-set:member_name = value}
+FIELD_DECLARATION | VARIABLE_DECLARATION
+</code></pre>
+<pre><code class="lang-iecst">CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-set:Description = &quot;This is my nested classy description.&quot;}
+        Nested : MyNestedStructure;
+    END_VAR
+END_CLASS
+
+{#ix-prop:public string Description}
+CLASS PUBLIC MyNestedStructure 
+END_CLASS
+
+</code></pre>
+<blockquote>
+<p>When declaring the value of an added member with pragma belonging to a member declaration the compiler will take care of assigning the value to the correct instance member.</p>
+</blockquote>
+<h2 id="default-properties-of-twins">Default properties of Twins</h2>
+<h2 id="common-added-members">Common added members</h2>
+<p><strong>The following members are present by default in any type created by IX compiler.</strong></p>
+<h2 id="attributename">AttributeName</h2>
+<p>AttributeName is the default added member of all types within IX. They are used to represent the name of the variable or object in a humanized way. These attributes can be later used to label the variables consistently in the UI.</p>
+<pre><code>{#ix-set: AttributeName = &quot;Length&quot;}
+_length : REAL;
+</code></pre>
+<h2 id="primitive-added-members">Primitive added members</h2>
+<p><strong>The following members are present by default in any primitive type create by IX compiler.</strong></p>
+<h2 id="attributeunits">AttributeUnits</h2>
+<p>AttributeUnit is the default added member of all PrimitiveTwins within IX. They are used to represent the unit measure of a variable.</p>
+<pre><code>{#ix-set: AttributeUnits = &quot;mm&quot;}
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes unit of the '_lenght' variable to the console.
+System.Console.WriteLine(MainPlc.MAIN._length.AttributeUnits);
+</code></pre>
+<h2 id="attributeminimum">AttributeMinimum</h2>
+<p>AttributeMinimum is the default added member of all PrimitiveTwins within IX. They are used to get or set the minimum value for the variable. By default, this attribute contains the minimal value of a given type.</p>
+<pre><code>{#ix-set: AttributeMininum = 10.5f}
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes min value of '_length' variable to the console.
+System.Console.WriteLine(MainPlc.MAIN._length.AttributeMinimum);
+</code></pre>
+<h2 id="attributemaximum">AttributeMaximum</h2>
+<p>AttributeMaximum is the default added member of all PrimitiveTwins within IX. They are used to get or set the maximum value for the variable. By default, this attribute contains the maximum value of a given type.</p>
+<pre><code>{#ix-set: AttributeMaximum = 1525.5f}
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes max. value of '_length' variable to the console.
+System.Console.WriteLine(MainPlc.MAIN._length.AttributeMaximum);
+</code></pre>
+<h2 id="attributeminimum-and-attributemaximum-at-run-time">AttributeMinimum and AttributeMaximum at run time</h2>
+<p>NOT IMPLEMENTED FULLY!!!</p>
+<p>When the application tries to write to the variable it first validates that the value to be written corresponds to the limit given by AttributeMinimum and AttributeMaximum. If the value to be written does not fall within the range this value is not written to the PLC and the writing operation is silently ignored.</p>
+<h2 id="attributetooltip">AttributeToolTip</h2>
+<p>AttributeToolTip allows you to describe the variable or an object. These can be then used to give short hints to the user in the application. This attribute can be localized.</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/docfx/articles/compiler/ADDED_MEMBERS.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+       Generated by DocFx. © Peter Kurhajec, MTS spol. s r.o., and awesome contributors
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

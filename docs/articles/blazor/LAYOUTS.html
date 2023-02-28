@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Layouts | System.Dynamic.ExpandoObject </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Layouts | System.Dynamic.ExpandoObject ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="IX">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="layouts">Layouts</h1>
+
+<p>Layouts serves for adjustment of rendered UI.</p>
+<p>Following layouts are supported within the framework:</p>
+<ul>
+<li>Stack</li>
+<li>UniformGrid</li>
+<li>Wrap</li>
+<li>Tabs</li>
+</ul>
+<p>The framework also contains a special layouts for grouping purposes.</p>
+<p>Following group layouts are supported:</p>
+<ul>
+<li>Border</li>
+<li>GroupBox</li>
+</ul>
+<p>Layout can be specified in PLC code with the following attribute:</p>
+<pre><code>{#ix-attr:[Container(Layout.Name)]}
+</code></pre>
+<p>Where <em>Name</em> is replaced with the name of one of the supported layouts.</p>
+<p>Group layouts can be used only together with layouts and are specified with following attribute:</p>
+<pre><code>{#ix-attr:[Container(GroupLayout.Name)]}
+</code></pre>
+<hr>
+<h2 id="stack">Stack</h2>
+<p>Stack is the default layout, where UI elements are placed into the stack container - they are rendered one element at a row. Stack is the default layout when a layout isn't specified.</p>
+<hr>
+<h2 id="uniformgrid">UniformGrid</h2>
+<p>UniformGrid will place elements in a row, where each element has uniform width.
+Let's have the following PLC code with a container attribute:</p>
+<pre><code>{#ix-attr:[Container(Layout.UniformGrid)]}
+CLASS stExample :
+	VAR PUBLIC 
+		testInteger : INT;
+		testEnum : stTestEnum;
+		testString : STRING := 'Hello World';
+		testBool : BOOL;
+	END_VAR  
+END_CLASS
+</code></pre>
+<p>Renderer will create following UI:</p>
+<p><img src="../../images/blazor/uniform.png" alt="alt text"></p>
+<hr>
+<h2 id="wrap">Wrap</h2>
+<p>Wrap layout creates a wrapper around the elements. Elements are placed in a row. Width of all elements isn't the same and when window is resized, elements will be placed below each other. So wrap layout is responsive layout.</p>
+<p>This is the example behavior of wrap panel:</p>
+<p><img src="../../images/blazor/wrap-panel.gif" alt="alt text" title="Wrap panel behavior"></p>
+<hr>
+<h2 id="tabs">Tabs</h2>
+<p>Tabs layout creates tabbed interface. In example below, UI is generated in Tabs layout.</p>
+<pre><code>{#ix-attr:[Container(Layout.Tabs)]}
+CLASS fbWorldWeatherWatch
+	VAR PUBLIC   
+		{#ix-set:AttributeName = &quot;North pole station&quot;}
+		NorthPole : structWeatherStation := (StationICAO := 'CYRB');
+
+		{#ix-set:AttributeName = &quot;South pole station&quot;}
+		SouthPole : structWeatherStation := (StationICAO := 'NZSP');
+
+		{#ix-set:AttributeName = &quot;Verl, Germany&quot;}
+		Verl : structWeatherStation := (StationICAO := 'EDLP');
+
+		{#ix-set:AttributeName = &quot;Kriva, Slovakia&quot;}
+		Kriva : structWeatherStation := (StationICAO := 'LZIB');	
+	END_VAR 
+END_CLASS
+ 
+</code></pre>
+<p><img src="../../images/blazor/tabs.gif" alt="alt text" title="Tabs layout"></p>
+<hr>
+<h2 id="group-layout-border">Group layout Border</h2>
+<p>Border layout will create box around auto-generated elements in specified layout.</p>
+<pre><code>{#ix-attr:[Container(Layout.Stack)]}
+{#ix-attr:[Group(GroupLayout.Border)]}   
+CLASS border
+    VAR PUBLIC
+        {#ix-set:AttributeName = &quot;&lt;#Integer From PLC#&gt;&quot;}	
+        testInteger : INT;
+        {#ix-set:AttributeName = &quot;&lt;#STRING From PLC#&gt;&quot;}	
+        testString : STRING;
+        {#ix-set:AttributeName = &quot;&lt;#BOOL From PLC#&gt;&quot;}	
+        testBool : BOOL;
+        {#ix-set:AttributeName = &quot;&lt;#DATE From PLC#&gt;&quot;}
+        TestDate : DATE;	
+    END_VAR
+END_CLASS
+</code></pre>
+<p><img src="../../images/blazor/border.png" alt="alt text" title="Border layout"></p>
+<hr>
+<h2 id="group-layout-groupbox">Group layout GroupBox</h2>
+<p>GroupBox layout will create box with name around auto-generated elements.</p>
+<pre><code>{#ix-attr:[Container(Layout.Stack)]}
+{#ix-attr:[Group(GroupLayout.GroupBox)]}   
+CLASS border
+    VAR PUBLIC
+        {#ix-set:AttributeName = &quot;&lt;#Integer From PLC#&gt;&quot;}	
+        testInteger : INT;
+        {#ix-set:AttributeName = &quot;&lt;#STRING From PLC#&gt;&quot;}	
+        testString : STRING;
+        {#ix-set:AttributeName = &quot;&lt;#BOOL From PLC#&gt;&quot;}	
+        testBool : BOOL;
+        {#ix-set:AttributeName = &quot;&lt;#DATE From PLC#&gt;&quot;}
+        TestDate : DATE;	
+    END_VAR
+END_CLASS
+</code></pre>
+<p><img src="../../images/blazor/groupbox.png" alt="alt text" title="GroupBox layout"></p>
+<hr>
+<h2 id="nested-and-multiple-layouts">Nested and multiple layouts</h2>
+<p>Layouts can be nested to create more complex UI.</p>
+<p>Consider following the plc code:</p>
+<pre><code>{#ix-attr:[Container(Layout.Tabs)]}
+CLASS stMultipleLayouts
+	VAR PUBLIC 
+		{#ix-attr:[Container(Layout.Stack)]}
+		{#ix-set:AttributeName = &quot;A1&quot;}
+		Piston_A1 : STRING;
+		{#ix-set:AttributeName = &quot;A2&quot;}
+		Piston_A2 : STRING;
+		{#ix-set:AttributeName = &quot;A3&quot;}
+		Piston_A3 : STRING;
+		{#ix-set:AttributeName = &quot;A4&quot;}
+		Piston_A4 : STRING;
+		
+		{#ix-attr:[Container(Layout.Wrap)]}
+		{#ix-set:AttributeName = &quot;A5&quot;}
+		Piston_A21 : INT;
+		{#ix-set:AttributeName = &quot;A6&quot;}
+		Piston_A22 : INT;
+		{#ix-set:AttributeName = &quot;A7&quot;}
+		Piston_A23 : INT;
+		{#ix-set:AttributeName = &quot;A8&quot;}
+		Piston_A24 : INT;
+	END_VAR 
+END_CLASS
+
+</code></pre>
+<p>Renderer will generate following UI:</p>
+<p><img src="../../images/blazor/multiple_layouts.gif" alt="alt text" title="Mulitple layouts"></p>
+<hr>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/blob/102-_DOCUMENTATION_Add_API_doc_generated_by_docfx/docfx/articles/blazor/LAYOUTS.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+       Generated by DocFx. © Peter Kurhajec, MTS spol. s r.o., and awesome contributors
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
