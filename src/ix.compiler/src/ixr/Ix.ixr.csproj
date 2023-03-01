@@ -91,4 +91,8 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="tests\samples\Resources\" />
+	</ItemGroup>
 </Project>

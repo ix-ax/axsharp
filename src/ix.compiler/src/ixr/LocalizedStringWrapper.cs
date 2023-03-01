@@ -56,6 +56,7 @@ namespace Ix.ixr_doc
         {
             return Microsoft.CodeAnalysis.CSharp.SyntaxFacts.IsValidIdentifier(id);
         }
+
         public IEnumerable<string> TryToGetLocalizedStrings(string text)
         { 
             //match only text within <# #>

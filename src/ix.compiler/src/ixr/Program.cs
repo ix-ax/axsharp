@@ -54,7 +54,6 @@ Parser.Default.ParseArguments<Options>(args)
 
 void Generate(Options o)
 {
-
     var axProject = new AxProject(o.AxSourceProjectFolder);
     Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
     var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
@@ -68,22 +67,21 @@ void Generate(Options o)
     //iterate all syntax trees from project
     foreach (var syntaxTree in syntaxTrees)
     {
-        Console.WriteLine(syntaxTree.Filename);
+        //Console.WriteLine(syntaxTree.Filename);
 
         IterateSyntaxTreeForStringLiterals(syntaxTree.GetRoot(),lw, syntaxTree.Filename);
 
         IterateSyntaxTreeForPragmas(syntaxTree.GetRoot(),lw,syntaxTree.Filename);
     }
 
-
     //print dictonary with localized strings and their ids
-    foreach (var item in lw.LocalizedStringsDictionary)
-    {
-        Console.WriteLine($"{item.Key}: {item.Value.RawValue}, {item.Value.FileName},{item.Value.Line}");
-    }
+    //foreach (var item in lw.LocalizedStringsDictionary)
+    //{
+    //    Console.WriteLine($"{item.Key}: {item.Value.RawValue}, {item.Value.FileName},{item.Value.Line}");
+    //}
 
     //add resources from dictionary to resx file
-    ResxManager.AddResourcesFromDictionary(@"../../../Resources/TestResources.resx", lw.LocalizedStringsDictionary);
+    ResxManager.AddResourcesFromDictionary(o.OutputProjectFolder, lw.LocalizedStringsDictionary);
 }
 
 void IterateSyntaxTreeForStringLiterals(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
@@ -107,9 +105,6 @@ void IterateSyntaxTreeForPragmas(ISyntaxNode root, LocalizedStringWrapper lw, st
         }
     }
 }
-
-
-
 
 void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper lw, string fileName)
 {
@@ -140,7 +135,6 @@ void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper
                 // add id and wrapper to dictionary
                 lw.LocalizedStringsDictionary.TryAdd(id, wrapper);
             }
-
         }   
     }
 }
@@ -152,6 +146,7 @@ bool IsPragmaToken(ISyntaxToken token)
     }
     return false; 
 }
+
 bool IsStringToken(ISyntaxToken token)
 { 
     if(token.SyntaxKind == SyntaxKind.TypedStringDToken ||
@@ -161,7 +156,6 @@ bool IsStringToken(ISyntaxToken token)
     { 
         return true;
     }
-
     return false; 
 }
 
