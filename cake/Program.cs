@@ -25,6 +25,8 @@ using Cake.Common.Tools.DotNet.Clean;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
+using Cake.DocFx;
+using Cake.DocFx.Build;
 using Cake.Frosting;
 using Cake.Powershell;
 using CliWrap;
@@ -324,27 +326,33 @@ public sealed class GenerateApiDocumentationTask : FrostingTask<BuildContext>
             return;
         }
 
-        if (Helpers.CanReleaseInternal())
-            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
-            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
-
-            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
-            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
-
-            GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
-            GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");
-            GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor.Controls\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.Controls.dll", @"Ix.Presentation.Blazor.Controls");
-    }
-
-    private static void GenerateApiDocumentation(BuildContext context, string assemblyFile, string outputDocDirectory)
-    {
-        context.Log.Information($"Generating documentation for {assemblyFile}");
-        var docXmlFile = Path.Combine(context.RootDir, assemblyFile);
-        var docDirectory = Path.Combine(context.ApiDocumentationDir, outputDocDirectory);
         context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
         {
-            Arguments = $"xmldocmd {docXmlFile} {docDirectory}"
+            WorkingDirectory = context.DocumentationSource,
+            Arguments = $"docfx -t default,templates/material"
         }).WaitForExit();
+
+            //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
+            //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
+
+            //GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
+            //GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
+
+            //GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
+            //GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");
+            //GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor.Controls\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.Controls.dll", @"Ix.Presentation.Blazor.Controls");
+    }
+
+    [Obsolete("Using docfx now...", true)]
+    private static void GenerateApiDocumentation(BuildContext context, string assemblyFile, string outputDocDirectory)
+    {
+        //context.Log.Information($"Generating documentation for {assemblyFile}");
+        //var docXmlFile = Path.Combine(context.RootDir, assemblyFile);
+        //var docDirectory = Path.Combine(context.ApiDocumentationDir, outputDocDirectory);
+        //context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
+        //{
+        //    Arguments = $"xmldocmd {docXmlFile} {docDirectory}"
+        //}).WaitForExit();
     }
 }
 
