@@ -10,7 +10,6 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using YamlDotNet.Serialization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace Ix.ixc_doc.Schemas

@@ -69,7 +69,7 @@ namespace Ix.ixr.Tests
         {
             //arrange
             var localizedString = "<#!,.: ;-? #>";
-            var expected = "_EXCLAMATION__COMMA__DOT__COLON___SEMICOLON__DASH__QMARK__";
+            var expected = "_EXCLAMATIONMARK__COMMA__DOT__COLON___SEMICOLON__DASH__QUESTIONMARK__";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
@@ -82,7 +82,7 @@ namespace Ix.ixr.Tests
         {
             //arrange
             var localizedString = "<#'\\\"|@&#[]<>{}()$#>";
-            var expected = "________________";
+            var expected = "_APOSTROPHE__BACKSLASH__QUOTATIONMARKS__PIPE__ATSIGN__AMPERSAND__HASHTAG__SQUAREBRACKET__ENDSQUAREBRACKET__LESSTHAN__GREATERTHAN__CURLYBRACKET__ENDCURLYBRACKET__BRACKET__ENDBRACKET__DOLLAR_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
@@ -108,7 +108,7 @@ namespace Ix.ixr.Tests
         {
             //arrange
             var localizedString = "<#.loc;ali!zed- #>";
-            var expected = "_DOT_loc_SEMICOLON_ali_EXCLAMATION_zed_DASH__";
+            var expected = "_DOT_loc_SEMICOLON_ali_EXCLAMATIONMARK_zed_DASH__";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
@@ -121,7 +121,7 @@ namespace Ix.ixr.Tests
         {
             //arrange
             var localizedString = "<#\\loc#ali'zed\"#>";
-            var expected = "_loc_ali_zed_";
+            var expected = "_BACKSLASH_loc_HASHTAG_ali_APOSTROPHE_zed_QUOTATIONMARKS_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
@@ -134,7 +134,7 @@ namespace Ix.ixr.Tests
         {
             //arrange
             var localizedString = "<# ?\"loc3ali-zed 6str.in#g!#>";
-            var expected = "__QMARK__loc_THREE_ali_DASH_zed__SIX_str_DOT_in_g_EXCLAMATION_";
+            var expected = "__QUESTIONMARK__QUOTATIONMARKS_loc_THREE_ali_DASH_zed__SIX_str_DOT_in_HASHTAG_g_EXCLAMATIONMARK_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
