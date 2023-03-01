@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-    <RootNamespace>Ix.ixr_doc</RootNamespace>
+    <RootNamespace>Ix.ixr</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackAsTool>True</PackAsTool>
@@ -17,7 +17,7 @@
 	  <Copyright>(c) Peter Kurhajec and Contributors</Copyright>
 	  <PackageTags>simatix-ax, PLC, industrial automation, SCADA, HMI</PackageTags>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  <Title>IX documentation compiler CLI</Title>
+	  <Title>IX resx compiler CLI</Title>
 	  <PackageIcon>icon_128_128.png</PackageIcon>
 	  <RepositoryType>git</RepositoryType>
 	  <IncludeSymbols>True</IncludeSymbols>
