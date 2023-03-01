@@ -6,10 +6,12 @@ namespace Ix.ixr.Tests
     public class CreateIdentifierTests
     {
         private readonly LocalizedStringWrapper _lw;
+
         public CreateIdentifierTests()
         {
-            _lw= new LocalizedStringWrapper();
+            _lw = new LocalizedStringWrapper();
         }
+
         [Fact]
         public void create_base_id()
         {
@@ -20,69 +22,124 @@ namespace Ix.ixr.Tests
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
             //assert
-
             Assert.Equal(expected, result);
-
-        }
-
-         [Fact]
-        public void create_id_with_numbers()
-        {
-            //arrange
-            var localizedString = "<#loca3lized1#>";
-            var expected = "loca_THREE_lized_ONE_";
-            //act
-            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
-            //assert
-
-            Assert.Equal(expected, result);
-
-        }
-
-          [Fact]
-        public void create_id_with_whitespaces()
-        {
-            //arrange
-            var localizedString = "<#hello I am 1 localized string#>";
-            var expected = "hello_I_am__ONE__localized_string";
-            //act
-            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
-            //assert
-
-            Assert.Equal(expected, result);
-
         }
 
         [Fact]
-        public void create_id_with_other_characters()
+        public void create_empty_id()
         {
             //arrange
-            var localizedString = "<#hello ! am I?#>";
-            var expected = "hello__EXCLAMATION__am_I_QMARK_";
+            var localizedString = "<##>";
+            var expected = "";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
             //assert
-
             Assert.Equal(expected, result);
-
         }
 
-         [Fact]
-        public void create_id_with_colon_semicolon_dash_dot()
+        [Fact]
+        public void create_id_with_numbers()
         {
             //arrange
-            var localizedString = "<#hello: this ; so- end.#>";
-            var expected = "hello_COLON__this__SEMICOLON__so_DASH__end_DOT_";
+            var localizedString = "<#03951#>";
+            var expected = "_ZERO__THREE__NINE__FIVE__ONE_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
             var result = _lw.CreateId(rawText);
             //assert
-
             Assert.Equal(expected, result);
+        }
 
+        [Fact]
+        public void create_id_with_whitespaces()
+        {
+            //arrange
+            var localizedString = "<#hello I am localized string #>";
+            var expected = "hello_I_am_localized_string_";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void create_id_with_supported_characters()
+        {
+            //arrange
+            var localizedString = "<#!,.: ;-? #>";
+            var expected = "_EXCLAMATION__COMMA__DOT__COLON___SEMICOLON__DASH__QMARK__";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void create_id_with_not_supported_characters()
+        {
+            //arrange
+            var localizedString = "<#'\\\"|@&#[]<>{}()$#>";
+            var expected = "________________";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void create_complex_id_with_numbers()
+        {
+            //arrange
+            var localizedString = "<#4loc8 aliz2ed7 #>";
+            var expected = "_FOUR_loc_EIGHT__aliz_TWO_ed_SEVEN__";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void create_complex_id_with_supported_characters()
+        {
+            //arrange
+            var localizedString = "<#.loc;ali!zed- #>";
+            var expected = "_DOT_loc_SEMICOLON_ali_EXCLAMATION_zed_DASH__";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void create_complex_id_with_not_supported_characters()
+        {
+            //arrange
+            var localizedString = "<#\\loc#ali'zed\"#>";
+            var expected = "_loc_ali_zed_";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void create_complex_id()
+        {
+            //arrange
+            var localizedString = "<# ?\"loc3ali-zed 6str.in#g!#>";
+            var expected = "__QMARK__loc_THREE_ali_DASH_zed__SIX_str_DOT_in_g_EXCLAMATION_";
+            //act
+            var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
+            var result = _lw.CreateId(rawText);
+            //assert
+            Assert.Equal(expected, result);
         }
     }
 }
