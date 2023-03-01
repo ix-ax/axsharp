@@ -17,6 +17,8 @@ using AX.ST.Semantic.Model;
 using Ix.ixr_doc;
 using Microsoft.CodeAnalysis;
 using Serilog.Parsing;
+using static System.Net.Mime.MediaTypeNames;
+using System.Text.RegularExpressions;
 
 const string Logo =
 @"| \ / 
@@ -67,9 +69,10 @@ void Generate(Options o)
     foreach (var syntaxTree in syntaxTrees)
     {
         Console.WriteLine(syntaxTree.Filename);
-        IterateSyntaxTree(syntaxTree.GetRoot(),lw, syntaxTree.Filename);
 
-        //IterateSyntaxTree(syntaxTree.GetRoot(),lw);
+        IterateSyntaxTreeForStringLiterals(syntaxTree.GetRoot(),lw, syntaxTree.Filename);
+
+        IterateSyntaxTreeForPragmas(syntaxTree.GetRoot(),lw,syntaxTree.Filename);
     }
 
 
@@ -81,7 +84,7 @@ void Generate(Options o)
 
 }
 
-void IterateSyntaxTree(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
+void IterateSyntaxTreeForStringLiterals(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
 {
     foreach (var literalSyntax in GetChildNodesRecursive(root).OfType<ILiteralSyntax>())
     {
@@ -91,36 +94,62 @@ void IterateSyntaxTree(ISyntaxNode root, LocalizedStringWrapper lw, string fileN
     }
 }
 
-void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper lw, string fileName)
+void IterateSyntaxTreeForPragmas(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
 {
-    // if is valid string token
-    if(IsStringToken(token))
+    foreach (var pragmaSyntax in GetChildNodesRecursive(root).OfType<IPragmaSyntax>())
     {
-        
-        // try to acquire localized string
-        var localizedString = lw.TryToGetLocalizedString(token.Text);
-        if(localizedString == null) 
-        {
-            return;
-        }
-        //get raw text from localized string
-        var rawText = lw.GetRawTextFromLocalizedString(localizedString);
-
-        //create id
-        var id = lw.CreateId(rawText);
-
-        //check if identifier is valid
-        if(lw.IsValidId(id))
+        var token = pragmaSyntax.PragmaToken;
+        if(lw.IsAttributeNamePragmaToken(token.Text))
         { 
-            var pos = token.Location.GetLineSpan().StartLinePosition;
-            var wrapper = new StringValueWrapper(rawText, fileName, pos.Line);
-            // add id and wrapper to dictionary
-            lw.LocalizedStringsDictionary.Add(id, wrapper);
+            AddToDictionaryIfLocalizedString(token,lw,fileName);
         }
-            
     }
 }
 
+
+
+
+void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper lw, string fileName)
+{
+    // if is valid token
+    if(IsStringToken(token) || IsPragmaToken(token))
+    {
+        // try to acquire localized string
+        var localizedStringList = lw.TryToGetLocalizedStrings(token.Text);
+
+        if(localizedStringList == null) 
+        {
+            return;
+        }
+
+        foreach (string localizedString in localizedStringList)
+        {
+            //get raw text from localized string
+            var rawText = lw.GetRawTextFromLocalizedString(localizedString);
+
+            //create id
+            var id = lw.CreateId(rawText);
+
+            //check if identifier is valid
+            if(lw.IsValidId(id))
+            { 
+                var pos = token.Location.GetLineSpan().StartLinePosition;
+                var wrapper = new StringValueWrapper(rawText, fileName, pos.Line);
+                // add id and wrapper to dictionary
+                lw.LocalizedStringsDictionary.TryAdd(id, wrapper);
+            }
+
+        }   
+    }
+}
+bool IsPragmaToken(ISyntaxToken token)
+{ 
+    if(token.SyntaxKind == SyntaxKind.PragmaToken) 
+    { 
+        return true;
+    }
+    return false; 
+}
 bool IsStringToken(ISyntaxToken token)
 { 
     if(token.SyntaxKind == SyntaxKind.TypedStringDToken ||
