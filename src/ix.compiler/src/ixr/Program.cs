@@ -60,25 +60,15 @@ void Generate(Options o)
 
     var syntaxTrees = projectSources.Select(p => p.parseTree);
 
-    //var syntaxTree = toCompile.First(); // all_primitives.st
-
     var lw = new LocalizedStringWrapper();
 
     //iterate all syntax trees from project
     foreach (var syntaxTree in syntaxTrees)
     {
-        //Console.WriteLine(syntaxTree.Filename);
+        IterateSyntaxTreeForStringLiterals(syntaxTree.GetRoot(),lw, Path.GetRelativePath(o.AxSourceProjectFolder, syntaxTree.Filename));
 
-        IterateSyntaxTreeForStringLiterals(syntaxTree.GetRoot(),lw, syntaxTree.Filename);
-
-        IterateSyntaxTreeForPragmas(syntaxTree.GetRoot(),lw,syntaxTree.Filename);
+        IterateSyntaxTreeForPragmas(syntaxTree.GetRoot(), lw, Path.GetRelativePath(o.AxSourceProjectFolder, syntaxTree.Filename));
     }
-
-    //print dictonary with localized strings and their ids
-    //foreach (var item in lw.LocalizedStringsDictionary)
-    //{
-    //    Console.WriteLine($"{item.Key}: {item.Value.RawValue}, {item.Value.FileName},{item.Value.Line}");
-    //}
 
     //add resources from dictionary to resx file
     ResxManager.AddResourcesFromDictionary(o.OutputProjectFolder, lw.LocalizedStringsDictionary);
