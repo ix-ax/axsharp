@@ -9,6 +9,7 @@
       "ix.compiler\\tests\\IX.CompilerTests\\Ix.CompilerTests.csproj",
       "ix.compiler\\tests\\Ix.Compiler.CsTests\\Ix.Compiler.CsTests.csproj",
       "ix.compiler\\tests\\Ix.ixc.Tests\\Ix.ixc.Tests.csproj",
+      "ix.compiler\\tests\\Ix.ixr.Tests\\Ix.ixr.Tests.csproj",
       "ix.connectors\\tests\\Ix.ConnectorLegacyTests\\Ix.ConnectorLegacyTests.csproj",
       "ix.connectors\\tests\\Ix.ConnectorTests\\Ix.ConnectorTests\\Ix.ConnectorTests.csproj",
       "ix.connectors\\tests\\ax-test-project\\ix\\ax_test_project.csproj",
