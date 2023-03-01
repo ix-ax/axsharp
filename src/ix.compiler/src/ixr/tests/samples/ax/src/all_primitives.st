@@ -11,9 +11,10 @@ END_VAR
 /// <remarks>
 /// Uses polar coordinates
 /// </remarks>
-{#ix-set:AttributeName = "<#I am localized string#>"}
+{#ix-set:AttributeName = "<#I am localized string from pragma#> fdasf 32 <#I am localized string from pragma32#>"}
 CLASS all_primitives
     VAR PUBLIC
+        {#ix-set:AttributeName = "<#I am localized string from pragma#> frer <#I am localized string from pragma432#> "}
         mySTRING	        :   STRING	     := "cau" ;
         myWSTRING	    :       WSTRING	      ;
         myBOOL	        :       BOOL	      ;

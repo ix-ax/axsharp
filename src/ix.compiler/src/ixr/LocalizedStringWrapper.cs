@@ -11,9 +11,18 @@ namespace Ix.ixr_doc
     {
         // composite object with location and raw value
         public Dictionary<string, StringValueWrapper> LocalizedStringsDictionary {get; private set; }
+        private Regex _localizedStringRegex;
+        private Regex _attributeNameRegex;
         public LocalizedStringWrapper()
         {
             LocalizedStringsDictionary = new Dictionary<string, StringValueWrapper>();
+            _localizedStringRegex = new Regex("<#(.*?)#>",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+             _attributeNameRegex = new Regex("#ix-set:AttributeName",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+
         }
 
         public string CreateId(string rawText)
@@ -47,16 +56,13 @@ namespace Ix.ixr_doc
         {
             return Microsoft.CodeAnalysis.CSharp.SyntaxFacts.IsValidIdentifier(id);
         }
-        public string TryToGetLocalizedString(string text)
+        public IEnumerable<string> TryToGetLocalizedStrings(string text)
         { 
             //match only text within <# #>
-            Regex rx = new Regex("<#(.*)#>",
-            RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-            var match = rx.Match(text);
-            if(match.Success) 
+            var matches = _localizedStringRegex.Matches(text).ToList();
+            if(matches.Count > 0) 
             {
-                return match.Value;
+                return matches.Select(m => m.Value);;
             }
         
             return null; 
@@ -68,7 +74,13 @@ namespace Ix.ixr_doc
            return text.Substring(2,text.Length-4);
     
         }
+
+        public bool IsAttributeNamePragmaToken(string text)
+        {
+            return _attributeNameRegex.IsMatch(text);
+        }
     }
+    
 
     public class StringValueWrapper
     {
