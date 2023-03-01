@@ -79,6 +79,8 @@ void Generate(Options o)
         Console.WriteLine($"{item.Key}: {item.Value.RawValue}, {item.Value.FileName},{item.Value.Line}");
     }
 
+    //add resources from dictionary to resx file
+    ResxManager.AddResourcesFromDictionary(@"../../../Resources/TestResources.resx", lw.LocalizedStringsDictionary);
 }
 
 void IterateSyntaxTree(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
