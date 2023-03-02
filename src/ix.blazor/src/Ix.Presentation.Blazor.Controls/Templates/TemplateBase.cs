@@ -35,6 +35,7 @@ namespace Ix.Presentation.Blazor.Controls.Templates
             }
             set
             {
+                LastValue = value;
                 Onliner.Edit = value;
             }
 
