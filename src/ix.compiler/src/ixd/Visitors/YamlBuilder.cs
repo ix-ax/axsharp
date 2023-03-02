@@ -38,7 +38,7 @@ namespace Ix.ixc_doc.Visitors
             //populate item of namepsace
             var item = _mp.PopulateItem(namespaceDeclaration);
             // create toc item
-            var tocSchemaItem = new TocSchema.Item(namespaceDeclaration.FullyQualifiedName, namespaceDeclaration.Name);
+            var tocSchemaItem = new TocSchema.Item(_yh.GetBaseUid(namespaceDeclaration), namespaceDeclaration.Name);
 
             // add to namespace group if is not global
             if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
