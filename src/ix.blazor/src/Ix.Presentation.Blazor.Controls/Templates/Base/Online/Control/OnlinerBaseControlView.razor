@@ -11,7 +11,7 @@
            class="w-100 form-control @AccessStatus"
            type=@IsNumeric(typeof(T))
            step=any
-           @onfocus="@( () => HasFocus = true )"
+           @onfocus="@( () => {HasFocus = true; LastValue = Onliner.LastValue;} )"
            @onblur="@( () => HasFocus = false )"
            @bind="Value" />
 
