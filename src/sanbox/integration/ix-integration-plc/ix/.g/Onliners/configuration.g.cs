@@ -30,6 +30,8 @@ public partial class ix_integration_plcTwinController : ITwinController
 
     public MeasurementExample.Measurements measurements { get; }
 
+    public ixcomponent ixcomponent { get; }
+
     public MonsterData.Monster monster { get; }
 
     public ix_integration_plcTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
@@ -52,6 +54,7 @@ public partial class ix_integration_plcTwinController : ITwinController
         weather_readOnly.MakeReadOnly();
         test_example = new example(this.Connector, "", "test_example");
         measurements = new MeasurementExample.Measurements(this.Connector, "", "measurements");
+        ixcomponent = new ixcomponent(this.Connector, "", "ixcomponent");
         monster = new MonsterData.Monster(this.Connector, "", "monster");
     }
 
@@ -75,6 +78,7 @@ public partial class ix_integration_plcTwinController : ITwinController
         weather_readOnly.MakeReadOnly();
         test_example = new example(this.Connector, "", "test_example");
         measurements = new MeasurementExample.Measurements(this.Connector, "", "measurements");
+        ixcomponent = new ixcomponent(this.Connector, "", "ixcomponent");
         monster = new MonsterData.Monster(this.Connector, "", "monster");
     }
 }

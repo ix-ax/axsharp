@@ -22,6 +22,7 @@ CONFIGURATION MyConfiguration
 
         test_example: example;
         measurements : MeasurementExample.Measurements;
+        ixcomponent : ixcomponent;
         monster : Monster;
     END_VAR
 END_CONFIGURATION
