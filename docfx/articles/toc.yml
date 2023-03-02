@@ -4,7 +4,7 @@
   href: ~/articles/conceptual/Conceptual.md
 - name: Getting started
   href: ~/index.md#getting-started
-- name: Compiler
+- name: Twin Compiler
   href: ~/articles/compiler/README.md
   items:
   - name: Attributes
@@ -18,7 +18,8 @@
 
 - name: Documenation compiler
   href: ~/articles/ixd/IXD.md
-
+- name: Localizables compiler
+  href: ~/articles/ixr/IXR.md
 - name: Connectors
   href: ~/articles/connectors/README.md
   items:

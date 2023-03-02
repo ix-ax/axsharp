@@ -42,14 +42,14 @@ dotnet tool install Ix.ixd --prerelease --local
 ### 4. Generate documentation with ixd
 
 
-
-```
+~~~
 dotnet ixd -x $PATH_TO_AX_PROJECT -o $PATH_TO_API_FOLDER
-=======
+~~~
 
 where:
 
 `$PATH_TO_AX_PROJECT` -- is path to AX project, which contains apax.yml file
+
 `$PATH_TO_API_FOLDER` -- is path to `api` output folder, which is located in docfx project
 
 ### 5. Build and run docfx docset
@@ -64,7 +64,7 @@ Now you can preview the website on http://localhost:8080/api/.
 
 Website should look something like this:
 
-![alt text](assets/example-doc-web.png "example web")
+![example web](~/images/ixd/example-doc-web.png "example web")
 
 ## Notes
 Ixd is still in early development, so some features may be missing and bugs may occur. 
