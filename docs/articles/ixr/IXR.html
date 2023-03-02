@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IXR - documentation compiler for AX | System.Dynamic.ExpandoObject </title>
+    <title>IXR - resx compiler for AX | System.Dynamic.ExpandoObject </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IXR - documentation compiler for AX | System.Dynamic.ExpandoObject ">
+    <meta name="title" content="IXR - resx compiler for AX | System.Dynamic.ExpandoObject ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../images/favicon.ico">
@@ -77,8 +77,33 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="ixr---documentation-compiler-for-ax">IXR - documentation compiler for AX</h1>
+<h1 id="ixr---resx-compiler-for-ax">IXR - resx compiler for AX</h1>
 
+<p>Ixr is command line tool which can generate resx files for AX projects. Resx file contains localizable strings from project, that can be further used in translation.</p>
+<h2 id="quick-start">Quick start</h2>
+<h3 id="1-install-ixr-tool">1. Install ixr tool</h3>
+<pre><code>dotnet tool install Ix.ixr --prerelease --local
+</code></pre>
+<h3 id="2-run-ixr-compiler">2. Run ixr compiler</h3>
+<pre><code>dotnet ixr -x $PATH_TO_AX_PROJECT -o $PATH_TO_RESX_FILE
+</code></pre>
+<p>where:<br>
+<code>$PATH_TO_AX_PROJECT</code> - is path to <strong>AX project</strong><br>
+<code>$PATH_TO_RESX_FILE</code> - is path to <strong>resx file</strong>, where the localizable strings will be generated</p>
+<p>Localizable string are exported only from string attributes and pragmas of attribute name.</p>
+<h2 id="localizable-string">Localizable string</h2>
+<p>Localizable string must start with <code>&lt;#</code> and end with <code>#&gt;</code> tags.<br>
+For example:<br>
+<code>'&lt;#This is localizable string#&gt;'</code></p>
+<p>Also you can connecting localizable and non-localizable string together.<br>
+For example:<br>
+<code>'This is non-localizable string &lt;#This is localizable string#&gt;'</code></p>
+<h2 id="special-characters">Special characters</h2>
+<p>Ixr support all these special characters:<br>
+<code>!&quot;#$'()*+,-.:;&lt;=&gt;?@[\]^_`{|}~€</code><br>
+No other characters can be used.</p>
+<h2 id="notes">Notes</h2>
+<p>Ixr is still in early development, so some features may be missing and bugs may occur.</p>
 </article>
           </div>
 
