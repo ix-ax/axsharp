@@ -32,7 +32,7 @@ namespace Ix.ixc_doc.Helpers
                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList()
                .ForEach(member => extendedFields = extendedFields.Concat(member));
 
-            return extendedFields.Select(f => f.FullyQualifiedName)
+            return extendedFields.Select(f => GetBaseUid(f))
                                  .Concat(extendedMethods.Select(m => GetMethodUId(m))).ToArray();
         }
         // check if field can be inherited
@@ -174,35 +174,43 @@ namespace Ix.ixc_doc.Helpers
             return(inputParams, fullDeclaration.ToString());
         }
 
-        //get uid of method
-        public string GetMethodUId(IMethodDeclaration methodDeclaration)
-        {
-            StringBuilder typeDeclaration = new StringBuilder();
-            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
-            foreach (var p in inputParamsDeclaration)
+        private string GetMethodTypeDeclaration(IList<IVariableDeclaration> inputParams)
+        { 
+          StringBuilder typeDeclaration = new StringBuilder();
+          
+            foreach (var p in inputParams)
             {
                 typeDeclaration.Append(p.Type);
-                if(inputParamsDeclaration.Last() != p) 
+                if(inputParams.Last() != p) 
                 { 
                     typeDeclaration.Append(",");
                 }
-            }
-            return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
+            }    
+            return typeDeclaration.ToString();
+        }
+
+        //get uid of method
+        public string GetMethodUId(IMethodDeclaration methodDeclaration)
+        {
+            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+            var declaration=GetMethodTypeDeclaration(inputParamsDeclaration);
+            return $"plc.{methodDeclaration.FullyQualifiedName}({declaration})";
+        }
+        // get base uid of field
+        public string GetBaseUid(IDeclaration declaration) => $"plc.{declaration.FullyQualifiedName}";
+        //get id of method
+        public string GetMethodId(IMethodDeclaration methodDeclaration)
+        {
+            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+            var declaration=GetMethodTypeDeclaration(inputParamsDeclaration);
+            return $"plc.{methodDeclaration.Name}({declaration})";
         }
 
         public string GetMethodUId(IMethodPrototypeDeclaration methodDeclaration)
         {
-            StringBuilder typeDeclaration = new StringBuilder();
             var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
-            foreach (var p in inputParamsDeclaration)
-            {
-                typeDeclaration.Append(p.Type);
-                if (inputParamsDeclaration.Last() != p)
-                {
-                    typeDeclaration.Append(",");
-                }
-            }
-            return $"{methodDeclaration.FullyQualifiedName}({typeDeclaration.ToString()})";
+            var declaration=GetMethodTypeDeclaration(inputParamsDeclaration);
+            return $"plc.{methodDeclaration.FullyQualifiedName}({declaration.ToString()})";
         }
 
     
@@ -276,11 +284,11 @@ namespace Ix.ixc_doc.Helpers
         //add references for namespace
         public void AddNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
         {
-            if (v.YamlHelper.NamespaceReferences.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+            if (v.YamlHelper.NamespaceReferences.Where(a => a.Uid == GetBaseUid(declaration)).Count() > 0)
                 return;
             var reference = new Reference
             {
-                Uid = declaration.FullyQualifiedName,
+                Uid = GetBaseUid(declaration),
                 Name = declaration.Name,
                 FullName = declaration.FullyQualifiedName,
                 NameWithType = declaration.Name
@@ -290,11 +298,11 @@ namespace Ix.ixc_doc.Helpers
         //add general reference
         public void AddReference(IDeclaration declaration, MyNodeVisitor v)
         {
-            if (v.YamlHelper.References.Where(a => a.Uid == declaration.FullyQualifiedName).Count() > 0)
+            if (v.YamlHelper.References.Where(a => a.Uid == GetBaseUid(declaration)).Count() > 0)
                 return;
             var reference = new Reference
             {
-                Uid = declaration.FullyQualifiedName,
+                Uid = GetBaseUid(declaration),
                 Name = declaration.Name,
                 FullName = declaration.FullyQualifiedName,
                 NameWithType = declaration.Name

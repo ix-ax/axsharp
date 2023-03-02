@@ -4,6 +4,7 @@ using AX.Text;
 using CommandLine;
 using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Schemas;
+using System.Xml.Linq;
 
 
 namespace Ix.ixc_doc.Mapper
@@ -20,8 +21,8 @@ namespace Ix.ixc_doc.Mapper
         {
             return new Item
             {
-                Uid = declaration.FullyQualifiedName,
-                Id = declaration.Name,
+                Uid = _yh.GetBaseUid(declaration),
+                Id =  declaration.Name,
                 Name = declaration.Name,
                 FullName = declaration.Name,
                 Namespace = declaration.ContainingNamespace?.Name,
@@ -32,7 +33,7 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(INamespaceDeclaration namespaceDeclaration)
         {
-            var children = namespaceDeclaration.Declarations.Select(p => p.FullyQualifiedName);
+            var children = namespaceDeclaration.Declarations.Select(p => _yh.GetBaseUid(p));
 
             var item = PopulateItem((IDeclaration)namespaceDeclaration);
             item.Children = children.ToArray();
@@ -43,7 +44,7 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(IClassDeclaration classDeclaration)
         {
-            var children = classDeclaration.Fields.Select(p => p.FullyQualifiedName);
+            var children = classDeclaration.Fields.Select(p => _yh.GetBaseUid(p));
             var methods = classDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
 
             List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
@@ -93,6 +94,7 @@ namespace Ix.ixc_doc.Mapper
 
             var item = PopulateItem((IDeclaration)methodDeclaration);
             item.Uid = _yh.GetMethodUId(methodDeclaration);
+            item.Id = _yh.GetMethodId(methodDeclaration);
             item.Parent = methodDeclaration.ContainingClass.FullyQualifiedName;
             item.Type = "Method";
             item.Syntax = new Syntax
