@@ -11,6 +11,8 @@
 ---
 * [Documenation compiler](~/articles/ixd/IXD.md)
 ---
+* [Resx compiler](~/articles/ixr/IXR.md)
+---
 * [Connectors](~/articles/connectors/README.md)
     * [Dummy](~/articles/connectors/Dummy.md)
     * [WebAPI](~/articles/connectors/WebAPI.md)

@@ -1,0 +1,14 @@
+<script type="text/javascript" src="{{_rel}}styles/docfx.vendor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+<script src="https://unpkg.com/highlightjs-dotnetconfig@0.9.3/dist/dotnetconfig.min.js"></script>
+<script type="text/javascript" src="{{_rel}}styles/docfx.js"></script>
+<script type="text/javascript" src="{{_rel}}styles/main.js"></script>
+<script type="text/javascript" src="https://unpkg.com/mermaid@8.10.2/dist/mermaid.min.js"
+integrity="sha384-nzpOk138h0/O14Ig1PAUlf1XSo5T+XvpBUVkpLaU40QBvMgrNkSKusdNAomDLEd2"
+crossorigin="anonymous"></script>
+<script>
+mermaid.initialize({
+startOnLoad: false
+});
+mermaid.init(undefined, ".lang-mermaid");
+</script>

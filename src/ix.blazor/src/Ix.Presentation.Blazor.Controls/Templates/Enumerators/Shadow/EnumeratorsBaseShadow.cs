@@ -20,7 +20,7 @@ namespace Ix.Presentation.Blazor.Controls.Templates
         {
             EnumToIntConverter = new EnumToIntConverter(EnumDiscriminatorAttribute);
             Names = Enum.GetNames(EnumDiscriminatorAttribute.EnumeratorType);
-            UpdateValuesOnChange(Onliner);
+            UpdateShadowValuesOnChange(Onliner);
             return base.OnInitializedAsync();
         }
     }

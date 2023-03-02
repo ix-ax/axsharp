@@ -7,6 +7,10 @@ CLASS ixcomponent
         {#ix-set:AttributeName = "My bool"}	
         my_bool : BOOL;
     END_VAR
+
+    METHOD PUBLIC Simulate 
+        my_int := my_int + INT#1;        
+    END_METHOD
 END_CLASS
 
 NAMESPACE MySecondNamespace
