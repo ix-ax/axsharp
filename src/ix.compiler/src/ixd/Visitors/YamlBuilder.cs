@@ -26,11 +26,12 @@ namespace Ix.ixc_doc.Visitors
         private YamlSerializer _s { get; set; }
         private YamlHelpers _yh { get; set; }
         private CodeToYamlMapper _mp { get; set; }
-        internal YamlBuilder(YamlSerializer serializer)
+        internal YamlBuilder(YamlSerializer serializer, string projectPath)
         {
-            _mp = new CodeToYamlMapper();
+            _yh = new YamlHelpers(projectPath);
+            _mp = new CodeToYamlMapper(_yh);
             _s = serializer;
-            _yh = new YamlHelpers();
+            
         }
 
         public virtual void CreateNamespaceYaml(INamespaceDeclaration namespaceDeclaration, MyNodeVisitor v)
@@ -42,8 +43,8 @@ namespace Ix.ixc_doc.Visitors
 
             // add to namespace group if is not global
             if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
-                if (_yh.FindTocGroup(v.YamlHelper.TocSchema.Items, namespaceDeclaration.FullyQualifiedName) == null)
-                    _yh.AddToTocSchema(v, tocSchemaItem, namespaceDeclaration.ContainingNamespace.FullyQualifiedName);
+                if (_yh.FindTocGroup(v.YamlHelper.TocSchema.Items, _yh.GetBaseUid(namespaceDeclaration)) == null)
+                    _yh.AddToTocSchema(v, tocSchemaItem, _yh.GetBaseUid(namespaceDeclaration.ContainingNamespace));
 
             // iterate through children
             namespaceDeclaration.Declarations.ToList().ForEach(p =>
@@ -56,7 +57,7 @@ namespace Ix.ixc_doc.Visitors
             {
                 v.YamlHelper.Schema.Items = new Item[] { item };
                 v.YamlHelper.Schema.References = v.YamlHelper.NamespaceReferences.ToArray();
-                _s.SchemaToYaml(v.YamlHelper.Schema, namespaceDeclaration.FullyQualifiedName);
+                _s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(namespaceDeclaration));
                 v.YamlHelper.Schema = new YamlSchema();
                 v.YamlHelper.NamespaceReferences.Clear();
             }
@@ -66,10 +67,11 @@ namespace Ix.ixc_doc.Visitors
         public virtual void CreateClassYaml(IClassDeclaration classDeclaration, MyNodeVisitor v)
         {
             var item = _mp.PopulateItem(classDeclaration);
-            item.Assemblies = new string[] { _yh.GetAssembly(v) };
+            
             //add to items
             v.YamlHelper.Items.Add(item);
-            _yh.AddInheritedMembersReferences(item, v);
+            _yh.AddReferences(item.InheritedMembers, v);
+            _yh.AddReferences(item.Implements, v);
 
             var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
 
@@ -90,7 +92,7 @@ namespace Ix.ixc_doc.Visitors
             v.MapYamlHelperToSchema();
 
             //serialize schema to yaml
-            _s.SchemaToYaml(v.YamlHelper.Schema, classDeclaration.FullyQualifiedName);
+            _s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(classDeclaration));
             //clear schema for next use
             v.YamlHelper.Schema = new YamlSchema();
             v.YamlHelper.Items.Clear();
@@ -128,7 +130,7 @@ namespace Ix.ixc_doc.Visitors
             visitor.MapYamlHelperToSchema();
 
             //serialize schema to yaml
-            _s.SchemaToYaml(visitor.YamlHelper.Schema, namedValueTypeDeclaration.FullyQualifiedName);
+            _s.SchemaToYaml(visitor.YamlHelper.Schema, _yh.GetBaseUid(namedValueTypeDeclaration));
             //clear schema for next use
             visitor.YamlHelper.Schema = new YamlSchema();
             visitor.YamlHelper.Items.Clear();
@@ -138,7 +140,6 @@ namespace Ix.ixc_doc.Visitors
         public virtual void CreateInterfaceYaml(IInterfaceDeclaration interfaceDeclaration, MyNodeVisitor v)
         {
             var item = _mp.PopulateItem(interfaceDeclaration);
-            item.Assemblies = new string[] { _yh.GetAssembly(v) };
             v.YamlHelper.Items.Add(item);
 
             var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
@@ -160,7 +161,7 @@ namespace Ix.ixc_doc.Visitors
             v.MapYamlHelperToSchema();
 
             //serialize schema to yaml
-            _s.SchemaToYaml(v.YamlHelper.Schema, interfaceDeclaration.FullyQualifiedName);
+            _s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(interfaceDeclaration));
             //clear schema for next use
             v.YamlHelper.Schema = new YamlSchema();
             v.YamlHelper.Items.Clear();

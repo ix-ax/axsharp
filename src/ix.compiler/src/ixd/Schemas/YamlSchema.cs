@@ -92,6 +92,9 @@ namespace Ix.ixc_doc.Schemas
         [JsonProperty("inheritedMembers", NullValueHandling = NullValueHandling.Ignore)]
         public string[] InheritedMembers { get; set; }
 
+        [JsonProperty("implements", NullValueHandling = NullValueHandling.Ignore)]
+        public string[] Implements { get; set; }
+
         [JsonProperty("overload", NullValueHandling = NullValueHandling.Ignore)]
         public string Overload { get; set; }
     }

@@ -12,9 +12,9 @@ namespace Ix.ixc_doc.Mapper
     internal class CodeToYamlMapper
     {
         private YamlHelpers _yh { get; set; }
-        public CodeToYamlMapper()
+        public CodeToYamlMapper(YamlHelpers yh)
         {
-            _yh = new YamlHelpers();
+            _yh = yh;
         }
 
         public Item PopulateItem(IDeclaration declaration)
@@ -28,6 +28,9 @@ namespace Ix.ixc_doc.Mapper
                 Namespace = declaration.ContainingNamespace?.Name,
                 Summary = _yh.GetComments(declaration.Location).summary,
                 Remarks = _yh.GetComments(declaration.Location).remarks,
+                Assemblies = new string[] { _yh.GetAssembly(_yh.PathToProjectFile) },
+                
+                
             };
         }
 
@@ -46,6 +49,7 @@ namespace Ix.ixc_doc.Mapper
         {
             var children = classDeclaration.Fields.Select(p => _yh.GetBaseUid(p));
             var methods = classDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
+            var implementedInterfaces = classDeclaration.GetAllImplementedInterfacesUniquely().Select(i => _yh.GetBaseUid(i));
 
             List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
             classDeclaration.GetAllExtendedTypes().ToList()
@@ -59,6 +63,7 @@ namespace Ix.ixc_doc.Mapper
             item.Syntax = new Syntax { Content = $"CLASS {classDeclaration.Name}" };
             item.Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => p.FullyQualifiedName).ToArray();
             item.InheritedMembers = _yh.GetInheritedMembers(classDeclaration);
+            item.Implements = implementedInterfaces.ToArray();
 
             return item;
         }
@@ -123,6 +128,7 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(IInterfaceDeclaration interfaceDeclaration)
         {
+            var implementedInterfaces = interfaceDeclaration.GetAllImplementedInterfacesUniquely().Select(i => _yh.GetBaseUid(i));
             var methods = interfaceDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
 
             var item = PopulateItem((IDeclaration)interfaceDeclaration);
@@ -130,7 +136,7 @@ namespace Ix.ixc_doc.Mapper
             item.Children = methods.ToArray();
             item.Type = "Interface";
             item.Syntax = new Syntax { Content = $"INTERFACE {interfaceDeclaration.Name}" };
-
+            item.Implements = implementedInterfaces.ToArray();
             return item;
         }
 
