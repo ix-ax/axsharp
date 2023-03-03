@@ -26,11 +26,12 @@ namespace Ix.ixc_doc.Visitors
         private YamlSerializer _s { get; set; }
         private YamlHelpers _yh { get; set; }
         private CodeToYamlMapper _mp { get; set; }
-        internal YamlBuilder(YamlSerializer serializer)
+        internal YamlBuilder(YamlSerializer serializer, string projectPath)
         {
-            _mp = new CodeToYamlMapper();
+            _yh = new YamlHelpers(projectPath);
+            _mp = new CodeToYamlMapper(_yh);
             _s = serializer;
-            _yh = new YamlHelpers();
+            
         }
 
         public virtual void CreateNamespaceYaml(INamespaceDeclaration namespaceDeclaration, MyNodeVisitor v)
@@ -66,10 +67,11 @@ namespace Ix.ixc_doc.Visitors
         public virtual void CreateClassYaml(IClassDeclaration classDeclaration, MyNodeVisitor v)
         {
             var item = _mp.PopulateItem(classDeclaration);
-            item.Assemblies = new string[] { _yh.GetAssembly(v) };
+            
             //add to items
             v.YamlHelper.Items.Add(item);
-            _yh.AddInheritedMembersReferences(item, v);
+            _yh.AddReferences(item.InheritedMembers, v);
+            _yh.AddReferences(item.Implements, v);
 
             var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
 
@@ -138,7 +140,6 @@ namespace Ix.ixc_doc.Visitors
         public virtual void CreateInterfaceYaml(IInterfaceDeclaration interfaceDeclaration, MyNodeVisitor v)
         {
             var item = _mp.PopulateItem(interfaceDeclaration);
-            item.Assemblies = new string[] { _yh.GetAssembly(v) };
             v.YamlHelper.Items.Add(item);
 
             var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
@@ -160,7 +161,7 @@ namespace Ix.ixc_doc.Visitors
             v.MapYamlHelperToSchema();
 
             //serialize schema to yaml
-            _s.SchemaToYaml(v.YamlHelper.Schema, interfaceDeclaration.FullyQualifiedName);
+            _s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(interfaceDeclaration));
             //clear schema for next use
             v.YamlHelper.Schema = new YamlSchema();
             v.YamlHelper.Items.Clear();

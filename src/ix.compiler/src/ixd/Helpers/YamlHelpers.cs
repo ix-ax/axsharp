@@ -18,6 +18,11 @@ namespace Ix.ixc_doc.Helpers
 {
     public class YamlHelpers
     {
+        public YamlHelpers(string projectPath)
+        {
+            PathToProjectFile = projectPath;
+        }
+        public string PathToProjectFile {get; set;}
         // return all inherited members from class declaration
         public string[] GetInheritedMembers(IClassDeclaration classDeclaration)
         {
@@ -253,9 +258,9 @@ namespace Ix.ixc_doc.Helpers
         }
 
         //acquiring assembly of ax project
-        public string GetAssembly(MyNodeVisitor visitor)
+        public string GetAssembly(string projectFile)
         {
-            var reader = new StringReader(File.ReadAllText(visitor.axProject.ProjectFile));
+            var reader = new StringReader(File.ReadAllText(projectFile/*visitor.axProject.ProjectFile*/));
             var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
             Dictionary<string, object> deserializeDictionary = deserializer.Deserialize<Dictionary<string, object>>(reader);
 
@@ -265,9 +270,9 @@ namespace Ix.ixc_doc.Helpers
         }
 
           //add references of inherited members
-        public void AddInheritedMembersReferences(Item item, MyNodeVisitor v)
+        public void AddReferences(string[] references, MyNodeVisitor v)
         {
-            foreach (var member in item.InheritedMembers)
+            foreach (var member in references)
             {
                 v.YamlHelper.References.Add(new Reference()
                 {
@@ -280,6 +285,7 @@ namespace Ix.ixc_doc.Helpers
                 });
             }
         }
+
 
         //add references for namespace
         public void AddNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
