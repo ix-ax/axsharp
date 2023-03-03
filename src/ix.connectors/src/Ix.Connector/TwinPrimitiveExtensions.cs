@@ -6,6 +6,8 @@
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
 using System;
+using System.Linq;
+using System.Reflection;
 using Ix.Connector.ValueTypes;
 
 namespace Ix.Connector;
@@ -81,5 +83,65 @@ public static class TwinPrimitiveExtensions
     {
         if (primitive == null) throw new ArgumentNullException("Value cannot be null");
         return ((dynamic)primitive).Shadow;
+    }
+
+    /// <summary>
+    /// Gets property information using symbol information to access the property information from particular instance.
+    /// </summary>
+    /// <param name="twinElement">Twin element about which the property information is to be retrieved.</param>
+    /// <returns>Property information declared on a particular instance of a twin element.</returns>
+    public static PropertyInfo GetPropertyInfoViaSymbol(this ITwinElement twinElement)
+    {
+        if (twinElement == null) return null;
+        var propertyName = string.Join("", twinElement.GetSymbolTail().TakeWhile(p => !p.Equals('.')));
+
+        if (twinElement.Symbol == null)
+            return null;
+
+        if (twinElement.Symbol.EndsWith("]"))
+        {
+            propertyName = propertyName?.Substring(0, propertyName.IndexOf('[') - 1);
+        }
+
+        var propertyInfo = twinElement?.GetParent()?.GetType().GetProperty(propertyName);
+
+        return propertyInfo;
+    }
+
+    /// <summary>
+    /// Get attribute of a particular type defined in the declaration of a twin element.
+    /// </summary>
+    /// <typeparam name="T">Attribute type</typeparam>
+    /// <param name="twinElement">Element for which the information is to be retrieved.</param>
+    /// <returns>Attribute</returns>
+    public static T GetAttribute<T>(this ITwinElement twinElement) where T : Attribute
+    {
+        if (twinElement == null) return null;
+
+        try
+        {
+            var propertyInfo = GetPropertyInfoViaSymbol(twinElement);
+            if (propertyInfo != null)
+            {
+                if (propertyInfo.GetCustomAttributes().FirstOrDefault(p => p is T) is T propertyAttribute)
+                {
+                    return propertyAttribute;
+                }
+            }
+
+            if (twinElement
+                    .GetType()
+                    .GetCustomAttributes(true)
+                    .FirstOrDefault(p => p is T) is T typeAttribute)
+            {
+                return typeAttribute;
+            }
+        }
+        catch (Exception)
+        {
+            // Swallow;
+        }
+
+        return null;
     }
 }
