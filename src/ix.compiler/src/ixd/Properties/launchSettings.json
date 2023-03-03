@@ -6,7 +6,7 @@
     },
     "ixd-2": {
       "commandName": "Project",
-      "commandLineArgs": "ixd-2 -x C:\\MTS\\ix.framework\\src\\core\\ctrl -o C:\\MTS\\ix-ax\\ix\\src\\ix.compiler\\src\\ixd\\tests\\docfx\\docfx_project\\api\\"
+      "commandLineArgs": "ixd-2 -x C:\\MTS\\ix.framework\\src\\core\\ctrl -o C:\\MTS\\ix.framework\\docfx\\apictrl"
     }
   }
 }
