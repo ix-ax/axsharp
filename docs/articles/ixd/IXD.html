@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <link rel="stylesheet" href="../../styles/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">  
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="../toc.html">
   
@@ -35,9 +36,8 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="IX">
-              </a>
-            </div>
+                <p class="text-logo">IX</p>
+              </a>            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
@@ -105,52 +105,46 @@
 </code></pre>
 <h3 id="4-generate-documentation-with-ixd">4. Generate documentation with ixd</h3>
 <pre><code>dotnet ixd -x $PATH_TO_AX_PROJECT -o $PATH_TO_API_FOLDER
-=======
-
-where:
-
-`$PATH_TO_AX_PROJECT` -- is path to AX project, which contains apax.yml file
-`$PATH_TO_API_FOLDER` -- is path to `api` output folder, which is located in docfx project
-
-### 5. Build and run docfx docset
-
-Enter following command in `docfx_project` project directory:
-
 </code></pre>
-<p>docfx docfx.json --serve</p>
-<pre><code>
-Now you can preview the website on http://localhost:8080/api/.
-
-Website should look something like this:
-
-![alt text](assets/example-doc-web.png &quot;example web&quot;)
-
-## Notes
-Ixd is still in early development, so some features may be missing and bugs may occur. 
-Currently ixd can generate documentation for following elements:
-
-- Namespaces
-    - Classes
-        - Methods
-        - Properties
-    - Interfaces
-    - Types
-
-
-
-## XML comments
-Ixd supports extracting [XML comment formats](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/) from `.st` files into API documentation. 
-
-Following XML tags are currently supported:
-
-- `&lt;summary&gt;`
-- `&lt;params&gt;`
-- `&lt;returns&gt;`
-- `&lt;example&gt;`
-- `&lt;remarks&gt;`
-- `&lt;code&gt;`
-- `&lt;c&gt;`
+<p>where:</p>
+<p><code>$PATH_TO_AX_PROJECT</code> -- is path to AX project, which contains apax.yml file</p>
+<p><code>$PATH_TO_API_FOLDER</code> -- is path to <code>api</code> output folder, which is located in docfx project</p>
+<h3 id="5-build-and-run-docfx-docset">5. Build and run docfx docset</h3>
+<p>Enter following command in <code>docfx_project</code> project directory:</p>
+<pre><code>docfx docfx.json --serve
 </code></pre>
+<p>Now you can preview the website on http://localhost:8080/api/.</p>
+<p>Website should look something like this:</p>
+<p><img src="../../images/ixd/example-doc-web.png" alt="example web" title="example web"></p>
+<h2 id="notes">Notes</h2>
+<p>Ixd is still in early development, so some features may be missing and bugs may occur.
+Currently ixd can generate documentation for following elements:</p>
+<ul>
+<li>Namespaces
+<ul>
+<li>Classes
+<ul>
+<li>Methods</li>
+<li>Properties</li>
+</ul>
+</li>
+<li>Interfaces</li>
+<li>Types</li>
+</ul>
+</li>
+</ul>
+<h2 id="xml-comments">XML comments</h2>
+<p>Ixd supports extracting <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/">XML comment formats</a> from <code>.st</code> files into API documentation.</p>
+<p>Following XML tags are currently supported:</p>
+<ul>
+<li><code>&lt;summary&gt;</code></li>
+<li><code>&lt;params&gt;</code></li>
+<li><code>&lt;returns&gt;</code></li>
+<li><code>&lt;example&gt;</code></li>
+<li><code>&lt;remarks&gt;</code></li>
+<li><code>&lt;code&gt;</code></li>
+<li><code>&lt;c&gt;</code></li>
+</ul>
 </article>
           </div>
 
@@ -185,9 +179,16 @@ Following XML tags are currently supported:
         </div>
       </footer>
     </div>
-
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-dotnetconfig@0.9.3/dist/dotnetconfig.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
-  </body>
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.10.2/dist/mermaid.min.js" integrity="sha384-nzpOk138h0/O14Ig1PAUlf1XSo5T+XvpBUVkpLaU40QBvMgrNkSKusdNAomDLEd2" crossorigin="anonymous"></script>
+    <script>
+    mermaid.initialize({
+    startOnLoad: false
+    });
+    mermaid.init(undefined, ".lang-mermaid");
+    </script>  </body>
 </html>

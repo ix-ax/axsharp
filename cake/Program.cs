@@ -329,7 +329,7 @@ public sealed class GenerateApiDocumentationTask : FrostingTask<BuildContext>
         context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
         {
             WorkingDirectory = context.DocumentationSource,
-            Arguments = $"docfx -t default,templates/material"
+            Arguments = $"docfx build"
         }).WaitForExit();
 
             //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");

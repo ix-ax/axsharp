@@ -18,16 +18,27 @@ namespace Ix.Presentation.Blazor.Controls.Templates
         [Parameter]
         public bool IsReadOnly { get; set; }
 
+        protected T LastValue { get; set; }
+
         protected T Value
         {
             get
             {
-                return Onliner.Cyclic;
+                if (!HasFocus)
+                {
+                    return Onliner.Cyclic;
+                }
+                else
+                {
+                    return LastValue;
+                }
             }
             set
             {
+                LastValue = value;
                 Onliner.Edit = value;
             }
+
         }
 
         internal string AccessStatus { get; set; }
