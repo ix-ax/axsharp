@@ -217,4 +217,13 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
         semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
         return builder;
     }
+
+    public static CsOnlinerMemberBuilder Create(IxNodeVisitor visitor, IFunctionBlockDeclaration semantics,
+        Compilation compilation)
+    {
+        var builder = new CsOnlinerMemberBuilder(compilation);
+        //builder.AddToSource(semantics.DeclareProperties());
+        semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
+        return builder;
+    }
 }

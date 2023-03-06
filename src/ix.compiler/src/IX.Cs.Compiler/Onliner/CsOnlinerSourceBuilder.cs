@@ -16,6 +16,7 @@ using IX.Compiler.Core;
 using Ix.Compiler.Cs.Helpers;
 using Ix.Compiler.Cs.Helpers.Plain;
 using Ix.Connector;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Ix.Compiler.Cs.Onliner;
 
@@ -238,6 +239,52 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     public void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor)
     {
         throw new NotImplementedException();
+    }
+
+    /// <inheritdoc />
+    public void CreateFunctionBlockDeclaration(IFunctionBlockDeclarationSyntax functionBlockDeclarationSyntax,
+        IFunctionBlockDeclaration functionBlockDeclaration,
+        IxNodeVisitor visitor)
+    {
+        functionBlockDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
+
+        AddToSource(functionBlockDeclaration.Pragmas.AddAttributes());
+        AddToSource($"{functionBlockDeclaration.AccessModifier.Transform()}partial class {functionBlockDeclaration.Name}");
+        AddToSource(":");
+
+        var isExtended = false;
+        //if (Compilation.GetSemanticTree().Types
+        //    .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
+        //{
+        //    AddToSource($"{functionBlockDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+        //    isExtended = true;
+        //}
+        //else
+        //{
+        AddToSource(typeof(ITwinObject).n()!);
+        //}
+
+        //AddToSource(functionBlockDeclarationSyntax.ImplementsList != null ? ", " : string.Empty);
+        //functionBlockDeclarationSyntax.ImplementsList?.Visit(visitor, this);
+
+        AddToSource("\n{");
+
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, functionBlockDeclaration, Compilation).Output);
+
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+
+        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+
+        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, functionBlockDeclaration, Compilation, isExtended).Output);
+
+        AddPollingMethod();
+
+        if (!isExtended) CreateITwinObjectImplementation();
+        AddToSource("}");
     }
 
     /// <inheritdoc />

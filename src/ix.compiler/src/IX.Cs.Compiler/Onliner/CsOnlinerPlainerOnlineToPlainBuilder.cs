@@ -150,4 +150,23 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         builder.AddToSource($"}}");
         return builder;
     }
+
+    public static CsOnlinerPlainerOnlineToPlainBuilder Create(IxNodeVisitor visitor, IFunctionBlockDeclaration semantics,
+        Compilation compilation, bool isExtended)
+    {
+        var builder = new CsOnlinerPlainerOnlineToPlainBuilder(compilation);
+        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
+        builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
+        builder.AddToSource("await this.ReadAsync();");
+
+        if (isExtended)
+        {
+            builder.AddToSource($"await base.{MethodName}(plain);");
+        }
+
+        semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
+        builder.AddToSource($"return plain;");
+        builder.AddToSource($"}}");
+        return builder;
+    }
 }

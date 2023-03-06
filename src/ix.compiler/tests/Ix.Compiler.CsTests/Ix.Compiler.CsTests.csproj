@@ -28,6 +28,7 @@
 		<None Remove="samples\units\src\configuration.st" />
 		<None Remove="samples\units\src\enum_simple.st" />
 		<None Remove="samples\units\src\file_with_usings.st" />
+		<None Remove="samples\units\src\function_block.st" />
 		<None Remove="samples\units\src\program.st" />
 		<None Remove="samples\units\src\ref_to_simple.st" />
 		<None Remove="samples\units\src\simple_empty_class.st" />
@@ -42,6 +43,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="samples\units\expected\.g\Onliners\class_extended_by_known_type - Copy.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Include="samples\units\expected\.g\Onliners\class_with_using_directives.g.cs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
@@ -54,7 +58,7 @@
 	  <None Include="samples\units\expected\.g\Onliners\class_all_primitives.g.cs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Include="samples\units\expected\.g\Onliners\class_extended_by_known_type.g.cs">
+	  <None Include="samples\units\expected\.g\Onliners\function_block.g.cs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Include="samples\units\expected\.g\Onliners\class_extends.g.cs">
@@ -192,6 +196,9 @@
 	  <None Include="samples\units\expected\.g\POCO\file_with_usings.g.cs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	  <None Include="samples\units\expected\.g\POCO\function_block.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Include="samples\units\expected\.g\POCO\makereadonce.g.cs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
@@ -266,6 +273,9 @@
 		</Content>
 		<Content Include="samples\units\src\class_extends_and_implements.st">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="samples\units\src\function_block.st">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="samples\units\src\class_implements.st">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

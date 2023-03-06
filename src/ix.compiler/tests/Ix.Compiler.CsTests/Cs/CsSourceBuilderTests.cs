@@ -251,6 +251,13 @@ public abstract class CsSourceBuilderTests
         CompareOutputs(memberName);
     }
 
+    [Fact]
+    public void function_block()
+    {
+        var memberName = GetMethodName();
+        CompareOutputs(memberName);
+    }
+
     private void CompareOutputs(string memberName)
     {
         var sourceFile = Path.Combine(testFolder, $@"samples\units\src\{memberName}.st");

@@ -16,6 +16,7 @@ using Ix.Compiler.Core;
 using IX.Compiler.Core;
 using Ix.Compiler.Cs.Helpers;
 using Ix.Compiler.Cs.Helpers.Plain;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Ix.Compiler.Cs.Plain;
 
@@ -336,6 +337,30 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     public void CreateEnumTypeDeclaration(IEnumTypeDeclaration enumTypeDeclaration, IxNodeVisitor visitor)
     {
         AddToSource($"global::{enumTypeDeclaration.Type.FullyQualifiedName}");
+    }
+
+    /// <inheritdoc />
+    public void CreateFunctionBlockDeclaration(IFunctionBlockDeclarationSyntax functionBlockDeclarationSyntax,
+        IFunctionBlockDeclaration functionBlockDeclaration,
+        IxNodeVisitor visitor)
+    {
+        functionBlockDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
+        AddToSource($"{functionBlockDeclaration.AccessModifier.Transform()}partial class {functionBlockDeclaration.Name}");
+
+        //if (Compilation.GetSemanticTree().Types
+        //    .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
+        //    AddToSource($": {classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+        //AddToSource(classDeclarationSyntax.ImplementsList != null && classDeclarationSyntax.BaseClassName != null
+        //? ", "
+        //: string.Empty);
+        //AddToSource(classDeclarationSyntax.ImplementsList != null && classDeclarationSyntax.BaseClassName == null
+        //? " : "
+        //    : string.Empty);
+        //classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
+        AddToSource("{");
+        functionBlockDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
+        //functionBlockDeclaration.Fields.ToList().ForEach(p => p.Accept(visitor, this));
+        AddToSource("}");
     }
 
     /// <inheritdoc />

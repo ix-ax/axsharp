@@ -279,4 +279,18 @@ public interface ICombinedThreeVisitor
     /// <param name="arrayTypeDeclaration">Array type semantics</param>
     /// <param name="visitor">Associated visitor.</param>
     void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor);
+
+    /// <summary>
+    ///     Creates function block declaration starting in <see cref="FunctionBlockDeclarationSyntax" /> node and continues in respective
+    ///     semantic node of <see cref="IFunctionBlockDeclaration" />.
+    /// </summary>
+    /// <param name="functionBlockDeclarationSyntax">Function block declaration syntax node.</param>
+    /// <param name="functionBlockDeclaration">Function block declaration semantic node.</param>
+    /// <param name="visitor">Associated visitor.</param>
+    public virtual void CreateFunctionBlockDeclaration(IFunctionBlockDeclarationSyntax functionBlockDeclarationSyntax,
+        IFunctionBlockDeclaration functionBlockDeclaration,
+        IxNodeVisitor visitor)
+    {
+        throw new NotImplementedException();
+    }
 }

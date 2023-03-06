@@ -144,5 +144,23 @@ namespace Ix.Compiler.Cs.Onliner
             builder.AddToSource($"}}");
             return builder;
         }
+
+        public static CsOnlinerPlainerShadowToPlainBuilder Create(IxNodeVisitor visitor, IFunctionBlockDeclaration semantics,
+            Compilation compilation, bool isExtended)
+        {
+            var builder = new CsOnlinerPlainerShadowToPlainBuilder(compilation);
+            builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
+            builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
+
+            if (isExtended)
+            {
+                builder.AddToSource($"await base.{MethodName}(plain);");
+            }
+
+            semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
+            builder.AddToSource($"return plain;");
+            builder.AddToSource($"}}");
+            return builder;
+        }
     }
 }

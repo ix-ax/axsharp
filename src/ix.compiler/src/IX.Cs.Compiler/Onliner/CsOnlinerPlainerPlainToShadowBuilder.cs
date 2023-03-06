@@ -147,5 +147,24 @@ namespace Ix.Compiler.Cs.Onliner
             builder.AddToSource($"}}");
             return builder;
         }
+
+        public static CsOnlinerPlainerPlainToShadowBuilder Create(IxNodeVisitor visitor, IFunctionBlockDeclaration semantics,
+            Compilation compilation, bool isExtended)
+        {
+            var builder = new CsOnlinerPlainerPlainToShadowBuilder(compilation);
+            builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+
+
+            if (isExtended)
+            {
+                builder.AddToSource($"await base.{MethodName}(plain);");
+            }
+
+            semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
+            builder.AddToSource("return this.RetrievePrimitives();");
+
+            builder.AddToSource($"}}");
+            return builder;
+        }
     }
 }

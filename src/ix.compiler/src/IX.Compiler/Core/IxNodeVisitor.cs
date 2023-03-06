@@ -23,6 +23,7 @@ using AX.ST.Semantic.Symbols;
 using AX.ST.Semantic.Tree;
 using AX.ST.Syntax.Tree;
 using Ix.Compiler.Core;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace IX.Compiler.Core;
 
@@ -912,7 +913,14 @@ public partial class IxNodeVisitor : ISyntaxNodeVisitor<ICombinedThreeVisitor>
         IFunctionBlockDeclarationSyntax functionBlockDeclarationSyntax,
         ICombinedThreeVisitor data)
     {
-        throw new NotSupportedException();
+        var typeName = functionBlockDeclarationSyntax.Name.Text;
+        var fullyQualifiedName = GetFullyQualifiedNameFromCurrentSyntaxTree(typeName);
+        var semantics = Compilation.GetSemanticTree().FunctionBlocks
+            .FirstOrDefault(p => p.FullyQualifiedName == fullyQualifiedName);
+
+        if (semantics == null) throw new TypeNotFoundInSemanticTreeException($"funcion block '{fullyQualifiedName}'");
+
+        data.CreateFunctionBlockDeclaration(functionBlockDeclarationSyntax, semantics, this);
     }
 
     void ISyntaxNodeVisitor<ICombinedThreeVisitor>.Accept(IFunctionDeclarationSyntax functionDeclarationSyntax,

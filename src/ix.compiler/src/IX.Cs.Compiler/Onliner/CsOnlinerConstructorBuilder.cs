@@ -206,6 +206,40 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
         return builder;
     }
 
+    public static CsOnlinerConstructorBuilder Create(IxNodeVisitor visitor, IFunctionBlockDeclaration semantics,
+        Compilation compilation, bool isExtended)
+    {
+        var builder = new CsOnlinerConstructorBuilder(compilation);
+
+
+        builder.AddToSource(
+            $"public {semantics.Name}({typeof(ITwinObject).n()} parent, string readableTail, string symbolTail)");
+        if (isExtended) builder.AddToSource(": base(parent, readableTail, symbolTail + \".$base\") ");
+
+        builder.AddToSource("{");
+
+        //builder.AddToSource(semantics.SetProperties());
+
+        builder.AddToSource($"Symbol = {typeof(Connector.Connector).n()}.CreateSymbol(parent.Symbol, symbolTail);");
+
+        if (!isExtended)
+            builder.AddToSource(@$"this.@SymbolTail = symbolTail;
+			    this.@Connector = parent.GetConnector();
+			    this.@Parent = parent;
+			    HumanReadable = {typeof(Connector.Connector).n()}.CreateHumanReadable(parent.HumanReadable, readableTail);");
+
+        semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
+
+        if (!isExtended)
+        {
+            builder.AddToSource("parent.AddChild(this);");
+            builder.AddToSource("parent.AddKid(this);");
+        }
+
+        builder.AddToSource("}");
+        return builder;
+    }
+
     private void AddArrayMemberInitialization(IArrayTypeDeclaration type, IFieldDeclaration field,
         IxNodeVisitor visitor)
     {
