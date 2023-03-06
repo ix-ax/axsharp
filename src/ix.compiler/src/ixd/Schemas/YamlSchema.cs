@@ -26,8 +26,7 @@ namespace Ix.ixc_doc.Schemas
 
     public partial class YamlSchema
     {
-        [JsonProperty("items")]
-        public Item[] Items { get; set; }
+        [JsonProperty("items")] public List<Item> Items { get; set; } = new();
 
         [JsonProperty("references")]
         public Reference[] References { get; set; }
@@ -48,7 +47,7 @@ namespace Ix.ixc_doc.Schemas
         public string Parent { get; set; }
 
         [JsonProperty("children", NullValueHandling = NullValueHandling.Ignore)]
-        public string[] Children { get; set; }
+        public List<string> Children { get; set; } = new();
 
         [JsonProperty("langs")]
         public string[] Langs { get; set; }

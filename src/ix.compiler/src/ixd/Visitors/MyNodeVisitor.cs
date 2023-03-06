@@ -34,7 +34,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void MapYamlHelperToSchema()
         {
-            YamlHelper.Schema.Items = YamlHelper.Items.ToArray();
+            YamlHelper.Schema.Items = YamlHelper.Items.ToList();
             YamlHelper.Schema.References = YamlHelper.References.ToArray();
         }
 

@@ -5,6 +5,8 @@ using CommandLine;
 using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Schemas;
 using System.Xml.Linq;
+using Ix.ixc_doc.Visitors;
+using NuGet.Packaging;
 
 
 namespace Ix.ixc_doc.Mapper
@@ -22,10 +24,10 @@ namespace Ix.ixc_doc.Mapper
             return new Item
             {
                 Uid = _yh.GetBaseUid(declaration),
-                Id =  declaration.Name,
+                Id =  Helpers.Helpers.GetBaseUid(declaration.FullyQualifiedName),
                 Name = declaration.Name,
                 FullName = declaration.Name,
-                Namespace = declaration.ContainingNamespace?.Name,
+                Namespace = declaration is INamespaceDeclaration ? Helpers.Helpers.GetBaseUid(declaration.FullyQualifiedName) : Helpers.Helpers.GetBaseUid(declaration.ContainingNamespace?.FullyQualifiedName),
                 Summary = _yh.GetComments(declaration.Location).summary,
                 Remarks = _yh.GetComments(declaration.Location).remarks,
                 Assemblies = new string[] { _yh.GetAssembly(_yh.PathToProjectFile) },
@@ -39,7 +41,7 @@ namespace Ix.ixc_doc.Mapper
             var children = namespaceDeclaration.Declarations.Select(p => _yh.GetBaseUid(p));
 
             var item = PopulateItem((IDeclaration)namespaceDeclaration);
-            item.Children = children.ToArray();
+            item.Children.AddRange(children);
             item.Type = "Namespace";
 
             return item;
@@ -57,11 +59,11 @@ namespace Ix.ixc_doc.Mapper
                 .ForEach(list => extendedFields.Concat(list));
 
             var item = PopulateItem((IDeclaration)classDeclaration);
-            item.Parent = classDeclaration.ContainingNamespace.FullyQualifiedName;
-            item.Children = children.Concat(methods).ToArray();
+            item.Parent = Helpers.Helpers.GetBaseUid(classDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = children.Concat(methods).ToList();
             item.Type = "Class";
             item.Syntax = new Syntax { Content = $"CLASS {classDeclaration.Name}" };
-            item.Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => p.FullyQualifiedName).ToArray();
+            item.Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => _yh.GetBaseUid(p)).ToArray();
             item.InheritedMembers = _yh.GetInheritedMembers(classDeclaration);
             item.Implements = implementedInterfaces.ToArray();
 
@@ -119,7 +121,7 @@ namespace Ix.ixc_doc.Mapper
         public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
         {
             var item = PopulateItem((IDeclaration)namedValueTypeDeclaration);
-            item.Parent = namedValueTypeDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Parent = Helpers.Helpers.GetBaseUid(namedValueTypeDeclaration.ContainingNamespace.FullyQualifiedName);
             item.Type = "Enum";
             item.Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Type.FullyQualifiedName}" };
 
@@ -132,8 +134,8 @@ namespace Ix.ixc_doc.Mapper
             var methods = interfaceDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
 
             var item = PopulateItem((IDeclaration)interfaceDeclaration);
-            item.Parent = interfaceDeclaration.ContainingNamespace.FullyQualifiedName;
-            item.Children = methods.ToArray();
+            item.Parent = Helpers.Helpers.GetBaseUid(interfaceDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = methods.ToList();
             item.Type = "Interface";
             item.Syntax = new Syntax { Content = $"INTERFACE {interfaceDeclaration.Name}" };
             item.Implements = implementedInterfaces.ToArray();

@@ -40,7 +40,10 @@ namespace Ix.ixc_doc
         {
             var stringBuilder = new StringBuilder();
             var serializer = new SerializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull).Build();
+
             stringBuilder.AppendLine(serializer.Serialize(model));
+
+            
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"{_options.OutputProjectFolder}\{fileName}.yml"))
             {

@@ -202,7 +202,7 @@ namespace Ix.ixc_doc.Helpers
             return $"plc.{methodDeclaration.FullyQualifiedName}({declaration})";
         }
         // get base uid of field
-        public string GetBaseUid(IDeclaration declaration) => $"plc.{declaration.FullyQualifiedName}";
+        public string GetBaseUid(IDeclaration declaration) => Helpers.GetBaseUid(declaration);
         //get id of method
         public string GetMethodId(IMethodDeclaration methodDeclaration)
         {

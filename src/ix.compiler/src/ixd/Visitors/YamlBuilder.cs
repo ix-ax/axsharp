@@ -15,6 +15,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using NuGet.Packaging;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -36,17 +37,19 @@ namespace Ix.ixc_doc.Visitors
 
         public virtual void CreateNamespaceYaml(INamespaceDeclaration namespaceDeclaration, MyNodeVisitor v)
         {
-            //populate item of namepsace
-            var item = _mp.PopulateItem(namespaceDeclaration);
             // create toc item
-            var tocSchemaItem = new TocSchema.Item(_yh.GetBaseUid(namespaceDeclaration), namespaceDeclaration.Name);
+            var tocSchemaItem = new TocSchema.Item(namespaceDeclaration, namespaceDeclaration.Name);
+
+            var hasTypes = namespaceDeclaration.Declarations.Any(p => p is IStructuredTypeDeclaration || p is IInterfaceDeclaration);
+          
 
             // add to namespace group if is not global
             if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
-                if (_yh.FindTocGroup(v.YamlHelper.TocSchema.Items, _yh.GetBaseUid(namespaceDeclaration)) == null)
-                    _yh.AddToTocSchema(v, tocSchemaItem, _yh.GetBaseUid(namespaceDeclaration.ContainingNamespace));
+                if (_yh.FindTocGroup(v.YamlHelper.TocSchema.Items, _yh.GetBaseUid(namespaceDeclaration)) == null && hasTypes)
+                    _yh.AddToTocSchema(v, tocSchemaItem, _yh.GetBaseUid(namespaceDeclaration));
 
             // iterate through children
+
             namespaceDeclaration.Declarations.ToList().ForEach(p =>
             {
                 p.Accept(v, this);
@@ -55,13 +58,40 @@ namespace Ix.ixc_doc.Visitors
 
             if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
             {
-                v.YamlHelper.Schema.Items = new Item[] { item };
-                v.YamlHelper.Schema.References = v.YamlHelper.NamespaceReferences.ToArray();
+                //populate item of namespace
+                var item = namespaces.FirstOrDefault(p => p.Id == Helpers.Helpers.GetBaseUid(namespaceDeclaration));
+                if (item == null)
+                {
+                    namespaces.Add(_mp.PopulateItem(namespaceDeclaration));
+                }
+                else
+                {
+                    item.Children.AddRange(namespaceDeclaration.Declarations.Select(p => _yh.GetBaseUid(p)));
+                }
+
+                
+
+                if (references.ContainsKey(Helpers.Helpers.GetBaseUid(namespaceDeclaration)))
+                {
+                    references[Helpers.Helpers.GetBaseUid(namespaceDeclaration)].AddRange(v.YamlHelper.NamespaceReferences);
+                }
+                else
+                {
+                    references[Helpers.Helpers.GetBaseUid(namespaceDeclaration)] = v.YamlHelper.NamespaceReferences;
+                }
+
+
+
+                v.YamlHelper.Schema.Items.AddRange(new Item[] { item });
+                v.YamlHelper.Schema.References = references[Helpers.Helpers.GetBaseUid(namespaceDeclaration)].ToArray();
                 _s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(namespaceDeclaration));
                 v.YamlHelper.Schema = new YamlSchema();
                 v.YamlHelper.NamespaceReferences.Clear();
             }
         }
+
+        private List<Item> namespaces = new List<Item>();
+        private Dictionary<string, List<Reference>> references = new Dictionary<string, List<Reference>>();
 
         //operation on semantic tree
         public virtual void CreateClassYaml(IClassDeclaration classDeclaration, MyNodeVisitor v)
