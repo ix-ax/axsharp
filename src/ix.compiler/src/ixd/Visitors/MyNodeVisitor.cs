@@ -40,7 +40,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)
         {
-            partialSemanticTree.ChildNodes.ToList().ForEach(p => p.Accept(this, data));
+            partialSemanticTree.ChildNodes.Where(p => p is INamespaceDeclaration).ToList().ForEach(p => p.Accept(this, data));
         }
 
         public void Visit(ISymbol symbol, IYamlBuiderVisitor data)

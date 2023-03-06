@@ -40,7 +40,7 @@ namespace Ix.ixc_doc.Visitors
             // create toc item
             var tocSchemaItem = new TocSchema.Item(namespaceDeclaration, namespaceDeclaration.Name);
 
-            var hasTypes = namespaceDeclaration.Declarations.Any(p => p is IStructuredTypeDeclaration || p is IInterfaceDeclaration);
+            var hasTypes = namespaceDeclaration.Declarations.Any(p => p is IClassDeclaration || p is IStructuredTypeDeclaration || p is IInterfaceDeclaration);
           
 
             // add to namespace group if is not global
@@ -56,8 +56,16 @@ namespace Ix.ixc_doc.Visitors
                 _yh.AddNamespaceReference(p, v);
             });
 
-            if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL")
+            if (namespaceDeclaration.FullyQualifiedName != "$GLOBAL" && hasTypes)
             {
+                //var item = _mp.PopulateItem(namespaceDeclaration);
+                //v.YamlHelper.Schema.Items.AddRange(new Item[] { item });
+                //v.YamlHelper.Schema.References = v.YamlHelper.NamespaceReferences.ToArray();
+                //_s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(namespaceDeclaration));
+                //v.YamlHelper.Schema = new YamlSchema();
+                //v.YamlHelper.NamespaceReferences.Clear();
+
+
                 //populate item of namespace
                 var item = namespaces.FirstOrDefault(p => p.Id == Helpers.Helpers.GetBaseUid(namespaceDeclaration));
                 if (item == null)
@@ -69,7 +77,7 @@ namespace Ix.ixc_doc.Visitors
                     item.Children.AddRange(namespaceDeclaration.Declarations.Select(p => _yh.GetBaseUid(p)));
                 }
 
-                
+
 
                 if (references.ContainsKey(Helpers.Helpers.GetBaseUid(namespaceDeclaration)))
                 {
@@ -82,11 +90,12 @@ namespace Ix.ixc_doc.Visitors
 
 
 
-                v.YamlHelper.Schema.Items.AddRange(new Item[] { item });
+                v.YamlHelper.Schema.Items.AddRange(namespaces.Where(p => p.Id == Helpers.Helpers.GetBaseUid(namespaceDeclaration)));
                 v.YamlHelper.Schema.References = references[Helpers.Helpers.GetBaseUid(namespaceDeclaration)].ToArray();
                 _s.SchemaToYaml(v.YamlHelper.Schema, _yh.GetBaseUid(namespaceDeclaration));
                 v.YamlHelper.Schema = new YamlSchema();
                 v.YamlHelper.NamespaceReferences.Clear();
+
             }
         }
 
