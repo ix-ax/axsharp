@@ -5,6 +5,8 @@ using CommandLine;
 using Ix.ixc_doc.Helpers;
 using Ix.ixc_doc.Schemas;
 using System.Xml.Linq;
+using Ix.ixc_doc.Visitors;
+using NuGet.Packaging;
 
 
 namespace Ix.ixc_doc.Mapper
@@ -21,11 +23,11 @@ namespace Ix.ixc_doc.Mapper
         {
             return new Item
             {
-                Uid = _yh.GetBaseUid(declaration),
-                Id =  declaration.Name,
+                Uid = Helpers.Helpers.GetBaseUid(declaration),
+                Id =  Helpers.Helpers.GetBaseUid(declaration.FullyQualifiedName),
                 Name = declaration.Name,
                 FullName = declaration.Name,
-                Namespace = declaration.ContainingNamespace?.Name,
+                Namespace = declaration is INamespaceDeclaration ? Helpers.Helpers.GetBaseUid(declaration.FullyQualifiedName) : Helpers.Helpers.GetBaseUid(declaration.ContainingNamespace?.FullyQualifiedName),
                 Summary = _yh.GetComments(declaration.Location).summary,
                 Remarks = _yh.GetComments(declaration.Location).remarks,
                 Assemblies = new string[] { _yh.GetAssembly(_yh.PathToProjectFile) },
@@ -36,10 +38,11 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(INamespaceDeclaration namespaceDeclaration)
         {
-            var children = namespaceDeclaration.Declarations.Select(p => _yh.GetBaseUid(p));
-
+            var children = namespaceDeclaration.Declarations.Select(p => Helpers.Helpers.GetBaseUid(p));
+            //_yh.NamespaceChildren.AddRange(children);
             var item = PopulateItem((IDeclaration)namespaceDeclaration);
-            item.Children = children.ToArray();
+            item.Name = Helpers.Helpers.GetBaseUid(namespaceDeclaration);
+            item.Children = new List<string>();
             item.Type = "Namespace";
 
             return item;
@@ -47,9 +50,9 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(IClassDeclaration classDeclaration)
         {
-            var children = classDeclaration.Fields.Select(p => _yh.GetBaseUid(p));
-            var methods = classDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
-            var implementedInterfaces = classDeclaration.GetAllImplementedInterfacesUniquely().Select(i => _yh.GetBaseUid(i));
+            var children = classDeclaration.Fields.Select(p => Helpers.Helpers.GetBaseUid(p));
+            var methods = classDeclaration.Methods.Select(p => Helpers.Helpers.GetBaseUid(p));
+            var implementedInterfaces = classDeclaration.GetAllImplementedInterfacesUniquely().Select(i => Helpers.Helpers.GetBaseUid(i));
 
             List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
             classDeclaration.GetAllExtendedTypes().ToList()
@@ -57,11 +60,11 @@ namespace Ix.ixc_doc.Mapper
                 .ForEach(list => extendedFields.Concat(list));
 
             var item = PopulateItem((IDeclaration)classDeclaration);
-            item.Parent = classDeclaration.ContainingNamespace.FullyQualifiedName;
-            item.Children = children.Concat(methods).ToArray();
+            item.Parent = Helpers.Helpers.GetBaseUid(classDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = children.Concat(methods).ToList();
             item.Type = "Class";
             item.Syntax = new Syntax { Content = $"CLASS {classDeclaration.Name}" };
-            item.Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => p.FullyQualifiedName).ToArray();
+            item.Inheritance = classDeclaration.GetAllExtendedTypes().Select(p => Helpers.Helpers.GetBaseUid(p)).ToArray();
             item.InheritedMembers = _yh.GetInheritedMembers(classDeclaration);
             item.Implements = implementedInterfaces.ToArray();
 
@@ -98,8 +101,8 @@ namespace Ix.ixc_doc.Mapper
             string declaration = $"{methodDeclaration.AccessModifier} {(returnType == null ? "VOID" : returnType.Type.FullyQualifiedName)} {methodDeclaration.Name}({inputDeclaration.Item2})";
 
             var item = PopulateItem((IDeclaration)methodDeclaration);
-            item.Uid = _yh.GetMethodUId(methodDeclaration);
-            item.Id = _yh.GetMethodId(methodDeclaration);
+            item.Uid = Helpers.Helpers.GetBaseUid(methodDeclaration);
+            item.Id = Helpers.Helpers.GetBaseUid(methodDeclaration);
             item.Parent = methodDeclaration.ContainingClass.FullyQualifiedName;
             item.Type = "Method";
             item.Syntax = new Syntax
@@ -108,7 +111,37 @@ namespace Ix.ixc_doc.Mapper
                 Parameters = inputDeclaration.Item1.ToArray(),
                 Return = new Return
                 {
-                    Type = returnType?.Type.FullyQualifiedName,
+                    Type = returnType == null ? "VOID" : Helpers.Helpers.GetBaseUid(returnType.Type) ,
+                    Description = comments.returns
+                }
+            };
+
+            return item;
+        }
+
+        public Item PopulateItem(IFunctionDeclaration functionDeclaration)
+        {
+            var comments = _yh.GetComments(functionDeclaration.Location);
+
+            var returnType = functionDeclaration.Variables.Where(v => v.Section == Section.Return).FirstOrDefault();
+         
+            var inputParamsDeclaration = functionDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
+
+            var inputDeclaration = _yh.CreateParametersAndDeclarationString(inputParamsDeclaration, comments);
+            string declaration = $"{functionDeclaration.AccessModifier} {(returnType == null ? "VOID" : returnType.Type.FullyQualifiedName)} {functionDeclaration.Name}({inputDeclaration.Item2})";
+
+            var item = PopulateItem((IDeclaration)functionDeclaration);
+            item.Uid = Helpers.Helpers.GetBaseUid(functionDeclaration);
+            item.Id = Helpers.Helpers.GetBaseUid(functionDeclaration);
+            item.Parent = functionDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Type = "Delegate";
+            item.Syntax = new Syntax
+            {
+                Content = declaration,
+                Parameters = inputDeclaration.Item1.ToArray(),
+                Return = new Return
+                {
+                    Type = returnType == null ? "VOID" : Helpers.Helpers.GetBaseUid(returnType.Type) ,
                     Description = comments.returns
                 }
             };
@@ -119,7 +152,7 @@ namespace Ix.ixc_doc.Mapper
         public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
         {
             var item = PopulateItem((IDeclaration)namedValueTypeDeclaration);
-            item.Parent = namedValueTypeDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Parent = Helpers.Helpers.GetBaseUid(namedValueTypeDeclaration.ContainingNamespace.FullyQualifiedName);
             item.Type = "Enum";
             item.Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Type.FullyQualifiedName}" };
 
@@ -128,12 +161,12 @@ namespace Ix.ixc_doc.Mapper
 
         public Item PopulateItem(IInterfaceDeclaration interfaceDeclaration)
         {
-            var implementedInterfaces = interfaceDeclaration.GetAllImplementedInterfacesUniquely().Select(i => _yh.GetBaseUid(i));
-            var methods = interfaceDeclaration.Methods.Select(p => _yh.GetMethodUId(p));
+            var implementedInterfaces = interfaceDeclaration.GetAllImplementedInterfacesUniquely().Select(i => Helpers.Helpers.GetBaseUid(i));
+            var methods = interfaceDeclaration.Methods.Select(p => Helpers.Helpers.GetBaseUid(p));
 
             var item = PopulateItem((IDeclaration)interfaceDeclaration);
-            item.Parent = interfaceDeclaration.ContainingNamespace.FullyQualifiedName;
-            item.Children = methods.ToArray();
+            item.Parent = Helpers.Helpers.GetBaseUid(interfaceDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = methods.ToList();
             item.Type = "Interface";
             item.Syntax = new Syntax { Content = $"INTERFACE {interfaceDeclaration.Name}" };
             item.Implements = implementedInterfaces.ToArray();
@@ -153,7 +186,7 @@ namespace Ix.ixc_doc.Mapper
             string declaration = $"{methodPrototypeDeclaration.AccessModifier} {(returnType == null ? "VOID" : returnType.Type.FullyQualifiedName)} {methodPrototypeDeclaration.Name}({inputDeclaration.Item2})";
 
             var item = PopulateItem((IDeclaration)methodPrototypeDeclaration);
-            item.Uid = _yh.GetMethodUId(methodPrototypeDeclaration);
+            item.Uid = Helpers.Helpers.GetBaseUid(methodPrototypeDeclaration);
             item.Parent = methodPrototypeDeclaration.ContainingInterface.Name;
             item.Type = "Method";
             item.Syntax = new Syntax
@@ -162,7 +195,7 @@ namespace Ix.ixc_doc.Mapper
                 Parameters = inputDeclaration.Item1.ToArray(),
                 Return = new Return
                 {
-                    Type = returnType?.Type.FullyQualifiedName,
+                    Type = returnType == null ? "VOID" : Helpers.Helpers.GetBaseUid(returnType.Type) ,
                     Description = comments.returns
                 }
             };

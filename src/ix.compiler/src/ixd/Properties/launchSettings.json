@@ -7,6 +7,11 @@
     "ixd-2": {
       "commandName": "Project",
       "commandLineArgs": "ixd-2 -x C:\\MTS\\ix.framework\\src\\core\\ctrl -o C:\\MTS\\ix.framework\\docfx\\apictrl"
+    },
+    "ixd-3": {
+      "commandName": "Project",
+      "commandLineArgs": "-x .\\src\\core\\ctrl\\ -o .\\docfx\\apictrl\\",
+      "workingDirectory":  "C:\\MTS\\ix-ax\\ix.framework\\"
     }
   }
 }

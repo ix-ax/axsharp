@@ -34,13 +34,13 @@ namespace Ix.ixc_doc.Visitors
 
         public void MapYamlHelperToSchema()
         {
-            YamlHelper.Schema.Items = YamlHelper.Items.ToArray();
+            YamlHelper.Schema.Items = YamlHelper.Items.ToList();
             YamlHelper.Schema.References = YamlHelper.References.ToArray();
         }
 
         public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)
         {
-            partialSemanticTree.ChildNodes.ToList().ForEach(p => p.Accept(this, data));
+            partialSemanticTree.ChildNodes.Where(p => p is INamespaceDeclaration).ToList().ForEach(p => p.Accept(this, data));
         }
 
         public void Visit(ISymbol symbol, IYamlBuiderVisitor data)
@@ -99,7 +99,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IFunctionDeclaration functionDeclaration, IYamlBuiderVisitor data)
         {
-           
+           data.CreateFunctionYaml(functionDeclaration, this);
         }
 
         public void Visit(IFunctionBlockDeclaration functionBlockDeclaration, IYamlBuiderVisitor data)
