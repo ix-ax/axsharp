@@ -11,7 +11,7 @@
     "ixd-3": {
       "commandName": "Project",
       "commandLineArgs": "-x .\\src\\core\\ctrl\\ -o .\\docfx\\apictrl\\",
-      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\ix.framework\\"
+      "workingDirectory":  "C:\\MTS\\ix-ax\\ix.framework\\"
     }
   }
 }

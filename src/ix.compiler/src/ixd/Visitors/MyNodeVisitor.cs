@@ -99,7 +99,7 @@ namespace Ix.ixc_doc.Visitors
 
         public void Visit(IFunctionDeclaration functionDeclaration, IYamlBuiderVisitor data)
         {
-           
+           data.CreateFunctionYaml(functionDeclaration, this);
         }
 
         public void Visit(IFunctionBlockDeclaration functionBlockDeclaration, IYamlBuiderVisitor data)

@@ -37,8 +37,8 @@ namespace Ix.ixc_doc.Helpers
                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList()
                .ForEach(member => extendedFields = extendedFields.Concat(member));
 
-            return extendedFields.Select(f => GetBaseUid(f))
-                                 .Concat(extendedMethods.Select(m => GetMethodUId(m))).ToArray();
+            return extendedFields.Select(f => Helpers.GetBaseUid(f))
+                                 .Concat(extendedMethods.Select(m => Helpers.GetBaseUid(m))).ToArray();
         }
         // check if field can be inherited
         public bool CanBeFieldInherited(IFieldDeclaration field, ITypeDeclaration subClass, ITypeDeclaration baseClass)
@@ -161,7 +161,7 @@ namespace Ix.ixc_doc.Helpers
                 var parameter = new Parameter
                 {
                     Id = p.Name,
-                    Type = p.Type.FullyQualifiedName 
+                    Type = Helpers.GetBaseUid(p.Type) 
                  };
 
                 string description;
@@ -178,46 +178,6 @@ namespace Ix.ixc_doc.Helpers
 
             return(inputParams, fullDeclaration.ToString());
         }
-
-        private string GetMethodTypeDeclaration(IList<IVariableDeclaration> inputParams)
-        { 
-          StringBuilder typeDeclaration = new StringBuilder();
-          
-            foreach (var p in inputParams)
-            {
-                typeDeclaration.Append(p.Type);
-                if(inputParams.Last() != p) 
-                { 
-                    typeDeclaration.Append(",");
-                }
-            }    
-            return typeDeclaration.ToString();
-        }
-
-        //get uid of method
-        public string GetMethodUId(IMethodDeclaration methodDeclaration)
-        {
-            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
-            var declaration=GetMethodTypeDeclaration(inputParamsDeclaration);
-            return $"plc.{methodDeclaration.FullyQualifiedName}({declaration})";
-        }
-        // get base uid of field
-        public string GetBaseUid(IDeclaration declaration) => Helpers.GetBaseUid(declaration);
-        //get id of method
-        public string GetMethodId(IMethodDeclaration methodDeclaration)
-        {
-            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
-            var declaration=GetMethodTypeDeclaration(inputParamsDeclaration);
-            return $"plc.{methodDeclaration.Name}({declaration})";
-        }
-
-        public string GetMethodUId(IMethodPrototypeDeclaration methodDeclaration)
-        {
-            var inputParamsDeclaration = methodDeclaration.Variables.Where(v => v.Section == Section.Input).ToList();
-            var declaration=GetMethodTypeDeclaration(inputParamsDeclaration);
-            return $"plc.{methodDeclaration.FullyQualifiedName}({declaration.ToString()})";
-        }
-
     
         //create toc schema, grouped if namespace exists, or only global
         public void AddToTocSchema(MyNodeVisitor visitor, TocSchema.Item tocSchemaItem, string? tocGroup)
@@ -287,28 +247,41 @@ namespace Ix.ixc_doc.Helpers
         }
 
 
-        //add references for namespace
-        public void AddNamespaceReference(IDeclaration declaration, MyNodeVisitor v)
+        
+         //add references for namespace
+        public Reference CreateNamespaceReference(IFunctionDeclaration functionDeclaration)
         {
-            if (v.YamlHelper.NamespaceReferences.Where(a => a.Uid == GetBaseUid(declaration)).Count() > 0)
-                return;
-            var reference = new Reference
+
+          
+            return new Reference
             {
-                Uid = GetBaseUid(declaration),
+                Uid = Helpers.GetBaseUid(functionDeclaration),
+                Name = functionDeclaration.Name,
+                FullName = functionDeclaration.FullyQualifiedName,
+                NameWithType = functionDeclaration.Name
+            };
+
+        }
+
+        //add references for namespace
+        public Reference CreateNamespaceReference(IDeclaration declaration)
+        {
+            return new Reference
+            {
+                Uid = Helpers.GetBaseUid(declaration),
                 Name = declaration.Name,
                 FullName = declaration.FullyQualifiedName,
                 NameWithType = declaration.Name
             };
-            v.YamlHelper.NamespaceReferences.Add(reference);
         }
         //add general reference
         public void AddReference(IDeclaration declaration, MyNodeVisitor v)
         {
-            if (v.YamlHelper.References.Where(a => a.Uid == GetBaseUid(declaration)).Count() > 0)
+            if (v.YamlHelper.References.Where(a => a.Uid == Helpers.GetBaseUid(declaration)).Count() > 0)
                 return;
             var reference = new Reference
             {
-                Uid = GetBaseUid(declaration),
+                Uid = Helpers.GetBaseUid(declaration),
                 Name = declaration.Name,
                 FullName = declaration.FullyQualifiedName,
                 NameWithType = declaration.Name

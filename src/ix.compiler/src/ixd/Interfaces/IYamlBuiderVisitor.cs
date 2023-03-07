@@ -73,5 +73,12 @@ namespace Ix.ixc_doc.Interfaces
             throw new NotImplementedException();
         }
 
+        public virtual void CreateFunctionYaml(
+          IFunctionDeclaration functionDeclaration,
+          MyNodeVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

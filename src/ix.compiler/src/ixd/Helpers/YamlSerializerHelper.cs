@@ -22,6 +22,8 @@ namespace Ix.ixc_doc.Helpers
         public List<Item> Items { get; set; } = new List<Item>();
         public List<Item> NamespaceItems { get; set; } = new List<Item>();
 
+        public List<string> NamespaceChildren { get; set; } = new List<string>();
+
     
         //helpers lists for references
 
