@@ -157,6 +157,8 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
 			    this.@Parent = parent;
 			    HumanReadable = {typeof(Connector.Connector).n()}.CreateHumanReadable(parent.HumanReadable, readableTail);");
 
+        builder.AddToSource(@$"PreConstruct(parent, readableTail, symbolTail);");
+
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
         if (!isExtended)
@@ -164,6 +166,8 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
             builder.AddToSource("parent.AddChild(this);");
             builder.AddToSource("parent.AddKid(this);");
         }
+
+        builder.AddToSource(@$"PostConstruct(parent, readableTail, symbolTail);");
 
         builder.AddToSource("}");
         return builder;
@@ -185,9 +189,11 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
 			this.@Parent = parent;
 			HumanReadable = {typeof(Connector.Connector).n()}.CreateHumanReadable(parent.HumanReadable, readableTail);
             Symbol = {typeof(Connector.Connector).n()}.CreateSymbol(parent.Symbol, symbolTail);");
+
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
         builder.AddToSource("parent.AddChild(this);");
         builder.AddToSource("parent.AddKid(this);");
+
         builder.AddToSource("}");
 
         return builder;
