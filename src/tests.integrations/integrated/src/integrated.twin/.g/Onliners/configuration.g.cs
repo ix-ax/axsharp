@@ -103,6 +103,8 @@ public partial class Pokus : Ix.Connector.ITwinObject
 {
     public Nested Nested { get; }
 
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public Pokus(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -110,9 +112,11 @@ public partial class Pokus : Ix.Connector.ITwinObject
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        PreConstruct(parent, readableTail, symbolTail);
         Nested = new Nested(this, "Nested", "Nested");
         parent.AddChild(this);
         parent.AddKid(this);
+        PostConstruct(parent, readableTail, symbolTail);
     }
 
     public async Task<Pocos.Pokus> OnlineToPlainAsync()
@@ -240,6 +244,8 @@ public partial class Nested : Ix.Connector.ITwinObject
 
     public OnlinerByte SomeByte { get; }
 
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public Nested(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -247,11 +253,13 @@ public partial class Nested : Ix.Connector.ITwinObject
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        PreConstruct(parent, readableTail, symbolTail);
         SomeString = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "SomeString", "SomeString");
         SomeInt = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "SomeInt", "SomeInt");
         SomeByte = @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(this, "SomeByte", "SomeByte");
         parent.AddChild(this);
         parent.AddKid(this);
+        PostConstruct(parent, readableTail, symbolTail);
     }
 
     public async Task<Pocos.Nested> OnlineToPlainAsync()
