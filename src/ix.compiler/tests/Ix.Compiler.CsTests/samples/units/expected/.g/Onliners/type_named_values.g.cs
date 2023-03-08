@@ -17,6 +17,8 @@ namespace NamedValuesNamespace
         [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(NamedValuesNamespace.LightColors))]
         public OnlinerInt LColors { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public using_type_named_values(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -24,9 +26,11 @@ namespace NamedValuesNamespace
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             LColors = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "LColors", "LColors");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.NamedValuesNamespace.using_type_named_values> OnlineToPlainAsync()
