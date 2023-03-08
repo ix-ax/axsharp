@@ -11,6 +11,8 @@
     href: ~/articles/compiler/ATTRIBUTES.md
   - name: Added members
     href: ~/articles/compiler/ADDED_MEMBERS.md
+  - name: Constructor extensions of onliners
+    href: ~/articles/compiler/CONSTRUCTOR_EXTENSIONS.md
   - name: Config file
     href: ~/articles/compiler/CONFIG_FILE.md
   - name: Packaging and dependencies
