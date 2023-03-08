@@ -131,10 +131,10 @@ public partial class _NULL_CONTEXT_MULTIPLE : Ix.Connector.ITwinObject, IContext
     protected Ix.Connector.ITwinObject @Parent { get; set; }
 }
 
-public interface IContext_Multiple
+public partial interface IContext_Multiple
 {
 }
 
-public interface IObject_Multiple
+public partial interface IObject_Multiple
 {
 }

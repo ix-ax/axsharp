@@ -6,11 +6,11 @@ namespace Pocos
     {
     }
 
-    public interface IContext_Multiple
+    public partial interface IContext_Multiple
     {
     }
 
-    public interface IObject_Multiple
+    public partial interface IObject_Multiple
     {
     }
 }

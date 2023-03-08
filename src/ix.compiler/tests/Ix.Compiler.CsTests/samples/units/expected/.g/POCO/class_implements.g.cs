@@ -6,7 +6,7 @@ namespace Pocos
     {
     }
 
-    public interface IContext
+    public partial interface IContext
     {
     }
 }

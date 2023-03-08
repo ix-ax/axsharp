@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace Simatic.Ax.StateFramework
     {
-        public interface IGuard
+        public partial interface IGuard
         {
         }
     }

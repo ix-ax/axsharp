@@ -187,10 +187,10 @@ public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
     protected Ix.Connector.ITwinObject @Parent { get; set; }
 }
 
-public interface IImplementation1
+public partial interface IImplementation1
 {
 }
 
-public interface IImplementation2
+public partial interface IImplementation2
 {
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Simatic.Ax.StateFramework
 {
-    public interface IGuard
+    public partial interface IGuard
     {
     }
 }
