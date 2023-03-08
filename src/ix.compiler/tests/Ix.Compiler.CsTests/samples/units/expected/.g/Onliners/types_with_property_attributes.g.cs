@@ -23,6 +23,8 @@ namespace TypesWithPropertyAttributes
 
         public OnlinerInt Counter { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public SomeAddedProperties(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Description = "Some added property name value";
@@ -31,10 +33,12 @@ namespace TypesWithPropertyAttributes
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             Counter = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "Pocitadlo", "Counter");
             Counter.AttributeName = "Pocitadlo";
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.TypesWithPropertyAttributes.SomeAddedProperties> OnlineToPlainAsync()

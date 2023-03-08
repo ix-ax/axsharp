@@ -61,6 +61,8 @@ namespace ClassWithPrimitiveTypesNamespace
 
         public OnlinerWString myWSTRING { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ClassWithPrimitiveTypes(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -68,6 +70,7 @@ namespace ClassWithPrimitiveTypesNamespace
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             myBOOL = @Connector.ConnectorAdapter.AdapterFactory.CreateBOOL(this, "myBOOL", "myBOOL");
             myBYTE = @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(this, "myBYTE", "myBYTE");
             myWORD = @Connector.ConnectorAdapter.AdapterFactory.CreateWORD(this, "myWORD", "myWORD");
@@ -97,6 +100,7 @@ namespace ClassWithPrimitiveTypesNamespace
             myWSTRING = @Connector.ConnectorAdapter.AdapterFactory.CreateWSTRING(this, "myWSTRING", "myWSTRING");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> OnlineToPlainAsync()

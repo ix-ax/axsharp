@@ -7,9 +7,13 @@ namespace Simatic.Ax.StateFramework
 {
     public partial class State1Transition : AbstractState
     {
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public State1Transition(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            PreConstruct(parent, readableTail, symbolTail);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
@@ -66,6 +70,8 @@ namespace Simatic.Ax.StateFramework
 
         public OnlinerString StateName { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public AbstractState(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -73,10 +79,12 @@ namespace Simatic.Ax.StateFramework
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             StateID = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "StateID", "StateID");
             StateName = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "StateName", "StateName");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync()

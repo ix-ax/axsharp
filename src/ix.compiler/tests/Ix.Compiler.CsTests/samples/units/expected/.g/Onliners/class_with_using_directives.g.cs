@@ -8,6 +8,8 @@ using HelloLevelOne.HelloLevelTwo;
 
 internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
 {
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public ClassWithUsingDirectives(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -15,8 +17,10 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        PreConstruct(parent, readableTail, symbolTail);
         parent.AddChild(this);
         parent.AddKid(this);
+        PostConstruct(parent, readableTail, symbolTail);
     }
 
     public async Task<Pocos.ClassWithUsingDirectives> OnlineToPlainAsync()

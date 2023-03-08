@@ -11,6 +11,8 @@ namespace ClassWithPragmasNamespace
         [Container(Layout.Wrap)]
         public ClassWithPragmasNamespace.ComplexType1 myComplexType { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ClassWithPragmas(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -18,9 +20,11 @@ namespace ClassWithPragmasNamespace
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             myComplexType = new ClassWithPragmasNamespace.ComplexType1(this, "myComplexType", "myComplexType");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> OnlineToPlainAsync()
@@ -142,6 +146,8 @@ namespace ClassWithPragmasNamespace
 
     public partial class ComplexType1 : Ix.Connector.ITwinObject
     {
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ComplexType1(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -149,8 +155,10 @@ namespace ClassWithPragmasNamespace
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> OnlineToPlainAsync()

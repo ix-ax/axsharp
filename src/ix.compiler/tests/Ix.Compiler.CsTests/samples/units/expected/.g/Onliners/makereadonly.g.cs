@@ -17,6 +17,8 @@ namespace makereadonly
 
         public makereadonly.ComplexMember someotherComplexMember { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public MembersWithMakeReadOnly(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -24,6 +26,7 @@ namespace makereadonly
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             makeReadOnceMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "makeReadOnceMember", "makeReadOnceMember");
             makeReadOnceMember.MakeReadOnly();
             someOtherMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someOtherMember", "someOtherMember");
@@ -32,6 +35,7 @@ namespace makereadonly
             someotherComplexMember = new makereadonly.ComplexMember(this, "someotherComplexMember", "someotherComplexMember");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync()
@@ -175,6 +179,8 @@ namespace makereadonly
 
         public OnlinerString someOtherMember { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ComplexMember(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -182,10 +188,12 @@ namespace makereadonly
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             someMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someMember", "someMember");
             someOtherMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someOtherMember", "someOtherMember");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync()

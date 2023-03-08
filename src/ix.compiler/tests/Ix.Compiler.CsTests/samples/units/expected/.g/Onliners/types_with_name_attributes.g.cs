@@ -298,6 +298,8 @@ namespace TypeWithNameAttributes
 
         public OnlinerString SomeClassVariable { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public NoAccessModifierClass(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -305,9 +307,11 @@ namespace TypeWithNameAttributes
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             SomeClassVariable = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "SomeClassVariable", "SomeClassVariable");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
         }
 
         public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> OnlineToPlainAsync()
