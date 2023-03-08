@@ -131,6 +131,6 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
     protected Ix.Connector.ITwinObject @Parent { get; set; }
 }
 
-public interface IContext
+public partial interface IContext
 {
 }

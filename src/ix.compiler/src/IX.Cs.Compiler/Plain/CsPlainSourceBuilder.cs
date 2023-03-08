@@ -206,7 +206,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IInterfaceDeclaration interfaceDeclaration,
         IxNodeVisitor visitor)
     {
-        AddToSource($"{interfaceDeclaration.AccessModifier.Transform()} interface {interfaceDeclaration.Name} {{}}");
+        AddToSource($"{interfaceDeclaration.AccessModifier.Transform()} partial interface {interfaceDeclaration.Name} {{}}");
     }
 
     /// <inheritdoc />

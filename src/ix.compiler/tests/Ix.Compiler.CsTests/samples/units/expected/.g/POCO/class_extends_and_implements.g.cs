@@ -10,11 +10,11 @@ namespace Pocos
     {
     }
 
-    public interface IImplementation1
+    public partial interface IImplementation1
     {
     }
 
-    public interface IImplementation2
+    public partial interface IImplementation2
     {
     }
 }
