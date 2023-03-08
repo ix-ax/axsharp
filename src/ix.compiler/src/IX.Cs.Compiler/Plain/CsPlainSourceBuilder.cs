@@ -359,7 +359,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         //classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
         AddToSource("{");
         functionBlockDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
-        //functionBlockDeclaration.Fields.ToList().ForEach(p => p.Accept(visitor, this));
+        functionBlockDeclaration.Variables.ToList().ForEach(p => p.Accept(visitor, this));
         AddToSource("}");
     }
 

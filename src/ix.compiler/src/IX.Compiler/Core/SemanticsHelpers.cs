@@ -54,7 +54,7 @@ public static class SemanticsHelpers
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForTranspile(this IVariableDeclaration variable, Compilation compilation)
     {
-        return variable.IsInGlobalMemory && variable.Type.IsTypeEligibleForTranspile(compilation);
+        return variable.Type.IsTypeEligibleForTranspile(compilation);
     }
 
     /// <summary>
