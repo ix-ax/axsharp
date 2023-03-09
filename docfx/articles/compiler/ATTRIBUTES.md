@@ -63,6 +63,31 @@ CLASS PUBLIC MyClass
 END_CLASS
 ~~~
 
+### CompilerOmits
+
+CompilerOmits attribute instruct the compiler to skip the compilation of a member for specific output format. `IXC` supports these omissions:
+
+|   Target    |                      Description                       |
+| ----------- | ------------------------------------------------------ |
+| Onliner     | Will skip the emission of the member for onliner twins |
+| POCO        | Will skip the emission of the member for POCO twins    |
+| <No params> | Will skip the emission for all output types            |
+
+
+~~~iecst
+CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-attr:[CompilerOmits()]} 
+        MyStringIgnoredForAllOutputs : STRING;
+        {#ix-attr:[CompilerOmits("Onliner")]} 
+        MyStringIgnoredInOnliner : STRING;
+        {#ix-attr:[CompilerOmits("POCO")]} 
+        MyStringIgnoredInPocos : STRING;
+        {#ix-attr:[CompilerOmits("POCO", "Onliner")]} 
+        MyStringIgnoredInPocosAndOnliners : STRING;
+    END_VAR
+END_CLASS
+~~~
 
 ### See also 
 

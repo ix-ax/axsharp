@@ -38,7 +38,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
 
     private IxProject Project { get; }
 
-    private Compilation Compilation { get; }
+    /// <inheritdoc />
+    public Compilation Compilation { get; }
 
 
     private StringBuilder _sourceBuilder { get; } = new();
@@ -80,12 +81,12 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateFieldDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)
     {
-        if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
+        if (fieldDeclaration.IsMemberEligibleForTranspile(this))
         {
             switch (fieldDeclaration.Type)
             {
                 case IArrayTypeDeclaration arrayType:
-                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation))
+                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(this))
                     {
                         fieldDeclaration.Pragmas.AddAttributes();
                         AddToSource($"{fieldDeclaration.AccessModifier.Transform()}");
@@ -220,12 +221,12 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateVariableDeclaration(IVariableDeclaration fieldDeclaration, IxNodeVisitor visitor)
     {
-        if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
+        if (fieldDeclaration.IsMemberEligibleForTranspile(this))
         {
             switch (fieldDeclaration.Type)
             {
                 case IArrayTypeDeclaration arrayType:
-                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation))
+                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(this))
                     {
                         fieldDeclaration.Pragmas.AddAttributes();
                         AddToSource($"public");
@@ -312,7 +313,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor)
     {
-        if (arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(Compilation)) return;
+        if (arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(this)) return;
 
         arrayTypeDeclaration.ElementTypeAccess.Type.Accept(visitor, this);
         AddToSource("[]");
@@ -346,6 +347,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
 
     /// <inheritdoc />
     public string OutputFileSuffix => ".g.cs";
+
+    public string BuilderType => "POCO";
 
     private void AddToSource(string token, string separator = " ")
     {
