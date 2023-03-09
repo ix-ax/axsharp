@@ -24,15 +24,15 @@ internal class CsOnlinerPlainerOnlineToPlainProtectedBuilder : CsOnlinerPlainerO
 {
     private readonly StringBuilder _memberDeclarations = new();
 
-    protected CsOnlinerPlainerOnlineToPlainProtectedBuilder(Compilation compilation) : base(compilation)
+    protected CsOnlinerPlainerOnlineToPlainProtectedBuilder(ISourceBuilder sourceBuilder) : base(sourceBuilder)
     {
         
     }
 
     public new static CsOnlinerPlainerOnlineToPlainProtectedBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
-        Compilation compilation)
+        ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerPlainerOnlineToPlainProtectedBuilder(compilation);
+        var builder = new CsOnlinerPlainerOnlineToPlainProtectedBuilder(sourceBuilder);
         builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
         
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
@@ -42,9 +42,9 @@ internal class CsOnlinerPlainerOnlineToPlainProtectedBuilder : CsOnlinerPlainerO
     }
 
     public new static CsOnlinerPlainerOnlineToPlainProtectedBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
-        Compilation compilation, bool isExtended)
+        ISourceBuilder sourceBuilder, bool isExtended)
     {
-        var builder = new CsOnlinerPlainerOnlineToPlainProtectedBuilder(compilation);
+        var builder = new CsOnlinerPlainerOnlineToPlainProtectedBuilder(sourceBuilder);
         builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
         
         

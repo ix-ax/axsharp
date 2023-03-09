@@ -5,7 +5,7 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
-using NUnit.Framework;
+using Xunit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +13,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ix.Connector;
-using Ix.Connector.Attributes;
 
-namespace Ix.ConnectorTests.Attributes
+namespace Ix.Compiler.CsTests
 {
-    [TestFixture]
-    public class CompilerOmitsAttributeTests
+ 
+    public class CompilerOmitsAttributeLegacyTests
     {
-        [Test]
+        [Fact]
         public void CompilerOmitsAttributeCtorTest()
         {
             //-- Act
@@ -31,11 +30,11 @@ namespace Ix.ConnectorTests.Attributes
                                                     CompilerOmissionGroups.BuilderShadowerInterface);
 
             //-- Assert
-            Assert.AreEqual(actual.Omissions.Count(), 4);
-            Assert.AreEqual("BuilderOnliner", actual.Omissions.ToArray()[0]);
-            Assert.AreEqual("BuilderPlainer", actual.Omissions.ToArray()[1]);
-            Assert.AreEqual("BuilderOnlinerInterface", actual.Omissions.ToArray()[2]);
-            Assert.AreEqual("BuilderShadowerInterface", actual.Omissions.ToArray()[3]);
+            Assert.Equal(actual.Omissions.Count(), 4);
+            Assert.Equal("BuilderOnliner", actual.Omissions.ToArray()[0]);
+            Assert.Equal("BuilderPlainer", actual.Omissions.ToArray()[1]);
+            Assert.Equal("BuilderOnlinerInterface", actual.Omissions.ToArray()[2]);
+            Assert.Equal("BuilderShadowerInterface", actual.Omissions.ToArray()[3]);
 
         }
     }

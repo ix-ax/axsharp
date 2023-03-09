@@ -25,6 +25,7 @@
 		<None Remove="samples\units\src\class_with_pragmas.st" />
 		<None Remove="samples\units\src\class_with_primitive_members.st" />
 		<None Remove="samples\units\src\class_with_using_directives.st" />
+		<None Remove="samples\units\src\compileromitsattribute.st" />
 		<None Remove="samples\units\src\configuration.st" />
 		<None Remove="samples\units\src\enum_simple.st" />
 		<None Remove="samples\units\src\file_with_usings.st" />
@@ -39,6 +40,15 @@
 		<None Remove="samples\units\src\type_named_values_literals.st" />
 		<None Remove="samples\units\src\type_with_enum.st" />
 		<None Remove="samples\units\test\test.st" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="samples\units\expected\.g\Onliners\compileromitsattribute.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="samples\units\expected\.g\POCO\compileromitsattribute.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -293,6 +303,9 @@
 		</Content>
 		<Content Include="samples\units\src\class_with_using_directives.st">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="samples\units\src\compileromitsattribute.st">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="samples\units\src\configuration.st">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

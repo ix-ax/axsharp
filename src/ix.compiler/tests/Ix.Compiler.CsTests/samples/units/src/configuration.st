@@ -42,6 +42,13 @@ CONFIGURATION MyConfiguration
         cReadOnly           : ComplexForConfig;
         Colorss : Colorss;
         Colorsss : Colorsss;
+
+        {#ix-attr:[CompilerOmitsAttribute()]}
+        _must_be_omitted_everywhere : BOOL;
+        {#ix-attr:[CompilerOmitsAttribute("Onliner")]}
+        _must_be_omitted_in_onliner : BOOL;
+        {#ix-attr:[CompilerOmitsAttribute("POCO")]}
+         _must_be_omitted_in_poco : BOOL;
     END_VAR
 END_CONFIGURATION
 

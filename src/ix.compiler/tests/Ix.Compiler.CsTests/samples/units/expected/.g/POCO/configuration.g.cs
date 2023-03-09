@@ -56,6 +56,8 @@ namespace Pocos
         public global::Colorss Colorss { get; set; }
 
         public UInt64 Colorsss { get; set; }
+
+        public Boolean _must_be_omitted_in_onliner { get; set; }
     }
 
     public partial class ComplexForConfig

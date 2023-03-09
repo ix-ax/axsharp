@@ -5,9 +5,9 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
-namespace Ix.ConnectorTests.Attributes
+namespace Ix.Compiler.CsTests
 {
-    using Ix.Connector.Attributes;
+    using Ix.Connector;
     using System;
     using Xunit;
 

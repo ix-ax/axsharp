@@ -19,14 +19,14 @@ namespace Ix.Compiler.Cs.Onliner;
 
 internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBuilder
 {
-    protected CsOnlinerConfigurationConstructorBuilder(Compilation compilation) : base(compilation)
+    protected CsOnlinerConfigurationConstructorBuilder(ISourceBuilder sourceBuilder) : base(sourceBuilder)
     {
     }
 
     public new static CsOnlinerConfigurationConstructorBuilder Create(IxNodeVisitor visitor,
-        IConfigurationDeclaration semantics, IxProject project, Compilation compilation)
+        IConfigurationDeclaration semantics, IxProject project, ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerConfigurationConstructorBuilder(compilation);
+        var builder = new CsOnlinerConfigurationConstructorBuilder(sourceBuilder);
         builder.AddToSource(
             $"public {project.TargetProject.ProjectRootNamespace}TwinController({typeof(ConnectorAdapter).n()} adapter, object[] parameters) {{");
         builder.AddToSource("this.Connector = adapter.GetConnector(parameters);");
@@ -47,7 +47,7 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
 
     public override void CreateVariableDeclaration(IVariableDeclaration semantics, IxNodeVisitor visitor)
     {
-        if (semantics.IsMemberEligibleForConstructor(Compilation))
+        if (semantics.IsMemberEligibleForConstructor(SourceBuilder))
         {
             switch (semantics.Type)
             {

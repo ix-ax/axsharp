@@ -82,12 +82,15 @@ namespace Ix.Compiler.Tests
         {
             public MockBuilder(IxProject project, Compilation compilation)
             {
-              
+                Compilation = compilation;
             }
 
             public string Output => "MockGroup";
             public string Group => "Mock";
             public string OutputFileSuffix => ".py";
+            public string BuilderType => "Mock";
+            public Compilation Compilation { get; }
+
             #region ICombineThreeVisitor
             /// <summary>
             ///     Creates file declaration from <see cref="IFileSyntax" /> node of given syntax tree.

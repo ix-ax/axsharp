@@ -81,6 +81,9 @@ public partial class unitsTwinController : ITwinController
     [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(Colorsss))]
     public OnlinerULInt Colorsss { get; }
 
+    [CompilerOmitsAttribute("POCO")]
+    public OnlinerBool _must_be_omitted_in_poco { get; }
+
     public unitsTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -122,6 +125,7 @@ public partial class unitsTwinController : ITwinController
         cReadOnly.MakeReadOnly();
         Colorss = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this.Connector, "", "Colorss");
         Colorsss = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Colorsss", "Colorsss");
+        _must_be_omitted_in_poco = @Connector.ConnectorAdapter.AdapterFactory.CreateBOOL(this.Connector, "", "_must_be_omitted_in_poco");
     }
 
     public unitsTwinController(Ix.Connector.ConnectorAdapter adapter)
@@ -165,6 +169,7 @@ public partial class unitsTwinController : ITwinController
         cReadOnly.MakeReadOnly();
         Colorss = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this.Connector, "", "Colorss");
         Colorsss = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Colorsss", "Colorsss");
+        _must_be_omitted_in_poco = @Connector.ConnectorAdapter.AdapterFactory.CreateBOOL(this.Connector, "", "_must_be_omitted_in_poco");
     }
 }
 

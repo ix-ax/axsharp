@@ -5,6 +5,8 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using AX.ST.Semantic;
+
 namespace Ix.Compiler.Core;
 
 /// <summary>
@@ -27,4 +29,15 @@ public interface ISourceBuilder
     ///     Suffix of output files.
     /// </summary>
     string OutputFileSuffix { get; }
+
+    /// <summary>
+    /// Gets builder type. Builder type is used by CompilerOmits attribute to prevent compilation of constructs for specific
+    /// compilation outputs.
+    /// </summary>
+    string BuilderType { get; }
+
+    /// <summary>
+    /// Get the semantic compilation for this builder.
+    /// </summary>
+    public Compilation Compilation { get; }
 }

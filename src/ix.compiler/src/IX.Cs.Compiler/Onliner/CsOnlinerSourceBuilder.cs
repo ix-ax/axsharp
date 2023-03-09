@@ -38,8 +38,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         Compilation = compilation;
     }
 
-    private Compilation Compilation { get; }
-
+    /// <inheritdoc />
+    public Compilation Compilation { get; }
 
     private IxProject Project { get; }
 
@@ -81,17 +81,17 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
         AddToSource("\n{");
 
-        AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, this).Output);
 
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
 
-        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
-        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
-        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
 
-        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
-        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
-        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
 
         AddPollingMethod();
 
@@ -113,9 +113,9 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(
             $"public partial class {Project.TargetProject.ProjectRootNamespace}TwinController : ITwinController {{");
         AddToSource($"public {typeof(Connector.Connector).n()} Connector {{ get; }}");
-        AddToSource(CsOnlinerMemberBuilder.Create(visitor, configurationDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, configurationDeclaration, this).Output);
         AddToSource(CsOnlinerConfigurationConstructorBuilder
-            .Create(visitor, configurationDeclaration, Project, Compilation).Output);
+            .Create(visitor, configurationDeclaration, Project, this).Output);
         AddToSource("}");
     }
 
@@ -124,7 +124,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         AddToSource($"public partial class {Project.TargetProject.ProjectRootNamespace} : ITwinController {{");
         AddToSource(@$"public {typeof(Connector.Connector).n()} Connector {{ get; }}");
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, configurationDeclaration, Project, Compilation).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, configurationDeclaration, Project, this).Output);
         AddToSource("}");
     }
 
@@ -214,17 +214,17 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
 
         AddToSource("\n{");
 
-        AddToSource(CsOnlinerMemberBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
-        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
-        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
-        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
-        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
-        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
-        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
         AddPollingMethod();
 
@@ -248,6 +248,10 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
 
     /// <inheritdoc />
     public string OutputFileSuffix => ".g.cs";
+
+    /// <inheritdoc />
+    public string BuilderType => "Onliner";
+
 
     private void CreateITwinObjectImplementation()
     {

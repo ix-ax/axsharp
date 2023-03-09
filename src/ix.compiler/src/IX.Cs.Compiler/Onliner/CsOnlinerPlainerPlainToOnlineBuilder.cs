@@ -25,19 +25,19 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
 {
     private readonly StringBuilder _memberDeclarations = new();
 
-    protected CsOnlinerPlainerPlainToOnlineBuilder(Compilation compilation)
+    protected CsOnlinerPlainerPlainToOnlineBuilder(ISourceBuilder sourceBuilder)
     {
-        Compilation = compilation;
+        SourceBuilder = sourceBuilder;
     }
 
-    private Compilation Compilation { get; }
+    private ISourceBuilder SourceBuilder { get; }
 
     public string Output => _memberDeclarations.ToString().FormatCode();
 
     
     public void CreateFieldDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)
     {
-        if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
+        if (fieldDeclaration.IsMemberEligibleForTranspile(SourceBuilder, "POCO"))
         {
             CreateAssignment(fieldDeclaration.Type, fieldDeclaration);
         }
@@ -50,7 +50,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
 
     public void CreateVariableDeclaration(IVariableDeclaration variableDeclaration, IxNodeVisitor visitor)
     {
-        if (variableDeclaration.IsMemberEligibleForTranspile(Compilation))
+        if (variableDeclaration.IsMemberEligibleForTranspile(SourceBuilder, "POCO"))
         {
             CreateAssignment(variableDeclaration.Type, variableDeclaration);
         }
@@ -118,9 +118,9 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
     private static readonly string MethodName = TwinObjectExtensions.PlainToOnlineMethodName;
 
     public static CsOnlinerPlainerPlainToOnlineBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
-        Compilation compilation)
+        ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerPlainerPlainToOnlineBuilder(compilation);
+        var builder = new CsOnlinerPlainerPlainToOnlineBuilder(sourceBuilder);
         builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
@@ -132,9 +132,9 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
     }
 
     public static CsOnlinerPlainerPlainToOnlineBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
-        Compilation compilation, bool isExtended)
+        ISourceBuilder sourceBuilder, bool isExtended)
     {
-        var builder = new CsOnlinerPlainerPlainToOnlineBuilder(compilation);
+        var builder = new CsOnlinerPlainerPlainToOnlineBuilder(sourceBuilder);
         builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
        
 

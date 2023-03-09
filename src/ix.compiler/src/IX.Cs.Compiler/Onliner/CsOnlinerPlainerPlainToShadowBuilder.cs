@@ -24,19 +24,19 @@ namespace Ix.Compiler.Cs.Onliner
     {
         private readonly StringBuilder _memberDeclarations = new();
 
-        protected CsOnlinerPlainerPlainToShadowBuilder(Compilation compilation)
+        protected CsOnlinerPlainerPlainToShadowBuilder(ISourceBuilder sourceBuilder)
         {
-            Compilation = compilation;
+            SourceBuilder = sourceBuilder;
         }
 
-        private Compilation Compilation { get; }
+        private ISourceBuilder SourceBuilder { get; }
 
         public string Output => _memberDeclarations.ToString().FormatCode();
 
 
         public void CreateFieldDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)
         {
-            if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
+            if (fieldDeclaration.IsMemberEligibleForTranspile(SourceBuilder,"POCO"))
             {
                 CreateAssignment(fieldDeclaration.Type, fieldDeclaration);
             }
@@ -49,7 +49,7 @@ namespace Ix.Compiler.Cs.Onliner
 
         public void CreateVariableDeclaration(IVariableDeclaration variableDeclaration, IxNodeVisitor visitor)
         {
-            if (variableDeclaration.IsMemberEligibleForTranspile(Compilation))
+            if (variableDeclaration.IsMemberEligibleForTranspile(SourceBuilder, "POCO"))
             {
                 CreateAssignment(variableDeclaration.Type, variableDeclaration);
             }
@@ -117,9 +117,9 @@ namespace Ix.Compiler.Cs.Onliner
         private static readonly string MethodName = TwinObjectExtensions.PlainToShadowMethodName;
 
         public static CsOnlinerPlainerPlainToShadowBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
-            Compilation compilation)
+            ISourceBuilder sourceBuilder)
         {
-            var builder = new CsOnlinerPlainerPlainToShadowBuilder(compilation);
+            var builder = new CsOnlinerPlainerPlainToShadowBuilder(sourceBuilder);
             builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
             semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
@@ -130,9 +130,9 @@ namespace Ix.Compiler.Cs.Onliner
         }
 
         public static CsOnlinerPlainerPlainToShadowBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
-            Compilation compilation, bool isExtended)
+            ISourceBuilder sourceBuilder, bool isExtended)
         {
-            var builder = new CsOnlinerPlainerPlainToShadowBuilder(compilation);
+            var builder = new CsOnlinerPlainerPlainToShadowBuilder(sourceBuilder);
             builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
 
