@@ -123,6 +123,43 @@ CLASS PUBLIC MyClass
     END_VAR
 END_CLASS
 </code></pre>
+<h3 id="compileromits">CompilerOmits</h3>
+<p>CompilerOmits attribute instruct the compiler to skip the compilation of a member for specific output format. <code>IXC</code> supports these omissions:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Onliner</td>
+<td>Will skip the emission of the member for onliner twins</td>
+</tr>
+<tr>
+<td>POCO</td>
+<td>Will skip the emission of the member for POCO twins</td>
+</tr>
+<tr>
+<td><no params=""></no></td>
+<td>Will skip the emission for all output types</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-iecst">CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-attr:[CompilerOmits()]} 
+        MyStringIgnoredForAllOutputs : STRING;
+        {#ix-attr:[CompilerOmits(&quot;Onliner&quot;)]} 
+        MyStringIgnoredInOnliner : STRING;
+        {#ix-attr:[CompilerOmits(&quot;POCO&quot;)]} 
+        MyStringIgnoredInPocos : STRING;
+        {#ix-attr:[CompilerOmits(&quot;POCO&quot;, &quot;Onliner&quot;)]} 
+        MyStringIgnoredInPocosAndOnliners : STRING;
+    END_VAR
+END_CLASS
+</code></pre>
 <h3 id="see-also">See also</h3>
 <h4 id="renderignore"><a href="../blazor/RENDERABLECONTENT.html#renderignore-and-custom-labels">RenderIgnore</a></h4>
 </article>
