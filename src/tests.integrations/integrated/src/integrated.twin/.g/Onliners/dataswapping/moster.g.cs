@@ -102,6 +102,11 @@ namespace MonsterData
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.MonsterData.MonsterBase CreateEmptyPoco()
+        {
+            return new Pocos.MonsterData.MonsterBase();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -238,6 +243,11 @@ namespace MonsterData
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
+
+        public Pocos.MonsterData.Monster CreateEmptyPoco()
+        {
+            return new Pocos.MonsterData.Monster();
+        }
     }
 
     public partial class DriveBase : Ix.Connector.ITwinObject
@@ -329,6 +339,11 @@ namespace MonsterData
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.MonsterData.DriveBase CreateEmptyPoco()
+        {
+            return new Pocos.MonsterData.DriveBase();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

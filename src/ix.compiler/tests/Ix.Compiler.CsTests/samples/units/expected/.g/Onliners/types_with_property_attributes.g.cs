@@ -85,6 +85,11 @@ namespace TypesWithPropertyAttributes
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.TypesWithPropertyAttributes.SomeAddedProperties CreateEmptyPoco()
+        {
+            return new Pocos.TypesWithPropertyAttributes.SomeAddedProperties();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

@@ -60,6 +60,11 @@ namespace sampleNamespace
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.sampleNamespace.simple_empty_class_within_namespace CreateEmptyPoco()
+        {
+            return new Pocos.sampleNamespace.simple_empty_class_within_namespace();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

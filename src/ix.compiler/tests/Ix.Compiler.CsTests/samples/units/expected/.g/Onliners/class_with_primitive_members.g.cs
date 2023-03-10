@@ -303,6 +303,11 @@ namespace ClassWithPrimitiveTypesNamespace
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

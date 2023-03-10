@@ -163,6 +163,11 @@ public partial class Pokus : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.Pokus CreateEmptyPoco()
+    {
+        return new Pocos.Pokus();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
@@ -316,6 +321,11 @@ public partial class Nested : Ix.Connector.ITwinObject
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos.Nested CreateEmptyPoco()
+    {
+        return new Pocos.Nested();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

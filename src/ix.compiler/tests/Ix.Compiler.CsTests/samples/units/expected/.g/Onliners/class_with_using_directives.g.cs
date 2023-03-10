@@ -61,6 +61,11 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.ClassWithUsingDirectives CreateEmptyPoco()
+    {
+        return new Pocos.ClassWithUsingDirectives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

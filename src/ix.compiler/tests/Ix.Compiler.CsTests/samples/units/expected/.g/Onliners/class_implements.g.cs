@@ -58,6 +58,11 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos._NULL_CONTEXT CreateEmptyPoco()
+    {
+        return new Pocos._NULL_CONTEXT();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

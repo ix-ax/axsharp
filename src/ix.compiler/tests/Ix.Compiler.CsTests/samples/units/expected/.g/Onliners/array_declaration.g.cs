@@ -84,6 +84,11 @@ namespace ArrayDeclarationSimpleNamespace
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class CreateEmptyPoco()
+        {
+            return new Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -210,6 +215,11 @@ namespace ArrayDeclarationSimpleNamespace
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.ArrayDeclarationSimpleNamespace.some_complex_type CreateEmptyPoco()
+        {
+            return new Pocos.ArrayDeclarationSimpleNamespace.some_complex_type();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

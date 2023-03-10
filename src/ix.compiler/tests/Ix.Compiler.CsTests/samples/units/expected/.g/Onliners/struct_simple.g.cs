@@ -63,6 +63,11 @@ public partial class Motor : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.Motor CreateEmptyPoco()
+    {
+        return new Pocos.Motor();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {
@@ -202,6 +207,11 @@ public partial class Vehicle : Ix.Connector.ITwinObject
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos.Vehicle CreateEmptyPoco()
+    {
+        return new Pocos.Vehicle();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

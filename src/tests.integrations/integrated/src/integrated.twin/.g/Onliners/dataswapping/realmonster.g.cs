@@ -129,6 +129,11 @@ namespace RealMonsterData
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.RealMonsterData.RealMonsterBase CreateEmptyPoco()
+        {
+            return new Pocos.RealMonsterData.RealMonsterBase();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -265,6 +270,11 @@ namespace RealMonsterData
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
+
+        public Pocos.RealMonsterData.RealMonster CreateEmptyPoco()
+        {
+            return new Pocos.RealMonsterData.RealMonster();
+        }
     }
 
     public partial class DriveBaseNested : Ix.Connector.ITwinObject
@@ -365,6 +375,11 @@ namespace RealMonsterData
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.RealMonsterData.DriveBaseNested CreateEmptyPoco()
+        {
+            return new Pocos.RealMonsterData.DriveBaseNested();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -540,6 +555,11 @@ namespace RealMonsterData
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.RealMonsterData.NestedLevelOne CreateEmptyPoco()
+        {
+            return new Pocos.RealMonsterData.NestedLevelOne();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -713,6 +733,11 @@ namespace RealMonsterData
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.RealMonsterData.NestedLevelTwo CreateEmptyPoco()
+        {
+            return new Pocos.RealMonsterData.NestedLevelTwo();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -875,6 +900,11 @@ namespace RealMonsterData
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.RealMonsterData.NestedLevelThree CreateEmptyPoco()
+        {
+            return new Pocos.RealMonsterData.NestedLevelThree();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

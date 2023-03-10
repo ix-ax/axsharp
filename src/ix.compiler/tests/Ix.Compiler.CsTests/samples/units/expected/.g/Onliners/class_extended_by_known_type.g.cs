@@ -59,6 +59,11 @@ namespace Simatic.Ax.StateFramework
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
+
+        public Pocos.Simatic.Ax.StateFramework.State1Transition CreateEmptyPoco()
+        {
+            return new Pocos.Simatic.Ax.StateFramework.State1Transition();
+        }
     }
 }
 
@@ -135,6 +140,11 @@ namespace Simatic.Ax.StateFramework
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.Simatic.Ax.StateFramework.AbstractState CreateEmptyPoco()
+        {
+            return new Pocos.Simatic.Ax.StateFramework.AbstractState();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

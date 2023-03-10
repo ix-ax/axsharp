@@ -76,6 +76,11 @@ namespace CompilerOmmits
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.CompilerOmmits.ClassWithArrays CreateEmptyPoco()
+        {
+            return new Pocos.CompilerOmmits.ClassWithArrays();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -220,6 +225,11 @@ namespace CompilerOmmits
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.CompilerOmmits.Complex CreateEmptyPoco()
+        {
+            return new Pocos.CompilerOmmits.Complex();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -371,6 +381,11 @@ namespace Enums
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.Enums.ClassWithEnums CreateEmptyPoco()
+        {
+            return new Pocos.Enums.ClassWithEnums();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -535,6 +550,11 @@ namespace misc
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.misc.VariousMembers CreateEmptyPoco()
+        {
+            return new Pocos.misc.VariousMembers();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -672,6 +692,11 @@ namespace misc
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.misc.SomeClass CreateEmptyPoco()
+        {
+            return new Pocos.misc.SomeClass();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -803,6 +828,11 @@ namespace misc
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.misc.Motor CreateEmptyPoco()
+        {
+            return new Pocos.misc.Motor();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -944,6 +974,11 @@ namespace misc
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.misc.Vehicle CreateEmptyPoco()
+        {
+            return new Pocos.misc.Vehicle();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -1101,6 +1136,11 @@ namespace UnknownArraysShouldNotBeTraspiled
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays CreateEmptyPoco()
+        {
+            return new Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -1245,6 +1285,11 @@ namespace UnknownArraysShouldNotBeTraspiled
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.UnknownArraysShouldNotBeTraspiled.Complex CreateEmptyPoco()
+        {
+            return new Pocos.UnknownArraysShouldNotBeTraspiled.Complex();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

@@ -71,6 +71,11 @@ namespace ClassWithPragmasNamespace
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.ClassWithPragmasNamespace.ClassWithPragmas CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -197,6 +202,11 @@ namespace ClassWithPragmasNamespace
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.ClassWithPragmasNamespace.ComplexType1 CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithPragmasNamespace.ComplexType1();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
