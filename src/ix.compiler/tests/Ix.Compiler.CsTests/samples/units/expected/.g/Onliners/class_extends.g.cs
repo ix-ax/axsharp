@@ -57,6 +57,11 @@ public partial class Extended : Extendee
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
+
+    public Pocos.Extended CreateEmptyPoco()
+    {
+        return new Pocos.Extended();
+    }
 }
 
 public partial class Extendee : Ix.Connector.ITwinObject
@@ -112,6 +117,11 @@ public partial class Extendee : Ix.Connector.ITwinObject
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos.Extendee CreateEmptyPoco()
+    {
+        return new Pocos.Extendee();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

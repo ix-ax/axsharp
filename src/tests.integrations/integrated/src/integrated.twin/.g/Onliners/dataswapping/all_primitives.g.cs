@@ -266,6 +266,11 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.all_primitives CreateEmptyPoco()
+    {
+        return new Pocos.all_primitives();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

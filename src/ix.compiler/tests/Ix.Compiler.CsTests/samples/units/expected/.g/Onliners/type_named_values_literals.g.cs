@@ -79,6 +79,11 @@ namespace Simatic.Ax.StateFramework
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.Simatic.Ax.StateFramework.using_type_named_values CreateEmptyPoco()
+        {
+            return new Pocos.Simatic.Ax.StateFramework.using_type_named_values();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

@@ -96,6 +96,11 @@ namespace Simatic.Ax.StateFramework
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.Simatic.Ax.StateFramework.CompareGuardLint CreateEmptyPoco()
+        {
+            return new Pocos.Simatic.Ax.StateFramework.CompareGuardLint();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

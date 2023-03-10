@@ -58,6 +58,11 @@ internal partial class ClassWithComplexTypes : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.ClassWithComplexTypes CreateEmptyPoco()
+    {
+        return new Pocos.ClassWithComplexTypes();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

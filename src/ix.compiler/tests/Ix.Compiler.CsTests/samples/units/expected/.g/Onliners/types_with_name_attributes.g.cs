@@ -66,6 +66,11 @@ namespace TypeWithNameAttributes
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.TypeWithNameAttributes.Motor CreateEmptyPoco()
+        {
+            return new Pocos.TypeWithNameAttributes.Motor();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -205,6 +210,11 @@ namespace TypeWithNameAttributes
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.TypeWithNameAttributes.Vehicle CreateEmptyPoco()
+        {
+            return new Pocos.TypeWithNameAttributes.Vehicle();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -356,6 +366,11 @@ namespace TypeWithNameAttributes
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.TypeWithNameAttributes.NoAccessModifierClass CreateEmptyPoco()
+        {
+            return new Pocos.TypeWithNameAttributes.NoAccessModifierClass();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

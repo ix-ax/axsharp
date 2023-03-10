@@ -94,6 +94,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
 
         AddPollingMethod();
+        AddCreatePocoMethod(classDeclaration);
 
         if (!isExtended) CreateITwinObjectImplementation();
 
@@ -103,6 +104,11 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     private void AddPollingMethod()
     {
         AddToSource(" public void Poll()\r\n    {\r\n        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());\r\n    }");
+    }
+
+    private void AddCreatePocoMethod(ITypeDeclaration typeDeclaration)
+    {
+        AddToSource($"public Pocos.{typeDeclaration.FullyQualifiedName} CreateEmptyPoco(){{ return new Pocos.{typeDeclaration.FullyQualifiedName}();}}");
     }
 
     /// <inheritdoc />
@@ -227,6 +233,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
         AddPollingMethod();
+
+        AddCreatePocoMethod(structuredTypeDeclaration);
 
         CreateITwinObjectImplementation();
 

@@ -100,6 +100,11 @@ namespace makereadonce
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.makereadonce.MembersWithMakeReadOnce CreateEmptyPoco()
+        {
+            return new Pocos.makereadonce.MembersWithMakeReadOnce();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -244,6 +249,11 @@ namespace makereadonce
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.makereadonce.ComplexMember CreateEmptyPoco()
+        {
+            return new Pocos.makereadonce.ComplexMember();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

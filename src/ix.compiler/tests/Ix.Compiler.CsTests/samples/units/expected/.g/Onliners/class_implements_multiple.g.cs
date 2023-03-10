@@ -58,6 +58,11 @@ public partial class _NULL_CONTEXT_MULTIPLE : Ix.Connector.ITwinObject, IContext
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos._NULL_CONTEXT_MULTIPLE CreateEmptyPoco()
+    {
+        return new Pocos._NULL_CONTEXT_MULTIPLE();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

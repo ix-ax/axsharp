@@ -58,6 +58,11 @@ public partial class NoAccessModifierClass : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.NoAccessModifierClass CreateEmptyPoco()
+    {
+        return new Pocos.NoAccessModifierClass();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

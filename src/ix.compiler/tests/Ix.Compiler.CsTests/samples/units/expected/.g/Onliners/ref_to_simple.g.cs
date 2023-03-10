@@ -60,6 +60,11 @@ namespace RefToSimple
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.RefToSimple.ref_to_simple CreateEmptyPoco()
+        {
+            return new Pocos.RefToSimple.ref_to_simple();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -195,6 +200,11 @@ namespace RefToSimple
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.RefToSimple.referenced CreateEmptyPoco()
+        {
+            return new Pocos.RefToSimple.referenced();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();

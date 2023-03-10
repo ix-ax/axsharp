@@ -471,6 +471,11 @@ public partial class ComplexForConfig : Ix.Connector.ITwinObject
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
+    public Pocos.ComplexForConfig CreateEmptyPoco()
+    {
+        return new Pocos.ComplexForConfig();
+    }
+
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
     public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
     {

@@ -77,6 +77,11 @@ namespace NamedValuesNamespace
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.NamedValuesNamespace.using_type_named_values CreateEmptyPoco()
+        {
+            return new Pocos.NamedValuesNamespace.using_type_named_values();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {

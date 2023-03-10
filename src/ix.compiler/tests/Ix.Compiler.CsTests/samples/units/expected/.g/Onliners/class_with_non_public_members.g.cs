@@ -69,6 +69,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
+        public Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers();
+        }
+
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
         public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
         {
@@ -195,6 +200,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
