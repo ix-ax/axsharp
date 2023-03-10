@@ -106,10 +106,6 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(" public void Poll()\r\n    {\r\n        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());\r\n    }");
     }
 
-    /// <summary>
-    /// <see cref=""/>
-    /// </summary>
-    /// <param name="typeDeclaration"></param>
     private void AddCreatePocoMethod(ITypeDeclaration typeDeclaration)
     {
         AddToSource($"public Pocos.{typeDeclaration.FullyQualifiedName} CreateEmptyPoco(){{ return new Pocos.{typeDeclaration.FullyQualifiedName}();}}");
