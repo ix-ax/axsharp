@@ -22,6 +22,11 @@ namespace sampleNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> OnlineToPlainAsync()
         {
             Pocos.sampleNamespace.simple_empty_class_within_namespace plain = new Pocos.sampleNamespace.simple_empty_class_within_namespace();
@@ -34,9 +39,19 @@ namespace sampleNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.sampleNamespace.simple_empty_class_within_namespace)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
         {
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> ShadowToPlainAsync()
@@ -48,6 +63,11 @@ namespace sampleNamespace
         protected async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> ShadowToPlainAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
         {
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.sampleNamespace.simple_empty_class_within_namespace)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)

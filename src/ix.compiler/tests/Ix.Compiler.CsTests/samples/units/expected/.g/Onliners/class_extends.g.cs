@@ -14,6 +14,11 @@ public partial class Extended : Extendee
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.Extended> OnlineToPlainAsync()
     {
         Pocos.Extended plain = new Pocos.Extended();
@@ -28,10 +33,20 @@ public partial class Extended : Extendee
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.Extended)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Extended plain)
     {
         await base.PlainToOnlineAsync(plain);
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Extended> ShadowToPlainAsync()
@@ -45,6 +60,11 @@ public partial class Extended : Extendee
     {
         await base.ShadowToPlainAsync(plain);
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.Extended)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Extended plain)
@@ -81,6 +101,11 @@ public partial class Extendee : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.Extendee> OnlineToPlainAsync()
     {
         Pocos.Extendee plain = new Pocos.Extendee();
@@ -93,9 +118,19 @@ public partial class Extendee : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.Extendee)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Extendee plain)
     {
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Extendee> ShadowToPlainAsync()
@@ -107,6 +142,11 @@ public partial class Extendee : Ix.Connector.ITwinObject
     protected async Task<Pocos.Extendee> ShadowToPlainAsync(Pocos.Extendee plain)
     {
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.Extendee)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Extendee plain)

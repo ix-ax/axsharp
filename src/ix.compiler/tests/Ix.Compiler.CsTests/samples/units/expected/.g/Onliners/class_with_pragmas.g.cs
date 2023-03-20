@@ -27,6 +27,11 @@ namespace ClassWithPragmasNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> OnlineToPlainAsync()
         {
             Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain = new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
@@ -41,10 +46,20 @@ namespace ClassWithPragmasNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithPragmasNamespace.ClassWithPragmas)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
         {
             await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> ShadowToPlainAsync()
@@ -58,6 +73,11 @@ namespace ClassWithPragmasNamespace
         {
             plain.myComplexType = await myComplexType.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithPragmasNamespace.ClassWithPragmas)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
@@ -166,6 +186,11 @@ namespace ClassWithPragmasNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> OnlineToPlainAsync()
         {
             Pocos.ClassWithPragmasNamespace.ComplexType1 plain = new Pocos.ClassWithPragmasNamespace.ComplexType1();
@@ -178,9 +203,19 @@ namespace ClassWithPragmasNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithPragmasNamespace.ComplexType1)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
         {
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> ShadowToPlainAsync()
@@ -192,6 +227,11 @@ namespace ClassWithPragmasNamespace
         protected async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> ShadowToPlainAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
         {
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithPragmasNamespace.ComplexType1)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)

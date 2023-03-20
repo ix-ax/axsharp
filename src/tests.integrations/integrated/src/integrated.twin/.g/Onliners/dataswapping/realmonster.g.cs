@@ -45,6 +45,11 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.RealMonsterData.RealMonsterBase> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonsterBase plain = new Pocos.RealMonsterData.RealMonsterBase();
@@ -71,6 +76,11 @@ namespace RealMonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.RealMonsterData.RealMonsterBase)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.RealMonsterBase plain)
         {
             Description.Cyclic = plain.Description;
@@ -83,6 +93,11 @@ namespace RealMonsterData
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
             ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RealMonsterData.RealMonsterBase> ShadowToPlainAsync()
@@ -108,6 +123,11 @@ namespace RealMonsterData
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
             plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.RealMonsterData.RealMonsterBase)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.RealMonsterBase plain)
@@ -221,6 +241,11 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
@@ -237,11 +262,21 @@ namespace RealMonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.RealMonsterData.RealMonster)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.RealMonster plain)
         {
             await base.PlainToOnlineAsync(plain);
             await this.DriveA.PlainToOnlineAsync(plain.DriveA);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
@@ -257,6 +292,11 @@ namespace RealMonsterData
             await base.ShadowToPlainAsync(plain);
             plain.DriveA = await DriveA.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.RealMonsterData.RealMonster)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.RealMonster plain)
@@ -309,6 +349,11 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.RealMonsterData.DriveBaseNested> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.DriveBaseNested plain = new Pocos.RealMonsterData.DriveBaseNested();
@@ -331,6 +376,11 @@ namespace RealMonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.RealMonsterData.DriveBaseNested)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.DriveBaseNested plain)
         {
             Position.Cyclic = plain.Position;
@@ -339,6 +389,11 @@ namespace RealMonsterData
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelOne.PlainToOnlineAsync(plain.NestedLevelOne);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RealMonsterData.DriveBaseNested> ShadowToPlainAsync()
@@ -360,6 +415,11 @@ namespace RealMonsterData
             plain.Dcc = Dcc.Shadow;
             plain.NestedLevelOne = await NestedLevelOne.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.RealMonsterData.DriveBaseNested)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.DriveBaseNested plain)
@@ -487,6 +547,11 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.RealMonsterData.NestedLevelOne> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelOne plain = new Pocos.RealMonsterData.NestedLevelOne();
@@ -509,6 +574,11 @@ namespace RealMonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.RealMonsterData.NestedLevelOne)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.NestedLevelOne plain)
         {
             Position.Cyclic = plain.Position;
@@ -517,6 +587,11 @@ namespace RealMonsterData
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelTwo.PlainToOnlineAsync(plain.NestedLevelTwo);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelOne> ShadowToPlainAsync()
@@ -538,6 +613,11 @@ namespace RealMonsterData
             plain.Dcc = Dcc.Shadow;
             plain.NestedLevelTwo = await NestedLevelTwo.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.RealMonsterData.NestedLevelOne)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelOne plain)
@@ -665,6 +745,11 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.RealMonsterData.NestedLevelTwo> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelTwo plain = new Pocos.RealMonsterData.NestedLevelTwo();
@@ -687,6 +772,11 @@ namespace RealMonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.RealMonsterData.NestedLevelTwo)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
         {
             Position.Cyclic = plain.Position;
@@ -695,6 +785,11 @@ namespace RealMonsterData
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelThree.PlainToOnlineAsync(plain.NestedLevelThree);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelTwo> ShadowToPlainAsync()
@@ -716,6 +811,11 @@ namespace RealMonsterData
             plain.Dcc = Dcc.Shadow;
             plain.NestedLevelThree = await NestedLevelThree.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.RealMonsterData.NestedLevelTwo)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
@@ -840,6 +940,11 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.RealMonsterData.NestedLevelThree> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelThree plain = new Pocos.RealMonsterData.NestedLevelThree();
@@ -860,6 +965,11 @@ namespace RealMonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.RealMonsterData.NestedLevelThree)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.NestedLevelThree plain)
         {
             Position.Cyclic = plain.Position;
@@ -867,6 +977,11 @@ namespace RealMonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelThree> ShadowToPlainAsync()
@@ -886,6 +1001,11 @@ namespace RealMonsterData
             plain.Acc = Acc.Shadow;
             plain.Dcc = Dcc.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.RealMonsterData.NestedLevelThree)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelThree plain)

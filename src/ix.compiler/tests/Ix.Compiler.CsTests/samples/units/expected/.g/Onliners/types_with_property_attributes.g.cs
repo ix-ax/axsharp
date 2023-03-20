@@ -41,6 +41,11 @@ namespace TypesWithPropertyAttributes
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.TypesWithPropertyAttributes.SomeAddedProperties> OnlineToPlainAsync()
         {
             Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain = new Pocos.TypesWithPropertyAttributes.SomeAddedProperties();
@@ -55,10 +60,20 @@ namespace TypesWithPropertyAttributes
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.TypesWithPropertyAttributes.SomeAddedProperties)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)
         {
             Counter.Cyclic = plain.Counter;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.TypesWithPropertyAttributes.SomeAddedProperties> ShadowToPlainAsync()
@@ -72,6 +87,11 @@ namespace TypesWithPropertyAttributes
         {
             plain.Counter = Counter.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.TypesWithPropertyAttributes.SomeAddedProperties)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)

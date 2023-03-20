@@ -20,6 +20,11 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos._NULL_CONTEXT> OnlineToPlainAsync()
     {
         Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
@@ -32,9 +37,19 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos._NULL_CONTEXT)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos._NULL_CONTEXT plain)
     {
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos._NULL_CONTEXT> ShadowToPlainAsync()
@@ -46,6 +61,11 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
     protected async Task<Pocos._NULL_CONTEXT> ShadowToPlainAsync(Pocos._NULL_CONTEXT plain)
     {
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos._NULL_CONTEXT)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos._NULL_CONTEXT plain)

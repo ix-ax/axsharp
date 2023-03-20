@@ -38,6 +38,11 @@ namespace makereadonly
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync()
         {
             Pocos.makereadonly.MembersWithMakeReadOnly plain = new Pocos.makereadonly.MembersWithMakeReadOnly();
@@ -58,6 +63,11 @@ namespace makereadonly
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.makereadonly.MembersWithMakeReadOnly)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
         {
             makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
@@ -65,6 +75,11 @@ namespace makereadonly
             await this.makeReadComplexMember.PlainToOnlineAsync(plain.makeReadComplexMember);
             await this.someotherComplexMember.PlainToOnlineAsync(plain.someotherComplexMember);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> ShadowToPlainAsync()
@@ -84,6 +99,11 @@ namespace makereadonly
             plain.makeReadComplexMember = await makeReadComplexMember.ShadowToPlainAsync();
             plain.someotherComplexMember = await someotherComplexMember.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.makereadonly.MembersWithMakeReadOnly)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
@@ -201,6 +221,11 @@ namespace makereadonly
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync()
         {
             Pocos.makereadonly.ComplexMember plain = new Pocos.makereadonly.ComplexMember();
@@ -217,11 +242,21 @@ namespace makereadonly
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.makereadonly.ComplexMember)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.ComplexMember plain)
         {
             someMember.Cyclic = plain.someMember;
             someOtherMember.Cyclic = plain.someOtherMember;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.makereadonly.ComplexMember> ShadowToPlainAsync()
@@ -237,6 +272,11 @@ namespace makereadonly
             plain.someMember = someMember.Shadow;
             plain.someOtherMember = someOtherMember.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.makereadonly.ComplexMember)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonly.ComplexMember plain)

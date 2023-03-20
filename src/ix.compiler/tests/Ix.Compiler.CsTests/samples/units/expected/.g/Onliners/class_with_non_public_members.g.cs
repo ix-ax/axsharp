@@ -25,6 +25,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers> OnlineToPlainAsync()
         {
             Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers plain = new Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers();
@@ -39,10 +44,20 @@ namespace ClassWithNonTraspilableMemberssNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers plain)
         {
             await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers> ShadowToPlainAsync()
@@ -56,6 +71,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
         {
             plain.myComplexType = await myComplexType.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ClassWithNonTraspilableMembers plain)
@@ -164,6 +184,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1> OnlineToPlainAsync()
         {
             Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain = new Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1();
@@ -176,9 +201,19 @@ namespace ClassWithNonTraspilableMemberssNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain)
         {
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1> ShadowToPlainAsync()
@@ -190,6 +225,11 @@ namespace ClassWithNonTraspilableMemberssNamespace
         protected async Task<Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1> ShadowToPlainAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain)
         {
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithNonTraspilableMemberssNamespace.ComplexType1 plain)

@@ -23,6 +23,11 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.ClassWithUsingDirectives> OnlineToPlainAsync()
     {
         Pocos.ClassWithUsingDirectives plain = new Pocos.ClassWithUsingDirectives();
@@ -35,9 +40,19 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.ClassWithUsingDirectives)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithUsingDirectives plain)
     {
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.ClassWithUsingDirectives> ShadowToPlainAsync()
@@ -49,6 +64,11 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
     protected async Task<Pocos.ClassWithUsingDirectives> ShadowToPlainAsync(Pocos.ClassWithUsingDirectives plain)
     {
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.ClassWithUsingDirectives)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithUsingDirectives plain)
