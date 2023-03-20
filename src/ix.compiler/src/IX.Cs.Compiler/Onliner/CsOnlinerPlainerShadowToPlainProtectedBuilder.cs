@@ -31,7 +31,7 @@ namespace Ix.Compiler.Cs.Onliner
             ISourceBuilder sourceBuilder)
         {
             var builder = new CsOnlinerPlainerShadowToPlainProtectedBuilder(sourceBuilder);
-            builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+            builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
             semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
             builder.AddToSource($"return plain;");
@@ -43,12 +43,12 @@ namespace Ix.Compiler.Cs.Onliner
             ISourceBuilder sourceBuilder, bool isExtended)
         {
             var builder = new CsOnlinerPlainerShadowToPlainProtectedBuilder(sourceBuilder);
-            builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+            builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
 
             if (isExtended)
             {
-                builder.AddToSource($"await base.{MethodName}(plain);");
+                builder.AddToSource($"await base.{MethodName}Async(plain);");
             }
 
             semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));

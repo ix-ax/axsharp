@@ -20,13 +20,13 @@ namespace Ix.Connector;
 public static class TwinObjectExtensions
 {
 
-    public static readonly string OnlineToPlainMethodName = "OnlineToPlainAsync";
+    public static readonly string OnlineToPlainMethodName = nameof(ITwinObject.OnlineToPlain);
 
-    public static readonly string PlainToOnlineMethodName = "PlainToOnlineAsync";
+    public static readonly string PlainToOnlineMethodName = nameof(ITwinObject.PlainToOnline);
 
-    public static readonly string ShadowToPlainMethodName = "ShadowToPlainAsync";
+    public static readonly string ShadowToPlainMethodName = nameof(ITwinObject.ShadowToPlain);
 
-    public static readonly string PlainToShadowMethodName = "PlainToShadowAsync";
+    public static readonly string PlainToShadowMethodName = nameof(ITwinObject.PlainToShadow);
 
     /// <summary>
     ///     Makes <see cref="Ix.Connector.ITwinObject" /> readonly for this application.
