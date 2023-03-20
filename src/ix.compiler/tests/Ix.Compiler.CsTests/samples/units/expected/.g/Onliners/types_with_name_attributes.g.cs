@@ -22,6 +22,11 @@ namespace TypeWithNameAttributes
             parent.AddKid(this);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.TypeWithNameAttributes.Motor> OnlineToPlainAsync()
         {
             Pocos.TypeWithNameAttributes.Motor plain = new Pocos.TypeWithNameAttributes.Motor();
@@ -36,10 +41,20 @@ namespace TypeWithNameAttributes
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.TypeWithNameAttributes.Motor)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.Motor plain)
         {
             isRunning.Cyclic = plain.isRunning;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.TypeWithNameAttributes.Motor> ShadowToPlainAsync()
@@ -53,6 +68,11 @@ namespace TypeWithNameAttributes
         {
             plain.isRunning = isRunning.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.TypeWithNameAttributes.Motor)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypeWithNameAttributes.Motor plain)
@@ -162,6 +182,11 @@ namespace TypeWithNameAttributes
             parent.AddKid(this);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.TypeWithNameAttributes.Vehicle> OnlineToPlainAsync()
         {
             Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
@@ -178,11 +203,21 @@ namespace TypeWithNameAttributes
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.TypeWithNameAttributes.Vehicle)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
         {
             await this.m.PlainToOnlineAsync(plain.m);
             displacement.Cyclic = plain.displacement;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.TypeWithNameAttributes.Vehicle> ShadowToPlainAsync()
@@ -198,6 +233,11 @@ namespace TypeWithNameAttributes
             plain.m = await m.ShadowToPlainAsync();
             plain.displacement = displacement.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.TypeWithNameAttributes.Vehicle)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
@@ -324,6 +364,11 @@ namespace TypeWithNameAttributes
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> OnlineToPlainAsync()
         {
             Pocos.TypeWithNameAttributes.NoAccessModifierClass plain = new Pocos.TypeWithNameAttributes.NoAccessModifierClass();
@@ -338,10 +383,20 @@ namespace TypeWithNameAttributes
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.TypeWithNameAttributes.NoAccessModifierClass)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
         {
             SomeClassVariable.Cyclic = plain.SomeClassVariable;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> ShadowToPlainAsync()
@@ -355,6 +410,11 @@ namespace TypeWithNameAttributes
         {
             plain.SomeClassVariable = SomeClassVariable.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.TypeWithNameAttributes.NoAccessModifierClass)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)

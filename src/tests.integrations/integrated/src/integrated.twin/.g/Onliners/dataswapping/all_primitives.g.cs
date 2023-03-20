@@ -90,6 +90,11 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.all_primitives> OnlineToPlainAsync()
     {
         Pocos.all_primitives plain = new Pocos.all_primitives();
@@ -148,6 +153,11 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.all_primitives)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.all_primitives plain)
     {
         myBOOL.Cyclic = plain.myBOOL;
@@ -174,6 +184,11 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         myWSTRING.Cyclic = plain.myWSTRING;
         myEnum.Cyclic = (short)plain.myEnum;
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.all_primitives> ShadowToPlainAsync()
@@ -231,6 +246,11 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         plain.myWSTRING = myWSTRING.Shadow;
         plain.myEnum = (myEnum)myEnum.Shadow;
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.all_primitives)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.all_primitives plain)

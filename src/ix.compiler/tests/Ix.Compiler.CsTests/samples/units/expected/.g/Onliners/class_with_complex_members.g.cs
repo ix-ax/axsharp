@@ -25,6 +25,11 @@ namespace ClassWithComplexTypesNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> OnlineToPlainAsync()
         {
             Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain = new Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes();
@@ -39,10 +44,20 @@ namespace ClassWithComplexTypesNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
         {
             await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> ShadowToPlainAsync()
@@ -56,6 +71,11 @@ namespace ClassWithComplexTypesNamespace
         {
             plain.myComplexType = await myComplexType.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
@@ -164,6 +184,11 @@ namespace ClassWithComplexTypesNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> OnlineToPlainAsync()
         {
             Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain = new Pocos.ClassWithComplexTypesNamespace.ComplexType1();
@@ -176,9 +201,19 @@ namespace ClassWithComplexTypesNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithComplexTypesNamespace.ComplexType1)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
         {
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> ShadowToPlainAsync()
@@ -190,6 +225,11 @@ namespace ClassWithComplexTypesNamespace
         protected async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> ShadowToPlainAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
         {
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithComplexTypesNamespace.ComplexType1)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)

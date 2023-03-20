@@ -36,4 +36,14 @@ internal static class CsHelpers
     {
         return declaration.GetPropertyValue("AttributeName", memberName);
     }
+
+    public static string CreateGenericSwapperMethodToPlainer(string methodName)
+    {
+        return $"public object {methodName}(){{\n return this.{methodName}Async().Result;\n}}";
+    }
+
+    public static string CreateGenericSwapperMethodFromPlainer(string methodName, string pocoTypeName)
+    {
+        return $"public void {methodName}(object plain){{\n this.{methodName}Async(({pocoTypeName})plain).Wait();\n}}";
+    }
 }

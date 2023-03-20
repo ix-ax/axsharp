@@ -140,6 +140,26 @@ namespace Ix.Connector.Tests
             throw new NotImplementedException();
         }
 
+        public object OnlineToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToOnline(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ShadowToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
         private readonly ITwinObject _parent;
 
         public ITwinObject GetParent()
@@ -206,6 +226,26 @@ namespace Ix.Connector.Tests
         }
 
         public Connector GetConnector()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object OnlineToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToOnline(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ShadowToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToShadow(object plain)
         {
             throw new NotImplementedException();
         }
@@ -301,6 +341,26 @@ namespace Ix.Connector.Tests
         }
 
         public Connector GetConnector()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object OnlineToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToOnline(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ShadowToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToShadow(object plain)
         {
             throw new NotImplementedException();
         }

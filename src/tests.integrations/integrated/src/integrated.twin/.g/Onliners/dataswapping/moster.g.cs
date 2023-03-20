@@ -36,6 +36,11 @@ namespace MonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.MonsterData.MonsterBase> OnlineToPlainAsync()
         {
             Pocos.MonsterData.MonsterBase plain = new Pocos.MonsterData.MonsterBase();
@@ -56,6 +61,11 @@ namespace MonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.MonsterData.MonsterBase)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.MonsterBase plain)
         {
             Description.Cyclic = plain.Description;
@@ -65,6 +75,11 @@ namespace MonsterData
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
             ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.MonsterData.MonsterBase> ShadowToPlainAsync()
@@ -84,6 +99,11 @@ namespace MonsterData
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
             plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.MonsterData.MonsterBase)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.MonsterData.MonsterBase plain)
@@ -194,6 +214,11 @@ namespace MonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.MonsterData.Monster> OnlineToPlainAsync()
         {
             Pocos.MonsterData.Monster plain = new Pocos.MonsterData.Monster();
@@ -210,11 +235,21 @@ namespace MonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.MonsterData.Monster)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.Monster plain)
         {
             await base.PlainToOnlineAsync(plain);
             await this.DriveA.PlainToOnlineAsync(plain.DriveA);
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.MonsterData.Monster> ShadowToPlainAsync()
@@ -230,6 +265,11 @@ namespace MonsterData
             await base.ShadowToPlainAsync(plain);
             plain.DriveA = await DriveA.ShadowToPlainAsync();
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.MonsterData.Monster)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.MonsterData.Monster plain)
@@ -279,6 +319,11 @@ namespace MonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.MonsterData.DriveBase> OnlineToPlainAsync()
         {
             Pocos.MonsterData.DriveBase plain = new Pocos.MonsterData.DriveBase();
@@ -299,6 +344,11 @@ namespace MonsterData
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.MonsterData.DriveBase)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.DriveBase plain)
         {
             Position.Cyclic = plain.Position;
@@ -306,6 +356,11 @@ namespace MonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.MonsterData.DriveBase> ShadowToPlainAsync()
@@ -325,6 +380,11 @@ namespace MonsterData
             plain.Acc = Acc.Shadow;
             plain.Dcc = Dcc.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.MonsterData.DriveBase)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.MonsterData.DriveBase plain)

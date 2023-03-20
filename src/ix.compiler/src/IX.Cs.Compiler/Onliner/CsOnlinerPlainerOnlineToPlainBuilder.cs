@@ -64,23 +64,18 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:
-                AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodName}();");
+                AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodName}Async();");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
                 switch (arrayTypeDeclaration.ElementTypeAccess.Type)
                 {
                     case IClassDeclaration classDeclaration:
-                    case IStructuredTypeDeclaration structuredTypeDeclaration:
-                        //plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
-                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}()).Select(p => p.Result).ToArray();");
+                    case IStructuredTypeDeclaration structuredTypeDeclaration:                        
+                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}Async()).Select(p => p.Result).ToArray();");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
-                    case IStringTypeDeclaration stringTypeDeclaration:
-                        //plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
-
-                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(p => p.LastValue).ToArray();");
-                        //AddToSource(
-                        //    $"Ix.Connector.BuilderHelpers.Arrays.CopyOnlineToPlain<{IecToOnlinerConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)},{IecToClrConverter.TransformType(arrayTypeDeclaration.ElementTypeAccess.Type)}>({declaration.Name}, plain.{declaration.Name});");
+                    case IStringTypeDeclaration stringTypeDeclaration:                        
+                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(p => p.LastValue).ToArray();");                      
                         break;
                 }
                 break;
@@ -121,7 +116,10 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         ISourceBuilder sourceBuilder)
     {
         var builder = new CsOnlinerPlainerOnlineToPlainBuilder(sourceBuilder);
-        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
+
+        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName));
+
+        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
         builder.AddToSource("await this.ReadAsync();");
 
@@ -136,13 +134,16 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         ISourceBuilder sourceBuilder, bool isExtended)
     {
         var builder = new CsOnlinerPlainerOnlineToPlainBuilder(sourceBuilder);
-        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
+
+        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName));
+
+        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
         builder.AddToSource("await this.ReadAsync();");
 
         if (isExtended)
         {
-            builder.AddToSource($"await base.{MethodName}(plain);");
+            builder.AddToSource($"await base.{MethodName}Async(plain);");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));

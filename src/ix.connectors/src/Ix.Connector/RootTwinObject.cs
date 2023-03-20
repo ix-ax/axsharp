@@ -123,6 +123,26 @@ public class RootTwinObject : ITwinObject
         return this as Connector;
     }
 
+    public object OnlineToPlain()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void PlainToOnline(object plain)
+    {
+        throw new NotImplementedException();
+    }
+
+    public object ShadowToPlain()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        throw new NotImplementedException();
+    }
+
 
     /// <summary>
     ///     Add member to the list of kids

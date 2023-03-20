@@ -119,6 +119,11 @@ public partial class Pokus : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.Pokus> OnlineToPlainAsync()
     {
         Pocos.Pokus plain = new Pocos.Pokus();
@@ -133,10 +138,20 @@ public partial class Pokus : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.Pokus)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Pokus plain)
     {
         await this.Nested.PlainToOnlineAsync(plain.Nested);
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Pokus> ShadowToPlainAsync()
@@ -150,6 +165,11 @@ public partial class Pokus : Ix.Connector.ITwinObject
     {
         plain.Nested = await Nested.ShadowToPlainAsync();
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.Pokus)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Pokus plain)
@@ -267,6 +287,11 @@ public partial class Nested : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.Nested> OnlineToPlainAsync()
     {
         Pocos.Nested plain = new Pocos.Nested();
@@ -285,12 +310,22 @@ public partial class Nested : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.Nested)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Nested plain)
     {
         SomeString.Cyclic = plain.SomeString;
         SomeInt.Cyclic = plain.SomeInt;
         SomeByte.Cyclic = plain.SomeByte;
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Nested> ShadowToPlainAsync()
@@ -308,6 +343,11 @@ public partial class Nested : Ix.Connector.ITwinObject
         plain.SomeInt = SomeInt.Shadow;
         plain.SomeByte = SomeByte.Shadow;
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.Nested)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Nested plain)

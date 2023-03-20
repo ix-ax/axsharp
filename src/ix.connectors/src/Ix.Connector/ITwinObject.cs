@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,4 +71,26 @@ public interface ITwinObject : ITwinElement
     /// </summary>
     /// <returns>Connector</returns>
     Connector GetConnector();
+
+    public object OnlineToPlain()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void PlainToOnline(object plain)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    public object ShadowToPlain()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        throw new NotImplementedException();
+    }
+
 }

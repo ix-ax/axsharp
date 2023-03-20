@@ -103,6 +103,11 @@ namespace ClassWithPrimitiveTypesNamespace
             PostConstruct(parent, readableTail, symbolTail);
         }
 
+        public object OnlineToPlain()
+        {
+            return this.OnlineToPlainAsync().Result;
+        }
+
         public async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> OnlineToPlainAsync()
         {
             Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain = new Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes();
@@ -169,6 +174,11 @@ namespace ClassWithPrimitiveTypesNamespace
             return plain;
         }
 
+        public void PlainToOnline(object plain)
+        {
+            this.PlainToOnlineAsync((Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes)plain).Wait();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain)
         {
             myBOOL.Cyclic = plain.myBOOL;
@@ -199,6 +209,11 @@ namespace ClassWithPrimitiveTypesNamespace
             mySTRING.Cyclic = plain.mySTRING;
             myWSTRING.Cyclic = plain.myWSTRING;
             return await this.WriteAsync();
+        }
+
+        public object ShadowToPlain()
+        {
+            return this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> ShadowToPlainAsync()
@@ -264,6 +279,11 @@ namespace ClassWithPrimitiveTypesNamespace
             plain.mySTRING = mySTRING.Shadow;
             plain.myWSTRING = myWSTRING.Shadow;
             return plain;
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            this.PlainToShadowAsync((Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain)

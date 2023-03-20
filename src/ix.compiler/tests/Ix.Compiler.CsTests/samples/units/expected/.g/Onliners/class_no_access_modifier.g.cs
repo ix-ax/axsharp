@@ -20,6 +20,11 @@ public partial class NoAccessModifierClass : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.NoAccessModifierClass> OnlineToPlainAsync()
     {
         Pocos.NoAccessModifierClass plain = new Pocos.NoAccessModifierClass();
@@ -32,9 +37,19 @@ public partial class NoAccessModifierClass : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.NoAccessModifierClass)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.NoAccessModifierClass plain)
     {
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.NoAccessModifierClass> ShadowToPlainAsync()
@@ -46,6 +61,11 @@ public partial class NoAccessModifierClass : Ix.Connector.ITwinObject
     protected async Task<Pocos.NoAccessModifierClass> ShadowToPlainAsync(Pocos.NoAccessModifierClass plain)
     {
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.NoAccessModifierClass)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.NoAccessModifierClass plain)

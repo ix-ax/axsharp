@@ -65,7 +65,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:
-                AddToSource($" await this.{declaration.Name}.{MethodName}(plain.{declaration.Name});");
+                AddToSource($" await this.{declaration.Name}.{MethodName}Async(plain.{declaration.Name});");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
                 
@@ -75,7 +75,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                     case IClassDeclaration classDeclaration:
                     case IStructuredTypeDeclaration structuredTypeDeclaration:
                         AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                        AddToSource($"{declaration.Name}.Select(p => p.{MethodName}(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                        AddToSource($"{declaration.Name}.Select(p => p.{MethodName}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:
@@ -121,7 +121,10 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         ISourceBuilder sourceBuilder)
     {
         var builder = new CsOnlinerPlainerPlainToOnlineBuilder(sourceBuilder);
-        builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+
+        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodFromPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}"));
+
+        builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
@@ -135,12 +138,15 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         ISourceBuilder sourceBuilder, bool isExtended)
     {
         var builder = new CsOnlinerPlainerPlainToOnlineBuilder(sourceBuilder);
-        builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+
+        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodFromPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}"));
+
+        builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
        
 
         if (isExtended)
         {
-            builder.AddToSource($"await base.{MethodName}(plain);");
+            builder.AddToSource($"await base.{MethodName}Async(plain);");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));

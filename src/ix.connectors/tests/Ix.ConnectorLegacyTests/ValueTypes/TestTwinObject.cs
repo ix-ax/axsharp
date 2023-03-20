@@ -49,6 +49,26 @@ namespace Ix.Connector.Tests
             return dummyConnector;
         }
 
+        public object OnlineToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToOnline(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ShadowToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
         public ITwinObject GetParent()
         {
             return Parent;

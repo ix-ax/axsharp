@@ -19,6 +19,11 @@ public partial class Motor : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.Motor> OnlineToPlainAsync()
     {
         Pocos.Motor plain = new Pocos.Motor();
@@ -33,10 +38,20 @@ public partial class Motor : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.Motor)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Motor plain)
     {
         isRunning.Cyclic = plain.isRunning;
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Motor> ShadowToPlainAsync()
@@ -50,6 +65,11 @@ public partial class Motor : Ix.Connector.ITwinObject
     {
         plain.isRunning = isRunning.Shadow;
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.Motor)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Motor plain)
@@ -159,6 +179,11 @@ public partial class Vehicle : Ix.Connector.ITwinObject
         parent.AddKid(this);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.Vehicle> OnlineToPlainAsync()
     {
         Pocos.Vehicle plain = new Pocos.Vehicle();
@@ -175,11 +200,21 @@ public partial class Vehicle : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.Vehicle)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Vehicle plain)
     {
         await this.m.PlainToOnlineAsync(plain.m);
         displacement.Cyclic = plain.displacement;
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Vehicle> ShadowToPlainAsync()
@@ -195,6 +230,11 @@ public partial class Vehicle : Ix.Connector.ITwinObject
         plain.m = await m.ShadowToPlainAsync();
         plain.displacement = displacement.Shadow;
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.Vehicle)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Vehicle plain)

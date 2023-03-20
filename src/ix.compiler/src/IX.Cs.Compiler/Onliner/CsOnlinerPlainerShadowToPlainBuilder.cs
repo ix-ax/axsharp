@@ -64,14 +64,14 @@ namespace Ix.Compiler.Cs.Onliner
                 case IClassDeclaration classDeclaration:
                 //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
                 case IStructuredTypeDeclaration structuredTypeDeclaration:
-                    AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodName}();");
+                    AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodName}Async();");
                     break;
                 case IArrayTypeDeclaration arrayTypeDeclaration:
                     switch (arrayTypeDeclaration.ElementTypeAccess.Type)
                     {
                         case IClassDeclaration classDeclaration:
                         case IStructuredTypeDeclaration structuredTypeDeclaration:
-                            AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}()).Select(p => p.Result).ToArray();");
+                            AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}Async()).Select(p => p.Result).ToArray();");
                             break;
                         case IScalarTypeDeclaration scalarTypeDeclaration:
                         case IStringTypeDeclaration stringTypeDeclaration:
@@ -117,7 +117,10 @@ namespace Ix.Compiler.Cs.Onliner
             ISourceBuilder sourceBuilder)
         {
             var builder = new CsOnlinerPlainerShadowToPlainBuilder(sourceBuilder);
-            builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
+
+            builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName));
+
+            builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
             builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
 
             semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
@@ -131,12 +134,15 @@ namespace Ix.Compiler.Cs.Onliner
             ISourceBuilder sourceBuilder, bool isExtended)
         {
             var builder = new CsOnlinerPlainerShadowToPlainBuilder(sourceBuilder);
-            builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}(){{\n");
+
+            builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName));
+
+            builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
             builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
 
             if (isExtended)
             {
-                builder.AddToSource($"await base.{MethodName}(plain);");
+                builder.AddToSource($"await base.{MethodName}Async(plain);");
             }
 
             semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));

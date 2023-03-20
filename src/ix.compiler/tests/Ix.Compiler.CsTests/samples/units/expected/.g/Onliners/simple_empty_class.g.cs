@@ -20,6 +20,11 @@ public partial class simple_class : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
+    public object OnlineToPlain()
+    {
+        return this.OnlineToPlainAsync().Result;
+    }
+
     public async Task<Pocos.simple_class> OnlineToPlainAsync()
     {
         Pocos.simple_class plain = new Pocos.simple_class();
@@ -32,9 +37,19 @@ public partial class simple_class : Ix.Connector.ITwinObject
         return plain;
     }
 
+    public void PlainToOnline(object plain)
+    {
+        this.PlainToOnlineAsync((Pocos.simple_class)plain).Wait();
+    }
+
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.simple_class plain)
     {
         return await this.WriteAsync();
+    }
+
+    public object ShadowToPlain()
+    {
+        return this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.simple_class> ShadowToPlainAsync()
@@ -46,6 +61,11 @@ public partial class simple_class : Ix.Connector.ITwinObject
     protected async Task<Pocos.simple_class> ShadowToPlainAsync(Pocos.simple_class plain)
     {
         return plain;
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        this.PlainToShadowAsync((Pocos.simple_class)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.simple_class plain)
