@@ -87,23 +87,47 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><span class="xref">object</span></div>
     <div class="level1"><span class="xref">Item</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Ix.ixc_doc.Schemas.html">Ix.ixc_doc.Schemas</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">Ix</span>.<span class="xref">ixc_doc</span>.<a class="xref" href="Ix.ixc_doc.Schemas.html">Schemas</a></h6>
   <h6><strong>Assembly</strong>: Ix.ixd.dll</h6>
   <h5 id="Ix_ixc_doc_Schemas_Item_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Item : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class Item</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Assemblies.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Assemblies%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Assemblies.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Assemblies%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L72">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L70">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Assemblies_" data-uid="Ix.ixc_doc.Schemas.Item.Assemblies*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Assemblies" data-uid="Ix.ixc_doc.Schemas.Item.Assemblies">Assemblies</h4>
@@ -111,10 +135,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Assemblies { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;assemblies&quot;)]
+public string[] Assemblies { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -123,17 +148,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="xref">string</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Children.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Children%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Children.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Children%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L51">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L49">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Children_" data-uid="Ix.ixc_doc.Schemas.Item.Children*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Children" data-uid="Ix.ixc_doc.Schemas.Item.Children">Children</h4>
@@ -141,10 +166,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Children { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;children&quot;, NullValueHandling = NullValueHandling.Ignore)]
+public List&lt;string&gt; Children { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -153,17 +179,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">string</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_CommentId.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.CommentId%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_CommentId.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.CommentId%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L42">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L40">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_CommentId_" data-uid="Ix.ixc_doc.Schemas.Item.CommentId*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_CommentId" data-uid="Ix.ixc_doc.Schemas.Item.CommentId">CommentId</h4>
@@ -171,10 +197,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string CommentId { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;commentId&quot;)]
+public string CommentId { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -183,17 +210,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Example.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Example%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Example.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Example%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L84">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L82">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Example_" data-uid="Ix.ixc_doc.Schemas.Item.Example*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Example" data-uid="Ix.ixc_doc.Schemas.Item.Example">Example</h4>
@@ -201,10 +228,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object[] Example { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;example&quot;)]
+public object[] Example { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -213,17 +241,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="xref">object</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_FullName.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.FullName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_FullName.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.FullName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L63">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L61">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_FullName_" data-uid="Ix.ixc_doc.Schemas.Item.FullName*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_FullName" data-uid="Ix.ixc_doc.Schemas.Item.FullName">FullName</h4>
@@ -231,10 +259,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FullName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;fullName&quot;)]
+public string FullName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -243,17 +272,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Id.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Id%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Id.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Id%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L45">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L43">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Id_" data-uid="Ix.ixc_doc.Schemas.Item.Id*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Id" data-uid="Ix.ixc_doc.Schemas.Item.Id">Id</h4>
@@ -261,10 +290,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;id&quot;)]
+public string Id { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -273,17 +303,48 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Inheritance.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Inheritance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Implements.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Implements%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L90">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L94">View Source</a>
+  </span>
+  <a id="Ix_ixc_doc_Schemas_Item_Implements_" data-uid="Ix.ixc_doc.Schemas.Item.Implements*"></a>
+  <h4 id="Ix_ixc_doc_Schemas_Item_Implements" data-uid="Ix.ixc_doc.Schemas.Item.Implements">Implements</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;implements&quot;, NullValueHandling = NullValueHandling.Ignore)]
+public string[] Implements { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Inheritance.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Inheritance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L88">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Inheritance_" data-uid="Ix.ixc_doc.Schemas.Item.Inheritance*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Inheritance" data-uid="Ix.ixc_doc.Schemas.Item.Inheritance">Inheritance</h4>
@@ -291,10 +352,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Inheritance { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;inheritance&quot;, NullValueHandling = NullValueHandling.Ignore)]
+public string[] Inheritance { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -303,17 +365,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="xref">string</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_InheritedMembers.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.InheritedMembers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_InheritedMembers.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.InheritedMembers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L93">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L91">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_InheritedMembers_" data-uid="Ix.ixc_doc.Schemas.Item.InheritedMembers*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_InheritedMembers" data-uid="Ix.ixc_doc.Schemas.Item.InheritedMembers">InheritedMembers</h4>
@@ -321,10 +383,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] InheritedMembers { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;inheritedMembers&quot;, NullValueHandling = NullValueHandling.Ignore)]
+public string[] InheritedMembers { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -333,17 +396,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="xref">string</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Langs.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Langs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Langs.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Langs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L54">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L52">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Langs_" data-uid="Ix.ixc_doc.Schemas.Item.Langs*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Langs" data-uid="Ix.ixc_doc.Schemas.Item.Langs">Langs</h4>
@@ -351,10 +414,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] Langs { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;langs&quot;)]
+public string[] Langs { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -363,17 +427,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="xref">string</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Name.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Name.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L57">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L55">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Name_" data-uid="Ix.ixc_doc.Schemas.Item.Name*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Name" data-uid="Ix.ixc_doc.Schemas.Item.Name">Name</h4>
@@ -381,10 +445,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;name&quot;)]
+public string Name { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -393,17 +458,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Namespace.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Namespace%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Namespace.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Namespace%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L75">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L73">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Namespace_" data-uid="Ix.ixc_doc.Schemas.Item.Namespace*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Namespace" data-uid="Ix.ixc_doc.Schemas.Item.Namespace">Namespace</h4>
@@ -411,10 +476,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Namespace { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;namespace&quot;)]
+public string Namespace { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -423,17 +489,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_NameWithType.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.NameWithType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_NameWithType.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.NameWithType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L60">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L58">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_NameWithType_" data-uid="Ix.ixc_doc.Schemas.Item.NameWithType*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_NameWithType" data-uid="Ix.ixc_doc.Schemas.Item.NameWithType">NameWithType</h4>
@@ -441,10 +507,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string NameWithType { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;nameWithType&quot;)]
+public string NameWithType { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -453,17 +520,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Overload.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Overload%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Overload.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Overload%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L96">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L97">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Overload_" data-uid="Ix.ixc_doc.Schemas.Item.Overload*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Overload" data-uid="Ix.ixc_doc.Schemas.Item.Overload">Overload</h4>
@@ -471,10 +538,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Overload { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;overload&quot;, NullValueHandling = NullValueHandling.Ignore)]
+public string Overload { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -483,17 +551,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Parent.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Parent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Parent.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Parent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L48">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L46">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Parent_" data-uid="Ix.ixc_doc.Schemas.Item.Parent*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Parent" data-uid="Ix.ixc_doc.Schemas.Item.Parent">Parent</h4>
@@ -501,10 +569,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Parent { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;parent&quot;)]
+public string Parent { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -513,17 +582,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Remarks.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Remarks%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Remarks.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Remarks%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L81">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L79">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Remarks_" data-uid="Ix.ixc_doc.Schemas.Item.Remarks*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Remarks" data-uid="Ix.ixc_doc.Schemas.Item.Remarks">Remarks</h4>
@@ -531,10 +600,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Remarks { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;remakrs&quot;)]
+public string Remarks { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -543,17 +613,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Source.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Source%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Source.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Source%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L69">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L67">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Source_" data-uid="Ix.ixc_doc.Schemas.Item.Source*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Source" data-uid="Ix.ixc_doc.Schemas.Item.Source">Source</h4>
@@ -561,10 +631,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Source Source { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;source&quot;)]
+public Source Source { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -580,10 +651,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Summary.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Summary%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Summary.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Summary%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L78">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L76">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Summary_" data-uid="Ix.ixc_doc.Schemas.Item.Summary*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Summary" data-uid="Ix.ixc_doc.Schemas.Item.Summary">Summary</h4>
@@ -591,10 +662,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Summary { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;summary&quot;)]
+public string Summary { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -603,17 +675,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Syntax.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Syntax%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Syntax.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Syntax%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L87">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L85">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Syntax_" data-uid="Ix.ixc_doc.Schemas.Item.Syntax*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Syntax" data-uid="Ix.ixc_doc.Schemas.Item.Syntax">Syntax</h4>
@@ -621,10 +693,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Syntax Syntax { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;syntax&quot;)]
+public Syntax Syntax { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -640,10 +713,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Type.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Type%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Type.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Type%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L66">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L64">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Type_" data-uid="Ix.ixc_doc.Schemas.Item.Type*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Type" data-uid="Ix.ixc_doc.Schemas.Item.Type">Type</h4>
@@ -651,10 +724,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Type { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;type&quot;)]
+public string Type { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -663,17 +737,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Uid.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item_Uid.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L39">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L37">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_Item_Uid_" data-uid="Ix.ixc_doc.Schemas.Item.Uid*"></a>
   <h4 id="Ix_ixc_doc_Schemas_Item_Uid" data-uid="Ix.ixc_doc.Schemas.Item.Uid">Uid</h4>
@@ -681,10 +755,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Uid { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;uid&quot;)]
+public string Uid { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -693,7 +768,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -706,10 +781,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_Item.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.Item%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L37" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/YamlSchema.cs/#L35" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

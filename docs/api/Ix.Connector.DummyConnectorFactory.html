@@ -88,7 +88,7 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><span class="xref">object</span></div>
     <div class="level1"><a class="xref" href="Ix.Connector.ConnectorFactory.html">ConnectorFactory</a></div>
     <div class="level2"><span class="xref">DummyConnectorFactory</span></div>
   </div>
@@ -176,28 +176,28 @@
       <a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLTIME_OF_DAY">ConnectorFactory.CreateLTIME_OF_DAY()</a>
     </div>
     <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
+      <span class="xref">object.Equals(object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+      <span class="xref">object.Equals(object, object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.GetHashCode()</span>
+      <span class="xref">object.GetHashCode()</span>
     </div>
     <div>
-      <span class="xref">System.Object.GetType()</span>
+      <span class="xref">object.GetType()</span>
     </div>
     <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
+      <span class="xref">object.MemberwiseClone()</span>
     </div>
     <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.ToString()</span>
+      <span class="xref">object.ToString()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Ix.Connector.html">Ix.Connector</a></h6>
+  <h6><strong>Namespace</strong>: <span class="xref">Ix</span>.<a class="xref" href="Ix.Connector.html">Connector</a></h6>
   <h6><strong>Assembly</strong>: Ix.Connector.dll</h6>
   <h5 id="Ix_Connector_DummyConnectorFactory_syntax">Syntax</h5>
   <div class="codewrapper">
@@ -207,14 +207,14 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateBOOL_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateBOOL(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateBOOL_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateBOOL(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L35">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L35">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateBOOL_" data-uid="Ix.Connector.DummyConnectorFactory.CreateBOOL*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateBOOL_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateBOOL(Ix.Connector.ITwinObject,System.String,System.String)">CreateBOOL(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Boolean</span> dummy tag of PLC value type BOOL</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateBOOL_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateBOOL(Ix.Connector.ITwinObject,System.String,System.String)">CreateBOOL(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">bool</span> dummy tag of PLC value type BOOL</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -222,7 +222,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerBool CreateBOOL(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -238,13 +238,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -252,7 +252,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -268,17 +268,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateBOOL_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateBOOL(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateBOOL_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateBOOL(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateBYTE_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateBYTE(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateBYTE_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateBYTE(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L47">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L47">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateBYTE_" data-uid="Ix.Connector.DummyConnectorFactory.CreateBYTE*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateBYTE_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateBYTE(Ix.Connector.ITwinObject,System.String,System.String)">CreateBYTE(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Byte</span> dummy tag of PLC value type BYTE</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateBYTE_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateBYTE(Ix.Connector.ITwinObject,System.String,System.String)">CreateBYTE(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">byte</span> dummy tag of PLC value type BYTE</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -286,7 +286,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerByte CreateBYTE(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -302,13 +302,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -316,7 +316,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -332,17 +332,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateBYTE_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateBYTE(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateBYTE_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateBYTE(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateCHAR_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateCHAR(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateCHAR_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateCHAR(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L347">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L347">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateCHAR_" data-uid="Ix.Connector.DummyConnectorFactory.CreateCHAR*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateCHAR_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateCHAR(Ix.Connector.ITwinObject,System.String,System.String)">CreateCHAR(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.String</span> dummy tag of PLC value type CHAR</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateCHAR_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateCHAR(Ix.Connector.ITwinObject,System.String,System.String)">CreateCHAR(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">string</span> dummy tag of PLC value type CHAR</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -350,7 +350,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerChar CreateCHAR(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -366,13 +366,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -380,7 +380,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -396,16 +396,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateCHAR_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateCHAR(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateCHAR_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateCHAR(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateConnector_System_Object___.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateConnector(System.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateConnector_System_Object___.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateConnector(System.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L23">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L23">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateConnector_" data-uid="Ix.Connector.DummyConnectorFactory.CreateConnector*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateConnector_System_Object___" data-uid="Ix.Connector.DummyConnectorFactory.CreateConnector(System.Object[])">CreateConnector(Object[])</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateConnector_System_Object___" data-uid="Ix.Connector.DummyConnectorFactory.CreateConnector(System.Object[])">CreateConnector(object[])</h4>
   <div class="markdown level1 summary"><p>Creates dummy connector.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -414,7 +414,7 @@
     <pre><code class="lang-csharp hljs">public override Connector CreateConnector(object[] parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -424,7 +424,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="xref">object</span>[]</td>
         <td><span class="parametername">parameters</span></td>
         <td><p>Connection parameters.</p>
 </td>
@@ -432,7 +432,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -447,16 +447,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateConnector_System_Object___">ConnectorFactory.CreateConnector(Object[])</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateConnector_System_Object___">ConnectorFactory.CreateConnector(object[])</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDATE_AND_TIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDATE_AND_TIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L191">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L191">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateDATE_AND_TIME_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDATE_AND_TIME*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDATE_AND_TIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateDATE_AND_TIME(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDATE_AND_TIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateDATE_AND_TIME(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.DateTime</span> dummy tag of PLC value type DATE_AND_TIME (DT)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -465,7 +465,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerDateTime CreateDATE_AND_TIME(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -481,13 +481,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -495,7 +495,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -511,16 +511,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDATE_AND_TIME(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDATE_AND_TIME(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDATE_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDATE(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDATE_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDATE(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L203">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L203">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateDATE_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDATE*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDATE_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDATE(Ix.Connector.ITwinObject,System.String,System.String)">CreateDATE(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDATE_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDATE(Ix.Connector.ITwinObject,System.String,System.String)">CreateDATE(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.DateTime</span> dummy tag of PLC value type DATE</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -529,7 +529,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerDate CreateDATE(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -545,13 +545,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -559,7 +559,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -575,17 +575,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDATE_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDATE(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDATE_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDATE(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L59">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L59">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateDINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateDINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Int32</span> dummy tag of PLC value type DINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateDINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">int</span> dummy tag of PLC value type DINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -593,7 +593,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerDInt CreateDINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -609,13 +609,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -623,7 +623,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -639,17 +639,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDWORD_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDWORD(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateDWORD_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateDWORD(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L71">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L71">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateDWORD_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDWORD*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDWORD_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDWORD(Ix.Connector.ITwinObject,System.String,System.String)">CreateDWORD(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.UInt32</span> dummy tag of PLC value type DWORD</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateDWORD_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateDWORD(Ix.Connector.ITwinObject,System.String,System.String)">CreateDWORD(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">uint</span> dummy tag of PLC value type DWORD</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -657,7 +657,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerDWord CreateDWORD(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -673,13 +673,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -687,7 +687,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -703,17 +703,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDWORD_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDWORD(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateDWORD_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateDWORD(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L83">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L83">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Int16</span> dummy tag of PLC value type INT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">short</span> dummy tag of PLC value type INT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -721,7 +721,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerInt CreateINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -737,13 +737,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -751,7 +751,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -767,16 +767,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLDATE_AND_TIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLDATE_AND_TIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L323">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L323">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLDATE_AND_TIME_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLDATE_AND_TIME*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLDATE_AND_TIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateLDATE_AND_TIME(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLDATE_AND_TIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateLDATE_AND_TIME(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.DateTime</span> dummy tag of PLC value type LDATE_AND_TIME</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -785,7 +785,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerLDateTime CreateLDATE_AND_TIME(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -801,13 +801,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -815,7 +815,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -831,16 +831,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLDATE_AND_TIME(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLDATE_AND_TIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLDATE_AND_TIME(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLDATE_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLDATE(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLDATE_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLDATE(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L311">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L311">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLDATE_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLDATE*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLDATE_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLDATE(Ix.Connector.ITwinObject,System.String,System.String)">CreateLDATE(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLDATE_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLDATE(Ix.Connector.ITwinObject,System.String,System.String)">CreateLDATE(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.DateOnly</span> dummy tag of PLC value type LDATE</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -849,7 +849,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerDate CreateLDATE(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -865,13 +865,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -879,7 +879,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -895,17 +895,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLDATE_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLDATE(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLDATE_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLDATE(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L95">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L95">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateLINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Int64</span> dummy tag of PLC value type LINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateLINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">long</span> dummy tag of PLC value type LINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -913,7 +913,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerLInt CreateLINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -929,13 +929,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -943,7 +943,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -959,17 +959,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLREAL_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLREAL(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLREAL_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLREAL(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L107">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L107">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLREAL_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLREAL*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLREAL_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLREAL(Ix.Connector.ITwinObject,System.String,System.String)">CreateLREAL(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Double</span> dummy tag of PLC value type LREAL</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLREAL_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLREAL(Ix.Connector.ITwinObject,System.String,System.String)">CreateLREAL(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">double</span> dummy tag of PLC value type LREAL</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -977,7 +977,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerLReal CreateLREAL(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -993,13 +993,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1007,7 +1007,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1023,16 +1023,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLREAL_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLREAL(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLREAL_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLREAL(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLTIME_OF_DAY(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLTIME_OF_DAY(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L335">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L335">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLTIME_OF_DAY_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLTIME_OF_DAY*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLTIME_OF_DAY(Ix.Connector.ITwinObject,System.String,System.String)">CreateLTIME_OF_DAY(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLTIME_OF_DAY(Ix.Connector.ITwinObject,System.String,System.String)">CreateLTIME_OF_DAY(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.TimeSpan</span> dummy tag of PLC value type LTIME_OF_DAY</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1041,7 +1041,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerLTimeOfDay CreateLTIME_OF_DAY(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1057,13 +1057,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1071,7 +1071,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1087,16 +1087,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLTIME_OF_DAY(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLTIME_OF_DAY(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLTIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLTIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLTIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLTIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L119">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L119">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLTIME_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLTIME*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLTIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLTIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateLTIME(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLTIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLTIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateLTIME(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.TimeSpan</span> dummy tag of PLC value type LTIME</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1105,7 +1105,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerLTime CreateLTIME(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1121,13 +1121,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1135,7 +1135,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1151,17 +1151,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLTIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLTIME(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLTIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLTIME(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLWORD_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLWORD(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateLWORD_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateLWORD(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L131">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L131">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateLWORD_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLWORD*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLWORD_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLWORD(Ix.Connector.ITwinObject,System.String,System.String)">CreateLWORD(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.UInt64</span> dummy tag of PLC value type LWORD</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateLWORD_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateLWORD(Ix.Connector.ITwinObject,System.String,System.String)">CreateLWORD(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">ulong</span> dummy tag of PLC value type LWORD</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1169,7 +1169,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerLWord CreateLWORD(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1185,13 +1185,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1199,7 +1199,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1215,17 +1215,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLWORD_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLWORD(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateLWORD_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateLWORD(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateREAL_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateREAL(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateREAL_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateREAL(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L143">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L143">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateREAL_" data-uid="Ix.Connector.DummyConnectorFactory.CreateREAL*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateREAL_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateREAL(Ix.Connector.ITwinObject,System.String,System.String)">CreateREAL(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Single</span> dummy tag of PLC value type REAL</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateREAL_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateREAL(Ix.Connector.ITwinObject,System.String,System.String)">CreateREAL(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">float</span> dummy tag of PLC value type REAL</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1233,7 +1233,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerReal CreateREAL(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1249,13 +1249,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1263,7 +1263,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1279,17 +1279,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateREAL_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateREAL(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateREAL_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateREAL(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateSINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateSINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateSINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateSINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L155">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L155">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateSINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateSINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateSINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateSINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateSINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.SByte</span> dummy tag of PLC value type SINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateSINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateSINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateSINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">sbyte</span> dummy tag of PLC value type SINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1297,7 +1297,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerSInt CreateSINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1313,13 +1313,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1327,7 +1327,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1343,17 +1343,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateSINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateSINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateSINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateSINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateSTRING_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateSTRING(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateSTRING_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateSTRING(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L167">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L167">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateSTRING_" data-uid="Ix.Connector.DummyConnectorFactory.CreateSTRING*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateSTRING_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateSTRING(Ix.Connector.ITwinObject,System.String,System.String)">CreateSTRING(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.String</span> dummy tag of PLC value type STRING</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateSTRING_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateSTRING(Ix.Connector.ITwinObject,System.String,System.String)">CreateSTRING(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">string</span> dummy tag of PLC value type STRING</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1361,7 +1361,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerString CreateSTRING(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1377,13 +1377,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1391,7 +1391,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1407,16 +1407,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateSTRING_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateSTRING(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateSTRING_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateSTRING(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateTIME_OF_DAY(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateTIME_OF_DAY(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L215">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L215">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateTIME_OF_DAY_" data-uid="Ix.Connector.DummyConnectorFactory.CreateTIME_OF_DAY*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateTIME_OF_DAY(Ix.Connector.ITwinObject,System.String,System.String)">CreateTIME_OF_DAY(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateTIME_OF_DAY(Ix.Connector.ITwinObject,System.String,System.String)">CreateTIME_OF_DAY(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.TimeSpan</span> dummy tag of PLC value type TIME_OF_DAY (TOD)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1425,7 +1425,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerTimeOfDay CreateTIME_OF_DAY(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1441,13 +1441,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1455,7 +1455,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1471,16 +1471,16 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateTIME_OF_DAY(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateTIME_OF_DAY_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateTIME_OF_DAY(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateTIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateTIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateTIME_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateTIME(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L179">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L179">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateTIME_" data-uid="Ix.Connector.DummyConnectorFactory.CreateTIME*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateTIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateTIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateTIME(ITwinObject, String, String)</h4>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateTIME_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateTIME(Ix.Connector.ITwinObject,System.String,System.String)">CreateTIME(ITwinObject, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates <span class="xref">System.TimeSpan</span> dummy tag of PLC value type TIME</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1489,7 +1489,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerTime CreateTIME(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1505,13 +1505,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1519,7 +1519,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1535,17 +1535,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateTIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateTIME(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateTIME_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateTIME(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateUDINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateUDINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateUDINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateUDINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L227">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L227">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateUDINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUDINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateUDINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUDINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateUDINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.UInt32</span> dummy tag of PLC value type UDINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateUDINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUDINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateUDINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">uint</span> dummy tag of PLC value type UDINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1553,7 +1553,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerUDInt CreateUDINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1569,13 +1569,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1583,7 +1583,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1599,17 +1599,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateUDINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateUDINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateUDINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateUDINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateUINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateUINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateUINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateUINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L239">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L239">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateUINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateUINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateUINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.UInt16</span> dummy tag of PLC value type UINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateUINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateUINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">ushort</span> dummy tag of PLC value type UINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1617,7 +1617,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerUInt CreateUINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1633,13 +1633,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1647,7 +1647,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1663,17 +1663,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateUINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateUINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateUINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateUINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateULINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateULINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateULINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateULINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L251">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L251">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateULINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateULINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateULINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateULINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateULINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.UInt64</span> dummy tag of PLC value type ULINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateULINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateULINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateULINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">ulong</span> dummy tag of PLC value type ULINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1681,7 +1681,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerULInt CreateULINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1697,13 +1697,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1711,7 +1711,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1727,17 +1727,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateULINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateULINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateULINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateULINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateUSINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateUSINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateUSINT_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateUSINT(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L263">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L263">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateUSINT_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUSINT*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateUSINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUSINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateUSINT(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.Byte</span> dummy tag of PLC value type USINT</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateUSINT_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateUSINT(Ix.Connector.ITwinObject,System.String,System.String)">CreateUSINT(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">byte</span> dummy tag of PLC value type USINT</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1745,7 +1745,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerUSInt CreateUSINT(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1761,13 +1761,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1775,7 +1775,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1791,17 +1791,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateUSINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateUSINT(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateUSINT_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateUSINT(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateWCHAR_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateWCHAR(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateWCHAR_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateWCHAR(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L299">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L299">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateWCHAR_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWCHAR*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateWCHAR_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWCHAR(Ix.Connector.ITwinObject,System.String,System.String)">CreateWCHAR(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.String</span> dummy tag of PLC value type WCHAR</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateWCHAR_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWCHAR(Ix.Connector.ITwinObject,System.String,System.String)">CreateWCHAR(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">string</span> dummy tag of PLC value type WCHAR</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1809,7 +1809,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerWChar CreateWCHAR(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1825,13 +1825,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1839,7 +1839,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1855,17 +1855,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateWCHAR_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateWCHAR(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateWCHAR_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateWCHAR(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateWORD_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateWORD(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateWORD_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateWORD(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L275">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L275">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateWORD_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWORD*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateWORD_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWORD(Ix.Connector.ITwinObject,System.String,System.String)">CreateWORD(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.UInt16</span> dummy tag of PLC value type WORD</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateWORD_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWORD(Ix.Connector.ITwinObject,System.String,System.String)">CreateWORD(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">ushort</span> dummy tag of PLC value type WORD</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1873,7 +1873,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerWord CreateWORD(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1889,13 +1889,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1903,7 +1903,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1919,17 +1919,17 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateWORD_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateWORD(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateWORD_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateWORD(ITwinObject, string, string)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateWSTRING_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateWSTRING(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory_CreateWSTRING_Ix_Connector_ITwinObject_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory.CreateWSTRING(Ix.Connector.ITwinObject%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L287">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L287">View Source</a>
   </span>
   <a id="Ix_Connector_DummyConnectorFactory_CreateWSTRING_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWSTRING*"></a>
-  <h4 id="Ix_Connector_DummyConnectorFactory_CreateWSTRING_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWSTRING(Ix.Connector.ITwinObject,System.String,System.String)">CreateWSTRING(ITwinObject, String, String)</h4>
-  <div class="markdown level1 summary"><p>Creates <span class="xref">System.String</span> dummy tag of PLC value type WSTRING</p>
+  <h4 id="Ix_Connector_DummyConnectorFactory_CreateWSTRING_Ix_Connector_ITwinObject_System_String_System_String_" data-uid="Ix.Connector.DummyConnectorFactory.CreateWSTRING(Ix.Connector.ITwinObject,System.String,System.String)">CreateWSTRING(ITwinObject, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates <span class="xref">string</span> dummy tag of PLC value type WSTRING</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1937,7 +1937,7 @@
     <pre><code class="lang-csharp hljs">public override OnlinerWString CreateWSTRING(ITwinObject parent, string readableTail, string symbolTail)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1953,13 +1953,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">readableTail</span></td>
         <td><p>Human readable tail of this value tag.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">symbolTail</span></td>
         <td><p>Symbol tail of this value tag.</p>
 </td>
@@ -1967,7 +1967,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1983,7 +1983,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateWSTRING_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateWSTRING(ITwinObject, String, String)</a></div>
+  <div><a class="xref" href="Ix.Connector.ConnectorFactory.html#Ix_Connector_ConnectorFactory_CreateWSTRING_Ix_Connector_ITwinObject_System_String_System_String_">ConnectorFactory.CreateWSTRING(ITwinObject, string, string)</a></div>
 </article>
           </div>
 
@@ -1992,10 +1992,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_Connector_DummyConnectorFactory.md&amp;value=---%0Auid%3A%20Ix.Connector.DummyConnectorFactory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L16" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.connectors/src/Ix.Connector/Dummy/DummyConnectorFactory.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

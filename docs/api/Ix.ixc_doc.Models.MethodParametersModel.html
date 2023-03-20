@@ -87,26 +87,50 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><span class="xref">object</span></div>
     <div class="level1"><span class="xref">MethodParametersModel</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Ix.ixc_doc.Models.html">Ix.ixc_doc.Models</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">Ix</span>.<span class="xref">ixc_doc</span>.<a class="xref" href="Ix.ixc_doc.Models.html">Models</a></h6>
   <h6><strong>Assembly</strong>: Ix.ixd.dll</h6>
   <h5 id="Ix_ixc_doc_Models_MethodParametersModel_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MethodParametersModel : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class MethodParametersModel</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel__ctor_System_String_System_String_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.%23ctor(System.String%2CSystem.String%2CAX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel__ctor_System_String_System_String_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.%23ctor(System.String%2CSystem.String%2CAX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L13">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L13">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Models_MethodParametersModel__ctor_" data-uid="Ix.ixc_doc.Models.MethodParametersModel.#ctor*"></a>
-  <h4 id="Ix_ixc_doc_Models_MethodParametersModel__ctor_System_String_System_String_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_" data-uid="Ix.ixc_doc.Models.MethodParametersModel.#ctor(System.String,System.String,AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)">MethodParametersModel(String, String, ITypeDeclaration)</h4>
+  <h4 id="Ix_ixc_doc_Models_MethodParametersModel__ctor_System_String_System_String_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_" data-uid="Ix.ixc_doc.Models.MethodParametersModel.#ctor(System.String,System.String,AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)">MethodParametersModel(string, string, ITypeDeclaration)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -114,7 +138,7 @@
     <pre><code class="lang-csharp hljs">public MethodParametersModel(string name, string fullName, ITypeDeclaration type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -124,17 +148,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">name</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">fullName</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration</span></td>
+        <td><span class="xref">ITypeDeclaration</span></td>
         <td><span class="parametername">type</span></td>
         <td></td>
       </tr>
@@ -144,10 +168,10 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel_FullName.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.FullName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel_FullName.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.FullName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L21">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L21">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Models_MethodParametersModel_FullName_" data-uid="Ix.ixc_doc.Models.MethodParametersModel.FullName*"></a>
   <h4 id="Ix_ixc_doc_Models_MethodParametersModel_FullName" data-uid="Ix.ixc_doc.Models.MethodParametersModel.FullName">FullName</h4>
@@ -158,7 +182,7 @@
     <pre><code class="lang-csharp hljs">public string FullName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -167,17 +191,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel_Name.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel_Name.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L20">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L20">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Models_MethodParametersModel_Name_" data-uid="Ix.ixc_doc.Models.MethodParametersModel.Name*"></a>
   <h4 id="Ix_ixc_doc_Models_MethodParametersModel_Name" data-uid="Ix.ixc_doc.Models.MethodParametersModel.Name">Name</h4>
@@ -188,7 +212,7 @@
     <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -197,17 +221,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel_Type.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.Type%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel_Type.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel.Type%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L22">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L22">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Models_MethodParametersModel_Type_" data-uid="Ix.ixc_doc.Models.MethodParametersModel.Type*"></a>
   <h4 id="Ix_ixc_doc_Models_MethodParametersModel_Type" data-uid="Ix.ixc_doc.Models.MethodParametersModel.Type">Type</h4>
@@ -218,7 +242,7 @@
     <pre><code class="lang-csharp hljs">public ITypeDeclaration Type { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -227,7 +251,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration</span></td>
+        <td><span class="xref">ITypeDeclaration</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -240,10 +264,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Models_MethodParametersModel.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Models.MethodParametersModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Models/MethodParametersModel.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

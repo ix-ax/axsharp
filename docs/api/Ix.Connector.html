@@ -87,6 +87,20 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
 </h3>
+      <h4><a class="xref" href="Ix.Connector.CompilerOmitsAttribute.html">CompilerOmitsAttribute</a></h4>
+      <section><p>Prevents ixc builder to create a member for specific group of output type (Shadow, Plain, Onliner).</p>
+<div class="NOTE"><h5>note</h5><p>This attribute must be declared in the PLC code to be effective during build process.</p></div>
+<example>
+    This example demonstrates how to prevent the ixc builder to compile specific property into specific output
+    group.
+<pre><code>// This will not compile to &apos;omitsInPlainString&apos; member into respective &apos;Plain&apos; type.
+{#ix-attr:[CompilerOmits(CompilerOmissionGroups.BuilderPlainer))]} 
+ommitsInPlainString : STRING(50) := &apos;THIS IS OMMITED IN PLAINER&apos;;     
+// This will not compile to &apos;ommitsInPlainAndShadowerInterfaceString&apos; member into respective &apos;Plain&apos; type and Shadow interface.
+{#ix-attr:[CompilerOmits(CompilerOmissionGroups.BuilderPlainer, CompilerOmissionGroups.BuilderShadowerInterface))]} 
+ommitsInPlainAndShadowerInterfaceString : STRING(50) := &apos;THIS IS OMMITED IN PLAINER&apos;;     </code></pre>
+</example>
+</section>
       <h4><a class="xref" href="Ix.Connector.Connector.html">Connector</a></h4>
       <section><p>Abstract base class provides implementation contract for the PLC connector and basic common underlying logic.</p>
 </section>
@@ -195,6 +209,10 @@ END_VAR</code></pre>
 </h3>
       <h4><a class="xref" href="Ix.Connector.CommExceptionBehaviour.html">CommExceptionBehaviour</a></h4>
       <section><p>Specifies how the connector should behave when a communication exception occurs.</p>
+</section>
+      <h4><a class="xref" href="Ix.Connector.CompilerOmissionGroups.html">CompilerOmissionGroups</a></h4>
+      <section><p>Builder omission groups enumerator. Enumerates builder output groups suitable
+for the omission.</p>
 </section>
       <h4><a class="xref" href="Ix.Connector.ReadSubscriptionMode.html">ReadSubscriptionMode</a></h4>
       <section><p>Specifies how the variables should be subscribed to.</p>
