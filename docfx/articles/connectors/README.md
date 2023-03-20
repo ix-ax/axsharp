@@ -179,7 +179,7 @@ See also
 
 ## Using POCO / Plain object
 
-Onliners are a somewhat heavy objects that are well suited for communication with the controller, but they carry too much information that are a burden in some use cases. IX compiler, therefore, creates `Plain/POCO` objects that are light CLR (C#) objects that can retrieve and send data from and to the controller.
+Onliners are somewhat heavy objects that are well suited for communication with the controller, but they carry too much information that are a burden in some use cases. IX compiler, therefore, creates `Plain/POCO` objects that are light CLR (C#) objects that can retrieve and send data from and to the controller.
 
 ### Getting POCO object
 
@@ -200,6 +200,9 @@ await monster.PlainToOnlineAsync(plainOnline);
 // This will write the content of the plain object to the shadows of the controller.
 await monster.PlainToShadowAsync(plainShadow);
 ~~~
+
+>[!NOTE]
+> There are also type agnostic methods available over [ITwinObject](~/api/Ix.Connector.ITwinObject.yml) interface.
 
 ----
 ## Other useful properties of Primitive Twins
