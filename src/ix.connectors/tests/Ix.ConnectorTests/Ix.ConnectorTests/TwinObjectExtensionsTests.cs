@@ -371,5 +371,84 @@ namespace Ix.Connector.Tests
         {
             await Assert.ThrowsAsync<ArgumentNullException>(() => default(ITwinObject).ShadowToOnlineAsync());
         }
+
+        private class MyTestPoco
+        {
+
+        }
+
+        private class CreatePocoTestClass : ITwinObject
+        {
+            public string Symbol { get; }
+            public string AttributeName { get; }
+            public string HumanReadable { get; }
+            public ITwinObject GetParent()
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetSymbolTail()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Poll()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerable<ITwinObject> GetChildren()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerable<ITwinElement> GetKids()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerable<ITwinPrimitive> GetValueTags()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void AddChild(ITwinObject twinObject)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void AddValueTag(ITwinPrimitive twinPrimitive)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void AddKid(ITwinElement kid)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Connector GetConnector()
+            {
+                throw new NotImplementedException();
+            }
+
+            public MyTestPoco CreateEmptyPoco()
+            {
+                return new MyTestPoco();
+            }
+        }
+
+        [Fact]
+        public static void CanCallCreatePOCO()
+        {
+            // Arrange
+            var obj = new CreatePocoTestClass();
+            
+            // Act
+            var result = obj.CreatePoco();
+
+            // Assert
+            Assert.IsType<MyTestPoco>(result);
+        }
     }
 }

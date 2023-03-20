@@ -282,4 +282,18 @@ public static class TwinObjectExtensions
     {
         Polling.Remove(obj);
     }
+
+    /// <summary>
+    /// Creates new unpopulated instance of POCO object for this twin object.
+    /// <remarks type="important">
+    /// This method uses reflections. It is not suitable for operations where performance matters.
+    /// </remarks>
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns>New empty instance of POCO object for this twin object</returns>
+    public static object CreatePoco(this ITwinObject obj)
+    {
+        var createEmptyPocoMethod = obj.GetType().GetMethod("CreateEmptyPoco");
+        return createEmptyPocoMethod.Invoke(obj, null);
+    }
 }
