@@ -38,7 +38,7 @@
 
     private void OnlinerToPlain()
     {
-        var plain = Entry.Plc.RealMonster.OnlineToPlain();
+        var plain = Entry.Plc.RealMonster.OnlineToPlain<Pocos.RealMonsterData.RealMonster>();
         Console.WriteLine(plain);
     }
 
@@ -51,7 +51,7 @@
 
     private void ShadowToPlain()
     {
-        var plain = Entry.Plc.RealMonster.ShadowToPlain();
+        var plain = Entry.Plc.RealMonster.ShadowToPlain<Pocos.RealMonsterData.RealMonster>();
         Console.WriteLine(plain);
     }
 

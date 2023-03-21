@@ -22,9 +22,9 @@ namespace RefToSimple
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync()
@@ -39,9 +39,9 @@ namespace RefToSimple
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.RefToSimple.ref_to_simple)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.ref_to_simple plain)
@@ -49,9 +49,9 @@ namespace RefToSimple
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RefToSimple.ref_to_simple> ShadowToPlainAsync()
@@ -65,9 +65,9 @@ namespace RefToSimple
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.RefToSimple.ref_to_simple)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RefToSimple.ref_to_simple plain)
@@ -178,9 +178,9 @@ namespace RefToSimple
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync()
@@ -197,9 +197,9 @@ namespace RefToSimple
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.RefToSimple.referenced)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.referenced plain)
@@ -208,9 +208,9 @@ namespace RefToSimple
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.RefToSimple.referenced> ShadowToPlainAsync()
@@ -226,9 +226,9 @@ namespace RefToSimple
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.RefToSimple.referenced)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RefToSimple.referenced plain)

@@ -119,9 +119,9 @@ public partial class Pokus : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
-    public object OnlineToPlain()
+    public T OnlineToPlain<T>()
     {
-        return this.OnlineToPlainAsync().Result;
+        return (dynamic)this.OnlineToPlainAsync().Result;
     }
 
     public async Task<Pocos.Pokus> OnlineToPlainAsync()
@@ -138,9 +138,9 @@ public partial class Pokus : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline(object plain)
+    public void PlainToOnline<T>(T plain)
     {
-        this.PlainToOnlineAsync((Pocos.Pokus)plain).Wait();
+        this.PlainToOnlineAsync((dynamic)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Pokus plain)
@@ -149,9 +149,9 @@ public partial class Pokus : Ix.Connector.ITwinObject
         return await this.WriteAsync();
     }
 
-    public object ShadowToPlain()
+    public T ShadowToPlain<T>()
     {
-        return this.ShadowToPlainAsync().Result;
+        return (dynamic)this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Pokus> ShadowToPlainAsync()
@@ -167,9 +167,9 @@ public partial class Pokus : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToShadow(object plain)
+    public void PlainToShadow<T>(T plain)
     {
-        this.PlainToShadowAsync((Pocos.Pokus)plain).Wait();
+        this.PlainToShadowAsync((dynamic)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Pokus plain)
@@ -287,9 +287,9 @@ public partial class Nested : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
-    public object OnlineToPlain()
+    public T OnlineToPlain<T>()
     {
-        return this.OnlineToPlainAsync().Result;
+        return (dynamic)this.OnlineToPlainAsync().Result;
     }
 
     public async Task<Pocos.Nested> OnlineToPlainAsync()
@@ -310,9 +310,9 @@ public partial class Nested : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline(object plain)
+    public void PlainToOnline<T>(T plain)
     {
-        this.PlainToOnlineAsync((Pocos.Nested)plain).Wait();
+        this.PlainToOnlineAsync((dynamic)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Nested plain)
@@ -323,9 +323,9 @@ public partial class Nested : Ix.Connector.ITwinObject
         return await this.WriteAsync();
     }
 
-    public object ShadowToPlain()
+    public T ShadowToPlain<T>()
     {
-        return this.ShadowToPlainAsync().Result;
+        return (dynamic)this.ShadowToPlainAsync().Result;
     }
 
     public async Task<Pocos.Nested> ShadowToPlainAsync()
@@ -345,9 +345,9 @@ public partial class Nested : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToShadow(object plain)
+    public void PlainToShadow<T>(T plain)
     {
-        this.PlainToShadowAsync((Pocos.Nested)plain).Wait();
+        this.PlainToShadowAsync((dynamic)plain).Wait();
     }
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Nested plain)
