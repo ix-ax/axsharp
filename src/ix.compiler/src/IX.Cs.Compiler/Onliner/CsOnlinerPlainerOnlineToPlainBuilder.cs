@@ -117,7 +117,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
     {
         var builder = new CsOnlinerPlainerOnlineToPlainBuilder(sourceBuilder);
 
-        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName));
+        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}"));
 
         builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
@@ -135,7 +135,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
     {
         var builder = new CsOnlinerPlainerOnlineToPlainBuilder(sourceBuilder);
 
-        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName));
+        builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName,$"Pocos.{semantics.FullyQualifiedName}"));
 
         builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");

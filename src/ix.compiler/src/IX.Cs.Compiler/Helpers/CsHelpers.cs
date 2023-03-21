@@ -37,13 +37,13 @@ internal static class CsHelpers
         return declaration.GetPropertyValue("AttributeName", memberName);
     }
 
-    public static string CreateGenericSwapperMethodToPlainer(string methodName)
+    public static string CreateGenericSwapperMethodToPlainer(string methodName, string pocoTypeName)
     {
-        return $"public object {methodName}(){{\n return this.{methodName}Async().Result;\n}}";
+        return $"public T {methodName}<T>(){{\n return (dynamic)this.{methodName}Async().Result;\n}}";
     }
 
     public static string CreateGenericSwapperMethodFromPlainer(string methodName, string pocoTypeName)
     {
-        return $"public void {methodName}(object plain){{\n this.{methodName}Async(({pocoTypeName})plain).Wait();\n}}";
+        return $"public void {methodName}<T>(T plain){{\n this.{methodName}Async((dynamic)plain).Wait();\n}}";
     }
 }
