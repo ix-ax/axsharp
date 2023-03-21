@@ -1,4 +1,4 @@
-using Ix.Connector;
+using AXSharp.Connector;
 namespace integrated.tests
 {
     public class PlainersSwappingTests

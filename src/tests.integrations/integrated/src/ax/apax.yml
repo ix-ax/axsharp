@@ -11,8 +11,8 @@ variables:
   APAX_BUILD_ARGS: [ -d ]    
 scripts:
   ixc: 
-  - dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
-  postbuild: dotnet run --project ..\\..\\..\\..\\ix.compiler\\src\\ixc\\Ix.ixc.csproj --framework net7.0
+  - dotnet run --project ..\\..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework net7.0
+  postbuild: dotnet run --project ..\\..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework net7.0
   download :   
     - apax install    
     - apax build

@@ -31,7 +31,7 @@ There are some **known issues** that we are looking into in the development proc
 
 
 
-**IX** is the underlying technology for the [ix.framework](https://github.com/ix-ax/ix.framework) that will be rendered public in this organization and will provide a series of libraries and components for building automation projects.
+**IX** is the underlying technology for the [AXSharp.framework](https://github.com/ix-ax/AXSharp.framework) that will be rendered public in this organization and will provide a series of libraries and components for building automation projects.
 
 ## Disclaimer
 
@@ -72,13 +72,13 @@ END_CLASS
 
 ~~~ C#
 using System;
-using Ix.Connector;
-using Ix.Connector.ValueTypes;
+using AXSharp.Connector;
+using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
 
 [Container(Layout.Stack)]
 [Group(Layout.GroupBox)]
-public partial class GeoLocation : Ix.Connector.ITwinObject
+public partial class GeoLocation : AXSharp.Connector.ITwinObject
 {
     public OnlinerReal Latitude { get; }
 
@@ -123,7 +123,7 @@ To get started, visit the documentation [here](docfx/index.md#getting-started).
 
 ## Examples 
 
-Examples can be found [here](src/ix.examples)
+Examples can be found [here](src/AXSharp.examples)
 
 
 ## Contributing

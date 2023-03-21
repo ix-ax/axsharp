@@ -1,0 +1,18 @@
+{
+  "solution": {
+    "path": "AXSharp.sln",
+    "projects": [
+      "AXSharp.abstractions\\src\\AXSharp.Abstractions\\AXSharp.Abstractions.csproj",
+      "AXSharp.blazor\\src\\AXSharp.Presentation.Blazor.Controls\\AXSharp.Presentation.Blazor.Controls.csproj",
+      "AXSharp.blazor\\src\\AXSharp.Presentation.Blazor\\AXSharp.Presentation.Blazor.csproj",
+      "AXSharp.compiler\\src\\AXSharp.Compiler\\AXSharp.Compiler.csproj",
+      "AXSharp.compiler\\src\\AXSharp.Cs.Compiler\\AXSharp.Compiler.Cs.csproj",
+      "AXSharp.compiler\\src\\AXSharp.Compiler.Abstractions\\AXSharp.Compiler.Abstractions.csproj",
+      "AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj",
+      "AXSharp.compiler\\src\\ixd\\AXSharp.ixd.csproj",
+      "AXSharp.compiler\\src\\ixr\\AXSharp.ixr.csproj",
+      "AXSharp.connectors\\src\\AXSharp.Connector.S71500.WebAPI\\AXSharp.Connector.S71500.WebAPI.csproj",
+      "AXSharp.connectors\\src\\AXSharp.Connector\\AXSharp.Connector.csproj"
+    ]
+  }
+}

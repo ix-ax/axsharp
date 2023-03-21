@@ -151,14 +151,14 @@ END_CLASS
 <h2 id="common-added-members">Common added members</h2>
 <p><strong>The following members are present by default in any type created by IX compiler.</strong></p>
 <h2 id="attributename">AttributeName</h2>
-<p>AttributeName is the default added member of all types within IX. They are used to represent the name of the variable or object in a humanized way. These attributes can be later used to label the variables consistently in the UI.</p>
+<p>AttributeName is the default added member of all types within AXSharp. They are used to represent the name of the variable or object in a humanized way. These attributes can be later used to label the variables consistently in the UI.</p>
 <pre><code>{#ix-set: AttributeName = &quot;Length&quot;}
 _length : REAL;
 </code></pre>
 <h2 id="primitive-added-members">Primitive added members</h2>
 <p><strong>The following members are present by default in any primitive type create by IX compiler.</strong></p>
 <h2 id="attributeunits">AttributeUnits</h2>
-<p>AttributeUnit is the default added member of all PrimitiveTwins within IX. They are used to represent the unit measure of a variable.</p>
+<p>AttributeUnit is the default added member of all PrimitiveTwins within AXSharp. They are used to represent the unit measure of a variable.</p>
 <pre><code>{#ix-set: AttributeUnits = &quot;mm&quot;}
 _length : REAL;
 </code></pre>
@@ -166,7 +166,7 @@ _length : REAL;
 System.Console.WriteLine(MainPlc.MAIN._length.AttributeUnits);
 </code></pre>
 <h2 id="attributeminimum">AttributeMinimum</h2>
-<p>AttributeMinimum is the default added member of all PrimitiveTwins within IX. They are used to get or set the minimum value for the variable. By default, this attribute contains the minimal value of a given type.</p>
+<p>AttributeMinimum is the default added member of all PrimitiveTwins within AXSharp. They are used to get or set the minimum value for the variable. By default, this attribute contains the minimal value of a given type.</p>
 <pre><code>{#ix-set: AttributeMininum = 10.5f}
 _length : REAL;
 </code></pre>
@@ -174,7 +174,7 @@ _length : REAL;
 System.Console.WriteLine(MainPlc.MAIN._length.AttributeMinimum);
 </code></pre>
 <h2 id="attributemaximum">AttributeMaximum</h2>
-<p>AttributeMaximum is the default added member of all PrimitiveTwins within IX. They are used to get or set the maximum value for the variable. By default, this attribute contains the maximum value of a given type.</p>
+<p>AttributeMaximum is the default added member of all PrimitiveTwins within AXSharp. They are used to get or set the maximum value for the variable. By default, this attribute contains the maximum value of a given type.</p>
 <pre><code>{#ix-set: AttributeMaximum = 1525.5f}
 _length : REAL;
 </code></pre>

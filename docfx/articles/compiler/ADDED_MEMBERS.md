@@ -107,7 +107,7 @@ END_CLASS
 
 ## AttributeName
 
-AttributeName is the default added member of all types within IX. They are used to represent the name of the variable or object in a humanized way. These attributes can be later used to label the variables consistently in the UI.
+AttributeName is the default added member of all types within AXSharp. They are used to represent the name of the variable or object in a humanized way. These attributes can be later used to label the variables consistently in the UI.
 
 ~~~
 {#ix-set: AttributeName = "Length"}
@@ -121,7 +121,7 @@ _length : REAL;
 
 ## AttributeUnits
 
-AttributeUnit is the default added member of all PrimitiveTwins within IX. They are used to represent the unit measure of a variable.
+AttributeUnit is the default added member of all PrimitiveTwins within AXSharp. They are used to represent the unit measure of a variable.
 
 ~~~
 {#ix-set: AttributeUnits = "mm"}
@@ -135,7 +135,7 @@ System.Console.WriteLine(MainPlc.MAIN._length.AttributeUnits);
 
 ## AttributeMinimum
 
-AttributeMinimum is the default added member of all PrimitiveTwins within IX. They are used to get or set the minimum value for the variable. By default, this attribute contains the minimal value of a given type.
+AttributeMinimum is the default added member of all PrimitiveTwins within AXSharp. They are used to get or set the minimum value for the variable. By default, this attribute contains the minimal value of a given type.
 
 ~~~
 {#ix-set: AttributeMininum = 10.5f}
@@ -150,7 +150,7 @@ System.Console.WriteLine(MainPlc.MAIN._length.AttributeMinimum);
 
 ## AttributeMaximum
 
-AttributeMaximum is the default added member of all PrimitiveTwins within IX. They are used to get or set the maximum value for the variable. By default, this attribute contains the maximum value of a given type.
+AttributeMaximum is the default added member of all PrimitiveTwins within AXSharp. They are used to get or set the maximum value for the variable. By default, this attribute contains the maximum value of a given type.
 
 ~~~
 {#ix-set: AttributeMaximum = 1525.5f}

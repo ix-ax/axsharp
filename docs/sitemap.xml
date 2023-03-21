@@ -61,7 +61,7 @@
     <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://ix-ax.github.io/ix/api/IX.Compiler.Core_1.html</loc>
+    <loc>https://ix-ax.github.io/ix/api/AXSharp.Compiler.Core_1.html</loc>
     <lastmod>2023-03-20T02:17:49+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
@@ -79,7 +79,7 @@
     <priority>0.1</priority>
   </url>
   <url>
-    <loc>https://ix-ax.github.io/ix/api/IX.Compiler.Core.IxNodeVisitor.html</loc>
+    <loc>https://ix-ax.github.io/ix/api/AXSharp.Compiler.Core.IxNodeVisitor.html</loc>
     <lastmod>2023-03-20T02:17:49+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>

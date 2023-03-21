@@ -18,10 +18,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IX.Compiler.Core.IxNodeVisitor.yml",
+      "source_relative_path": "api/AXSharp.Compiler.Core.IxNodeVisitor.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IX.Compiler.Core.IxNodeVisitor.html",
+          "relative_path": "api/AXSharp.Compiler.Core.IxNodeVisitor.html",
           "hash": "noSscs3IMBldMuPEta5PIRzmIT66C7fQE2qySyJ4+hM="
         }
       },
@@ -29,10 +29,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/IX.Compiler.Core_1.yml",
+      "source_relative_path": "api/AXSharp.Compiler.Core_1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/IX.Compiler.Core_1.html",
+          "relative_path": "api/AXSharp.Compiler.Core_1.html",
           "hash": "u7F7iSjNkHfcahewISoZgIridU4+ZL8XjdLObdvQMvI="
         }
       },

@@ -233,12 +233,12 @@ Ix.Presentation.Blazor contains in-built styles. Styling is provided by [Bootstr
 Currently, the framework contains a default style that can be added as a reference in the Blazor application file *_Host.cshtml* in the following way:
 
 ```
- <link rel="stylesheet" href="/_content/IX.Presentation.Blazor.Controls/css/ix-bootstrap.min.css">
+ <link rel="stylesheet" href="/_content/AXSharp.Presentation.Blazor.Controls/css/ix-bootstrap.min.css">
 ```
 It is possible to add built-in javascript libraries as well:
 ```
-    <script src="/_content/IX.Presentation.Blazor.Controls/js/ix-bootstrap.bundle.min.js"></script>
-    <script src="/_content/IX.Presentation.Blazor.Controls/js/jquery-3.6.0.min.js"></script>
+    <script src="/_content/AXSharp.Presentation.Blazor.Controls/js/ix-bootstrap.bundle.min.js"></script>
+    <script src="/_content/AXSharp.Presentation.Blazor.Controls/js/jquery-3.6.0.min.js"></script>
 ```
 ### **Custom components libraries**
 

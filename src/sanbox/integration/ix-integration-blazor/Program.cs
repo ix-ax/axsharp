@@ -5,8 +5,8 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
-using Ix.Connector;
-using Ix.Presentation.Blazor.Services;
+using AXSharp.Connector;
+using AXSharp.Presentation.Blazor.Services;
 using ix_integration_blazor.Data;
 using ix_integration_plc;
 using Microsoft.AspNetCore.Components;

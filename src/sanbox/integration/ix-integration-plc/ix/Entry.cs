@@ -7,13 +7,13 @@
 
 //#define dummy
 
-using Ix.Connector;
+using AXSharp.Connector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ix.Connector.S71500.WebApi;
+using AXSharp.Connector.S71500.WebApi;
 
 namespace ix_integration_plc
 {

@@ -4,10 +4,10 @@
       "src":  [
         {        
           "files": [
-            "ix.abstractions/src/**.csproj",
-            "ix.blazor/src/**.csproj",
-            "ix.compiler/src/**.csproj",
-            "ix.connectors/src/**.csproj"
+            "AXSharp.abstractions/src/**.csproj",
+            "AXSharp.blazor/src/**.csproj",
+            "AXSharp.compiler/src/**.csproj",
+            "AXSharp.connectors/src/**.csproj"
           ],
           "exclude": [
             "**Test*.csproj",
