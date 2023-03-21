@@ -87,34 +87,58 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><span class="xref">object</span></div>
     <div class="level1"><span class="xref">TocSchema.Item</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Ix.ixc_doc.Schemas.html">Ix.ixc_doc.Schemas</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">Ix</span>.<span class="xref">ixc_doc</span>.<a class="xref" href="Ix.ixc_doc.Schemas.html">Schemas</a></h6>
   <h6><strong>Assembly</strong>: Ix.ixd.dll</h6>
   <h5 id="Ix_ixc_doc_Schemas_TocSchema_Item_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Item : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class TocSchema.Item</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item__ctor_AX_ST_Semantic_Model_Declarations_INamespaceDeclaration_System_String_.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.%23ctor(AX.ST.Semantic.Model.Declarations.INamespaceDeclaration%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L17">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L19">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_TocSchema_Item__ctor_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.#ctor*"></a>
-  <h4 id="Ix_ixc_doc_Schemas_TocSchema_Item__ctor_System_String_System_String_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.#ctor(System.String,System.String)">Item(String, String)</h4>
+  <h4 id="Ix_ixc_doc_Schemas_TocSchema_Item__ctor_AX_ST_Semantic_Model_Declarations_INamespaceDeclaration_System_String_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.#ctor(AX.ST.Semantic.Model.Declarations.INamespaceDeclaration,System.String)">Item(INamespaceDeclaration, string)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Item(string uid, string name)</code></pre>
+    <pre><code class="lang-csharp hljs">public Item(INamespaceDeclaration namespaceDeclaration, string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -124,12 +148,49 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">INamespaceDeclaration</span></td>
+        <td><span class="parametername">namespaceDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L25">View Source</a>
+  </span>
+  <a id="Ix_ixc_doc_Schemas_TocSchema_Item__ctor_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.#ctor*"></a>
+  <h4 id="Ix_ixc_doc_Schemas_TocSchema_Item__ctor_System_String_System_String_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.#ctor(System.String,System.String)">Item(string, string)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Item(string uid, string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">uid</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">name</span></td>
         <td></td>
       </tr>
@@ -139,10 +200,10 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item_Items.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.Items%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item_Items.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.Items%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L29">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L37">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_TocSchema_Item_Items_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.Items*"></a>
   <h4 id="Ix_ixc_doc_Schemas_TocSchema_Item_Items" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.Items">Items</h4>
@@ -150,10 +211,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;TocSchema.Item&gt; Items { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;items&quot;, NullValueHandling = NullValueHandling.Ignore)]
+public List&lt;TocSchema.Item&gt; Items { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -162,17 +224,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<a class="xref" href="Ix.ixc_doc.Schemas.TocSchema.Item.html">TocSchema.Item</a>&gt;</td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Ix.ixc_doc.Schemas.TocSchema.html">TocSchema</a>.<a class="xref" href="Ix.ixc_doc.Schemas.TocSchema.Item.html">Item</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item_Name.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item_Name.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L26">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L34">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_TocSchema_Item_Name_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.Name*"></a>
   <h4 id="Ix_ixc_doc_Schemas_TocSchema_Item_Name" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.Name">Name</h4>
@@ -180,10 +242,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;name&quot;)]
+public string Name { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -192,17 +255,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item_Uid.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item_Uid.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L23">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L31">View Source</a>
   </span>
   <a id="Ix_ixc_doc_Schemas_TocSchema_Item_Uid_" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.Uid*"></a>
   <h4 id="Ix_ixc_doc_Schemas_TocSchema_Item_Uid" data-uid="Ix.ixc_doc.Schemas.TocSchema.Item.Uid">Uid</h4>
@@ -210,10 +273,11 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Uid { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonProperty(&quot;uid&quot;)]
+public string Uid { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -222,7 +286,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -235,10 +299,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/new/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/apiSpec/new?filename=Ix_ixc_doc_Schemas_TocSchema_Item.md&amp;value=---%0Auid%3A%20Ix.ixc_doc.Schemas.TocSchema.Item%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/dev/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/ix-ax/ix/blob/126-_NEW-FEATURE_Add_swapping_methods_to_ITwinObject_interface/src/ix.compiler/src/ixd/Schemas/TocSchema.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
