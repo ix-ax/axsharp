@@ -81,7 +81,7 @@ public static class LocalizationHelper
         return localizables;
     }
 
-    internal static string CleanUpLocalizationTokens(string localized)
+    public static string CleanUpLocalizationTokens(this string localized)
     {
         if (localized != null) return localized.Replace("<#", string.Empty).Replace("#>", string.Empty);
 

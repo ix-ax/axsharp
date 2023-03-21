@@ -1,0 +1,68 @@
+﻿@namespace Ix.Presentation.Blazor.Controls.Templates
+@inherits RenderableComplexComponentBase<TaskExample>
+
+    <div class="btn-group form-group mb-2">
+
+        @if (IsTaskRunning)
+        {
+            <div class="btn @ButtonClass">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span>@Component.AttributeName</span>
+                <button class="btn btn-close btn-close-white" type="button" @onclick="@AbortTask">
+                </button>
+            </div>
+        }
+        else if (IsTaskAborted)
+        {
+            <button class="btn @ButtonClass" type="button" disabled="false" @onclick="@ResumeTask">
+                <span class="spinner-border spinner-border-sm invisible" role="status" aria-hidden="true"></span>
+                <span>@Component.AttributeName</span>
+                <span class="spinner-border spinner-border-sm invisible" role="status" aria-hidden="true"></span>
+            </button>
+        }
+        else
+        {
+            <button class="btn @ButtonClass" type="button" disabled="false" @onclick="@InvokeTask">
+                <span class="spinner-border spinner-border-sm invisible" role="status" aria-hidden="true"></span>
+                <span>@Component.AttributeName</span>
+                <span class="spinner-border spinner-border-sm invisible" role="status" aria-hidden="true"></span>
+            </button>
+        }
+        <button class="btn @ButtonClass" type="button" disabled=false @onclick="@RestoreTask">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+            </svg>
+        </button>
+    </div>
+
+@code
+{
+    protected void InvokeTask()
+    {
+       // Component.RemoteInvoke.Cyclic = true;
+    }
+    protected void RestoreTask()
+    {
+        //Component.RemoteRestore.Cyclic = true;
+    }
+    protected void AbortTask()
+    {
+        //Component.RemoteAbort.Cyclic = true;
+    }
+    protected void ResumeTask()
+    {
+        //Component.RemoteResume.Cyclic = true;
+    }
+
+    public string ButtonClass = "btn-primary";
+
+   public bool IsTaskRunning => false;
+    public bool IsTaskAborted => false;
+
+    protected override void OnInitialized()
+    {
+        UpdateValuesOnChange(Component);
+        
+    }
+}

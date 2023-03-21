@@ -19,6 +19,8 @@ namespace Simatic.Ax.StateFramework
         [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(Simatic.Ax.StateFramework.StateControllerStatus))]
         public OnlinerWord LColors { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public using_type_named_values(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -26,9 +28,80 @@ namespace Simatic.Ax.StateFramework
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             LColors = @Connector.ConnectorAdapter.AdapterFactory.CreateWORD(this, "LColors", "LColors");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> OnlineToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.using_type_named_values plain = new Pocos.Simatic.Ax.StateFramework.using_type_named_values();
+            await this.ReadAsync();
+            plain.LColors = LColors.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
+        {
+            plain.LColors = LColors.LastValue;
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
+        {
+            LColors.Cyclic = plain.LColors;
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> ShadowToPlainAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.using_type_named_values plain = new Pocos.Simatic.Ax.StateFramework.using_type_named_values();
+            plain.LColors = LColors.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> ShadowToPlainAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
+        {
+            plain.LColors = LColors.Shadow;
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
+        {
+            LColors.Shadow = plain.LColors;
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.Simatic.Ax.StateFramework.using_type_named_values CreateEmptyPoco()
+        {
+            return new Pocos.Simatic.Ax.StateFramework.using_type_named_values();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -83,7 +156,19 @@ namespace Simatic.Ax.StateFramework
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 

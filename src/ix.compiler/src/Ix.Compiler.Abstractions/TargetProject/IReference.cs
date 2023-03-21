@@ -14,9 +14,18 @@ public interface IReference
     string ReferencePath { get; }
     string Version { get; }
 
-    public string MetadataPath => Path.Combine(ReferencePath, ".meta", "meta.json");
+    /// <summary>
+    /// Gets file path of meta data for this reference.
+    /// </summary>
+    string MetadataPath { get; }
 
-    public string ProjectInfo => Path.Combine(ReferencePath, ".meta", "sourceinfo.json");
+    /// <summary>
+    /// Get file path of ix project information for this reference.
+    /// </summary>
+    string ProjectInfo { get; }
 
-    public bool IsIxDependency => File.Exists(MetadataPath);
+    /// <summary>
+    /// Gets whether this reference is ix project.
+    /// </summary>
+    bool IsIxDependency { get; }
 }

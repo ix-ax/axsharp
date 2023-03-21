@@ -13,19 +13,20 @@ using IX.Compiler.Core;
 using Ix.Compiler.Cs.Helpers;
 using Ix.Connector;
 using Ix.Connector.BuilderHelpers;
+using System;
 
 namespace Ix.Compiler.Cs.Onliner;
 
 internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBuilder
 {
-    protected CsOnlinerConfigurationConstructorBuilder(Compilation compilation) : base(compilation)
+    protected CsOnlinerConfigurationConstructorBuilder(ISourceBuilder sourceBuilder) : base(sourceBuilder)
     {
     }
 
     public new static CsOnlinerConfigurationConstructorBuilder Create(IxNodeVisitor visitor,
-        IConfigurationDeclaration semantics, IxProject project, Compilation compilation)
+        IConfigurationDeclaration semantics, IxProject project, ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerConfigurationConstructorBuilder(compilation);
+        var builder = new CsOnlinerConfigurationConstructorBuilder(sourceBuilder);
         builder.AddToSource(
             $"public {project.TargetProject.ProjectRootNamespace}TwinController({typeof(ConnectorAdapter).n()} adapter, object[] parameters) {{");
         builder.AddToSource("this.Connector = adapter.GetConnector(parameters);");
@@ -46,10 +47,16 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
 
     public override void CreateVariableDeclaration(IVariableDeclaration semantics, IxNodeVisitor visitor)
     {
-        if (semantics.IsMemberEligibleForConstructor(Compilation))
+        if (semantics.IsMemberEligibleForConstructor(SourceBuilder))
         {
             switch (semantics.Type)
             {
+                case IEnumTypeDeclaration @enum:
+                    AddMemberInitialization(@enum, semantics, visitor);
+                    break;
+                case INamedValueTypeDeclaration namedValue:
+                    AddMemberInitialization(namedValue, semantics, visitor);
+                    break;
                 case IArrayTypeDeclaration array:
                     AddArrayMemberInitialization(array, semantics, visitor);
                     break;
@@ -87,25 +94,41 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
         AddToSource("(p, rt, st));");
     }
 
-    private void AddMemberInitialization(IClassDeclaration type, IVariableDeclaration field, IxNodeVisitor visitor)
+    private void AddMemberInitialization(IClassDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
     {
-        AddToSource($"{field.Name}");
+        AddToSource($"{variable.Name}");
         AddToSource("= new");
         type.Accept(visitor, this);
-        AddToSource($"(this.Connector, \"\", \"{field.Name}\");");
+        AddToSource($"(this.Connector, \"\", \"{variable.Name}\");");
     }
 
-    private void AddMemberInitialization(IScalarTypeDeclaration type, IVariableDeclaration field, IxNodeVisitor visitor)
+    private void AddMemberInitialization(IScalarTypeDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
     {
-        AddToSource($"{field.Name}");
+        AddToSource($"{variable.Name}");
         AddToSource($"= @Connector.ConnectorAdapter.AdapterFactory.Create{IecToAdapterExtensions.ToAdapterType(type)}");
-        AddToSource($"(this.Connector, \"\", \"{field.Name}\");");
+        AddToSource($"(this.Connector, \"\", \"{variable.Name}\");");
     }
 
-    private void AddMemberInitialization(IStringTypeDeclaration type, IVariableDeclaration field, IxNodeVisitor visitor)
+    private void AddMemberInitialization(IStringTypeDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
     {
-        AddToSource($"{field.Name}");
+        AddToSource($"{variable.Name}");
         AddToSource($"= @Connector.ConnectorAdapter.AdapterFactory.Create{IecToAdapterExtensions.ToAdapterType(type)}");
-        AddToSource($"(this.Connector, \"\", \"{field.Name}\");");
+        AddToSource($"(this.Connector, \"\", \"{variable.Name}\");");
+    }
+
+    private void AddMemberInitialization(IEnumTypeDeclaration enumType, IVariableDeclaration variable, IxNodeVisitor visitor)
+    {
+        AddToSource($"{variable.Name}");
+        AddToSource("= @Connector.ConnectorAdapter.AdapterFactory.CreateINT");
+        AddToSource($"(this.Connector, \"\", \"{variable.Name}\");");
+        AddToSource(variable.SetProperties());
+    }
+
+    private void AddMemberInitialization(INamedValueTypeDeclaration namedValueType, IVariableDeclaration variable, IxNodeVisitor visitor)
+    {
+        AddToSource($"{variable.Name}");
+        AddToSource("= @Connector.ConnectorAdapter.AdapterFactory.Create", string.Empty);
+        namedValueType.Type.Accept(visitor, this);
+        AddToSource($"(this, \"{variable.GetAttributeNameValue(variable.Name)}\", \"{variable.Name}\");");
     }
 }

@@ -7,10 +7,8 @@ namespace RefToSimple
 {
     public partial class ref_to_simple : Ix.Connector.ITwinObject
     {
-        public OnlinerInt a { get; }
-
-        public RefToSimple.referenced b { get; }
-
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ref_to_simple(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -18,8 +16,73 @@ namespace RefToSimple
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync()
+        {
+            Pocos.RefToSimple.ref_to_simple plain = new Pocos.RefToSimple.ref_to_simple();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.RefToSimple.ref_to_simple> ShadowToPlainAsync()
+        {
+            Pocos.RefToSimple.ref_to_simple plain = new Pocos.RefToSimple.ref_to_simple();
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.ref_to_simple> ShadowToPlainAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.RefToSimple.ref_to_simple CreateEmptyPoco()
+        {
+            return new Pocos.RefToSimple.ref_to_simple();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -74,7 +137,19 @@ namespace RefToSimple
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 
@@ -87,6 +162,8 @@ namespace RefToSimple
     {
         public OnlinerInt b { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public referenced(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -94,9 +171,80 @@ namespace RefToSimple
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             b = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "b", "b");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync()
+        {
+            Pocos.RefToSimple.referenced plain = new Pocos.RefToSimple.referenced();
+            await this.ReadAsync();
+            plain.b = b.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync(Pocos.RefToSimple.referenced plain)
+        {
+            plain.b = b.LastValue;
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.referenced plain)
+        {
+            b.Cyclic = plain.b;
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.RefToSimple.referenced> ShadowToPlainAsync()
+        {
+            Pocos.RefToSimple.referenced plain = new Pocos.RefToSimple.referenced();
+            plain.b = b.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.RefToSimple.referenced> ShadowToPlainAsync(Pocos.RefToSimple.referenced plain)
+        {
+            plain.b = b.Shadow;
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RefToSimple.referenced plain)
+        {
+            b.Shadow = plain.b;
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.RefToSimple.referenced CreateEmptyPoco()
+        {
+            return new Pocos.RefToSimple.referenced();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -151,7 +299,19 @@ namespace RefToSimple
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 

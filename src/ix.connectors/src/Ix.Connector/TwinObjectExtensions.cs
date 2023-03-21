@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using Ix.Connector.ValueTypes;
 
 namespace Ix.Connector;
@@ -18,6 +19,15 @@ namespace Ix.Connector;
 /// </summary>
 public static class TwinObjectExtensions
 {
+
+    public static readonly string OnlineToPlainMethodName = nameof(ITwinObject.OnlineToPlain);
+
+    public static readonly string PlainToOnlineMethodName = nameof(ITwinObject.PlainToOnline);
+
+    public static readonly string ShadowToPlainMethodName = nameof(ITwinObject.ShadowToPlain);
+
+    public static readonly string PlainToShadowMethodName = nameof(ITwinObject.PlainToShadow);
+
     /// <summary>
     ///     Makes <see cref="Ix.Connector.ITwinObject" /> readonly for this application.
     /// </summary>
@@ -230,5 +240,60 @@ public static class TwinObjectExtensions
     {
         var valueTags = obj.RetrievePrimitives();
         foreach (var tag in valueTags) tag.EditValueChange = null;
+    }
+
+    /// <summary>
+    /// Copies the data from Online primitive items (PLC) of an <see cref="ITwinObject"/> to shadow value holders.
+    /// </summary>
+    /// <param name="obj">Twin object to copy.</param>
+    public static async Task OnlineToShadowAsync(this ITwinObject obj)
+    {
+        await obj.ReadAsync();
+        obj.RetrievePrimitives().ToList().ForEach(p => p.FromOnlineToShadow());
+    }
+
+    /// <summary>
+    /// Copies the data from Shadow value holder to online primitive items (PLC) of an <see cref="ITwinObject"/>.
+    /// </summary>
+    /// <param name="obj">Twin object to copy.</param>
+    public static async Task ShadowToOnlineAsync(this ITwinObject obj)
+    {
+        obj.RetrievePrimitives().ToList().ForEach(p => p.FromShadowToOnline());
+        await obj.WriteAsync();
+    }
+
+    /// <summary>
+    /// Starts polling data from a <see cref="ITwinElement"/> at given interval.
+    /// </summary>
+    /// <param name="obj">Object to be polled.</param>
+    /// <param name="interval">Polling interval in ms.</param>
+    public static void StartPolling(this ITwinElement obj, int interval)
+    {
+        Polling.Add(obj, interval);
+    }
+
+    /// <summary>
+    /// Stop polling data from a <see cref="ITwinElement"/>.
+    /// Polling mechanism checks whether there is another polling instance active for the given object.
+    /// If there is any remaining instance active the polling will continue until the last instance is stopped.
+    /// </summary>
+    /// <param name="obj">Object for which the polling should be stopped.</param>
+    public static void StopPolling(this ITwinElement obj)
+    {
+        Polling.Remove(obj);
+    }
+
+    /// <summary>
+    /// Creates new unpopulated instance of POCO object for this twin object.
+    /// <remarks type="important">
+    /// This method uses reflections. It is not suitable for operations where performance matters.
+    /// </remarks>
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns>New empty instance of POCO object for this twin object</returns>
+    public static object CreatePoco(this ITwinObject obj)
+    {
+        var createEmptyPocoMethod = obj.GetType().GetMethod("CreateEmptyPoco");
+        return createEmptyPocoMethod.Invoke(obj, null);
     }
 }

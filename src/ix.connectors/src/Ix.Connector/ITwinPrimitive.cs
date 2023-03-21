@@ -74,10 +74,26 @@ public interface ITwinPrimitive : ITwinElement
     /// </summary>
     PrimitiveAccessStatus AccessStatus { get; }
 
-    
+    /// <summary>
+    /// Gets current polling interval.
+    /// </summary>
+    int PollingInterval { get;  }
+
 
     /// <summary>
     ///     Subscribes this item for periodic reading.
     /// </summary>
     void SubscribeForPeriodicReading();
+
+    /// <summary>
+    /// Copies the value from the plc to the shadow value holder.
+    /// </summary>
+    void FromOnlineToShadow();
+
+    /// <summary>
+    /// Copies the value from the shadow value holder to the respective plc variable.
+    /// </summary>
+    void FromShadowToOnline();
+
+  
 }

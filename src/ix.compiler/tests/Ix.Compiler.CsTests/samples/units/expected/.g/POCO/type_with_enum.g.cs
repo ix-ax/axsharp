@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace Simatic.Ax.StateFramework
     {
-        public interface IGuard
+        public partial interface IGuard
         {
         }
     }
@@ -13,10 +13,9 @@ namespace Pocos
     {
         public partial class CompareGuardLint : IGuard
         {
-            public Int64 Value { get; set; } = new Int64();
             public Int64 CompareToValue { get; set; }
 
-            public units.Simatic.Ax.StateFramework.Condition Condition { get; set; }
+            public global::Simatic.Ax.StateFramework.Condition Condition { get; set; }
         }
     }
 }

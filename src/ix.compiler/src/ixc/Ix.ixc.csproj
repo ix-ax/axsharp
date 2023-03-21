@@ -11,6 +11,7 @@
 	<!--NuGet Specific part-->
 	<Description>CLI implementation of IX compiler</Description>
 	<PackAsTool>True</PackAsTool>
+	<ToolCommandName>ixc</ToolCommandName>
 
 	<!-- NuGet Common part-->
 	<PackageProjectUrl>https://github.com/ix-ax/</PackageProjectUrl>
@@ -31,7 +32,7 @@
 	  https://github.com/ix-ax/ix/releases
 	</PackageReleaseNotes>
 	<PackageReadmeFile>NUGET-README.md</PackageReadmeFile>
-	<ToolCommandName>ixc</ToolCommandName>
+	
 	
   </PropertyGroup>
 
@@ -59,7 +60,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CliWrap" Version="3.5.0" />
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
 		<PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
 		  <PrivateAssets>all</PrivateAssets>

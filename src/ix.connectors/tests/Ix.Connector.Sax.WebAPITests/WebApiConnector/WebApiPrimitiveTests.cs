@@ -20,7 +20,7 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
 
     public static class TestConnector
     {
-        private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AXTARGET") ?? "10.10.101.1";
+        private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET") ?? "10.10.101.1";
 
         public static WebApiConnector TestApiConnector { get; } = new WebApiConnector(TargetIp, "Everybody", "", true).BuildAndStart() as WebApiConnector;
     }
@@ -61,6 +61,7 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
         [Fact]
         public virtual async void should_synchron_write_max_value()
         {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
             await webApiPrimitive!.SetAsync(Max);
             Assert.Equal(Max, await webApiPrimitive.GetAsync());
             Assert.True(await maxMatches.GetAsync());
@@ -69,6 +70,7 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
         [Fact]
         public virtual async void should_synchron_write_mid_value()
         {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
             await webApiPrimitive!.SetAsync(Mid);
             Assert.Equal(Mid, await webApiPrimitive.GetAsync());
         }
@@ -76,6 +78,7 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
         [Fact]
         public virtual async void should_synchron_write_min_value()
         {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
             await webApiPrimitive!.SetAsync(Min);
             Assert.Equal(Min, await webApiPrimitive.GetAsync());
             Assert.True(await minMatches.GetAsync());
@@ -84,8 +87,10 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
         [Fact]
         public virtual async void should_write_cyclic_max_value()
         {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
             await webApiPrimitive.SetAsync(Min);
             webApiPrimitive!.Cyclic = Max;
+            webApiPrimitive!.AddToPeriodicQueue();
             await Task.Delay(WaitTimeForCyclicOperations);
             Assert.Equal(Max, await webApiPrimitive.GetAsync());
             Assert.Equal(Max, webApiPrimitive.Cyclic);
@@ -95,22 +100,46 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
         [Fact]
         public virtual async void should_write_cyclic_mid_value()
         {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
             await webApiPrimitive.SetAsync(Max);
             webApiPrimitive!.Cyclic = Mid;
+            webApiPrimitive!.AddToPeriodicQueue();
             await Task.Delay(WaitTimeForCyclicOperations);
             Assert.Equal(Mid, webApiPrimitive.Cyclic);
             Assert.Equal(Mid, await webApiPrimitive.GetAsync());
         }
-
         [Fact]
         public virtual async void should_write_cyclic_min_value()
         {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
             await webApiPrimitive.SetAsync(Max);
             webApiPrimitive!.Cyclic = Min;
+            webApiPrimitive!.AddToPeriodicQueue();
             await Task.Delay(WaitTimeForCyclicOperations);
             Assert.Equal(Min, await webApiPrimitive.GetAsync());
             Assert.Equal(Min, webApiPrimitive.Cyclic);
             Assert.True(await minMatches.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void use_batch_rw_connector()
+        {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            webApiPrimitive.Cyclic = Min;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal(Min, webApiPrimitive.LastValue);
+
+            webApiPrimitive.Cyclic = Mid;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal(Mid, webApiPrimitive.LastValue);
+
+            webApiPrimitive.Cyclic = Max;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal(Max, webApiPrimitive.LastValue);
+
         }
     }
 
@@ -231,6 +260,28 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
             await Task.Delay(WaitTimeForCyclicOperations);
             Assert.Equal((int)(Min * d), (int)(await webApiPrimitive.GetAsync() * d));
         }
+
+        [Fact]
+        public override async void use_batch_rw_connector()
+        {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            System.Threading.Thread.Sleep(250);
+            webApiPrimitive.Cyclic = Min;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal((int)(Min * d), (int)webApiPrimitive.LastValue);
+
+            webApiPrimitive.Cyclic = Mid;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal((int)(Mid * d), (int)webApiPrimitive.LastValue);
+
+            webApiPrimitive.Cyclic = Max;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal((int)(Max * d), (int)webApiPrimitive.LastValue);
+
+        }
     }
 
     public class WebApiLTimeTests : WebApiPrimitiveTests<WebApiLTime, TimeSpan>
@@ -301,6 +352,28 @@ namespace Ix.Connector.S71500.WebAPITests.Primitives
             webApiPrimitive!.Cyclic = Min;
             await Task.Delay(WaitTimeForCyclicOperations);
             Assert.Equal((int)(Min * d), (int)(await webApiPrimitive.GetAsync() * d));
+        }
+
+        [Fact]
+        public override async void use_batch_rw_connector()
+        {
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            System.Threading.Thread.Sleep(250);
+            webApiPrimitive.Cyclic = Min;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal((int)(Min * d), (int)webApiPrimitive.LastValue);
+
+            webApiPrimitive.Cyclic = Mid;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal((int)(Mid * d), (int)webApiPrimitive.LastValue);
+
+            webApiPrimitive.Cyclic = Max;
+            await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            await TestConnector.TestApiConnector.ReadBatchAsync(new ITwinPrimitive[] { webApiPrimitive });
+            Assert.Equal((int)(Max * d), (int)webApiPrimitive.LastValue);
+
         }
     }
 

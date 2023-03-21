@@ -38,8 +38,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         Compilation = compilation;
     }
 
-    private Compilation Compilation { get; }
-
+    /// <inheritdoc />
+    public Compilation Compilation { get; }
 
     private IxProject Project { get; }
 
@@ -74,20 +74,41 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         }
         else
         {
-            AddToSource(typeof(ITwinObject).n());
+            AddToSource(typeof(ITwinObject).n()!);
         }
 
         AddToSource(classDeclarationSyntax.ImplementsList != null ? ", " : string.Empty);
         classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
         AddToSource("\n{");
 
-        AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, this).Output);
 
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, Compilation, isExtended).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+
+        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+
+        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+
+        AddPollingMethod();
+        AddCreatePocoMethod(classDeclaration);
 
         if (!isExtended) CreateITwinObjectImplementation();
 
         AddToSource("}");
+    }
+
+    private void AddPollingMethod()
+    {
+        AddToSource(" public void Poll()\r\n    {\r\n        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());\r\n    }");
+    }
+
+    private void AddCreatePocoMethod(ITypeDeclaration typeDeclaration)
+    {
+        AddToSource($"public Pocos.{typeDeclaration.FullyQualifiedName} CreateEmptyPoco(){{ return new Pocos.{typeDeclaration.FullyQualifiedName}();}}");
     }
 
     /// <inheritdoc />
@@ -98,9 +119,9 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(
             $"public partial class {Project.TargetProject.ProjectRootNamespace}TwinController : ITwinController {{");
         AddToSource($"public {typeof(Connector.Connector).n()} Connector {{ get; }}");
-        AddToSource(CsOnlinerMemberBuilder.Create(visitor, configurationDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, configurationDeclaration, this).Output);
         AddToSource(CsOnlinerConfigurationConstructorBuilder
-            .Create(visitor, configurationDeclaration, Project, Compilation).Output);
+            .Create(visitor, configurationDeclaration, Project, this).Output);
         AddToSource("}");
     }
 
@@ -109,7 +130,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         AddToSource($"public partial class {Project.TargetProject.ProjectRootNamespace} : ITwinController {{");
         AddToSource(@$"public {typeof(Connector.Connector).n()} Connector {{ get; }}");
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, configurationDeclaration, Project, Compilation).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, configurationDeclaration, Project, this).Output);
         AddToSource("}");
     }
 
@@ -176,7 +197,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IInterfaceDeclaration interfaceDeclaration,
         IxNodeVisitor visitor)
     {
-        AddToSource($"{interfaceDeclaration.AccessModifier.Transform()} interface {interfaceDeclaration.Name} {{}}");
+        AddToSource($"{interfaceDeclaration.AccessModifier.Transform()} partial interface {interfaceDeclaration.Name} {{}}");
     }
 
     /// <inheritdoc />
@@ -195,13 +216,25 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             $"{structuredTypeDeclaration.AccessModifier.Transform()}partial class {structTypeDeclarationSyntax.Name.Text}");
         AddToSource(":");
 
-        AddToSource(typeof(ITwinObject).n());
+        AddToSource(typeof(ITwinObject).n()!);
 
         AddToSource("\n{");
 
-        AddToSource(CsOnlinerMemberBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerMemberBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, structuredTypeDeclaration, Compilation).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+
+        AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerPlainToOnlineBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+
+        AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+        AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
+
+        AddPollingMethod();
+
+        AddCreatePocoMethod(structuredTypeDeclaration);
 
         CreateITwinObjectImplementation();
 
@@ -224,6 +257,10 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public string OutputFileSuffix => ".g.cs";
 
+    /// <inheritdoc />
+    public string BuilderType => "Onliner";
+
+
     private void CreateITwinObjectImplementation()
     {
         AddToSource(
@@ -241,7 +278,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             "public string GetSymbolTail() { return this.SymbolTail; }" +
             $"public {typeof(ITwinObject).n()} GetParent() {{ return this.@Parent; }}" +
             "public string Symbol { get; protected set; }" +
-            "public System.String AttributeName { get; set; }" +
+            "private string _attributeName;" +
+            "public System.String AttributeName { get {return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName); } set { _attributeName = value; } }" +
             "public string HumanReadable { get; set; }" +
             "protected System.String @SymbolTail { get; set;}" +
             $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"

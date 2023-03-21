@@ -30,14 +30,35 @@ public class WebApiUInt : OnlinerUInt, IWebApiPrimitive
     {
         _webApiConnector = WebApiConnector.Cast(parent.GetConnector());
     }
+    private ApiPlcWriteRequest _plcWriteRequestData;
+    private ApiPlcReadRequest _plcReadRequestData;
 
     /// <inheritdoc />
-    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData =>
-        WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+    ApiPlcReadRequest IWebApiPrimitive.PeekPlcReadRequestData => _plcReadRequestData ?? WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
 
     /// <inheritdoc />
-    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
-        WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+    ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+    
+    /// <inheritdoc />
+    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
+    {
+        get
+        {
+            _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+            return _plcReadRequestData;
+        }
+
+    }
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData
+    {
+        get
+        {
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+            return _plcWriteRequestData;
+        }
+    }
 
     /// <inheritdoc />
     public void Read(string value)

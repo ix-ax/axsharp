@@ -1,0 +1,41 @@
+- name: Introduction
+  href: intro.md
+- name: Conceptual
+  href: ~/articles/conceptual/Conceptual.md
+- name: Getting started
+  href: ~/index.md#getting-started
+- name: Twin Compiler
+  href: ~/articles/compiler/README.md
+  items:
+  - name: Attributes
+    href: ~/articles/compiler/ATTRIBUTES.md
+  - name: Added members
+    href: ~/articles/compiler/ADDED_MEMBERS.md
+  - name: Constructor extensions of onliners
+    href: ~/articles/compiler/CONSTRUCTOR_EXTENSIONS.md
+  - name: Config file
+    href: ~/articles/compiler/CONFIG_FILE.md
+  - name: Packaging and dependencies
+    href: ~/articles/compiler/PACKAGING.md
+
+- name: Documenation compiler
+  href: ~/articles/ixd/IXD.md
+- name: Localizables compiler
+  href: ~/articles/ixr/IXR.md
+- name: Connectors
+  href: ~/articles/connectors/README.md
+  items:
+  - name: Dummy
+    href: ~/articles/connectors/Dummy.md
+  - name: WebAPI
+    href: ~/articles/connectors/WebAPI.md
+- name: Blazor rendering
+  href: ~/articles/blazor/README.md
+  items:
+  - name: Blazor layouts
+    href: ~/articles/blazor/LAYOUTS.md
+  - name: Blazor controls
+    href: ~/articles/blazor/LIBRARIES.md
+  - name: Blazor auto-rendering
+    href: ~/articles/blazor/RENDERABLECONTENT.md
+

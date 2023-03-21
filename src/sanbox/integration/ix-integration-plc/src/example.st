@@ -25,5 +25,21 @@ CLASS example
         ixcomponent_instance: ixcomponent;
         ixcomponent_instance2: MySecondNamespace.ixcomponent;
         ixcomponent_instance3: ThirdNamespace.ixcomponent;
-    END_VAR    
+
+        {#ix-attr:[Container(Layout.Stack)]}
+        compositeStack :compositeLayout;
+        {#ix-attr:[Container(Layout.Wrap)]}
+        compositeWrap :compositeLayout;
+        {#ix-attr:[Container(Layout.UniformGrid)]}
+        compositeUniform :compositeLayout;
+        {#ix-attr:[Container(Layout.Tabs)]}
+        compositeTabs :compositeLayout;
+        
+        refIxComponent : REF_TO ixcomponent;
+    END_VAR 
+        
+    METHOD PUBLIC ReferenceToComponent : Int
+        refIxComponent^ := ixcomponent_instance;        
+    END_METHOD
+
 END_CLASS

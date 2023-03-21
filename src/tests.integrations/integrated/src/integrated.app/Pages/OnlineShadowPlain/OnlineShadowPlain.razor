@@ -1,0 +1,64 @@
+﻿@page "/swapping/OnlineShadowPlain"
+
+<h1>OnlineShadow</h1>
+
+<button class="btn btn-primary" @onclick="()=> ShadowToOnline()">ShadowToOnline</button>
+<button class="btn btn-primary" @onclick="()=> OnlineToShadow()">OnlineToShadow</button>
+<button class="btn btn-primary" @onclick="()=> PlainToOnline()">Plain to online</button>
+<button class="btn btn-primary" @onclick="()=> PlainToShadow()">Plain to shadow</button>
+
+<div class="container">
+    <div class="row">
+        <div class="col card m-2">
+            <h2>Shadow Control</h2>
+            <RenderableContentControl Context="Entry.Plc.RealMonster" Presentation="ShadowControl"></RenderableContentControl>
+        </div>
+
+        <div class="col card m-2">
+            <h2>Online Control</h2>
+            <RenderableContentControl Context="Entry.Plc.RealMonster" Presentation="Control"></RenderableContentControl>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@code {
+    private async Task OnlineToShadow()
+    {
+        await Entry.Plc.RealMonster.OnlineToShadowAsync();
+
+    }
+    private async Task ShadowToOnline()
+    {
+        await Entry.Plc.RealMonster.ShadowToOnlineAsync();
+    }
+
+    private void OnlinerToPlain()
+    {
+        var plain = Entry.Plc.RealMonster.OnlineToPlain<Pocos.RealMonsterData.RealMonster>();
+        Console.WriteLine(plain);
+    }
+
+    private void PlainToOnline()
+    {
+        var plainMonster = new Pocos.RealMonsterData.RealMonster();
+        plainMonster.Description = "This comes from plain to online";
+        Entry.Plc.RealMonster.PlainToOnline(plainMonster);
+    }
+
+    private void ShadowToPlain()
+    {
+        var plain = Entry.Plc.RealMonster.ShadowToPlain<Pocos.RealMonsterData.RealMonster>();
+        Console.WriteLine(plain);
+    }
+
+    private void PlainToShadow()
+    {
+        var plainMonster = new Pocos.RealMonsterData.RealMonster();
+        plainMonster.Description = "This comes from plain to shadow";
+        Entry.Plc.RealMonster.PlainToShadow(plainMonster);
+    }
+}

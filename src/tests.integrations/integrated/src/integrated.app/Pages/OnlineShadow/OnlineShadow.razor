@@ -1,0 +1,37 @@
+﻿@page "/swapping/onlineshadow"
+
+<h1>OnlineShadow</h1>
+
+<button class="btn btn-primary" @onclick="()=> ShadowToOnline()">ShadowToOnline</button>
+<button class="btn btn-primary" @onclick="()=> OnlineToShadow()">OnlineToShadow</button>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col card m-2">
+            <h2>Shadow Control</h2>
+            <RenderableContentControl Context="Entry.Plc.RealMonster" Presentation="ShadowControl"></RenderableContentControl>
+        </div>
+
+        <div class="col card m-2">
+            <h2>Online Control</h2>
+            <RenderableContentControl Context="Entry.Plc.RealMonster" Presentation="Control"></RenderableContentControl>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@code {
+    private async Task OnlineToShadow()
+    {
+        await Entry.Plc.RealMonster.OnlineToShadowAsync();
+
+    }
+    private async Task ShadowToOnline()
+    {
+        await Entry.Plc.RealMonster.ShadowToOnlineAsync();
+    }
+}

@@ -116,7 +116,11 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
 
     private void AddForCyclicAccess()
     {
-        Parent.GetConnector()?.AddToPeriodicReadSet(this);
+        if (Parent != null && Parent.GetConnector() != null
+            && Parent.GetConnector().SubscriptionMode == ReadSubscriptionMode.AutoSubscribeUsedVariables)
+        {
+            Parent.GetConnector()?.AddToNextPeriodicReadSet(this);
+        }
     }
 
     /// <summary>
@@ -391,12 +395,20 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     public abstract T InstanceMaxValue { get; }
 
     /// <summary>
-    ///     Updates cyclically read value and performs notifications.
+    /// Get whether this primitive is subscribed for periodic reading.
+    /// </summary>
+    public bool? IsSubscribed => this.Parent?.GetConnector()?.Subscribed?.ContainsKey(this.Symbol);
+
+    /// <summary>
+    ///   Updates cyclically read value and performs notifications.
     /// </summary>
     /// <param name="val">Updated value.</param>
     protected void UpdateRead(T val)
     {
-        CwCycle = Parent.GetConnector().RwCycleCount;
+        if (Parent != null && Parent.GetConnector() != null)
+        {
+            CwCycle = Parent.GetConnector().RwCycleCount;
+        }
 
         if (_cyclic == null)
         {
@@ -564,5 +576,18 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     public Assembly GetDeclaringAssembly()
     {
         return Assembly.GetAssembly(Parent.GetType());
+    }
+
+
+    /// <inheritdoc />
+    public override void FromOnlineToShadow()
+    {
+        this.Shadow = this.LastValue;
+    }
+
+    /// <inheritdoc />
+    public override void FromShadowToOnline()
+    {
+        this.Cyclic = this.Shadow;
     }
 }

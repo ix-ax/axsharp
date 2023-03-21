@@ -39,10 +39,27 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         [Parameter]
         public string Presentation { get; set; }
         /// <summary>
-        /// Parameter Class serves for styling of elements.
+        /// Parameter Class, in which RenderableContentenControl will be wrapped.
         /// </summary>
         [Parameter]
         public string Class { get; set; }
+          /// <summary>
+        /// Parameter LayoutClass, in which layouts will be wrapped.
+        /// </summary>
+        [Parameter]
+        public string LayoutClass { get; set; }
+          /// <summary>
+        /// Parameter LayoutChildrenClass, in which children of layouts will be wrapped.
+        /// </summary>
+        [Parameter]
+        public string LayoutChildrenClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets polling interval for PLC variables of this controls context in ms.
+        /// </summary>
+        [Parameter]
+        public int PollingInterval { get; set; } = 250;
+
         [Inject]
         public ComponentService ComponentService { get; set; }
         [Inject]
@@ -60,6 +77,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
             try
             {
                 _context = (ITwinElement)Context;
+                _context.StartPolling(this.PollingInterval);
             }
             catch 
             {
@@ -90,7 +108,6 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         /// Method to build component name from passed parameters, which instance will be found in assembly.
         /// <param name="twinType">Type of passed object.</param>
         /// <param name="presentationType">Type of presentation.</param>
-        /// <param name="getComponent">Delegate to specify method, from which get component.</param>
         /// </summary>
 
         internal IRenderableComponent ViewLocatorBuilder(Type twinType, string presentationType)
@@ -117,9 +134,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
                     component = ViewLocatorBuilder(twinType.BaseType, presentationName);
                 }
                 if (component != null) return component;
-            }
-            //if Presentation is empty and view wasn't found, set presentation to Display and generate children
-            if (string.IsNullOrEmpty(Presentation)) Presentation = "Display";                 
+            }                
             return null;
         }
 
@@ -292,7 +307,7 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
 
         private (string, Type) GetGenericInfo(Type primitiveKidType)
         {
-            var baseName = primitiveKidType.BaseType.Name;
+            var baseName = primitiveKidType?.BaseType.Name;
 
             if (baseName == "OnlinerBase")
             {
@@ -323,8 +338,28 @@ namespace Ix.Presentation.Blazor.Controls.RenderableContent
         }
         private bool HasReadAccess(ITwinPrimitive kid) => kid.ReadWriteAccess == ReadWriteAccess.Read;
 
+        private bool CheckForArray(ITwinObject twinObject)
+        {
+            var tail = twinObject.GetSymbolTail();
+            if (tail.Last() == ']')
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private string GetDisplayPresentationIfEmpty()
+        {
+            if (string.IsNullOrEmpty(Presentation))
+            {
+                return "Display";
+            }
+            return Presentation;
+            
+        }
         public void Dispose()
         {
+            this._context?.StopPolling();
             _viewModelCache.ResetCounter();
         }
     }

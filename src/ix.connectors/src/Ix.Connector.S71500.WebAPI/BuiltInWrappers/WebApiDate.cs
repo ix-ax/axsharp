@@ -31,29 +31,60 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
         _webApiConnector = WebApiConnector.Cast(parent.GetConnector());
     }
 
-    /// <inheritdoc />
-    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData =>
-        WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+    private ApiPlcWriteRequest _plcWriteRequestData;
+    private ApiPlcReadRequest _plcReadRequestData;
 
     /// <inheritdoc />
-    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
-        WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+    ApiPlcReadRequest IWebApiPrimitive.PeekPlcReadRequestData => _plcReadRequestData ?? WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
+    {
+        get
+        {
+            _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+            return _plcReadRequestData;
+        }
+
+    }
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData
+    {
+        get
+        {
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+            return _plcWriteRequestData;
+        }
+    }
 
     /// <inheritdoc />
     public void Read(string value)
     {
-        DateOnly dt;
-        if (DateOnly.TryParse(value, out dt))
-            UpdateRead(dt);
+        UpdateRead(GetFromBinary(value));
     }
 
     /// <inheritdoc />
     public override async Task<DateOnly> GetAsync()
     {
-        var dt = await _webApiConnector.ReadAsync<long>(this) / 100;
-        return DateOnly.FromDateTime(DateTime.FromBinary(dt).AddYears(1969));
+        var dt = await _webApiConnector.ReadAsync<long>(this);
+        return GetFromBinary(dt);
     }
 
+    private DateOnly GetFromBinary(string value)
+    {
+        var val = long.Parse(value);
+        return GetFromBinary(val);
+    }
+
+    private DateOnly GetFromBinary(long value)
+    {
+        var val = value / 100;
+        return DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
+    }
 
     private string GetFromDate(DateOnly date)
     {

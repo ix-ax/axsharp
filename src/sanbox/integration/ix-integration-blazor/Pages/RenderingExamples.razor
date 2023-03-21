@@ -8,7 +8,18 @@
 <RenderableContentControl 
     Presentation="Service" 
     Context="@Entry.Plc.test_example.ixcomponent_instance" />
-
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <RenderableContentControl Presentation="Control"
+                                      Context="@Entry.Plc.test_example.ixcomponent_instance"/>
+        </div>
+        <div class="col">
+           @* <RenderableContentControl Presentation="Control"
+                                      Context="@Entry.Plc.test_example.refIxComponent"/>*@
+        </div>
+    </div>
+</div>
 <h2>Grouplayouts</h2>
 <h3>GroupBox</h3>
 <RenderableContentControl Context="@Entry.Plc.test_example.test_groupbox" Presentation="Control"></RenderableContentControl>
@@ -24,4 +35,6 @@
 <RenderableContentControl Context="@Entry.Plc.test_example.primitives_uniform" Presentation="Control"></RenderableContentControl>
 <h3>Tab</h3>
 <RenderableContentControl Context="@Entry.Plc.test_example.primitives_tabs" Presentation="Control"></RenderableContentControl>
+
+<RenderableContentControl Context="Entry.Plc.ixcomponent"></RenderableContentControl>
 

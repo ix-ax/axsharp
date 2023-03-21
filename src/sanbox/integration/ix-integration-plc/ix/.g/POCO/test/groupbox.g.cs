@@ -21,7 +21,7 @@ namespace Pocos
 
         public DateOnly TestDate { get; set; } = default(DateOnly);
         public DateTime TestDateTime { get; set; } = default(DateTime);
-        public TimeOnly TestTimeOfDay { get; set; } = default(TimeOnly);
-        public enumStationStatus Status { get; set; }
+        public TimeSpan TestTimeOfDay { get; set; } = default(TimeSpan);
+        public global::enumStationStatus Status { get; set; }
     }
 }

@@ -14,7 +14,7 @@ using AX.ST.Semantic.Model.Declarations.Types;
 
 namespace Ix.Compiler.Cs
 {
-    public static class IecToAdapterExtensions
+    internal static class IecToAdapterExtensions
     {
         public static string ToAdapterType(IStringTypeDeclaration type)
         {

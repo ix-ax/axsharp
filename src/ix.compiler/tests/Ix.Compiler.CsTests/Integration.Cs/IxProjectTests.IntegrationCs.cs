@@ -87,6 +87,20 @@ public class IxProjectTests
     }
 
     [Fact]
+    public void should_clean_output_folder()
+    {
+        should_create_files_from_source_to_generated_output_folder();
+        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
+            new[] { typeof(CsPlainSourceBuilder) }, typeof(CsProject));
+
+        Assert.True(Directory.EnumerateFiles(project.OutputFolder, "*.g.cs", SearchOption.AllDirectories).Count() > 0);
+
+        project.CleanOutput(project.OutputFolder);
+
+        Assert.Equal(0, Directory.EnumerateFiles(project.OutputFolder, "*.g.cs", SearchOption.AllDirectories).Count());
+    }
+
+    [Fact]
     public void should_match_expected_and_generated_whole_project()
     {
         var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),

@@ -17,6 +17,8 @@ namespace makereadonce
 
         public makereadonce.ComplexMember someotherComplexMember { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public MembersWithMakeReadOnce(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -24,6 +26,7 @@ namespace makereadonce
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             makeReadOnceMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "makeReadOnceMember", "makeReadOnceMember");
             makeReadOnceMember.MakeReadOnce();
             someOtherMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someOtherMember", "someOtherMember");
@@ -32,6 +35,94 @@ namespace makereadonce
             someotherComplexMember = new makereadonce.ComplexMember(this, "someotherComplexMember", "someotherComplexMember");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.makereadonce.MembersWithMakeReadOnce> OnlineToPlainAsync()
+        {
+            Pocos.makereadonce.MembersWithMakeReadOnce plain = new Pocos.makereadonce.MembersWithMakeReadOnce();
+            await this.ReadAsync();
+            plain.makeReadOnceMember = makeReadOnceMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.OnlineToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonce.MembersWithMakeReadOnce> OnlineToPlainAsync(Pocos.makereadonce.MembersWithMakeReadOnce plain)
+        {
+            plain.makeReadOnceMember = makeReadOnceMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonce.MembersWithMakeReadOnce plain)
+        {
+            makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
+            someOtherMember.Cyclic = plain.someOtherMember;
+            await this.makeReadComplexMember.PlainToOnlineAsync(plain.makeReadComplexMember);
+            await this.someotherComplexMember.PlainToOnlineAsync(plain.someotherComplexMember);
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.makereadonce.MembersWithMakeReadOnce> ShadowToPlainAsync()
+        {
+            Pocos.makereadonce.MembersWithMakeReadOnce plain = new Pocos.makereadonce.MembersWithMakeReadOnce();
+            plain.makeReadOnceMember = makeReadOnceMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            plain.makeReadComplexMember = await makeReadComplexMember.ShadowToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonce.MembersWithMakeReadOnce> ShadowToPlainAsync(Pocos.makereadonce.MembersWithMakeReadOnce plain)
+        {
+            plain.makeReadOnceMember = makeReadOnceMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            plain.makeReadComplexMember = await makeReadComplexMember.ShadowToPlainAsync();
+            plain.someotherComplexMember = await someotherComplexMember.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonce.MembersWithMakeReadOnce plain)
+        {
+            makeReadOnceMember.Shadow = plain.makeReadOnceMember;
+            someOtherMember.Shadow = plain.someOtherMember;
+            await this.makeReadComplexMember.PlainToShadowAsync(plain.makeReadComplexMember);
+            await this.someotherComplexMember.PlainToShadowAsync(plain.someotherComplexMember);
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.makereadonce.MembersWithMakeReadOnce CreateEmptyPoco()
+        {
+            return new Pocos.makereadonce.MembersWithMakeReadOnce();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -86,7 +177,19 @@ namespace makereadonce
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 
@@ -101,6 +204,8 @@ namespace makereadonce
 
         public OnlinerString someOtherMember { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ComplexMember(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -108,10 +213,87 @@ namespace makereadonce
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             someMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someMember", "someMember");
             someOtherMember = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "someOtherMember", "someOtherMember");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.makereadonce.ComplexMember> OnlineToPlainAsync()
+        {
+            Pocos.makereadonce.ComplexMember plain = new Pocos.makereadonce.ComplexMember();
+            await this.ReadAsync();
+            plain.someMember = someMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonce.ComplexMember> OnlineToPlainAsync(Pocos.makereadonce.ComplexMember plain)
+        {
+            plain.someMember = someMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonce.ComplexMember plain)
+        {
+            someMember.Cyclic = plain.someMember;
+            someOtherMember.Cyclic = plain.someOtherMember;
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.makereadonce.ComplexMember> ShadowToPlainAsync()
+        {
+            Pocos.makereadonce.ComplexMember plain = new Pocos.makereadonce.ComplexMember();
+            plain.someMember = someMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            return plain;
+        }
+
+        protected async Task<Pocos.makereadonce.ComplexMember> ShadowToPlainAsync(Pocos.makereadonce.ComplexMember plain)
+        {
+            plain.someMember = someMember.Shadow;
+            plain.someOtherMember = someOtherMember.Shadow;
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonce.ComplexMember plain)
+        {
+            someMember.Shadow = plain.someMember;
+            someOtherMember.Shadow = plain.someOtherMember;
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.makereadonce.ComplexMember CreateEmptyPoco()
+        {
+            return new Pocos.makereadonce.ComplexMember();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -166,7 +348,19 @@ namespace makereadonce
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 

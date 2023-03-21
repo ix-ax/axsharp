@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Attributes | System.Dynamic.ExpandoObject </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Attributes | System.Dynamic.ExpandoObject ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">  
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <p class="text-logo">IX</p>
+              </a>            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="attributes">Attributes</h1>
+
+<p>Any type or type member (CLASS, STRUCT...) can have declared attributes from within <code>PLC</code> code using pragmas.</p>
+<p>Syntax</p>
+<pre><code class="lang-iecst">{#ix-attr:[TypeAttribute()]}
+</code></pre>
+<p>Example</p>
+<pre><code class="lang-iecst">{#ix-attr:[Container(Layoyt.Wrap)]} (* Example of an attribute declared at type level. *)
+CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-attr:[Container(Layoyt.Tabs)]} (* Example of an attribute declared at member level.*)
+        Nested : MyNestedStructure;
+    END_VAR
+END_CLASS
+</code></pre>
+<h2 id="special-attributes">Special attributes</h2>
+<h3 id="readonce-attribute">ReadOnce attribute</h3>
+<p>ReadOnce attribute instructs the communication layer to read a member (variable) only once during the application's lifetime.
+This feature aims at reducing the load on the communication layer. You would typically use this attribute when you have immutable data
+such as description strings needing to be accessed only once.
+ReadOnce attribute will only limit reading the members during periodic (cyclic) access. It will not affect the direct reading of a variable
+or explicit call of batch reading on a complex structure.
+ReadOnce attribute can be only applied to members (property, field), not type (CLASS, STRUCT) declaration.</p>
+<p>Example</p>
+<pre><code class="lang-iecst">
+CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-attr:[ReadOnce()]} // this structure will be read only once
+        Nested : MyNestedStructure;
+        {#ix-attr:[ReadOnce()]} // this variable will be read only once
+        MyString : STRING;
+    END_VAR
+END_CLASS
+</code></pre>
+<h3 id="readonly-attribute">ReadOnly attribute</h3>
+<p>ReadOnly attribute render the member (variable) inaccessible for write operation from the IX application. It does not prevent the variable from writing in the PLC or by other means of connection.</p>
+<pre><code class="lang-iecst">
+CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-attr:[ReadOnly()]} // this structure will be read only
+        Nested : MyNestedStructure;
+        {#ix-attr:[ReadOnly()]} // this variable will be read only
+        MyString : STRING;
+    END_VAR
+END_CLASS
+</code></pre>
+<h3 id="compileromits-attribute">CompilerOmits attribute</h3>
+<p>CompilerOmits attribute instructs the compiler to skip the compilation of a member for specific output. <code>IXC</code> supports these omissions:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Onliner</td>
+<td>Will skip the emission of the member for onliner twins</td>
+</tr>
+<tr>
+<td>POCO</td>
+<td>Will skip the emission of the member for POCO twins</td>
+</tr>
+<tr>
+<td>-No params-</td>
+<td>Will skip the emission for all output types</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-iecst">CLASS PUBLIC MyClass
+    VAR PUBLIC
+        {#ix-attr:[CompilerOmits()]} 
+        MyStringIgnoredForAllOutputs : STRING;
+        {#ix-attr:[CompilerOmits(&quot;Onliner&quot;)]} 
+        MyStringIgnoredInOnliner : STRING;
+        {#ix-attr:[CompilerOmits(&quot;POCO&quot;)]} 
+        MyStringIgnoredInPocos : STRING;
+        {#ix-attr:[CompilerOmits(&quot;POCO&quot;, &quot;Onliner&quot;)]} 
+        MyStringIgnoredInPocosAndOnliners : STRING;
+    END_VAR
+END_CLASS
+</code></pre>
+<h3 id="see-also">See also</h3>
+<h4 id="renderignore"><a href="../blazor/RENDERABLECONTENT.html#renderignore-and-custom-labels">RenderIgnore</a></h4>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/blob/dev/docfx/articles/compiler/ATTRIBUTES.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+       Generated by DocFx. © Peter Kurhajec, MTS spol. s r.o., and awesome contributors
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-dotnetconfig@0.9.3/dist/dotnetconfig.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.10.2/dist/mermaid.min.js" integrity="sha384-nzpOk138h0/O14Ig1PAUlf1XSo5T+XvpBUVkpLaU40QBvMgrNkSKusdNAomDLEd2" crossorigin="anonymous"></script>
+    <script>
+    mermaid.initialize({
+    startOnLoad: false
+    });
+    mermaid.init(undefined, ".lang-mermaid");
+    </script>  </body>
+</html>

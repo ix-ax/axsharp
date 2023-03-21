@@ -46,6 +46,12 @@ public class RootTwinObject : ITwinObject
         return SymbolTail;
     }
 
+    /// <inheritdoc />
+    public void Poll()
+    {
+        // We do not allow polling for root objects.
+    }
+
     /// <summary>
     ///     Gets empty name for this root object.
     /// </summary>
@@ -115,6 +121,26 @@ public class RootTwinObject : ITwinObject
     public Connector GetConnector()
     {
         return this as Connector;
+    }
+
+    public object OnlineToPlain()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void PlainToOnline(object plain)
+    {
+        throw new NotImplementedException();
+    }
+
+    public object ShadowToPlain()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void PlainToShadow(object plain)
+    {
+        throw new NotImplementedException();
     }
 
 

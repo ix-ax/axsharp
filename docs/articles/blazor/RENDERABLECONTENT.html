@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>RenderableContentControl | System.Dynamic.ExpandoObject </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="RenderableContentControl | System.Dynamic.ExpandoObject ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">  
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <p class="text-logo">IX</p>
+              </a>            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="renderablecontentcontrol">RenderableContentControl</h1>
+
+<p>This file describes the purpose, features and usage of the <strong>RenderableContentControl</strong> component.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#id-RenderableContentControl">What is RenderableContentControl?</a></li>
+<li><a href="#id-bacisexample">Basic Example</a></li>
+<li><a href="#id-howitworks">How it works</a></li>
+<li><a href="#id-features">Features</a>
+<ul>
+<li><a href="#id-presentation">Presentation Type and Presentation pipeline</a></li>
+<li><a href="#id-renderingore">RenderIgnore and custom labels</a></li>
+<li><a href="#id-editprop">Edit property</a></li>
+<li><a href="#id-layouts">Layouts</a></li>
+<li><a href="#id-layouts-adj">Layouts adjustment</a></li>
+<li><a href="#id-styling">Styling</a></li>
+</ul>
+</li>
+</ol>
+<hr>
+<!-- ----------------------------------------------------------------------------------- -->
+<div id='id-RenderableContentControl'></div>
+<h2 id="what-is-renderablecontentcontrol">What is RenderableContentControl?</h2>
+<p>RenderableContentControl is a Blazor component, which is able to automatically generate UI from C# objects acquired within Ix Framework.
+Ix compiler will create twin C# classes of PLC classes, which instances can be pass to RenderableContentControl to generate corresponding views.
+It can render both complex objects (<em>ITwinObject</em> type) and primitive objects containing values (<em>ITwinPrimitive</em> type).
+In addition, resulting UI can be adjusted with attributes from PLC code.</p>
+<hr>
+<!-- ----------------------------------------------------------------------------------- -->
+<div id='id-bacisexample'></div>
+<h2 id="basic-example">Basic example</h2>
+<p>Let's have following PLC structure <em>stExample</em>:</p>
+<pre><code class="lang-T">CLASS stExample :
+	VAR PUBLIC 
+		testInteger : INT;
+		testEnum : stTestEnum;
+		testString : STRING := 'Hello World';
+		testBool : BOOL;
+	END_VAR    
+END_CLASS
+</code></pre>
+<p>IxCompiler will create <em>stExample</em> counterpart in C#. After that, this new object can be passed as parameter to <code>RenderableContentControl</code>.</p>
+<pre><code class="lang-C#">&lt;RenderableContentControl Presentation=&quot;Control&quot;
+                          Context=&quot;@Entry.Plc.MAIN.instanceOfstExample&quot;/&gt;
+</code></pre>
+<p>We will get the following auto-generated UI:</p>
+<p><img src="../../images/blazor/test_example.png" alt="alt text"></p>
+<hr>
+<!-- ----------------------------------------------------------------------------------- -->
+<div id='id-howitworks'></div>
+<h2 id="how-automatic-generation-of-ui-works">How automatic generation of UI works</h2>
+<p>Ix.Presentation.Blazor framework contains two libraries:</p>
+<ul>
+<li><strong>Ix.Presentation.Blazor</strong>
+<ul>
+<li>Base classes</li>
+<li>Services</li>
+<li>Interfaces</li>
+</ul>
+</li>
+<li><strong>Ix.Presentation.Controls.Blazor</strong>
+<ul>
+<li>Styles</li>
+<li>Layouts</li>
+<li>UI templates of primitive types</li>
+<li><em>RenderableContentControl</em> component</li>
+</ul>
+</li>
+</ul>
+<p>The diagram below represent fundamental logic of UI generation:</p>
+<p><img src="../../images/blazor/logic.png" alt="alt text" title="Diagram of UI logic generation"></p>
+<ul>
+<li>The <em>RenderableContentControl</em> accepts as parameters instance of plc structure and presentation type.</li>
+<li>Renderer will determine, whether input instance is of type <strong>ITwinPrimitive</strong> or <strong>ITwinObject</strong>:
+<ul>
+<li><strong>ITwinPrimitive:</strong> The renderer will find a corresponding UI primitive template and then render the UI.</li>
+<li><strong>ITwinObject:</strong> The renderer will try to find a corresponding UI of complex template. If the complex template is found, UI will be rendered. Otherwise, <strong>ITwinObject</strong> will be iterated down to primitive types, which then will be rendered with primitive UI templates.</li>
+</ul>
+</li>
+</ul>
+<!-- ----------------------------------------------------------------------------------- -->
+<hr>
+<div id='id-features'></div>
+<h2 id="features">Features</h2>
+<div id='id-presentation'></div>
+<h3 id="presentation-types"><strong>Presentation types</strong></h3>
+<p><strong>Presentation types</strong> specify mode in which UI will be rendered. Within <em>Ix.Presentation.Blazor</em> framework following presentation types are supported.</p>
+<ul>
+<li><code>Display</code></li>
+<li><code>Control</code></li>
+<li><code>ShadowDisplay</code></li>
+<li><code>ShadowControl</code></li>
+</ul>
+<p>In the <strong>Control</strong> presentation type, values of rendered structure can be modified.
+On the other hand, the <strong>Display</strong> presentation type serves for displaying values.
+If no presentation type is specified, Display presentation type will be used.</p>
+<h3 id="presentation-pipeline"><strong>Presentation pipeline</strong></h3>
+<p><strong>Presentation pipeline</strong> is represented by a string of presentation types.
+Each presentation type is separated by a dash '-'. RenderableContentControl will parse this string and will look for UI templates specified by presentation types in the pipeline. If the first presentation type is not found, it'll look for other one in the pipeline and so on...</p>
+<p>See the example below:</p>
+<p>Let's add new property to the <code>stExample</code> structure. New type <code>IxComponent</code> is a component from an external library whose UI implementation is of <strong>Manual</strong> presentation type.</p>
+<pre><code>CLASS stExample :
+	VAR PUBLIC 
+		testInteger : INT;
+		testEnum : stTestEnum;
+		testString : STRING := 'Hello World';
+		testBool : BOOL;
+		testIxComponent: IxComponent;  //added property
+	END_VAR    
+END_CLASS
+</code></pre>
+<p>Let's have the following code, where we specify the presentation pipeline:</p>
+<pre><code class="lang-C#">&lt;RenderableContentControl Presentation=&quot;Manual-Control&quot;
+                          Context=&quot;@Entry.Plc.MAIN.instanceOfstExample&quot;/&gt;
+</code></pre>
+<p>Renderer will generate following UI:</p>
+<p><img src="../../images/blazor/pipeline.png" alt="alt text" title="UI generated with presentation pipeline"></p>
+<p>Primitive types are generated in <strong>Control</strong> presentation type whereas IxComponent is generated in <strong>Manual</strong> presentation type, because Manual view have been found first.</p>
+<div id='id-renderingore'></div>
+<h3 id="renderignore-and-custom-labels"><strong>RenderIgnore and custom labels</strong></h3>
+<p>Thanks to the support of custom attributes in the PLC code you can specify, which elements you want to exclude from rendering. You can also set custom names for each element. See the example below.</p>
+<p>Let's have the following PLC code with attributes:</p>
+<pre><code>CLASS stExample :
+	VAR PUBLIC 
+		{#ix-set:AttributeName = &quot;Custom label Integer&quot;}
+		testInteger : INT;
+
+		{#ix-attr:[RenderIgnore()]}   
+		testEnum : stTestEnum;
+
+		{#ix-set:AttributeName = &quot;Custom label String&quot;}
+		testString : STRING := 'Hello World';
+
+		{#ix-set:AttributeName = &quot;Custom label Bool&quot;}
+		testBool : BOOL;
+
+		{#ix-attr:[RenderIgnore()]}   
+		testIxComponent: IxComponent;
+	END_VAR  
+END_CLASS
+</code></pre>
+<p>Renderer will render following UI:</p>
+<p><img src="../../images/blazor/renderignore_labels.png" alt="alt text" title="Renderignore and custom labels"></p>
+<p>Properties <em>testEnum</em> and <em>testIxComponent</em> are ignored and the rest of the elements have custom labels.</p>
+<p>It is possible to ignore properties only in specific presentation types:</p>
+<pre><code>{#ix-attr:[RenderIgnore(&quot;Display&quot;,&quot;ShadowDisplay&quot;)]}  
+testIxComponent: IxComponent;
+</code></pre>
+<div id='id-editprop'></div>
+<h3 id="edit-property"><strong>Edit Property</strong></h3>
+<p>Then renderer binds variables to <code>Cyclic</code> or <code>Edit</code> property of an Onliner. When an element gets focus, value is bound to <code>Edit</code> property and UI updates stops. After the focus is lost, the value is bound back to <code>Cyclic</code> property and the value in the UI start updating again.</p>
+<p><img src="../../images/blazor/edit-property.gif" alt="alt text" title="Edit property"></p>
+<h3 id="renderable-content-control-polling">Renderable content control Polling</h3>
+<p>When the twin connector is in polling mode, <code>RenderableContentControl</code> will take the parameter <code>PollingInterval</code> into consideration. The polling will start automatically when the content is rendered and will unsubscribe when it is disposed.</p>
+<p><a href="../connectors/README.html#polling">More about polling here</a></p>
+<p><strong>Example</strong></p>
+<pre><code class="lang-XML">&lt;RenderableContentControl Context=&quot;@Entry.Plc.measurements&quot; Presentation=&quot;Display&quot; PollingInterval=&quot;1000&quot;/&gt;
+</code></pre>
+<div id='id-layouts'></div>
+<h3 id="layouts"><strong>Layouts</strong></h3>
+<p>Auto-generated UI can be customized by layouts.
+More information about layout is in <strong><a href="LAYOUTS.html">LAYOUTS</a></strong> file.</p>
+<div id='id-layouts-adj'></div>
+<h3 id="layouts-adjustment"><strong>Layouts adjustment</strong></h3>
+<p>Layouts can be adjusted by <strong>passing CSS classes</strong> as parameters into RenderableContentControl component.</p>
+<p>Renderer supports following parameters:</p>
+<ul>
+<li>Class -- class wrapper around entire RenderableContentControl component</li>
+<li>LayoutClass -- class wrapper around layouts</li>
+<li>LayoutChildrenClass -- class wrapper around layouts children</li>
+</ul>
+<p><strong>Warning!</strong> Layout classes are passed to all children (and layout wrappers) within RenderableContentControl, so use with caution!</p>
+<p>Example:</p>
+<pre><code class="lang-XML">&lt;RenderableContentControl 
+    Context=&quot;@Entry.Plc.test_example.compositeWrap&quot; 
+    Presentation=&quot;Base-Control&quot;
+    LayoutClass=&quot;align-items-end&quot;
+    LayoutChildrenClass=&quot;p-3&quot;
+    Class=&quot;p-5 mb-4 bg-light rounded-3 shadow&quot; /&gt;
+</code></pre>
+<p>Result:</p>
+<p><img src="../../images/blazor/wrap-css-inject.png" alt="alt text" title="Edit property"></p>
+<div id='id-styling'></div>
+<h3 id="styling"><strong>Styling</strong></h3>
+<p>Ix.Presentation.Blazor contains in-built styles. Styling is provided by <a href="https://getbootstrap.com/">Bootstrap library</a>. In-built styles can be customized with Sass technology, which will produce SCSS files. SCSS files can be compiled into one CSS file which can be used as application-wide style.</p>
+<p>Currently, the framework contains a default style that can be added as a reference in the Blazor application file <em>_Host.cshtml</em> in the following way:</p>
+<pre><code> &lt;link rel=&quot;stylesheet&quot; href=&quot;/_content/IX.Presentation.Blazor.Controls/css/ix-bootstrap.min.css&quot;&gt;
+</code></pre>
+<p>It is possible to add built-in javascript libraries as well:</p>
+<pre><code>    &lt;script src=&quot;/_content/IX.Presentation.Blazor.Controls/js/ix-bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/_content/IX.Presentation.Blazor.Controls/js/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3 id="custom-components-libraries"><strong>Custom components libraries</strong></h3>
+<p>Ix.Presentation.Controls framework provides possibility to create a custom library of components with corresponding views.
+When library is referenced from your Blazor project, the framework will automatically load its views, which then can be auto-generated with the RenderableContentControl component.</p>
+<p>For more information about custom libraries and how to create them, look into <strong><a href="LIBRARIES.html">LIBRARIES</a></strong> file.</p>
+<hr>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/blob/dev/docfx/articles/blazor/RENDERABLECONTENT.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+       Generated by DocFx. © Peter Kurhajec, MTS spol. s r.o., and awesome contributors
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-dotnetconfig@0.9.3/dist/dotnetconfig.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.10.2/dist/mermaid.min.js" integrity="sha384-nzpOk138h0/O14Ig1PAUlf1XSo5T+XvpBUVkpLaU40QBvMgrNkSKusdNAomDLEd2" crossorigin="anonymous"></script>
+    <script>
+    mermaid.initialize({
+    startOnLoad: false
+    });
+    mermaid.init(undefined, ".lang-mermaid");
+    </script>  </body>
+</html>

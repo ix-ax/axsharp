@@ -32,6 +32,9 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     internal string _humanReadable;
 
+    public int PollingsCount { get; internal set; }
+
+    public int PollingInterval { get; internal set; }
 
     private TranslatorBase _translatorBase;
 
@@ -100,7 +103,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     /// <inheritdoc />
     public void SubscribeForPeriodicReading()
     {
-        this.Parent?.GetConnector()?.AddToPeriodicReadSet(this);
+        this.Parent?.GetConnector()?.Subscribe(this);
     }
 
 
@@ -128,7 +131,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     }
 
     /// <inheritdoc />
-    public bool ReadOnce {get; private set; }
+    public bool ReadOnce { get; private set; }
 
     /// <inheritdoc />
     public void MakeReadOnce()
@@ -179,6 +182,15 @@ public abstract class OnlinerBase : ITwinPrimitive
     }
 
     /// <summary>
+    /// Add this primitive to next periodic read queue.
+    /// </summary>
+    public void Poll()
+    {
+        this.Parent.GetConnector().AddToNextPeriodicReadSet(this);
+    }
+
+
+    /// <summary>
     ///     Subscribes this tag for cyclical reading and invokes <see cref="ValueChangedEventHandlerDelegate" /> when the value
     ///     changes.
     /// </summary>
@@ -187,6 +199,14 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         SubscribeForPeriodicReading();
         ValueChangeEvent += handler;
+    }
+
+    /// <summary>
+    /// Subscribes for periodic reading of this variable.
+    /// </summary>
+    public void Subscribe()
+    {
+        SubscribeForPeriodicReading();
     }
 
 
@@ -207,7 +227,7 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     /// <inheritdoc />
     public PrimitiveAccessStatus AccessStatus { get; } = new PrimitiveAccessStatus()
-        { Cycle = 0, Failure = false, FailureReason = string.Empty, LastAccess = DefaultDateTime };
+    { Cycle = 0, Failure = false, FailureReason = string.Empty, LastAccess = DefaultDateTime };
 
     /// <summary>
     ///     Gets the symbol of this on line variable.
@@ -289,5 +309,13 @@ public abstract class OnlinerBase : ITwinPrimitive
     protected void NotifyPropertyChanged(string propertyName)
     {
         if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public abstract void FromOnlineToShadow();
+    public abstract void FromShadowToOnline();
+
+    public void AddToPeriodicQueue()
+    {
+        this.Parent?.GetConnector()?.AddToNextPeriodicReadSet(this);
     }
 }

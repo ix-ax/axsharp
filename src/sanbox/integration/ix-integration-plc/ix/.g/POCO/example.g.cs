@@ -15,5 +15,9 @@ namespace Pocos
         public ixcomponent ixcomponent_instance { get; set; } = new ixcomponent();
         public MySecondNamespace.ixcomponent ixcomponent_instance2 { get; set; } = new MySecondNamespace.ixcomponent();
         public ThirdNamespace.ixcomponent ixcomponent_instance3 { get; set; } = new ThirdNamespace.ixcomponent();
+        public compositeLayout compositeStack { get; set; } = new compositeLayout();
+        public compositeLayout compositeWrap { get; set; } = new compositeLayout();
+        public compositeLayout compositeUniform { get; set; } = new compositeLayout();
+        public compositeLayout compositeTabs { get; set; } = new compositeLayout();
     }
 }

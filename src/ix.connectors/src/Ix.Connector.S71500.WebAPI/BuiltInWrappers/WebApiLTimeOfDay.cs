@@ -32,13 +32,36 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
         _webApiConnector = WebApiConnector.Cast(parent.GetConnector());
     }
 
-    /// <inheritdoc />
-    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData =>
-        WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+    private ApiPlcWriteRequest _plcWriteRequestData;
+    private ApiPlcReadRequest _plcReadRequestData;
 
     /// <inheritdoc />
-    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData => WebApiConnector.CreateWriteRequest(Symbol,
-        (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+    ApiPlcReadRequest IWebApiPrimitive.PeekPlcReadRequestData => _plcReadRequestData ?? WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+    
+    
+    /// <inheritdoc />
+    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
+    {
+        get
+        {
+            _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+            return _plcReadRequestData;
+        }
+
+    }
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData
+    {
+        get
+        {
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+            return _plcWriteRequestData;
+        }
+    }
 
     /// <inheritdoc />
     public void Read(string value)

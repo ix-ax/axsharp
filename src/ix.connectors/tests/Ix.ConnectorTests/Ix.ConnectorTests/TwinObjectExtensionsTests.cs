@@ -321,5 +321,134 @@ namespace Ix.Connector.Tests
         {
             Assert.Throws<ArgumentNullException>(() => default(ITwinObject).MakeReadOnce());
         }
+
+        [Fact]
+        public static async Task CanCallOnlineToShadowAsync()
+        {
+            // Arrange
+            var connector = new DummyConnector();
+            var obj = Substitute.For<ITwinObject>();
+            var onlinerb = new OnlinerByte();
+            obj.GetValueTags().Returns(new[] { onlinerb });
+            obj.GetConnector().Returns(connector);
+            onlinerb.Cyclic = 155;
+
+
+            // Act
+            await obj.OnlineToShadowAsync();
+
+            // Assert
+            Assert.Equal(155, onlinerb.Shadow);
+        }
+
+        [Fact]
+        public static async Task CannotCallOnlineToShadowAsyncWithNullObj()
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(() => default(ITwinObject).OnlineToShadowAsync());
+        }
+
+        [Fact]
+        public static async Task CanCallShadowToOnlineAsync()
+        {
+            // Arrange
+            var connector = new DummyConnector();
+            var obj = Substitute.For<ITwinObject>();
+            var onlinerb = new OnlinerByte();
+            obj.GetValueTags().Returns(new[] { onlinerb });
+            obj.GetConnector().Returns(connector);
+            onlinerb.Shadow = 180;
+
+
+            // Act
+            await obj.ShadowToOnlineAsync();
+
+            // Assert
+            Assert.Equal(180, onlinerb.Cyclic);
+        }
+
+        [Fact]
+        public static async Task CannotCallShadowToOnlineAsyncWithNullObj()
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(() => default(ITwinObject).ShadowToOnlineAsync());
+        }
+
+        private class MyTestPoco
+        {
+
+        }
+
+        private class CreatePocoTestClass : ITwinObject
+        {
+            public string Symbol { get; }
+            public string AttributeName { get; }
+            public string HumanReadable { get; }
+            public ITwinObject GetParent()
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetSymbolTail()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Poll()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerable<ITwinObject> GetChildren()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerable<ITwinElement> GetKids()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerable<ITwinPrimitive> GetValueTags()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void AddChild(ITwinObject twinObject)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void AddValueTag(ITwinPrimitive twinPrimitive)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void AddKid(ITwinElement kid)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Connector GetConnector()
+            {
+                throw new NotImplementedException();
+            }
+
+            public MyTestPoco CreateEmptyPoco()
+            {
+                return new MyTestPoco();
+            }
+        }
+
+        [Fact]
+        public static void CanCallCreatePOCO()
+        {
+            // Arrange
+            var obj = new CreatePocoTestClass();
+            
+            // Act
+            var result = obj.CreatePoco();
+
+            // Assert
+            Assert.IsType<MyTestPoco>(result);
+        }
     }
 }

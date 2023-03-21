@@ -22,7 +22,7 @@ namespace Ix.Connector.S71500.WebAPITests
     public class WebApiConnectorTests
     {
 
-        private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AXTARGET") ?? "10.10.101.1";
+        private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET") ?? "10.10.101.1";
 
         private readonly ITestOutputHelper output;
 
@@ -1809,7 +1809,7 @@ namespace Ix.Connector.S71500.WebAPITests
 
             Assert.Equal(true, myBYTE.AccessStatus.Failure);
             output.WriteLine(myBYTE.AccessStatus.FailureReason);
-            Assert.Equal("Batch read failed.: 'During Bulk request for 3 there have been 1 Errors:\r\nFor details: Check the Property BulkResponse'", myBYTE.AccessStatus.FailureReason);
+            Assert.Equal("Batch read failed.: 'During Bulk request for 3 there have been 1 Errors:\r\nFor details: Check the Property BulkResponse' [var : \"TGlobalVariablesDB\".myBYTE_o] ", myBYTE.AccessStatus.FailureReason);
         }
 
         [Fact]
@@ -1832,7 +1832,7 @@ namespace Ix.Connector.S71500.WebAPITests
 
             Assert.Equal(true, myBYTE.AccessStatus.Failure);
             output.WriteLine(myBYTE.AccessStatus.FailureReason);
-            Assert.Equal("Batch write failed.: 'During Bulk request for 3 there have been 1 Errors:\r\nFor details: Check the Property BulkResponse'", myBYTE.AccessStatus.FailureReason);
+            Assert.Equal("Batch write failed.: 'During Bulk request for 3 there have been 1 Errors:\r\nFor details: Check the Property BulkResponse' [var : \"TGlobalVariablesDB\".myBYTE_o;value : 0] ", myBYTE.AccessStatus.FailureReason);
         }
 
 

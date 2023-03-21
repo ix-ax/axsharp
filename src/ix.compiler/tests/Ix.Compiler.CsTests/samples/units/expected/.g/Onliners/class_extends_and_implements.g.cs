@@ -5,14 +5,89 @@ using System.Collections.Generic;
 
 public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImplementation1, IImplementation2
 {
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public ExtendsAndImplements(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+        PreConstruct(parent, readableTail, symbolTail);
+        PostConstruct(parent, readableTail, symbolTail);
+    }
+
+    public T OnlineToPlain<T>()
+    {
+        return (dynamic)this.OnlineToPlainAsync().Result;
+    }
+
+    public async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync()
+    {
+        Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
+        await this.ReadAsync();
+        await base.OnlineToPlainAsync(plain);
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.OnlineToPlainAsync(plain);
+        return plain;
+    }
+
+    public void PlainToOnline<T>(T plain)
+    {
+        this.PlainToOnlineAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.PlainToOnlineAsync(plain);
+        return await this.WriteAsync();
+    }
+
+    public T ShadowToPlain<T>()
+    {
+        return (dynamic)this.ShadowToPlainAsync().Result;
+    }
+
+    public async Task<Pocos.ExtendsAndImplements> ShadowToPlainAsync()
+    {
+        Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
+        await base.ShadowToPlainAsync(plain);
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendsAndImplements> ShadowToPlainAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.ShadowToPlainAsync(plain);
+        return plain;
+    }
+
+    public void PlainToShadow<T>(T plain)
+    {
+        this.PlainToShadowAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base.PlainToShadowAsync(plain);
+        return this.RetrievePrimitives();
+    }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos.ExtendsAndImplements CreateEmptyPoco()
+    {
+        return new Pocos.ExtendsAndImplements();
     }
 }
 
 public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
 {
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public ExtendeeExtendsAndImplements(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -20,8 +95,73 @@ public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        PreConstruct(parent, readableTail, symbolTail);
         parent.AddChild(this);
         parent.AddKid(this);
+        PostConstruct(parent, readableTail, symbolTail);
+    }
+
+    public T OnlineToPlain<T>()
+    {
+        return (dynamic)this.OnlineToPlainAsync().Result;
+    }
+
+    public async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync()
+    {
+        Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return plain;
+    }
+
+    public void PlainToOnline<T>(T plain)
+    {
+        this.PlainToOnlineAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return await this.WriteAsync();
+    }
+
+    public T ShadowToPlain<T>()
+    {
+        return (dynamic)this.ShadowToPlainAsync().Result;
+    }
+
+    public async Task<Pocos.ExtendeeExtendsAndImplements> ShadowToPlainAsync()
+    {
+        Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
+        return plain;
+    }
+
+    protected async Task<Pocos.ExtendeeExtendsAndImplements> ShadowToPlainAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return plain;
+    }
+
+    public void PlainToShadow<T>(T plain)
+    {
+        this.PlainToShadowAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
+        return this.RetrievePrimitives();
+    }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos.ExtendeeExtendsAndImplements CreateEmptyPoco()
+    {
+        return new Pocos.ExtendeeExtendsAndImplements();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -76,7 +216,19 @@ public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
 
     public string Symbol { get; protected set; }
 
-    public System.String AttributeName { get; set; }
+    private string _attributeName;
+    public System.String AttributeName
+    {
+        get
+        {
+            return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+        }
+
+        set
+        {
+            _attributeName = value;
+        }
+    }
 
     public string HumanReadable { get; set; }
 
@@ -85,10 +237,10 @@ public partial class ExtendeeExtendsAndImplements : Ix.Connector.ITwinObject
     protected Ix.Connector.ITwinObject @Parent { get; set; }
 }
 
-public interface IImplementation1
+public partial interface IImplementation1
 {
 }
 
-public interface IImplementation2
+public partial interface IImplementation2
 {
 }

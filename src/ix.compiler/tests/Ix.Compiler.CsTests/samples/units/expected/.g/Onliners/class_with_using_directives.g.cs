@@ -8,6 +8,8 @@ using HelloLevelOne.HelloLevelTwo;
 
 internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
 {
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public ClassWithUsingDirectives(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -15,8 +17,73 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        PreConstruct(parent, readableTail, symbolTail);
         parent.AddChild(this);
         parent.AddKid(this);
+        PostConstruct(parent, readableTail, symbolTail);
+    }
+
+    public T OnlineToPlain<T>()
+    {
+        return (dynamic)this.OnlineToPlainAsync().Result;
+    }
+
+    public async Task<Pocos.ClassWithUsingDirectives> OnlineToPlainAsync()
+    {
+        Pocos.ClassWithUsingDirectives plain = new Pocos.ClassWithUsingDirectives();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos.ClassWithUsingDirectives> OnlineToPlainAsync(Pocos.ClassWithUsingDirectives plain)
+    {
+        return plain;
+    }
+
+    public void PlainToOnline<T>(T plain)
+    {
+        this.PlainToOnlineAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithUsingDirectives plain)
+    {
+        return await this.WriteAsync();
+    }
+
+    public T ShadowToPlain<T>()
+    {
+        return (dynamic)this.ShadowToPlainAsync().Result;
+    }
+
+    public async Task<Pocos.ClassWithUsingDirectives> ShadowToPlainAsync()
+    {
+        Pocos.ClassWithUsingDirectives plain = new Pocos.ClassWithUsingDirectives();
+        return plain;
+    }
+
+    protected async Task<Pocos.ClassWithUsingDirectives> ShadowToPlainAsync(Pocos.ClassWithUsingDirectives plain)
+    {
+        return plain;
+    }
+
+    public void PlainToShadow<T>(T plain)
+    {
+        this.PlainToShadowAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithUsingDirectives plain)
+    {
+        return this.RetrievePrimitives();
+    }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos.ClassWithUsingDirectives CreateEmptyPoco()
+    {
+        return new Pocos.ClassWithUsingDirectives();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -71,7 +138,19 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
 
     public string Symbol { get; protected set; }
 
-    public System.String AttributeName { get; set; }
+    private string _attributeName;
+    public System.String AttributeName
+    {
+        get
+        {
+            return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+        }
+
+        set
+        {
+            _attributeName = value;
+        }
+    }
 
     public string HumanReadable { get; set; }
 

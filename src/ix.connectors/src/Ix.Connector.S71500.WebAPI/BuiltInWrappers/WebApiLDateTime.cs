@@ -31,26 +31,57 @@ public class WebApiLDateTime : OnlinerLDateTime, IWebApiPrimitive
         _webApiConnector = WebApiConnector.Cast(parent.GetConnector());
     }
 
-    /// <inheritdoc />
-    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData =>
-        WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+    private ApiPlcWriteRequest _plcWriteRequestData;
+    private ApiPlcReadRequest _plcReadRequestData;
 
     /// <inheritdoc />
-    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
-        WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+    ApiPlcReadRequest IWebApiPrimitive.PeekPlcReadRequestData => _plcReadRequestData ?? WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+    
+    /// <inheritdoc />
+    ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
+    {
+        get
+        {
+            _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+            return _plcReadRequestData;
+        }
+
+    }
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData
+    {
+        get
+        {
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+            return _plcWriteRequestData;
+        }
+    }
 
     /// <inheritdoc />
     public void Read(string value)
     {
-        DateTime dt;
-        if (DateTime.TryParse(value, out dt))
-            UpdateRead(dt);
+        UpdateRead(GetFromBinary(value));
     }
 
     /// <inheritdoc />
     public override async Task<DateTime> GetAsync()
     {
-        var dt = await _webApiConnector.ReadAsync<long>(this) / 100;
+        var dt = await _webApiConnector.ReadAsync<long>(this);
+        return GetFromBinary(dt);
+    }
+
+    private DateTime GetFromBinary(string val)
+    {
+        return GetFromBinary(long.Parse(val));
+    }
+
+    private DateTime GetFromBinary(long val)
+    {
+        var dt = val / 100;
         return DateTime.FromBinary(dt).AddYears(1969);
     }
 

@@ -11,6 +11,8 @@ namespace ClassWithPragmasNamespace
         [Container(Layout.Wrap)]
         public ClassWithPragmasNamespace.ComplexType1 myComplexType { get; }
 
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ClassWithPragmas(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -18,9 +20,80 @@ namespace ClassWithPragmasNamespace
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             myComplexType = new ClassWithPragmasNamespace.ComplexType1(this, "myComplexType", "myComplexType");
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain = new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
+            await this.ReadAsync();
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> OnlineToPlainAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> ShadowToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain = new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
+            plain.myComplexType = await myComplexType.ShadowToPlainAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ClassWithPragmas> ShadowToPlainAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            plain.myComplexType = await myComplexType.ShadowToPlainAsync();
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ClassWithPragmas plain)
+        {
+            await this.myComplexType.PlainToShadowAsync(plain.myComplexType);
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.ClassWithPragmasNamespace.ClassWithPragmas CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithPragmasNamespace.ClassWithPragmas();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -75,7 +148,19 @@ namespace ClassWithPragmasNamespace
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 
@@ -86,6 +171,8 @@ namespace ClassWithPragmasNamespace
 
     public partial class ComplexType1 : Ix.Connector.ITwinObject
     {
+        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public ComplexType1(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
             Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -93,8 +180,73 @@ namespace ClassWithPragmasNamespace
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
             HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            PreConstruct(parent, readableTail, symbolTail);
             parent.AddChild(this);
             parent.AddKid(this);
+            PostConstruct(parent, readableTail, symbolTail);
+        }
+
+        public T OnlineToPlain<T>()
+        {
+            return (dynamic)this.OnlineToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> OnlineToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ComplexType1 plain = new Pocos.ClassWithPragmasNamespace.ComplexType1();
+            await this.ReadAsync();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> OnlineToPlainAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return plain;
+        }
+
+        public void PlainToOnline<T>(T plain)
+        {
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return await this.WriteAsync();
+        }
+
+        public T ShadowToPlain<T>()
+        {
+            return (dynamic)this.ShadowToPlainAsync().Result;
+        }
+
+        public async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> ShadowToPlainAsync()
+        {
+            Pocos.ClassWithPragmasNamespace.ComplexType1 plain = new Pocos.ClassWithPragmasNamespace.ComplexType1();
+            return plain;
+        }
+
+        protected async Task<Pocos.ClassWithPragmasNamespace.ComplexType1> ShadowToPlainAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return plain;
+        }
+
+        public void PlainToShadow<T>(T plain)
+        {
+            this.PlainToShadowAsync((dynamic)plain).Wait();
+        }
+
+        public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ClassWithPragmasNamespace.ComplexType1 plain)
+        {
+            return this.RetrievePrimitives();
+        }
+
+        public void Poll()
+        {
+            this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+        }
+
+        public Pocos.ClassWithPragmasNamespace.ComplexType1 CreateEmptyPoco()
+        {
+            return new Pocos.ClassWithPragmasNamespace.ComplexType1();
         }
 
         private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -149,7 +301,19 @@ namespace ClassWithPragmasNamespace
 
         public string Symbol { get; protected set; }
 
-        public System.String AttributeName { get; set; }
+        private string _attributeName;
+        public System.String AttributeName
+        {
+            get
+            {
+                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            }
+
+            set
+            {
+                _attributeName = value;
+            }
+        }
 
         public string HumanReadable { get; set; }
 

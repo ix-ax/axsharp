@@ -31,20 +31,34 @@ public class WebApiLTime : OnlinerLTime, IWebApiPrimitive
         _webApiConnector = WebApiConnector.Cast(parent.GetConnector());
     }
 
+    private ApiPlcWriteRequest _plcWriteRequestData;
+    private ApiPlcReadRequest _plcReadRequestData;
+
+    /// <inheritdoc />
+    ApiPlcReadRequest IWebApiPrimitive.PeekPlcReadRequestData => _plcReadRequestData ?? WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
+
+    /// <inheritdoc />
+    ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
+    
     /// <inheritdoc />
     ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData =>
         WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
 
     /// <inheritdoc />
-    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData =>
-        WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite.Ticks.ToString(),
-            _webApiConnector
-                .DBName); // TODO: review this casting to string... reason: there is some problem while creating request from long.
+    ApiPlcWriteRequest IWebApiPrimitive.PlcWriteRequestData
+    {
+        get
+        {
+            // TODO: review this casting to string... reason: there is some problem while creating request from long.
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite.Ticks.ToString(), _webApiConnector.DBName);
+            return _plcWriteRequestData;
+        }
+    }
 
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(TimeSpan.FromMilliseconds(long.Parse(value) / 1000000));
+        UpdateRead(TimeSpan.FromTicks(long.Parse(value)));
     }
 
     /// <inheritdoc />

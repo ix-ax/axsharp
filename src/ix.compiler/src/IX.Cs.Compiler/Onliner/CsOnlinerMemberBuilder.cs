@@ -22,12 +22,12 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
 {
     private readonly StringBuilder _memberDeclarations = new();
 
-    protected CsOnlinerMemberBuilder(Compilation compilation)
+    protected CsOnlinerMemberBuilder(ISourceBuilder ISourceBuilder)
     {
-        Compilation = compilation;
+        SourceBuilder = ISourceBuilder;
     }
 
-    private Compilation Compilation { get; }
+    private ISourceBuilder SourceBuilder { get; }
 
     public string Output => _memberDeclarations.ToString().FormatCode();
 
@@ -50,7 +50,7 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
 
     public void CreateFieldDeclaration(IFieldDeclaration fieldDeclaration, IxNodeVisitor visitor)
     {
-        if (fieldDeclaration.IsMemberEligibleForTranspile(Compilation))
+        if (fieldDeclaration.IsMemberEligibleForTranspile(SourceBuilder))
         {
             AddToSource(fieldDeclaration.Pragmas.AddAttributes());
 
@@ -71,6 +71,15 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
                     fieldDeclaration.Type.Accept(visitor, this);
                     AddToSource($" {fieldDeclaration.Name}");
                     AddToSource("{get;}");
+                    break;
+                case IArrayTypeDeclaration array:
+                    if (array.ElementTypeAccess.Type.IsTypeEligibleForTranspile(SourceBuilder))
+                    {
+                        AddToSource($"{fieldDeclaration.AccessModifier.Transform()} ");
+                        fieldDeclaration.Type.Accept(visitor, this);
+                        AddToSource($" {fieldDeclaration.Name}");
+                        AddToSource("{get;}");
+                    }
                     break;
                 default:
                     AddToSource($"{fieldDeclaration.AccessModifier.Transform()} ");
@@ -130,13 +139,44 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
 
     public void CreateVariableDeclaration(IVariableDeclaration semantics, IxNodeVisitor visitor)
     {
-        if (semantics.IsMemberEligibleForTranspile(Compilation))
+        if (semantics.IsMemberEligibleForTranspile(SourceBuilder))
         {
             AddToSource(semantics.Pragmas.AddAttributes());
-            AddToSource("public ");
-            semantics.Type.Accept(visitor, this);
-            AddToSource($" {semantics.Name}");
-            AddToSource("{get;}");
+
+            // TODO: This is not nice refactor, also we should embed the int wrapper into actual member of enum type!
+            switch (semantics.Type)
+            {
+                case IEnumTypeDeclaration @enum:
+                    AddToSource($"[Ix.Connector.EnumeratorDiscriminatorAttribute(typeof({@enum.GetQualifiedName()}))]");
+                    AddToSource($"public");
+                    AddToSource("OnlinerInt");
+                    AddToSource($" {semantics.Name}");
+                    AddToSource("{get;}");
+                    break;
+                case INamedValueTypeDeclaration namedValue:
+                    AddToSource(
+                        $"[Ix.Connector.EnumeratorDiscriminatorAttribute(typeof({namedValue.GetQualifiedName()}))]");
+                    AddToSource($"public");
+                    semantics.Type.Accept(visitor, this);
+                    AddToSource($" {semantics.Name}");
+                    AddToSource("{get;}");
+                    break;
+                case IArrayTypeDeclaration array:
+                    if (array.ElementTypeAccess.Type.IsTypeEligibleForTranspile(SourceBuilder))
+                    {
+                        AddToSource($"public");
+                        semantics.Type.Accept(visitor, this);
+                        AddToSource($" {semantics.Name}");
+                        AddToSource("{get;}");
+                    }
+                    break;
+                default:
+                    AddToSource($"public");
+                    semantics.Type.Accept(visitor, this);
+                    AddToSource($" {semantics.Name}");
+                    AddToSource("{get;}");
+                    break;
+            }
         }
     }
 
@@ -152,27 +192,31 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
     }
 
     public static CsOnlinerMemberBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
-        Compilation compilation)
+        ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerMemberBuilder(compilation);
+        var builder = new CsOnlinerMemberBuilder(sourceBuilder);
         builder.AddToSource(semantics.DeclareProperties());
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
         return builder;
     }
 
     public static CsOnlinerMemberBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
-        Compilation compilation)
+        ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerMemberBuilder(compilation);
+        var builder = new CsOnlinerMemberBuilder(sourceBuilder);
         builder.AddToSource(semantics.DeclareProperties());
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+
+        builder.AddToSource(@$"partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+            partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);");
+
         return builder;
     }
 
     public static CsOnlinerMemberBuilder Create(IxNodeVisitor visitor, IConfigurationDeclaration semantics,
-        Compilation compilation)
+        ISourceBuilder sourceBuilder)
     {
-        var builder = new CsOnlinerMemberBuilder(compilation);
+        var builder = new CsOnlinerMemberBuilder(sourceBuilder);
         builder.AddToSource(semantics.DeclareProperties());
         semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
         return builder;

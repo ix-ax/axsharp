@@ -1,6 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
 
-<div name="StackPanel" class="content p-3">
+<div name="StackPanel" class="content p-3 @LayoutClass">
     @Body
 </div>
+
+@code
+{
+    [CascadingParameter]
+    protected string? LayoutClass { get; set; }
+}

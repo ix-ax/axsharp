@@ -196,6 +196,26 @@ namespace Ix.Connector.Identity.Tests
             throw new NotImplementedException();
         }
 
+        public object OnlineToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToOnline(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ShadowToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
         public ITwinObject GetParent()
         {
             return this;
@@ -204,6 +224,11 @@ namespace Ix.Connector.Identity.Tests
         public string GetSymbolTail()
         {
             return string.Empty;
+        }
+
+        public void Poll()
+        {
+            throw new NotImplementedException();
         }
 
         public void AddKid(ITwinElement kid)
@@ -271,6 +296,26 @@ namespace Ix.Connector.Identity.Tests
             throw new NotImplementedException();
         }
 
+        public object OnlineToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToOnline(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ShadowToPlain()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlainToShadow(object plain)
+        {
+            throw new NotImplementedException();
+        }
+
         ITwinObject parent;
         public ITwinObject GetParent()
         {
@@ -280,6 +325,11 @@ namespace Ix.Connector.Identity.Tests
         public string GetSymbolTail()
         {
             return this.SymbolTail;
+        }
+
+        public void Poll()
+        {
+            throw new NotImplementedException();
         }
 
         public void AddKid(ITwinElement kid)

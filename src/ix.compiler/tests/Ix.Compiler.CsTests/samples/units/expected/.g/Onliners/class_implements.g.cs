@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
 {
+    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public _NULL_CONTEXT(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
         Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
@@ -12,8 +14,73 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
         HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        PreConstruct(parent, readableTail, symbolTail);
         parent.AddChild(this);
         parent.AddKid(this);
+        PostConstruct(parent, readableTail, symbolTail);
+    }
+
+    public T OnlineToPlain<T>()
+    {
+        return (dynamic)this.OnlineToPlainAsync().Result;
+    }
+
+    public async Task<Pocos._NULL_CONTEXT> OnlineToPlainAsync()
+    {
+        Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
+        await this.ReadAsync();
+        return plain;
+    }
+
+    protected async Task<Pocos._NULL_CONTEXT> OnlineToPlainAsync(Pocos._NULL_CONTEXT plain)
+    {
+        return plain;
+    }
+
+    public void PlainToOnline<T>(T plain)
+    {
+        this.PlainToOnlineAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos._NULL_CONTEXT plain)
+    {
+        return await this.WriteAsync();
+    }
+
+    public T ShadowToPlain<T>()
+    {
+        return (dynamic)this.ShadowToPlainAsync().Result;
+    }
+
+    public async Task<Pocos._NULL_CONTEXT> ShadowToPlainAsync()
+    {
+        Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
+        return plain;
+    }
+
+    protected async Task<Pocos._NULL_CONTEXT> ShadowToPlainAsync(Pocos._NULL_CONTEXT plain)
+    {
+        return plain;
+    }
+
+    public void PlainToShadow<T>(T plain)
+    {
+        this.PlainToShadowAsync((dynamic)plain).Wait();
+    }
+
+    public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos._NULL_CONTEXT plain)
+    {
+        return this.RetrievePrimitives();
+    }
+
+    public void Poll()
+    {
+        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
+    }
+
+    public Pocos._NULL_CONTEXT CreateEmptyPoco()
+    {
+        return new Pocos._NULL_CONTEXT();
     }
 
     private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
@@ -68,7 +135,19 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
 
     public string Symbol { get; protected set; }
 
-    public System.String AttributeName { get; set; }
+    private string _attributeName;
+    public System.String AttributeName
+    {
+        get
+        {
+            return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+        }
+
+        set
+        {
+            _attributeName = value;
+        }
+    }
 
     public string HumanReadable { get; set; }
 
@@ -77,6 +156,6 @@ public partial class _NULL_CONTEXT : Ix.Connector.ITwinObject, IContext
     protected Ix.Connector.ITwinObject @Parent { get; set; }
 }
 
-public interface IContext
+public partial interface IContext
 {
 }

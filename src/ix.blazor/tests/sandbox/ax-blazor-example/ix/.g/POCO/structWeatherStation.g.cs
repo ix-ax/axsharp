@@ -5,7 +5,7 @@ namespace Pocos
     public partial class structWeatherStation
     {
         public string StationICAO { get; set; } = string.Empty;
-        public enumStationStatus StationStatus { get; set; }
+        public global::enumStationStatus StationStatus { get; set; }
 
         public Single DewPoint { get; set; }
 
@@ -21,6 +21,6 @@ namespace Pocos
 
         public DateOnly TestDate { get; set; } = default(DateOnly);
         public DateTime TestDateTime { get; set; } = default(DateTime);
-        public TimeOnly TestTimeOfDay { get; set; } = default(TimeOnly);
+        public TimeSpan TestTimeOfDay { get; set; } = default(TimeSpan);
     }
 }

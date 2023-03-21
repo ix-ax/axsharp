@@ -12,11 +12,11 @@ namespace Pocos
         public string Location { get; set; } = string.Empty;
         public Single ChillFactor { get; set; }
 
-        public Feeling Feeling { get; set; }
+        public global::Feeling Feeling { get; set; }
     }
 
     public partial class weathers
     {
-        public weatherBase[] i { get; set; }
+        public weatherBase[] i { get; set; } = new weatherBase[51];
     }
 }

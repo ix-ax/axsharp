@@ -1,5 +1,6 @@
+USING MonsterData;
 CONFIGURATION MyConfiguration
-    TASK Main(Interval := T#1ms, Priority := 1);
+    TASK Main(Interval := T#10ms, Priority := 1);
     PROGRAM P1 WITH Main: MyProgram;
 
     VAR_GLOBAL
@@ -21,6 +22,7 @@ CONFIGURATION MyConfiguration
 
         test_example: example;
         measurements : MeasurementExample.Measurements;
-
+        ixcomponent : ixcomponent;
+        monster : Monster;
     END_VAR
 END_CONFIGURATION

@@ -40,6 +40,15 @@ CONFIGURATION MyConfiguration
         cReadOnce           : ComplexForConfig;
         {#ix-attr:[ReadOnly()]}
         cReadOnly           : ComplexForConfig;
+        Colorss : Colorss;
+        Colorsss : Colorsss;
+
+        {#ix-attr:[CompilerOmitsAttribute()]}
+        _must_be_omitted_everywhere : BOOL;
+        {#ix-attr:[CompilerOmitsAttribute("Onliner")]}
+        _must_be_omitted_in_onliner : BOOL;
+        {#ix-attr:[CompilerOmitsAttribute("POCO")]}
+         _must_be_omitted_in_poco : BOOL;
     END_VAR
 END_CONFIGURATION
 
@@ -73,4 +82,12 @@ CLASS PUBLIC ComplexForConfig
         mySTRING	        :       STRING	      ;
         myWSTRING	    :       WSTRING	      ;
     END_VAR    
-END_CLASS    
+END_CLASS   
+
+TYPE
+    Colorss : (Red, Green, Blue) := Red;
+END_TYPE
+
+TYPE
+    Colorsss : ULINT (Red := ULINT#1, Green := ULINT#2, Blue := ULINT#3) := Red;
+END_TYPE

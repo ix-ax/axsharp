@@ -1,4 +1,4 @@
-$targetIP = [Environment]::GetEnvironmentVariable('AXTARGET')
+$targetIP = [Environment]::GetEnvironmentVariable('AX_WEBAPI_TARGET')
 $targetInput = [Environment]::GetEnvironmentVariable('AXTARGETPLATFORMINPUT')
 $targetIP
 $targetInput

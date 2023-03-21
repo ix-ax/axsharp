@@ -1,3 +1,4 @@
+
 // Build
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
 // Contributors: https://github.com/ix-ax/ix/graphs/contributors
@@ -24,6 +25,8 @@ using Cake.Common.Tools.DotNet.Clean;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
+using Cake.DocFx;
+using Cake.DocFx.Build;
 using Cake.Frosting;
 using Cake.Powershell;
 using CliWrap;
@@ -111,15 +114,21 @@ public sealed class BuildTask : FrostingTask<BuildContext>
     {
         context.DotNetBuild(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetBuildSettings);
 
-        context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, "ix.blazor\\tests\\sandbox\\ax-blazor-example\\");
-        
-        context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
+        var axprojects = new List<string>()
+        {
+            Path.Combine(context.RootDir, "ix.blazor\\tests\\sandbox\\ax-blazor-example\\"),
+            Path.Combine(context.RootDir, "sanbox\\integration\\ix-integration-plc\\"),
+            Path.Combine(context.RootDir, "ix.examples\\hello.world.console\\hello.world.console.plc"),
+            Path.Combine(context.RootDir, "ix.connectors\\tests\\ax-test-project\\"),
+            Path.Combine(context.RootDir, "tests.integrations\\integrated\\src\\ax\\")
+        };
 
-        context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, "sanbox\\integration\\ix-integration-plc\\");
-        context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
 
-        context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, "ix.examples\\hello.world.console\\hello.world.console.plc");
-        context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
+        foreach (var axproject in axprojects)
+        {
+            context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, axproject);
+            context.DotNetRun(Path.Combine(context.RootDir, "ix.compiler\\src\\ixc\\Ix.ixc.csproj"), context.DotNetRunSettings);
+        }
 
         context.DotNetBuild(Path.Combine(context.RootDir, "ix.sln"), context.DotNetBuildSettings);
         
@@ -155,13 +164,15 @@ public sealed class TestsTask : FrostingTask<BuildContext>
         }
         else
         {
-            var workingDirectory = Path.GetFullPath(Path.Combine(context.WorkDirName,
-                "..//..//src//ix.connectors//tests//ax-test-project//"));
+            UploadTestPlc(context, 
+                Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//ix.connectors//tests//ax-test-project//")),
+                Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"),
+                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
-            var targetIp = Environment.GetEnvironmentVariable("AXTARGET");
-            var targetPlatform = Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT");
-
-            UploadTestPlc(context, workingDirectory, targetIp, targetPlatform);
+            UploadTestPlc(context,
+                Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//tests.integrations//integrated//src//ax")),
+                Environment.GetEnvironmentVariable("AXTARGET"),
+                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
             RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "ix-L3-tests.slnf"));
         }
@@ -315,27 +326,33 @@ public sealed class GenerateApiDocumentationTask : FrostingTask<BuildContext>
             return;
         }
 
-        if (Helpers.CanReleaseInternal())
-            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
-            GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
-
-            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
-            GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
-
-            GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
-            GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");
-            GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor.Controls\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.Controls.dll", @"Ix.Presentation.Blazor.Controls");
-    }
-
-    private static void GenerateApiDocumentation(BuildContext context, string assemblyFile, string outputDocDirectory)
-    {
-        context.Log.Information($"Generating documentation for {assemblyFile}");
-        var docXmlFile = Path.Combine(context.RootDir, assemblyFile);
-        var docDirectory = Path.Combine(context.ApiDocumentationDir, outputDocDirectory);
         context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
         {
-            Arguments = $"xmldocmd {docXmlFile} {docDirectory}"
+            WorkingDirectory = context.DocumentationSource,
+            Arguments = $"docfx build"
         }).WaitForExit();
+
+            //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
+            //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
+
+            //GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
+            //GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
+
+            //GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
+            //GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");
+            //GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor.Controls\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.Controls.dll", @"Ix.Presentation.Blazor.Controls");
+    }
+
+    [Obsolete("Using docfx now...", true)]
+    private static void GenerateApiDocumentation(BuildContext context, string assemblyFile, string outputDocDirectory)
+    {
+        //context.Log.Information($"Generating documentation for {assemblyFile}");
+        //var docXmlFile = Path.Combine(context.RootDir, assemblyFile);
+        //var docDirectory = Path.Combine(context.ApiDocumentationDir, outputDocDirectory);
+        //context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
+        //{
+        //    Arguments = $"xmldocmd {docXmlFile} {docDirectory}"
+        //}).WaitForExit();
     }
 }
 

@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>IX connectors | System.Dynamic.ExpandoObject </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="IX connectors | System.Dynamic.ExpandoObject ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">  
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <p class="text-logo">IX</p>
+              </a>            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="ix-connectors">IX connectors</h1>
+
+<p><strong>Ix connectors provide connectivity between twin objects and a target system.</strong></p>
+<h2 id="connecting-plcnet-twin-to-the-plc">Connecting PLC.NET Twin to the PLC</h2>
+<p>How to create a PLC twin connector have a look at <a href="../../index.html#getting-started">Getting started</a></p>
+<h2 id="accessing-plc-data">Accessing PLC data</h2>
+<p>Each elementary/primitive/base type is represented by twin wrapper objects that are summarily called <strong>Onliners</strong>. Onliners allow for direct access to the PLC variable via</p>
+<ul>
+<li><code>Cyclic</code>: variable is read or written cyclically in specified periods.</li>
+<li><code>Direct</code>: variable is read or written to the controller and returns to the application once the operation is performed.</li>
+<li><code>Shadow</code>: off-line/shadow value holder allows for fast swapping of large bulk of data in a single shot.</li>
+<li><code>Batch</code>: access allows for manipulation and batch read and write of entire structures.</li>
+</ul>
+<h3 id="cyclic-access">Cyclic access</h3>
+<p><strong>Cyclic access</strong> allows for fast, low-performance cost, two-way access to the PLC variables. Cyclic values are read and written in an optimized periodic loop. The controller twin object contains the entire PLC program, it does not discriminate between the variables and objects that are used by the consumer and those that are not. However, the Cyclic values are accessed via the communication interface only when:</p>
+<ul>
+<li>Twin connector is set to <code>Auto</code> subscription, which will set the variable into a cyclic read queue when <code>Cyclic</code> property is accessed in the consumer program.</li>
+<li>Twin connector is set to <code>Polling</code> subscription, and reading is activated by <code>StartPolling</code>.</li>
+</ul>
+<p>Primitive Twins implement notification change when the cyclic property changes <a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=net-7.0">INotifyPropertyChanged</a>. This feature is particularly useful for visualization scenarios in presentation frameworks that support data binding with change notification (WPF, Blazor, WinForm).</p>
+<blockquote>
+<p><strong>WARNING</strong>
+Cyclic access may result in degraded performance when the cyclic loop contains too many cyclically accessed primitive twins. Consider using <code>polling</code> instead of <code>automatic</code> subscription to balance the communication load.</p>
+</blockquote>
+<pre><code class="lang-C#">    // Cyclic Read
+    /*
+    Notice that the property Cyclic will return type's default value when called for the first time. First access will only subscribe for the cyclic reading.
+    */
+    Console.WriteLine($&quot;{Entry.PlcTwin.Counter.Symbol} : {Entry.PlcTwin.Counter.Cyclic}&quot;);
+    
+
+    // Cyclic Write
+    /*
+    Notice that the value of the Cyclic will be written to the PLC at the next iteration of the r/w cycle of the connector.
+    */
+    Entry.PlcTwin.RunCounter.Cyclic = true;
+</code></pre>
+<h3 id="direct-access">Direct access</h3>
+<p><strong>Direct access</strong> is two-way access to the PLC variable Variable is accessed via <em>GetAsync</em> and <em>SetAsync</em> methods for reading and writing, respectively. In contrast to the cyclical access, the variable is either read or written, and only then does the control return to the caller. In other words, the <em>Direct</em> allows immediate access to the PLC variable.</p>
+<pre><code class="lang-C#">// Synchronous Read
+/*
+Notice that the method GetAsync in contrast to Cyclic, will return the value from the PLC immediately.
+*/
+Console.WriteLine($&quot;{Entry.PlcTwin.Counter.Symbol} : {Entry.PlcTwin.MAIN.Counter.GetAsync()}&quot;);
+
+// Synchronous Write
+/*
+Notice that the value of the set by SetAsync in contrast to Cyclic will be written to the PLC immediately.
+*/
+Entry.PlcTwin.MAIN.RunCounter.SetAsync(true);
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>
+direct access is expensive to use in scenarios when more variables are required to be read or written in the same moment as it performs item-by-item access without any optimization. When you want to mitigate this effect, use batched access instead.</p>
+</blockquote>
+<h3 id="batched-access">Batched access</h3>
+<p><strong>Batched access</strong> allows you to read or write a group of variables in a single shot. Strictly speaking, batched reading and writing are the operations that are performed with TwinObjects.There are several ways to access the data in a batched way. The easiest and the most straightforward way is to use methods <em>Read()</em>, or <em>Write()</em>, which are extension methods for <em>ITwinObject</em>. All variables contained in the structure are read or written when <em>Read()</em> or <em>Write()</em> methods are used, respectively.</p>
+<p>During the batched read operation, the values are stored in <em>LastValue</em> property of the corresponding Primitive Twin.</p>
+<p>During a batched write operation, the values written to the controller were retrieved from the <em>Cyclic</em> property of the corresponding Primitive Twin.</p>
+<blockquote>
+<p><strong>NOTE</strong>
+Accessing <em>Cyclic</em> property for <strong>writing</strong> will not result in an autmatic subscription for cyclic reading. Acessing the <em>LastValue</em> property will neither result in an automatic subcription for reading.</p>
+</blockquote>
+<pre><code class="lang-C#">// in this namespace are extension methods for batched operations.
+using Ix.Connector;
+
+public class BatchedAccess
+{
+    public async Task ReadBatched()
+    {
+        // Reads whole structure settings
+       await Entry.PlcTwin.Settings.ReadAsync();
+
+        // Write values to the console
+        Console.WriteLine($&quot;{Entry.PlcTwin.Settings.PosX.Symbol}:{Entry.PlcTwin.MAIN.Settings.PosX.LastValue});
+
+        Console.WriteLine($&quot;{Entry.PlcTwin.Settings.PosY.Symbol}:{Entry.PlcTwin.Settings.PosY.LastValue});
+
+        Console.WriteLine($&quot;{Entry.PlcTwin.Settings.PosZ.Symbol}:{Entry.PlcTwin.Settings.PosZ.LastValue});
+    }
+
+
+    public async Task WriteBatched()
+    {
+       Entry.PlcTwin.Settings.PosX.Cyclic = 100.0f;
+       Entry.PlcTwin.Settings.PosY.Cyclic = 120.0f;
+       Entry.PlcTwin.Settings.PosZ.Cyclic = 130.0f;
+
+        // Writes all values of the settings structure.
+       await Entry.PlcController.MAIN.Settings.WriteAsynch();
+    }
+}
+</code></pre>
+<h2 id="polling">Polling</h2>
+<p>Polling allows the application to query a structure or variable in different intervals. The values are stored in <code>Cyclic</code> property of value types. Polled variables are retrieved from the controlled in the same way as during cylic reading but in a given interval. In contrast to automatic subscription mode the polled values can be unsubscribed.</p>
+<p>To allow polling, the twin connector's subscription must be set to <code>Polling</code></p>
+<pre><code class="lang-C#">Entry.Plc.Connector.SubscriptionMode = ReadSubscriptionMode.Polling;
+Entry.Plc.Connector.BuildAndStart();
+</code></pre>
+<blockquote>
+<p><strong>WARNING</strong>
+The subscription mechanism must be selected at the application's start-up before any operation on the twin connector. Mixing subscription mode during lifetime of the application may result in inconsistent behavior.</p>
+</blockquote>
+<h3 id="start-polling">Start polling</h3>
+<p>To start polling a structure at given interval, use <code>StartPolling</code> method with an interval in <code>ms</code>.
+StartPolling is an extension method, remember to import the namespace <code>Ix.Connector</code>.</p>
+<pre><code class="lang-C#">using Ix.Connector;
+.
+.
+
+Entry.Plc.Settings.StartPolling(50);
+</code></pre>
+<h3 id="stop-polling">Stop polling</h3>
+<p>To stop polling call <code>StopPolling</code> method on the structure you want to stop polling.</p>
+<p>StopPolling is an extension method, remember to import the namespace <code>Ix.Connector</code>.</p>
+<pre><code class="lang-C#">using Ix.Connector;
+.
+.
+
+Entry.Plc.Settings.StopPolling();
+</code></pre>
+<p>See also</p>
+<p><a href="../blazor/RENDERABLECONTENT.html#renderable-content-control-polling">Polling in Blazor application</a></p>
+<h2 id="swapping-data-between-online-and-shadow">Swapping data between Online and Shadow</h2>
+<p>Shadows are off-line value holders. Each primitive type has a shadow property. This property only affects the Online values if explicitly instructed to do so by the program. Shadows are helpful when we need to modify multiple values, but we need to send them into the PLC in one shot.</p>
+<h3 id="sending-data-from-online-to-shadow">Sending data from online to shadow</h3>
+<pre><code class="lang-C#">// This will copy the values of the `monster` structure from the controller into the shadow value holder.
+await monster.OnlineToShadowAsync();
+</code></pre>
+<h3 id="sending-data-from-shadow-to-online">Sending data from shadow to online</h3>
+<pre><code class="lang-C#">// This will copy the value from the shadow value holders of `monster` structure into the controller.
+await monster.ShadowToOnlineAsync();
+</code></pre>
+<p>See also</p>
+<p><a href="../blazor/RENDERABLECONTENT.html#presentation-types">Rendering onliners and shadows in a blazor application</a></p>
+<h2 id="using-poco--plain-object">Using POCO / Plain object</h2>
+<p>Onliners are somewhat heavy objects that are well suited for communication with the controller, but they carry too much information that are a burden in some use cases. IX compiler, therefore, creates <code>Plain/POCO</code> objects that are light CLR (C#) objects that can retrieve and send data from and to the controller.</p>
+<h3 id="getting-poco-object">Getting POCO object</h3>
+<pre><code class="lang-C#">// This will read, populate and return the plain object of `monster` class from `online` values of the controller.
+var plainOnline = await monster.OnlineToPlainAsync();
+
+// This will read, populate and return the plain object of `monster` class from the shadow values of the controller.
+var plainShadow = await monster.ShadowToPlainAsync();
+</code></pre>
+<h3 id="writing-poco-object">Writing POCO object</h3>
+<pre><code class="lang-C#">// This will write the content of the plain object to the controller.
+await monster.PlainToOnlineAsync(plainOnline);
+
+// This will write the content of the plain object to the shadows of the controller.
+await monster.PlainToShadowAsync(plainShadow);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>There are also type agnostic methods available over <a href="../../api/Ix.Connector.ITwinObject.html">ITwinObject</a> interface.</p>
+</div>
+<hr>
+<h2 id="other-useful-properties-of-primitive-twins">Other useful properties of Primitive Twins</h2>
+<p>Let's have a simple program</p>
+<pre><code class="lang-BASIC">PROGRAM MAIN
+VAR_EXTERNAL
+    {attribute addProperty Name &quot;&lt;#App#&gt;&quot; }
+    _app : fbApp;
+END_VAR
+---
+CLASS PUBLIC fbApp
+VAR PUBLIC
+    {#ix-set:AttributeName &quot;&lt;#Settings#&gt;&quot; }
+    settings : stSettings;
+END_VAR
+---
+TYPE stSettings :
+    STRUCT
+        {#ix-set:AttributeName &quot;&lt;#Lights off#&gt;&quot; }
+        TurnLightsOff :BOOL;
+    END_STRUCT
+END_TYPE
+
+</code></pre>
+<h3 id="symbol">Symbol</h3>
+<p>The symbol is readonly property that is the symbolic representation of the variable in the PLC program.</p>
+<p>The symbol for <code>TurnLightsOff</code> is <code>_app.settings.TurnLightsOff</code></p>
+<h3 id="attributename">AttributeName</h3>
+<p>AttributeName is the default <a href="../compiler/ADDED_MEMBERS.html">added member</a> of all objects in generated by <code>ixc</code> (IX compiler). They are used to represent the name of the variable or object in a user-friendly way. These attributes can be later used to label the variables consistently in the UI.</p>
+<p>AttributeName for <code>TurnLightsOff</code> is <code>Lights off</code> . Text inside tags <code>&lt;#</code> and <code>#&gt;</code> is marked as LocalizedString. They are optional.</p>
+<h3 id="attributeunits">AttributeUnits</h3>
+<p>AttributeUnit is the default <a href="../compiler/ADDED_MEMBERS.html">added property</a> of all PrimitiveTwins generated by <code>ixc</code> (IX compiler). They are used to represent the unit of measure of the variable.</p>
+<pre><code>{#ix-set:AttributeUnits &quot;mm&quot; }
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes unit of the '_lenght' variable to the console.
+System.Console.WriteLine(PlcTwin._app._length.AttributeUnits);
+</code></pre>
+<h3 id="attributeminimum">AttributeMinimum</h3>
+<p>AttributeMinimum is the default <a href="../compiler/ADDED_MEMBERS.html">added property</a> of all PrimitiveTwins generated by <code>ixc</code> (IX compiler). They are used to get or set the minimum value for the variable. By default, this attribute contains the minimal value of the given type.</p>
+<pre><code>{#ix-set:AttributeMinimum 10.8f }
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes min value of '_length' variable to the console.
+System.Console.WriteLine(PlcTwin._app._length.AttributeMinimum);
+</code></pre>
+<h3 id="attributemaximum">AttributeMaximum</h3>
+<p>AttributeMaximum is the default <a href="../compiler/ADDED_MEMBERS.html">added property</a> of all PrimitiveTwins generated by <code>ixc</code> (IX compiler). They are used to get or set the maximal value for the variable. By default, this attribute contains the maximal value of the given type.</p>
+<pre><code>{#ix-set:AttributeMaximum 10.8f }
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes max. value of '_length' variable to the console.
+System.Console.WriteLine(PlcTwin._app._length.AttributeMaximum);
+</code></pre>
+<h3 id="attributeminimum-and-attributemaximum-at-run-time">AttributeMinimum and AttributeMaximum at run time</h3>
+<p>When the application tries to write to the variable, it first validates that the value to be written corresponds to the limit given by AttributeMinimum and AttributeMaximum. If the value to be written does not fall within the range, this value is not written to the PLC, and the writing operation is silently ignored.</p>
+<h3 id="attributetooltip">AttributeToolTip</h3>
+<p>AttributeToolTip allows you to describe the variable or an object. These can then be used to give short hints to the user in the application. This attribute can be localized.</p>
+<pre><code>{#ix-set:AttributeToolTip &quot;Value indicates the length of product.&quot; }
+_length : REAL;
+</code></pre>
+<pre><code class="lang-C#">// Writes max. value of '_length' variable to the console.
+System.Console.WriteLine(PlcTwin._app._length.AttributeToolTip);
+</code></pre>
+<h3 id="humanreadable">HumanReadable</h3>
+<p>HumanReadable property is the concatenation of AttributeName properties in the twin hierarchy, where single AttributeName(s) are separated by '.'. Human readable can be used to represent the path to the object in a user-friendly manner.</p>
+<p>HumanReadable from <code>TurnLightsOff</code> is <code>App.Settings.Lights off</code></p>
+<p>See also</p>
+<p><a href="Dummy.html">Dummy Connector</a></p>
+<p><a href="WebAPI.html">WebAPI Connector</a></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/ix-ax/ix/blob/dev/docfx/articles/connectors/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+       Generated by DocFx. © Peter Kurhajec, MTS spol. s r.o., and awesome contributors
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-dotnetconfig@0.9.3/dist/dotnetconfig.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/mermaid@8.10.2/dist/mermaid.min.js" integrity="sha384-nzpOk138h0/O14Ig1PAUlf1XSo5T+XvpBUVkpLaU40QBvMgrNkSKusdNAomDLEd2" crossorigin="anonymous"></script>
+    <script>
+    mermaid.initialize({
+    startOnLoad: false
+    });
+    mermaid.init(undefined, ".lang-mermaid");
+    </script>  </body>
+</html>

@@ -58,6 +58,10 @@ public class IxProject : IIxProject
     public AxProject AxProject { get; }
 
     private IEnumerable<Type> BuilderTypes { get; }
+
+    /// <summary>
+    /// Gets compiler option for this <see cref="IxProject"/>
+    /// </summary>
     public ICompilerOptions? CompilerOptions { get; }
 
     /// <summary>
@@ -85,6 +89,7 @@ public class IxProject : IIxProject
 
         var compilation = Compilation.Create(toCompile, Compilation.Settings.Default).Result;
 
+        this.CleanOutput(this.OutputFolder);
 
         foreach (var origin in projectSources)
         {
@@ -95,6 +100,7 @@ public class IxProject : IIxProject
                 var builder = Activator.CreateInstance(sourceBuilderType, this, compilation);
                 var treeWalker = builder as ICombinedThreeVisitor;
                 var sourceBuilder = builder as ISourceBuilder;
+                
 
                 if (treeWalker == null)
                     throw new FailedToCreateCombineThreeVisitorException(
@@ -106,7 +112,8 @@ public class IxProject : IIxProject
 
                 origin.parseTree.GetRoot().Visit(new IxNodeVisitor(compilation), treeWalker);
 
-
+                
+                
                 Policy
                     .Handle<IOException>()
                     .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
@@ -127,7 +134,30 @@ public class IxProject : IIxProject
 
         Log.Logger.Information($"Compilation of project '{AxProject.SrcFolder}' done.");
     }
-    
+
+    /// <summary>
+    /// Cleans all output files from the output directory
+    /// </summary>
+    public void CleanOutput(string folderToClean)
+    {
+        if (!Directory.Exists(folderToClean))
+            return;
+
+        foreach (var sourceBuilder in BuilderTypes.Select(p => Activator.CreateInstance(p, this, null) as ISourceBuilder).Where(p => !(p is null)))
+        {
+            if (sourceBuilder != null)
+                foreach (var outputFile in Directory.GetFiles(folderToClean, $"*{sourceBuilder.OutputFileSuffix}",
+                             SearchOption.AllDirectories))
+                {
+                    Policy
+                        .Handle<IOException>()
+                        .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
+                        .Execute(() => { File.Delete(outputFile); });
+                }
+        }
+      
+    }
+
     private static string GetOutputFileName(SourceFileText source, ISourceBuilder compilerData)
     {
         var fileInfo = new FileInfo(source.Filename);
@@ -207,8 +237,10 @@ public class IxProject : IIxProject
             {
                 using (var sr = new StreamReader(projectReference.ProjectInfo))
                 {
-                    var sourceinfo = JsonConvert.DeserializeObject<Dictionary<string, string>>(sr.ReadToEnd());
-                    return Path.Combine(projectReference.ReferencePath, $"..{Path.DirectorySeparatorChar}", sourceinfo["ax-source"]);
+                    var sourceInfo = JsonConvert.DeserializeObject<Dictionary<string, string>>(sr.ReadToEnd());
+                    if (sourceInfo != null)
+                        return Path.Combine(projectReference.ReferencePath, $"..{Path.DirectorySeparatorChar}",
+                            sourceInfo["ax-source"]);
                 }
             }
             catch (System.IO.FileNotFoundException ex)
@@ -238,6 +270,7 @@ public class IxProject : IIxProject
             return string.Empty;
         }
        
+        return string.Empty;
     }
 
     private void GenerateMetadata(Compilation compilation)
@@ -271,7 +304,6 @@ public class IxProject : IIxProject
 
         return relativePath;
     }
-
 
     private static string CreateMetaType(ITypeDeclaration type)
     {

@@ -5,7 +5,10 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ix.Connector;
 
@@ -66,6 +69,46 @@ public interface ITwinObject : ITwinElement
     ///     Gets the instance of the <see cref="Connector" /> class to which this <see cref="Ix.Connector.ITwinObject" />
     ///     belongs.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Connector</returns>
     Connector GetConnector();
+
+    /// <summary>
+    /// Reads online data and retrieved POCO object populated with actual online data.
+    /// </summary>
+    /// <returns>POCO with online data of this object</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public T OnlineToPlain<T>()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Writes data from POCO object to online data (PLC)
+    /// </summary>
+    /// <param name="plain">POCO object to be written to the controller.</param>
+    /// <exception cref="NotImplementedException"></exception>
+    public void PlainToOnline<T>(T plain)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Read data from shadows of this object to a new instance of a POCO object.
+    /// </summary>
+    /// <returns>POCO object populated by data from the shadows of this object.</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public T ShadowToPlain<T>()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Writes data from POCO object to shadow data of this object.
+    /// </summary>
+    /// <param name="plain">POCO object to be written to the shadows of this object.</param>
+    /// <exception cref="NotImplementedException"></exception>
+    public void PlainToShadow<T>(T plain)
+    {
+        throw new NotImplementedException();
+    }
 }

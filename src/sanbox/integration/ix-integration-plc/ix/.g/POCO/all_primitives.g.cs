@@ -37,7 +37,7 @@ namespace Pocos
         public TimeSpan myTIME { get; set; } = default(TimeSpan);
         public TimeSpan myLTIME { get; set; } = default(TimeSpan);
         public DateOnly myDATE { get; set; } = default(DateOnly);
-        public TimeOnly myTIME_OF_DAY { get; set; } = default(TimeOnly);
+        public TimeSpan myTIME_OF_DAY { get; set; } = default(TimeSpan);
         public DateTime myDATE_AND_TIME { get; set; } = default(DateTime);
         public string mySTRING { get; set; } = string.Empty;
         public string myWSTRING { get; set; } = string.Empty;

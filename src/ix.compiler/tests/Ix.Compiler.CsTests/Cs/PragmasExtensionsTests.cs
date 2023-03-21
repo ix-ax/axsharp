@@ -43,7 +43,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_get_attribute_source()
     {
-        var expected = "[Container(Layoyt.Wrap)]\r\n[Group(Layoyt.GroupBox)]\r\n";
+        var expected = "[Container(Layoyt.Wrap)]\r\n[Group(Layoyt.GroupBox)]";
         IEnumerable<IPragma> pragmas = new[]
         {
             new("#ix-attr:[Container(Layoyt.Wrap)]"),
@@ -58,7 +58,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_declare_property()
     {
-        var expected = "public string AttributeName { get; set; }\r\n";
+        var expected = "private string _AttributeName;\npublic string AttributeName { get{ return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_AttributeName); } set {_AttributeName = value;} }";
         var field = new TypeMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {
@@ -72,13 +72,28 @@ public class PragmasExtensionsTests
 
 
     [Fact]
-    public void should_set_property_source()
+    public void should_set_property_string()
     {
-        var expected = "someField.AttributeName = \"This is name\";\r\n";
+        var expected = "someField.AttributeName = \"This is name\";";
         var field = new FieldMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {
                 new PragmaMock("#ix-set:AttributeName = \"This is name\"")
+            }));
+
+        var actual = field.SetProperties();
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void should_set_property_number()
+    {
+        var expected = "someField.AttributeMinimum = 10.5f;";
+        var field = new FieldMock("someField",
+            new ReadOnlyCollection<IPragma>(new IPragma[]
+            {
+                new PragmaMock("#ix-set:AttributeMinimum = 10.5f")
             }));
 
         var actual = field.SetProperties();

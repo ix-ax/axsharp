@@ -12,7 +12,7 @@
         case "WrapPanelLayout":
             {
 
-                <div class="p-2">
+                <div class="p-2 @Class">
                     @ChildContent
                 </div>
                 break;
@@ -20,7 +20,7 @@
         case "GroupBoxLayout":
             {
 
-                <div class="p-2">
+            <div class="p-2 @Class">
                     @ChildContent
                 </div>
                 break;
@@ -28,15 +28,23 @@
         case "UniformGridLayout":
             {
 
-                <div class="p-2" style="flex: 1;" >
+                <div class="p-2 @Class" style="flex: 1;">
+                    @ChildContent
+                </div>
+                break;
+            }
+        case "StackPanelLayout":
+            {
+
+                <div class="@Class">
                     @ChildContent
                 </div>
                 break;
             }
 
         default:
+               @ChildContent
 
-            @ChildContent
             break;
     }
 
@@ -53,6 +61,8 @@
     public bool SetParentLayout { get; set; }
     [Parameter]
     public string ChildName { get; set; }
+    [Parameter]
+    public string Class { get; set; }
 
     public string LayoutName { get; set; }
 

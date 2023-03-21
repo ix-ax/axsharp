@@ -33,7 +33,7 @@ namespace Ix.Connector.S71500.WebApi.Tests.Issues
 
         protected static WebApiConnector Connector { get; } = TestConnector.TestApiConnector as WebApiConnector;
        
-        private string targetIP = System.Environment.GetEnvironmentVariable("AXTARGET");
+        private string targetIP = System.Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET");
 
         [Fact]
         public async Task write_read_char()

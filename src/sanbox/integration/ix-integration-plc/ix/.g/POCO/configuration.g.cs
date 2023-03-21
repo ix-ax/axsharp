@@ -2,6 +2,8 @@ using System;
 
 namespace Pocos
 {
+    using MonsterData;
+
     public partial class ix_integration_plc
     {
         public all_primitives all_primitives { get; set; } = new all_primitives();
@@ -14,5 +16,7 @@ namespace Pocos
         public Layouts.Stacked.weather weather_readOnly { get; set; } = new Layouts.Stacked.weather();
         public example test_example { get; set; } = new example();
         public MeasurementExample.Measurements measurements { get; set; } = new MeasurementExample.Measurements();
+        public ixcomponent ixcomponent { get; set; } = new ixcomponent();
+        public MonsterData.Monster monster { get; set; } = new MonsterData.Monster();
     }
 }
