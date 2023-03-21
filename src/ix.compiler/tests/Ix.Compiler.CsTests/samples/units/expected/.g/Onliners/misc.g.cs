@@ -30,9 +30,9 @@ namespace Enums
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.Enums.ClassWithEnums> OnlineToPlainAsync()
@@ -51,9 +51,9 @@ namespace Enums
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.Enums.ClassWithEnums)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Enums.ClassWithEnums plain)
@@ -63,9 +63,9 @@ namespace Enums
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.Enums.ClassWithEnums> ShadowToPlainAsync()
@@ -83,9 +83,9 @@ namespace Enums
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.Enums.ClassWithEnums)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Enums.ClassWithEnums plain)
@@ -217,9 +217,9 @@ namespace misc
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.VariousMembers> OnlineToPlainAsync()
@@ -238,9 +238,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.misc.VariousMembers)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.VariousMembers plain)
@@ -250,9 +250,9 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.VariousMembers> ShadowToPlainAsync()
@@ -270,9 +270,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.misc.VariousMembers)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.misc.VariousMembers plain)
@@ -385,9 +385,9 @@ namespace misc
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.SomeClass> OnlineToPlainAsync()
@@ -404,9 +404,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.misc.SomeClass)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.SomeClass plain)
@@ -415,9 +415,9 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.SomeClass> ShadowToPlainAsync()
@@ -433,9 +433,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.misc.SomeClass)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.misc.SomeClass plain)
@@ -543,9 +543,9 @@ namespace misc
             parent.AddKid(this);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.Motor> OnlineToPlainAsync()
@@ -562,9 +562,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.misc.Motor)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.Motor plain)
@@ -573,9 +573,9 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.Motor> ShadowToPlainAsync()
@@ -591,9 +591,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.misc.Motor)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.misc.Motor plain)
@@ -703,9 +703,9 @@ namespace misc
             parent.AddKid(this);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.Vehicle> OnlineToPlainAsync()
@@ -724,9 +724,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.misc.Vehicle)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.Vehicle plain)
@@ -736,9 +736,9 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.misc.Vehicle> ShadowToPlainAsync()
@@ -756,9 +756,9 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.misc.Vehicle)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.misc.Vehicle plain)
@@ -879,9 +879,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays> OnlineToPlainAsync()
@@ -900,9 +900,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays plain)
@@ -914,9 +914,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays> ShadowToPlainAsync()
@@ -934,9 +934,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays plain)
@@ -1054,9 +1054,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.UnknownArraysShouldNotBeTraspiled.Complex> OnlineToPlainAsync()
@@ -1075,9 +1075,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.UnknownArraysShouldNotBeTraspiled.Complex)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.UnknownArraysShouldNotBeTraspiled.Complex plain)
@@ -1087,9 +1087,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.UnknownArraysShouldNotBeTraspiled.Complex> ShadowToPlainAsync()
@@ -1107,9 +1107,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.UnknownArraysShouldNotBeTraspiled.Complex)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.UnknownArraysShouldNotBeTraspiled.Complex plain)

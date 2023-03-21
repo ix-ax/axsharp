@@ -16,9 +16,9 @@ namespace Simatic.Ax.StateFramework
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
@@ -35,9 +35,9 @@ namespace Simatic.Ax.StateFramework
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.Simatic.Ax.StateFramework.State1Transition)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
@@ -46,9 +46,9 @@ namespace Simatic.Ax.StateFramework
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> ShadowToPlainAsync()
@@ -64,9 +64,9 @@ namespace Simatic.Ax.StateFramework
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.Simatic.Ax.StateFramework.State1Transition)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
@@ -112,9 +112,9 @@ namespace Simatic.Ax.StateFramework
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public object OnlineToPlain()
+        public T OnlineToPlain<T>()
         {
-            return this.OnlineToPlainAsync().Result;
+            return (dynamic)this.OnlineToPlainAsync().Result;
         }
 
         public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync()
@@ -133,9 +133,9 @@ namespace Simatic.Ax.StateFramework
             return plain;
         }
 
-        public void PlainToOnline(object plain)
+        public void PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((Pocos.Simatic.Ax.StateFramework.AbstractState)plain).Wait();
+            this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
@@ -145,9 +145,9 @@ namespace Simatic.Ax.StateFramework
             return await this.WriteAsync();
         }
 
-        public object ShadowToPlain()
+        public T ShadowToPlain<T>()
         {
-            return this.ShadowToPlainAsync().Result;
+            return (dynamic)this.ShadowToPlainAsync().Result;
         }
 
         public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> ShadowToPlainAsync()
@@ -165,9 +165,9 @@ namespace Simatic.Ax.StateFramework
             return plain;
         }
 
-        public void PlainToShadow(object plain)
+        public void PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((Pocos.Simatic.Ax.StateFramework.AbstractState)plain).Wait();
+            this.PlainToShadowAsync((dynamic)plain).Wait();
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
