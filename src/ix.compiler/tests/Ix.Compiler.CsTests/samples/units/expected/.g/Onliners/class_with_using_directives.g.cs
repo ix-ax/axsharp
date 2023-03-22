@@ -23,7 +23,7 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         PostConstruct(parent, readableTail, symbolTail);
     }
 
-    public T OnlineToPlain<T>()
+    public virtual T OnlineToPlain<T>()
     {
         return (dynamic)this.OnlineToPlainAsync().Result;
     }
@@ -40,7 +40,7 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToOnline<T>(T plain)
+    public virtual void PlainToOnline<T>(T plain)
     {
         this.PlainToOnlineAsync((dynamic)plain).Wait();
     }
@@ -50,7 +50,7 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         return await this.WriteAsync();
     }
 
-    public T ShadowToPlain<T>()
+    public virtual T ShadowToPlain<T>()
     {
         return (dynamic)this.ShadowToPlainAsync().Result;
     }
@@ -66,7 +66,7 @@ internal partial class ClassWithUsingDirectives : Ix.Connector.ITwinObject
         return plain;
     }
 
-    public void PlainToShadow<T>(T plain)
+    public virtual void PlainToShadow<T>(T plain)
     {
         this.PlainToShadowAsync((dynamic)plain).Wait();
     }

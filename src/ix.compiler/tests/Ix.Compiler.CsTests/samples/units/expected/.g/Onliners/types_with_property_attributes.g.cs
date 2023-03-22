@@ -41,7 +41,7 @@ namespace TypesWithPropertyAttributes
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -60,7 +60,7 @@ namespace TypesWithPropertyAttributes
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -71,7 +71,7 @@ namespace TypesWithPropertyAttributes
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -89,7 +89,7 @@ namespace TypesWithPropertyAttributes
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }

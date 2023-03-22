@@ -118,7 +118,7 @@ namespace Ix.Compiler.Cs.Onliner
         {
             var builder = new CsOnlinerPlainerShadowToPlainBuilder(sourceBuilder);
 
-            builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}"));
+            builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}", false));
 
             builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
             builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
@@ -135,7 +135,7 @@ namespace Ix.Compiler.Cs.Onliner
         {
             var builder = new CsOnlinerPlainerShadowToPlainBuilder(sourceBuilder);
 
-            builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}"));
+            builder.AddToSource(CsHelpers.CreateGenericSwapperMethodToPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}", isExtended));
 
             builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
             builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
