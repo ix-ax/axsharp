@@ -31,7 +31,8 @@ namespace AXSharp.CompilerTests
 
         private readonly string testFolder;
 
-        [Fact()]
+
+        [Fact]
         public void should_load_and_parse_apax_workspace_file()
         {
            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//apax.yml"));
@@ -75,13 +76,13 @@ namespace AXSharp.CompilerTests
         [Fact()]
         public void should_update_apax_version()
         {
-            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//app//apax.yml"));
+            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"));
             Assert.Equal("plt-app", apaxWorkspaceFile.Name);
             Assert.Equal("app", apaxWorkspaceFile.Type);
             Assert.Equal("0.1.0", apaxWorkspaceFile.Version);
 
-            Apax.UpdateVersion(Path.Combine(testFolder, @"samples//plt//app//apax.yml"), "33.88.50");
-            apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//app//apax.yml"));
+            Apax.UpdateVersion(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"), "33.88.50");
+            apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"));
 
             Assert.Equal("plt-app", apaxWorkspaceFile.Name);
             Assert.Equal("app", apaxWorkspaceFile.Type);

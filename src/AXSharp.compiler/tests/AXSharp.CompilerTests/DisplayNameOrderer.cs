@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
 using Xunit.Abstractions;
+using Xunit.Sdk;
 
 [assembly: TestCollectionOrderer("AXSharp.CompilerTests.DisplayNameOrderer", "AXSharp.CompilerTests")]
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -16,6 +17,6 @@ public class DisplayNameOrderer : ITestCollectionOrderer
 {
     public IEnumerable<ITestCollection> OrderTestCollections(IEnumerable<ITestCollection> testCollections)
     {
-        return testCollections.OrderBy(collection => collection.DisplayName);
+        return testCollections.OrderByDescending(collection => collection.DisplayName);
     }
 }

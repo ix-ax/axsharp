@@ -53,7 +53,7 @@ namespace AXSharp.CompilerTests
         [Fact]
         public void UpdateAndGetIxConfig_shoud_retrieve_existing_config_file()
         {
-            var apaxFolder = Path.Combine(testFolder, "samples", "plt","lib");
+            var apaxFolder = Path.Combine(testFolder, "samples", "plt2","lib");
             var ixConfigFile = Path.Combine(apaxFolder, "AXSharp.config.json");
             Assert.True(File.Exists(ixConfigFile));
             var result = IxConfig.UpdateAndGetIxConfig(apaxFolder);

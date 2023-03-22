@@ -39,6 +39,24 @@
     </Content>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="samples\plt2\lib\apax.yml" />
+	  <None Remove="samples\plt2\lib\AXSharp.config.json" />
+	  <None Remove="samples\plt1\app\apax.yml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="samples\plt2\lib\apax.yml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="samples\plt2\lib\AXSharp.config.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="samples\plt1\app\apax.yml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<Reference Include="AX.ST.Semantic">
