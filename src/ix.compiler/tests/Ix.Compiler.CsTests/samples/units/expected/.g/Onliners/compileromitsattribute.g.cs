@@ -30,7 +30,7 @@ namespace CompilerOmmits
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -49,7 +49,7 @@ namespace CompilerOmmits
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -61,7 +61,7 @@ namespace CompilerOmmits
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -79,7 +79,7 @@ namespace CompilerOmmits
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -197,7 +197,7 @@ namespace CompilerOmmits
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -218,7 +218,7 @@ namespace CompilerOmmits
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -230,7 +230,7 @@ namespace CompilerOmmits
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -250,7 +250,7 @@ namespace CompilerOmmits
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -373,7 +373,7 @@ namespace Enums
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -394,7 +394,7 @@ namespace Enums
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -406,7 +406,7 @@ namespace Enums
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -426,7 +426,7 @@ namespace Enums
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -560,7 +560,7 @@ namespace misc
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -581,7 +581,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -593,7 +593,7 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -613,7 +613,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -728,7 +728,7 @@ namespace misc
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -747,7 +747,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -758,7 +758,7 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -776,7 +776,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -886,7 +886,7 @@ namespace misc
             parent.AddKid(this);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -905,7 +905,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -916,7 +916,7 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -934,7 +934,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -1046,7 +1046,7 @@ namespace misc
             parent.AddKid(this);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -1067,7 +1067,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -1079,7 +1079,7 @@ namespace misc
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -1099,7 +1099,7 @@ namespace misc
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -1222,7 +1222,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -1243,7 +1243,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -1257,7 +1257,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -1277,7 +1277,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
@@ -1397,7 +1397,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public T OnlineToPlain<T>()
+        public virtual T OnlineToPlain<T>()
         {
             return (dynamic)this.OnlineToPlainAsync().Result;
         }
@@ -1418,7 +1418,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToOnline<T>(T plain)
+        public virtual void PlainToOnline<T>(T plain)
         {
             this.PlainToOnlineAsync((dynamic)plain).Wait();
         }
@@ -1430,7 +1430,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             return await this.WriteAsync();
         }
 
-        public T ShadowToPlain<T>()
+        public virtual T ShadowToPlain<T>()
         {
             return (dynamic)this.ShadowToPlainAsync().Result;
         }
@@ -1450,7 +1450,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             return plain;
         }
 
-        public void PlainToShadow<T>(T plain)
+        public virtual void PlainToShadow<T>(T plain)
         {
             this.PlainToShadowAsync((dynamic)plain).Wait();
         }
