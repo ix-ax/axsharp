@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AXSharp.Connector.ValueTypes;
 
 namespace AXSharp.Connector;
@@ -121,6 +122,26 @@ public class RootTwinObject : ITwinObject
     public Connector GetConnector()
     {
         return this as Connector;
+    }
+
+    public Task<T> OnlineToPlain<T>()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task PlainToOnline<T>(T plain)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<T> ShadowToPlain<T>()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task PlainToShadow<T>(T plain)
+    {
+        throw new NotImplementedException();
     }
 
     public object OnlineToPlain()

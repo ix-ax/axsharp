@@ -4,8 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-ixblazor-hmi-ee3150da-5237-49bc-b265-f512331ded6c</UserSecretsId>
-    <RootNamespace>ixblazor.hmi</RootNamespace>
+    <UserSecretsId>aspnet-ixsharpblazor-hmi-ee3150da-5237-49bc-b265-f512331ded6c</UserSecretsId>
+    <RootNamespace>ixsharpblazor.hmi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ix.Presentation.Blazor.Controls" Version="0.13.0-preview.67" />
+    <PackageReference Include="AXSharp.Presentation.Blazor.Controls" Version="0.13.0-preview.67" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.2" />
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ixblazor.twin\ixblazor.csproj" />
+    <ProjectReference Include="..\ixsharpblazor.twin\ixsharpblazor.csproj" />
   </ItemGroup>
 
 </Project>

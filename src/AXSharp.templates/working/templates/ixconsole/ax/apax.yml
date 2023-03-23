@@ -1,4 +1,4 @@
-name: "ixconsole"
+name: "axsharpconsole"
 version: 0.0.0
 type: app
 targets:
@@ -9,8 +9,8 @@ devDependencies:
 variables:
   APAX_BUILD_ARGS: [ -d ]    
 scripts:
-  ixc: dotnet ixc -o ..\\ixconsole.twin
-  postbuild: dotnet ixc -o ..\\ixconsole.twin
+  ixc: dotnet ixc -o ..\\axsharpconsole.twin
+  postbuild: dotnet ixc -o ..\\axsharpconsole.twin
   download :   
     - apax build
     # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to

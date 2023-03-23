@@ -1,4 +1,4 @@
-﻿// ixconsole.app
+﻿// axsharpconsole.app
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
 // Contributors: https://github.com/ix-ax/ix/graphs/contributors
 // See the LICENSE file in the repository root for more information.
@@ -7,9 +7,9 @@
 
 using System.Runtime.InteropServices;
 using System.Threading.Channels;
-using ixconsole;
+using axsharpconsole;
 
-namespace ixconsole
+namespace axsharpconsole
 {
     internal class Program
     {

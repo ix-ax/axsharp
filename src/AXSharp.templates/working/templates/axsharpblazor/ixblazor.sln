@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixblazor", "ixblazor.twin\ixblazor.csproj", "{D1B70037-1BA9-43AA-8BFE-0253E812225B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixsharpblazor", "ixsharpblazor.twin\ixsharpblazor.csproj", "{D1B70037-1BA9-43AA-8BFE-0253E812225B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixblazor.hmi", "ixblazor.app\ixblazor.hmi.csproj", "{9EDA2C2A-B3A1-4F7D-9928-E975B15E4693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixsharpblazor.hmi", "ixsharpblazor.app\ixsharpblazor.hmi.csproj", "{9EDA2C2A-B3A1-4F7D-9928-E975B15E4693}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

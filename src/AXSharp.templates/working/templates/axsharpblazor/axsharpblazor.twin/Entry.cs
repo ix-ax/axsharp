@@ -1,4 +1,4 @@
-﻿// ixblazor
+﻿// ixsharpblazor
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
 // Contributors: https://github.com/ix-ax/ix/graphs/contributors
 // See the LICENSE file in the repository root for more information.
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ix.Connector.S71500.WebApi;
 
-namespace ixblazor
+namespace ixsharpblazor
 {
     public static class Entry
     {
@@ -22,7 +22,7 @@ namespace ixblazor
         private const string Pass = ""; // <- Pass in the password that you have set up for the user. NOT AS PLAIN TEXT! Use user secrets instead.
         private const bool IgnoreSslErrors = true; // <- When you have your certificates in order set this to false.
 
-        public static ixblazorTwinController Plc { get; } 
+        public static ixsharpblazorTwinController Plc { get; } 
             = new (ConnectorAdapterBuilder.Build()
                 .CreateWebApi(TargetIp, UserName, Pass, IgnoreSslErrors));
     }

@@ -9,7 +9,7 @@
 ### .NET
 
 
-Go to [Entry.cs](ixconsole.twin/Entry.cs) and setup the following parameters
+Go to [Entry.cs](axsharpconsole.twin/Entry.cs) and setup the following parameters
 
 ~~~C#
 private const string TargetIp = "192.168.0.1"; // <- replace by your IP 

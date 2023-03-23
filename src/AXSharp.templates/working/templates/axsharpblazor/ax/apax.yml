@@ -1,4 +1,4 @@
-name: "ixblazor"
+name: "ixsharpblazor"
 version: 0.0.0
 type: app
 targets:
@@ -12,8 +12,8 @@ variables:
 scripts:
   ixc: 
   - dotnet tool restore
-  - dotnet ixc -o ..\\ixblazor.twin
-  postbuild: dotnet ixc -o ..\\ixblazor.twin
+  - dotnet ixc -o ..\\ixsharpblazor.twin
+  postbuild: dotnet ixc -o ..\\ixsharpblazor.twin
   download :   
     - apax install    
     - apax build

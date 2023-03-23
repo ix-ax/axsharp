@@ -1,18 +1,18 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "ix-ax",
-  "classifications": [ "IX", "Blazor" ],
-  "identity": "ixblazor",
-  "name": "IX Blazor application",
-  "shortName": "ixblazor",
+  "author": "PTKu",
+  "classifications": [ "AX#", "Blazor" ],
+  "identity": "axsharpblazor",
+  "name": "AXShapr Blazor application",
+  "shortName": "axeblazor",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "ixblazor",
+  "sourceName": "ixsharpblazor",
 
   "primaryOutputs": [
-    { "path": "ixblazor.csproj" },
+    { "path": "axsharpblazor.csproj" },
     {
       "condition": "(HostIdentifier != \"dotnetcli\")",
       "path": "README.md"

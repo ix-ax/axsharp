@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using AXSharp.Connector.S71500.WebApi;
 using Xunit;
 
@@ -81,6 +82,26 @@ namespace AXSharp.Connector.S71500.WebAPITests
             public Connector GetConnector()
             {
                 return new DummyConnector();
+            }
+
+            public Task<T> OnlineToPlain<T>()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task PlainToOnline<T>(T plain)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<T> ShadowToPlain<T>()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task PlainToShadow<T>(T plain)
+            {
+                throw new NotImplementedException();
             }
         }
 

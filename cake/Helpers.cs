@@ -21,7 +21,8 @@ internal class Helpers
     {
         return PublishInternal.Any(predicate =>
             predicate == GitVersionInformation.BranchName ||
-            GitVersionInformation.BranchName.StartsWith("releases/"));
+            GitVersionInformation.BranchName.StartsWith("releases/")
+            || GitVersionInformation.BranchName.StartsWith("alfa/"));
     }
 
     public static bool CanReleasePublic()

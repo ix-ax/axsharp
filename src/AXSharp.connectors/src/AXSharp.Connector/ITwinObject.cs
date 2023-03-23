@@ -76,39 +76,26 @@ public interface ITwinObject : ITwinElement
     /// Reads online data and retrieved POCO object populated with actual online data.
     /// </summary>
     /// <returns>POCO with online data of this object</returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<T> OnlineToPlain<T>()
-    {
-        throw new NotImplementedException();
-    }
+    Task<T> OnlineToPlain<T>();
+
 
     /// <summary>
     /// Writes data from POCO object to online data (PLC)
     /// </summary>
     /// <param name="plain">POCO object to be written to the controller.</param>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task PlainToOnline<T>(T plain)
-    {
-        throw new NotImplementedException();
-    }
+    Task PlainToOnline<T>(T plain);
+
 
     /// <summary>
     /// Read data from shadows of this object to a new instance of a POCO object.
     /// </summary>
     /// <returns>POCO object populated by data from the shadows of this object.</returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<T> ShadowToPlain<T>()
-    {
-        throw new NotImplementedException();
-    }
+    Task<T> ShadowToPlain<T>();
+    
 
     /// <summary>
     /// Writes data from POCO object to shadow data of this object.
     /// </summary>
     /// <param name="plain">POCO object to be written to the shadows of this object.</param>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<T> PlainToShadow<T>(T plain)
-    {
-        throw new NotImplementedException();
-    }
+    Task PlainToShadow<T>(T plain);
 }

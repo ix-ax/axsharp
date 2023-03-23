@@ -1,7 +1,7 @@
 using AXSharp.Presentation.Blazor.Services;
 using ix_draft_blazor.Areas.Identity;
 using ix_draft_blazor.Data;
-using ixblazor;
+using ixsharpblazor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;

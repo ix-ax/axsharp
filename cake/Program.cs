@@ -64,7 +64,7 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        context.DotNetClean(Path.Combine(context.RootDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
+        context.DotNetClean(Path.Combine(context.ScrDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
         context.CleanDirectory(context.Artifacts);
         context.CleanDirectory(context.TestResults);
     }
@@ -90,7 +90,7 @@ public sealed class ProvisionTask : FrostingTask<BuildContext>
         context.ProcessRunner.Start(Helpers.GetApaxCommand(), new Cake.Core.IO.ProcessSettings()
         {
             Arguments = $" install -L -c",
-            WorkingDirectory = Path.Combine(context.RootDir, "apax"),
+            WorkingDirectory = Path.Combine(context.ScrDir, "apax"),
             RedirectStandardOutput = false,
             RedirectStandardError = false,
             Silent = false,
@@ -99,9 +99,9 @@ public sealed class ProvisionTask : FrostingTask<BuildContext>
 
 
         // Copy apax packages to different directory
-        var destinationDir = Path.Combine(context.RootDir, "apax//stc");
-        var sourceDir = Path.Combine(context.RootDir, $"apax//.apax//packages//@ax//{Helpers.GetStcNameByPlatform()}");
-        Helpers.CopyApaxPackages(sourceDir, destinationDir, context.RootDir);
+        var destinationDir = Path.Combine(context.ScrDir, "apax//stc");
+        var sourceDir = Path.Combine(context.ScrDir, $"apax//.apax//packages//@ax//{Helpers.GetStcNameByPlatform()}");
+        Helpers.CopyApaxPackages(sourceDir, destinationDir, context.ScrDir);
 
     }
 }
@@ -112,25 +112,25 @@ public sealed class BuildTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        context.DotNetBuild(Path.Combine(context.RootDir, "AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj"), context.DotNetBuildSettings);
+        context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj"), context.DotNetBuildSettings);
 
         var axprojects = new List<string>()
         {
-            Path.Combine(context.RootDir, "AXSharp.blazor\\tests\\sandbox\\ax-blazor-example\\"),
-            Path.Combine(context.RootDir, "sanbox\\integration\\ix-integration-plc\\"),
-            Path.Combine(context.RootDir, "AXSharp.examples\\hello.world.console\\hello.world.console.plc"),
-            Path.Combine(context.RootDir, "AXSharp.connectors\\tests\\ax-test-project\\"),
-            Path.Combine(context.RootDir, "tests.integrations\\integrated\\src\\ax\\")
+            Path.Combine(context.ScrDir, "AXSharp.blazor\\tests\\sandbox\\ax-blazor-example\\"),
+            Path.Combine(context.ScrDir, "sanbox\\integration\\ix-integration-plc\\"),
+            Path.Combine(context.ScrDir, "AXSharp.examples\\hello.world.console\\hello.world.console.plc"),
+            Path.Combine(context.ScrDir, "AXSharp.connectors\\tests\\ax-test-project\\"),
+            Path.Combine(context.ScrDir, "tests.integrations\\integrated\\src\\ax\\")
         };
 
 
         foreach (var axproject in axprojects)
         {
-            context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.RootDir, axproject);
-            context.DotNetRun(Path.Combine(context.RootDir, "AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj"), context.DotNetRunSettings);
+            context.DotNetRunSettings.WorkingDirectory = Path.Combine(context.ScrDir, axproject);
+            context.DotNetRun(Path.Combine(context.ScrDir, "AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj"), context.DotNetRunSettings);
         }
 
-        context.DotNetBuild(Path.Combine(context.RootDir, "AXSharp.sln"), context.DotNetBuildSettings);
+        context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.sln"), context.DotNetBuildSettings);
         
     }
 }
@@ -152,96 +152,38 @@ public sealed class TestsTask : FrostingTask<BuildContext>
       
         if (context.BuildParameters.TestLevel == 1)
         {
-            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "AXSharp-L1-tests.slnf"));
+            context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L1-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 2)
         {
-            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "AXSharp-L2-tests.slnf"));
+            context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L2-tests.slnf"));
         }
         else if (context.BuildParameters.TestLevel == 3)
         {
-            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "AXSharp-L3-tests.slnf"));
+            context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L3-tests.slnf"));
         }
         else
         {
-            UploadTestPlc(context, 
+            context.UploadTestPlc( 
                 Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//AXSharp.connectors//tests//ax-test-project//")),
                 Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"),
                 Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
-            UploadTestPlc(context,
+            context.UploadTestPlc(
                 Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//tests.integrations//integrated//src//ax")),
                 Environment.GetEnvironmentVariable("AXTARGET"),
                 Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
-            RunTestsFromFilteredSolution(context, Path.Combine(context.RootDir, "AXSharp-L3-tests.slnf"));
+            context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L3-tests.slnf"));
         }
 
         
 
     }
 
-    private static void RunTestsFromFilteredSolution(BuildContext context, string filteredSolutionFile)
-    {
-        foreach (var project in FilteredSolution.Parse(filteredSolutionFile).solution.projects
-                     .Select(p => new FileInfo(Path.Combine(context.RootDir, p)))
-                     .Where(p => p.Name.ToUpperInvariant().Contains("TEST")))
-        {
-            foreach (var framework in context.TargetFrameworks)
-            {
-                context.DotNetTestSettings.VSTestReportPath = Path.Combine(context.TestResults, $"{project.Name}_{framework}.xml");
-                context.DotNetTestSettings.Framework = framework;
-                context.DotNetTest(Path.Combine(project.FullName), context.DotNetTestSettings);
-            }
-        }
-    }
+    
 
-    private static void UploadTestPlc(BuildContext context, string workingDirectory, string targetIp,
-        string targetPlatform)
-    {
-
-        context.Log.Information($"Installing dependencies for ax project '{workingDirectory}' at {targetIp}");
-
-
-
-
-        context.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
-        {
-            Arguments = " install -L",
-            WorkingDirectory = workingDirectory,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false,
-            Silent = false
-        }).WaitForExit();
-
-
-        context.Log.Information($"Building ax project '{workingDirectory}' at {targetIp}");
-
-
-
-
-        context.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
-        {
-            Arguments = " apax build",
-            WorkingDirectory = workingDirectory,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false,
-            RedirectedStandardOutputHandler = (a) => string.Join(Environment.NewLine, a),
-            Silent = false
-        }).WaitForExit();
-
-
-        context.Log.Information($"Uploading ax project '{workingDirectory}' at {targetIp}");
-
-        context.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
-        {
-            Arguments =
-                $" sld -t {targetIp} -i {targetPlatform} --accept-security-disclaimer --default-server-interface -r",
-            WorkingDirectory = workingDirectory,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false
-        }).WaitForExit();
-    }
+   
 }
 
 [TaskName("CreateArtifacts")]
@@ -256,51 +198,10 @@ public sealed class CreateArtifactsTask : FrostingTask<BuildContext>
             return;
         }
 
-        PackPackages(context, Path.Combine(context.RootDir, "AXSharp-packable-only.slnf"));
-        // Update template package references
-        var templatesDirectory = Path.Combine(context.RootDir, "AXSharp.templates\\working\\templates");
-        var templateCsProjFiles = Directory.EnumerateFiles(templatesDirectory, "*.csproj", SearchOption.AllDirectories);
-
-        foreach (var templateCsProjFile in templateCsProjFiles)
-        {
-            var packagesToUpdate = new List<string>()
-            {
-                "AXSharp.Abstractions", 
-                "AXSharp.Connector", 
-                "AXSharp.Connector.S71500.WebAPI", 
-                "AXSharp.Presentation.Blazor.Controls", 
-                "AXSharp.Presentation.Blazor"
-            };
-
-            foreach (var packageId in packagesToUpdate)
-            {
-                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
-            }
-        }
-        var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories); 
-        foreach (var templateCsProjFile in templateToolDotnetTools)
-        {
-            var packagesToUpdate = new List<string>() { "AXSharp.ixc" };
-            foreach (var packageId in packagesToUpdate)
-            {
-                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
-            }
-        }
-
-        PackTemplatePackages(context, Path.Combine(context.RootDir, "AXSharp-packable-templates.slnf"));
+        PackPackages(context, Path.Combine(context.ScrDir, "AXSharp-packable-only.slnf"));
     }
 
-    private static void PackTemplatePackages(BuildContext context, string solutionToPack)
-    {
-        context.DotNetPack(solutionToPack,
-            new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
-            {
-                OutputDirectory = Path.Combine(context.Artifacts, @"nugets"),
-                Sources = new List<string>() { Path.Combine(context.Artifacts, "nugets") },
-                NoRestore = false,
-                NoBuild = false,
-            });
-    }
+    
 
     private static void PackPackages(BuildContext context, string solutionToPack)
     {        
@@ -342,7 +243,7 @@ public sealed class LicenseComplianceCheckTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         //var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.RootDir, "apax", ".apax", "packages"),
-        var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.RootDir, "apax", "stc"),
+        var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.ScrDir, "apax", "stc"),
             "AX.*.*", 
             SearchOption.AllDirectories)
             .Select(p => new FileInfo(p));
@@ -384,20 +285,7 @@ public sealed class PushPackages : FrostingTask<BuildContext>
             return;
         }
 
-        if (Helpers.CanReleaseInternal())
-        {
-            foreach (var nugetFile in Directory.EnumerateFiles(Path.Combine(context.Artifacts, @"nugets"), "*.nupkg")
-                         .Select(p => new FileInfo(p)))
-            {
-                context.DotNetNuGetPush(nugetFile.FullName,
-                    new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings()
-                    {
-                        ApiKey = Environment.GetEnvironmentVariable("GH_TOKEN"),
-                        Source = "https://nuget.pkg.github.com/ix-ax/index.json",
-                        SkipDuplicate = true
-                    });
-            }
-        }
+        context.PushNugetPackages("nugets");
     }
 }
 
@@ -436,8 +324,120 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 }
 
 
-[TaskName("Default")]
+[TaskName("Templates build")]
 [IsDependentOn(typeof(PublishReleaseTask))]
+public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
+    {
+        if (!context.BuildParameters.DoPublish)
+        {
+            context.Log.Warning($"Skipping template package push.");
+            return;
+        }
+
+        var axprojects = new List<string>()
+        {
+            
+            Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\ax\\"),
+            Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\ixconsole\\ax\\")
+        };
+
+
+        foreach (var axproject in axprojects)
+        {
+            context.UploadTestPlc(
+                Path.GetFullPath(Path.Combine(axproject)),
+                Environment.GetEnvironmentVariable("AXTARGET"),
+                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+        }
+
+        context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp-app-templates.sln"), context.DotNetBuildSettings);
+
+       
+    }
+
+    
+}
+
+[TaskName("Templates pack")]
+[IsDependentOn(typeof(TemplatesBuildTask))]
+public class TemplatesPackTask : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
+    {
+        if (!context.BuildParameters.DoPack)
+        {
+            context.Log.Warning($"Skipping template build.");
+            return;
+        }
+
+        // Update template package references
+        var templatesDirectory = Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates");
+        var templateCsProjFiles = Directory.EnumerateFiles(templatesDirectory, "*.csproj", SearchOption.AllDirectories);
+
+        foreach (var templateCsProjFile in templateCsProjFiles)
+        {
+            var packagesToUpdate = new List<string>()
+            {
+                "AXSharp.Abstractions",
+                "AXSharp.Connector",
+                "AXSharp.Connector.S71500.WebAPI",
+                "AXSharp.Presentation.Blazor.Controls",
+                "AXSharp.Presentation.Blazor"
+            };
+
+            foreach (var packageId in packagesToUpdate)
+            {
+                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
+            }
+        }
+        var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories);
+        foreach (var templateCsProjFile in templateToolDotnetTools)
+        {
+            var packagesToUpdate = new List<string>() { "AXSharp.ixc" };
+            foreach (var packageId in packagesToUpdate)
+            {
+                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
+            }
+        }
+
+        PackTemplatePackages(context, Path.Combine(context.ScrDir, "AXSharp-packable-templates.slnf"));
+        context.PushNugetPackages("templates");
+    }
+
+    private static void PackTemplatePackages(BuildContext context, string solutionToPack)
+    {
+        context.DotNetPack(solutionToPack,
+            new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
+            {
+                OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
+                Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
+                NoRestore = false,
+                NoBuild = false,
+            });
+    }
+
+}
+
+[TaskName("Templates push")]
+[IsDependentOn(typeof(TemplatesPackTask))]
+public class TemplatesPush : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
+    {
+        if (!context.BuildParameters.DoPublish)
+        {
+            context.Log.Warning($"Skipping template build.");
+            return;
+        }
+
+        context.PushNugetPackages("templates");
+    }
+}
+
+[TaskName("Default")]
+[IsDependentOn(typeof(TemplatesPush))]
 public class DefaultTask : FrostingTask
 {
 }
