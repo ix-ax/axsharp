@@ -40,12 +40,12 @@ internal static class CsHelpers
     public static string CreateGenericSwapperMethodToPlainer(string methodName, string pocoTypeName, bool isExtended)
     {
         var qualifier = isExtended ? "override" : "virtual";
-        return $"public {qualifier} T {methodName}<T>(){{\n return (dynamic)this.{methodName}Async().Result;\n}}";
+        return $"public async {qualifier} Task<T> {methodName}<T>(){{\n return await (dynamic)this.{methodName}Async();\n}}";
     }
 
     public static string CreateGenericSwapperMethodFromPlainer(string methodName, string pocoTypeName, bool isExtended)
     {
         var qualifier = isExtended ? "override" : "virtual";
-        return $"public {qualifier} void {methodName}<T>(T plain){{\n this.{methodName}Async((dynamic)plain).Wait();\n}}";
+        return $"public async {qualifier} Task {methodName}<T>(T plain){{\n await this.{methodName}Async((dynamic)plain);\n}}";
     }
 }

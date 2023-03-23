@@ -38,9 +38,9 @@ namespace makereadonly
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync()
@@ -63,9 +63,9 @@ namespace makereadonly
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
@@ -77,9 +77,9 @@ namespace makereadonly
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> ShadowToPlainAsync()
@@ -101,9 +101,9 @@ namespace makereadonly
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
@@ -221,9 +221,9 @@ namespace makereadonly
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync()
@@ -242,9 +242,9 @@ namespace makereadonly
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.ComplexMember plain)
@@ -254,9 +254,9 @@ namespace makereadonly
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.makereadonly.ComplexMember> ShadowToPlainAsync()
@@ -274,9 +274,9 @@ namespace makereadonly
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.makereadonly.ComplexMember plain)
