@@ -48,7 +48,7 @@ END_CLASS
 
 ### ReadOnly attribute
 
-ReadOnly attribute render the member (variable) inaccessible for write operation from the IX application. It does not prevent the variable from writing in the PLC or by other means of connection.
+ReadOnly attribute render the member (variable) inaccessible for write operation from the AXSharp application. It does not prevent the variable from writing in the PLC or by other means of connection.
 
 
 ~~~iecst

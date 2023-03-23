@@ -20,8 +20,8 @@ This file describes the purpose, features and usage of the **RenderableContentCo
 
 ## What is RenderableContentControl?
 
-RenderableContentControl is a Blazor component, which is able to automatically generate UI from C# objects acquired within Ix Framework. 
-Ix compiler will create twin C# classes of PLC classes, which instances can be pass to RenderableContentControl to generate corresponding views. 
+RenderableContentControl is a Blazor component, which is able to automatically generate UI from C# objects acquired within AXSharp. 
+AXSharp compiler will create twin C# classes of PLC classes, which instances can be pass to RenderableContentControl to generate corresponding views. 
 It can render both complex objects (*ITwinObject* type) and primitive objects containing values (*ITwinPrimitive* type).
 In addition, resulting UI can be adjusted with attributes from PLC code.
 
@@ -58,11 +58,11 @@ We will get the following auto-generated UI:
 ## How automatic generation of UI works
 
 Ix.Presentation.Blazor framework contains two libraries: 
-- **Ix.Presentation.Blazor**
+- **AXSharp.Presentation.Blazor**
     - Base classes
     - Services 
     - Interfaces 
-- **Ix.Presentation.Controls.Blazor** 
+- **AXSharp.Presentation.Controls.Blazor** 
     - Styles
     - Layouts
     - UI templates of primitive types
@@ -88,7 +88,7 @@ The diagram below represent fundamental logic of UI generation:
 
 ### **Presentation types**
 
-**Presentation types** specify mode in which UI will be rendered. Within *Ix.Presentation.Blazor* framework following presentation types are supported.
+**Presentation types** specify mode in which UI will be rendered. Within *AXSharp.Presentation.Blazor* framework following presentation types are supported.
 - `Display`
 - `Control`
 - `ShadowDisplay`
@@ -228,7 +228,7 @@ Result:
 
 ### **Styling**
 
-Ix.Presentation.Blazor contains in-built styles. Styling is provided by [Bootstrap library](https://getbootstrap.com/). In-built styles can be customized with Sass technology, which will produce SCSS files. SCSS files can be compiled into one CSS file which can be used as application-wide style.
+AXSharp.Presentation.Blazor contains in-built styles. Styling is provided by [Bootstrap library](https://getbootstrap.com/). In-built styles can be customized with Sass technology, which will produce SCSS files. SCSS files can be compiled into one CSS file which can be used as application-wide style.
 
 Currently, the framework contains a default style that can be added as a reference in the Blazor application file *_Host.cshtml* in the following way:
 
@@ -242,7 +242,7 @@ It is possible to add built-in javascript libraries as well:
 ```
 ### **Custom components libraries**
 
-Ix.Presentation.Controls framework provides possibility to create a custom library of components with corresponding views. 
+AXSharp.Presentation.Controls framework provides possibility to create a custom library of components with corresponding views. 
 When library is referenced from your Blazor project, the framework will automatically load its views, which then can be auto-generated with the RenderableContentControl component.
 
 For more information about custom libraries and how to create them, look into **[LIBRARIES](LIBRARIES.md)** file.

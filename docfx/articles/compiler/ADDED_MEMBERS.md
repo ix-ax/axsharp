@@ -1,6 +1,6 @@
 # Added members
 
-The IX Compiler allows the declaration of additional members for any TwinObject. These members will be added to the TwinObject but not accessible from the PLC. Added members are useful when we want to provide additional usually static information about the object (description, humanized annotation, etc), but we do not want to put additional load on the communication between the application and the PLC.
+The AXSharp Compiler allows the declaration of additional members for any TwinObject. These members will be added to the TwinObject but not accessible from the PLC. Added members are useful when we want to provide additional usually static information about the object (description, humanized annotation, etc), but we do not want to put additional load on the communication between the application and the PLC.
 Added members are also a useful feature to provide additional context about the type or its particular instance.
 
 ## Added member declaration
@@ -116,7 +116,7 @@ _length : REAL;
 
 ## Primitive added members
 
-**The following members are present by default in any primitive type create by IX compiler.**
+**The following members are present by default in any primitive type create by AXSharp compiler.**
 
 
 ## AttributeUnits

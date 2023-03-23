@@ -641,7 +641,7 @@ body .toc{
   bottom: 10px;
   position: fixed;
 }
-.sideaffAXSharp.shiftup {
+.sideaffix.shiftup {
   bottom: 70px;
 }
 .affix {

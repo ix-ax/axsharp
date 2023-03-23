@@ -7,7 +7,7 @@ Ixr is command line tool which can generate resx files for AX projects. Resx fil
 ### 1. Install ixr tool
 
 ~~~
-dotnet tool install Ix.ixr --prerelease --local
+dotnet tool install AXSharp.ixr --prerelease --local
 ~~~
 
 ### 2. Run ixr compiler
