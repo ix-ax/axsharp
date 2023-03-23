@@ -45,9 +45,9 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.RealMonsterBase> OnlineToPlainAsync()
@@ -76,9 +76,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.RealMonsterBase plain)
@@ -95,9 +95,9 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.RealMonsterBase> ShadowToPlainAsync()
@@ -125,9 +125,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.RealMonsterBase plain)
@@ -241,9 +241,9 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public override T OnlineToPlain<T>()
+        public async override Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
@@ -262,9 +262,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public override void PlainToOnline<T>(T plain)
+        public async override Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.RealMonster plain)
@@ -274,9 +274,9 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
-        public override T ShadowToPlain<T>()
+        public async override Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
@@ -294,9 +294,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public override void PlainToShadow<T>(T plain)
+        public async override Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.RealMonster plain)
@@ -349,9 +349,9 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.DriveBaseNested> OnlineToPlainAsync()
@@ -376,9 +376,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.DriveBaseNested plain)
@@ -391,9 +391,9 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.DriveBaseNested> ShadowToPlainAsync()
@@ -417,9 +417,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.DriveBaseNested plain)
@@ -547,9 +547,9 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelOne> OnlineToPlainAsync()
@@ -574,9 +574,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.NestedLevelOne plain)
@@ -589,9 +589,9 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelOne> ShadowToPlainAsync()
@@ -615,9 +615,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelOne plain)
@@ -745,9 +745,9 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelTwo> OnlineToPlainAsync()
@@ -772,9 +772,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
@@ -787,9 +787,9 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelTwo> ShadowToPlainAsync()
@@ -813,9 +813,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
@@ -940,9 +940,9 @@ namespace RealMonsterData
             PostConstruct(parent, readableTail, symbolTail);
         }
 
-        public virtual T OnlineToPlain<T>()
+        public async virtual Task<T> OnlineToPlain<T>()
         {
-            return (dynamic)this.OnlineToPlainAsync().Result;
+            return await (dynamic)this.OnlineToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelThree> OnlineToPlainAsync()
@@ -965,9 +965,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToOnline<T>(T plain)
+        public async virtual Task PlainToOnline<T>(T plain)
         {
-            this.PlainToOnlineAsync((dynamic)plain).Wait();
+            await this.PlainToOnlineAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.NestedLevelThree plain)
@@ -979,9 +979,9 @@ namespace RealMonsterData
             return await this.WriteAsync();
         }
 
-        public virtual T ShadowToPlain<T>()
+        public async virtual Task<T> ShadowToPlain<T>()
         {
-            return (dynamic)this.ShadowToPlainAsync().Result;
+            return await (dynamic)this.ShadowToPlainAsync();
         }
 
         public async Task<Pocos.RealMonsterData.NestedLevelThree> ShadowToPlainAsync()
@@ -1003,9 +1003,9 @@ namespace RealMonsterData
             return plain;
         }
 
-        public virtual void PlainToShadow<T>(T plain)
+        public async virtual Task PlainToShadow<T>(T plain)
         {
-            this.PlainToShadowAsync((dynamic)plain).Wait();
+            await this.PlainToShadowAsync((dynamic)plain);
         }
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.RealMonsterData.NestedLevelThree plain)
