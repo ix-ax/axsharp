@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Ix.Localizations;
 using Ix.Localizations.Abstractions;
 
@@ -47,6 +48,26 @@ namespace Ix.Connector.Tests
         public Connector GetConnector()
         {
             return dummyConnector;
+        }
+
+        public Task<T> OnlineToPlain<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task PlainToOnline<T>(T plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> ShadowToPlain<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task PlainToShadow<T>(T plain)
+        {
+            throw new NotImplementedException();
         }
 
         public object OnlineToPlain()

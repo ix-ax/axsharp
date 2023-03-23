@@ -432,6 +432,26 @@ namespace Ix.Connector.Tests
                 throw new NotImplementedException();
             }
 
+            public Task<T> OnlineToPlain<T>()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task PlainToOnline<T>(T plain)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<T> ShadowToPlain<T>()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task PlainToShadow<T>(T plain)
+            {
+                throw new NotImplementedException();
+            }
+
             public MyTestPoco CreateEmptyPoco()
             {
                 return new MyTestPoco();
