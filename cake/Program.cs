@@ -343,11 +343,11 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
         {
             var packagesToUpdate = new List<string>()
             {
-                "Ix.Abstractions",
-                "Ix.Connector",
-                "Ix.Connector.S71500.WebAPI",
-                "Ix.Presentation.Blazor.Controls",
-                "Ix.Presentation.Blazor"
+                "AXSharp.Abstractions",
+                "AXSharp.Connector",
+                "AXSharp.Connector.S71500.WebAPI",
+                "AXSharp.Presentation.Blazor.Controls",
+                "AXSharp.Presentation.Blazor"
             };
 
             foreach (var packageId in packagesToUpdate)
@@ -358,7 +358,7 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
         var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories);
         foreach (var templateCsProjFile in templateToolDotnetTools)
         {
-            var packagesToUpdate = new List<string>() { "ix.ixc" };
+            var packagesToUpdate = new List<string>() { "AXSharp.ixc" };
             foreach (var packageId in packagesToUpdate)
             {
                 AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
@@ -383,7 +383,6 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
 
         context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.sln"), context.DotNetBuildSettings);
 
-       
     }
 }
 
