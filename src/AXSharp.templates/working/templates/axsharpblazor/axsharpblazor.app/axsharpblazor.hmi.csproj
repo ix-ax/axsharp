@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ixsharpblazor.twin\ixsharpblazor.csproj" />
+    <ProjectReference Include="..\axsharpblazor.twin\axsharpblazor.twin.csproj" />
   </ItemGroup>
 
 </Project>

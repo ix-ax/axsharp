@@ -5,13 +5,13 @@
 // https://github.com/ix-ax/ix/blob/master/LICENSE
 // Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
 
-using Ix.Connector;
+using AXSharp.Connector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ix.Connector.S71500.WebApi;
+using AXSharp.Connector.S71500.WebApi;
 
 namespace ixsharpblazor
 {
@@ -22,7 +22,7 @@ namespace ixsharpblazor
         private const string Pass = ""; // <- Pass in the password that you have set up for the user. NOT AS PLAIN TEXT! Use user secrets instead.
         private const bool IgnoreSslErrors = true; // <- When you have your certificates in order set this to false.
 
-        public static ixsharpblazorTwinController Plc { get; } 
+        public static axsharpblazorTwinController Plc { get; } 
             = new (ConnectorAdapterBuilder.Build()
                 .CreateWebApi(TargetIp, UserName, Pass, IgnoreSslErrors));
     }
