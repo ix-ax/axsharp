@@ -1,8 +1,0 @@
-{
-  "solution": {
-    "path": "AXSharp.sln",
-    "projects": [  
-      "AXSharp.templates\\working\\AXSharp.templates.csproj"
-    ]
-  }
-}

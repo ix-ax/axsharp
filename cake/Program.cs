@@ -336,11 +336,40 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
             return;
         }
 
+        var templatesDirectory = Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates");
+        var templateCsProjFiles = Directory.EnumerateFiles(templatesDirectory, "*.csproj", SearchOption.AllDirectories);
+
+        foreach (var templateCsProjFile in templateCsProjFiles)
+        {
+            var packagesToUpdate = new List<string>()
+            {
+                "Ix.Abstractions",
+                "Ix.Connector",
+                "Ix.Connector.S71500.WebAPI",
+                "Ix.Presentation.Blazor.Controls",
+                "Ix.Presentation.Blazor"
+            };
+
+            foreach (var packageId in packagesToUpdate)
+            {
+                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
+            }
+        }
+        var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories);
+        foreach (var templateCsProjFile in templateToolDotnetTools)
+        {
+            var packagesToUpdate = new List<string>() { "ix.ixc" };
+            foreach (var packageId in packagesToUpdate)
+            {
+                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
+            }
+        }
+
         var axprojects = new List<string>()
         {
             
             Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\ax\\"),
-            Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\ixconsole\\ax\\")
+            // Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\ixconsole\\ax\\")
         };
 
 
@@ -352,12 +381,10 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
                 Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
         }
 
-        context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp-app-templates.sln"), context.DotNetBuildSettings);
+        context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.sln"), context.DotNetBuildSettings);
 
        
     }
-
-    
 }
 
 [TaskName("Templates pack")]
@@ -372,37 +399,7 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
             return;
         }
 
-        // Update template package references
-        var templatesDirectory = Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates");
-        var templateCsProjFiles = Directory.EnumerateFiles(templatesDirectory, "*.csproj", SearchOption.AllDirectories);
-
-        foreach (var templateCsProjFile in templateCsProjFiles)
-        {
-            var packagesToUpdate = new List<string>()
-            {
-                "AXSharp.Abstractions",
-                "AXSharp.Connector",
-                "AXSharp.Connector.S71500.WebAPI",
-                "AXSharp.Presentation.Blazor.Controls",
-                "AXSharp.Presentation.Blazor"
-            };
-
-            foreach (var packageId in packagesToUpdate)
-            {
-                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
-            }
-        }
-        var templateToolDotnetTools = Directory.EnumerateFiles(templatesDirectory, "dotnet-tools.json", SearchOption.AllDirectories);
-        foreach (var templateCsProjFile in templateToolDotnetTools)
-        {
-            var packagesToUpdate = new List<string>() { "AXSharp.ixc" };
-            foreach (var packageId in packagesToUpdate)
-            {
-                AXSharp.nuget.update.Program.Update(new Options() { NewVersion = GitVersionInformation.SemVer, PackageId = packageId, FileToUpdate = templateCsProjFile });
-            }
-        }
-
-        PackTemplatePackages(context, Path.Combine(context.ScrDir, "AXSharp-packable-templates.slnf"));
+        PackTemplatePackages(context, Path.Combine(context.ScrDir, "AXSharp.templates\\working\\AXSharp.templates.sln"));
         context.PushNugetPackages("templates");
     }
 

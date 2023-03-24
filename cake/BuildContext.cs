@@ -86,9 +86,6 @@ public class BuildContext : FrostingContext
 
         this.Log.Information($"Installing dependencies for ax project '{workingDirectory}' at {targetIp}");
 
-
-
-
         this.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
         {
             Arguments = " install -L",
@@ -100,8 +97,6 @@ public class BuildContext : FrostingContext
 
 
         this.Log.Information($"Building ax project '{workingDirectory}' at {targetIp}");
-
-
 
 
         this.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
