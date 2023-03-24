@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.CsTests
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Diagnostics;
 using System.Reflection;
@@ -261,7 +261,7 @@ public abstract class CsSourceBuilderTests
     private void CompareOutputs(string memberName)
     {
         var sourceFile = Path.Combine(testFolder, $@"samples\units\src\{memberName}.st");
-        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\"),
+        var project = new AXSharpProject(new AxProject(Path.Combine(testFolder, @"samples\units\"),
                 new[] { sourceFile }),
             builders, typeof(CsProject));
 
@@ -297,7 +297,6 @@ public abstract class CsSourceBuilderTests
     {
         var frame = new StackFrame(1);
         var method = frame.GetMethod();
-        var type = method.DeclaringType;
         var name = method.Name;
         return name;
     }

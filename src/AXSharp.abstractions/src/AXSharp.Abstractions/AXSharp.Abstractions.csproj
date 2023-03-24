@@ -8,11 +8,11 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	  
 		<!--NuGet Specific part-->
-	    <Description>Contains abstractions for IX</Description>
+	    <Description>Contains abstractions for AX#</Description>
 
 	    <!-- NuGet Common part-->
 	    <PackageProjectUrl>https://github.com/ix-ax/</PackageProjectUrl>
-	    <RepositoryUrl>https://github.com/ix-ax/ix</RepositoryUrl>
+	    <RepositoryUrl>https://github.com/ix-ax/axsharp</RepositoryUrl>
 	    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	    <Authors>ix-ax</Authors>
 		<Copyright>(c) Peter Kurhajec and Contributors</Copyright>
@@ -26,7 +26,7 @@
 	    <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	    <PackageReleaseNotes>
 		    Release notes are published here:
-			https://github.com/ix-ax/ix/releases
+			https://github.com/ix-ax/axsharp/releases
 	    </PackageReleaseNotes>
 	    <PackageReadmeFile>NUGET-README.md</PackageReadmeFile>
 	</PropertyGroup>
@@ -47,10 +47,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-	  <PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-	  </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +55,22 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">    
     <DebugType>Full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
 </Project>

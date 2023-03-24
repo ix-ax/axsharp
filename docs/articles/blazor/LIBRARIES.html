@@ -36,7 +36,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <p class="text-logo">IX</p>
+                <p class="text-logo">AX#</p>
               </a>            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
@@ -87,7 +87,7 @@
 <p>Create Razor class library in your solution.</p>
 <h3 id="2-add-references">2. Add references</h3>
 <ul>
-<li><p>Install <code>Ix.Presentation.Blazor.Controls</code> nuget package or if you are using raw projects, add reference to <code>Ix.Presentation.Blazor.Controls</code> project.</p>
+<li><p>Install <code>AXSharp.Presentation.Blazor.Controls</code> nuget package or if you are using raw projects, add reference to <code>AXSharp.Presentation.Blazor.Controls</code> project.</p>
 </li>
 <li><p>Add reference from Razor Class library to PLC project.</p>
 </li>
@@ -98,7 +98,7 @@
 <p><img src="../../images/blazor/dependency-graph.png" alt="alt text" title="Dependency graph"></p>
 <h3 id="3-add-namespace">3. Add namespace</h3>
 <p>Add namespace of renderer to <code>_Imports.razor</code> in razor class library.</p>
-<pre><code>@using Ix.Presentation.Blazor.Controls.RenderableContent
+<pre><code>@using AXSharp.Presentation.Blazor.Controls.RenderableContent
 </code></pre>
 <h3 id="4-add-renderable-attribute">4. Add renderable attribute</h3>
 <p>Add <code>RenderableBlazorAssemblyAttribute</code> to Razor class library.</p>
@@ -108,7 +108,7 @@
 <li>Copy following code into <code>AssemblyInfo.cs</code> class:</li>
 </ol>
 <pre><code>using System.Reflection;
-using Ix.Presentation.Blazor.Attributes;
+using AXSharp.Presentation.Blazor.Attributes;
 
 [assembly: RenderableBlazorAssemblyAttribute()]
 
@@ -137,7 +137,7 @@ END_CLASS
 <li>Create <code>IxComponentView.razor</code> class inside folder.</li>
 <li>Define your view.</li>
 </ul>
-<pre><code class="lang-C#">@namespace Ix.Presentation.Blazor.Controls.Templates
+<pre><code class="lang-C#">@namespace AXSharp.Presentation.Blazor.Controls.Templates
 @inherits RenderableComplexComponentBase&lt;ixcomponent&gt;
 
 &lt;h1&gt;IxComponentView&lt;/h1&gt;
@@ -157,7 +157,7 @@ END_CLASS
 }
 
 </code></pre>
-<p>Note: If your plc variable is declared in global namespace, <code>Ix.Presentation.Blazor.Controls.Templates</code> namespace must be used to correctly locate view.</p>
+<p>Note: If your plc variable is declared in global namespace, <code>AXSharp.Presentation.Blazor.Controls.Templates</code> namespace must be used to correctly locate view.</p>
 <p>If you plc variable is declared in your own namespace, make sure <strong>namespace of custom view is the same as the namespace in plc file</strong>.</p>
 <p>At the end, structure of external library should look like this:</p>
 <p><img src="../../images/blazor/project-structure.png" alt="alt text" title="Structure"></p>
@@ -174,7 +174,7 @@ END_CLASS
 <h3 id="2-define-your-viewmodel">2. Define your viewmodel</h3>
 <p>Make sure, that viewmodel inherits from <code>RenderableViewModelBase</code>.
 Copy following code into <code>IxComponentViewModel.cs</code> viewmodel class.</p>
-<pre><code class="lang-C#">using Ix.Presentation;
+<pre><code class="lang-C#">using AXSharp.Presentation;
 
 namespace ix_integration_library.IxComponentServiceViewModel
 {
@@ -225,7 +225,7 @@ namespace ix_integration_library.IxComponentServiceViewModel
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/changing-project-name/docfx/articles/blazor/LIBRARIES.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/blob/alfa/from_ix_to_axsharp/docfx/articles/blazor/LIBRARIES.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Text;
 using AX.ST.Semantic;
@@ -12,7 +12,6 @@ using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Syntax.Parser;
 using AX.ST.Syntax.Tree;
 using AX.Text;
-using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Exceptions;
 using Newtonsoft.Json;
@@ -23,10 +22,10 @@ namespace AXSharp.Compiler;
 /// <summary>
 ///     Provides entry point for compilation of AX project sources.
 /// </summary>
-public class IxProject : IIxProject
+public class AXSharpProject : IAXSharpProject
 {
     /// <summary>
-    ///     Creates new instance of the <see cref="IxProject" />
+    ///     Creates new instance of the <see cref="AXSharpProject" />
     /// </summary>
     /// <param name="axProject">Instance of source AX project.</param>
     /// <param name="builderTypes">
@@ -40,10 +39,10 @@ public class IxProject : IIxProject
     /// <param name="cliCompilerOptions">
     ///     Compiler options from CLI.
     /// </param>
-    public IxProject(AxProject axProject, IEnumerable<Type> builderTypes, Type targetProjectType, ICompilerOptions? cliCompilerOptions = null)
+    public AXSharpProject(AxProject axProject, IEnumerable<Type> builderTypes, Type targetProjectType, ICompilerOptions? cliCompilerOptions = null)
     {
         AxProject = axProject;
-        CompilerOptions = IxConfig.UpdateAndGetIxConfig(axProject.ProjectFolder, cliCompilerOptions);
+        CompilerOptions = AXSharpConfig.UpdateAndGetIxConfig(axProject.ProjectFolder, cliCompilerOptions);
         OutputFolder = Path.GetFullPath(Path.Combine(AxProject.ProjectFolder, CompilerOptions.OutputProjectFolder));
         BuilderTypes = builderTypes;
         TargetProject = Activator.CreateInstance(targetProjectType, this) as ITargetProject ?? throw new
@@ -60,7 +59,7 @@ public class IxProject : IIxProject
     private IEnumerable<Type> BuilderTypes { get; }
 
     /// <summary>
-    /// Gets compiler option for this <see cref="IxProject"/>
+    /// Gets compiler option for this <see cref="AXSharpProject"/>
     /// </summary>
     public ICompilerOptions? CompilerOptions { get; }
 
@@ -223,7 +222,7 @@ public class IxProject : IIxProject
                     throw new FailedToCreateTargetProjectException(
                         "Target project is not a valid ITargetProject");
 
-                var project = new IxProject(ax, BuilderTypes, targetProject.GetType());
+                var project = new AXSharpProject(ax, BuilderTypes, targetProject.GetType());
 
                 project.Generate();
         }

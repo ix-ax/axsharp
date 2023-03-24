@@ -26,7 +26,7 @@ namespace AXSharp.ixc_doc.Visitors
         public YamlSerializerHelper YamlHelper { get; set; }
         public Compiler.AxProject axProject { get; set; }
 
-        public MyNodeVisitor(Compiler.AxProject axProject = null)
+        public MyNodeVisitor(Compiler.AxProject? axProject = null)
         {
             this.axProject = axProject;
             YamlHelper = new YamlSerializerHelper();

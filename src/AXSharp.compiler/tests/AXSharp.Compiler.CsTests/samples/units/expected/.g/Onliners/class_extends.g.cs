@@ -19,7 +19,7 @@ public partial class Extended : Extendee
         return await (dynamic)this.OnlineToPlainAsync();
     }
 
-    public async Task<Pocos.Extended> OnlineToPlainAsync()
+    public new async Task<Pocos.Extended> OnlineToPlainAsync()
     {
         Pocos.Extended plain = new Pocos.Extended();
         await this.ReadAsync();
@@ -49,7 +49,7 @@ public partial class Extended : Extendee
         return await (dynamic)this.ShadowToPlainAsync();
     }
 
-    public async Task<Pocos.Extended> ShadowToPlainAsync()
+    public new async Task<Pocos.Extended> ShadowToPlainAsync()
     {
         Pocos.Extended plain = new Pocos.Extended();
         await base.ShadowToPlainAsync(plain);
@@ -73,12 +73,12 @@ public partial class Extended : Extendee
         return this.RetrievePrimitives();
     }
 
-    public void Poll()
+    public new void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
-    public Pocos.Extended CreateEmptyPoco()
+    public new Pocos.Extended CreateEmptyPoco()
     {
         return new Pocos.Extended();
     }

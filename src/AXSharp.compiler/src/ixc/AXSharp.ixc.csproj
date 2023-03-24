@@ -9,19 +9,19 @@
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
 	<!--NuGet Specific part-->
-	<Description>CLI implementation of IX compiler</Description>
+	<Description>CLI implementation of AX# compiler</Description>
 	<PackAsTool>True</PackAsTool>
 	<ToolCommandName>ixc</ToolCommandName>
 
 	<!-- NuGet Common part-->
 	<PackageProjectUrl>https://github.com/ix-ax/</PackageProjectUrl>
-	<RepositoryUrl>https://github.com/ix-ax/ix</RepositoryUrl>
+	<RepositoryUrl>https://github.com/ix-ax/axsharp</RepositoryUrl>
 	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	<Authors>ix-ax</Authors>
 	<Copyright>(c) Peter Kurhajec and Contributors</Copyright>
 	<PackageTags>simatix-ax, PLC, industrial automation, SCADA, HMI</PackageTags>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	<Title>IX compiler CLI</Title>
+	<Title>AX# compiler CLI</Title>
 	<PackageIcon>icon_128_128.png</PackageIcon>
 	<RepositoryType>git</RepositoryType>
 	<IncludeSymbols>True</IncludeSymbols>
@@ -29,11 +29,27 @@
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageReleaseNotes>
 	  Release notes are published here:
-	  https://github.com/ix-ax/ix/releases
+	  https://github.com/ix-ax/axsharp/releases
 	</PackageReleaseNotes>
 	<PackageReadmeFile>NUGET-README.md</PackageReadmeFile>
 	
 	
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -64,10 +80,6 @@
 		<PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
 

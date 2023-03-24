@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.Cs
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations.Types;
@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Core;
 
 namespace AXSharp.Compiler.Cs.Onliner
@@ -43,7 +42,11 @@ namespace AXSharp.Compiler.Cs.Onliner
             ISourceBuilder sourceBuilder, bool isExtended)
         {
             var builder = new CsOnlinerPlainerShadowToPlainProtectedBuilder(sourceBuilder);
-            builder.AddToSource($"protected async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+
+            //var qualifier = isExtended ? "new" : string.Empty;
+            var qualifier = string.Empty;
+            
+            builder.AddToSource($"protected {qualifier} async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
 
             if (isExtended)

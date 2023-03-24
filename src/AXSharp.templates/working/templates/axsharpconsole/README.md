@@ -1,4 +1,4 @@
-﻿# IX Console template 
+﻿# AXsharp Console template 
 
 **IMPORTANT!!! When you create the project from Visual Studio, you will need to run `install.ps1` manually to finish the creation of the project.**
 
@@ -46,4 +46,4 @@ scripts:
 
 ## Resources
 
-Documentation sources: https://github.com/ix-ax/ix/tree/dev/docs
+Documentation sources: https://github.com/ix-ax/axsharp/tree/dev/docs

@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations;
@@ -70,8 +70,6 @@ public static class SemanticsHelpers
         {
             throw new FailedToParseCompilerOmittsPragma($"Failed to parse compiler omits pragma at: {compilerOmitsAttribute.Location.GetLineSpan()}", e);
         }
-
-        return true;
     }
 
     /// <summary>
@@ -96,7 +94,8 @@ public static class SemanticsHelpers
     ///     Determines whether the member is eligible for generation.
     /// </summary>
     /// <param name="variable">Variable declaration</param>
-    /// <param name="compilation">Compilation unit</param>
+    /// <param name="sourceBuilder">Source builder</param>
+    /// <param name="coBuilder">Co-builder signature (e.g. POCO, Onliner, etc.)</param>
     /// <returns>True when the member is eligible for generation.</returns>
     public static bool IsMemberEligibleForTranspile(this IVariableDeclaration variable, ISourceBuilder sourceBuilder, string coBuilder = "")
     {

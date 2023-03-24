@@ -1,4 +1,4 @@
-// https://github.com/ix-ax/ix/issues/56
+// https://github.com/ix-ax/axsharp/issues/56
 NAMESPACE GH.PKTu.ix_56
 
     CLASS ComplexMember

@@ -46,4 +46,4 @@ scripts:
 
 ## Resources
 
-Documentation sources: https://github.com/ix-ax/ix/tree/dev/docs
+Documentation sources: https://github.com/ix-ax/axsharp/tree/dev/docs

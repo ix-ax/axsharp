@@ -1,9 +1,9 @@
 ﻿// AXSharp.ixc
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -24,7 +24,7 @@ public static class Program
 | / \
 ";
 
-    private static IxProject? Project;
+    private static AXSharpProject? Project;
 
     public static void Main(string[] args)
     {
@@ -67,7 +67,7 @@ public static class Program
         }
     }
 
-    private static IxProject GenerateIxProject(Options o)
+    private static AXSharpProject GenerateIxProject(Options o)
     {
         var axProjectFolder = string.IsNullOrEmpty(o.AxSourceProjectFolder)
             ? Environment.CurrentDirectory
@@ -76,7 +76,7 @@ public static class Program
         Environment.CurrentDirectory = GetFullPath(axProjectFolder);
 
         var ax = new AxProject(Environment.CurrentDirectory);
-        var project = new IxProject(ax, new[] { typeof(CsOnlinerSourceBuilder), typeof(CsPlainSourceBuilder) },
+        var project = new AXSharpProject(ax, new[] { typeof(CsOnlinerSourceBuilder), typeof(CsPlainSourceBuilder) },
             typeof(CsProject), o);
 
         project.Generate();
@@ -90,12 +90,12 @@ public static class Program
         Console.WriteLine(Logo);
         Console.ForegroundColor = originalColor;
 
-        Console.WriteLine($"IX compiler CLI. Version: '{GitVersionInformation.SemVer}'");
+        Console.WriteLine($"AX# compiler CLI. Version: '{GitVersionInformation.SemVer}'");
         originalColor = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("THIS PROJECT IS POSSIBLE BECAUSE OF SOME AWESOME OPEN SOURCE PROJECTS\n" +
                           "THIRD PARTY LICENSES CAN BE FOUND AT \n" +
-                          "https://github.com/ix-ax/ix/blob/master/notices.md");
+                          "https://github.com/ix-ax/axsharp/blob/master/notices.md");
         Console.ForegroundColor = originalColor;
 
         if (int.Parse(GitVersionInformation.Major) < 1 || string.IsNullOrEmpty(GitVersionInformation.PreReleaseLabel))

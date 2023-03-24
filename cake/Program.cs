@@ -1,10 +1,10 @@
 
 // Build
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System;
 using System.Collections.Generic;
@@ -304,12 +304,12 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
         if (Helpers.CanReleaseInternal())
         {
             var githubToken = context.Environment.GetEnvironmentVariable("GH_TOKEN");
-            var githubClient = new GitHubClient(new ProductHeaderValue("IX"));
+            var githubClient = new GitHubClient(new ProductHeaderValue("AXSHARP"));
             githubClient.Credentials = new Credentials(githubToken);
 
             var release = githubClient.Repository.Release.Create(
                 "ix-ax",
-                "ix",
+                "axsharp",
                 new NewRelease($"{GitVersionInformation.SemVer}")
                 {
                     Name = $"{GitVersionInformation.SemVer}",
@@ -326,7 +326,7 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 
 [TaskName("Templates build")]
 [IsDependentOn(typeof(PublishReleaseTask))]
-public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
+public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
@@ -365,36 +365,51 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
             }
         }
 
-        var axprojects = new List<string>()
-        {
-            
-            Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\ax\\"),
-            // Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\ixconsole\\ax\\")
-        };
-
-
-        foreach (var axproject in axprojects)
+        foreach (var template in context.GetTemplateProjects())
         {
             context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
             {
                 Arguments = $" tool restore --no-cache --ignore-failed-sources ",
-                WorkingDirectory = axproject
+                WorkingDirectory = template.ax
 
             });
-
-            context.UploadTestPlc(
-                Path.GetFullPath(Path.Combine(axproject)),
-                Environment.GetEnvironmentVariable("AXTARGET"),
-                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
         }
 
-        context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.sln"), context.DotNetBuildSettings);
+        foreach (var template in context.GetTemplateProjects())
+        {
+            context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
+        }
 
+        
+    }
+}
+
+[TaskName("Template tests")]
+[IsDependentOn(typeof(TemplatesUpdateAndBuildTask))]
+public class TemplateTests : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
+    {
+        if (!context.BuildParameters.DoPublish || !context.BuildParameters.DoTest)
+        {
+            context.Log.Warning($"Skipping template package push.");
+            return;
+        }
+
+        foreach (var template in context.GetTemplateProjects())
+        {
+            context.UploadTestPlc(
+                Path.GetFullPath(Path.Combine(template.ax)),
+                Environment.GetEnvironmentVariable("AXTARGET"),
+                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+
+            // context.DotNetRun(template.approject, context.DotNetRunSettings);
+        }
     }
 }
 
 [TaskName("Templates pack")]
-[IsDependentOn(typeof(TemplatesBuildTask))]
+[IsDependentOn(typeof(TemplateTests))]
 public class TemplatesPackTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
@@ -405,39 +420,40 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
             return;
         }
 
-        PackTemplatePackages(context, Path.Combine(context.ScrDir, "AXSharp.templates\\working\\AXSharp.templates.sln"));
+        PackTemplatePackages(context,
+            Path.Combine(context.ScrDir, "AXSharp.templates\\working\\AXSharp.templates.sln"));
         context.PushNugetPackages("templates");
     }
 
     private static void PackTemplatePackages(BuildContext context, string solutionToPack)
-    {
-        context.DotNetPack(solutionToPack,
-            new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
-            {
-                OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
-                Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
-                NoRestore = false,
-                NoBuild = false,
-            });
-    }
+        {
+            context.DotNetPack(solutionToPack,
+                new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
+                {
+                    OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
+                    Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
+                    NoRestore = false,
+                    NoBuild = false,
+                });
+        }
 
 }
 
 [TaskName("Templates push")]
 [IsDependentOn(typeof(TemplatesPackTask))]
 public class TemplatesPush : FrostingTask<BuildContext>
-{
-    public override void Run(BuildContext context)
     {
-        if (!context.BuildParameters.DoPublish)
+        public override void Run(BuildContext context)
         {
-            context.Log.Warning($"Skipping template build.");
-            return;
-        }
+            if (!context.BuildParameters.DoPublish)
+            {
+                context.Log.Warning($"Skipping template build.");
+                return;
+            }
 
-        context.PushNugetPackages("templates");
+            context.PushNugetPackages("templates");
+        }
     }
-}
 
 [TaskName("Default")]
 [IsDependentOn(typeof(TemplatesPush))]

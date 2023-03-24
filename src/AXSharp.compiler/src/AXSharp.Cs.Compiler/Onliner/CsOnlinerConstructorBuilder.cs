@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.Cs
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Globalization;
 using System.Text;
@@ -11,7 +11,6 @@ using AX.ST.Semantic;
 using AX.ST.Semantic.Model;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
-using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Cs.Helpers;
 using AXSharp.Compiler.Cs.Helpers.Onliners;
@@ -200,7 +199,7 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
     }
 
     public static CsOnlinerConstructorBuilder Create(IxNodeVisitor visitor, IConfigurationDeclaration semantics,
-        IxProject project, ISourceBuilder sourceBuilder)
+        AXSharpProject project, ISourceBuilder sourceBuilder)
     {
         var builder = new CsOnlinerConstructorBuilder(sourceBuilder);
         builder.AddToSource(

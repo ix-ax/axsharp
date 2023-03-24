@@ -103,7 +103,7 @@ END_CLASS
 
 ## Common added members
 
-**The following members are present by default in any type created by IX compiler.**
+**The following members are present by default in any type created by AX# compiler.**
 
 ## AttributeName
 

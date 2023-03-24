@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.Cs
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Semantic.Model.Declarations;
@@ -14,7 +14,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AX.ST.Semantic;
-using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Core;
 using AXSharp.Connector;
 
@@ -139,7 +138,9 @@ namespace AXSharp.Compiler.Cs.Onliner
 
             builder.AddToSource(CsHelpers.CreateGenericSwapperMethodFromPlainer(MethodName, $"Pocos.{semantics.FullyQualifiedName}", isExtended));
 
-            builder.AddToSource($"public async Task<IEnumerable<ITwinPrimitive>> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+            //var qualifier = isExtended ? "new" : string.Empty;
+            var qualifier = string.Empty;
+            builder.AddToSource($"public {qualifier} async Task<IEnumerable<ITwinPrimitive>> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
 
 
             if (isExtended)

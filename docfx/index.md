@@ -1,9 +1,9 @@
 
 ![](~/images/banner.png)
 
-**IX is an open-source project developed by a group of automation engineers. It provides easy access from .NET-based applications to SIMATIC-AX based PLC programs.**
+**AX# is an open-source project developed by a group of automation engineers. It provides easy access from .NET-based applications to SIMATIC-AX based PLC programs.**
 
-Open source repository is [here](https://github.com/ix-ax/ix).
+Open source repository is [here](https://github.com/ix-ax/axsharp).
 
 >[!NOTE]
 >This project is under development. We periodically release versions that can be used for testing and in non-production environments.
@@ -14,7 +14,7 @@ Open source repository is [here](https://github.com/ix-ax/ix).
 ## Disclaimer
 
 >[!IMPORTANT]
-> **It is necessary to have a valid license for SIMATIC AX in order to use IX!**  
+> **It is necessary to have a valid license for SIMATIC AX in order to use AX#!**  
 SIMATIC AX is currently in a limited sales release in selected European countries only. You will need to request access from the AX team which will check if your use case is suitable for the current state of the product. The first step to getting the approval is contacting your local SIEMENS sales representative or writing an email to [simatic-ax@siemens.com](mailto:simatic-ax@siemens.com?subject=Request%20for%20access%20|%20SIMATIC%20AX%20for%20IX).
 
 ## What's in
@@ -48,7 +48,7 @@ Make sure you meet all [prerequisites](#prerequisites).
 
 ### Add package source
 
-To get early access to the packages from `IX` you will need to get access to a dedicated package feed hosted on GitHub. If you do not have a GitHub account please consider creating one by signing up at https://github.com.
+To get early access to the packages from `AX#` you will need to get access to a dedicated package feed hosted on GitHub. If you do not have a GitHub account please consider creating one by signing up at https://github.com.
 
 ~~~
 dotnet nuget add source --username GITHUBUSERNAME --password PAT  --store-password-in-clear-text --name gh-packages-ix-ax "https://nuget.pkg.github.com/ix-ax/index.json"
@@ -62,7 +62,7 @@ Replace PAT with your Personal Access Token ([how to create your PAT](https://do
 
 ### Using templates
 
-Install IX template package
+Install AX# template package
 
 When using .NET7
 ~~~
@@ -108,9 +108,9 @@ Consult README.md file located in your new project for additionatl information.
 
 ### From scratch
 
-#### Install `ixc` IX compiler CLI
+#### Install `ixc` AX# compiler CLI
 
-`ixc` is CLI implementation of IX Compiler.
+`ixc` is CLI implementation of AX# Compiler.
 
 Open the terminal in the directory of your AX project (the one where the apax.yml file lives), and run the following commands:
 

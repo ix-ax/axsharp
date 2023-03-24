@@ -1,9 +1,9 @@
 ﻿// AXSharp.CompilerTests
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using Xunit;
 using AXSharp.Compiler;
@@ -16,7 +16,6 @@ using System.Reflection;
 using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
-using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Core;
 using Moq;
 using AX.ST.Semantic.Model;
@@ -48,7 +47,7 @@ namespace AXSharp.Compiler.Tests
             
             var axproject = new AxProject(Path.Combine(testFolder, "samples", "plt", "app"));
 
-            var actual = new IxProject(axproject, 
+            var actual = new AXSharpProject(axproject, 
                 new[] { builder }, 
                 target);
 
@@ -64,7 +63,7 @@ namespace AXSharp.Compiler.Tests
 
             var axproject = new AxProject(Path.Combine(testFolder, "samples", "plt","app"));
 
-            var actual = new IxProject(axproject,
+            var actual = new AXSharpProject(axproject,
                 new[] { builder },
                 target);
 
@@ -80,7 +79,7 @@ namespace AXSharp.Compiler.Tests
 
         public class MockBuilder : ISourceBuilder, ICombinedThreeVisitor
         {
-            public MockBuilder(IxProject project, Compilation compilation)
+            public MockBuilder(AXSharpProject project, Compilation compilation)
             {
                 Compilation = compilation;
             }
@@ -361,12 +360,12 @@ namespace AXSharp.Compiler.Tests
 
         public class MockTargetProject : ITargetProject
         {
-            public MockTargetProject(IxProject ixProject)
+            public MockTargetProject(AXSharpProject ixProject)
             {
                 IxProject = ixProject;
             }
 
-            private readonly IxProject IxProject;
+            private readonly AXSharpProject IxProject;
 
             public string GetMetaDataFolder => Path.Combine(IxProject.OutputFolder, ".meta");
             public string ProjectRootNamespace { get; }

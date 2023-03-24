@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.CsTests
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Collections.ObjectModel;
 using AX.ST.Semantic;
@@ -17,16 +17,6 @@ using AX.ST.Semantic.Tree;
 using AX.Text;
 using AXSharp.Compiler.Cs;
 using Xunit.Abstractions;
-
-/* Unmerged change from project 'AXSharp.CompilerTests (net6.0)'
-Before:
-using System.Collections.ObjectModel;
-After:
-using System.Collections.ObjectModel;
-using IX;
-using AXSharp.CompilerTests;
-using AXSharp.CompilerTests.Cs;
-*/
 
 namespace AXSharp.Compiler.CsTests;
 

@@ -1,9 +1,9 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "ix-ax",
-  "classifications": [ "IX", "Console-Simple" ],
+  "author": "PTKu",
+  "classifications": [ "AX#", "Console-Simple" ],
   "identity": "axsharpconsole",
-  "name": "IX Simmple console application",
+  "name": "AXsharp Simmple console application",
   "shortName": "axeconsole",
   "tags": {
     "language": "C#",

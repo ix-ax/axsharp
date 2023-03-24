@@ -36,7 +36,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <p class="text-logo">IX</p>
+                <p class="text-logo">AX#</p>
               </a>            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
@@ -79,7 +79,7 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="added-members">Added members</h1>
 
-<p>The IX Compiler allows the declaration of additional members for any TwinObject. These members will be added to the TwinObject but not accessible from the PLC. Added members are useful when we want to provide additional usually static information about the object (description, humanized annotation, etc), but we do not want to put additional load on the communication between the application and the PLC.
+<p>The AXSharp Compiler allows the declaration of additional members for any TwinObject. These members will be added to the TwinObject but not accessible from the PLC. Added members are useful when we want to provide additional usually static information about the object (description, humanized annotation, etc), but we do not want to put additional load on the communication between the application and the PLC.
 Added members are also a useful feature to provide additional context about the type or its particular instance.</p>
 <h2 id="added-member-declaration">Added member declaration</h2>
 <p>Syntax</p>
@@ -149,14 +149,14 @@ END_CLASS
 </blockquote>
 <h2 id="default-properties-of-twins">Default properties of Twins</h2>
 <h2 id="common-added-members">Common added members</h2>
-<p><strong>The following members are present by default in any type created by IX compiler.</strong></p>
+<p><strong>The following members are present by default in any type created by AX# compiler.</strong></p>
 <h2 id="attributename">AttributeName</h2>
 <p>AttributeName is the default added member of all types within AXSharp. They are used to represent the name of the variable or object in a humanized way. These attributes can be later used to label the variables consistently in the UI.</p>
 <pre><code>{#ix-set: AttributeName = &quot;Length&quot;}
 _length : REAL;
 </code></pre>
 <h2 id="primitive-added-members">Primitive added members</h2>
-<p><strong>The following members are present by default in any primitive type create by IX compiler.</strong></p>
+<p><strong>The following members are present by default in any primitive type create by AXSharp compiler.</strong></p>
 <h2 id="attributeunits">AttributeUnits</h2>
 <p>AttributeUnit is the default added member of all PrimitiveTwins within AXSharp. They are used to represent the unit measure of a variable.</p>
 <pre><code>{#ix-set: AttributeUnits = &quot;mm&quot;}
@@ -194,7 +194,7 @@ System.Console.WriteLine(MainPlc.MAIN._length.AttributeMaximum);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/changing-project-name/docfx/articles/compiler/ADDED_MEMBERS.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/blob/alfa/from_ix_to_axsharp/docfx/articles/compiler/ADDED_MEMBERS.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

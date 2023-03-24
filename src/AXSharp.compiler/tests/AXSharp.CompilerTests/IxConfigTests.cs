@@ -1,9 +1,9 @@
 ﻿// AXSharp.CompilerTests
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using Xunit;
 using AXSharp.Compiler;
@@ -42,7 +42,7 @@ namespace AXSharp.CompilerTests
                File.Delete(ixConfigFile);
            }
 
-           var result = IxConfig.UpdateAndGetIxConfig(apaxFolder);
+           var result = AXSharpConfig.UpdateAndGetIxConfig(apaxFolder);
            
            Assert.True(File.Exists(ixConfigFile));
            
@@ -56,7 +56,7 @@ namespace AXSharp.CompilerTests
             var apaxFolder = Path.Combine(testFolder, "samples", "plt2","lib");
             var ixConfigFile = Path.Combine(apaxFolder, "AXSharp.config.json");
             Assert.True(File.Exists(ixConfigFile));
-            var result = IxConfig.UpdateAndGetIxConfig(apaxFolder);
+            var result = AXSharpConfig.UpdateAndGetIxConfig(apaxFolder);
             Assert.True(File.Exists(ixConfigFile));
             Assert.Equal($"..{Path.DirectorySeparatorChar}ix", result.OutputProjectFolder);
             Assert.Equal(apaxFolder, result.AxProjectFolder);
@@ -68,7 +68,9 @@ namespace AXSharp.CompilerTests
             var apaxFolder = Path.Combine(testFolder, "samples", "plt","lib");
             var ixConfigFile = Path.Combine(apaxFolder, "AXSharp.config.json");
             Assert.True(File.Exists(ixConfigFile));
-            var result = IxConfig.UpdateAndGetIxConfig(apaxFolder, new IxConfig() 
+#pragma warning disable CS0618
+            var result = AXSharpConfig.UpdateAndGetIxConfig(apaxFolder, new AXSharpConfig() 
+#pragma warning restore CS0618
                 { AxProjectFolder = "hoho", OutputProjectFolder = "hehe"});
             Assert.True(File.Exists(ixConfigFile));
             Assert.Equal("hehe", result.OutputProjectFolder);
@@ -81,7 +83,7 @@ namespace AXSharp.CompilerTests
             var apaxFolder = Path.Combine(testFolder, "samples", "plt","lib3");
             var ixConfigFile = Path.Combine(apaxFolder, "AXSharp.config.json");
             Assert.True(File.Exists(ixConfigFile));
-            var result = IxConfig.RetrieveIxConfig(ixConfigFile);
+            var result = AXSharpConfig.RetrieveIxConfig(ixConfigFile);
             Assert.True(File.Exists(ixConfigFile));
             Assert.Equal($"..{Path.DirectorySeparatorChar}ix", result.OutputProjectFolder);
             Assert.True(result.AxProjectFolder.EndsWith(Path.Combine("samples", "plt", "lib3")));
@@ -92,7 +94,7 @@ namespace AXSharp.CompilerTests
         {
             var apaxFolder = Path.Combine(testFolder, "samples", "plt","lib3");
             var ixConfigFile = Path.Combine(apaxFolder, "AXSharp.config.json1");
-            Assert.Throws<FailedToReadIxConfigurationFileException>(() =>IxConfig.RetrieveIxConfig(ixConfigFile));
+            Assert.Throws<FailedToReadIxConfigurationFileException>(() =>AXSharpConfig.RetrieveIxConfig(ixConfigFile));
         }
     }
 }

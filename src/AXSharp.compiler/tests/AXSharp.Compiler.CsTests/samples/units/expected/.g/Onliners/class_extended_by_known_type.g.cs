@@ -21,7 +21,7 @@ namespace Simatic.Ax.StateFramework
             return await (dynamic)this.OnlineToPlainAsync();
         }
 
-        public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
+        public new async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
             await this.ReadAsync();
@@ -51,7 +51,7 @@ namespace Simatic.Ax.StateFramework
             return await (dynamic)this.ShadowToPlainAsync();
         }
 
-        public async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> ShadowToPlainAsync()
+        public new async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> ShadowToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
             await base.ShadowToPlainAsync(plain);
@@ -75,12 +75,12 @@ namespace Simatic.Ax.StateFramework
             return this.RetrievePrimitives();
         }
 
-        public void Poll()
+        public new void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
-        public Pocos.Simatic.Ax.StateFramework.State1Transition CreateEmptyPoco()
+        public new Pocos.Simatic.Ax.StateFramework.State1Transition CreateEmptyPoco()
         {
             return new Pocos.Simatic.Ax.StateFramework.State1Transition();
         }

@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.Cs
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Text;
 using AX.ST.Semantic;
@@ -11,7 +11,6 @@ using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Semantic.Pragmas;
 using AX.ST.Syntax.Tree;
-using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Cs.Helpers;
 using AXSharp.Compiler.Cs.Helpers.Plain;
@@ -31,7 +30,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// </summary>
     /// <param name="project">Ix project name.</param>
     /// <param name="compilation">AX compilation</param>
-    public CsOnlinerSourceBuilder(IxProject project,
+    public CsOnlinerSourceBuilder(AXSharpProject project,
         Compilation compilation)
     {
         Project = project;
@@ -41,7 +40,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public Compilation Compilation { get; }
 
-    private IxProject Project { get; }
+    private AXSharpProject Project { get; }
 
     /// <inheritdoc />
     public void CreateFile(IFileSyntax fileSyntax, IxNodeVisitor visitor)
@@ -93,22 +92,24 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
 
-        AddPollingMethod();
-        AddCreatePocoMethod(classDeclaration);
+        AddPollingMethod(isExtended);
+        AddCreatePocoMethod(classDeclaration, isExtended);
 
         if (!isExtended) CreateITwinObjectImplementation();
 
         AddToSource("}");
     }
 
-    private void AddPollingMethod()
+    private void AddPollingMethod(bool isExtended)
     {
-        AddToSource(" public void Poll()\r\n    {\r\n        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());\r\n    }");
+        var qualifier = isExtended ? "new" : string.Empty;
+        AddToSource($" public {qualifier} void Poll()\r\n    {{\r\n        this.RetrievePrimitives().ToList().ForEach(x => x.Poll());\r\n    }}");
     }
 
-    private void AddCreatePocoMethod(ITypeDeclaration typeDeclaration)
+    private void AddCreatePocoMethod(ITypeDeclaration typeDeclaration, bool isExtended)
     {
-        AddToSource($"public Pocos.{typeDeclaration.FullyQualifiedName} CreateEmptyPoco(){{ return new Pocos.{typeDeclaration.FullyQualifiedName}();}}");
+        var qualifier = isExtended ? "new" : string.Empty;
+        AddToSource($"public {qualifier} Pocos.{typeDeclaration.FullyQualifiedName} CreateEmptyPoco(){{ return new Pocos.{typeDeclaration.FullyQualifiedName}();}}");
     }
 
     /// <inheritdoc />
@@ -232,9 +233,9 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
-        AddPollingMethod();
+        AddPollingMethod(false);
 
-        AddCreatePocoMethod(structuredTypeDeclaration);
+        AddCreatePocoMethod(structuredTypeDeclaration, false);
 
         CreateITwinObjectImplementation();
 

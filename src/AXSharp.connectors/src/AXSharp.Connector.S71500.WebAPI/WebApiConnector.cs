@@ -1,9 +1,9 @@
 ﻿// AXSharp.Connector.S71500.WebAPI
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Diagnostics;
 using System.Net.Http.Headers;
@@ -21,7 +21,7 @@ using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
 namespace AXSharp.Connector.S71500.WebApi;
 
 /// <summary>
-/// Provides connector to mediate connection with IX twins over WebAPI connection.
+/// Provides connector to mediate connection with AX# twins over WebAPI connection.
 /// </summary>
 public class WebApiConnector : Connector
 {

@@ -1,9 +1,9 @@
 // Build
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Collections.Generic;
 using System.IO;
@@ -73,7 +73,7 @@ public class BuildContext : FrostingContext
         DotNetRunSettings = new DotNetRunSettings()
         {
             Verbosity = buildParameters.Verbosity,
-            Framework = "net6.0",
+            Framework = "net7.0",
             Configuration = buildParameters.Configuration,
             NoBuild = true,
             NoRestore = true,
@@ -156,4 +156,21 @@ public class BuildContext : FrostingContext
     }
 
     public IEnumerable<string> TargetFrameworks { get; } = new List<string>() { "net6.0", "net7.0" };
+
+    public IEnumerable<(string ax, string approject, string solution)> GetTemplateProjects()
+    {
+        var templates = new List<(string ax, string approject, string solution)>()
+        {
+            (Path.Combine(this.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\ax\\"),
+                Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.app\\axsharpblazor.hmi.csproj"),
+                    Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.sln")),
+
+            (Path.Combine(this.ScrDir, "AXSharp.templates\\working\\templates\\axsharpconsole\\ax"),
+                Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpconsole\\axsharpconsole\\axsharpconsole.app.csproj"),
+                    Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpconsole\\axsharpconsole.sln"))
+           
+        };
+
+        return templates;
+    }
 }

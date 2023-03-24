@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixconsole.app", "ixconsole\ixconsole.app.csproj", "{71FD3A3C-9DA1-4353-9F90-BBBF131001F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "axsharpconsole.app", "axsharpconsole\axsharpconsole.app.csproj", "{71FD3A3C-9DA1-4353-9F90-BBBF131001F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ixconsole", "ixconsole.twin\ixconsole.csproj", "{55179ED3-0CD0-4268-B6BC-90FE03ECC7EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "axsharpconsole", "axsharpconsole.twin\axsharpconsole.csproj", "{55179ED3-0CD0-4268-B6BC-90FE03ECC7EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

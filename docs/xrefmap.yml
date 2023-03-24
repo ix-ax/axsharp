@@ -459,6 +459,217 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.AxProject.SrcFolder
   nameWithType: AxProject.SrcFolder
+- uid: AXSharp.Compiler.AXSharpConfig
+  name: AXSharpConfig
+  href: api/AXSharp.Compiler.AXSharpConfig.html
+  commentId: T:AXSharp.Compiler.AXSharpConfig
+  fullName: AXSharp.Compiler.AXSharpConfig
+  nameWithType: AXSharpConfig
+- uid: AXSharp.Compiler.AXSharpConfig.#ctor
+  name: AXSharpConfig()
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig__ctor
+  commentId: M:AXSharp.Compiler.AXSharpConfig.#ctor
+  name.vb: New()
+  fullName: AXSharp.Compiler.AXSharpConfig.AXSharpConfig()
+  fullName.vb: AXSharp.Compiler.AXSharpConfig.New()
+  nameWithType: AXSharpConfig.AXSharpConfig()
+  nameWithType.vb: AXSharpConfig.New()
+- uid: AXSharp.Compiler.AXSharpConfig.#ctor*
+  name: AXSharpConfig
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig__ctor_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AXSharp.Compiler.AXSharpConfig.AXSharpConfig
+  fullName.vb: AXSharp.Compiler.AXSharpConfig.New
+  nameWithType: AXSharpConfig.AXSharpConfig
+  nameWithType.vb: AXSharpConfig.New
+- uid: AXSharp.Compiler.AXSharpConfig.AxProjectFolder
+  name: AxProjectFolder
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_AxProjectFolder
+  commentId: P:AXSharp.Compiler.AXSharpConfig.AxProjectFolder
+  fullName: AXSharp.Compiler.AXSharpConfig.AxProjectFolder
+  nameWithType: AXSharpConfig.AxProjectFolder
+- uid: AXSharp.Compiler.AXSharpConfig.AxProjectFolder*
+  name: AxProjectFolder
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_AxProjectFolder_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.AxProjectFolder
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.AxProjectFolder
+  nameWithType: AXSharpConfig.AxProjectFolder
+- uid: AXSharp.Compiler.AXSharpConfig.CONFIG_FILE_NAME
+  name: CONFIG_FILE_NAME
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_CONFIG_FILE_NAME
+  commentId: F:AXSharp.Compiler.AXSharpConfig.CONFIG_FILE_NAME
+  fullName: AXSharp.Compiler.AXSharpConfig.CONFIG_FILE_NAME
+  nameWithType: AXSharpConfig.CONFIG_FILE_NAME
+- uid: AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
+  name: OutputProjectFolder
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_OutputProjectFolder
+  commentId: P:AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
+  fullName: AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
+  nameWithType: AXSharpConfig.OutputProjectFolder
+- uid: AXSharp.Compiler.AXSharpConfig.OutputProjectFolder*
+  name: OutputProjectFolder
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_OutputProjectFolder_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
+  nameWithType: AXSharpConfig.OutputProjectFolder
+- uid: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(System.String)
+  name: RetrieveIxConfig(string)
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_RetrieveIxConfig_System_String_
+  commentId: M:AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(System.String)
+  name.vb: RetrieveIxConfig(String)
+  fullName: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(string)
+  fullName.vb: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(String)
+  nameWithType: AXSharpConfig.RetrieveIxConfig(string)
+  nameWithType.vb: AXSharpConfig.RetrieveIxConfig(String)
+- uid: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig*
+  name: RetrieveIxConfig
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_RetrieveIxConfig_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig
+  nameWithType: AXSharpConfig.RetrieveIxConfig
+- uid: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(System.String,AXSharp.Compiler.ICompilerOptions)
+  name: UpdateAndGetIxConfig(string, ICompilerOptions?)
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UpdateAndGetIxConfig_System_String_AXSharp_Compiler_ICompilerOptions_
+  commentId: M:AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(System.String,AXSharp.Compiler.ICompilerOptions)
+  name.vb: UpdateAndGetIxConfig(String, ICompilerOptions)
+  fullName: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(string, AXSharp.Compiler.ICompilerOptions?)
+  fullName.vb: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(String, AXSharp.Compiler.ICompilerOptions)
+  nameWithType: AXSharpConfig.UpdateAndGetIxConfig(string, ICompilerOptions?)
+  nameWithType.vb: AXSharpConfig.UpdateAndGetIxConfig(String, ICompilerOptions)
+- uid: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig*
+  name: UpdateAndGetIxConfig
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UpdateAndGetIxConfig_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig
+  nameWithType: AXSharpConfig.UpdateAndGetIxConfig
+- uid: AXSharp.Compiler.AXSharpProject
+  name: AXSharpProject
+  href: api/AXSharp.Compiler.AXSharpProject.html
+  commentId: T:AXSharp.Compiler.AXSharpProject
+  fullName: AXSharp.Compiler.AXSharpProject
+  nameWithType: AXSharpProject
+- uid: AXSharp.Compiler.AXSharpProject.#ctor(AXSharp.Compiler.AxProject,System.Collections.Generic.IEnumerable{System.Type},System.Type,AXSharp.Compiler.ICompilerOptions)
+  name: AXSharpProject(AxProject, IEnumerable<Type>, Type, ICompilerOptions?)
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject__ctor_AXSharp_Compiler_AxProject_System_Collections_Generic_IEnumerable_System_Type__System_Type_AXSharp_Compiler_ICompilerOptions_
+  commentId: M:AXSharp.Compiler.AXSharpProject.#ctor(AXSharp.Compiler.AxProject,System.Collections.Generic.IEnumerable{System.Type},System.Type,AXSharp.Compiler.ICompilerOptions)
+  name.vb: New(AxProject, IEnumerable(Of Type), Type, ICompilerOptions)
+  fullName: AXSharp.Compiler.AXSharpProject.AXSharpProject(AXSharp.Compiler.AxProject, System.Collections.Generic.IEnumerable<System.Type>, System.Type, AXSharp.Compiler.ICompilerOptions?)
+  fullName.vb: AXSharp.Compiler.AXSharpProject.New(AXSharp.Compiler.AxProject, System.Collections.Generic.IEnumerable(Of System.Type), System.Type, AXSharp.Compiler.ICompilerOptions)
+  nameWithType: AXSharpProject.AXSharpProject(AxProject, IEnumerable<Type>, Type, ICompilerOptions?)
+  nameWithType.vb: AXSharpProject.New(AxProject, IEnumerable(Of Type), Type, ICompilerOptions)
+- uid: AXSharp.Compiler.AXSharpProject.#ctor*
+  name: AXSharpProject
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject__ctor_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AXSharp.Compiler.AXSharpProject.AXSharpProject
+  fullName.vb: AXSharp.Compiler.AXSharpProject.New
+  nameWithType: AXSharpProject.AXSharpProject
+  nameWithType.vb: AXSharpProject.New
+- uid: AXSharp.Compiler.AXSharpProject.AxProject
+  name: AxProject
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_AxProject
+  commentId: P:AXSharp.Compiler.AXSharpProject.AxProject
+  fullName: AXSharp.Compiler.AXSharpProject.AxProject
+  nameWithType: AXSharpProject.AxProject
+- uid: AXSharp.Compiler.AXSharpProject.AxProject*
+  name: AxProject
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_AxProject_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.AxProject
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.AxProject
+  nameWithType: AXSharpProject.AxProject
+- uid: AXSharp.Compiler.AXSharpProject.CleanOutput(System.String)
+  name: CleanOutput(string)
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_CleanOutput_System_String_
+  commentId: M:AXSharp.Compiler.AXSharpProject.CleanOutput(System.String)
+  name.vb: CleanOutput(String)
+  fullName: AXSharp.Compiler.AXSharpProject.CleanOutput(string)
+  fullName.vb: AXSharp.Compiler.AXSharpProject.CleanOutput(String)
+  nameWithType: AXSharpProject.CleanOutput(string)
+  nameWithType.vb: AXSharpProject.CleanOutput(String)
+- uid: AXSharp.Compiler.AXSharpProject.CleanOutput*
+  name: CleanOutput
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_CleanOutput_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.CleanOutput
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.CleanOutput
+  nameWithType: AXSharpProject.CleanOutput
+- uid: AXSharp.Compiler.AXSharpProject.CompilerOptions
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_CompilerOptions
+  commentId: P:AXSharp.Compiler.AXSharpProject.CompilerOptions
+  fullName: AXSharp.Compiler.AXSharpProject.CompilerOptions
+  nameWithType: AXSharpProject.CompilerOptions
+- uid: AXSharp.Compiler.AXSharpProject.CompilerOptions*
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_CompilerOptions_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.CompilerOptions
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.CompilerOptions
+  nameWithType: AXSharpProject.CompilerOptions
+- uid: AXSharp.Compiler.AXSharpProject.Generate
+  name: Generate()
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_Generate
+  commentId: M:AXSharp.Compiler.AXSharpProject.Generate
+  fullName: AXSharp.Compiler.AXSharpProject.Generate()
+  nameWithType: AXSharpProject.Generate()
+- uid: AXSharp.Compiler.AXSharpProject.Generate*
+  name: Generate
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_Generate_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.Generate
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.Generate
+  nameWithType: AXSharpProject.Generate
+- uid: AXSharp.Compiler.AXSharpProject.GetRelativePath(System.String,System.String)
+  name: GetRelativePath(string, string)
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_GetRelativePath_System_String_System_String_
+  commentId: M:AXSharp.Compiler.AXSharpProject.GetRelativePath(System.String,System.String)
+  name.vb: GetRelativePath(String, String)
+  fullName: AXSharp.Compiler.AXSharpProject.GetRelativePath(string, string)
+  fullName.vb: AXSharp.Compiler.AXSharpProject.GetRelativePath(String, String)
+  nameWithType: AXSharpProject.GetRelativePath(string, string)
+  nameWithType.vb: AXSharpProject.GetRelativePath(String, String)
+- uid: AXSharp.Compiler.AXSharpProject.GetRelativePath*
+  name: GetRelativePath
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_GetRelativePath_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.GetRelativePath
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.GetRelativePath
+  nameWithType: AXSharpProject.GetRelativePath
+- uid: AXSharp.Compiler.AXSharpProject.OutputFolder
+  name: OutputFolder
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_OutputFolder
+  commentId: P:AXSharp.Compiler.AXSharpProject.OutputFolder
+  fullName: AXSharp.Compiler.AXSharpProject.OutputFolder
+  nameWithType: AXSharpProject.OutputFolder
+- uid: AXSharp.Compiler.AXSharpProject.OutputFolder*
+  name: OutputFolder
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_OutputFolder_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.OutputFolder
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.OutputFolder
+  nameWithType: AXSharpProject.OutputFolder
+- uid: AXSharp.Compiler.AXSharpProject.TargetProject
+  name: TargetProject
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_TargetProject
+  commentId: P:AXSharp.Compiler.AXSharpProject.TargetProject
+  fullName: AXSharp.Compiler.AXSharpProject.TargetProject
+  nameWithType: AXSharpProject.TargetProject
+- uid: AXSharp.Compiler.AXSharpProject.TargetProject*
+  name: TargetProject
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_TargetProject_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.TargetProject
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.TargetProject
+  nameWithType: AXSharpProject.TargetProject
 - uid: AXSharp.Compiler.Core
   name: AXSharp.Compiler.Core
   href: api/AXSharp.Compiler.Core.html
@@ -997,15 +1208,15 @@ references:
   commentId: T:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder
   fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder
   nameWithType: CsOnlinerSourceBuilder
-- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.#ctor(AXSharp.Compiler.IxProject,AX.ST.Semantic.Compilation)
-  name: CsOnlinerSourceBuilder(IxProject, Compilation)
-  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder__ctor_AXSharp_Compiler_IxProject_AX_ST_Semantic_Compilation_
-  commentId: M:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.#ctor(AXSharp.Compiler.IxProject,AX.ST.Semantic.Compilation)
-  name.vb: New(IxProject, Compilation)
-  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CsOnlinerSourceBuilder(AXSharp.Compiler.IxProject, AX.ST.Semantic.Compilation)
-  fullName.vb: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.New(AXSharp.Compiler.IxProject, AX.ST.Semantic.Compilation)
-  nameWithType: CsOnlinerSourceBuilder.CsOnlinerSourceBuilder(IxProject, Compilation)
-  nameWithType.vb: CsOnlinerSourceBuilder.New(IxProject, Compilation)
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.#ctor(AXSharp.Compiler.AXSharpProject,AX.ST.Semantic.Compilation)
+  name: CsOnlinerSourceBuilder(AXSharpProject, Compilation)
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder__ctor_AXSharp_Compiler_AXSharpProject_AX_ST_Semantic_Compilation_
+  commentId: M:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.#ctor(AXSharp.Compiler.AXSharpProject,AX.ST.Semantic.Compilation)
+  name.vb: New(AXSharpProject, Compilation)
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CsOnlinerSourceBuilder(AXSharp.Compiler.AXSharpProject, AX.ST.Semantic.Compilation)
+  fullName.vb: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.New(AXSharp.Compiler.AXSharpProject, AX.ST.Semantic.Compilation)
+  nameWithType: CsOnlinerSourceBuilder.CsOnlinerSourceBuilder(AXSharpProject, Compilation)
+  nameWithType.vb: CsOnlinerSourceBuilder.New(AXSharpProject, Compilation)
 - uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.#ctor*
   name: CsOnlinerSourceBuilder
   href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder__ctor_
@@ -1261,15 +1472,15 @@ references:
   commentId: T:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder
   fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder
   nameWithType: CsPlainSourceBuilder
-- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor(AXSharp.Compiler.IxProject,AX.ST.Semantic.Compilation)
-  name: CsPlainSourceBuilder(IxProject, Compilation)
-  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder__ctor_AXSharp_Compiler_IxProject_AX_ST_Semantic_Compilation_
-  commentId: M:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor(AXSharp.Compiler.IxProject,AX.ST.Semantic.Compilation)
-  name.vb: New(IxProject, Compilation)
-  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CsPlainSourceBuilder(AXSharp.Compiler.IxProject, AX.ST.Semantic.Compilation)
-  fullName.vb: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.New(AXSharp.Compiler.IxProject, AX.ST.Semantic.Compilation)
-  nameWithType: CsPlainSourceBuilder.CsPlainSourceBuilder(IxProject, Compilation)
-  nameWithType.vb: CsPlainSourceBuilder.New(IxProject, Compilation)
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor(AXSharp.Compiler.AXSharpProject,AX.ST.Semantic.Compilation)
+  name: CsPlainSourceBuilder(AXSharpProject, Compilation)
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder__ctor_AXSharp_Compiler_AXSharpProject_AX_ST_Semantic_Compilation_
+  commentId: M:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor(AXSharp.Compiler.AXSharpProject,AX.ST.Semantic.Compilation)
+  name.vb: New(AXSharpProject, Compilation)
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CsPlainSourceBuilder(AXSharp.Compiler.AXSharpProject, AX.ST.Semantic.Compilation)
+  fullName.vb: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.New(AXSharp.Compiler.AXSharpProject, AX.ST.Semantic.Compilation)
+  nameWithType: CsPlainSourceBuilder.CsPlainSourceBuilder(AXSharpProject, Compilation)
+  nameWithType.vb: CsPlainSourceBuilder.New(AXSharpProject, Compilation)
 - uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.#ctor*
   name: CsPlainSourceBuilder
   href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder__ctor_
@@ -1785,15 +1996,15 @@ references:
   commentId: T:AXSharp.Compiler.CsProject
   fullName: AXSharp.Compiler.CsProject
   nameWithType: CsProject
-- uid: AXSharp.Compiler.CsProject.#ctor(AXSharp.Compiler.IxProject)
-  name: CsProject(IxProject)
-  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject__ctor_AXSharp_Compiler_IxProject_
-  commentId: M:AXSharp.Compiler.CsProject.#ctor(AXSharp.Compiler.IxProject)
-  name.vb: New(IxProject)
-  fullName: AXSharp.Compiler.CsProject.CsProject(AXSharp.Compiler.IxProject)
-  fullName.vb: AXSharp.Compiler.CsProject.New(AXSharp.Compiler.IxProject)
-  nameWithType: CsProject.CsProject(IxProject)
-  nameWithType.vb: CsProject.New(IxProject)
+- uid: AXSharp.Compiler.CsProject.#ctor(AXSharp.Compiler.AXSharpProject)
+  name: CsProject(AXSharpProject)
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject__ctor_AXSharp_Compiler_AXSharpProject_
+  commentId: M:AXSharp.Compiler.CsProject.#ctor(AXSharp.Compiler.AXSharpProject)
+  name.vb: New(AXSharpProject)
+  fullName: AXSharp.Compiler.CsProject.CsProject(AXSharp.Compiler.AXSharpProject)
+  fullName.vb: AXSharp.Compiler.CsProject.New(AXSharp.Compiler.AXSharpProject)
+  nameWithType: CsProject.CsProject(AXSharpProject)
+  nameWithType.vb: CsProject.New(AXSharpProject)
 - uid: AXSharp.Compiler.CsProject.#ctor*
   name: CsProject
   href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject__ctor_
@@ -2025,6 +2236,25 @@ references:
   fullName.vb: AXSharp.Compiler.FailedToDeterminePackageVersion.New
   nameWithType: FailedToDeterminePackageVersion.FailedToDeterminePackageVersion
   nameWithType.vb: FailedToDeterminePackageVersion.New
+- uid: AXSharp.Compiler.IAXSharpProject
+  name: IAXSharpProject
+  href: api/AXSharp.Compiler.IAXSharpProject.html
+  commentId: T:AXSharp.Compiler.IAXSharpProject
+  fullName: AXSharp.Compiler.IAXSharpProject
+  nameWithType: IAXSharpProject
+- uid: AXSharp.Compiler.IAXSharpProject.Generate
+  name: Generate()
+  href: api/AXSharp.Compiler.IAXSharpProject.html#AXSharp_Compiler_IAXSharpProject_Generate
+  commentId: M:AXSharp.Compiler.IAXSharpProject.Generate
+  fullName: AXSharp.Compiler.IAXSharpProject.Generate()
+  nameWithType: IAXSharpProject.Generate()
+- uid: AXSharp.Compiler.IAXSharpProject.Generate*
+  name: Generate
+  href: api/AXSharp.Compiler.IAXSharpProject.html#AXSharp_Compiler_IAXSharpProject_Generate_
+  commentId: Overload:AXSharp.Compiler.IAXSharpProject.Generate
+  isSpec: "True"
+  fullName: AXSharp.Compiler.IAXSharpProject.Generate
+  nameWithType: IAXSharpProject.Generate
 - uid: AXSharp.Compiler.ICompilerOptions
   name: ICompilerOptions
   href: api/AXSharp.Compiler.ICompilerOptions.html
@@ -2044,25 +2274,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.ICompilerOptions.OutputProjectFolder
   nameWithType: ICompilerOptions.OutputProjectFolder
-- uid: AXSharp.Compiler.IIxProject
-  name: IIxProject
-  href: api/AXSharp.Compiler.IIxProject.html
-  commentId: T:AXSharp.Compiler.IIxProject
-  fullName: AXSharp.Compiler.IIxProject
-  nameWithType: IIxProject
-- uid: AXSharp.Compiler.IIxProject.Generate
-  name: Generate()
-  href: api/AXSharp.Compiler.IIxProject.html#AXSharp_Compiler_IIxProject_Generate
-  commentId: M:AXSharp.Compiler.IIxProject.Generate
-  fullName: AXSharp.Compiler.IIxProject.Generate()
-  nameWithType: IIxProject.Generate()
-- uid: AXSharp.Compiler.IIxProject.Generate*
-  name: Generate
-  href: api/AXSharp.Compiler.IIxProject.html#AXSharp_Compiler_IIxProject_Generate_
-  commentId: Overload:AXSharp.Compiler.IIxProject.Generate
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IIxProject.Generate
-  nameWithType: IIxProject.Generate
 - uid: AXSharp.Compiler.IPackageReference
   name: IPackageReference
   href: api/AXSharp.Compiler.IPackageReference.html
@@ -2204,217 +2415,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.ITargetProject.ProvisionProjectStructure
   nameWithType: ITargetProject.ProvisionProjectStructure
-- uid: AXSharp.Compiler.IxConfig
-  name: IxConfig
-  href: api/AXSharp.Compiler.IxConfig.html
-  commentId: T:AXSharp.Compiler.IxConfig
-  fullName: AXSharp.Compiler.IxConfig
-  nameWithType: IxConfig
-- uid: AXSharp.Compiler.IxConfig.#ctor
-  name: IxConfig()
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig__ctor
-  commentId: M:AXSharp.Compiler.IxConfig.#ctor
-  name.vb: New()
-  fullName: AXSharp.Compiler.IxConfig.IxConfig()
-  fullName.vb: AXSharp.Compiler.IxConfig.New()
-  nameWithType: IxConfig.IxConfig()
-  nameWithType.vb: IxConfig.New()
-- uid: AXSharp.Compiler.IxConfig.#ctor*
-  name: IxConfig
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig__ctor_
-  commentId: Overload:AXSharp.Compiler.IxConfig.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: AXSharp.Compiler.IxConfig.IxConfig
-  fullName.vb: AXSharp.Compiler.IxConfig.New
-  nameWithType: IxConfig.IxConfig
-  nameWithType.vb: IxConfig.New
-- uid: AXSharp.Compiler.IxConfig.AxProjectFolder
-  name: AxProjectFolder
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_AxProjectFolder
-  commentId: P:AXSharp.Compiler.IxConfig.AxProjectFolder
-  fullName: AXSharp.Compiler.IxConfig.AxProjectFolder
-  nameWithType: IxConfig.AxProjectFolder
-- uid: AXSharp.Compiler.IxConfig.AxProjectFolder*
-  name: AxProjectFolder
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_AxProjectFolder_
-  commentId: Overload:AXSharp.Compiler.IxConfig.AxProjectFolder
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxConfig.AxProjectFolder
-  nameWithType: IxConfig.AxProjectFolder
-- uid: AXSharp.Compiler.IxConfig.CONFIG_FILE_NAME
-  name: CONFIG_FILE_NAME
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_CONFIG_FILE_NAME
-  commentId: F:AXSharp.Compiler.IxConfig.CONFIG_FILE_NAME
-  fullName: AXSharp.Compiler.IxConfig.CONFIG_FILE_NAME
-  nameWithType: IxConfig.CONFIG_FILE_NAME
-- uid: AXSharp.Compiler.IxConfig.OutputProjectFolder
-  name: OutputProjectFolder
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_OutputProjectFolder
-  commentId: P:AXSharp.Compiler.IxConfig.OutputProjectFolder
-  fullName: AXSharp.Compiler.IxConfig.OutputProjectFolder
-  nameWithType: IxConfig.OutputProjectFolder
-- uid: AXSharp.Compiler.IxConfig.OutputProjectFolder*
-  name: OutputProjectFolder
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_OutputProjectFolder_
-  commentId: Overload:AXSharp.Compiler.IxConfig.OutputProjectFolder
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxConfig.OutputProjectFolder
-  nameWithType: IxConfig.OutputProjectFolder
-- uid: AXSharp.Compiler.IxConfig.RetrieveIxConfig(System.String)
-  name: RetrieveIxConfig(string)
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_RetrieveIxConfig_System_String_
-  commentId: M:AXSharp.Compiler.IxConfig.RetrieveIxConfig(System.String)
-  name.vb: RetrieveIxConfig(String)
-  fullName: AXSharp.Compiler.IxConfig.RetrieveIxConfig(string)
-  fullName.vb: AXSharp.Compiler.IxConfig.RetrieveIxConfig(String)
-  nameWithType: IxConfig.RetrieveIxConfig(string)
-  nameWithType.vb: IxConfig.RetrieveIxConfig(String)
-- uid: AXSharp.Compiler.IxConfig.RetrieveIxConfig*
-  name: RetrieveIxConfig
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_RetrieveIxConfig_
-  commentId: Overload:AXSharp.Compiler.IxConfig.RetrieveIxConfig
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxConfig.RetrieveIxConfig
-  nameWithType: IxConfig.RetrieveIxConfig
-- uid: AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig(System.String,AXSharp.Compiler.ICompilerOptions)
-  name: UpdateAndGetIxConfig(string, ICompilerOptions)
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_UpdateAndGetIxConfig_System_String_AXSharp_Compiler_ICompilerOptions_
-  commentId: M:AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig(System.String,AXSharp.Compiler.ICompilerOptions)
-  name.vb: UpdateAndGetIxConfig(String, ICompilerOptions)
-  fullName: AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig(string, AXSharp.Compiler.ICompilerOptions)
-  fullName.vb: AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig(String, AXSharp.Compiler.ICompilerOptions)
-  nameWithType: IxConfig.UpdateAndGetIxConfig(string, ICompilerOptions)
-  nameWithType.vb: IxConfig.UpdateAndGetIxConfig(String, ICompilerOptions)
-- uid: AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig*
-  name: UpdateAndGetIxConfig
-  href: api/AXSharp.Compiler.IxConfig.html#AXSharp_Compiler_IxConfig_UpdateAndGetIxConfig_
-  commentId: Overload:AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxConfig.UpdateAndGetIxConfig
-  nameWithType: IxConfig.UpdateAndGetIxConfig
-- uid: AXSharp.Compiler.IxProject
-  name: IxProject
-  href: api/AXSharp.Compiler.IxProject.html
-  commentId: T:AXSharp.Compiler.IxProject
-  fullName: AXSharp.Compiler.IxProject
-  nameWithType: IxProject
-- uid: AXSharp.Compiler.IxProject.#ctor(AXSharp.Compiler.AxProject,System.Collections.Generic.IEnumerable{System.Type},System.Type,AXSharp.Compiler.ICompilerOptions)
-  name: IxProject(AxProject, IEnumerable<Type>, Type, ICompilerOptions?)
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject__ctor_AXSharp_Compiler_AxProject_System_Collections_Generic_IEnumerable_System_Type__System_Type_AXSharp_Compiler_ICompilerOptions_
-  commentId: M:AXSharp.Compiler.IxProject.#ctor(AXSharp.Compiler.AxProject,System.Collections.Generic.IEnumerable{System.Type},System.Type,AXSharp.Compiler.ICompilerOptions)
-  name.vb: New(AxProject, IEnumerable(Of Type), Type, ICompilerOptions)
-  fullName: AXSharp.Compiler.IxProject.IxProject(AXSharp.Compiler.AxProject, System.Collections.Generic.IEnumerable<System.Type>, System.Type, AXSharp.Compiler.ICompilerOptions?)
-  fullName.vb: AXSharp.Compiler.IxProject.New(AXSharp.Compiler.AxProject, System.Collections.Generic.IEnumerable(Of System.Type), System.Type, AXSharp.Compiler.ICompilerOptions)
-  nameWithType: IxProject.IxProject(AxProject, IEnumerable<Type>, Type, ICompilerOptions?)
-  nameWithType.vb: IxProject.New(AxProject, IEnumerable(Of Type), Type, ICompilerOptions)
-- uid: AXSharp.Compiler.IxProject.#ctor*
-  name: IxProject
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject__ctor_
-  commentId: Overload:AXSharp.Compiler.IxProject.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: AXSharp.Compiler.IxProject.IxProject
-  fullName.vb: AXSharp.Compiler.IxProject.New
-  nameWithType: IxProject.IxProject
-  nameWithType.vb: IxProject.New
-- uid: AXSharp.Compiler.IxProject.AxProject
-  name: AxProject
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_AxProject
-  commentId: P:AXSharp.Compiler.IxProject.AxProject
-  fullName: AXSharp.Compiler.IxProject.AxProject
-  nameWithType: IxProject.AxProject
-- uid: AXSharp.Compiler.IxProject.AxProject*
-  name: AxProject
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_AxProject_
-  commentId: Overload:AXSharp.Compiler.IxProject.AxProject
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.AxProject
-  nameWithType: IxProject.AxProject
-- uid: AXSharp.Compiler.IxProject.CleanOutput(System.String)
-  name: CleanOutput(string)
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_CleanOutput_System_String_
-  commentId: M:AXSharp.Compiler.IxProject.CleanOutput(System.String)
-  name.vb: CleanOutput(String)
-  fullName: AXSharp.Compiler.IxProject.CleanOutput(string)
-  fullName.vb: AXSharp.Compiler.IxProject.CleanOutput(String)
-  nameWithType: IxProject.CleanOutput(string)
-  nameWithType.vb: IxProject.CleanOutput(String)
-- uid: AXSharp.Compiler.IxProject.CleanOutput*
-  name: CleanOutput
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_CleanOutput_
-  commentId: Overload:AXSharp.Compiler.IxProject.CleanOutput
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.CleanOutput
-  nameWithType: IxProject.CleanOutput
-- uid: AXSharp.Compiler.IxProject.CompilerOptions
-  name: CompilerOptions
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_CompilerOptions
-  commentId: P:AXSharp.Compiler.IxProject.CompilerOptions
-  fullName: AXSharp.Compiler.IxProject.CompilerOptions
-  nameWithType: IxProject.CompilerOptions
-- uid: AXSharp.Compiler.IxProject.CompilerOptions*
-  name: CompilerOptions
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_CompilerOptions_
-  commentId: Overload:AXSharp.Compiler.IxProject.CompilerOptions
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.CompilerOptions
-  nameWithType: IxProject.CompilerOptions
-- uid: AXSharp.Compiler.IxProject.Generate
-  name: Generate()
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_Generate
-  commentId: M:AXSharp.Compiler.IxProject.Generate
-  fullName: AXSharp.Compiler.IxProject.Generate()
-  nameWithType: IxProject.Generate()
-- uid: AXSharp.Compiler.IxProject.Generate*
-  name: Generate
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_Generate_
-  commentId: Overload:AXSharp.Compiler.IxProject.Generate
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.Generate
-  nameWithType: IxProject.Generate
-- uid: AXSharp.Compiler.IxProject.GetRelativePath(System.String,System.String)
-  name: GetRelativePath(string, string)
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_GetRelativePath_System_String_System_String_
-  commentId: M:AXSharp.Compiler.IxProject.GetRelativePath(System.String,System.String)
-  name.vb: GetRelativePath(String, String)
-  fullName: AXSharp.Compiler.IxProject.GetRelativePath(string, string)
-  fullName.vb: AXSharp.Compiler.IxProject.GetRelativePath(String, String)
-  nameWithType: IxProject.GetRelativePath(string, string)
-  nameWithType.vb: IxProject.GetRelativePath(String, String)
-- uid: AXSharp.Compiler.IxProject.GetRelativePath*
-  name: GetRelativePath
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_GetRelativePath_
-  commentId: Overload:AXSharp.Compiler.IxProject.GetRelativePath
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.GetRelativePath
-  nameWithType: IxProject.GetRelativePath
-- uid: AXSharp.Compiler.IxProject.OutputFolder
-  name: OutputFolder
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_OutputFolder
-  commentId: P:AXSharp.Compiler.IxProject.OutputFolder
-  fullName: AXSharp.Compiler.IxProject.OutputFolder
-  nameWithType: IxProject.OutputFolder
-- uid: AXSharp.Compiler.IxProject.OutputFolder*
-  name: OutputFolder
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_OutputFolder_
-  commentId: Overload:AXSharp.Compiler.IxProject.OutputFolder
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.OutputFolder
-  nameWithType: IxProject.OutputFolder
-- uid: AXSharp.Compiler.IxProject.TargetProject
-  name: TargetProject
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_TargetProject
-  commentId: P:AXSharp.Compiler.IxProject.TargetProject
-  fullName: AXSharp.Compiler.IxProject.TargetProject
-  nameWithType: IxProject.TargetProject
-- uid: AXSharp.Compiler.IxProject.TargetProject*
-  name: TargetProject
-  href: api/AXSharp.Compiler.IxProject.html#AXSharp_Compiler_IxProject_TargetProject_
-  commentId: Overload:AXSharp.Compiler.IxProject.TargetProject
-  isSpec: "True"
-  fullName: AXSharp.Compiler.IxProject.TargetProject
-  nameWithType: IxProject.TargetProject
 - uid: AXSharp.Compiler.LegalAcrobatics
   name: LegalAcrobatics
   href: api/AXSharp.Compiler.LegalAcrobatics.html
@@ -5649,6 +5649,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.OnlineToPlain
   nameWithType: RootTwinObject.OnlineToPlain
+- uid: AXSharp.Connector.RootTwinObject.OnlineToPlain``1
+  name: OnlineToPlain<T>()
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_OnlineToPlain__1
+  commentId: M:AXSharp.Connector.RootTwinObject.OnlineToPlain``1
+  name.vb: OnlineToPlain(Of T)()
+  fullName: AXSharp.Connector.RootTwinObject.OnlineToPlain<T>()
+  fullName.vb: AXSharp.Connector.RootTwinObject.OnlineToPlain(Of T)()
+  nameWithType: RootTwinObject.OnlineToPlain<T>()
+  nameWithType.vb: RootTwinObject.OnlineToPlain(Of T)()
 - uid: AXSharp.Connector.RootTwinObject.PlainToOnline(System.Object)
   name: PlainToOnline(object)
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_PlainToOnline_System_Object_
@@ -5665,6 +5674,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.PlainToOnline
   nameWithType: RootTwinObject.PlainToOnline
+- uid: AXSharp.Connector.RootTwinObject.PlainToOnline``1(``0)
+  name: PlainToOnline<T>(T)
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_PlainToOnline__1___0_
+  commentId: M:AXSharp.Connector.RootTwinObject.PlainToOnline``1(``0)
+  name.vb: PlainToOnline(Of T)(T)
+  fullName: AXSharp.Connector.RootTwinObject.PlainToOnline<T>(T)
+  fullName.vb: AXSharp.Connector.RootTwinObject.PlainToOnline(Of T)(T)
+  nameWithType: RootTwinObject.PlainToOnline<T>(T)
+  nameWithType.vb: RootTwinObject.PlainToOnline(Of T)(T)
 - uid: AXSharp.Connector.RootTwinObject.PlainToShadow(System.Object)
   name: PlainToShadow(object)
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_PlainToShadow_System_Object_
@@ -5681,6 +5699,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.PlainToShadow
   nameWithType: RootTwinObject.PlainToShadow
+- uid: AXSharp.Connector.RootTwinObject.PlainToShadow``1(``0)
+  name: PlainToShadow<T>(T)
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_PlainToShadow__1___0_
+  commentId: M:AXSharp.Connector.RootTwinObject.PlainToShadow``1(``0)
+  name.vb: PlainToShadow(Of T)(T)
+  fullName: AXSharp.Connector.RootTwinObject.PlainToShadow<T>(T)
+  fullName.vb: AXSharp.Connector.RootTwinObject.PlainToShadow(Of T)(T)
+  nameWithType: RootTwinObject.PlainToShadow<T>(T)
+  nameWithType.vb: RootTwinObject.PlainToShadow(Of T)(T)
 - uid: AXSharp.Connector.RootTwinObject.Poll
   name: Poll()
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_Poll
@@ -5707,6 +5734,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.ShadowToPlain
   nameWithType: RootTwinObject.ShadowToPlain
+- uid: AXSharp.Connector.RootTwinObject.ShadowToPlain``1
+  name: ShadowToPlain<T>()
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_ShadowToPlain__1
+  commentId: M:AXSharp.Connector.RootTwinObject.ShadowToPlain``1
+  name.vb: ShadowToPlain(Of T)()
+  fullName: AXSharp.Connector.RootTwinObject.ShadowToPlain<T>()
+  fullName.vb: AXSharp.Connector.RootTwinObject.ShadowToPlain(Of T)()
+  nameWithType: RootTwinObject.ShadowToPlain<T>()
+  nameWithType.vb: RootTwinObject.ShadowToPlain(Of T)()
 - uid: AXSharp.Connector.RootTwinObject.Symbol
   name: Symbol
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_Symbol
@@ -15184,13 +15220,13 @@ references:
   fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor
   nameWithType: MyNodeVisitor
 - uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.#ctor(AXSharp.Compiler.AxProject)
-  name: MyNodeVisitor(AxProject)
+  name: MyNodeVisitor(AxProject?)
   href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor__ctor_AXSharp_Compiler_AxProject_
   commentId: M:AXSharp.ixc_doc.Visitors.MyNodeVisitor.#ctor(AXSharp.Compiler.AxProject)
   name.vb: New(AxProject)
-  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.MyNodeVisitor(AXSharp.Compiler.AxProject)
+  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.MyNodeVisitor(AXSharp.Compiler.AxProject?)
   fullName.vb: AXSharp.ixc_doc.Visitors.MyNodeVisitor.New(AXSharp.Compiler.AxProject)
-  nameWithType: MyNodeVisitor.MyNodeVisitor(AxProject)
+  nameWithType: MyNodeVisitor.MyNodeVisitor(AxProject?)
   nameWithType.vb: MyNodeVisitor.New(AxProject)
 - uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.#ctor*
   name: MyNodeVisitor

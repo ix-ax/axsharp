@@ -1,9 +1,9 @@
 // AXSharp.ixc.Tests
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Reflection;
 using AXSharp.Compiler;
@@ -62,7 +62,7 @@ namespace AXSharp.ixcTests
         public void should_run_with_setting_retrieved_from_config_file_settings()
         {
             var axProjectFolder = Path.Combine(TestFolder, "samples","plt","app");
-            var config = IxConfig.UpdateAndGetIxConfig(axProjectFolder);
+            var config = AXSharpConfig.UpdateAndGetIxConfig(axProjectFolder);
             var outputDirectory = Path.GetFullPath(Path.Combine(axProjectFolder, config.OutputProjectFolder));
             
             if (Directory.Exists(outputDirectory))
@@ -96,7 +96,7 @@ namespace AXSharp.ixcTests
         public void should_run_with_setting_retrieved_from_config_file_settings_but_override_from_cli()
         {
             var axProjectFolder = Path.Combine(TestFolder, "samples","plt","lib");
-            var config = IxConfig.UpdateAndGetIxConfig(axProjectFolder);
+            var config = AXSharpConfig.UpdateAndGetIxConfig(axProjectFolder);
             var outputDirectory = Path.GetFullPath(Path.Combine(axProjectFolder, $"..{Path.DirectorySeparatorChar}ix-lib-override"));
             
             if (Directory.Exists(outputDirectory))

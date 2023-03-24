@@ -1,9 +1,9 @@
 ﻿// AXSharp.nuget.update
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Runtime.CompilerServices;
 using CommandLine.Text;
@@ -27,7 +27,7 @@ public static class Program
 
     public static void Update(Options o)
     {
-        if (o.FileToUpdate.EndsWith(".json"))
+        if (o.FileToUpdate!.EndsWith(".json"))
         {
             UpdateTools(o);
         }

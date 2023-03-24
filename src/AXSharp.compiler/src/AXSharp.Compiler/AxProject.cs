@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AX.Text;
 using YamlDotNet.Serialization;
@@ -83,7 +83,7 @@ public class AxProject
     /// <summary>
     /// Gets paths of this project's references to other ix projects.
     /// </summary>
-    public IEnumerable<IxConfig> IxReferences
+    public IEnumerable<AXSharpConfig> IxReferences
     {
         get
         {
@@ -96,8 +96,8 @@ public class AxProject
             var retVal = packagesDirectories
                 .Where(p => Directory.Exists(p))
                 .Select(p => new DirectoryInfo(p))
-                .Select(p => Directory.EnumerateFiles(p.LinkTarget ?? p.FullName, IxConfig.CONFIG_FILE_NAME, SearchOption.TopDirectoryOnly))
-                .SelectMany(p => p).Select(c => IxConfig.RetrieveIxConfig(c));
+                .Select(p => Directory.EnumerateFiles(p.LinkTarget ?? p.FullName, AXSharpConfig.CONFIG_FILE_NAME, SearchOption.TopDirectoryOnly))
+                .SelectMany(p => p).Select(c => AXSharpConfig.RetrieveIxConfig(c));
 
             return retVal;
         }

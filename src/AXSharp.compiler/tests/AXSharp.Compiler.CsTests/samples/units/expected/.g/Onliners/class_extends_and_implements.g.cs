@@ -19,7 +19,7 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
         return await (dynamic)this.OnlineToPlainAsync();
     }
 
-    public async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync()
+    public new async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync()
     {
         Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
         await this.ReadAsync();
@@ -49,7 +49,7 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
         return await (dynamic)this.ShadowToPlainAsync();
     }
 
-    public async Task<Pocos.ExtendsAndImplements> ShadowToPlainAsync()
+    public new async Task<Pocos.ExtendsAndImplements> ShadowToPlainAsync()
     {
         Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
         await base.ShadowToPlainAsync(plain);
@@ -73,12 +73,12 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
         return this.RetrievePrimitives();
     }
 
-    public void Poll()
+    public new void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
     }
 
-    public Pocos.ExtendsAndImplements CreateEmptyPoco()
+    public new Pocos.ExtendsAndImplements CreateEmptyPoco()
     {
         return new Pocos.ExtendsAndImplements();
     }

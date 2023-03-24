@@ -1,9 +1,9 @@
 ﻿// AXSharp.Compiler.Cs
 // Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Reflection;
 using System.Xml.Linq;
@@ -24,21 +24,21 @@ public class CsProject : ITargetProject
     /// <summary>
     /// Create new instance of the <see cref="CsProject" />.
     /// </summary>
-    /// <param name="ixProject"></param>
-    public CsProject(IxProject ixProject)
+    /// <param name="AXSharpProject"></param>
+    public CsProject(AXSharpProject AXSharpProject)
     {
-        IxProject = ixProject;
-        ProjectRootNamespace = MakeValidIdentifier(ixProject.AxProject.ProjectInfo.Name);
+        AxSharpProject = AXSharpProject;
+        ProjectRootNamespace = MakeValidIdentifier(AXSharpProject.AxProject.ProjectInfo.Name);
     }
 
-    private IxProject IxProject { get; }
+    private AXSharpProject AxSharpProject { get; }
 
 
     /// <summary>
     ///     Gets associated IxProject file.
     /// </summary>
-    public string IxProjectFile => Path.Combine(IxProject.OutputFolder,
-        $"{MakeValidFileName(IxProject.AxProject.ProjectInfo.Name)}.csproj");
+    public string IxProjectFile => Path.Combine(AxSharpProject.OutputFolder,
+        $"{MakeValidFileName(AxSharpProject.AxProject.ProjectInfo.Name)}.csproj");
 
 
     /// <summary>
@@ -73,17 +73,17 @@ public class CsProject : ITargetProject
 
     private static string GetExecutingAssemblyPath()
     {       
-        var assemblyPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+        var assemblyPath = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location);
         return assemblyPath!;
     }
 
 
     private void EnsureCsProjFile()
     {
-        if (IxProject.AxProject.ProjectInfo.Name != null)
+        if (AxSharpProject.AxProject.ProjectInfo.Name != null)
         {
-            var expectedCsProjFile = Path.Combine(IxProject.OutputFolder,
-                $"{MakeValidFileName(IxProject.AxProject.ProjectInfo.Name)}.csproj");
+            var expectedCsProjFile = Path.Combine(AxSharpProject.OutputFolder,
+                $"{MakeValidFileName(AxSharpProject.AxProject.ProjectInfo.Name)}.csproj");
 
             var defaultCsProjectWhenNotProvidedByTemplate =
                 $@"<Project Sdk=""Microsoft.NET.Sdk"">
@@ -134,7 +134,7 @@ public class CsProject : ITargetProject
 
 
     /// <inheritdoc />
-    public string GetMetaDataFolder => Path.Combine(IxProject.OutputFolder, ".meta");
+    public string GetMetaDataFolder => Path.Combine(AxSharpProject.OutputFolder, ".meta");
 
     /// <summary>
     ///     Retrieves references from csproj file associated with given project.
@@ -298,7 +298,7 @@ public class CsProject : ITargetProject
             .Root!
             .Elements("ItemGroup")
             .SelectMany(ig => ig.Elements("ProjectReference"))
-            .Select(pr => new ProjectReference(directory, pr.Attribute("Include").Value.Replace("\\",Path.DirectorySeparatorChar.ToString())));
+            .Select(pr => new ProjectReference(directory, pr.Attribute("Include")!.Value.Replace("\\",Path.DirectorySeparatorChar.ToString())));
     }
 
     #endregion

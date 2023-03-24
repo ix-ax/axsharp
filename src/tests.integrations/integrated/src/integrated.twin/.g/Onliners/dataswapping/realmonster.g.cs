@@ -246,7 +246,7 @@ namespace RealMonsterData
             return await (dynamic)this.OnlineToPlainAsync();
         }
 
-        public async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
+        public new async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
             await this.ReadAsync();
@@ -279,7 +279,7 @@ namespace RealMonsterData
             return await (dynamic)this.ShadowToPlainAsync();
         }
 
-        public async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
+        public new async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
             await base.ShadowToPlainAsync(plain);
@@ -306,12 +306,12 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
-        public void Poll()
+        public new void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
-        public Pocos.RealMonsterData.RealMonster CreateEmptyPoco()
+        public new Pocos.RealMonsterData.RealMonster CreateEmptyPoco()
         {
             return new Pocos.RealMonsterData.RealMonster();
         }

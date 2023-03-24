@@ -1,9 +1,9 @@
 // AXSharp.CompilerTests
 // Copyright (c)2022 Peter Kurhajec and Contributors All Rights Reserved.
-// Contributors: https://github.com/ix-ax/ix/graphs/contributors
+// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
 // See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/ix/blob/master/LICENSE
-// Third party licenses: https://github.com/ix-ax/ix/blob/master/notices.md
+// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
+// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Reflection;
 using AXSharp.Compiler;
@@ -35,7 +35,7 @@ public class IxProjectTests
     [Fact]
     public void should_get_project_name()
     {
-        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")), new Type[] { },
+        var project = new AXSharpProject(new AxProject(Path.Combine(testFolder, @"samples\units\")), new Type[] { },
             typeof(CsProject));
         var expected = Path.Combine(testFolder, @"samples\units\ix");
         var actual = project.OutputFolder;
@@ -46,7 +46,7 @@ public class IxProjectTests
     [Fact]
     public void should_create_files_from_source_to_generated_output_folder()
     {
-        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
+        var project = new AXSharpProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
             new[] { typeof(CsPlainSourceBuilder) }, typeof(CsProject));
 
 
@@ -82,7 +82,7 @@ public class IxProjectTests
     public void should_clean_output_folder()
     {
         should_create_files_from_source_to_generated_output_folder();
-        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
+        var project = new AXSharpProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
             new[] { typeof(CsPlainSourceBuilder) }, typeof(CsProject));
 
         Assert.True(Directory.EnumerateFiles(project.OutputFolder, "*.g.cs", SearchOption.AllDirectories).Count() > 0);
@@ -95,7 +95,7 @@ public class IxProjectTests
     [Fact]
     public void should_match_expected_and_generated_whole_project()
     {
-        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
+        var project = new AXSharpProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
             new[] { typeof(CsPlainSourceBuilder), typeof(CsOnlinerSourceBuilder) }, typeof(CsProject));
 
         if (Directory.Exists(project.OutputFolder)) Directory.Delete(project.OutputFolder, true);
@@ -138,7 +138,7 @@ public class IxProjectTests
     [Fact]
     public void should_generate_all_even_when_fails_somewhere()
     {
-        var project = new IxProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
+        var project = new AXSharpProject(new AxProject(Path.Combine(testFolder, @"samples\units\")),
             new[] { typeof(CsPlainSourceBuilder), typeof(CsOnlinerSourceBuilder) }, typeof(CsProject));
 
         if (Directory.Exists(project.OutputFolder)) Directory.Delete(project.OutputFolder, true);
@@ -188,7 +188,7 @@ public class IxProjectTests
             Path.GetFullPath(Path.Combine(testFolder, @"..\..\..\..\integration\actual\app"))
         };
 
-        var projects = integrationProjectsPaths.Select(p => new IxProject(new AxProject(p),
+        var projects = integrationProjectsPaths.Select(p => new AXSharpProject(new AxProject(p),
             new[] { typeof(CsPlainSourceBuilder), typeof(CsOnlinerSourceBuilder) }, typeof(CsProject)));
 
         foreach (var project in projects)

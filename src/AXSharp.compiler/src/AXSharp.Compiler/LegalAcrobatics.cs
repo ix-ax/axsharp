@@ -42,7 +42,7 @@ namespace AXSharp.Compiler
             {
                 axAssemblies.Add(Assembly.LoadFile(assemblyFile));
             }
-            catch (System.BadImageFormatException e)
+            catch (System.BadImageFormatException)
             {
                 // We just ignore this...there might be some libraries that we just cannot load, but we do not need them.
             }

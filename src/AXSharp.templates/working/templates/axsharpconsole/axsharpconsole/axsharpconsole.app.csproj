@@ -6,6 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ixconsole.twin\axsharpconsole.csproj" />
+    <ProjectReference Include="..\axsharpconsole.twin\axsharpconsole.csproj" />
   </ItemGroup>
 </Project>
