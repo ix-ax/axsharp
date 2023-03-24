@@ -11,7 +11,7 @@ variables:
   APAX_BUILD_ARGS: [ -d ]    
 scripts:
   ixc: 
-  - dotnet tool restore
+  - dotnet tool restore --no-cache
   - dotnet ixc -o ..\\ixsharpblazor.twin
   postbuild: apax ixc
   download :   

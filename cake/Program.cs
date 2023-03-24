@@ -76,14 +76,14 @@ public sealed class ProvisionTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        Provision_xmldocmd_tool(context);
+        ProvisionProjectWideTools(context);
     }
 
-    private static void Provision_xmldocmd_tool(BuildContext context)
+    private static void ProvisionProjectWideTools(BuildContext context)
     {
         context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
         {
-            Arguments = $" tool restore",
+            Arguments = $" tool restore --no-cache --ignore-failed-sources ",
 
         });
 
@@ -375,6 +375,13 @@ public sealed class TemplatesBuildTask : FrostingTask<BuildContext>
 
         foreach (var axproject in axprojects)
         {
+            context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
+            {
+                Arguments = $" tool restore --no-cache --ignore-failed-sources ",
+                WorkingDirectory = axproject
+
+            });
+
             context.UploadTestPlc(
                 Path.GetFullPath(Path.Combine(axproject)),
                 Environment.GetEnvironmentVariable("AXTARGET"),
