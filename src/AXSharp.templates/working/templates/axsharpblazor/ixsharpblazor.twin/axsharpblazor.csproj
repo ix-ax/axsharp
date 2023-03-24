@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AXSharp.Abstractions" Version="0.14.0-alfa-from-ix-to-axsharp.78" />
-    <PackageReference Include="AXSharp.Connector" Version="0.14.0-alfa-from-ix-to-axsharp.78" />
+    <PackageReference Include="AXSharp.Abstractions" Version="0.14.0-alfa-from-ix-to-axsharp.80" />
+    <PackageReference Include="AXSharp.Connector" Version="0.14.0-alfa-from-ix-to-axsharp.80" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include=".g\**" />

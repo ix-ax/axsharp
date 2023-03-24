@@ -13,7 +13,7 @@ scripts:
   ixc: 
   - dotnet tool restore
   - dotnet ixc -o ..\\ixsharpblazor.twin
-  postbuild: dotnet ixc -o ..\\ixsharpblazor.twin
+  postbuild: apax ixc
   download :   
     - apax install    
     - apax build
