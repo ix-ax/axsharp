@@ -377,6 +377,17 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
 
         foreach (var template in context.GetTemplateProjects())
         {
+            context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
+            {
+                Arguments = $"ixc",
+                WorkingDirectory = template.ax
+
+            });
+        }
+
+
+        foreach (var template in context.GetTemplateProjects())
+        {
             context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
         }
 
@@ -390,20 +401,23 @@ public class TemplateTests : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        if (!context.BuildParameters.DoPublish || !context.BuildParameters.DoTest)
+        if (!context.BuildParameters.DoPublish || !context.BuildParameters.DoTest )
         {
             context.Log.Warning($"Skipping template package push.");
             return;
         }
 
-        foreach (var template in context.GetTemplateProjects())
+        if (context.BuildParameters.TestLevel >= 3)
         {
-            context.UploadTestPlc(
-                Path.GetFullPath(Path.Combine(template.ax)),
-                Environment.GetEnvironmentVariable("AXTARGET"),
-                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+            foreach (var template in context.GetTemplateProjects())
+            {
+                context.UploadTestPlc(
+                    Path.GetFullPath(Path.Combine(template.ax)),
+                    Environment.GetEnvironmentVariable("AXTARGET"),
+                    Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
-            // context.DotNetRun(template.approject, context.DotNetRunSettings);
+                // context.DotNetRun(template.approject, context.DotNetRunSettings);
+            }
         }
     }
 }
