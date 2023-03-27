@@ -385,18 +385,12 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
             });
         }
 
-        foreach (var template in context.GetTemplateProjects())
-        {
-            context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
-        }
 
         foreach (var template in context.GetTemplateProjects())
         {
             context.DotNetRestore(Path.Combine(context.ScrDir, template.solution), context.DotNetRestoreTemplatesSettings);
             context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
         }
-
-
     }
 }
 
