@@ -369,10 +369,10 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
         {
             context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
             {
-                Arguments = $" tool restore --no-cache --ignore-failed-sources ",
+                Arguments = $"tool restore --no-cache",
                 WorkingDirectory = template.ax
 
-            });
+            }).WaitForExit();
         }
 
         foreach (var template in context.GetTemplateProjects())
@@ -382,7 +382,7 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
                 Arguments = $" ixc ",
                 WorkingDirectory = template.ax
 
-            });
+            }).WaitForExit();
         }
 
 

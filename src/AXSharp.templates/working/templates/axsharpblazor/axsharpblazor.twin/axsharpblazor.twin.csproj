@@ -5,9 +5,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AXSharp.Abstractions" Version="0.14.0-alfa-from-ix-to-axsharp.84" />
-    <PackageReference Include="AXSharp.Connector" Version="0.14.0-alfa-from-ix-to-axsharp.84" />
-    <PackageReference Include="AXSharp.Connector.S71500.WebAPI" Version="0.14.0-alfa-from-ix-to-axsharp.84" />
+    <PackageReference Include="AXSharp.Abstractions" Version="0.14.0-alpha.74" />
+    <PackageReference Include="AXSharp.Connector" Version="0.14.0-alpha.74" />
+    <PackageReference Include="AXSharp.Connector.S71500.WebAPI" Version="0.14.0-alpha.74" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include=".g\**" />
