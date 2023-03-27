@@ -64,7 +64,7 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        context.DotNetClean(Path.Combine(context.ScrDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
+        context.DotNetClean(Path.Combine(context.ScrDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity });
         context.CleanDirectory(context.Artifacts);
         context.CleanDirectory(context.TestResults);
     }
@@ -131,7 +131,7 @@ public sealed class BuildTask : FrostingTask<BuildContext>
         }
 
         context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.sln"), context.DotNetBuildSettings);
-        
+
     }
 }
 
@@ -149,7 +149,7 @@ public sealed class TestsTask : FrostingTask<BuildContext>
             return;
         }
 
-      
+
         if (context.BuildParameters.TestLevel == 1)
         {
             context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L1-tests.slnf"));
@@ -164,7 +164,7 @@ public sealed class TestsTask : FrostingTask<BuildContext>
         }
         else
         {
-            context.UploadTestPlc( 
+            context.UploadTestPlc(
                 Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//AXSharp.connectors//tests//ax-test-project//")),
                 Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"),
                 Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
@@ -177,69 +177,13 @@ public sealed class TestsTask : FrostingTask<BuildContext>
             context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L3-tests.slnf"));
         }
 
-        
+
 
     }
 
-    
-
-   
-}
-            foreach (var framework in context.TargetFrameworks)
-            {
-                context.DotNetTestSettings.VSTestReportPath = Path.Combine(context.TestResults, $"{project.Name}_{framework}.xml");
-                context.DotNetTestSettings.Framework = framework;
-                context.DotNetTest(Path.Combine(project.FullName), context.DotNetTestSettings);
-            }
-        }
-    }
-
-    private static void UploadTestPlc(BuildContext context, string workingDirectory, string targetIp,
-        string targetPlatform)
-    {
-
-        context.Log.Information($"Installing dependencies for ax project '{workingDirectory}' at {targetIp}");
 
 
 
-
-        context.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
-        {
-            Arguments = " install -L",
-            WorkingDirectory = workingDirectory,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false,
-            Silent = false
-        }).WaitForExit();
-
-
-        context.Log.Information($"Building ax project '{workingDirectory}' at {targetIp}");
-
-
-
-
-        context.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
-        {
-            Arguments = " apax build",
-            WorkingDirectory = workingDirectory,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false,
-            RedirectedStandardOutputHandler = (a) => string.Join(Environment.NewLine, a),
-            Silent = false
-        }).WaitForExit();
-
-
-        context.Log.Information($"Uploading ax project '{workingDirectory}' at {targetIp}");
-
-        context.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
-    }
-}
-                $" sld -t {targetIp} -i {targetPlatform} --accept-security-disclaimer --default-server-interface -r",
-            WorkingDirectory = workingDirectory,
-            RedirectStandardOutput = false,
-            RedirectStandardError = false
-        }).WaitForExit();
-    }
 }
 
 [TaskName("CreateArtifacts")]
@@ -257,17 +201,17 @@ public sealed class CreateArtifactsTask : FrostingTask<BuildContext>
         PackPackages(context, Path.Combine(context.ScrDir, "AXSharp-packable-only.slnf"));
     }
 
-    
+
 
     private static void PackPackages(BuildContext context, string solutionToPack)
-    {        
-        context.DotNetPack(solutionToPack, 
+    {
+        context.DotNetPack(solutionToPack,
             new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
-        {
-            OutputDirectory = Path.Combine(context.Artifacts, @"nugets"),
-            NoRestore = true,
-            NoBuild = false,
-        });
+            {
+                OutputDirectory = Path.Combine(context.Artifacts, @"nugets"),
+                NoRestore = true,
+                NoBuild = false,
+            });
     }
 }
 
@@ -285,31 +229,9 @@ public sealed class GenerateApiDocumentationTask : FrostingTask<BuildContext>
 
         context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
         {
-        context.PushNugetPackages("nugets");
-    }
-}
-
-            //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.dll", @"Ix.Connector");
-            //GenerateApiDocumentation(context, @$"ix.connectors\src\Ix.Connector.S71500.WebAPI\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Connector.S71500.WebAPI.dll", @"Ix.Connector.S71500.WebAPI");
-
-            //GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.dll", @"IX.Compiler");
-            //GenerateApiDocumentation(context, @$"ix.compiler\src\IX.Cs.Compiler\bin\{context.DotNetBuildSettings.Configuration}\net6.0\IX.Compiler.Cs.dll", @"IX.Compiler.Cs");
-
-            //GenerateApiDocumentation(context, @$"ix.abstractions\src\Ix.Abstractions\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Abstractions.dll", @"Ix.Abstractions");
-            //GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.dll", @"Ix.Presentation.Blazor");
-            //GenerateApiDocumentation(context, @$"ix.blazor\src\Ix.Presentation.Blazor.Controls\bin\{context.DotNetBuildSettings.Configuration}\net6.0\Ix.Presentation.Blazor.Controls.dll", @"Ix.Presentation.Blazor.Controls");
-    }
-
-    [Obsolete("Using docfx now...", true)]
-    private static void GenerateApiDocumentation(BuildContext context, string assemblyFile, string outputDocDirectory)
-    {
-        //context.Log.Information($"Generating documentation for {assemblyFile}");
-        //var docXmlFile = Path.Combine(context.RootDir, assemblyFile);
-        //var docDirectory = Path.Combine(context.ApiDocumentationDir, outputDocDirectory);
-        //context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
-        //{
-        //    Arguments = $"xmldocmd {docXmlFile} {docDirectory}"
-        //}).WaitForExit();
+            WorkingDirectory = context.DocumentationSource,
+            Arguments = $"docfx build"
+        }).WaitForExit();
     }
 }
 
@@ -320,6 +242,84 @@ public sealed class LicenseComplianceCheckTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
+        //var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.RootDir, "apax", ".apax", "packages"),
+        var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.ScrDir, "apax", "stc"),
+            "AX.*.*",
+            SearchOption.AllDirectories)
+            .Select(p => new FileInfo(p));
+
+        if (licensedFiles.Count() < 5)
+            throw new Exception("");
+
+
+        foreach (var nugetFile in Directory.EnumerateFiles(context.Artifacts, "*.nupkg", SearchOption.AllDirectories))
+        {
+            using (var zip = ZipFile.OpenRead(nugetFile))
+            {
+                var ouptutDir = Path.Combine(context.Artifacts, "verif");
+                zip.ExtractToDirectory(Path.Combine(context.Artifacts, "verif"));
+
+                if (Directory.EnumerateFiles(ouptutDir, "*.*", SearchOption.AllDirectories)
+                    .Select(p => new FileInfo(p))
+                    .Any(p => licensedFiles.Any(l => l.Name == p.Name)))
+                {
+                    throw new Exception("");
+                }
+
+                Directory.Delete(ouptutDir, true);
+            }
+        }
+    }
+}
+
+
+[TaskName("PushPackages task")]
+[IsDependentOn(typeof(LicenseComplianceCheckTask))]
+public sealed class PushPackages : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
+    {
+        if (!context.BuildParameters.DoPublish)
+        {
+            context.Log.Warning($"Skipping package push.");
+            return;
+        }
+
+        context.PushNugetPackages("nugets");
+    }
+}
+
+[TaskName("Publish release")]
+[IsDependentOn(typeof(PushPackages))]
+public sealed class PublishReleaseTask : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
+    {
+        if (!context.BuildParameters.DoPublishRelease)
+        {
+            context.Log.Warning($"Skipping package release.");
+            return;
+        }
+
+        if (Helpers.CanReleaseInternal())
+        {
+            var githubToken = context.Environment.GetEnvironmentVariable("GH_TOKEN");
+            var githubClient = new GitHubClient(new ProductHeaderValue("AXSHARP"));
+            githubClient.Credentials = new Credentials(githubToken);
+
+            var release = githubClient.Repository.Release.Create(
+                "ix-ax",
+                "axsharp",
+                new NewRelease($"{GitVersionInformation.SemVer}")
+                {
+                    Name = $"{GitVersionInformation.SemVer}",
+                    TargetCommitish = GitVersionInformation.Sha,
+                    Body = $"Release v{GitVersionInformation.SemVer}",
+                    Draft = !Helpers.CanReleasePublic(),
+                    Prerelease = !string.IsNullOrEmpty(GitVersionInformation.PreReleaseTag)
+                }
+            ).Result;
+        }
     }
 }
 
@@ -335,7 +335,7 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
             context.Log.Warning($"Skipping template package push.");
             return;
         }
-            "AX.*.*", 
+
         var templatesDirectory = Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates");
         var templateCsProjFiles = Directory.EnumerateFiles(templatesDirectory, "*.csproj", SearchOption.AllDirectories);
 
@@ -379,110 +379,18 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
         {
             context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
             {
-                Arguments = $"ixc",
+                Arguments = $" ixc ",
                 WorkingDirectory = template.ax
 
             });
         }
-            SearchOption.AllDirectories)
-            .Select(p => new FileInfo(p));
-
-        if (licensedFiles.Count() < 5)
-            throw new Exception("");
-
-
-        foreach (var nugetFile in Directory.EnumerateFiles(context.Artifacts, "*.nupkg", SearchOption.AllDirectories))
-        {
-            using (var zip = ZipFile.OpenRead(nugetFile))
-            {
-                var ouptutDir = Path.Combine(context.Artifacts, "verif");
-                zip.ExtractToDirectory(Path.Combine(context.Artifacts, "verif"));
-
-                if (Directory.EnumerateFiles(ouptutDir, "*.*", SearchOption.AllDirectories)
-                    .Select(p => new FileInfo(p))
-                    .Any(p => licensedFiles.Any(l => l.Name == p.Name)))
-                {
-                    throw new Exception("");
-                }
-
-                Directory.Delete(ouptutDir, true);
-            }
-        }
-    }
-}
-
-
-[TaskName("PushPackages task")]
-[IsDependentOn(typeof(LicenseComplianceCheckTask))]
-public sealed class PushPackages : FrostingTask<BuildContext>
-{
-    public override void Run(BuildContext context)
-    {
-        if (!context.BuildParameters.DoPublish)
-        {
-            context.Log.Warning($"Skipping package push.");
-            return;
-        }
-
-        if (Helpers.CanReleaseInternal())
-        {
-            foreach (var nugetFile in Directory.EnumerateFiles(Path.Combine(context.Artifacts, @"nugets"), "*.nupkg")
-                         .Select(p => new FileInfo(p)))
-            {
-                context.DotNetNuGetPush(nugetFile.FullName,
-                    new Cake.Common.Tools.DotNet.NuGet.Push.DotNetNuGetPushSettings()
-                    {
-                        ApiKey = Environment.GetEnvironmentVariable("GH_TOKEN"),
-                        Source = "https://nuget.pkg.github.com/ix-ax/index.json",
-                        SkipDuplicate = true
-                    });
-            }
-        }
-    }
-}
-
-[TaskName("Publish release")]
-[IsDependentOn(typeof(PushPackages))]
-public sealed class PublishReleaseTask : FrostingTask<BuildContext>
-{
-    public override void Run(BuildContext context)
-    {
-        if (!context.BuildParameters.DoPublishRelease)
-        {
-            context.Log.Warning($"Skipping package release.");
-            return;
-        }
-
-        if (Helpers.CanReleaseInternal())
-        {
-            var githubToken = context.Environment.GetEnvironmentVariable("GH_TOKEN");
-            var githubClient = new GitHubClient(new ProductHeaderValue("AXSHARP"));
-            githubClient.Credentials = new Credentials(githubToken);
-
-            var release = githubClient.Repository.Release.Create(
-                "ix-ax",
-                "axsharp",
-                new NewRelease($"{GitVersionInformation.SemVer}")
-                {
-                    Name = $"{GitVersionInformation.SemVer}",
-                    TargetCommitish = GitVersionInformation.Sha,
-                    Body = $"Release v{GitVersionInformation.SemVer}",
-                    Draft = !Helpers.CanReleasePublic(),
-                    Prerelease = !string.IsNullOrEmpty(GitVersionInformation.PreReleaseTag)
-                }
-            ).Result;
-        }
-    }
-}
-
-
 
         foreach (var template in context.GetTemplateProjects())
         {
             context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
         }
 
-        
+
     }
 }
 
@@ -492,7 +400,7 @@ public class TemplateTests : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        if (!context.BuildParameters.DoPublish || !context.BuildParameters.DoTest )
+        if (!context.BuildParameters.DoPublish || !context.BuildParameters.DoTest)
         {
             context.Log.Warning($"Skipping template package push.");
             return;
@@ -531,34 +439,34 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
     }
 
     private static void PackTemplatePackages(BuildContext context, string solutionToPack)
-        {
-            context.DotNetPack(solutionToPack,
-                new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
-                {
-                    OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
-                    Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
-                    NoRestore = false,
-                    NoBuild = false,
-                });
-        }
+    {
+        context.DotNetPack(solutionToPack,
+            new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
+            {
+                OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
+                Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
+                NoRestore = false,
+                NoBuild = false,
+            });
+    }
 
 }
 
 [TaskName("Templates push")]
 [IsDependentOn(typeof(TemplatesPackTask))]
 public class TemplatesPush : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
     {
-        public override void Run(BuildContext context)
+        if (!context.BuildParameters.DoPublish)
         {
-            if (!context.BuildParameters.DoPublish)
-            {
-                context.Log.Warning($"Skipping template build.");
-                return;
-            }
-
-            context.PushNugetPackages("templates");
+            context.Log.Warning($"Skipping template build.");
+            return;
         }
+
+        context.PushNugetPackages("templates");
     }
+}
 
 [TaskName("Default")]
 [IsDependentOn(typeof(TemplatesPush))]
