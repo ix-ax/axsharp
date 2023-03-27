@@ -19,9 +19,12 @@ namespace ixc;
 public static class Program
 {
     private const string Logo =
- @"| \ / 
-=  =  
-| / \
+ @"     ___      ___   ___    _  _   
+    /   \     \  \ /  /  _| || |_ 
+   /  ^  \     \  V  /  |_  __  _|
+  /  /_\  \     >   <    _| || |_ 
+ /  _____  \   /  .  \  |_  __  _|
+/__/     \__\ /__/ \__\   |_||_| 
 ";
 
     private static AXSharpProject? Project;

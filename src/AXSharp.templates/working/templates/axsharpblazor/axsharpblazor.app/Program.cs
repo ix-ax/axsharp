@@ -1,3 +1,4 @@
+using AXSharp.Connector;
 using AXSharp.Presentation.Blazor.Services;
 using ix_draft_blazor.Areas.Identity;
 using ix_draft_blazor.Data;
@@ -24,6 +25,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 
 builder.Services.AddIxBlazorServices();
 
+Entry.Plc.Connector.SubscriptionMode = ReadSubscriptionMode.AutoSubscribeUsedVariables;
 Entry.Plc.Connector.BuildAndStart().ReadWriteCycleDelay = 100;
 
 var app = builder.Build();
