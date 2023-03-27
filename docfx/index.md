@@ -81,13 +81,12 @@ The installation may fail if some of the source is not available.
 List available templates
 
 ~~~
-dotnet new list --tag ix
+dotnet new list --tag AX#
 
 Template Name                   Short Name  Language  Tags
 ------------------------------  ----------  --------  -----------------
-IX Blazor application           ixblazor    [C#]      IX/Blazor
-IX Simmple console application  ixconsole   [C#]      IX/Console-Simple
-IX twin project                 ixtwin      [C#]      IX/Twin Library
+AX# Blazor application           axeblazor    [C#]      AX#/Blazor
+AX# Simmple console application  axeconsole   [C#]      AX#/Console-Simple
 .
 .
 .
