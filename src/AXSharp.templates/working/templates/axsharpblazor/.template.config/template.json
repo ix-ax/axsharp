@@ -3,7 +3,7 @@
   "author": "PTKu",
   "classifications": [ "AX#", "Blazor" ],
   "identity": "axsharpblazor",
-  "name": "AXShapr Blazor application",
+  "name": "AXSharp Blazor application",
   "shortName": "axeblazor",
   "tags": {
     "language": "C#",
