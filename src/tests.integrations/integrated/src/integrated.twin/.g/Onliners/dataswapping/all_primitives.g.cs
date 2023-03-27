@@ -1,9 +1,9 @@
 using System;
-using Ix.Connector;
-using Ix.Connector.ValueTypes;
+using AXSharp.Connector;
+using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
 
-public partial class all_primitives : Ix.Connector.ITwinObject
+public partial class all_primitives : AXSharp.Connector.ITwinObject
 {
     public OnlinerBool myBOOL { get; }
 
@@ -49,18 +49,18 @@ public partial class all_primitives : Ix.Connector.ITwinObject
 
     public OnlinerWString myWSTRING { get; }
 
-    [Ix.Connector.EnumeratorDiscriminatorAttribute(typeof(myEnum))]
+    [AXSharp.Connector.EnumeratorDiscriminatorAttribute(typeof(myEnum))]
     public OnlinerInt myEnum { get; }
 
-    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    public all_primitives(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+    partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    public all_primitives(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
-        Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+        Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         this.@SymbolTail = symbolTail;
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
-        HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         PreConstruct(parent, readableTail, symbolTail);
         myBOOL = @Connector.ConnectorAdapter.AdapterFactory.CreateBOOL(this, "myBOOL", "myBOOL");
         myBYTE = @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(this, "myBYTE", "myBYTE");
@@ -291,42 +291,42 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         return new Pocos.all_primitives();
     }
 
-    private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-    public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+    private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+    public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
     {
         return Children;
     }
 
-    private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-    public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+    private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+    public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
     {
         return Kids;
     }
 
-    private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-    public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+    private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+    public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
     {
         return ValueTags;
     }
 
-    public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+    public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
     {
         ValueTags.Add(valueTag);
     }
 
-    public void AddKid(Ix.Connector.ITwinElement kid)
+    public void AddKid(AXSharp.Connector.ITwinElement kid)
     {
         Kids.Add(kid);
     }
 
-    public void AddChild(Ix.Connector.ITwinObject twinObject)
+    public void AddChild(AXSharp.Connector.ITwinObject twinObject)
     {
         Children.Add(twinObject);
     }
 
-    protected Ix.Connector.Connector @Connector { get; }
+    protected AXSharp.Connector.Connector @Connector { get; }
 
-    public Ix.Connector.Connector GetConnector()
+    public AXSharp.Connector.Connector GetConnector()
     {
         return this.@Connector;
     }
@@ -336,7 +336,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
         return this.SymbolTail;
     }
 
-    public Ix.Connector.ITwinObject GetParent()
+    public AXSharp.Connector.ITwinObject GetParent()
     {
         return this.@Parent;
     }
@@ -348,7 +348,7 @@ public partial class all_primitives : Ix.Connector.ITwinObject
     {
         get
         {
-            return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
         }
 
         set
@@ -361,5 +361,5 @@ public partial class all_primitives : Ix.Connector.ITwinObject
 
     protected System.String @SymbolTail { get; set; }
 
-    protected Ix.Connector.ITwinObject @Parent { get; set; }
+    protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 }

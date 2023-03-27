@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
+    <ProjectReference Include="..\..\..\src\AXSharp.Presentation.Blazor.Controls\AXSharp.Presentation.Blazor.Controls.csproj" />
+    <ProjectReference Include="..\..\..\src\AXSharp.Presentation.Blazor\AXSharp.Presentation.Blazor.csproj" />
+    <ProjectReference Include="..\ax-blazor-example\ix\ax-blazor-example.csproj" />
+    
+  </ItemGroup>
+
+</Project>

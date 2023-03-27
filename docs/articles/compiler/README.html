@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IX Compiler | System.Dynamic.ExpandoObject </title>
+    <title>AXSharp Compiler | System.Dynamic.ExpandoObject </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IX Compiler | System.Dynamic.ExpandoObject ">
+    <meta name="title" content="AXSharp Compiler | System.Dynamic.ExpandoObject ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../images/favicon.ico">
@@ -36,7 +36,7 @@
               </button>
 
               <a class="navbar-brand" href="../../index.html">
-                <p class="text-logo">IX</p>
+                <p class="text-logo">AX#</p>
               </a>            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
@@ -77,9 +77,9 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="ix-compiler">IX Compiler</h1>
+<h1 id="axsharp-compiler">AXSharp Compiler</h1>
 
-<p><strong>IX Compiler (<code>ixc</code>) translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application.</strong></p>
+<p><strong>AXSharp Compiler (<code>ixc</code>) translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application.</strong></p>
 <h3 id="write-plc-code">Write PLC code</h3>
 <pre><code class="lang-iecst">{#ix-attr:[Container(Layout.Stack)]}
 {#ix-attr:[Group(Layout.GroupBox)]}
@@ -105,13 +105,13 @@ END_CLASS
 </code></pre>
 <h3 id="compile-to-get-net-twin">Compile to get .NET twin</h3>
 <pre><code class="lang-C#">using System;
-using Ix.Connector;
-using Ix.Connector.ValueTypes;
+using AXSharp.Connector;
+using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
 
 [Container(Layout.Stack)]
 [Group(Layout.GroupBox)]
-public partial class GeoLocation : Ix.Connector.ITwinObject
+public partial class GeoLocation : AXSharp.Connector.ITwinObject
 {
     public OnlinerReal Latitude { get; }
 
@@ -145,7 +145,7 @@ Entry.Plc.weather.GeoLocation.Write();
 <li><a href="CONFIG_FILE.html">Config file</a></li>
 <li><a href="PACKAGING.html">Packaging and dependency management</a></li>
 </ul>
-<p>IX compiles transpiles following project blocks:</p>
+<p>AXSharp compiles transpiles following project blocks:</p>
 <ul>
 <li><a href="https://console.simatic-ax.siemens.io/docs/st/language/program-structure/configuration#global-variables">Configuration's global variables</a></li>
 <li><a href="https://console.simatic-ax.siemens.io/docs/st/language/types-and-variables#elementary-data-types">Elementary data types</a></li>
@@ -163,7 +163,7 @@ Entry.Plc.weather.GeoLocation.Write();
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/ix-ax/ix/blob/dev/docfx/articles/compiler/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/ix-ax/ix/blob/alfa/from_ix_to_axsharp/docfx/articles/compiler/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

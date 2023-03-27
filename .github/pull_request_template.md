@@ -25,7 +25,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 **Test Configuration**:
 
 * simatix-ax version (apax.yml):
-* ix version:
+* AX# version:
 * PLC Target system:
 * PLC Firmware version:
 * OS System:

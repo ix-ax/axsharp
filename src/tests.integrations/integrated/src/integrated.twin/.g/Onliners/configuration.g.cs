@@ -1,12 +1,12 @@
 using System;
-using Ix.Connector;
-using Ix.Connector.ValueTypes;
+using AXSharp.Connector;
+using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
 using RealMonsterData;
 
 public partial class integratedTwinController : ITwinController
 {
-    public Ix.Connector.Connector Connector { get; }
+    public AXSharp.Connector.Connector Connector { get; }
 
     public MonsterData.Monster Monster { get; }
 
@@ -48,7 +48,7 @@ public partial class integratedTwinController : ITwinController
 
     public RealMonsterData.RealMonster StartPolling_should_update_cyclic_property { get; }
 
-    public integratedTwinController(Ix.Connector.ConnectorAdapter adapter, object[] parameters)
+    public integratedTwinController(AXSharp.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
         Monster = new MonsterData.Monster(this.Connector, "", "Monster");
@@ -73,7 +73,7 @@ public partial class integratedTwinController : ITwinController
         StartPolling_should_update_cyclic_property = new RealMonsterData.RealMonster(this.Connector, "", "StartPolling_should_update_cyclic_property");
     }
 
-    public integratedTwinController(Ix.Connector.ConnectorAdapter adapter)
+    public integratedTwinController(AXSharp.Connector.ConnectorAdapter adapter)
     {
         this.Connector = adapter.GetConnector(adapter.Parameters);
         Monster = new MonsterData.Monster(this.Connector, "", "Monster");
@@ -99,19 +99,19 @@ public partial class integratedTwinController : ITwinController
     }
 }
 
-public partial class Pokus : Ix.Connector.ITwinObject
+public partial class Pokus : AXSharp.Connector.ITwinObject
 {
     public Nested Nested { get; }
 
-    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    public Pokus(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+    partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    public Pokus(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
-        Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+        Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         this.@SymbolTail = symbolTail;
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
-        HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         PreConstruct(parent, readableTail, symbolTail);
         Nested = new Nested(this, "Nested", "Nested");
         parent.AddChild(this);
@@ -188,42 +188,42 @@ public partial class Pokus : Ix.Connector.ITwinObject
         return new Pocos.Pokus();
     }
 
-    private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-    public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+    private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+    public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
     {
         return Children;
     }
 
-    private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-    public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+    private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+    public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
     {
         return Kids;
     }
 
-    private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-    public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+    private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+    public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
     {
         return ValueTags;
     }
 
-    public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+    public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
     {
         ValueTags.Add(valueTag);
     }
 
-    public void AddKid(Ix.Connector.ITwinElement kid)
+    public void AddKid(AXSharp.Connector.ITwinElement kid)
     {
         Kids.Add(kid);
     }
 
-    public void AddChild(Ix.Connector.ITwinObject twinObject)
+    public void AddChild(AXSharp.Connector.ITwinObject twinObject)
     {
         Children.Add(twinObject);
     }
 
-    protected Ix.Connector.Connector @Connector { get; }
+    protected AXSharp.Connector.Connector @Connector { get; }
 
-    public Ix.Connector.Connector GetConnector()
+    public AXSharp.Connector.Connector GetConnector()
     {
         return this.@Connector;
     }
@@ -233,7 +233,7 @@ public partial class Pokus : Ix.Connector.ITwinObject
         return this.SymbolTail;
     }
 
-    public Ix.Connector.ITwinObject GetParent()
+    public AXSharp.Connector.ITwinObject GetParent()
     {
         return this.@Parent;
     }
@@ -245,7 +245,7 @@ public partial class Pokus : Ix.Connector.ITwinObject
     {
         get
         {
-            return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
         }
 
         set
@@ -258,10 +258,10 @@ public partial class Pokus : Ix.Connector.ITwinObject
 
     protected System.String @SymbolTail { get; set; }
 
-    protected Ix.Connector.ITwinObject @Parent { get; set; }
+    protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 }
 
-public partial class Nested : Ix.Connector.ITwinObject
+public partial class Nested : AXSharp.Connector.ITwinObject
 {
     public OnlinerString SomeString { get; }
 
@@ -269,15 +269,15 @@ public partial class Nested : Ix.Connector.ITwinObject
 
     public OnlinerByte SomeByte { get; }
 
-    partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    public Nested(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+    partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+    public Nested(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
     {
-        Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+        Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         this.@SymbolTail = symbolTail;
         this.@Connector = parent.GetConnector();
         this.@Parent = parent;
-        HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+        HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         PreConstruct(parent, readableTail, symbolTail);
         SomeString = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "SomeString", "SomeString");
         SomeInt = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "SomeInt", "SomeInt");
@@ -368,42 +368,42 @@ public partial class Nested : Ix.Connector.ITwinObject
         return new Pocos.Nested();
     }
 
-    private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-    public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+    private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+    public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
     {
         return Children;
     }
 
-    private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-    public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+    private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+    public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
     {
         return Kids;
     }
 
-    private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-    public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+    private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+    public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
     {
         return ValueTags;
     }
 
-    public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+    public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
     {
         ValueTags.Add(valueTag);
     }
 
-    public void AddKid(Ix.Connector.ITwinElement kid)
+    public void AddKid(AXSharp.Connector.ITwinElement kid)
     {
         Kids.Add(kid);
     }
 
-    public void AddChild(Ix.Connector.ITwinObject twinObject)
+    public void AddChild(AXSharp.Connector.ITwinObject twinObject)
     {
         Children.Add(twinObject);
     }
 
-    protected Ix.Connector.Connector @Connector { get; }
+    protected AXSharp.Connector.Connector @Connector { get; }
 
-    public Ix.Connector.Connector GetConnector()
+    public AXSharp.Connector.Connector GetConnector()
     {
         return this.@Connector;
     }
@@ -413,7 +413,7 @@ public partial class Nested : Ix.Connector.ITwinObject
         return this.SymbolTail;
     }
 
-    public Ix.Connector.ITwinObject GetParent()
+    public AXSharp.Connector.ITwinObject GetParent()
     {
         return this.@Parent;
     }
@@ -425,7 +425,7 @@ public partial class Nested : Ix.Connector.ITwinObject
     {
         get
         {
-            return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+            return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
         }
 
         set
@@ -438,5 +438,5 @@ public partial class Nested : Ix.Connector.ITwinObject
 
     protected System.String @SymbolTail { get; set; }
 
-    protected Ix.Connector.ITwinObject @Parent { get; set; }
+    protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 }
