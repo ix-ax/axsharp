@@ -1,6 +1,6 @@
-# IX Compiler
+# AXSharp Compiler
 
-**IX Compiler (`ixc`) translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application.**
+**AXSharp Compiler (`ixc`) translates PLC data structures into C# (PLC .NET Twin), which makes the PLC data available in a structured way for any .NET application.**
 
 ### Write PLC code
 
@@ -32,13 +32,13 @@ END_CLASS
 
 ~~~ C#
 using System;
-using Ix.Connector;
-using Ix.Connector.ValueTypes;
+using AXSharp.Connector;
+using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
 
 [Container(Layout.Stack)]
 [Group(Layout.GroupBox)]
-public partial class GeoLocation : Ix.Connector.ITwinObject
+public partial class GeoLocation : AXSharp.Connector.ITwinObject
 {
     public OnlinerReal Latitude { get; }
 
@@ -76,7 +76,7 @@ Entry.Plc.weather.GeoLocation.Write();
 - [Config file](CONFIG_FILE.md)
 - [Packaging and dependency management](PACKAGING.md)
 
-IX compiles transpiles following project blocks:
+AXSharp compiles transpiles following project blocks:
 
 - [Configuration's global variables](https://console.simatic-ax.siemens.io/docs/st/language/program-structure/configuration#global-variables)
 - [Elementary data types](https://console.simatic-ax.siemens.io/docs/st/language/types-and-variables#elementary-data-types)

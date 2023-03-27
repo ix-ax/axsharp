@@ -20,6 +20,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\ix.tools\src\ix.nuget.update\ix.nuget.update.csproj" />
+    <ProjectReference Include="..\src\AXSharp.tools\src\AXSharp.nuget.update\AXSharp.nuget.update.csproj" />
   </ItemGroup>
 </Project>

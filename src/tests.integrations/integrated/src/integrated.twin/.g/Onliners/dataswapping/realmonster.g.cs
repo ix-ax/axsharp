@@ -1,11 +1,11 @@
 using System;
-using Ix.Connector;
-using Ix.Connector.ValueTypes;
+using AXSharp.Connector;
+using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
 
 namespace RealMonsterData
 {
-    public partial class RealMonsterBase : Ix.Connector.ITwinObject
+    public partial class RealMonsterBase : AXSharp.Connector.ITwinObject
     {
         public OnlinerString Description { get; }
 
@@ -21,15 +21,15 @@ namespace RealMonsterData
 
         public RealMonsterData.DriveBaseNested[] ArrayOfDrives { get; }
 
-        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        public RealMonsterBase(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+        partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        public RealMonsterBase(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
-            Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             this.@SymbolTail = symbolTail;
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
-            HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             Description = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "Description", "Description");
             Id = @Connector.ConnectorAdapter.AdapterFactory.CreateULINT(this, "Id", "Id");
@@ -37,9 +37,9 @@ namespace RealMonsterData
             TestDateTime = @Connector.ConnectorAdapter.AdapterFactory.CreateDATE_AND_TIME(this, "TestDateTime", "TestDateTime");
             TestTimeSpan = @Connector.ConnectorAdapter.AdapterFactory.CreateTIME_OF_DAY(this, "TestTimeSpan", "TestTimeSpan");
             ArrayOfBytes = new OnlinerByte[4];
-            Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfBytes, this, "ArrayOfBytes", "ArrayOfBytes", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st));
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfBytes, this, "ArrayOfBytes", "ArrayOfBytes", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st));
             ArrayOfDrives = new RealMonsterData.DriveBaseNested[4];
-            Ix.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfDrives, this, "ArrayOfDrives", "ArrayOfDrives", (p, rt, st) => new RealMonsterData.DriveBaseNested(p, rt, st));
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfDrives, this, "ArrayOfDrives", "ArrayOfDrives", (p, rt, st) => new RealMonsterData.DriveBaseNested(p, rt, st));
             parent.AddChild(this);
             parent.AddKid(this);
             PostConstruct(parent, readableTail, symbolTail);
@@ -154,42 +154,42 @@ namespace RealMonsterData
             return new Pocos.RealMonsterData.RealMonsterBase();
         }
 
-        private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-        public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+        private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+        public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
         {
             return Children;
         }
 
-        private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-        public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+        private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+        public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
         {
             return Kids;
         }
 
-        private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-        public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+        private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+        public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
         {
             return ValueTags;
         }
 
-        public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+        public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
         {
             ValueTags.Add(valueTag);
         }
 
-        public void AddKid(Ix.Connector.ITwinElement kid)
+        public void AddKid(AXSharp.Connector.ITwinElement kid)
         {
             Kids.Add(kid);
         }
 
-        public void AddChild(Ix.Connector.ITwinObject twinObject)
+        public void AddChild(AXSharp.Connector.ITwinObject twinObject)
         {
             Children.Add(twinObject);
         }
 
-        protected Ix.Connector.Connector @Connector { get; }
+        protected AXSharp.Connector.Connector @Connector { get; }
 
-        public Ix.Connector.Connector GetConnector()
+        public AXSharp.Connector.Connector GetConnector()
         {
             return this.@Connector;
         }
@@ -199,7 +199,7 @@ namespace RealMonsterData
             return this.SymbolTail;
         }
 
-        public Ix.Connector.ITwinObject GetParent()
+        public AXSharp.Connector.ITwinObject GetParent()
         {
             return this.@Parent;
         }
@@ -211,7 +211,7 @@ namespace RealMonsterData
         {
             get
             {
-                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
             }
 
             set
@@ -224,18 +224,18 @@ namespace RealMonsterData
 
         protected System.String @SymbolTail { get; set; }
 
-        protected Ix.Connector.ITwinObject @Parent { get; set; }
+        protected AXSharp.Connector.ITwinObject @Parent { get; set; }
     }
 
     public partial class RealMonster : RealMonsterBase
     {
         public RealMonsterData.DriveBaseNested DriveA { get; }
 
-        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        public RealMonster(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")
+        partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        public RealMonster(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")
         {
-            Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             PreConstruct(parent, readableTail, symbolTail);
             DriveA = new RealMonsterData.DriveBaseNested(this, "DriveA", "DriveA");
             PostConstruct(parent, readableTail, symbolTail);
@@ -246,7 +246,7 @@ namespace RealMonsterData
             return await (dynamic)this.OnlineToPlainAsync();
         }
 
-        public async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
+        public new async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
             await this.ReadAsync();
@@ -279,7 +279,7 @@ namespace RealMonsterData
             return await (dynamic)this.ShadowToPlainAsync();
         }
 
-        public async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
+        public new async Task<Pocos.RealMonsterData.RealMonster> ShadowToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
             await base.ShadowToPlainAsync(plain);
@@ -306,18 +306,18 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
-        public void Poll()
+        public new void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
         }
 
-        public Pocos.RealMonsterData.RealMonster CreateEmptyPoco()
+        public new Pocos.RealMonsterData.RealMonster CreateEmptyPoco()
         {
             return new Pocos.RealMonsterData.RealMonster();
         }
     }
 
-    public partial class DriveBaseNested : Ix.Connector.ITwinObject
+    public partial class DriveBaseNested : AXSharp.Connector.ITwinObject
     {
         public OnlinerLReal Position { get; }
 
@@ -329,15 +329,15 @@ namespace RealMonsterData
 
         public RealMonsterData.NestedLevelOne NestedLevelOne { get; }
 
-        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        public DriveBaseNested(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+        partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        public DriveBaseNested(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
-            Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             this.@SymbolTail = symbolTail;
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
-            HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             Position = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Position", "Position");
             Velo = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Velo", "Velo");
@@ -442,42 +442,42 @@ namespace RealMonsterData
             return new Pocos.RealMonsterData.DriveBaseNested();
         }
 
-        private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-        public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+        private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+        public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
         {
             return Children;
         }
 
-        private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-        public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+        private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+        public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
         {
             return Kids;
         }
 
-        private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-        public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+        private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+        public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
         {
             return ValueTags;
         }
 
-        public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+        public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
         {
             ValueTags.Add(valueTag);
         }
 
-        public void AddKid(Ix.Connector.ITwinElement kid)
+        public void AddKid(AXSharp.Connector.ITwinElement kid)
         {
             Kids.Add(kid);
         }
 
-        public void AddChild(Ix.Connector.ITwinObject twinObject)
+        public void AddChild(AXSharp.Connector.ITwinObject twinObject)
         {
             Children.Add(twinObject);
         }
 
-        protected Ix.Connector.Connector @Connector { get; }
+        protected AXSharp.Connector.Connector @Connector { get; }
 
-        public Ix.Connector.Connector GetConnector()
+        public AXSharp.Connector.Connector GetConnector()
         {
             return this.@Connector;
         }
@@ -487,7 +487,7 @@ namespace RealMonsterData
             return this.SymbolTail;
         }
 
-        public Ix.Connector.ITwinObject GetParent()
+        public AXSharp.Connector.ITwinObject GetParent()
         {
             return this.@Parent;
         }
@@ -499,7 +499,7 @@ namespace RealMonsterData
         {
             get
             {
-                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
             }
 
             set
@@ -512,10 +512,10 @@ namespace RealMonsterData
 
         protected System.String @SymbolTail { get; set; }
 
-        protected Ix.Connector.ITwinObject @Parent { get; set; }
+        protected AXSharp.Connector.ITwinObject @Parent { get; set; }
     }
 
-    public partial class NestedLevelOne : Ix.Connector.ITwinObject
+    public partial class NestedLevelOne : AXSharp.Connector.ITwinObject
     {
         public OnlinerLReal Position { get; }
 
@@ -527,15 +527,15 @@ namespace RealMonsterData
 
         public RealMonsterData.NestedLevelTwo NestedLevelTwo { get; }
 
-        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        public NestedLevelOne(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+        partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        public NestedLevelOne(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
-            Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             this.@SymbolTail = symbolTail;
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
-            HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             Position = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Position", "Position");
             Velo = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Velo", "Velo");
@@ -640,42 +640,42 @@ namespace RealMonsterData
             return new Pocos.RealMonsterData.NestedLevelOne();
         }
 
-        private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-        public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+        private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+        public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
         {
             return Children;
         }
 
-        private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-        public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+        private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+        public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
         {
             return Kids;
         }
 
-        private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-        public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+        private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+        public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
         {
             return ValueTags;
         }
 
-        public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+        public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
         {
             ValueTags.Add(valueTag);
         }
 
-        public void AddKid(Ix.Connector.ITwinElement kid)
+        public void AddKid(AXSharp.Connector.ITwinElement kid)
         {
             Kids.Add(kid);
         }
 
-        public void AddChild(Ix.Connector.ITwinObject twinObject)
+        public void AddChild(AXSharp.Connector.ITwinObject twinObject)
         {
             Children.Add(twinObject);
         }
 
-        protected Ix.Connector.Connector @Connector { get; }
+        protected AXSharp.Connector.Connector @Connector { get; }
 
-        public Ix.Connector.Connector GetConnector()
+        public AXSharp.Connector.Connector GetConnector()
         {
             return this.@Connector;
         }
@@ -685,7 +685,7 @@ namespace RealMonsterData
             return this.SymbolTail;
         }
 
-        public Ix.Connector.ITwinObject GetParent()
+        public AXSharp.Connector.ITwinObject GetParent()
         {
             return this.@Parent;
         }
@@ -697,7 +697,7 @@ namespace RealMonsterData
         {
             get
             {
-                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
             }
 
             set
@@ -710,10 +710,10 @@ namespace RealMonsterData
 
         protected System.String @SymbolTail { get; set; }
 
-        protected Ix.Connector.ITwinObject @Parent { get; set; }
+        protected AXSharp.Connector.ITwinObject @Parent { get; set; }
     }
 
-    public partial class NestedLevelTwo : Ix.Connector.ITwinObject
+    public partial class NestedLevelTwo : AXSharp.Connector.ITwinObject
     {
         public OnlinerLReal Position { get; }
 
@@ -725,15 +725,15 @@ namespace RealMonsterData
 
         public RealMonsterData.NestedLevelThree NestedLevelThree { get; }
 
-        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        public NestedLevelTwo(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+        partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        public NestedLevelTwo(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
-            Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             this.@SymbolTail = symbolTail;
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
-            HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             Position = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Position", "Position");
             Velo = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Velo", "Velo");
@@ -838,42 +838,42 @@ namespace RealMonsterData
             return new Pocos.RealMonsterData.NestedLevelTwo();
         }
 
-        private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-        public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+        private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+        public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
         {
             return Children;
         }
 
-        private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-        public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+        private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+        public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
         {
             return Kids;
         }
 
-        private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-        public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+        private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+        public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
         {
             return ValueTags;
         }
 
-        public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+        public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
         {
             ValueTags.Add(valueTag);
         }
 
-        public void AddKid(Ix.Connector.ITwinElement kid)
+        public void AddKid(AXSharp.Connector.ITwinElement kid)
         {
             Kids.Add(kid);
         }
 
-        public void AddChild(Ix.Connector.ITwinObject twinObject)
+        public void AddChild(AXSharp.Connector.ITwinObject twinObject)
         {
             Children.Add(twinObject);
         }
 
-        protected Ix.Connector.Connector @Connector { get; }
+        protected AXSharp.Connector.Connector @Connector { get; }
 
-        public Ix.Connector.Connector GetConnector()
+        public AXSharp.Connector.Connector GetConnector()
         {
             return this.@Connector;
         }
@@ -883,7 +883,7 @@ namespace RealMonsterData
             return this.SymbolTail;
         }
 
-        public Ix.Connector.ITwinObject GetParent()
+        public AXSharp.Connector.ITwinObject GetParent()
         {
             return this.@Parent;
         }
@@ -895,7 +895,7 @@ namespace RealMonsterData
         {
             get
             {
-                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
             }
 
             set
@@ -908,10 +908,10 @@ namespace RealMonsterData
 
         protected System.String @SymbolTail { get; set; }
 
-        protected Ix.Connector.ITwinObject @Parent { get; set; }
+        protected AXSharp.Connector.ITwinObject @Parent { get; set; }
     }
 
-    public partial class NestedLevelThree : Ix.Connector.ITwinObject
+    public partial class NestedLevelThree : AXSharp.Connector.ITwinObject
     {
         public OnlinerLReal Position { get; }
 
@@ -921,15 +921,15 @@ namespace RealMonsterData
 
         public OnlinerLReal Dcc { get; }
 
-        partial void PreConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        partial void PostConstruct(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail);
-        public NestedLevelThree(Ix.Connector.ITwinObject parent, string readableTail, string symbolTail)
+        partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
+        public NestedLevelThree(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
         {
-            Symbol = Ix.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
             this.@SymbolTail = symbolTail;
             this.@Connector = parent.GetConnector();
             this.@Parent = parent;
-            HumanReadable = Ix.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
+            HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             Position = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Position", "Position");
             Velo = @Connector.ConnectorAdapter.AdapterFactory.CreateLREAL(this, "Velo", "Velo");
@@ -1027,42 +1027,42 @@ namespace RealMonsterData
             return new Pocos.RealMonsterData.NestedLevelThree();
         }
 
-        private IList<Ix.Connector.ITwinObject> Children { get; } = new List<Ix.Connector.ITwinObject>();
-        public IEnumerable<Ix.Connector.ITwinObject> GetChildren()
+        private IList<AXSharp.Connector.ITwinObject> Children { get; } = new List<AXSharp.Connector.ITwinObject>();
+        public IEnumerable<AXSharp.Connector.ITwinObject> GetChildren()
         {
             return Children;
         }
 
-        private IList<Ix.Connector.ITwinElement> Kids { get; } = new List<Ix.Connector.ITwinElement>();
-        public IEnumerable<Ix.Connector.ITwinElement> GetKids()
+        private IList<AXSharp.Connector.ITwinElement> Kids { get; } = new List<AXSharp.Connector.ITwinElement>();
+        public IEnumerable<AXSharp.Connector.ITwinElement> GetKids()
         {
             return Kids;
         }
 
-        private IList<Ix.Connector.ITwinPrimitive> ValueTags { get; } = new List<Ix.Connector.ITwinPrimitive>();
-        public IEnumerable<Ix.Connector.ITwinPrimitive> GetValueTags()
+        private IList<AXSharp.Connector.ITwinPrimitive> ValueTags { get; } = new List<AXSharp.Connector.ITwinPrimitive>();
+        public IEnumerable<AXSharp.Connector.ITwinPrimitive> GetValueTags()
         {
             return ValueTags;
         }
 
-        public void AddValueTag(Ix.Connector.ITwinPrimitive valueTag)
+        public void AddValueTag(AXSharp.Connector.ITwinPrimitive valueTag)
         {
             ValueTags.Add(valueTag);
         }
 
-        public void AddKid(Ix.Connector.ITwinElement kid)
+        public void AddKid(AXSharp.Connector.ITwinElement kid)
         {
             Kids.Add(kid);
         }
 
-        public void AddChild(Ix.Connector.ITwinObject twinObject)
+        public void AddChild(AXSharp.Connector.ITwinObject twinObject)
         {
             Children.Add(twinObject);
         }
 
-        protected Ix.Connector.Connector @Connector { get; }
+        protected AXSharp.Connector.Connector @Connector { get; }
 
-        public Ix.Connector.Connector GetConnector()
+        public AXSharp.Connector.Connector GetConnector()
         {
             return this.@Connector;
         }
@@ -1072,7 +1072,7 @@ namespace RealMonsterData
             return this.SymbolTail;
         }
 
-        public Ix.Connector.ITwinObject GetParent()
+        public AXSharp.Connector.ITwinObject GetParent()
         {
             return this.@Parent;
         }
@@ -1084,7 +1084,7 @@ namespace RealMonsterData
         {
             get
             {
-                return Ix.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
+                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
             }
 
             set
@@ -1097,6 +1097,6 @@ namespace RealMonsterData
 
         protected System.String @SymbolTail { get; set; }
 
-        protected Ix.Connector.ITwinObject @Parent { get; set; }
+        protected AXSharp.Connector.ITwinObject @Parent { get; set; }
     }
 }

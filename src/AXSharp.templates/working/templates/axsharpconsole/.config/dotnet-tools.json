@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "AXSharp.ixc": {
+      "version": "0.14.0-alfa-from-ix-to-axsharp.84",
+      "commands": [
+        "ixc"
+      ]
+    }
+  }
+}

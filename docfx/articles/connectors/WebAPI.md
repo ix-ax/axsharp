@@ -1,6 +1,6 @@
 # WebAPI Connector
 
-## [API](~/api/Ix.Connector.S71500.WebAPI.yml)
+## [API](~/api/AXSharp.Connector.S71500.WebAPI.yml)
 
 Provides connectivity to S7-15XX PLC systems using WebAPI interface.
 

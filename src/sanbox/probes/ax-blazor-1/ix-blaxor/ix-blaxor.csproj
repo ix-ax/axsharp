@@ -12,7 +12,7 @@
   </PropertyGroup>
 
 <ItemGroup>
-  	<PackageReference Include="Ix.Presentation.Blazor" Version="0.5.0" />
-	<PackageReference Include="Ix.Presentation.Blazor.Controls" Version="0.5.0" /> 
+  	<PackageReference Include="AXSharp.Presentation.Blazor" Version="0.5.0" />
+	<PackageReference Include="AXSharp.Presentation.Blazor.Controls" Version="0.5.0" /> 
 </ItemGroup>
 </Project>
