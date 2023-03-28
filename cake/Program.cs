@@ -242,33 +242,7 @@ public sealed class LicenseComplianceCheckTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        //var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.RootDir, "apax", ".apax", "packages"),
-        var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.ScrDir, "apax", "stc"),
-            "AX.*.*", 
-            SearchOption.AllDirectories)
-            .Select(p => new FileInfo(p));
-
-        if (licensedFiles.Count() < 5)
-            throw new Exception("");
-
-
-        foreach (var nugetFile in Directory.EnumerateFiles(context.Artifacts, "*.nupkg", SearchOption.AllDirectories))
-        {
-            using (var zip = ZipFile.OpenRead(nugetFile))
-            {
-                var ouptutDir = Path.Combine(context.Artifacts, "verif");
-                zip.ExtractToDirectory(Path.Combine(context.Artifacts, "verif"));
-
-                if (Directory.EnumerateFiles(ouptutDir, "*.*", SearchOption.AllDirectories)
-                    .Select(p => new FileInfo(p))
-                    .Any(p => licensedFiles.Any(l => l.Name == p.Name)))
-                {
-                    throw new Exception("");
-                }
-
-                Directory.Delete(ouptutDir, true);
-            }
-        }
+        context.CheckLicenseComplianceInArtifacts();
     }
 }
 
@@ -423,6 +397,8 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
         PackTemplatePackages(context,
             Path.Combine(context.ScrDir, "AXSharp.templates\\working\\AXSharp.templates.sln"));
         context.PushNugetPackages("templates");
+
+        context.CheckLicenseComplianceInArtifacts();
     }
 
     private static void PackTemplatePackages(BuildContext context, string solutionToPack)

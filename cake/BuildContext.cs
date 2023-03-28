@@ -5,8 +5,10 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using Build.FilteredSolution;
 using Cake.Common.Tools.DotNet;
@@ -172,5 +174,36 @@ public class BuildContext : FrostingContext
         };
 
         return templates;
+    }
+
+    public void CheckLicenseComplianceInArtifacts()
+    {
+        //var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.RootDir, "apax", ".apax", "packages"),
+        var licensedFiles = Directory.EnumerateFiles(Path.Combine(this.ScrDir, "apax", "stc"),
+                "AX.*.*",
+                SearchOption.AllDirectories)
+            .Select(p => new FileInfo(p));
+
+        if (licensedFiles.Count() < 5)
+            throw new Exception("");
+
+
+        foreach (var nugetFile in Directory.EnumerateFiles(this.Artifacts, "*.nupkg", SearchOption.AllDirectories))
+        {
+            using (var zip = ZipFile.OpenRead(nugetFile))
+            {
+                var ouptutDir = Path.Combine(this.Artifacts, "verif");
+                zip.ExtractToDirectory(Path.Combine(this.Artifacts, "verif"));
+
+                if (Directory.EnumerateFiles(ouptutDir, "*.*", SearchOption.AllDirectories)
+                    .Select(p => new FileInfo(p))
+                    .Any(p => licensedFiles.Any(l => l.Name == p.Name)))
+                {
+                    throw new Exception("");
+                }
+
+                Directory.Delete(ouptutDir, true);
+            }
+        }
     }
 }
