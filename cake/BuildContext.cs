@@ -211,4 +211,19 @@ public class BuildContext : FrostingContext
             }
         }
     }
+
+    public string EnsureEnvironmentVariable(string envVariableName)
+    {
+        var variable= Environment.GetEnvironmentVariable(envVariableName);
+
+        if (variable == null)
+        {
+            Console.Write($"Environment variable {envVariableName} not defined. Please provide value:");
+            var envVariableValue = Console.ReadLine();
+            System.Environment.SetEnvironmentVariable(envVariableName, envVariableValue);
+            return envVariableValue;
+        }
+
+        return variable;
+    }
 }

@@ -166,23 +166,22 @@ public sealed class TestsTask : FrostingTask<BuildContext>
         {
             context.UploadTestPlc(
                 Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//AXSharp.connectors//tests//ax-test-project//")),
-                Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"),
-                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+                context.EnsureEnvironmentVariable("AX_WEBAPI_TARGET"),
+                context.EnsureEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
             context.UploadTestPlc(
                 Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//tests.integrations//integrated//src//ax")),
-                Environment.GetEnvironmentVariable("AXTARGET"),
-                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+                context.EnsureEnvironmentVariable("AXTARGET"),
+                context.EnsureEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+
+            context.UploadTestPlc(
+                Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//AXSharp.connectors//tests//ax-test-project//")),
+                context.EnsureEnvironmentVariable("AXTARGET1500"),
+                ".\\bin\\1500\\");
 
             context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L3-tests.slnf"));
         }
-
-
-
     }
-
-
-
 
 }
 
@@ -277,7 +276,7 @@ public sealed class PublishReleaseTask : FrostingTask<BuildContext>
 
         if (Helpers.CanReleaseInternal())
         {
-            var githubToken = context.Environment.GetEnvironmentVariable("GH_TOKEN");
+            var githubToken = context.EnsureEnvironmentVariable("GH_TOKEN");
             var githubClient = new GitHubClient(new ProductHeaderValue("AXSHARP"));
             githubClient.Credentials = new Credentials(githubToken);
 
@@ -386,8 +385,8 @@ public class TemplateTests : FrostingTask<BuildContext>
             {
                 context.UploadTestPlc(
                     Path.GetFullPath(Path.Combine(template.ax)),
-                    Environment.GetEnvironmentVariable("AXTARGET"),
-                    Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+                    context.EnsureEnvironmentVariable("AXTARGET"),
+                    context.EnsureEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
                 // context.DotNetRun(template.approject, context.DotNetRunSettings);
             }
