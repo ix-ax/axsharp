@@ -64,7 +64,7 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
 {
     public override void Run(BuildContext context)
     {
-        context.DotNetClean(Path.Combine(context.ScrDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity});
+        context.DotNetClean(Path.Combine(context.ScrDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity });
         context.CleanDirectory(context.Artifacts);
         context.CleanDirectory(context.TestResults);
     }
@@ -131,7 +131,7 @@ public sealed class BuildTask : FrostingTask<BuildContext>
         }
 
         context.DotNetBuild(Path.Combine(context.ScrDir, "AXSharp.sln"), context.DotNetBuildSettings);
-        
+
     }
 }
 
@@ -149,7 +149,7 @@ public sealed class TestsTask : FrostingTask<BuildContext>
             return;
         }
 
-      
+
         if (context.BuildParameters.TestLevel == 1)
         {
             context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L1-tests.slnf"));
@@ -164,7 +164,7 @@ public sealed class TestsTask : FrostingTask<BuildContext>
         }
         else
         {
-            context.UploadTestPlc( 
+            context.UploadTestPlc(
                 Path.GetFullPath(Path.Combine(context.WorkDirName, "..//..//src//AXSharp.connectors//tests//ax-test-project//")),
                 Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"),
                 Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
@@ -177,13 +177,13 @@ public sealed class TestsTask : FrostingTask<BuildContext>
             context.RunTestsFromFilteredSolution(Path.Combine(context.ScrDir, "AXSharp-L3-tests.slnf"));
         }
 
-        
+
 
     }
 
-    
 
-   
+
+
 }
 
 [TaskName("CreateArtifacts")]
@@ -201,17 +201,17 @@ public sealed class CreateArtifactsTask : FrostingTask<BuildContext>
         PackPackages(context, Path.Combine(context.ScrDir, "AXSharp-packable-only.slnf"));
     }
 
-    
+
 
     private static void PackPackages(BuildContext context, string solutionToPack)
-    {        
-        context.DotNetPack(solutionToPack, 
+    {
+        context.DotNetPack(solutionToPack,
             new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
-        {
-            OutputDirectory = Path.Combine(context.Artifacts, @"nugets"),
-            NoRestore = true,
-            NoBuild = false,
-        });
+            {
+                OutputDirectory = Path.Combine(context.Artifacts, @"nugets"),
+                NoRestore = true,
+                NoBuild = false,
+            });
     }
 }
 
@@ -306,7 +306,7 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
     {
         if (!context.BuildParameters.DoPublish)
         {
-            context.Log.Warning($"Skipping template package push.");
+            context.Log.Warning($"Skipping template package build.");
             return;
         }
 
@@ -343,18 +343,28 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
         {
             context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
             {
-                Arguments = $" tool restore --no-cache --ignore-failed-sources ",
+                Arguments = $"tool restore --no-cache",
                 WorkingDirectory = template.ax
 
-            });
+            }).WaitForExit();
         }
 
         foreach (var template in context.GetTemplateProjects())
         {
-            context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
+            context.ProcessRunner.Start(@"dotnet", new Cake.Core.IO.ProcessSettings()
+            {
+                Arguments = $" ixc ",
+                WorkingDirectory = template.ax
+
+            }).WaitForExit();
         }
 
-        
+
+        foreach (var template in context.GetTemplateProjects())
+        {
+            context.DotNetRestore(Path.Combine(context.ScrDir, template.solution), context.DotNetRestoreTemplatesSettings);
+            context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
+        }
     }
 }
 
@@ -370,14 +380,17 @@ public class TemplateTests : FrostingTask<BuildContext>
             return;
         }
 
-        foreach (var template in context.GetTemplateProjects())
+        if (context.BuildParameters.TestLevel >= 3)
         {
-            context.UploadTestPlc(
-                Path.GetFullPath(Path.Combine(template.ax)),
-                Environment.GetEnvironmentVariable("AXTARGET"),
-                Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
+            foreach (var template in context.GetTemplateProjects())
+            {
+                context.UploadTestPlc(
+                    Path.GetFullPath(Path.Combine(template.ax)),
+                    Environment.GetEnvironmentVariable("AXTARGET"),
+                    Environment.GetEnvironmentVariable("AXTARGETPLATFORMINPUT"));
 
-            // context.DotNetRun(template.approject, context.DotNetRunSettings);
+                // context.DotNetRun(template.approject, context.DotNetRunSettings);
+            }
         }
     }
 }
@@ -402,34 +415,34 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
     }
 
     private static void PackTemplatePackages(BuildContext context, string solutionToPack)
-        {
-            context.DotNetPack(solutionToPack,
-                new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
-                {
-                    OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
-                    Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
-                    NoRestore = false,
-                    NoBuild = false,
-                });
-        }
+    {
+        context.DotNetPack(solutionToPack,
+            new Cake.Common.Tools.DotNet.Pack.DotNetPackSettings()
+            {
+                OutputDirectory = Path.Combine(context.Artifacts, @"templates"),
+                Sources = new List<string>() { Path.Combine(context.Artifacts, "templates") },
+                NoRestore = false,
+                NoBuild = false,
+            });
+    }
 
 }
 
 [TaskName("Templates push")]
 [IsDependentOn(typeof(TemplatesPackTask))]
 public class TemplatesPush : FrostingTask<BuildContext>
+{
+    public override void Run(BuildContext context)
     {
-        public override void Run(BuildContext context)
+        if (!context.BuildParameters.DoPublish)
         {
-            if (!context.BuildParameters.DoPublish)
-            {
-                context.Log.Warning($"Skipping template build.");
-                return;
-            }
-
-            context.PushNugetPackages("templates");
+            context.Log.Warning($"Skipping template build.");
+            return;
         }
+
+        context.PushNugetPackages("templates");
     }
+}
 
 [TaskName("Default")]
 [IsDependentOn(typeof(TemplatesPush))]

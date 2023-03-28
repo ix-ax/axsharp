@@ -14,6 +14,7 @@ using Build.FilteredSolution;
 using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.Build;
 using Cake.Common.Tools.DotNet.MSBuild;
+using Cake.Common.Tools.DotNet.Restore;
 using Cake.Common.Tools.DotNet.Run;
 using Cake.Common.Tools.DotNet.Test;
 using Cake.Common.Tools.DotNetCore.MSBuild;
@@ -39,6 +40,8 @@ public class BuildContext : FrostingContext
 
     public Cake.Common.Tools.DotNet.Build.DotNetBuildSettings DotNetBuildSettings { get; }
 
+    public DotNetRestoreSettings DotNetRestoreTemplatesSettings { get; }
+    
     public Cake.Common.Tools.DotNet.Test.DotNetTestSettings DotNetTestSettings { get; }
 
     public DotNetRunSettings DotNetRunSettings { get; }
@@ -61,7 +64,9 @@ public class BuildContext : FrostingContext
                 Verbosity = DotNetVerbosity.Quiet
             }
         };
-
+        
+        DotNetRestoreTemplatesSettings = new DotNetRestoreSettings() { NoCache = true, IgnoreFailedSources = true };
+        
         DotNetTestSettings = new DotNetTestSettings()
         {
             Verbosity = buildParameters.Verbosity,
