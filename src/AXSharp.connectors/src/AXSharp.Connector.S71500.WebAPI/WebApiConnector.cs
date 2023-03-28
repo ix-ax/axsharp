@@ -183,7 +183,8 @@ public class WebApiConnector : Connector
 
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
         if (!twinPrimitives.Any()) return;
-        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+
+        var webApiPrimitives = OptimizeRequest(twinPrimitives);
         
         foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
         {
@@ -213,14 +214,28 @@ public class WebApiConnector : Connector
        
     }
 
+    private IWebApiPrimitive[] OptimizeRequest(ITwinPrimitive[] twinPrimitives)
+    {
+        switch (this.RequestOptimization)
+        {
+            case ERequestOptimization.None:
+                return twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+            case ERequestOptimization.SquashBySymbol:
+                return  twinPrimitives.Cast<IWebApiPrimitive>().DistinctBy(p => p.Symbol).ToArray(); 
+        }
+
+        return twinPrimitives.Cast<IWebApiPrimitive>().ToArray();
+    }
+
     /// <inheritdoc />
     public override async Task WriteBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
         if (primitives == null) return;
         var responseData = new ApiBulkResponse();
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-        
+        //var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().DistinctBy(p => p.Symbol).ToArray();
+
         foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))
         {
             var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
@@ -361,6 +376,28 @@ public class WebApiConnector : Connector
     {
         return connector as WebApiConnector ?? new WebApiConnector();
     }
+
+    /// <summary>
+    /// Gets or set the request optimization of this connector.
+    /// </summary>
+    public ERequestOptimization RequestOptimization { get; set; } = ERequestOptimization.SquashBySymbol;
+}
+
+/// <summary>
+/// WebAPI request optimizations.
+/// </summary>
+public enum ERequestOptimization
+{
+    /// <summary>
+    /// No optimization performed on the requests.
+    /// </summary>
+    None = 0,
+
+    /// <summary>
+    /// Requests with same symbols are merged in to a single request.
+    /// </summary>
+    SquashBySymbol = 10
+
 }
 
 
