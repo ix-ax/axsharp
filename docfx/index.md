@@ -99,10 +99,10 @@ dotnet new [shortname] -n YOUR_PROJECT_NAME
 #e.g. dotnet new axeblazor -n MyFristAXSharpBlazorProject
 ~~~
 
-Consult README.md file located in your new project for additional information.
-
 **When prompted about script execution allow the script to run (answer (Y)es) in order to finish the scaffolding of the project.**
 If you're creating the project using Visual Studion you will need to run the script manually.
+
+Consult README.md file located in your new project for additional information.
 
 #### Prepare your PLC and AX project
 
