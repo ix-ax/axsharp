@@ -11,9 +11,10 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using AXSharp.Connector;
-using AXSharp.Localizations.Resx;
 
 namespace AXSharp.Localizations.Abstractions;
+
+
 
 /// <summary>
 ///     Abstract class defines string translator.
@@ -50,28 +51,6 @@ public abstract class TranslatorBase
     /// <param name="obj">Object associated with the string to be translated.</param>
     /// <returns>Translated string.</returns>
     public abstract string Translate(string input, ITwinObject obj);
-
-    /// <summary>
-    ///     Gets translator with no association with specific library.
-    /// </summary>
-    /// <returns>Non associated translator.</returns>
-    public static TranslatorBase Get()
-    {
-        var translator = Translators.AsQueryable().FirstOrDefault(p => p.TranslatorsId == null);
-        return translator ?? new Translator();
-    }
-
-
-    /// <summary>
-    ///     Gets translator associated with a specific assembly.
-    /// </summary>
-    /// <param name="type">Type for which the translator will be retrieved.</param>
-    /// <returns>Translator associated with given type.</returns>
-    public static TranslatorBase Get(Type type)
-    {
-        var translator = Translators.AsQueryable().FirstOrDefault(p => p.TranslatorsId == type.AssemblyQualifiedName);
-        return translator ?? new Translator(type);
-    }
 
     /// <summary>
     ///     Sets applications culture.

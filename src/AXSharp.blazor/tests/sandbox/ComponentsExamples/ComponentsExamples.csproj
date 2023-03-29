@@ -19,7 +19,7 @@
     <ProjectReference Include="..\..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
     <ProjectReference Include="..\..\..\src\AXSharp.Presentation.Blazor.Controls\AXSharp.Presentation.Blazor.Controls.csproj" />
     <ProjectReference Include="..\..\..\src\AXSharp.Presentation.Blazor\AXSharp.Presentation.Blazor.csproj" />
-    <ProjectReference Include="..\ax-blazor-example\ix\ax-blazor-example.csproj" />
+    <ProjectReference Include="..\ax-blazor-example\ix\ax_blazor_example.csproj" />
     
   </ItemGroup>
 

@@ -96,6 +96,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
 	  <ProjectReference Include="..\AXSharp.Compiler\AXSharp.Compiler.csproj" />
 	</ItemGroup>
 

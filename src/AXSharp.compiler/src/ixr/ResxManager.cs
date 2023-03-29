@@ -15,13 +15,13 @@ namespace AXSharp.ixr_doc
         /// <summary>
         /// Add resources from dictionary to resx file
         /// </summary>
-        /// <param name="path">Path to resx file</param>
+        /// <param name="outputDirectory">Path to resx file</param>
         /// <param name="dictionary">Dictionary with resources</param>
-        public static void AddResourcesFromDictionary(string path, Dictionary<string, StringValueWrapper> dictionary)
+        public static void AddResourcesFromDictionary(string outputDirectory, string outputFileName, Dictionary<string, StringValueWrapper> dictionary)
         {
-            CreateFileIfNotExist(path);
-
-            using (ResXResourceWriter resx = new ResXResourceWriter(path))
+            var outResxFile = !string.IsNullOrEmpty(outputDirectory) ? EnsureOutputFile(outputDirectory, outputFileName) : EnsureOutputFile(outputFileName);
+            
+            using (ResXResourceWriter resx = new ResXResourceWriter(outResxFile))
             {
                 foreach (KeyValuePair<string, StringValueWrapper> kvp in dictionary)
                 {
@@ -31,12 +31,31 @@ namespace AXSharp.ixr_doc
         }
 
         //Create new file, if file doesnt exist
-        private static void CreateFileIfNotExist(string path)
+        private static string EnsureOutputFile(string outputDirectory, string fileName)
         {
-            if (!File.Exists(path))
+            var outputFileName = Path.Combine(outputDirectory, fileName);
+
+            if (!Directory.Exists(outputDirectory))
             {
-                File.Create(path).Close();
+                Directory.CreateDirectory(outputDirectory);
             }
+
+            if (!File.Exists(outputFileName))
+            {
+                File.Create(outputFileName).Close();
+            }
+
+            return outputFileName;
+        }
+
+        private static string EnsureOutputFile(string fileName)
+        {
+            if (!File.Exists(fileName))
+            {
+                File.Create(fileName).Close();
+            }
+
+            return fileName;
         }
     }
 }

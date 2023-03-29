@@ -62,6 +62,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Localizations\Abstractions\**" />
+	  <Compile Remove="Localizations\Resx\**" />
+	  <EmbeddedResource Remove="Localizations\Abstractions\**" />
+	  <EmbeddedResource Remove="Localizations\Resx\**" />
+	  <None Remove="Localizations\Abstractions\**" />
+	  <None Remove="Localizations\Resx\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Localizations\Localizables.cs" />
+	  <Compile Remove="Localizations\LocalizationHelper.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -81,6 +95,10 @@
 			<PackagePath>\</PackagePath>
 			<Pack>True</Pack>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Localizations\Abstractions\" />
 	</ItemGroup>
 
 </Project>

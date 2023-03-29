@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AXSharp.Localizations;
-using AXSharp.Localizations.Abstractions;
+
 
 namespace AXSharp.Connector.Tests
 {
@@ -21,8 +21,6 @@ namespace AXSharp.Connector.Tests
         public string AttributeName => "testTwinObjectAttributeName";
 
         public string HumanReadable => "testTwinObjectHumanReadable";
-
-        public TranslatorBase TranslatorBase => throw new NotImplementedException();
 
         protected ITwinObject Parent { get; set; }
 

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AXSharp.Connector.Identity;
+using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes;
 using Serilog;
 
@@ -53,6 +54,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     protected Connector(object[] parameters)
     {
         IdentityProvider = new TwinIdentityProvider(this);
+        Translator = new Translator(this);
     }
 
     /// <summary>
@@ -61,6 +63,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     protected Connector()
     {
         IdentityProvider = new TwinIdentityProvider(this);
+        Translator = new Translator(this);
     }
 
     /// <summary>
@@ -398,4 +401,6 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     {
         this.Subscribed[primitive.Symbol] = primitive;
     }
+
+    public Translator Translator { get; }
 }

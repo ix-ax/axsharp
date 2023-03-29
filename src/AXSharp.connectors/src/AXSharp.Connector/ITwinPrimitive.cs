@@ -6,7 +6,6 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.ValueTypes;
-using AXSharp.Localizations.Abstractions;
 
 namespace AXSharp.Connector;
 
@@ -15,12 +14,6 @@ namespace AXSharp.Connector;
 /// </summary>
 public interface ITwinPrimitive : ITwinElement
 {
-    /// <summary>
-    ///     Gets string translator for this primitive type.
-    /// </summary>
-    TranslatorBase TranslatorBase { get; }
-
-
     /// <summary>
     ///     Delegate invoked when the 'Edit' value changes.
     /// </summary>

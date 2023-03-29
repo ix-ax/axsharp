@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes.Online;
 using AXSharp.Connector.ValueTypes.Shadows;
 using AXSharp.Connector.ValueValidation;
@@ -52,7 +53,7 @@ public class OnlinerString : OnlinerBase<string>, IOnlineString, IShadowString
     /// </summary>
     public override string Cyclic
     {
-        get => TranslatorBase.Translate(base.Cyclic).Interpolate(this);
+        get => this.Translate(base.Cyclic).Interpolate(this);
         set => base.Cyclic = value;
     }
 
@@ -64,7 +65,7 @@ public class OnlinerString : OnlinerBase<string>, IOnlineString, IShadowString
     /// </returns>
     public override async Task<string> GetAsync()
     {
-        return TranslatorBase.Translate(await base.GetAsync()).Interpolate(this);
+        return this.Translate(await base.GetAsync()).Interpolate(this);
     }
 
     /// <summary>

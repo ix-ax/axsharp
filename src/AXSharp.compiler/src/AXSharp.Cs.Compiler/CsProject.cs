@@ -49,7 +49,8 @@ public class CsProject : ITargetProject
     private static string MakeValidFileName(string name)
     {
         var fileName = name;
-        foreach (var c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
+        //foreach (var c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
+        fileName = MakeValidIdentifier(fileName);
 
         fileName = fileName.Replace('@', '_');
 

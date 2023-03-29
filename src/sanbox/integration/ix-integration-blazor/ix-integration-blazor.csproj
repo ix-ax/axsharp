@@ -15,7 +15,7 @@
     <ProjectReference Include="..\..\..\AXSharp.blazor\src\AXSharp.Presentation.Blazor.Controls\AXSharp.Presentation.Blazor.Controls.csproj" />
     <ProjectReference Include="..\..\..\AXSharp.blazor\src\AXSharp.Presentation.Blazor\AXSharp.Presentation.Blazor.csproj" />
     <ProjectReference Include="..\ix-integration-library\ix-integration-library.csproj" />
-    <ProjectReference Include="..\ix-integration-plc\ix\ix-integration-plc.csproj" />
+    <ProjectReference Include="..\ix-integration-plc\ix\ix_integration_plc.csproj" />
   </ItemGroup>
 
 	
