@@ -59,8 +59,18 @@ Replace PAT with your Personal Access Token ([how to create your PAT](https://do
 
 ![](~/images/2022-12-21-08-04-36.png)
 
+## Creating new project
 
-### Using templates
+There are different ways you can use to create new project. At this point we support some basic application templates, but you can create your solution also from scratch.
+
+**IMPORTANT! Prepare your PLC and AX project**
+
+*Before you start using any of the method below yoiu will need to set up your PLC. Using TIA portal you need to enable WebAPI interface [see here](https://console.simatic-ax.siemens.io/docs/hwld/PlcWebServer) and [here](https://youtu.be/d9EX2FixY1A?t=151) is a very informative youtube video.*
+
+[!Video https://youtu.be/d9EX2FixY1A?t=151]
+
+
+### Creating new project using templates
 
 Install AX# template package
 
@@ -104,14 +114,18 @@ If you're creating the project using Visual Studion you will need to run the scr
 
 Consult README.md file located in your new project for additional information.
 
-#### Prepare your PLC and AX project
 
-Using TIA portal you need to enable WebAPI interface [see here](https://console.simatic-ax.siemens.io/docs/hwld/PlcWebServer) and [here](https://youtu.be/d9EX2FixY1A?t=151) is a very informative youtube video.
+> NOTE!
+> Templates contain some of settings that differ from the defaults. 
+> The AX# twin project might be located in different location that apax's `ix` folder.
 
 
+-------------
+-------------
 
+### Creating new project from scratch
 
-### From scratch
+If you don't want to use application template you can create AX# project from scratch.
 
 #### Install `ixc` AX# compiler CLI
 
