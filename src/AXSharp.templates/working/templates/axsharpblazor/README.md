@@ -1,6 +1,6 @@
-﻿# AXSharp Blazor template 
+# AXSharp Blazor template 
 
-**IMPORTANT!!! When you create the project from Visual Studio, you will need to run `install.ps1` manually to finish the creation of the project.**
+**IMPORTANT!!! When you create the project from Visual Studio, you will need to run `install.ps1` manually to finish creating the project.**
 
 
 
@@ -12,8 +12,8 @@
 Go to [Entry.cs](axsharpblazor/Entry.cs) and setup the following parameters
 
 ~~~C#
-private const string TargetIp = "192.168.0.1"; // <- replace by your IP 
-private const string UserName = "Everybody"; //<- replate by user name you have set up in your WebAPI settings
+private const string TargetIp = "192.168.0.1"; // <- replace by IP of your target PLC
+private const string UserName = "Everybody"; //<- replace by user name you have set up in your WebAPI settings
 private const string Pass = ""; // <- Pass in the password that you have set up for the user. NOT AS PLAIN TEXT! Use user secrets instead.
 private const bool IgnoreSslErrors = true; // <- When you have your certificates in order set this to false.
 ~~~
@@ -31,7 +31,7 @@ Go to [apax.yml](ax/apax.yml) file and adjust the parameters
 .
 scripts:
   download :   
-    # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
+    # Here you will need to set the argument -t to your plc OP and -i to platform you are downloading to
     # --default-server-interface is a must if you are using WebAPI
     - apax sld --accept-security-disclaimer -t 192.168.0.1 -i .\\bin\\1500\\ -r --default-server-interface
 .
@@ -40,6 +40,41 @@ scripts:
 .
 ~~~
 
+## Download the project to the PLC
+
+Navigate to your ax folder and run the script command:
+
+~~~
+PS [your_root_folder]\ax>apax download
+~~~
+
+## To quickly run the hmi
+
+~~~
+dotnet run --project .\[your_project_name].app\[your_project_name].hmi.csproj
+~~~
+
+~~~
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5262
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+.
+.      
+~~~
+
+Navigate to the address indicated in "Now listening on:".
+
+> NOTE!
+> Your browser may redirect to https. In that case, temporarily disable the redirection. 
+> (Opening the page in incognito mode should not redirect.)
+
+## Modifying your HMI project
+
+In Visual Studio (VS2022), open the solution file from the project folder `[your_project_name].sln`. You can then run the solution directly from Visual Studio.
 
 > **NOTE: Security is set to a minimal level for a speedy start. Make sure you set the security appropriately**.
 
