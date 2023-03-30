@@ -180,6 +180,8 @@ namespace ArrayDeclarationSimpleNamespace
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class some_complex_type : AXSharp.Connector.ITwinObject
@@ -333,5 +335,7 @@ namespace ArrayDeclarationSimpleNamespace
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 }

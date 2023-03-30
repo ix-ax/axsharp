@@ -62,11 +62,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Localizations\Abstractions\**" />
 	  <Compile Remove="Localizations\Resx\**" />
-	  <EmbeddedResource Remove="Localizations\Abstractions\**" />
 	  <EmbeddedResource Remove="Localizations\Resx\**" />
-	  <None Remove="Localizations\Abstractions\**" />
 	  <None Remove="Localizations\Resx\**" />
 	</ItemGroup>
 
@@ -95,10 +92,6 @@
 			<PackagePath>\</PackagePath>
 			<Pack>True</Pack>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Localizations\Abstractions\" />
 	</ItemGroup>
 
 </Project>

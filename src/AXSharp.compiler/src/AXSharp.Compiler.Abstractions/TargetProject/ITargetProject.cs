@@ -23,5 +23,7 @@ public interface ITargetProject
     /// </summary>
     void ProvisionProjectStructure();
 
+    void GenerateResources();
+
     IEnumerable<IReference> LoadReferences();
 }

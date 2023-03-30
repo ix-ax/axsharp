@@ -196,6 +196,8 @@ namespace makereadonce
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class ComplexMember : AXSharp.Connector.ITwinObject
@@ -367,5 +369,7 @@ namespace makereadonce
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 }

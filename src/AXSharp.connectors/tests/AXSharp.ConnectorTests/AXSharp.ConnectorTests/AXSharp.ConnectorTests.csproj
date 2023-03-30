@@ -46,4 +46,19 @@
     <ProjectReference Include="..\..\..\src\AXSharp.Connector\AXSharp.Connector.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Localizations\Resources\Dictionary.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Dictionary.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localizations\Resources\Dictionary.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Dictionary.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

@@ -259,6 +259,8 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     protected System.String @SymbolTail { get; set; }
 
     protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+    public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
 }
 
 public partial class Nested : AXSharp.Connector.ITwinObject
@@ -439,4 +441,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     protected System.String @SymbolTail { get; set; }
 
     protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+    public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
 }

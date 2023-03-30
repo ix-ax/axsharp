@@ -3,6 +3,10 @@
     "ixc": {
       "commandName": "Project",
       "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\statemachine\\"
+    },
+    "integration_plc": {
+      "commandName": "Project",
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axsharp\\src\\sanbox\\integration\\ix-integration-plc\\"
     }
   }
 }

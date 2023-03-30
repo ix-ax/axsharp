@@ -154,6 +154,8 @@ public partial class _NULL_CONTEXT_MULTIPLE : AXSharp.Connector.ITwinObject, ICo
     protected System.String @SymbolTail { get; set; }
 
     protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+    public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
 }
 
 public partial interface IContext_Multiple

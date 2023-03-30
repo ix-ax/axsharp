@@ -94,55 +94,5 @@ namespace AXSharp.Localizations
 
             return string.Empty;
         }
-
-        internal static IEnumerable<LocalizableItem> GetTranslatable(string input,
-            List<LocalizableItem> localizables = null)
-        {
-            localizables ??= new List<LocalizableItem>();
-
-            if (string.IsNullOrEmpty(input)) return localizables;
-
-
-            var position = 0;
-            var recoveryPosition = 0;
-            while (position < input.Length)
-            {
-                try
-                {
-                    position = input.IndexOf("<#", position);
-                    var start = position;
-
-                    if (position >= 0) recoveryPosition = position;
-
-                    if (start >= 0)
-                    {
-                        position = input.IndexOf("#>", position);
-                        if (position >= 0)
-                        {
-                            var end = position;
-
-                            var localizableItem = new LocalizableItem { Key = input.Substring(start, end - start + 2) };
-
-                            if (!localizables.Exists(p => p.Key == localizableItem.Key)) localizables.Add(localizableItem);
-                        }
-                        else
-                        {
-                            position = recoveryPosition + 2;
-                            Console.WriteLine(
-                                $"Missing localization end tag {input.Substring(start, input.Length - start)}");
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    // Ignore to prevent runtime errors.
-                }
-
-
-                if (position == -1) break;
-            }
-
-            return localizables;
-        }
     }
 }

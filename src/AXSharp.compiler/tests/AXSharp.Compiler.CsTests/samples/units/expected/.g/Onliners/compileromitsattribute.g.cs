@@ -172,6 +172,8 @@ namespace CompilerOmmits
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class Complex : AXSharp.Connector.ITwinObject
@@ -343,6 +345,8 @@ namespace CompilerOmmits
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 }
 
@@ -519,6 +523,8 @@ namespace Enums
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public enum Colors
@@ -706,6 +712,8 @@ namespace misc
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class SomeClass : AXSharp.Connector.ITwinObject
@@ -868,6 +876,8 @@ namespace misc
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class Motor : AXSharp.Connector.ITwinObject
@@ -1026,6 +1036,8 @@ namespace misc
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class Vehicle : AXSharp.Connector.ITwinObject
@@ -1192,6 +1204,8 @@ namespace misc
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 }
 
@@ -1372,6 +1386,8 @@ namespace UnknownArraysShouldNotBeTraspiled
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 
     public partial class Complex : AXSharp.Connector.ITwinObject
@@ -1543,5 +1559,7 @@ namespace UnknownArraysShouldNotBeTraspiled
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 }

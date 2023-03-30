@@ -11,21 +11,7 @@ namespace AXSharp.Connector.Localizations;
 
 public static class TranslatorExtension
 {
-    public static string Translate(this ITwinObject twin, string originalString)
-    {
-        originalString ??= string.Empty;
-        if (!originalString.Contains("<#"))
-        {
-            return originalString; 
-        }
-
-        originalString ??= string.Empty;
-        var translated = twin?.GetConnector()?.Translator?.Translate(originalString, twin) ?? originalString;
-        return translated.CleanUpLocalizationTokens();
-
-    }
-
-    public static string Translate(this ITwinPrimitive twin, string originalString)
+    public static string Translate(this ITwinElement twin, string originalString)
     {
         originalString ??= string.Empty;
         if (!originalString.Contains("<#"))
@@ -33,9 +19,7 @@ public static class TranslatorExtension
             return originalString;
         }
 
-        originalString ??= string.Empty;
-        var translated = twin?.GetParent()?.GetConnector()?
-                                    .Translator?.Translate(originalString, twin) ?? originalString;
-        return translated.CleanUpLocalizationTokens() ;
+        var translated = twin?.Interpreter?.Translate(originalString, twin) ?? originalString;
+        return translated.CleanUpLocalizationTokens();
     }
 }

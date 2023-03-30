@@ -18,9 +18,11 @@ namespace ix_integration_blazor
 {
     public class Program
     {
+        private static WebApplication App { get; set; }
+
         public static void Main(string[] args)
         {
-            //Entry.Plc.Connector.Translator.SetLocalizationResource(typeof(ix_integration_plc.Resources.PlcStringResources));
+            // Entry.Plc.Connector.Translator.SetLocalizationResource(typeof(ix_integration_plc.Resources.PlcStringResources));
 
 
             var builder = WebApplication.CreateBuilder(args);
@@ -32,7 +34,10 @@ namespace ix_integration_blazor
             builder.Services.AddIxBlazorServices();
             builder.Services.AddLocalization();
 
+           
             var app = builder.Build();
+
+            App = app;
 
             Entry.Plc.Connector.BuildAndStart().ReadWriteCycleDelay = 10;
 
@@ -46,12 +51,12 @@ namespace ix_integration_blazor
             }
 
 
-            
+
             //app.UseRequestLocalization(new RequestLocalizationOptions()
             //    .AddSupportedCultures(new[] { "en-US", "sk-SK" })
             //    .AddSupportedUICultures(new[] { "en-US", "sk-SK" }));
 
-            //app.UseRequestLocalization("sk-SK");
+            App.UseRequestLocalization("sk-SK");
 
             app.UseStaticFiles();
 
@@ -61,6 +66,11 @@ namespace ix_integration_blazor
             app.MapFallbackToPage("/_Host");
 
             app.Run();
+        }
+
+        public static void SetCulture(string culture)
+        {
+            App.UseRequestLocalization(culture);
         }
     }
 }

@@ -235,6 +235,8 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
     protected System.String @SymbolTail { get; set; }
 
     protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+    public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
 }
 
 public partial interface IImplementation1

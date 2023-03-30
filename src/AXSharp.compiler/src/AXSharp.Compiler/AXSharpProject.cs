@@ -130,7 +130,7 @@ public class AXSharpProject : IAXSharpProject
 
         TargetProject.ProvisionProjectStructure();
         GenerateMetadata(compilation);
-
+        TargetProject.GenerateResources();
         Log.Logger.Information($"Compilation of project '{AxProject.SrcFolder}' done.");
     }
 

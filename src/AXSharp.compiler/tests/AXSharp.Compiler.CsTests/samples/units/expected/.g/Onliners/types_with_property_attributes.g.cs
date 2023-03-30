@@ -181,5 +181,7 @@ namespace TypesWithPropertyAttributes
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
     }
 }

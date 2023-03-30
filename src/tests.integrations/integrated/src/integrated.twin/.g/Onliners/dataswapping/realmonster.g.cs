@@ -225,6 +225,8 @@ namespace RealMonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
     public partial class RealMonster : RealMonsterBase
@@ -513,6 +515,8 @@ namespace RealMonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
     public partial class NestedLevelOne : AXSharp.Connector.ITwinObject
@@ -711,6 +715,8 @@ namespace RealMonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
     public partial class NestedLevelTwo : AXSharp.Connector.ITwinObject
@@ -909,6 +915,8 @@ namespace RealMonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
     public partial class NestedLevelThree : AXSharp.Connector.ITwinObject
@@ -1098,5 +1106,7 @@ namespace RealMonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 }

@@ -166,6 +166,8 @@ public abstract class OnlinerBase : ITwinPrimitive
         this.Parent.GetConnector().AddToNextPeriodicReadSet(this);
     }
 
+    public Translator Interpreter => this.Parent?.Interpreter;
+
 
     /// <summary>
     ///     Subscribes this tag for cyclical reading and invokes <see cref="ValueChangedEventHandlerDelegate" /> when the value

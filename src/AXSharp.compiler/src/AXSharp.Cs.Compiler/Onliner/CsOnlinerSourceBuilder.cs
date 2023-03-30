@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations;
@@ -283,7 +284,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             "public System.String AttributeName { get {return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName); } set { _attributeName = value; } }" +
             "public string HumanReadable { get; set; }" +
             "protected System.String @SymbolTail { get; set;}" +
-            $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"
+            $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"+
+            $"public AXSharp.Connector.Localizations.Translator Interpreter => {Project.TargetProject.ProjectRootNamespace}.PlcTranslator.Instance;"
         );
     }
 

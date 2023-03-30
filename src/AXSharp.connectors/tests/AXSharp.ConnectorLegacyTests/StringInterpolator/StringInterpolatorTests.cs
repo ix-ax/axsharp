@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 
 namespace AXSharp.Connector.Tests
 {
@@ -197,6 +198,8 @@ namespace AXSharp.Connector.Tests
             throw new NotImplementedException();
         }
 
+        public Translator Interpreter { get; }
+
         public IEnumerable<ITwinPrimitive> GetValueTags()
         {
             throw new NotImplementedException();
@@ -307,6 +310,8 @@ namespace AXSharp.Connector.Tests
             throw new NotImplementedException();
         }
 
+        public Translator Interpreter { get; }
+
         public IEnumerable<ITwinPrimitive> GetValueTags()
         {
             throw new NotImplementedException();
@@ -359,6 +364,8 @@ namespace AXSharp.Connector.Tests
         {
             throw new NotImplementedException();
         }
+
+        public Translator Interpreter { get; }
 
         public IEnumerable<ITwinObject> GetChildren()
         {

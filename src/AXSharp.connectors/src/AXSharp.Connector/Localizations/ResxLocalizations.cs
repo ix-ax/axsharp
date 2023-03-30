@@ -1,78 +1,116 @@
-﻿// AXSharp.Connector
-// Copyright (c) 2023 Peter Kurhajec (PTKu), MTS,  and Contributors. All Rights Reserved.
-// Contributors: https://github.com/ix-ax/axsharp/graphs/contributors
-// See the LICENSE file in the repository root for more information.
-// https://github.com/ix-ax/axsharp/blob/dev/LICENSE
-// Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Text;
 using AXSharp.Connector;
 using AXSharp.Connector.Localizations;
+using AXSharp.Localizations;
 
-namespace AXSharp.Localizations;
-
-internal class ResxLocalizations 
+namespace AXSharp.Connector.Localizations
 {
-    private readonly ResourceManager _resourceManager;
-    
-    public ResxLocalizations(Type resource)
+    internal class ResxLocalizations
     {
-        _resourceManager = new ResourceManager(resource)
+        private readonly ResourceManager _resourceManager;
+
+        public ResxLocalizations(Type resource)
         {
-            IgnoreCase = true
-        };
-    }
-
-    private string LocalizeInParents(string token, ITwinElement rootObj, string translation = null)
-    {
-        ITwinObject obj = rootObj?.GetParent();
-
-        if (obj != null)
-        {
-            translation = obj.Translate(token);
-            if (translation == null) LocalizeInParents(token, rootObj, translation);
-
-            return translation;
+            _resourceManager = new ResourceManager(resource)
+            {
+                IgnoreCase = true
+            };
         }
 
-        return null;
-    }
-
-    public string Localize(string str, ITwinElement twinElement)
-    {
-        string translation = null;
-
-        var sb = new StringBuilder(str);
-
-
-        foreach (var localizable in LocalizationHelper.GetTranslatable(str).ToArray())
+        internal static IEnumerable<string> GetTranslatable(string input,
+            List<string> localizables = null)
         {
-            var validIdentifier = LocalizationHelper.CreateId(localizable.Key);
-         
-            // Search in first level resource
-            if (_resourceManager != null) translation = _resourceManager?.GetString(validIdentifier);
+            localizables ??= new List<string>();
 
-            // Search in parent resources
-            if (translation == null)
+            if (string.IsNullOrEmpty(input)) return localizables;
+
+            var position = 0;
+            var recoveryPosition = 0;
+            while (position < input.Length)
+            {
                 try
                 {
-                    return LocalizeInParents(str, twinElement);
+                    position = input.IndexOf("<#", position);
+                    var start = position;
+
+                    if (position >= 0) recoveryPosition = position;
+
+                    if (start >= 0)
+                    {
+                        position = input.IndexOf("#>", position);
+                        if (position >= 0)
+                        {
+                            var end = position;
+
+                            var localizableItem = input.Substring(start, end - start + 2);
+
+                            if (!localizables.Contains(localizableItem)) localizables.Add(localizableItem);
+                        }
+                        else
+                        {
+                            position = recoveryPosition + 2;
+                        }
+                    }
                 }
-                catch (Exception)
+                catch
                 {
                     // Ignore to prevent runtime errors.
                 }
 
-            // Set key if not found anywhere
-            translation ??= localizable.Key;
+                if (position == -1) break;
+            }
 
-            sb = sb.Replace(localizable.Key, translation.CleanUpLocalizationTokens());
+            return localizables;
         }
 
-        return sb.ToString();
+        private string LocalizeInParents(string token, ITwinElement rootObj, string translation = null)
+        {
+            var obj = rootObj?.GetParent();
+
+            while (obj != null)
+            {
+                translation = obj.Translate(token);
+                if (translation != null) return translation;
+
+                obj = obj.GetParent();
+            }
+
+            return null;
+        }
+
+        public string Localize(string str, ITwinElement twinElement)
+        {
+            foreach (var localizable in GetTranslatable(str))
+            {
+                var validIdentifier = LocalizationHelper.CreateId(localizable.CleanUpLocalizationTokens());
+
+                // Search in first level resource
+                var translation = _resourceManager.GetString(validIdentifier);
+
+                // Search in parent resources
+                if (translation == null)
+                {
+                    try
+                    {
+                        return LocalizeInParents(str, twinElement);
+                    }
+                    catch
+                    {
+                        // Ignore to prevent runtime errors.
+                    }
+                }
+
+                // Set key if not found anywhere
+                translation ??= localizable;
+
+                str = str.Replace(localizable, translation.CleanUpLocalizationTokens());
+            }
+
+            return str;
+        }
     }
 }

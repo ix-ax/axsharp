@@ -198,6 +198,8 @@ namespace MonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
     public partial class Monster : MonsterBase
@@ -477,5 +479,7 @@ namespace MonsterData
         protected System.String @SymbolTail { get; set; }
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
+
+        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 }

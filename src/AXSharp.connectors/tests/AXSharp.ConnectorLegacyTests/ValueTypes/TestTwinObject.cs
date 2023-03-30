@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 using AXSharp.Localizations;
 
 
@@ -102,6 +103,8 @@ namespace AXSharp.Connector.Tests
         {
             throw new NotImplementedException();
         }
+
+        public Translator Interpreter { get; }
 
         public IEnumerable<ITwinPrimitive> GetValueTags()
         {

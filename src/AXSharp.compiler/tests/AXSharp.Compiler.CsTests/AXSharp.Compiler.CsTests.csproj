@@ -58,6 +58,12 @@
 		<None Remove="samples\units\test\test.st" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Include="samples\units\expected\.g\PlcResources.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
 
 	<ItemGroup>
 	  <Content Include="samples\units\expected\.g\Onliners\compileromitsattribute.g.cs">
