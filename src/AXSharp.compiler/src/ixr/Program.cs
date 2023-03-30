@@ -19,8 +19,7 @@ using Microsoft.CodeAnalysis;
 using Serilog.Parsing;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
-using AXSharp.Connector.Localizations;
-using AXSharp.Localizations;
+
 
 const string Logo =
 @"     ___      ___   ___    _  _   
@@ -133,7 +132,7 @@ void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper
             var rawText = lw.GetRawTextFromLocalizedString(localizedString);
 
             //create id
-            var id = LocalizationHelper.CreateId(rawText);
+            var id = AXSharp.Localizations.LocalizationHelper.CreateId(rawText);
 
             //check if identifier is valid
             if(lw.IsValidId(id))
