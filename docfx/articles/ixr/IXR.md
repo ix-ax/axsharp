@@ -16,6 +16,8 @@ dotnet tool install AXSharp.ixr --prerelease --local
 dotnet ixr -x $PATH_TO_AX_PROJECT -o $PATH_TO_RESX_FILE
 ~~~
 
+`ixr` can be run without parameters from within an AX project folder. In that case it will use the settings from `ixc` `AXSharp.config.json` and emit the resource file into `.g\Resource\PlcStringResource.resx` file of the ax twin project.
+
 where:  
 `$PATH_TO_AX_PROJECT` - is path to **AX project**  
 `$PATH_TO_RESX_FILE` - is path to **resx file**, where the localizable strings will be generated
