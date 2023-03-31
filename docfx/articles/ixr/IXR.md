@@ -22,6 +22,11 @@ where:
 
 Localizable string are exported only from string attributes and pragmas of attribute name.
 
+`ixr` can be run without parameters from within an AX project folder. In that case it will use the settings from `ixc` `AXSharp.config.json` and emit the resource file into `.g\Resource\PlcStringResource.resx` file of the ax twin project.
+
+>[!NOTE]
+>More about implementing resx file into your project see [here](~/articles/connectors/README.md#controller-string-localization).
+
 ## Localizable string
 
 Localizable string must start with `<#` and end with `#>` tags.  

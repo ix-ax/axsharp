@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes;
 
 namespace AXSharp.Connector;
@@ -52,6 +53,8 @@ public class RootTwinObject : ITwinObject
     {
         // We do not allow polling for root objects.
     }
+
+    public Translator Interpreter => null;
 
     /// <summary>
     ///     Gets empty name for this root object.

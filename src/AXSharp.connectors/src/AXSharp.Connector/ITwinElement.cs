@@ -5,6 +5,8 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using AXSharp.Connector.Localizations;
+
 namespace AXSharp.Connector;
 
 /// <summary>
@@ -45,4 +47,6 @@ public interface ITwinElement
     /// Add this element for polling the in the next connector read cycle.
     /// </summary>
     void Poll();
+
+    public AXSharp.Connector.Localizations.Translator Interpreter { get; }
 }

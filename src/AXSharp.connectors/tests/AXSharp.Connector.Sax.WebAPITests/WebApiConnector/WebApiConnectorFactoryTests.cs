@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 using AXSharp.Connector.S71500.WebApi;
 using Xunit;
 
@@ -48,6 +49,8 @@ namespace AXSharp.Connector.S71500.WebAPITests
             {
                 throw new NotImplementedException();
             }
+
+            public Translator Interpreter { get; }
 
             public IEnumerable<ITwinObject> GetChildren()
             {

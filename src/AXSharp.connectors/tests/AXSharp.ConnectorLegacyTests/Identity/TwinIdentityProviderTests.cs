@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes;
 
 namespace AXSharp.Connector.Identity.Tests
@@ -251,6 +252,8 @@ namespace AXSharp.Connector.Identity.Tests
             throw new NotImplementedException();
         }
 
+        public Translator Interpreter { get; }
+
         public void AddKid(ITwinElement kid)
         {
             throw new NotImplementedException();
@@ -371,6 +374,8 @@ namespace AXSharp.Connector.Identity.Tests
         {
             throw new NotImplementedException();
         }
+
+        public Translator Interpreter { get; }
 
         public void AddKid(ITwinElement kid)
         {

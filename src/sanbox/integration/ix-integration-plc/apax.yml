@@ -11,6 +11,10 @@ variables:
   APAX_BUILD_ARGS: [ -d ]  
 scripts:
    ixc: dotnet run --project ..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework net7.0
+   ixd: dotnet run --project ..\\..\\..\\AXSharp.compiler\\src\\ixr\\AXSharp.ixr.csproj --framework net7.0
+   postbuild: 
+    - apax ixc
+    - apax ixd
    download:
      - apax sld --accept-security-disclaimer -t $AXTARGET -i $AXTARGETPLATFORMINPUT -r --default-server-interface
    check+download: |

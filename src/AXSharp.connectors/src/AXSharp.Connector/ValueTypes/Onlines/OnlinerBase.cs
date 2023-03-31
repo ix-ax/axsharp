@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using AXSharp.Localizations.Abstractions;
+using AXSharp.Connector.Localizations;
 
 namespace AXSharp.Connector.ValueTypes;
 
@@ -36,7 +36,6 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     public int PollingInterval { get; internal set; }
 
-    private TranslatorBase _translatorBase;
 
     /// <summary>
     ///     Creates new instance of <see cref="OnlinerBase" />
@@ -158,29 +157,7 @@ public abstract class OnlinerBase : ITwinPrimitive
         return Parent;
     }
 
-    /// <summary>
-    ///     Provides translator for the localization for this tag.
-    /// </summary>
-    [IgnoreReflection]
-    public TranslatorBase TranslatorBase
-    {
-        get
-        {
-            if (_translatorBase == null)
-            {
-                var assemblyName = Parent?.GetType().Assembly.GetName().Name;
-                var localizationType = Parent?.GetType().Assembly.GetType($"{assemblyName}.Properties.Localizations");
-
-                if (localizationType != null)
-                    _translatorBase = TranslatorBase.Get(localizationType);
-                else
-                    _translatorBase = TranslatorBase.Get();
-            }
-
-            return _translatorBase;
-        }
-    }
-
+    
     /// <summary>
     /// Add this primitive to next periodic read queue.
     /// </summary>
@@ -188,6 +165,8 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         this.Parent.GetConnector().AddToNextPeriodicReadSet(this);
     }
+
+    public Translator Interpreter => this.Parent?.Interpreter;
 
 
     /// <summary>
@@ -241,7 +220,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         get => string.IsNullOrEmpty(_attributeName)
             ? SymbolTail
-            : TranslatorBase.Translate(_attributeName).Interpolate(this);
+            : this.Translate(_attributeName).Interpolate(this);
 
         set => _attributeName = value;
     }
@@ -252,7 +231,7 @@ public abstract class OnlinerBase : ITwinPrimitive
     /// </summary>
     public string HumanReadable
     {
-        get => TranslatorBase.Translate(_humanReadable).Interpolate(this);
+        get => this.Translate(_humanReadable).Interpolate(this);
         protected set => _humanReadable = value;
     }
 

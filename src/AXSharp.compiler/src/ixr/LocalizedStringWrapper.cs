@@ -25,33 +25,6 @@ namespace AXSharp.ixr_doc
 
         }
 
-        public string CreateId(string rawText)
-        { 
-            StringBuilder sb = new StringBuilder();
-            foreach (var c in rawText)
-            {
-                //try to find character in mappings
-                var mapchar = SymbolMappings.TryToGetValueByChar(c);
-                if(mapchar != null)
-                { 
-                    sb.Append(mapchar); 
-                }
-                //add only if is letter
-                else if (Char.IsLetter(c))
-                {
-                    sb.Append(c); 
-                }
-                else
-                {
-                     //unknown
-                    sb.Append('_'); 
-                }
-            }
-            return sb.ToString();
-    
-          
-        }
-
         public bool IsValidId(string id) 
         {
             return Microsoft.CodeAnalysis.CSharp.SyntaxFacts.IsValidIdentifier(id);

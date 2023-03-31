@@ -1,33 +1,34 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
-	  <NoWarn>1701;1702;1998;8981</NoWarn>
+		<NoWarn>1701;1702;1998</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
-	  <NoWarn>1701;1702;1998;8981</NoWarn>
+		<NoWarn>1701;1702;1998</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;1998;8981</NoWarn>
+		<NoWarn>1701;1702;1998</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
-	  <NoWarn>1701;1702;1998;8981</NoWarn>
+		<NoWarn>1701;1702;1998</NoWarn>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\AXSharp.abstractions\src\AXSharp.Abstractions\AXSharp.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include=".g\**" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\AXSharp.abstractions\src\AXSharp.Abstractions\AXSharp.Abstractions.csproj" />
-	  <ProjectReference Include="..\..\..\..\AXSharp.connectors\src\AXSharp.Connector.S71500.WebAPI\AXSharp.Connector.S71500.WebAPI.csproj" />
-	  <ProjectReference Include="..\..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
-	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include=".g\" />
+		<Folder Include=".g\" />
 	</ItemGroup>
 </Project>

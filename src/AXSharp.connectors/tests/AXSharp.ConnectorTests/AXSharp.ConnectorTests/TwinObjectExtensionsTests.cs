@@ -7,6 +7,7 @@
 
 using Xunit;
 using AXSharp.Connector;
+using AXSharp.Connector.Localizations;
 using Newtonsoft.Json.Serialization;
 
 namespace AXSharp.Connector.Tests
@@ -396,6 +397,8 @@ namespace AXSharp.Connector.Tests
             {
                 throw new NotImplementedException();
             }
+
+            public Translator Interpreter { get; }
 
             public IEnumerable<ITwinObject> GetChildren()
             {

@@ -20,16 +20,21 @@ using Serilog.Parsing;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
 
+
 const string Logo =
-@"| \ / 
-=  =  
-| / \
+@"     ___      ___   ___    _  _   
+    /   \     \  \ /  /  _| || |_ 
+   /  ^  \     \  V  /  |_  __  _|
+  /  /_\  \     >   <    _| || |_ 
+ /  _____  \   /  .  \  |_  __  _|
+/__/     \__\ /__/ \__\   |_||_| 
 ";
 
 
 Console.WriteLine(Logo);
 LegalAcrobatics.LegalComplianceAcrobatics(new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName).Wait();
-Console.WriteLine("Ixr compiler - compile plc localized strings to resx dictonaries");
+Console.WriteLine("Ixr compiler - compiles plc localized strings resources to resx");
+Console.WriteLine($"Version: {GitVersionInformation.SemVer}");
 Parser.Default.ParseArguments<Options>(args)
             .WithParsed(o =>
             {
@@ -54,8 +59,20 @@ Parser.Default.ParseArguments<Options>(args)
 
 void Generate(Options o)
 {
-    var axProject = new AxProject(o.AxSourceProjectFolder);
+    var axProjectFolder = string.IsNullOrEmpty(o.AxSourceProjectFolder)
+        ? Environment.CurrentDirectory
+        : o.AxSourceProjectFolder;
+
+    var axProject = new AxProject(axProjectFolder);
+    var axProjectConfig =
+        AXSharpConfig.RetrieveIxConfig(Path.Combine(axProject.ProjectFolder, AXSharpConfig.CONFIG_FILE_NAME));
+
+    (string folder, string file) output = string.IsNullOrEmpty(axProjectConfig.OutputProjectFolder)
+        ? (string.Empty, o.OutputProjectFolder)
+        : (Path.GetFullPath(Path.Combine(axProject.ProjectFolder, axProjectConfig.OutputProjectFolder, "Resources")), "PlcStringResources.resx");
+
     Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
+
     var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
 
     var syntaxTrees = projectSources.Select(p => p.parseTree);
@@ -65,13 +82,13 @@ void Generate(Options o)
     //iterate all syntax trees from project
     foreach (var syntaxTree in syntaxTrees)
     {
-        IterateSyntaxTreeForStringLiterals(syntaxTree.GetRoot(),lw, Path.GetRelativePath(o.AxSourceProjectFolder, syntaxTree.Filename));
+        IterateSyntaxTreeForStringLiterals(syntaxTree.GetRoot(),lw, Path.GetRelativePath(axProjectFolder, syntaxTree.Filename));
 
-        IterateSyntaxTreeForPragmas(syntaxTree.GetRoot(), lw, Path.GetRelativePath(o.AxSourceProjectFolder, syntaxTree.Filename));
+        IterateSyntaxTreeForPragmas(syntaxTree.GetRoot(), lw, Path.GetRelativePath(axProjectFolder, syntaxTree.Filename));
     }
 
     //add resources from dictionary to resx file
-    ResxManager.AddResourcesFromDictionary(o.OutputProjectFolder, lw.LocalizedStringsDictionary);
+    ResxManager.AddResourcesFromDictionary(output.folder, output.file, lw.LocalizedStringsDictionary);
 }
 
 void IterateSyntaxTreeForStringLiterals(ISyntaxNode root, LocalizedStringWrapper lw, string fileName)
@@ -115,7 +132,7 @@ void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper
             var rawText = lw.GetRawTextFromLocalizedString(localizedString);
 
             //create id
-            var id = lw.CreateId(rawText);
+            var id = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
 
             //check if identifier is valid
             if(lw.IsValidId(id))

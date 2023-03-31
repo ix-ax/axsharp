@@ -28,18 +28,12 @@ internal class AddedPropertyDeclarationAstNode : AstNode
     {
         if (visitor is PragmaVisitor v)
         {
-            if (Type.ToUpperInvariant() == "STRING")
+            if (Type.ToUpperInvariant() == "STRING" || Type.ToUpperInvariant() == "WSTRING")
             {
                 v.Product = $"private {Type} _{Identifier};" +
                             $"\n{AccessQualifier} {Type} {Identifier} " +
                             $"{{ " +
-                            $"get" +
-                            $"{{ " +
-                            $"return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_{Identifier}); " +
-                            $"}} " +
-                            $"set " +
-                            $"{{_{Identifier} = value;" +
-                            $"}} " +
+                            $"get => string.IsNullOrEmpty(_{Identifier}) ? SymbolTail : this.Translate(_{Identifier}).Interpolate(this); set => _{Identifier} = value; " +
                             $"}}";
             }
             else

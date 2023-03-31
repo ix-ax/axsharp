@@ -5,11 +5,14 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using AXSharp.Connector.Localizations;
+
 namespace AXSharp.Connector;
 
 /// <summary>
 ///     Represents twin object for PLC controller.
 /// </summary>
-public interface ITwinController
+public abstract class ITwinController
 {
+    public Translator Translator { get; }
 }

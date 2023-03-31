@@ -48,11 +48,11 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_declare_property()
     {
-        var expected = "private string _AttributeName;\npublic string AttributeName { get{ return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_AttributeName); } set {_AttributeName = value;} }";
+        var expected = "private string _SomeField;\npublic string SomeField { get => string.IsNullOrEmpty(_SomeField) ? SymbolTail : this.Translate(_SomeField).Interpolate(this); set => _SomeField = value; }";
         var field = new TypeMock("someField",
             new ReadOnlyCollection<IPragma>(new IPragma[]
             {
-                new PragmaMock("#ix-prop:public string AttributeName")
+                new PragmaMock("#ix-prop:public string SomeField")
             }));
 
         var actual = field.DeclareProperties();

@@ -49,7 +49,8 @@ public class CsProject : ITargetProject
     private static string MakeValidFileName(string name)
     {
         var fileName = name;
-        foreach (var c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
+        //foreach (var c in Path.GetInvalidFileNameChars()) fileName = fileName.Replace(c, '_');
+        fileName = MakeValidIdentifier(fileName);
 
         fileName = fileName.Replace('@', '_');
 
@@ -130,6 +131,39 @@ public class CsProject : ITargetProject
     public void ProvisionProjectStructure()
     {
         EnsureCsProjFile();
+    }
+
+    public void GenerateResources()
+    { 
+        var a =  @$"
+using System.Reflection;
+using AXSharp.Connector.Localizations;
+
+namespace {this.ProjectRootNamespace}
+{{
+    public sealed class PlcTranslator : Translator
+    {{
+        private static readonly PlcTranslator instance = new PlcTranslator();
+
+        public static PlcTranslator Instance
+        {{
+            get
+            {{
+                return instance;
+            }}
+        }}
+
+        private PlcTranslator() 
+        {{
+            var defaultResourceType = Assembly.GetAssembly(typeof({this.ProjectRootNamespace}.PlcTranslator))
+                .GetType(""{this.ProjectRootNamespace}.Resources.PlcStringResources"");
+            this.SetLocalizationResource(defaultResourceType);
+        }}
+    }}
+}}";
+
+        using var swr = new StreamWriter(Path.Combine(this.AxSharpProject.OutputFolder, ".g", "PlcResources.g.cs"));
+        swr.Write(a);
     }
 
 

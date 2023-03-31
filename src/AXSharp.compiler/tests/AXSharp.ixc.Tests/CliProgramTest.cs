@@ -46,7 +46,7 @@ namespace AXSharp.ixcTests
                 ixc.Program.Main(new string[0]);
 
                 Assert.True(Directory.Exists(outputDirectory));
-                Assert.Equal(5, Directory.EnumerateFiles(outputDirectory, "*.*", SearchOption.AllDirectories).Count());
+                Assert.Equal(6, Directory.EnumerateFiles(outputDirectory, "*.*", SearchOption.AllDirectories).Count());
             }
             catch
             {
@@ -79,7 +79,7 @@ namespace AXSharp.ixcTests
 
                 Assert.True(Directory.Exists(outputDirectory));
 
-                Assert.Equal(7, Directory.EnumerateFiles(outputDirectory, "*.*", SearchOption.AllDirectories).Count());
+                Assert.Equal(8, Directory.EnumerateFiles(outputDirectory, "*.*", SearchOption.AllDirectories).Count());
             }
             catch
             {
@@ -113,7 +113,7 @@ namespace AXSharp.ixcTests
 
                 Assert.True(Directory.Exists(outputDirectory));
 
-                Assert.Equal(5, Directory.EnumerateFiles(outputDirectory, "*.*", SearchOption.AllDirectories).Count());
+                Assert.Equal(6, Directory.EnumerateFiles(outputDirectory, "*.*", SearchOption.AllDirectories).Count());
             }
             catch
             {

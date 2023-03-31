@@ -17,7 +17,6 @@ namespace AXSharp.Connector.ValueTypes.Tests
     using Xunit;
     using NSubstitute;
     using AXSharp.Connector;
-    using AXSharp.Localizations.Abstractions;
 
     public class OnlinerBaseTests
     {
@@ -120,13 +119,6 @@ namespace AXSharp.Connector.ValueTypes.Tests
 
             // Assert
             Assert.Same(testValue, _testClass.PublicParent);
-        }
-
-        [Fact]
-        public void CanGetTranslatorBase()
-        {
-            // Assert
-            Assert.True(_testClass.TranslatorBase is TranslatorBase);
         }
 
         [Fact]

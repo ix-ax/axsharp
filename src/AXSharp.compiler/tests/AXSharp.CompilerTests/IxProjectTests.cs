@@ -374,6 +374,11 @@ namespace AXSharp.Compiler.Tests
                 
             }
 
+            public void GenerateResources()
+            {
+                
+            }
+
             public IEnumerable<IReference> LoadReferences()
             {
                 return new List<IReference>();

@@ -20,7 +20,7 @@ namespace AXSharp.ixr.Tests
             var expected = "localized";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -33,7 +33,7 @@ namespace AXSharp.ixr.Tests
             var expected = "";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -46,7 +46,7 @@ namespace AXSharp.ixr.Tests
             var expected = "_ZERO__THREE__NINE__FIVE__ONE_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -59,7 +59,7 @@ namespace AXSharp.ixr.Tests
             var expected = "hello_I_am_localized_string_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -72,7 +72,7 @@ namespace AXSharp.ixr.Tests
             var expected = "_EXCLAMATIONMARK__COMMA__DOT__COLON___SEMICOLON__DASH__QUESTIONMARK__";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -85,7 +85,7 @@ namespace AXSharp.ixr.Tests
             var expected = "_APOSTROPHE__BACKSLASH__QUOTATIONMARKS__PIPE__ATSIGN__AMPERSAND__HASHTAG__SQUAREBRACKET__ENDSQUAREBRACKET__LESSTHAN__GREATERTHAN__CURLYBRACKET__ENDCURLYBRACKET__BRACKET__ENDBRACKET__DOLLAR_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -98,7 +98,7 @@ namespace AXSharp.ixr.Tests
             var expected = "_FOUR_loc_EIGHT__aliz_TWO_ed_SEVEN__";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -111,7 +111,7 @@ namespace AXSharp.ixr.Tests
             var expected = "_DOT_loc_SEMICOLON_ali_EXCLAMATIONMARK_zed_DASH__";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -124,7 +124,7 @@ namespace AXSharp.ixr.Tests
             var expected = "_BACKSLASH_loc_HASHTAG_ali_APOSTROPHE_zed_QUOTATIONMARKS_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }
@@ -137,7 +137,7 @@ namespace AXSharp.ixr.Tests
             var expected = "__QUESTIONMARK__QUOTATIONMARKS_loc_THREE_ali_DASH_zed__SIX_str_DOT_in_HASHTAG_g_EXCLAMATIONMARK_";
             //act
             var rawText = _lw.GetRawTextFromLocalizedString(localizedString);
-            var result = _lw.CreateId(rawText);
+            var result = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
             //assert
             Assert.Equal(expected, result);
         }

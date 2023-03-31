@@ -11,10 +11,10 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
+using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes.Online;
 using AXSharp.Connector.ValueTypes.Shadows;
 using AXSharp.Connector.ValueValidation;
-using AXSharp.Localizations.Abstractions;
 
 namespace AXSharp.Connector.ValueTypes;
 
@@ -226,7 +226,7 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     /// </summary>
     public string AttributeToolTip
     {
-        get => TranslatorBase.Translate(attributeToolTip);
+        get => this.Translate(attributeToolTip);
         set => attributeToolTip = value;
     }
 

@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations;
@@ -49,6 +50,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource("using AXSharp.Connector;");
         AddToSource("using AXSharp.Connector.ValueTypes;");
         AddToSource("using System.Collections.Generic;");
+        AddToSource("using AXSharp.Connector.Localizations;");
+
         fileSyntax.Declarations.ToList().ForEach(p => p.Visit(visitor, this));
     }
 
@@ -280,10 +283,11 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             $"public {typeof(ITwinObject).n()} GetParent() {{ return this.@Parent; }}" +
             "public string Symbol { get; protected set; }" +
             "private string _attributeName;" +
-            "public System.String AttributeName { get {return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName); } set { _attributeName = value; } }" +
+            "public System.String AttributeName {  get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }" +
             "public string HumanReadable { get; set; }" +
             "protected System.String @SymbolTail { get; set;}" +
-            $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"
+            $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"+
+            $"public AXSharp.Connector.Localizations.Translator Interpreter => {Project.TargetProject.ProjectRootNamespace}.PlcTranslator.Instance;"
         );
     }
 
