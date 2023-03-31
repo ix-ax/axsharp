@@ -2,6 +2,7 @@ using System;
 using AXSharp.Connector;
 using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
+using AXSharp.Connector.Localizations;
 
 namespace TypeWithNameAttributes
 {
@@ -144,18 +145,7 @@ namespace TypeWithNameAttributes
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName
-        {
-            get
-            {
-                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
-            }
-
-            set
-            {
-                _attributeName = value;
-            }
-        }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
 
         public string HumanReadable { get; set; }
 
@@ -312,18 +302,7 @@ namespace TypeWithNameAttributes
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName
-        {
-            get
-            {
-                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
-            }
-
-            set
-            {
-                _attributeName = value;
-            }
-        }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
 
         public string HumanReadable { get; set; }
 
@@ -337,18 +316,7 @@ namespace TypeWithNameAttributes
     public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
     {
         private string _AttributeName;
-        public string AttributeName
-        {
-            get
-            {
-                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_AttributeName);
-            }
-
-            set
-            {
-                _AttributeName = value;
-            }
-        }
+        public string AttributeName { get => string.IsNullOrEmpty(_AttributeName) ? SymbolTail : this.Translate(_AttributeName).Interpolate(this); set => _AttributeName = value; }
 
         public OnlinerString SomeClassVariable { get; }
 
@@ -490,18 +458,7 @@ namespace TypeWithNameAttributes
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName
-        {
-            get
-            {
-                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
-            }
-
-            set
-            {
-                _attributeName = value;
-            }
-        }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
 
         public string HumanReadable { get; set; }
 

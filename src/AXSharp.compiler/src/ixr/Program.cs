@@ -132,7 +132,7 @@ void AddToDictionaryIfLocalizedString(ISyntaxToken token, LocalizedStringWrapper
             var rawText = lw.GetRawTextFromLocalizedString(localizedString);
 
             //create id
-            var id = AXSharp.Localizations.LocalizationHelper.CreateId(rawText);
+            var id = AXSharp.Connector.Localizations.LocalizationHelper.CreateId(rawText);
 
             //check if identifier is valid
             if(lw.IsValidId(id))

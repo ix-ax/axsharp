@@ -5,12 +5,17 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/dev/notices.md
 
-using AXSharp.Localizations;
 
 namespace AXSharp.Connector.Localizations;
 
 public static class TranslatorExtension
 {
+    /// <summary>
+    /// Extension method provides translation of a localized string attached to a twin element.
+    /// </summary>
+    /// <param name="twin">Twin element to which the string is attached.</param>
+    /// <param name="originalString">Localized string to be translated.</param>
+    /// <returns></returns>
     public static string Translate(this ITwinElement twin, string originalString)
     {
         originalString ??= string.Empty;

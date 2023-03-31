@@ -2,6 +2,7 @@ using System;
 using AXSharp.Connector;
 using AXSharp.Connector.ValueTypes;
 using System.Collections.Generic;
+using AXSharp.Connector.Localizations;
 
 namespace makereadonly
 {
@@ -178,18 +179,7 @@ namespace makereadonly
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName
-        {
-            get
-            {
-                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
-            }
-
-            set
-            {
-                _attributeName = value;
-            }
-        }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
 
         public string HumanReadable { get; set; }
 
@@ -351,18 +341,7 @@ namespace makereadonly
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName
-        {
-            get
-            {
-                return AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(_attributeName);
-            }
-
-            set
-            {
-                _attributeName = value;
-            }
-        }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
 
         public string HumanReadable { get; set; }
 

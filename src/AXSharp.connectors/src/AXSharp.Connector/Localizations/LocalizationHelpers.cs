@@ -4,38 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AXSharp.Localizations
+namespace AXSharp.Connector.Localizations
 {
+    /// <summary>
+    /// Provides helper methods for string localizations.
+    /// </summary>
     public static class LocalizationHelper
     {
-        public static string CreateId(string rawText)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var c in rawText)
-            {
-                //try to find character in mappings
-                var mapchar = TryToGetValueByChar(c);
-                if (mapchar != null)
-                {
-                    sb.Append(mapchar);
-                }
-                //add only if is letter
-                else if (Char.IsLetter(c))
-                {
-                    sb.Append(c);
-                }
-                else
-                {
-                    //unknown
-                    sb.Append('_');
-                }
-            }
-            return sb.ToString();
-
-
-        }
-
-        public static Dictionary<char, string> Mappings = new Dictionary<char, string>()
+        private static Dictionary<char, string> Mappings = new Dictionary<char, string>()
         {
             {' ', "_"},
             {'!', "_EXCLAMATIONMARK_"},
@@ -82,12 +58,50 @@ namespace AXSharp.Localizations
             {'~', "_TILDE_"},
             {'€', "_EURO_"},
         };
-        public static string TryToGetValueByChar(char key)
+
+        private static string TryToGetValueByChar(char key)
         {
             Mappings.TryGetValue(key, out var value);
             return value;
         }
 
+        /// <summary>
+        /// Create C# compliant identifier from an arbitrary string.
+        /// </summary>
+        /// <param name="rawText">String from which to create identifier.</param>
+        /// <returns>C# compliant identifier.</returns>
+        public static string CreateId(string rawText)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var c in rawText)
+            {
+                //try to find character in mappings
+                var mapchar = TryToGetValueByChar(c);
+                if (mapchar != null)
+                {
+                    sb.Append(mapchar);
+                }
+                //add only if is letter
+                else if (Char.IsLetter(c))
+                {
+                    sb.Append(c);
+                }
+                else
+                {
+                    //unknown
+                    sb.Append('_');
+                }
+            }
+            return sb.ToString();
+
+
+        }
+
+        /// <summary>
+        /// Cleans up localization tokens from a string.
+        /// </summary>
+        /// <param name="localized">String with localization tokens</param>
+        /// <returns>String without localization tokens.</returns>
         public static string CleanUpLocalizationTokens(this string localized)
         {
             if (localized != null) return localized.Replace("<#", string.Empty).Replace("#>", string.Empty);

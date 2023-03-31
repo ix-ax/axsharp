@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AXSharp.Connector.Localizations;
-using AXSharp.Localizations;
 
 
 namespace AXSharp.Connector.Tests

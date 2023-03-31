@@ -1,6 +1,6 @@
 using System.Globalization;
 using AXSharp.Connector.Localizations;
-using AXSharp.Localizations;
+
 
 
 namespace AXSharp.ConnectorTests.Localizations
