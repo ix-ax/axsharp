@@ -2015,6 +2015,19 @@ references:
   fullName.vb: AXSharp.Compiler.CsProject.New
   nameWithType: CsProject.CsProject
   nameWithType.vb: CsProject.New
+- uid: AXSharp.Compiler.CsProject.GenerateResources
+  name: GenerateResources()
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GenerateResources
+  commentId: M:AXSharp.Compiler.CsProject.GenerateResources
+  fullName: AXSharp.Compiler.CsProject.GenerateResources()
+  nameWithType: CsProject.GenerateResources()
+- uid: AXSharp.Compiler.CsProject.GenerateResources*
+  name: GenerateResources
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GenerateResources_
+  commentId: Overload:AXSharp.Compiler.CsProject.GenerateResources
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CsProject.GenerateResources
+  nameWithType: CsProject.GenerateResources
 - uid: AXSharp.Compiler.CsProject.GetMetaDataFolder
   name: GetMetaDataFolder
   href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GetMetaDataFolder
@@ -2363,6 +2376,19 @@ references:
   commentId: T:AXSharp.Compiler.ITargetProject
   fullName: AXSharp.Compiler.ITargetProject
   nameWithType: ITargetProject
+- uid: AXSharp.Compiler.ITargetProject.GenerateResources
+  name: GenerateResources()
+  href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_GenerateResources
+  commentId: M:AXSharp.Compiler.ITargetProject.GenerateResources
+  fullName: AXSharp.Compiler.ITargetProject.GenerateResources()
+  nameWithType: ITargetProject.GenerateResources()
+- uid: AXSharp.Compiler.ITargetProject.GenerateResources*
+  name: GenerateResources
+  href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_GenerateResources_
+  commentId: Overload:AXSharp.Compiler.ITargetProject.GenerateResources
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ITargetProject.GenerateResources
+  nameWithType: ITargetProject.GenerateResources
 - uid: AXSharp.Compiler.ITargetProject.GetMetaDataFolder
   name: GetMetaDataFolder
   href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_GetMetaDataFolder
@@ -4823,6 +4849,19 @@ references:
   commentId: T:AXSharp.Connector.ITwinController
   fullName: AXSharp.Connector.ITwinController
   nameWithType: ITwinController
+- uid: AXSharp.Connector.ITwinController.Translator
+  name: Translator
+  href: api/AXSharp.Connector.ITwinController.html#AXSharp_Connector_ITwinController_Translator
+  commentId: P:AXSharp.Connector.ITwinController.Translator
+  fullName: AXSharp.Connector.ITwinController.Translator
+  nameWithType: ITwinController.Translator
+- uid: AXSharp.Connector.ITwinController.Translator*
+  name: Translator
+  href: api/AXSharp.Connector.ITwinController.html#AXSharp_Connector_ITwinController_Translator_
+  commentId: Overload:AXSharp.Connector.ITwinController.Translator
+  isSpec: "True"
+  fullName: AXSharp.Connector.ITwinController.Translator
+  nameWithType: ITwinController.Translator
 - uid: AXSharp.Connector.ITwinElement
   name: ITwinElement
   href: api/AXSharp.Connector.ITwinElement.html
@@ -4881,6 +4920,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ITwinElement.HumanReadable
   nameWithType: ITwinElement.HumanReadable
+- uid: AXSharp.Connector.ITwinElement.Interpreter
+  name: Interpreter
+  href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_Interpreter
+  commentId: P:AXSharp.Connector.ITwinElement.Interpreter
+  fullName: AXSharp.Connector.ITwinElement.Interpreter
+  nameWithType: ITwinElement.Interpreter
+- uid: AXSharp.Connector.ITwinElement.Interpreter*
+  name: Interpreter
+  href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_Interpreter_
+  commentId: Overload:AXSharp.Connector.ITwinElement.Interpreter
+  isSpec: "True"
+  fullName: AXSharp.Connector.ITwinElement.Interpreter
+  nameWithType: ITwinElement.Interpreter
 - uid: AXSharp.Connector.ITwinElement.Poll
   name: Poll()
   href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_Poll
@@ -5236,19 +5288,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ITwinPrimitive.SubscribeForPeriodicReading
   nameWithType: ITwinPrimitive.SubscribeForPeriodicReading
-- uid: AXSharp.Connector.ITwinPrimitive.TranslatorBase
-  name: TranslatorBase
-  href: api/AXSharp.Connector.ITwinPrimitive.html#AXSharp_Connector_ITwinPrimitive_TranslatorBase
-  commentId: P:AXSharp.Connector.ITwinPrimitive.TranslatorBase
-  fullName: AXSharp.Connector.ITwinPrimitive.TranslatorBase
-  nameWithType: ITwinPrimitive.TranslatorBase
-- uid: AXSharp.Connector.ITwinPrimitive.TranslatorBase*
-  name: TranslatorBase
-  href: api/AXSharp.Connector.ITwinPrimitive.html#AXSharp_Connector_ITwinPrimitive_TranslatorBase_
-  commentId: Overload:AXSharp.Connector.ITwinPrimitive.TranslatorBase
-  isSpec: "True"
-  fullName: AXSharp.Connector.ITwinPrimitive.TranslatorBase
-  nameWithType: ITwinPrimitive.TranslatorBase
 - uid: AXSharp.Connector.ITwinPrimitive.UnSubscribe(AXSharp.Connector.ValueTypes.ValueChangedEventHandlerDelegate)
   name: UnSubscribe(ValueChangedEventHandlerDelegate)
   href: api/AXSharp.Connector.ITwinPrimitive.html#AXSharp_Connector_ITwinPrimitive_UnSubscribe_AXSharp_Connector_ValueTypes_ValueChangedEventHandlerDelegate_
@@ -5313,6 +5352,123 @@ references:
   commentId: T:AXSharp.Connector.ITwinShadowObject
   fullName: AXSharp.Connector.ITwinShadowObject
   nameWithType: ITwinShadowObject
+- uid: AXSharp.Connector.Localizations
+  name: AXSharp.Connector.Localizations
+  href: api/AXSharp.Connector.Localizations.html
+  commentId: N:AXSharp.Connector.Localizations
+  fullName: AXSharp.Connector.Localizations
+  nameWithType: AXSharp.Connector.Localizations
+- uid: AXSharp.Connector.Localizations.LocalizationHelper
+  name: LocalizationHelper
+  href: api/AXSharp.Connector.Localizations.LocalizationHelper.html
+  commentId: T:AXSharp.Connector.Localizations.LocalizationHelper
+  fullName: AXSharp.Connector.Localizations.LocalizationHelper
+  nameWithType: LocalizationHelper
+- uid: AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens(System.String)
+  name: CleanUpLocalizationTokens(string)
+  href: api/AXSharp.Connector.Localizations.LocalizationHelper.html#AXSharp_Connector_Localizations_LocalizationHelper_CleanUpLocalizationTokens_System_String_
+  commentId: M:AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens(System.String)
+  name.vb: CleanUpLocalizationTokens(String)
+  fullName: AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens(string)
+  fullName.vb: AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens(String)
+  nameWithType: LocalizationHelper.CleanUpLocalizationTokens(string)
+  nameWithType.vb: LocalizationHelper.CleanUpLocalizationTokens(String)
+- uid: AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens*
+  name: CleanUpLocalizationTokens
+  href: api/AXSharp.Connector.Localizations.LocalizationHelper.html#AXSharp_Connector_Localizations_LocalizationHelper_CleanUpLocalizationTokens_
+  commentId: Overload:AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens
+  isSpec: "True"
+  fullName: AXSharp.Connector.Localizations.LocalizationHelper.CleanUpLocalizationTokens
+  nameWithType: LocalizationHelper.CleanUpLocalizationTokens
+- uid: AXSharp.Connector.Localizations.LocalizationHelper.CreateId(System.String)
+  name: CreateId(string)
+  href: api/AXSharp.Connector.Localizations.LocalizationHelper.html#AXSharp_Connector_Localizations_LocalizationHelper_CreateId_System_String_
+  commentId: M:AXSharp.Connector.Localizations.LocalizationHelper.CreateId(System.String)
+  name.vb: CreateId(String)
+  fullName: AXSharp.Connector.Localizations.LocalizationHelper.CreateId(string)
+  fullName.vb: AXSharp.Connector.Localizations.LocalizationHelper.CreateId(String)
+  nameWithType: LocalizationHelper.CreateId(string)
+  nameWithType.vb: LocalizationHelper.CreateId(String)
+- uid: AXSharp.Connector.Localizations.LocalizationHelper.CreateId*
+  name: CreateId
+  href: api/AXSharp.Connector.Localizations.LocalizationHelper.html#AXSharp_Connector_Localizations_LocalizationHelper_CreateId_
+  commentId: Overload:AXSharp.Connector.Localizations.LocalizationHelper.CreateId
+  isSpec: "True"
+  fullName: AXSharp.Connector.Localizations.LocalizationHelper.CreateId
+  nameWithType: LocalizationHelper.CreateId
+- uid: AXSharp.Connector.Localizations.Translator
+  name: Translator
+  href: api/AXSharp.Connector.Localizations.Translator.html
+  commentId: T:AXSharp.Connector.Localizations.Translator
+  fullName: AXSharp.Connector.Localizations.Translator
+  nameWithType: Translator
+- uid: AXSharp.Connector.Localizations.Translator.Localize(System.String,AXSharp.Connector.ITwinElement)
+  name: Localize(string, ITwinElement)
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Localize_System_String_AXSharp_Connector_ITwinElement_
+  commentId: M:AXSharp.Connector.Localizations.Translator.Localize(System.String,AXSharp.Connector.ITwinElement)
+  name.vb: Localize(String, ITwinElement)
+  fullName: AXSharp.Connector.Localizations.Translator.Localize(string, AXSharp.Connector.ITwinElement)
+  fullName.vb: AXSharp.Connector.Localizations.Translator.Localize(String, AXSharp.Connector.ITwinElement)
+  nameWithType: Translator.Localize(string, ITwinElement)
+  nameWithType.vb: Translator.Localize(String, ITwinElement)
+- uid: AXSharp.Connector.Localizations.Translator.Localize*
+  name: Localize
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Localize_
+  commentId: Overload:AXSharp.Connector.Localizations.Translator.Localize
+  isSpec: "True"
+  fullName: AXSharp.Connector.Localizations.Translator.Localize
+  nameWithType: Translator.Localize
+- uid: AXSharp.Connector.Localizations.Translator.SetLocalizationResource(System.Type)
+  name: SetLocalizationResource(Type)
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_SetLocalizationResource_System_Type_
+  commentId: M:AXSharp.Connector.Localizations.Translator.SetLocalizationResource(System.Type)
+  fullName: AXSharp.Connector.Localizations.Translator.SetLocalizationResource(System.Type)
+  nameWithType: Translator.SetLocalizationResource(Type)
+- uid: AXSharp.Connector.Localizations.Translator.SetLocalizationResource*
+  name: SetLocalizationResource
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_SetLocalizationResource_
+  commentId: Overload:AXSharp.Connector.Localizations.Translator.SetLocalizationResource
+  isSpec: "True"
+  fullName: AXSharp.Connector.Localizations.Translator.SetLocalizationResource
+  nameWithType: Translator.SetLocalizationResource
+- uid: AXSharp.Connector.Localizations.Translator.Translate(System.String,AXSharp.Connector.ITwinElement)
+  name: Translate(string, ITwinElement)
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Translate_System_String_AXSharp_Connector_ITwinElement_
+  commentId: M:AXSharp.Connector.Localizations.Translator.Translate(System.String,AXSharp.Connector.ITwinElement)
+  name.vb: Translate(String, ITwinElement)
+  fullName: AXSharp.Connector.Localizations.Translator.Translate(string, AXSharp.Connector.ITwinElement)
+  fullName.vb: AXSharp.Connector.Localizations.Translator.Translate(String, AXSharp.Connector.ITwinElement)
+  nameWithType: Translator.Translate(string, ITwinElement)
+  nameWithType.vb: Translator.Translate(String, ITwinElement)
+- uid: AXSharp.Connector.Localizations.Translator.Translate*
+  name: Translate
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Translate_
+  commentId: Overload:AXSharp.Connector.Localizations.Translator.Translate
+  isSpec: "True"
+  fullName: AXSharp.Connector.Localizations.Translator.Translate
+  nameWithType: Translator.Translate
+- uid: AXSharp.Connector.Localizations.TranslatorExtension
+  name: TranslatorExtension
+  href: api/AXSharp.Connector.Localizations.TranslatorExtension.html
+  commentId: T:AXSharp.Connector.Localizations.TranslatorExtension
+  fullName: AXSharp.Connector.Localizations.TranslatorExtension
+  nameWithType: TranslatorExtension
+- uid: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement,System.String)
+  name: Translate(ITwinElement, string)
+  href: api/AXSharp.Connector.Localizations.TranslatorExtension.html#AXSharp_Connector_Localizations_TranslatorExtension_Translate_AXSharp_Connector_ITwinElement_System_String_
+  commentId: M:AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement,System.String)
+  name.vb: Translate(ITwinElement, String)
+  fullName: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement, string)
+  fullName.vb: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement, String)
+  nameWithType: TranslatorExtension.Translate(ITwinElement, string)
+  nameWithType.vb: TranslatorExtension.Translate(ITwinElement, String)
+- uid: AXSharp.Connector.Localizations.TranslatorExtension.Translate*
+  name: Translate
+  href: api/AXSharp.Connector.Localizations.TranslatorExtension.html#AXSharp_Connector_Localizations_TranslatorExtension_Translate_
+  commentId: Overload:AXSharp.Connector.Localizations.TranslatorExtension.Translate
+  isSpec: "True"
+  fullName: AXSharp.Connector.Localizations.TranslatorExtension.Translate
+  nameWithType: TranslatorExtension.Translate
 - uid: AXSharp.Connector.PrimitiveAccessStatus
   name: PrimitiveAccessStatus
   href: api/AXSharp.Connector.PrimitiveAccessStatus.html
@@ -5636,6 +5792,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.Identity
   nameWithType: RootTwinObject.Identity
+- uid: AXSharp.Connector.RootTwinObject.Interpreter
+  name: Interpreter
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_Interpreter
+  commentId: P:AXSharp.Connector.RootTwinObject.Interpreter
+  fullName: AXSharp.Connector.RootTwinObject.Interpreter
+  nameWithType: RootTwinObject.Interpreter
+- uid: AXSharp.Connector.RootTwinObject.Interpreter*
+  name: Interpreter
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_Interpreter_
+  commentId: Overload:AXSharp.Connector.RootTwinObject.Interpreter
+  isSpec: "True"
+  fullName: AXSharp.Connector.RootTwinObject.Interpreter
+  nameWithType: RootTwinObject.Interpreter
 - uid: AXSharp.Connector.RootTwinObject.OnlineToPlain
   name: OnlineToPlain()
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_OnlineToPlain
@@ -9297,6 +9466,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ValueTypes.OnlinerBase.HumanReadable
   nameWithType: OnlinerBase.HumanReadable
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase.Interpreter
+  name: Interpreter
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_Interpreter
+  commentId: P:AXSharp.Connector.ValueTypes.OnlinerBase.Interpreter
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.Interpreter
+  nameWithType: OnlinerBase.Interpreter
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase.Interpreter*
+  name: Interpreter
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_Interpreter_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase.Interpreter
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.Interpreter
+  nameWithType: OnlinerBase.Interpreter
 - uid: AXSharp.Connector.ValueTypes.OnlinerBase.MakeReadOnce
   name: MakeReadOnce()
   href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_MakeReadOnce
@@ -9510,19 +9692,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ValueTypes.OnlinerBase.SymbolTail
   nameWithType: OnlinerBase.SymbolTail
-- uid: AXSharp.Connector.ValueTypes.OnlinerBase.TranslatorBase
-  name: TranslatorBase
-  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_TranslatorBase
-  commentId: P:AXSharp.Connector.ValueTypes.OnlinerBase.TranslatorBase
-  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.TranslatorBase
-  nameWithType: OnlinerBase.TranslatorBase
-- uid: AXSharp.Connector.ValueTypes.OnlinerBase.TranslatorBase*
-  name: TranslatorBase
-  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_TranslatorBase_
-  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase.TranslatorBase
-  isSpec: "True"
-  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.TranslatorBase
-  nameWithType: OnlinerBase.TranslatorBase
 - uid: AXSharp.Connector.ValueTypes.OnlinerBase.UnSubscribe(AXSharp.Connector.ValueTypes.ValueChangedEventHandlerDelegate)
   name: UnSubscribe(ValueChangedEventHandlerDelegate)
   href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_UnSubscribe_AXSharp_Connector_ValueTypes_ValueChangedEventHandlerDelegate_
@@ -15791,22 +15960,6 @@ references:
   fullName.vb: AXSharp.ixr_doc.LocalizedStringWrapper.New
   nameWithType: LocalizedStringWrapper.LocalizedStringWrapper
   nameWithType.vb: LocalizedStringWrapper.New
-- uid: AXSharp.ixr_doc.LocalizedStringWrapper.CreateId(System.String)
-  name: CreateId(string)
-  href: api/AXSharp.ixr_doc.LocalizedStringWrapper.html#AXSharp_ixr_doc_LocalizedStringWrapper_CreateId_System_String_
-  commentId: M:AXSharp.ixr_doc.LocalizedStringWrapper.CreateId(System.String)
-  name.vb: CreateId(String)
-  fullName: AXSharp.ixr_doc.LocalizedStringWrapper.CreateId(string)
-  fullName.vb: AXSharp.ixr_doc.LocalizedStringWrapper.CreateId(String)
-  nameWithType: LocalizedStringWrapper.CreateId(string)
-  nameWithType.vb: LocalizedStringWrapper.CreateId(String)
-- uid: AXSharp.ixr_doc.LocalizedStringWrapper.CreateId*
-  name: CreateId
-  href: api/AXSharp.ixr_doc.LocalizedStringWrapper.html#AXSharp_ixr_doc_LocalizedStringWrapper_CreateId_
-  commentId: Overload:AXSharp.ixr_doc.LocalizedStringWrapper.CreateId
-  isSpec: "True"
-  fullName: AXSharp.ixr_doc.LocalizedStringWrapper.CreateId
-  nameWithType: LocalizedStringWrapper.CreateId
 - uid: AXSharp.ixr_doc.LocalizedStringWrapper.GetRawTextFromLocalizedString(System.String)
   name: GetRawTextFromLocalizedString(string)
   href: api/AXSharp.ixr_doc.LocalizedStringWrapper.html#AXSharp_ixr_doc_LocalizedStringWrapper_GetRawTextFromLocalizedString_System_String_
@@ -15890,15 +16043,15 @@ references:
   commentId: T:AXSharp.ixr_doc.ResxManager
   fullName: AXSharp.ixr_doc.ResxManager
   nameWithType: ResxManager
-- uid: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(System.String,System.Collections.Generic.Dictionary{System.String,AXSharp.ixr_doc.StringValueWrapper})
-  name: AddResourcesFromDictionary(string, Dictionary<string, StringValueWrapper>)
-  href: api/AXSharp.ixr_doc.ResxManager.html#AXSharp_ixr_doc_ResxManager_AddResourcesFromDictionary_System_String_System_Collections_Generic_Dictionary_System_String_AXSharp_ixr_doc_StringValueWrapper__
-  commentId: M:AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(System.String,System.Collections.Generic.Dictionary{System.String,AXSharp.ixr_doc.StringValueWrapper})
-  name.vb: AddResourcesFromDictionary(String, Dictionary(Of String, StringValueWrapper))
-  fullName: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(string, System.Collections.Generic.Dictionary<string, AXSharp.ixr_doc.StringValueWrapper>)
-  fullName.vb: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(String, System.Collections.Generic.Dictionary(Of String, AXSharp.ixr_doc.StringValueWrapper))
-  nameWithType: ResxManager.AddResourcesFromDictionary(string, Dictionary<string, StringValueWrapper>)
-  nameWithType.vb: ResxManager.AddResourcesFromDictionary(String, Dictionary(Of String, StringValueWrapper))
+- uid: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(System.String,System.String,System.Collections.Generic.Dictionary{System.String,AXSharp.ixr_doc.StringValueWrapper})
+  name: AddResourcesFromDictionary(string, string, Dictionary<string, StringValueWrapper>)
+  href: api/AXSharp.ixr_doc.ResxManager.html#AXSharp_ixr_doc_ResxManager_AddResourcesFromDictionary_System_String_System_String_System_Collections_Generic_Dictionary_System_String_AXSharp_ixr_doc_StringValueWrapper__
+  commentId: M:AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(System.String,System.String,System.Collections.Generic.Dictionary{System.String,AXSharp.ixr_doc.StringValueWrapper})
+  name.vb: AddResourcesFromDictionary(String, String, Dictionary(Of String, StringValueWrapper))
+  fullName: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(string, string, System.Collections.Generic.Dictionary<string, AXSharp.ixr_doc.StringValueWrapper>)
+  fullName.vb: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary(String, String, System.Collections.Generic.Dictionary(Of String, AXSharp.ixr_doc.StringValueWrapper))
+  nameWithType: ResxManager.AddResourcesFromDictionary(string, string, Dictionary<string, StringValueWrapper>)
+  nameWithType.vb: ResxManager.AddResourcesFromDictionary(String, String, Dictionary(Of String, StringValueWrapper))
 - uid: AXSharp.ixr_doc.ResxManager.AddResourcesFromDictionary*
   name: AddResourcesFromDictionary
   href: api/AXSharp.ixr_doc.ResxManager.html#AXSharp_ixr_doc_ResxManager_AddResourcesFromDictionary_
@@ -15970,340 +16123,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixr_doc.StringValueWrapper.RawValue
   nameWithType: StringValueWrapper.RawValue
-- uid: AXSharp.ixr_doc.SymbolMappings
-  name: SymbolMappings
-  href: api/AXSharp.ixr_doc.SymbolMappings.html
-  commentId: T:AXSharp.ixr_doc.SymbolMappings
-  fullName: AXSharp.ixr_doc.SymbolMappings
-  nameWithType: SymbolMappings
-- uid: AXSharp.ixr_doc.SymbolMappings.Mappings
-  name: Mappings
-  href: api/AXSharp.ixr_doc.SymbolMappings.html#AXSharp_ixr_doc_SymbolMappings_Mappings
-  commentId: F:AXSharp.ixr_doc.SymbolMappings.Mappings
-  fullName: AXSharp.ixr_doc.SymbolMappings.Mappings
-  nameWithType: SymbolMappings.Mappings
-- uid: AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar(System.Char)
-  name: TryToGetValueByChar(char)
-  href: api/AXSharp.ixr_doc.SymbolMappings.html#AXSharp_ixr_doc_SymbolMappings_TryToGetValueByChar_System_Char_
-  commentId: M:AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar(System.Char)
-  name.vb: TryToGetValueByChar(Char)
-  fullName: AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar(char)
-  fullName.vb: AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar(Char)
-  nameWithType: SymbolMappings.TryToGetValueByChar(char)
-  nameWithType.vb: SymbolMappings.TryToGetValueByChar(Char)
-- uid: AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar*
-  name: TryToGetValueByChar
-  href: api/AXSharp.ixr_doc.SymbolMappings.html#AXSharp_ixr_doc_SymbolMappings_TryToGetValueByChar_
-  commentId: Overload:AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar
-  isSpec: "True"
-  fullName: AXSharp.ixr_doc.SymbolMappings.TryToGetValueByChar
-  nameWithType: SymbolMappings.TryToGetValueByChar
-- uid: AXSharp.Localizations
-  name: AXSharp.Localizations
-  href: api/AXSharp.Localizations.html
-  commentId: N:AXSharp.Localizations
-  fullName: AXSharp.Localizations
-  nameWithType: AXSharp.Localizations
-- uid: AXSharp.Localizations.Abstractions
-  name: AXSharp.Localizations.Abstractions
-  href: api/AXSharp.Localizations.Abstractions.html
-  commentId: N:AXSharp.Localizations.Abstractions
-  fullName: AXSharp.Localizations.Abstractions
-  nameWithType: AXSharp.Localizations.Abstractions
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase
-  name: TranslatorBase
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html
-  commentId: T:AXSharp.Localizations.Abstractions.TranslatorBase
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase
-  nameWithType: TranslatorBase
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.#ctor
-  name: TranslatorBase()
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase__ctor
-  commentId: M:AXSharp.Localizations.Abstractions.TranslatorBase.#ctor
-  name.vb: New()
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorBase()
-  fullName.vb: AXSharp.Localizations.Abstractions.TranslatorBase.New()
-  nameWithType: TranslatorBase.TranslatorBase()
-  nameWithType.vb: TranslatorBase.New()
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.#ctor*
-  name: TranslatorBase
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase__ctor_
-  commentId: Overload:AXSharp.Localizations.Abstractions.TranslatorBase.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorBase
-  fullName.vb: AXSharp.Localizations.Abstractions.TranslatorBase.New
-  nameWithType: TranslatorBase.TranslatorBase
-  nameWithType.vb: TranslatorBase.New
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.Get
-  name: Get()
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_Get
-  commentId: M:AXSharp.Localizations.Abstractions.TranslatorBase.Get
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.Get()
-  nameWithType: TranslatorBase.Get()
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.Get(System.Type)
-  name: Get(Type)
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_Get_System_Type_
-  commentId: M:AXSharp.Localizations.Abstractions.TranslatorBase.Get(System.Type)
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.Get(System.Type)
-  nameWithType: TranslatorBase.Get(Type)
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.Get*
-  name: Get
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_Get_
-  commentId: Overload:AXSharp.Localizations.Abstractions.TranslatorBase.Get
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.Get
-  nameWithType: TranslatorBase.Get
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.LoadDictionaries(System.Globalization.CultureInfo)
-  name: LoadDictionaries(CultureInfo)
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_LoadDictionaries_System_Globalization_CultureInfo_
-  commentId: M:AXSharp.Localizations.Abstractions.TranslatorBase.LoadDictionaries(System.Globalization.CultureInfo)
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.LoadDictionaries(System.Globalization.CultureInfo)
-  nameWithType: TranslatorBase.LoadDictionaries(CultureInfo)
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.LoadDictionaries*
-  name: LoadDictionaries
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_LoadDictionaries_
-  commentId: Overload:AXSharp.Localizations.Abstractions.TranslatorBase.LoadDictionaries
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.LoadDictionaries
-  nameWithType: TranslatorBase.LoadDictionaries
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.Translate(System.String,AXSharp.Connector.ITwinObject)
-  name: Translate(string, ITwinObject)
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_Translate_System_String_AXSharp_Connector_ITwinObject_
-  commentId: M:AXSharp.Localizations.Abstractions.TranslatorBase.Translate(System.String,AXSharp.Connector.ITwinObject)
-  name.vb: Translate(String, ITwinObject)
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.Translate(string, AXSharp.Connector.ITwinObject)
-  fullName.vb: AXSharp.Localizations.Abstractions.TranslatorBase.Translate(String, AXSharp.Connector.ITwinObject)
-  nameWithType: TranslatorBase.Translate(string, ITwinObject)
-  nameWithType.vb: TranslatorBase.Translate(String, ITwinObject)
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.Translate(System.String)
-  name: Translate(string)
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_Translate_System_String_
-  commentId: M:AXSharp.Localizations.Abstractions.TranslatorBase.Translate(System.String)
-  name.vb: Translate(String)
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.Translate(string)
-  fullName.vb: AXSharp.Localizations.Abstractions.TranslatorBase.Translate(String)
-  nameWithType: TranslatorBase.Translate(string)
-  nameWithType.vb: TranslatorBase.Translate(String)
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.Translate*
-  name: Translate
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_Translate_
-  commentId: Overload:AXSharp.Localizations.Abstractions.TranslatorBase.Translate
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.Translate
-  nameWithType: TranslatorBase.Translate
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorsId
-  name: TranslatorsId
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_TranslatorsId
-  commentId: P:AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorsId
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorsId
-  nameWithType: TranslatorBase.TranslatorsId
-- uid: AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorsId*
-  name: TranslatorsId
-  href: api/AXSharp.Localizations.Abstractions.TranslatorBase.html#AXSharp_Localizations_Abstractions_TranslatorBase_TranslatorsId_
-  commentId: Overload:AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorsId
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Abstractions.TranslatorBase.TranslatorsId
-  nameWithType: TranslatorBase.TranslatorsId
-- uid: AXSharp.Localizations.IdentifierValidator
-  name: IdentifierValidator
-  href: api/AXSharp.Localizations.IdentifierValidator.html
-  commentId: T:AXSharp.Localizations.IdentifierValidator
-  fullName: AXSharp.Localizations.IdentifierValidator
-  nameWithType: IdentifierValidator
-- uid: AXSharp.Localizations.LocalizableItem
-  name: LocalizableItem
-  href: api/AXSharp.Localizations.LocalizableItem.html
-  commentId: T:AXSharp.Localizations.LocalizableItem
-  fullName: AXSharp.Localizations.LocalizableItem
-  nameWithType: LocalizableItem
-- uid: AXSharp.Localizations.LocalizableItem.Key
-  name: Key
-  href: api/AXSharp.Localizations.LocalizableItem.html#AXSharp_Localizations_LocalizableItem_Key
-  commentId: P:AXSharp.Localizations.LocalizableItem.Key
-  fullName: AXSharp.Localizations.LocalizableItem.Key
-  nameWithType: LocalizableItem.Key
-- uid: AXSharp.Localizations.LocalizableItem.Key*
-  name: Key
-  href: api/AXSharp.Localizations.LocalizableItem.html#AXSharp_Localizations_LocalizableItem_Key_
-  commentId: Overload:AXSharp.Localizations.LocalizableItem.Key
-  isSpec: "True"
-  fullName: AXSharp.Localizations.LocalizableItem.Key
-  nameWithType: LocalizableItem.Key
-- uid: AXSharp.Localizations.LocalizableItem.Location
-  name: Location
-  href: api/AXSharp.Localizations.LocalizableItem.html#AXSharp_Localizations_LocalizableItem_Location
-  commentId: P:AXSharp.Localizations.LocalizableItem.Location
-  fullName: AXSharp.Localizations.LocalizableItem.Location
-  nameWithType: LocalizableItem.Location
-- uid: AXSharp.Localizations.LocalizableItem.Location*
-  name: Location
-  href: api/AXSharp.Localizations.LocalizableItem.html#AXSharp_Localizations_LocalizableItem_Location_
-  commentId: Overload:AXSharp.Localizations.LocalizableItem.Location
-  isSpec: "True"
-  fullName: AXSharp.Localizations.LocalizableItem.Location
-  nameWithType: LocalizableItem.Location
-- uid: AXSharp.Localizations.Localizables
-  name: Localizables
-  href: api/AXSharp.Localizations.Localizables.html
-  commentId: T:AXSharp.Localizations.Localizables
-  fullName: AXSharp.Localizations.Localizables
-  nameWithType: Localizables
-- uid: AXSharp.Localizations.Localizables.Key
-  name: Key
-  href: api/AXSharp.Localizations.Localizables.html#AXSharp_Localizations_Localizables_Key
-  commentId: P:AXSharp.Localizations.Localizables.Key
-  fullName: AXSharp.Localizations.Localizables.Key
-  nameWithType: Localizables.Key
-- uid: AXSharp.Localizations.Localizables.Key*
-  name: Key
-  href: api/AXSharp.Localizations.Localizables.html#AXSharp_Localizations_Localizables_Key_
-  commentId: Overload:AXSharp.Localizations.Localizables.Key
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Localizables.Key
-  nameWithType: Localizables.Key
-- uid: AXSharp.Localizations.Localizables.Location
-  name: Location
-  href: api/AXSharp.Localizations.Localizables.html#AXSharp_Localizations_Localizables_Location
-  commentId: P:AXSharp.Localizations.Localizables.Location
-  fullName: AXSharp.Localizations.Localizables.Location
-  nameWithType: Localizables.Location
-- uid: AXSharp.Localizations.Localizables.Location*
-  name: Location
-  href: api/AXSharp.Localizations.Localizables.html#AXSharp_Localizations_Localizables_Location_
-  commentId: Overload:AXSharp.Localizations.Localizables.Location
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Localizables.Location
-  nameWithType: Localizables.Location
-- uid: AXSharp.Localizations.Localizables.Used
-  name: Used
-  href: api/AXSharp.Localizations.Localizables.html#AXSharp_Localizations_Localizables_Used
-  commentId: P:AXSharp.Localizations.Localizables.Used
-  fullName: AXSharp.Localizations.Localizables.Used
-  nameWithType: Localizables.Used
-- uid: AXSharp.Localizations.Localizables.Used*
-  name: Used
-  href: api/AXSharp.Localizations.Localizables.html#AXSharp_Localizations_Localizables_Used_
-  commentId: Overload:AXSharp.Localizations.Localizables.Used
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Localizables.Used
-  nameWithType: Localizables.Used
-- uid: AXSharp.Localizations.LocalizationHelper
-  name: LocalizationHelper
-  href: api/AXSharp.Localizations.LocalizationHelper.html
-  commentId: T:AXSharp.Localizations.LocalizationHelper
-  fullName: AXSharp.Localizations.LocalizationHelper
-  nameWithType: LocalizationHelper
-- uid: AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(System.String)
-  name: CleanUpLocalizationTokens(string)
-  href: api/AXSharp.Localizations.LocalizationHelper.html#AXSharp_Localizations_LocalizationHelper_CleanUpLocalizationTokens_System_String_
-  commentId: M:AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(System.String)
-  name.vb: CleanUpLocalizationTokens(String)
-  fullName: AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(string)
-  fullName.vb: AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens(String)
-  nameWithType: LocalizationHelper.CleanUpLocalizationTokens(string)
-  nameWithType.vb: LocalizationHelper.CleanUpLocalizationTokens(String)
-- uid: AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens*
-  name: CleanUpLocalizationTokens
-  href: api/AXSharp.Localizations.LocalizationHelper.html#AXSharp_Localizations_LocalizationHelper_CleanUpLocalizationTokens_
-  commentId: Overload:AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens
-  isSpec: "True"
-  fullName: AXSharp.Localizations.LocalizationHelper.CleanUpLocalizationTokens
-  nameWithType: LocalizationHelper.CleanUpLocalizationTokens
-- uid: AXSharp.Localizations.LocalizationHelper.GetLocalizables(System.String,System.Collections.Generic.List{AXSharp.Localizations.LocalizableItem})
-  name: GetLocalizables(string, List<LocalizableItem>)
-  href: api/AXSharp.Localizations.LocalizationHelper.html#AXSharp_Localizations_LocalizationHelper_GetLocalizables_System_String_System_Collections_Generic_List_AXSharp_Localizations_LocalizableItem__
-  commentId: M:AXSharp.Localizations.LocalizationHelper.GetLocalizables(System.String,System.Collections.Generic.List{AXSharp.Localizations.LocalizableItem})
-  name.vb: GetLocalizables(String, List(Of LocalizableItem))
-  fullName: AXSharp.Localizations.LocalizationHelper.GetLocalizables(string, System.Collections.Generic.List<AXSharp.Localizations.LocalizableItem>)
-  fullName.vb: AXSharp.Localizations.LocalizationHelper.GetLocalizables(String, System.Collections.Generic.List(Of AXSharp.Localizations.LocalizableItem))
-  nameWithType: LocalizationHelper.GetLocalizables(string, List<LocalizableItem>)
-  nameWithType.vb: LocalizationHelper.GetLocalizables(String, List(Of LocalizableItem))
-- uid: AXSharp.Localizations.LocalizationHelper.GetLocalizables*
-  name: GetLocalizables
-  href: api/AXSharp.Localizations.LocalizationHelper.html#AXSharp_Localizations_LocalizationHelper_GetLocalizables_
-  commentId: Overload:AXSharp.Localizations.LocalizationHelper.GetLocalizables
-  isSpec: "True"
-  fullName: AXSharp.Localizations.LocalizationHelper.GetLocalizables
-  nameWithType: LocalizationHelper.GetLocalizables
-- uid: AXSharp.Localizations.Resx
-  name: AXSharp.Localizations.Resx
-  href: api/AXSharp.Localizations.Resx.html
-  commentId: N:AXSharp.Localizations.Resx
-  fullName: AXSharp.Localizations.Resx
-  nameWithType: AXSharp.Localizations.Resx
-- uid: AXSharp.Localizations.Resx.Translator
-  name: Translator
-  href: api/AXSharp.Localizations.Resx.Translator.html
-  commentId: T:AXSharp.Localizations.Resx.Translator
-  fullName: AXSharp.Localizations.Resx.Translator
-  nameWithType: Translator
-- uid: AXSharp.Localizations.Resx.Translator.#ctor
-  name: Translator()
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator__ctor
-  commentId: M:AXSharp.Localizations.Resx.Translator.#ctor
-  name.vb: New()
-  fullName: AXSharp.Localizations.Resx.Translator.Translator()
-  fullName.vb: AXSharp.Localizations.Resx.Translator.New()
-  nameWithType: Translator.Translator()
-  nameWithType.vb: Translator.New()
-- uid: AXSharp.Localizations.Resx.Translator.#ctor(System.Type)
-  name: Translator(Type)
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator__ctor_System_Type_
-  commentId: M:AXSharp.Localizations.Resx.Translator.#ctor(System.Type)
-  name.vb: New(Type)
-  fullName: AXSharp.Localizations.Resx.Translator.Translator(System.Type)
-  fullName.vb: AXSharp.Localizations.Resx.Translator.New(System.Type)
-  nameWithType: Translator.Translator(Type)
-  nameWithType.vb: Translator.New(Type)
-- uid: AXSharp.Localizations.Resx.Translator.#ctor*
-  name: Translator
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator__ctor_
-  commentId: Overload:AXSharp.Localizations.Resx.Translator.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: AXSharp.Localizations.Resx.Translator.Translator
-  fullName.vb: AXSharp.Localizations.Resx.Translator.New
-  nameWithType: Translator.Translator
-  nameWithType.vb: Translator.New
-- uid: AXSharp.Localizations.Resx.Translator.Translate(System.String,AXSharp.Connector.ITwinObject)
-  name: Translate(string, ITwinObject)
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator_Translate_System_String_AXSharp_Connector_ITwinObject_
-  commentId: M:AXSharp.Localizations.Resx.Translator.Translate(System.String,AXSharp.Connector.ITwinObject)
-  name.vb: Translate(String, ITwinObject)
-  fullName: AXSharp.Localizations.Resx.Translator.Translate(string, AXSharp.Connector.ITwinObject)
-  fullName.vb: AXSharp.Localizations.Resx.Translator.Translate(String, AXSharp.Connector.ITwinObject)
-  nameWithType: Translator.Translate(string, ITwinObject)
-  nameWithType.vb: Translator.Translate(String, ITwinObject)
-- uid: AXSharp.Localizations.Resx.Translator.Translate(System.String)
-  name: Translate(string)
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator_Translate_System_String_
-  commentId: M:AXSharp.Localizations.Resx.Translator.Translate(System.String)
-  name.vb: Translate(String)
-  fullName: AXSharp.Localizations.Resx.Translator.Translate(string)
-  fullName.vb: AXSharp.Localizations.Resx.Translator.Translate(String)
-  nameWithType: Translator.Translate(string)
-  nameWithType.vb: Translator.Translate(String)
-- uid: AXSharp.Localizations.Resx.Translator.Translate*
-  name: Translate
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator_Translate_
-  commentId: Overload:AXSharp.Localizations.Resx.Translator.Translate
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Resx.Translator.Translate
-  nameWithType: Translator.Translate
-- uid: AXSharp.Localizations.Resx.Translator.TranslatorsId
-  name: TranslatorsId
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator_TranslatorsId
-  commentId: P:AXSharp.Localizations.Resx.Translator.TranslatorsId
-  fullName: AXSharp.Localizations.Resx.Translator.TranslatorsId
-  nameWithType: Translator.TranslatorsId
-- uid: AXSharp.Localizations.Resx.Translator.TranslatorsId*
-  name: TranslatorsId
-  href: api/AXSharp.Localizations.Resx.Translator.html#AXSharp_Localizations_Resx_Translator_TranslatorsId_
-  commentId: Overload:AXSharp.Localizations.Resx.Translator.TranslatorsId
-  isSpec: "True"
-  fullName: AXSharp.Localizations.Resx.Translator.TranslatorsId
-  nameWithType: Translator.TranslatorsId
 - uid: AXSharp.Presentation
   name: AXSharp.Presentation
   href: api/AXSharp.Presentation.html

@@ -298,6 +298,32 @@ System.Console.WriteLine(PlcTwin._app._length.AttributeToolTip);
 <h3 id="humanreadable">HumanReadable</h3>
 <p>HumanReadable property is the concatenation of AttributeName properties in the twin hierarchy, where single AttributeName(s) are separated by '.'. Human readable can be used to represent the path to the object in a user-friendly manner.</p>
 <p>HumanReadable from <code>TurnLightsOff</code> is <code>App.Settings.Lights off</code></p>
+<h2 id="controller-string-localization">Controller string localization</h2>
+<h3 id="localizable-string">Localizable string</h3>
+<p>Any string or part of a string that is enclosed between <code>&lt;#</code> and <code>#&gt;</code> will be marked for translation. This feature will work with types <code>STRING</code> and <code>WSTRING</code> and with the added attributes of <code>string</code> type.</p>
+<p><em>Example of the added attribute of string type</em></p>
+<pre><code>{#ix-set:AttributeName = &quot;&lt;#Integer From PLC#&gt;&quot;}
+{#ix-set:AttributeName = &quot;(A1)&lt;#Horizontal cylinder#&gt;&quot;}
+</code></pre>
+<p><em>Examples of STRING and WSTRING variables with</em></p>
+<pre><code>VAR
+    someString : STRING;
+    someWString : WSTRING;
+END_VAR
+
+someString := '&lt;#This woule be localized#&gt; and this would stay as it is';
+
+
+someWString := &quot;&lt;#This woule be localized#&gt; and this would stay as it is&quot;;
+</code></pre>
+<p>Connectors implement features that allow localizing of the texts (controller defined and added attributes of string type). For the localization to work the twin assembly must be provided with a resource file (*.resx). Resource files can be generated using <a href="../ixr/IXR.html">ixr tool</a>. You will need to add the resource file to your <strong>Twin project</strong> and set the resource code generation to <em>public</em>.</p>
+<p><img src="../../images/ixd/howto_addresource.gif" alt=""></p>
+<p>The twin project will use the resource <code>[twin_project_namespace].Resources.PlcStringResources</code> type as the default resource for the PLC string translations.</p>
+<p>If there is no localization resource defined the twin assembly will not translate the string but will provide the original raw string cleaned from localization tokens.</p>
+<p>It is possible to override the default resource using <a href="../../api/AXSharp.Connector.Localizations.Translator.html"><code>SetLocalizationResource</code></a> method. The method for a given twin assembly is accessible via <code>[twin_project_default_namespace].PlcTranslator.Instance</code>.</p>
+<p>Example</p>
+<pre><code class="lang-C#">ix_plc.PlcTranslator.Instance.SetLocalizationResource(typeof(myproject.ResourcesOverride.OverridePlcStringResources));
+</code></pre>
 <p>See also</p>
 <p><a href="Dummy.html">Dummy Connector</a></p>
 <p><a href="WebAPI.html">WebAPI Connector</a></p>

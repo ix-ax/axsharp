@@ -118,7 +118,12 @@ SIMATIC AX is currently in a limited sales release in selected European countrie
 <p>Replace GITHUBUSERNAME with your github name
 Replace PAT with your Personal Access Token (<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">how to create your PAT</a>)</p>
 <p><img src="images/2022-12-21-08-04-36.png" alt=""></p>
-<h3 id="using-templates">Using templates</h3>
+<h2 id="creating-new-project">Creating new project</h2>
+<p>There are different ways you can use to create new project. At this point we support some basic application templates, but you can create your solution also from scratch.</p>
+<p><strong>IMPORTANT! Prepare your PLC and AX project</strong></p>
+<p><em>Before you start using any of the method below yoiu will need to set up your PLC. Using TIA portal you need to enable WebAPI interface <a href="https://console.simatic-ax.siemens.io/docs/hwld/PlcWebServer">see here</a> and <a href="https://youtu.be/d9EX2FixY1A?t=151">here</a> is a very informative youtube video.</em></p>
+<p>[!Video https://youtu.be/d9EX2FixY1A?t=151]</p>
+<h3 id="creating-new-project-using-templates">Creating new project using templates</h3>
 <p>Install AX# template package</p>
 <p>When using .NET7</p>
 <pre><code>dotnet new install AXSharp.templates
@@ -145,11 +150,20 @@ AX# Simmple console application  axeconsole   [C#]      AX#/Console-Simple
 </code></pre>
 <p>Create new project from template</p>
 <pre><code>dotnet new [shortname] -n YOUR_PROJECT_NAME
+#e.g. dotnet new axeblazor -n MyFristAXSharpBlazorProject
 </code></pre>
-<h4 id="prepare-your-plc-and-ax-project">Prepare your PLC and AX project</h4>
-<p>Using TIA portal you need to enable WebAPI interface <a href="https://console.simatic-ax.siemens.io/docs/hwld/PlcWebServer">see here</a> and <a href="https://youtu.be/d9EX2FixY1A?t=151">here</a> is a very informative youtube video.</p>
-<p>Consult README.md file located in your new project for additionatl information.</p>
-<h3 id="from-scratch">From scratch</h3>
+<p><strong>When prompted about script execution allow the script to run (answer (Y)es) in order to finish the scaffolding of the project.</strong>
+If you're creating the project using Visual Studion you will need to run the script manually.</p>
+<p>Consult README.md file located in your new project for additional information.</p>
+<blockquote>
+<p>NOTE!
+Templates contain some of settings that differ from the defaults.
+The AX# twin project might be located in different location that apax's <code>ix</code> folder.</p>
+</blockquote>
+<hr>
+<hr>
+<h3 id="creating-new-project-from-scratch">Creating new project from scratch</h3>
+<p>If you don't want to use application template you can create AX# project from scratch.</p>
 <h4 id="install-ixc-ax-compiler-cli">Install <code>ixc</code> AX# compiler CLI</h4>
 <p><code>ixc</code> is CLI implementation of AX# Compiler.</p>
 <p>Open the terminal in the directory of your AX project (the one where the apax.yml file lives), and run the following commands:</p>
