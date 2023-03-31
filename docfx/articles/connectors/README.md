@@ -309,6 +309,48 @@ HumanReadable property is the concatenation of AttributeName properties in the t
 
 HumanReadable from `TurnLightsOff` is `App.Settings.Lights off`
 
+
+## Controller string localization
+
+### Localizable string
+
+Any string or part of a string that is enclosed between `<#` and `#>` will be marked for translation. This feature will work with types `STRING` and `WSTRING` and with the added attributes of `string` type.
+
+
+*Example of the added attribute of string type*
+~~~
+{#ix-set:AttributeName = "<#Integer From PLC#>"}
+{#ix-set:AttributeName = "(A1)<#Horizontal cylinder#>"}
+~~~
+
+*Examples of STRING and WSTRING variables with*
+~~~
+VAR
+    someString : STRING;
+    someWString : WSTRING;
+END_VAR
+
+someString := '<#This woule be localized#> and this would stay as it is';
+
+
+someWString := "<#This woule be localized#> and this would stay as it is";
+~~~
+
+Connectors implement features that allow localizing of the texts (controller defined and added attributes of string type). For the localization to work the twin assembly must be provided with a resource file (*.resx). Resource files can be generated using [ixr tool](~/articles/ixr/IXR.md). You will need to add the resource file to your **Twin project** and set the resource code generation to *public*.
+
+![](../../images/ixd/howto_addresource.gif)
+
+The twin project will use the resource `[twin_project_namespace].Resources.PlcStringResources` type as the default resource for the PLC string translations.
+
+If there is no localization resource defined the twin assembly will not translate the string but will provide the original raw string cleaned from localization tokens. 
+
+It is possible to override the default resource using [`SetLocalizationResource`](~/api/AXSharp.Connector.Localizations.Translator.yml) method. The method for a given twin assembly is accessible via `[twin_project_default_namespace].PlcTranslator.Instance`.
+
+Example
+~~~C#
+ix_plc.PlcTranslator.Instance.SetLocalizationResource(typeof(myproject.ResourcesOverride.OverridePlcStringResources));
+~~~
+
 See also
 
 [Dummy Connector](Dummy.md)

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -29,4 +29,22 @@
 	    <LastGenOutput>PlcStringResources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
+
+	<!--<ItemGroup>
+	  <Compile Update="ResourcesOverrride\OverridePlcStringResources.Designer.cs">
+	    <DependentUpon>OverridePlcStringResources.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="ResourcesOverrride\OverridePlcStringResources.resx">
+	    <LastGenOutput>OverridePlcStringResources.Designer.cs</LastGenOutput>
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\PlcStringResources.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	</ItemGroup>-->
 </Project>

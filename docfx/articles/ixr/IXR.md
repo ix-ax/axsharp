@@ -16,13 +16,16 @@ dotnet tool install AXSharp.ixr --prerelease --local
 dotnet ixr -x $PATH_TO_AX_PROJECT -o $PATH_TO_RESX_FILE
 ~~~
 
-`ixr` can be run without parameters from within an AX project folder. In that case it will use the settings from `ixc` `AXSharp.config.json` and emit the resource file into `.g\Resource\PlcStringResource.resx` file of the ax twin project.
-
 where:  
 `$PATH_TO_AX_PROJECT` - is path to **AX project**  
 `$PATH_TO_RESX_FILE` - is path to **resx file**, where the localizable strings will be generated
 
 Localizable string are exported only from string attributes and pragmas of attribute name.
+
+`ixr` can be run without parameters from within an AX project folder. In that case it will use the settings from `ixc` `AXSharp.config.json` and emit the resource file into `.g\Resource\PlcStringResource.resx` file of the ax twin project.
+
+>[!NOTE]
+>More about implementing resx file into your project see [here](~/articles/connectors/README.md#controller-string-localization).
 
 ## Localizable string
 

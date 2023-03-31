@@ -21,9 +21,8 @@ namespace ix_integration_blazor
         private static WebApplication App { get; set; }
 
         public static void Main(string[] args)
-        {
-            // Entry.Plc.Connector.Translator.SetLocalizationResource(typeof(ix_integration_plc.Resources.PlcStringResources));
-
+        { 
+            //ix_integration_plc.PlcTranslator.Instance.SetLocalizationResource(typeof(ix_integration_plc.ResourcesOverrride.OverridePlcStringResources));
 
             var builder = WebApplication.CreateBuilder(args);
 
