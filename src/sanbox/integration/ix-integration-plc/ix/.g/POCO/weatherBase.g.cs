@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class weatherBase
+    public partial class weatherBase : AXSharp.Connector.IPlain
     {
         public Single Latitude { get; set; }
 

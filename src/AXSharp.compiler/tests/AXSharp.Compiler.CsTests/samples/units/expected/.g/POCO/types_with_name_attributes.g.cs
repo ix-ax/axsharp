@@ -15,7 +15,7 @@ namespace Pocos
             public Int16 displacement { get; set; }
         }
 
-        public partial class NoAccessModifierClass
+        public partial class NoAccessModifierClass : AXSharp.Connector.IPlain
         {
             public string SomeClassVariable { get; set; } = string.Empty;
         }

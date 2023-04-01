@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class NoAccessModifierClass
+    public partial class NoAccessModifierClass : AXSharp.Connector.IPlain
     {
     }
 }

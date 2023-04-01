@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class groupbox
+    public partial class groupbox : AXSharp.Connector.IPlain
     {
         public Int16 testInteger { get; set; }
 

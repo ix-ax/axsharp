@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace ClassWithPrimitiveTypesNamespace
     {
-        public partial class ClassWithPrimitiveTypes
+        public partial class ClassWithPrimitiveTypes : AXSharp.Connector.IPlain
         {
             public Boolean myBOOL { get; set; }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class weather
+    public partial class weather : AXSharp.Connector.IPlain
     {
         public GeoLocation GeoLocation { get; set; } = new GeoLocation();
         public Single Temperature { get; set; }
@@ -15,7 +15,7 @@ namespace Pocos
         public global::Feeling Feeling { get; set; }
     }
 
-    public partial class weathers
+    public partial class weathers : AXSharp.Connector.IPlain
     {
         public weatherBase[] i { get; set; } = new weatherBase[51];
     }

@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class test_primitive
+    public partial class test_primitive : AXSharp.Connector.IPlain
     {
         public Int16 testInteger { get; set; }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class example
+    public partial class example : AXSharp.Connector.IPlain
     {
         public test_primitive primitives_stack { get; set; } = new test_primitive();
         public test_primitive primitives_wrap { get; set; } = new test_primitive();

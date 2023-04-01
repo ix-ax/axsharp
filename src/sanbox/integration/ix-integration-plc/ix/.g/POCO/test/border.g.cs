@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class border
+    public partial class border : AXSharp.Connector.IPlain
     {
         public Int16 testInteger { get; set; }
 

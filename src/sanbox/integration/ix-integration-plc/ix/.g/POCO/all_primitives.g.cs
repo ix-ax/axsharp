@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class all_primitives
+    public partial class all_primitives : AXSharp.Connector.IPlain
     {
         public Boolean myBOOL { get; set; }
 

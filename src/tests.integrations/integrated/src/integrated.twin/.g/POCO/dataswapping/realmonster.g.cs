@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace RealMonsterData
     {
-        public partial class RealMonsterBase
+        public partial class RealMonsterBase : AXSharp.Connector.IPlain
         {
             public string Description { get; set; } = string.Empty;
             public UInt64 Id { get; set; }
@@ -16,12 +16,12 @@ namespace Pocos
             public RealMonsterData.DriveBaseNested[] ArrayOfDrives { get; set; } = new RealMonsterData.DriveBaseNested[4];
         }
 
-        public partial class RealMonster : RealMonsterBase
+        public partial class RealMonster : RealMonsterBase, AXSharp.Connector.IPlain
         {
             public RealMonsterData.DriveBaseNested DriveA { get; set; } = new RealMonsterData.DriveBaseNested();
         }
 
-        public partial class DriveBaseNested
+        public partial class DriveBaseNested : AXSharp.Connector.IPlain
         {
             public Double Position { get; set; }
 
@@ -34,7 +34,7 @@ namespace Pocos
             public RealMonsterData.NestedLevelOne NestedLevelOne { get; set; } = new RealMonsterData.NestedLevelOne();
         }
 
-        public partial class NestedLevelOne
+        public partial class NestedLevelOne : AXSharp.Connector.IPlain
         {
             public Double Position { get; set; }
 
@@ -47,7 +47,7 @@ namespace Pocos
             public RealMonsterData.NestedLevelTwo NestedLevelTwo { get; set; } = new RealMonsterData.NestedLevelTwo();
         }
 
-        public partial class NestedLevelTwo
+        public partial class NestedLevelTwo : AXSharp.Connector.IPlain
         {
             public Double Position { get; set; }
 
@@ -60,7 +60,7 @@ namespace Pocos
             public RealMonsterData.NestedLevelThree NestedLevelThree { get; set; } = new RealMonsterData.NestedLevelThree();
         }
 
-        public partial class NestedLevelThree
+        public partial class NestedLevelThree : AXSharp.Connector.IPlain
         {
             public Double Position { get; set; }
 

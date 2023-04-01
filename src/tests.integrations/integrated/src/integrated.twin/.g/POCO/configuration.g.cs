@@ -28,12 +28,12 @@ namespace Pocos
         public RealMonsterData.RealMonster StartPolling_should_update_cyclic_property { get; set; } = new RealMonsterData.RealMonster();
     }
 
-    public partial class Pokus
+    public partial class Pokus : AXSharp.Connector.IPlain
     {
         public Nested Nested { get; set; } = new Nested();
     }
 
-    public partial class Nested
+    public partial class Nested : AXSharp.Connector.IPlain
     {
         public string SomeString { get; set; } = string.Empty;
         public Int16 SomeInt { get; set; }
