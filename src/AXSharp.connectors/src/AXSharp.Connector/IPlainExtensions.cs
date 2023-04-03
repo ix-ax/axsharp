@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AXSharp.Connector
 {
-    public static class PlainExtensions
+    public static class IPlainExtensions
     {
         public static void ToShadow<T>(this T plain, ITwinObject twin) where T : IPlain
         {
