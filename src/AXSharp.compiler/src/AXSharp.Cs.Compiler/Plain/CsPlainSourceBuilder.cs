@@ -51,17 +51,24 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
         AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}");
 
-        if (Compilation.GetSemanticTree().Types
-            .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
-            AddToSource($": {classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+        var isExtended = Compilation.GetSemanticTree().Types
+            .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName);
 
-        AddToSource(classDeclarationSyntax.ImplementsList != null && classDeclarationSyntax.BaseClassName != null
+        if (isExtended)
+            AddToSource($" : {classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+
+        
+        
+        AddToSource(isExtended ? ", AXSharp.Connector.IPlain" : ": AXSharp.Connector.IPlain");
+
+        AddToSource(classDeclarationSyntax.ImplementsList != null
             ? ", "
-            : string.Empty);
-        AddToSource(classDeclarationSyntax.ImplementsList != null && classDeclarationSyntax.BaseClassName == null
-            ? " : "
-            : string.Empty);
+            : "");
+        
         classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
+
+       
+
         AddToSource("{");
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
         classDeclaration.Fields.ToList().ForEach(p => p.Accept(visitor, this));

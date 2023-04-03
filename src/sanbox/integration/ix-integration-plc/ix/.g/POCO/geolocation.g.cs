@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class GeoLocation
+    public partial class GeoLocation : AXSharp.Connector.IPlain
     {
         public Single Latitude { get; set; }
 

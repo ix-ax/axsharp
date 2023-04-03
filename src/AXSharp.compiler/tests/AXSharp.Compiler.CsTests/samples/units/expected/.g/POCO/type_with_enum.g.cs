@@ -11,7 +11,7 @@ namespace Pocos
 
     namespace Simatic.Ax.StateFramework
     {
-        public partial class CompareGuardLint : IGuard
+        public partial class CompareGuardLint : AXSharp.Connector.IPlain, IGuard
         {
             public Int64 CompareToValue { get; set; }
 

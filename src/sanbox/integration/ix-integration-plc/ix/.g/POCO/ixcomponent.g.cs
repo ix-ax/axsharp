@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class ixcomponent
+    public partial class ixcomponent : AXSharp.Connector.IPlain
     {
         public Int16 my_int { get; set; }
 
@@ -12,7 +12,7 @@ namespace Pocos
 
     namespace MySecondNamespace
     {
-        public partial class ixcomponent
+        public partial class ixcomponent : AXSharp.Connector.IPlain
         {
             public Int16 my_int { get; set; }
 
@@ -23,7 +23,7 @@ namespace Pocos
 
     namespace ThirdNamespace
     {
-        public partial class ixcomponent
+        public partial class ixcomponent : AXSharp.Connector.IPlain
         {
             public Int16 my_int { get; set; }
 

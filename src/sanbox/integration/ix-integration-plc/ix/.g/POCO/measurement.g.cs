@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace MeasurementExample
     {
-        public partial class Measurement
+        public partial class Measurement : AXSharp.Connector.IPlain
         {
             public Single Min { get; set; }
 
@@ -15,7 +15,7 @@ namespace Pocos
             public Int16 Result { get; set; }
         }
 
-        public partial class Measurements
+        public partial class Measurements : AXSharp.Connector.IPlain
         {
             public MeasurementExample.Measurement measurement_stack { get; set; } = new MeasurementExample.Measurement();
             public MeasurementExample.Measurement measurement_wrap { get; set; } = new MeasurementExample.Measurement();

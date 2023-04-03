@@ -6,7 +6,7 @@ namespace Pocos
     using SimpleQualifiedNamespace.Qualified;
     using HelloLevelOne.HelloLevelTwo;
 
-    internal partial class ClassWithUsingDirectives
+    internal partial class ClassWithUsingDirectives : AXSharp.Connector.IPlain
     {
      using  SimpleFirstLevelNamespace ;  using  SimpleQualifiedNamespace . Qualified ;  using  HelloLevelOne . HelloLevelTwo ; 
 

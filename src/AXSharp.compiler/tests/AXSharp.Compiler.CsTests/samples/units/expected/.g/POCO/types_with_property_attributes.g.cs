@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace TypesWithPropertyAttributes
     {
-        public partial class SomeAddedProperties
+        public partial class SomeAddedProperties : AXSharp.Connector.IPlain
         {
             public Int16 Counter { get; set; }
         }

@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace Layouts.Stacked
     {
-        public partial class weather : weatherBase
+        public partial class weather : weatherBase, AXSharp.Connector.IPlain
         {
         }
     }

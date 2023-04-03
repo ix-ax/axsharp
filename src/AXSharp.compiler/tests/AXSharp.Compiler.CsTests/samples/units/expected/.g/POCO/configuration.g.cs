@@ -60,7 +60,7 @@ namespace Pocos
         public Boolean _must_be_omitted_in_onliner { get; set; }
     }
 
-    public partial class ComplexForConfig
+    public partial class ComplexForConfig : AXSharp.Connector.IPlain
     {
         public Boolean myBOOL { get; set; }
 
