@@ -52,10 +52,10 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}");
 
         var isExtended = Compilation.GetSemanticTree().Types
-            .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName);
+            .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedTypeAccesses.FirstOrDefault()?.Type.FullyQualifiedName);
 
         if (isExtended)
-            AddToSource($" : {classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+            AddToSource($" : {classDeclaration.ExtendedTypeAccesses.FirstOrDefault()?.Type.FullyQualifiedName}");
 
         
         

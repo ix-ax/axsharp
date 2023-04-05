@@ -4,7 +4,7 @@ namespace Pocos
 {
     namespace Simatic.Ax.StateFramework
     {
-        public partial class State1Transition : AbstractState, AXSharp.Connector.IPlain
+        public partial class State1Transition : Simatic.Ax.StateFramework.AbstractState, AXSharp.Connector.IPlain
         {
         }
     }

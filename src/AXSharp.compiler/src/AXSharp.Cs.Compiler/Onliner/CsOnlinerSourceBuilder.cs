@@ -68,16 +68,30 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(":");
 
         var isExtended = false;
+        var extendedType = classDeclaration.ExtendedTypeAccesses.FirstOrDefault();
         if (Compilation.GetSemanticTree().Types
-            .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
+            .Any(p => p.FullyQualifiedName == extendedType?.Type.FullyQualifiedName))
         {
-            AddToSource($"{classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+
+            AddToSource($"{extendedType.Type.FullyQualifiedName}");
             isExtended = true;
         }
         else
         {
             AddToSource(typeof(ITwinObject).n()!);
         }
+
+        //var isExtended = false;
+        //if (Compilation.GetSemanticTree().Types
+        //    .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
+        //{
+        //    AddToSource($"{classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
+        //    isExtended = true;
+        //}
+        //else
+        //{
+        //    AddToSource(typeof(ITwinObject).n()!);
+        //}
 
         AddToSource(classDeclarationSyntax.ImplementsList != null ? ", " : string.Empty);
         classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
