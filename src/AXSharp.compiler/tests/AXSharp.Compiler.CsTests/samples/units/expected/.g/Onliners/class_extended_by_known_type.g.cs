@@ -6,7 +6,7 @@ using AXSharp.Connector.Localizations;
 
 namespace Simatic.Ax.StateFramework
 {
-    public partial class State1Transition : AbstractState
+    public partial class State1Transition : Simatic.Ax.StateFramework.AbstractState
     {
         partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
         partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
