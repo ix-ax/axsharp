@@ -138,4 +138,15 @@ public static class SemanticsHelpers
     {
         return arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(sourceBuilder);
     }
+
+    /// <summary>
+    ///     Create triple-slash documentation.
+    /// </summary>
+    /// <param name="docComment">Documentation comment</param>
+    /// <param name="sourceBuilder">Source builder</param>
+    /// <returns></returns>
+    public static string AddDocumentationComment(this IDocComment docComment, ISourceBuilder sourceBuilder)
+    {
+        return docComment.Content;
+    }
 }

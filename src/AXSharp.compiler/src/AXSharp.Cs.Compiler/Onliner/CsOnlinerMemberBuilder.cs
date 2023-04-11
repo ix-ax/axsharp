@@ -220,4 +220,10 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
         semantics.Variables.ToList().ForEach(p => p.Accept(visitor, builder));
         return builder;
     }
+
+    /// <inheritdoc />
+    public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+    {
+        AddToSource(semanticTypeAccess.AddDocumentationComment(SourceBuilder));
+    }
 }

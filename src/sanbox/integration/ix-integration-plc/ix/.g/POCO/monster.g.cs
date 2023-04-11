@@ -11,7 +11,7 @@ namespace Pocos
             public ixcomponent[] ArrayOfIxComponent { get; set; } = new ixcomponent[4];
         }
 
-        public partial class Monster : MonsterBase, AXSharp.Connector.IPlain
+        public partial class Monster : MonsterData.MonsterBase, AXSharp.Connector.IPlain
         {
             public MonsterData.DriveBase DriveA { get; set; } = new MonsterData.DriveBase();
         }

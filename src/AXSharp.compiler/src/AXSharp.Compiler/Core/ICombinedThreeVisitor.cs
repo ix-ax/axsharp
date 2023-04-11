@@ -262,7 +262,6 @@ public interface ICombinedThreeVisitor
         throw new NotImplementedException();
     }
 
-
     /// <summary>
     ///     Creates string type declaration.
     /// </summary>
@@ -274,9 +273,16 @@ public interface ICombinedThreeVisitor
     }
 
     /// <summary>
-    ///     Created array type declaration.
+    ///     Creates array type declaration.
     /// </summary>
     /// <param name="arrayTypeDeclaration">Array type semantics</param>
     /// <param name="visitor">Associated visitor.</param>
     void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor);
+
+    /// <summary>
+    ///     Creates documentation for 
+    /// </summary>
+    /// <param name="docComment">Documentation comment</param>
+    /// <param name="data">Associated visitor</param>
+    void CreateDocComment(IDocComment docComment, ICombinedThreeVisitor data);
 }

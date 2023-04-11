@@ -152,4 +152,10 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         builder.AddToSource($"}}");
         return builder;
     }
+
+    /// <inheritdoc />
+    public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+    {
+        AddToSource(semanticTypeAccess.AddDocumentationComment(SourceBuilder));
+    }
 }

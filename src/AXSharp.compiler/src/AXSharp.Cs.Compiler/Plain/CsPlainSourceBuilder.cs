@@ -326,6 +326,12 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     }
 
     /// <inheritdoc />
+    public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+    {
+        AddToSource(semanticTypeAccess.AddDocumentationComment(this));
+    }
+
+    /// <inheritdoc />
     public void CreateStringTypeDeclaration(IStringTypeDeclaration stringTypeDeclaration, IxNodeVisitor visitor)
     {
         stringTypeDeclaration.Pragmas.ToList().ForEach(p => p.Accept(visitor, this));
