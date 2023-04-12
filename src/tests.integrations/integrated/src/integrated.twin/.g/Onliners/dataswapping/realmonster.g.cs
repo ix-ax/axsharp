@@ -216,7 +216,7 @@ namespace RealMonsterData
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::integrated.PlcTranslator.Instance;
     }
 
     public partial class RealMonster : RealMonsterData.RealMonsterBase
@@ -495,7 +495,7 @@ namespace RealMonsterData
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::integrated.PlcTranslator.Instance;
     }
 
     public partial class NestedLevelOne : AXSharp.Connector.ITwinObject
@@ -684,7 +684,7 @@ namespace RealMonsterData
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::integrated.PlcTranslator.Instance;
     }
 
     public partial class NestedLevelTwo : AXSharp.Connector.ITwinObject
@@ -873,7 +873,7 @@ namespace RealMonsterData
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::integrated.PlcTranslator.Instance;
     }
 
     public partial class NestedLevelThree : AXSharp.Connector.ITwinObject
@@ -1053,6 +1053,6 @@ namespace RealMonsterData
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::integrated.PlcTranslator.Instance;
     }
 }

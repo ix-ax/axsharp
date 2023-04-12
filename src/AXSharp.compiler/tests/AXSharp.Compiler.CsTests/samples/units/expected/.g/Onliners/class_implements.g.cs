@@ -145,7 +145,7 @@ public partial class _NULL_CONTEXT : AXSharp.Connector.ITwinObject, IContext
 
     protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-    public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+    public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
 }
 
 public partial interface IContext

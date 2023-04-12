@@ -2,7 +2,7 @@ using System;
 
 namespace Pocos
 {
-    public partial class units
+    public partial class unitsTwinController
     {
         public ComplexForConfig Complex { get; set; } = new ComplexForConfig();
         public Boolean myBOOL { get; set; }

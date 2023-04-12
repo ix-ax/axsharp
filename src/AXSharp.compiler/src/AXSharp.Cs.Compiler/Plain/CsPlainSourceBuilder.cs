@@ -171,7 +171,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IConfigurationDeclaration configurationDeclaration,
         IxNodeVisitor visitor)
     {
-        AddToSource($"public partial class {Project.TargetProject.ProjectRootNamespace}{{");
+        AddToSource($"public partial class {Project.TargetProject.ProjectRootNamespace}TwinController{{");
         configurationDeclaration.Variables.ToList().ForEach(p => p.Accept(visitor, this));
         AddToSource("}");
     }
