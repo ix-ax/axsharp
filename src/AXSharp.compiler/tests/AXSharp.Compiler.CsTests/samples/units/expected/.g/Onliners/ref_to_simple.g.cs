@@ -147,7 +147,7 @@ namespace RefToSimple
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class referenced : AXSharp.Connector.ITwinObject
@@ -300,6 +300,6 @@ namespace RefToSimple
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 }

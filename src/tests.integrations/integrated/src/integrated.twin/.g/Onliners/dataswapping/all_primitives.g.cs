@@ -353,5 +353,5 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
 
     protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-    public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
+    public AXSharp.Connector.Localizations.Translator Interpreter => global::integrated.PlcTranslator.Instance;
 }

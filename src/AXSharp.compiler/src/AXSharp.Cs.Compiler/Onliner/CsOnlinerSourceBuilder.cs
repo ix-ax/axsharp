@@ -301,7 +301,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             "public string HumanReadable { get; set; }" +
             "protected System.String @SymbolTail { get; set;}" +
             $"protected {typeof(ITwinObject).n()} @Parent {{ get; set; }}"+
-            $"public AXSharp.Connector.Localizations.Translator Interpreter => {Project.TargetProject.ProjectRootNamespace}.PlcTranslator.Instance;"
+            $"public AXSharp.Connector.Localizations.Translator Interpreter => global::{Project.TargetProject.ProjectRootNamespace}.PlcTranslator.Instance;"
         );
     }
 

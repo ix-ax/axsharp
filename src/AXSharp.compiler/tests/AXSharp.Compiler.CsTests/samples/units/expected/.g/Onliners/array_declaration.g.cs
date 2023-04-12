@@ -171,7 +171,7 @@ namespace ArrayDeclarationSimpleNamespace
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class some_complex_type : AXSharp.Connector.ITwinObject
@@ -315,6 +315,6 @@ namespace ArrayDeclarationSimpleNamespace
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 }

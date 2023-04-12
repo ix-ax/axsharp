@@ -153,7 +153,7 @@ namespace TypeWithNameAttributes
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class Vehicle : AXSharp.Connector.ITwinObject
@@ -310,7 +310,7 @@ namespace TypeWithNameAttributes
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
@@ -466,6 +466,6 @@ namespace TypeWithNameAttributes
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 }

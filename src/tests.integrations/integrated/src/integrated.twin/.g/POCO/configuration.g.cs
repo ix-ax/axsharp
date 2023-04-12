@@ -4,7 +4,7 @@ namespace Pocos
 {
     using RealMonsterData;
 
-    public partial class integrated
+    public partial class integratedTwinController
     {
         public MonsterData.Monster Monster { get; set; } = new MonsterData.Monster();
         public MonsterData.Monster OnlineToPlain_should_copy_entire_structure { get; set; } = new MonsterData.Monster();

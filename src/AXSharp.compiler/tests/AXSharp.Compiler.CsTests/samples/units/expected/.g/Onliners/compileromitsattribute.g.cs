@@ -163,7 +163,7 @@ namespace CompilerOmmits
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class Complex : AXSharp.Connector.ITwinObject
@@ -325,7 +325,7 @@ namespace CompilerOmmits
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 }
 
@@ -492,7 +492,7 @@ namespace Enums
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public enum Colors
@@ -670,7 +670,7 @@ namespace misc
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class SomeClass : AXSharp.Connector.ITwinObject
@@ -823,7 +823,7 @@ namespace misc
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class Motor : AXSharp.Connector.ITwinObject
@@ -972,7 +972,7 @@ namespace misc
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class Vehicle : AXSharp.Connector.ITwinObject
@@ -1129,7 +1129,7 @@ namespace misc
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 }
 
@@ -1300,7 +1300,7 @@ namespace UnknownArraysShouldNotBeTraspiled
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 
     public partial class Complex : AXSharp.Connector.ITwinObject
@@ -1462,6 +1462,6 @@ namespace UnknownArraysShouldNotBeTraspiled
 
         protected AXSharp.Connector.ITwinObject @Parent { get; set; }
 
-        public AXSharp.Connector.Localizations.Translator Interpreter => units.PlcTranslator.Instance;
+        public AXSharp.Connector.Localizations.Translator Interpreter => global::units.PlcTranslator.Instance;
     }
 }
