@@ -191,6 +191,11 @@ namespace AXSharp.ixc_doc.Visitors
             
         }
 
+        public void Visit(IDocComment semanticTypeAccess, IYamlBuiderVisitor data)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Visit(ISemanticInstructionList instrList, IYamlBuiderVisitor data)
         {
             

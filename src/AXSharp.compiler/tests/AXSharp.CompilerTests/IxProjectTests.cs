@@ -354,6 +354,11 @@ namespace AXSharp.Compiler.Tests
             {
             }
 
+            public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+            {
+                
+            }
+
             #endregion
 
         }

@@ -294,4 +294,10 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
     {
         AddToSource(parametersString);
     }
+
+    /// <inheritdoc />
+    public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+    {
+        AddToSource(semanticTypeAccess.AddDocumentationComment(SourceBuilder));
+    }
 }

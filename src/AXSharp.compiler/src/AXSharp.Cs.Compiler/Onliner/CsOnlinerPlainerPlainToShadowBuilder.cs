@@ -154,5 +154,13 @@ namespace AXSharp.Compiler.Cs.Onliner
             builder.AddToSource($"}}");
             return builder;
         }
+
+        /// <inheritdoc />
+        public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+        {
+            AddToSource(semanticTypeAccess.AddDocumentationComment(SourceBuilder));
+        }
     }
+
+
 }

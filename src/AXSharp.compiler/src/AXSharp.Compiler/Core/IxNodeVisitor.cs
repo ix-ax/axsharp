@@ -229,6 +229,11 @@ public partial class IxNodeVisitor : ISemanticNodeVisitor<ICombinedThreeVisitor>
         data.CreateSemanticTypeAccess(semanticTypeAccess, this);
     }
 
+    public void Visit(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+    {
+        data.CreateDocComment(semanticTypeAccess, data);
+    }
+
     void ISemanticNodeVisitor<ICombinedThreeVisitor>.Visit(ISemanticInstructionList instrList,
         ICombinedThreeVisitor data)
     {

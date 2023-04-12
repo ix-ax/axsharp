@@ -13,7 +13,7 @@ namespace Pocos
             public MonsterData.DriveBase[] ArrayOfDrives { get; set; } = new MonsterData.DriveBase[4];
         }
 
-        public partial class Monster : MonsterBase, AXSharp.Connector.IPlain
+        public partial class Monster : MonsterData.MonsterBase, AXSharp.Connector.IPlain
         {
             public MonsterData.DriveBase DriveA { get; set; } = new MonsterData.DriveBase();
         }

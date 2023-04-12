@@ -219,7 +219,7 @@ namespace RealMonsterData
         public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
-    public partial class RealMonster : RealMonsterBase
+    public partial class RealMonster : RealMonsterData.RealMonsterBase
     {
         public RealMonsterData.DriveBaseNested DriveA { get; }
 

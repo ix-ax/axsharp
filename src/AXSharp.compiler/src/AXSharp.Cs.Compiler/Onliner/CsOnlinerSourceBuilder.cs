@@ -309,4 +309,10 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         _sourceBuilder.Append($"{token}{separator}");
     }
+
+    /// <inheritdoc />
+    public void CreateDocComment(IDocComment semanticTypeAccess, ICombinedThreeVisitor data)
+    {
+        AddToSource(semanticTypeAccess.AddDocumentationComment(this));
+    }
 }

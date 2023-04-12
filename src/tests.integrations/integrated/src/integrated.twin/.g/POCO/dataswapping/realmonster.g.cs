@@ -16,7 +16,7 @@ namespace Pocos
             public RealMonsterData.DriveBaseNested[] ArrayOfDrives { get; set; } = new RealMonsterData.DriveBaseNested[4];
         }
 
-        public partial class RealMonster : RealMonsterBase, AXSharp.Connector.IPlain
+        public partial class RealMonster : RealMonsterData.RealMonsterBase, AXSharp.Connector.IPlain
         {
             public RealMonsterData.DriveBaseNested DriveA { get; set; } = new RealMonsterData.DriveBaseNested();
         }

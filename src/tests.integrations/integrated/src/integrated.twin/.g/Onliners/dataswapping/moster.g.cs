@@ -192,7 +192,7 @@ namespace MonsterData
         public AXSharp.Connector.Localizations.Translator Interpreter => integrated.PlcTranslator.Instance;
     }
 
-    public partial class Monster : MonsterBase
+    public partial class Monster : MonsterData.MonsterBase
     {
         public MonsterData.DriveBase DriveA { get; }
 

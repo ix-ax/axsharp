@@ -16,6 +16,7 @@ using AX.ST.Semantic.Symbols;
 using AX.ST.Semantic.Tree;
 using AX.Text;
 using AXSharp.Compiler.Cs;
+using NSubstitute;
 using Xunit.Abstractions;
 
 namespace AXSharp.Compiler.CsTests;
@@ -49,11 +50,18 @@ public class PragmasExtensionsTests
     public void should_declare_property()
     {
         var expected = "private string _SomeField;\npublic string SomeField { get => string.IsNullOrEmpty(_SomeField) ? SymbolTail : this.Translate(_SomeField).Interpolate(this); set => _SomeField = value; }";
-        var field = new TypeMock("someField",
-            new ReadOnlyCollection<IPragma>(new IPragma[]
-            {
-                new PragmaMock("#ix-prop:public string SomeField")
-            }));
+        var field = NSubstitute.Substitute.For<ITypeDeclaration>();
+        field.Name.Returns("someField");
+        field.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-prop:public string SomeField")
+        }));
+
+        //new TypeMock("someField",
+        //    new ReadOnlyCollection<IPragma>(new IPragma[]
+        //    {
+        //        new PragmaMock("#ix-prop:public string SomeField")
+        //    }));
 
         var actual = field.DeclareProperties();
 
@@ -65,11 +73,18 @@ public class PragmasExtensionsTests
     public void should_set_property_string()
     {
         var expected = "someField.AttributeName = \"This is name\";";
-        var field = new FieldMock("someField",
-            new ReadOnlyCollection<IPragma>(new IPragma[]
-            {
-                new PragmaMock("#ix-set:AttributeName = \"This is name\"")
-            }));
+        var field = NSubstitute.Substitute.For<IFieldDeclaration>();
+        field.Name.Returns("someField");
+        field.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+                {
+                    new PragmaMock("#ix-set:AttributeName = \"This is name\"")
+                }));
+
+        //var field = new FieldMock("someField",
+        //    new ReadOnlyCollection<IPragma>(new IPragma[]
+        //    {
+        //        new PragmaMock("#ix-set:AttributeName = \"This is name\"")
+        //    }));
 
         var actual = field.SetProperties();
 
@@ -80,11 +95,18 @@ public class PragmasExtensionsTests
     public void should_set_property_number()
     {
         var expected = "someField.AttributeMinimum = 10.5f;";
-        var field = new FieldMock("someField",
-            new ReadOnlyCollection<IPragma>(new IPragma[]
-            {
-                new PragmaMock("#ix-set:AttributeMinimum = 10.5f")
-            }));
+        var field = NSubstitute.Substitute.For<IFieldDeclaration>();
+        field.Name.Returns("someField");
+        field.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-set:AttributeMinimum = 10.5f")
+        }));
+
+        //var field = new FieldMock("someField",
+        //    new ReadOnlyCollection<IPragma>(new IPragma[]
+        //    {
+        //        new PragmaMock("#ix-set:AttributeMinimum = 10.5f")
+        //    }));
 
         var actual = field.SetProperties();
 
@@ -116,167 +138,177 @@ public class PragmaMock : IPragma
     }
 }
 
-public class FieldMock : IFieldDeclaration
-{
-    public FieldMock(string name, IReadOnlyCollection<IPragma> pragmas)
-    {
-        Name = name;
-        Pragmas = pragmas;
-    }
+//public class FieldMock : IFieldDeclaration
+//{
+//    public FieldMock(string name, IReadOnlyCollection<IPragma> pragmas)
+//    {
+//        Name = name;
+//        Pragmas = pragmas;
+//    }
 
-    public AccessModifier AccessModifier => throw new NotImplementedException();
+//    public AccessModifier AccessModifier => throw new NotImplementedException();
 
-    public Section Section => throw new NotImplementedException();
+//    public Section Section => throw new NotImplementedException();
 
-    public ISemanticTypeAccess TypeAccess => throw new NotImplementedException();
+//    public ISemanticTypeAccess TypeAccess => throw new NotImplementedException();
 
-    public IDirectAccess Address => throw new NotImplementedException();
+//    public IDirectAccess Address => throw new NotImplementedException();
 
-    public ISemanticInitializer Initializer => throw new NotImplementedException();
+//    public ISemanticInitializer Initializer => throw new NotImplementedException();
 
-    public StorageModifier StorageModifier => throw new NotImplementedException();
+//    public StorageModifier StorageModifier => throw new NotImplementedException();
 
-    public bool IsConstant => throw new NotImplementedException();
+//    public bool IsConstant => throw new NotImplementedException();
 
-    public bool IsDeclaredConstant => throw new NotImplementedException();
+//    public bool IsDeclaredConstant => throw new NotImplementedException();
 
-    public bool IsDeclaredReadOnly => throw new NotImplementedException();
+//    public bool IsDeclaredReadOnly => throw new NotImplementedException();
 
-    public ISymbol Symbol => throw new NotImplementedException();
+//    public ISymbol Symbol => throw new NotImplementedException();
 
-    public string Name { get; }
+//    public string Name { get; }
 
-    public string FullyQualifiedName => throw new NotImplementedException();
+//    public string FullyQualifiedName => throw new NotImplementedException();
 
-    public DeclarationKind Kind => throw new NotImplementedException();
+//    public DeclarationKind Kind => throw new NotImplementedException();
 
-    public IScope ContainingScope => throw new NotImplementedException();
+//    public IScope ContainingScope => throw new NotImplementedException();
 
-    public INamespaceDeclaration ContainingNamespace => throw new NotImplementedException();
+//    public INamespaceDeclaration ContainingNamespace => throw new NotImplementedException();
 
-    public ITypeDeclaration Type => throw new NotImplementedException();
+//    public ITypeDeclaration Type => throw new NotImplementedException();
+//    public IDocComment DocComment { get; }
 
-    public IReadOnlyCollection<IPragma> Pragmas { get; }
+//    public IReadOnlyCollection<IPragma> Pragmas { get; }
 
-    public Location Location => throw new NotImplementedException();
+//    public Location Location => throw new NotImplementedException();
 
-    public IEnumerable<ISemanticNode> ChildNodes => throw new NotImplementedException();
+//    public IEnumerable<ISemanticNode> ChildNodes => throw new NotImplementedException();
 
-    public void Accept<T>(ISemanticNodeVisitor<T> visitor, T data)
-    {
-        throw new NotImplementedException();
-    }
+//    public void Accept<T>(ISemanticNodeVisitor<T> visitor, T data)
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public bool Equals(IDeclaration? other)
-    {
-        throw new NotImplementedException();
-    }
+//    public bool Equals(IDeclaration? other)
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public IEnumerable<ISemanticNode> GetDescendentNodes()
-    {
-        throw new NotImplementedException();
-    }
-}
+//    public IEnumerable<ISemanticNode> GetDescendentNodes()
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
 
-public class TypeMock : ITypeDeclaration
-{
-    public TypeMock(string name, IReadOnlyCollection<IPragma> pragmas)
-    {
-        Name = name;
-        Pragmas = pragmas;
-    }
+//public class TypeMock : ITypeDeclaration
+//{
+    
+//    public TypeMock(string name, IReadOnlyCollection<IPragma> pragmas)
+//    {
+//        Name = name;
+//        Pragmas = pragmas;
+//    }
 
-    public IReadOnlyCollection<ISemanticTypeAccess> ExtendedTypeAccesses => throw new NotImplementedException();
+//    public IReadOnlyCollection<ISemanticTypeAccess> ExtendedTypeAccesses => throw new NotImplementedException();
 
-    public IReadOnlyCollection<ISemanticTypeAccess> ImplementedInterfaces => throw new NotImplementedException();
+//    public IReadOnlyCollection<ISemanticTypeAccess> ImplementedInterfaces => throw new NotImplementedException();
 
-    public GenericDataType GenericType => throw new NotImplementedException();
+//    public GenericDataType GenericType => throw new NotImplementedException();
 
-    public IScope LocalScope => throw new NotImplementedException();
+//    public IScope LocalScope => throw new NotImplementedException();
 
-    public ISemanticInitializer Initializer => throw new NotImplementedException();
+//    public ISemanticInitializer Initializer => throw new NotImplementedException();
 
-    public AccessModifier AccessModifier => throw new NotImplementedException();
+//    public AccessModifier AccessModifier => throw new NotImplementedException();
 
-    public ulong? BitWidth => throw new NotImplementedException();
+//    public ulong? BitWidth => throw new NotImplementedException();
 
-    public ISymbol Symbol => throw new NotImplementedException();
+//    public ISymbol Symbol => throw new NotImplementedException();
 
-    public string Name { get; }
+//    public string Name { get; }
 
-    public string FullyQualifiedName => throw new NotImplementedException();
+//    public string FullyQualifiedName => throw new NotImplementedException();
 
-    public DeclarationKind Kind => throw new NotImplementedException();
+//    public DeclarationKind Kind => throw new NotImplementedException();
 
-    public IScope ContainingScope => throw new NotImplementedException();
+//    public IScope ContainingScope => throw new NotImplementedException();
 
-    public INamespaceDeclaration ContainingNamespace => throw new NotImplementedException();
+//    public INamespaceDeclaration ContainingNamespace => throw new NotImplementedException();
 
-    public ITypeDeclaration Type => throw new NotImplementedException();
+//    public ITypeDeclaration Type => throw new NotImplementedException();
 
-    public IReadOnlyCollection<IPragma> Pragmas { get; }
+//    public IDocComment DocComment { get; }
 
-    public Location Location => throw new NotImplementedException();
 
-    public IEnumerable<ISemanticNode> ChildNodes => throw new NotImplementedException();
+//    public IReadOnlyCollection<IPragma> Pragmas { get; }
 
-    public void Accept<T>(ISemanticNodeVisitor<T> visitor, T data)
-    {
-        throw new NotImplementedException();
-    }
+//    public Location Location => throw new NotImplementedException();
 
-    public bool Equals(IDeclaration? other)
-    {
-        throw new NotImplementedException();
-    }
+//    public IEnumerable<ISemanticNode> ChildNodes => throw new NotImplementedException();
 
-    public bool Extends(ITypeDeclaration type)
-    {
-        throw new NotImplementedException();
-    }
+//    public void Accept<T>(ISemanticNodeVisitor<T> visitor, T data)
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public IReadOnlyCollection<ITypeDeclaration> GetAllExtendedTypes()
-    {
-        throw new NotImplementedException();
-    }
+//    public bool Equals(IDeclaration? other)
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public IReadOnlyCollection<IInterfaceDeclaration> GetAllImplementedInterfaces()
-    {
-        throw new NotImplementedException();
-    }
+//    public bool Extends(ITypeDeclaration type)
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public IReadOnlyCollection<IInterfaceDeclaration> GetAllImplementedInterfacesUniquely()
-    {
-        throw new NotImplementedException();
-    }
+//    public IReadOnlyCollection<ITypeDeclaration> GetAllExtendedTypes()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public IEnumerable<ISemanticNode> GetDescendentNodes()
-    {
-        throw new NotImplementedException();
-    }
+//    public IReadOnlyCollection<ITypeDeclaration> GetAllExtendedTypesUniquely()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public T GetLiteralValue<T>(string literal)
-    {
-        throw new NotImplementedException();
-    }
+//    public IReadOnlyCollection<IInterfaceDeclaration> GetAllImplementedInterfaces()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public bool Implements(IInterfaceDeclaration @interface)
-    {
-        throw new NotImplementedException();
-    }
+//    public IReadOnlyCollection<IInterfaceDeclaration> GetAllImplementedInterfacesUniquely()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public bool IsAssignableTo(ITypeDeclaration other)
-    {
-        throw new NotImplementedException();
-    }
+//    public IEnumerable<ISemanticNode> GetDescendentNodes()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public bool IsEqualType(ITypeDeclaration other)
-    {
-        throw new NotImplementedException();
-    }
+//    public T GetLiteralValue<T>(string literal)
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    public bool IsOfGenericType(GenericDataType genericType)
-    {
-        throw new NotImplementedException();
-    }
-}
+//    public bool Implements(IInterfaceDeclaration @interface)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public bool IsAssignableTo(ITypeDeclaration other)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public bool IsEqualType(ITypeDeclaration other)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public bool IsOfGenericType(GenericDataType genericType)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
