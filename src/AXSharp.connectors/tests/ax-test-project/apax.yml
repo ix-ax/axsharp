@@ -6,9 +6,12 @@ targets:
   - axunit-llvm
   - plcsim
 devDependencies:
-  "@ax/sdk": 3.0.7
+  "@ax/sdk": 3.0.17
 dependencies:
-  "@ax/hwld": ^0.5.27
-  "@ax/hwc": ^0.6.8
+  "@ax/hwld": ^0.7.10
+  "@ax/hwc": ^0.7.92
+  "@ax/sld": ^0.14.2
 scripts:
-  postbuild: dotnet run --project ..//..//..//AXSharp.compiler//src//ixc//AXSharp.ixc.csproj --framework net7.0  
+  postbuild: dotnet run --project
+    ..//..//..//AXSharp.compiler//src//ixc//AXSharp.ixc.csproj --framework
+    net7.0

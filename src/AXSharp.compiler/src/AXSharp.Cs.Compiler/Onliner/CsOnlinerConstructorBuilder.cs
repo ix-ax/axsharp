@@ -142,7 +142,7 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
 
         builder.AddToSource(
             $"public {semantics.Name}({typeof(ITwinObject).n()} parent, string readableTail, string symbolTail)");
-        if (isExtended) builder.AddToSource(": base(parent, readableTail, symbolTail + \".$base\") ");
+        if (isExtended) builder.AddToSource(": base(parent, readableTail, symbolTail)");
 
         builder.AddToSource("{");
 

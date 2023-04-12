@@ -19,9 +19,21 @@ public partial class integratedTwinController : ITwinController
 
     public MonsterData.Monster ShadowToOnlineAsync_should_copy_entire_structure { get; }
 
+    public MonsterData.Monster ITwinObjectOnlineToPlain_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster ITwinObjectPlainToOnline_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster ITwinObjectOnlineToShadowAsync_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster ITwinObjectShadowToOnlineAsync_should_copy_entire_structure { get; }
+
     public MonsterData.Monster ShadowToPlainAsync_should_copy_entire_structure { get; }
 
     public MonsterData.Monster PlainToShadowAsync_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster ITwinObjectShadowToPlainAsync_should_copy_entire_structure { get; }
+
+    public MonsterData.Monster ITwinObjectPlainToShadowAsync_should_copy_entire_structure { get; }
 
     public Pokus Pokus { get; }
 
@@ -34,6 +46,14 @@ public partial class integratedTwinController : ITwinController
     public RealMonsterData.RealMonster OnlineToPlain_should_copy { get; }
 
     public RealMonsterData.RealMonster PlainToOnline_should_copy { get; }
+
+    public RealMonsterData.RealMonster ITwinObjectOnlineToShadow_should_copy { get; }
+
+    public RealMonsterData.RealMonster ITwinObjectShadowToOnline_should_copy { get; }
+
+    public RealMonsterData.RealMonster ITwinObjectOnlineToPlain_should_copy { get; }
+
+    public RealMonsterData.RealMonster ITwinObjectPlainToOnline_should_copy { get; }
 
     public all_primitives p_online_shadow { get; }
 
@@ -57,14 +77,24 @@ public partial class integratedTwinController : ITwinController
         PlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToOnline_should_copy_entire_structure");
         OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
         ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
+        ITwinObjectOnlineToPlain_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectOnlineToPlain_should_copy_entire_structure");
+        ITwinObjectPlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectPlainToOnline_should_copy_entire_structure");
+        ITwinObjectOnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectOnlineToShadowAsync_should_copy_entire_structure");
+        ITwinObjectShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectShadowToOnlineAsync_should_copy_entire_structure");
         ShadowToPlainAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToPlainAsync_should_copy_entire_structure");
         PlainToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToShadowAsync_should_copy_entire_structure");
+        ITwinObjectShadowToPlainAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectShadowToPlainAsync_should_copy_entire_structure");
+        ITwinObjectPlainToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectPlainToShadowAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
         RealMonster = new RealMonsterData.RealMonster(this.Connector, "", "RealMonster");
         OnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToShadow_should_copy");
         ShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ShadowToOnline_should_copy");
         OnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToPlain_should_copy");
         PlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "PlainToOnline_should_copy");
+        ITwinObjectOnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectOnlineToShadow_should_copy");
+        ITwinObjectShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectShadowToOnline_should_copy");
+        ITwinObjectOnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectOnlineToPlain_should_copy");
+        ITwinObjectPlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectPlainToOnline_should_copy");
         p_online_shadow = new all_primitives(this.Connector, "", "p_online_shadow");
         p_shadow_online = new all_primitives(this.Connector, "", "p_shadow_online");
         p_online_plain = new all_primitives(this.Connector, "", "p_online_plain");
@@ -82,14 +112,24 @@ public partial class integratedTwinController : ITwinController
         PlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToOnline_should_copy_entire_structure");
         OnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "OnlineToShadowAsync_should_copy_entire_structure");
         ShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToOnlineAsync_should_copy_entire_structure");
+        ITwinObjectOnlineToPlain_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectOnlineToPlain_should_copy_entire_structure");
+        ITwinObjectPlainToOnline_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectPlainToOnline_should_copy_entire_structure");
+        ITwinObjectOnlineToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectOnlineToShadowAsync_should_copy_entire_structure");
+        ITwinObjectShadowToOnlineAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectShadowToOnlineAsync_should_copy_entire_structure");
         ShadowToPlainAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ShadowToPlainAsync_should_copy_entire_structure");
         PlainToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "PlainToShadowAsync_should_copy_entire_structure");
+        ITwinObjectShadowToPlainAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectShadowToPlainAsync_should_copy_entire_structure");
+        ITwinObjectPlainToShadowAsync_should_copy_entire_structure = new MonsterData.Monster(this.Connector, "", "ITwinObjectPlainToShadowAsync_should_copy_entire_structure");
         Pokus = new Pokus(this.Connector, "", "Pokus");
         RealMonster = new RealMonsterData.RealMonster(this.Connector, "", "RealMonster");
         OnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToShadow_should_copy");
         ShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ShadowToOnline_should_copy");
         OnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "OnlineToPlain_should_copy");
         PlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "PlainToOnline_should_copy");
+        ITwinObjectOnlineToShadow_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectOnlineToShadow_should_copy");
+        ITwinObjectShadowToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectShadowToOnline_should_copy");
+        ITwinObjectOnlineToPlain_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectOnlineToPlain_should_copy");
+        ITwinObjectPlainToOnline_should_copy = new RealMonsterData.RealMonster(this.Connector, "", "ITwinObjectPlainToOnline_should_copy");
         p_online_shadow = new all_primitives(this.Connector, "", "p_online_shadow");
         p_shadow_online = new all_primitives(this.Connector, "", "p_shadow_online");
         p_online_plain = new all_primitives(this.Connector, "", "p_online_plain");
