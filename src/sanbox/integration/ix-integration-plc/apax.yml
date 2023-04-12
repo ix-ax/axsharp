@@ -7,6 +7,7 @@ targets:
   - plcsim
 devDependencies:
   "@ax/sdk": 3.0.8
+  "@ax/sld": ^0.14.2
 variables:
   APAX_BUILD_ARGS: [ -d ]  
 scripts:
