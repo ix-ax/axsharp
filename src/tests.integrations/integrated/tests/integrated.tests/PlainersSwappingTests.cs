@@ -3,6 +3,18 @@ namespace integrated.tests
 {
     public class PlainersSwappingTests
     {
+
+        public PlainersSwappingTests()
+        {
+#if NET6_0
+            Task.Delay(250).Wait();
+#endif
+
+#if NET7_0
+            Task.Delay(500).Wait();
+#endif
+        }
+
         [Fact]
         public async  Task OnlineToPlain_should_copy_entire_structure()
         {
@@ -55,7 +67,7 @@ namespace integrated.tests
         [Fact]
         public async Task ITwinObject_OnlineToPlain_should_copy_entire_structure()
         {
-            var monster = Entry.Plc.OnlineToPlain_should_copy_entire_structure;
+            var monster = Entry.Plc.ITwinObjectOnlineToPlain_should_copy_entire_structure;
 
             monster.Description.Cyclic = "from online to shadow";
             monster.Id.Cyclic = 111222;
@@ -163,7 +175,7 @@ namespace integrated.tests
         [Fact]
         public async Task ITwinObject_PlainToOnline_should_copy_entire_structure()
         {
-            var monster = Entry.Plc.PlainToOnline_should_copy_entire_structure;
+            var monster = Entry.Plc.ITwinObjectPlainToOnline_should_copy_entire_structure;
 
             var p = new Pocos.MonsterData.Monster();
 
@@ -251,7 +263,7 @@ namespace integrated.tests
         [Fact]
         public async Task ITwinObject_OnlineToPlain_RealMonster_should_copy()
         {
-            var monster = Entry.Plc.OnlineToPlain_should_copy;
+            var monster = Entry.Plc.ITwinObjectOnlineToPlain_should_copy;
             var today = DateTime.UtcNow;
             var date = new DateOnly(1999, 2, 13);
             var timespan = new TimeSpan(13, 13, 13);
@@ -327,7 +339,7 @@ namespace integrated.tests
         [Fact]
         public async Task ITwinObject_ShadowToPlain_should_copy_entire_structure()
         {
-            var monster = Entry.Plc.ShadowToPlainAsync_should_copy_entire_structure;
+            var monster = Entry.Plc.ITwinObjectShadowToPlainAsync_should_copy_entire_structure;
 
             monster.Description.Shadow = "from online to shadow";
             monster.Id.Shadow = 111222;
@@ -433,7 +445,7 @@ namespace integrated.tests
         [Fact]
         public async Task ITwinObject_PlainToShadow_should_copy_entire_structure()
         {
-            var monster = Entry.Plc.PlainToShadowAsync_should_copy_entire_structure;
+            var monster = Entry.Plc.ITwinObjectPlainToShadowAsync_should_copy_entire_structure;
 
             var p = new Pocos.MonsterData.Monster();
 

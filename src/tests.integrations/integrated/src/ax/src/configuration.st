@@ -10,8 +10,17 @@ CONFIGURATION MyConfiguration
        OnlineToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
        ShadowToOnlineAsync_should_copy_entire_structure : MonsterData.Monster;
        
+       ITwinObjectOnlineToPlain_should_copy_entire_structure : MonsterData.Monster;
+       ITwinObjectPlainToOnline_should_copy_entire_structure : MonsterData.Monster;
+       ITwinObjectOnlineToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
+       ITwinObjectShadowToOnlineAsync_should_copy_entire_structure : MonsterData.Monster;
+
        ShadowToPlainAsync_should_copy_entire_structure : MonsterData.Monster;
        PlainToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
+
+       ITwinObjectShadowToPlainAsync_should_copy_entire_structure : MonsterData.Monster;
+       ITwinObjectPlainToShadowAsync_should_copy_entire_structure : MonsterData.Monster;
+
        Pokus : Pokus;
 
        RealMonster : RealMonsterData.RealMonster;
@@ -19,6 +28,11 @@ CONFIGURATION MyConfiguration
        ShadowToOnline_should_copy : RealMonsterData.RealMonster;
        OnlineToPlain_should_copy: RealMonsterData.RealMonster;
        PlainToOnline_should_copy: RealMonsterData.RealMonster;
+
+       ITwinObjectOnlineToShadow_should_copy : RealMonsterData.RealMonster;
+       ITwinObjectShadowToOnline_should_copy : RealMonsterData.RealMonster;
+       ITwinObjectOnlineToPlain_should_copy: RealMonsterData.RealMonster;
+       ITwinObjectPlainToOnline_should_copy: RealMonsterData.RealMonster;
 
        p_online_shadow: all_primitives;
        p_shadow_online: all_primitives;

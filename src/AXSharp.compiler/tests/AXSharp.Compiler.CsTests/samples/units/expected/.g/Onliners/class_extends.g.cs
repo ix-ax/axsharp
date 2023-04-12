@@ -8,7 +8,7 @@ public partial class Extended : Extendee
 {
     partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
     partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
-    public Extended(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail + ".$base")
+    public Extended(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail) : base(parent, readableTail, symbolTail)
     {
         Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
         PreConstruct(parent, readableTail, symbolTail);
