@@ -204,6 +204,7 @@ namespace misc
             HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             _SomeClass = new misc.SomeClass(this, "_SomeClass", "_SomeClass");
+            _Motor = new misc.Motor(this, "_Motor", "_Motor");
             parent.AddChild(this);
             parent.AddKid(this);
             PostConstruct(parent, readableTail, symbolTail);
@@ -663,6 +664,7 @@ namespace misc
             this.@Parent = parent;
             HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            m = new misc.Motor(this, "m", "m");
             displacement = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "displacement", "displacement");
             parent.AddChild(this);
             parent.AddKid(this);

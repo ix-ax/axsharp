@@ -81,6 +81,7 @@ CLASS PUBLIC ComplexForConfig
         myWCHAR	        :       WCHAR	      ;
         mySTRING	        :       STRING	      ;
         myWSTRING	    :       WSTRING	      ;
+        myMotor         : Motor;
     END_VAR    
 END_CLASS   
 
@@ -91,3 +92,13 @@ END_TYPE
 TYPE
     Colorsss : ULINT (Red := ULINT#1, Green := ULINT#2, Blue := ULINT#3) := Red;
 END_TYPE
+
+ TYPE
+        Motor : STRUCT
+            isRunning : BOOL;
+        END_STRUCT;
+        Vehicle : STRUCT
+            m : Motor;
+            displacement : INT;
+        END_STRUCT;
+    END_TYPE

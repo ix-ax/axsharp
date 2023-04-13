@@ -169,6 +169,7 @@ namespace TypeWithNameAttributes
             this.@Parent = parent;
             HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+            m = new TypeWithNameAttributes.Motor(this, "m", "m");
             displacement = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "displacement", "displacement");
             parent.AddChild(this);
             parent.AddKid(this);
