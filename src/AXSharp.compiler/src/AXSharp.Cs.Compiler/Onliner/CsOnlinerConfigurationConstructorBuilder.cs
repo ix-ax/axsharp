@@ -68,6 +68,9 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
                 case IClassDeclaration @class:
                     AddMemberInitialization(@class, semantics, visitor);
                     break;
+                case IStructuredTypeDeclaration @struct:
+                    AddMemberInitialization(@struct, semantics, visitor);
+                    break;
             }
 
             AddToSource(semantics.SetProperties());
@@ -94,6 +97,14 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
     }
 
     private void AddMemberInitialization(IClassDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
+    {
+        AddToSource($"{variable.Name}");
+        AddToSource("= new");
+        type.Accept(visitor, this);
+        AddToSource($"(this.Connector, \"\", \"{variable.Name}\");");
+    }
+
+    private void AddMemberInitialization(IStructuredTypeDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
     {
         AddToSource($"{variable.Name}");
         AddToSource("= new");

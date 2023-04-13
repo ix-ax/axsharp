@@ -106,5 +106,17 @@ namespace Pocos
 
         public string mySTRING { get; set; } = string.Empty;
         public string myWSTRING { get; set; } = string.Empty;
+        public Motor myMotor { get; set; } = new Motor();
+    }
+
+    public partial class Motor
+    {
+        public Boolean isRunning { get; set; }
+    }
+
+    public partial class Vehicle
+    {
+        public Motor m { get; set; } = new Motor();
+        public Int16 displacement { get; set; }
     }
 }

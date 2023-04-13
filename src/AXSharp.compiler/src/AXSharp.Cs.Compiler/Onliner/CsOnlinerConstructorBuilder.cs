@@ -87,6 +87,9 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
                 case IClassDeclaration @class:
                     AddMemberInitialization(@class, fieldDeclaration, visitor);
                     break;
+                case IStructuredTypeDeclaration @struct:
+                    AddMemberInitialization(@struct, fieldDeclaration, visitor);
+                    break;
             }
 
             AddToSource(fieldDeclaration.SetProperties());
@@ -251,6 +254,14 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
     }
 
     private void AddMemberInitialization(IClassDeclaration type, IFieldDeclaration field, IxNodeVisitor visitor)
+    {
+        AddToSource($"{field.Name}");
+        AddToSource("= new");
+        type.Accept(visitor, this);
+        AddToSource($"(this, \"{field.GetAttributeNameValue(field.Name)}\", \"{field.Name}\");");
+    }
+
+    private void AddMemberInitialization(IStructuredTypeDeclaration type, IFieldDeclaration field, IxNodeVisitor visitor)
     {
         AddToSource($"{field.Name}");
         AddToSource("= new");
