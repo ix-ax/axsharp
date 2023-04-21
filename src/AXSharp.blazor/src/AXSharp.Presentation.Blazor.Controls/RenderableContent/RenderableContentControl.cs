@@ -28,7 +28,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// </summary>
     public partial class RenderableContentControl : ComponentBase, IDisposable, INotifyPropertyChanged
     {
-        private object _context1;
+        private object _context;
         private string _presentation;
         private string _class;
         private string _layoutClass;
@@ -41,11 +41,11 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         [Parameter]
         public object Context
         {
-            get => _context1;
+            get => _context;
             set
             {
-                if (Equals(value, _context1)) return;
-                _context1 = value;
+                if (Equals(value, _context)) return;
+                _context = value;
                 OnPropertyChanged();
             }
         }
