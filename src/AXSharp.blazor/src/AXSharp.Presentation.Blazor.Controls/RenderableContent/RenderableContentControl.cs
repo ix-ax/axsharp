@@ -26,39 +26,104 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// <summary>
     ///  This class implements main logic behind auto-generated UI. 
     /// </summary>
-    public partial class RenderableContentControl : ComponentBase, IDisposable
+    public partial class RenderableContentControl : ComponentBase, IDisposable, INotifyPropertyChanged
     {
+        private object _context;
+        private string _presentation;
+        private string _class;
+        private string _layoutClass;
+        private string _layoutChildrenClass;
+        private int _pollingInterval = 250;
+
         /// <summary>
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
         /// </summary>
         [Parameter]
-        public object Context { get; set; }
+        public object Context
+        {
+            get => _context;
+            set
+            {
+                if (Equals(value, _context)) return;
+                _context = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Parameter Presentation specify mode, in which view UI is generated. Type PresentationType is used.
         /// </summary>
         [Parameter]
-        public string Presentation { get; set; }
+        public string Presentation
+        {
+            get => _presentation;
+            set
+            {
+                if (value == _presentation) return;
+                _presentation = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Parameter Class, in which RenderableContentenControl will be wrapped.
         /// </summary>
         [Parameter]
-        public string Class { get; set; }
-          /// <summary>
+        public string Class
+        {
+            get => _class;
+            set
+            {
+                if (value == _class) return;
+                _class = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Parameter LayoutClass, in which layouts will be wrapped.
         /// </summary>
         [Parameter]
-        public string LayoutClass { get; set; }
-          /// <summary>
+        public string LayoutClass
+        {
+            get => _layoutClass;
+            set
+            {
+                if (value == _layoutClass) return;
+                _layoutClass = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Parameter LayoutChildrenClass, in which children of layouts will be wrapped.
         /// </summary>
         [Parameter]
-        public string LayoutChildrenClass { get; set; }
+        public string LayoutChildrenClass
+        {
+            get => _layoutChildrenClass;
+            set
+            {
+                if (value == _layoutChildrenClass) return;
+                _layoutChildrenClass = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets polling interval for PLC variables of this controls context in ms.
         /// </summary>
         [Parameter]
-        public int PollingInterval { get; set; } = 250;
+        public int PollingInterval
+        {
+            get => _pollingInterval;
+            set
+            {
+                if (value == _pollingInterval) return;
+                _pollingInterval = value;
+                OnPropertyChanged();
+            }
+        }
 
         [Inject]
         public ComponentService ComponentService { get; set; }
@@ -71,13 +136,13 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private Type _groupContainer { get; set; }
         public Type MainLayoutType { get; set; }
 
-        private ITwinElement _context { get; set; }
+        private ITwinElement context { get; set; }
         protected override void OnInitialized()
         {
             try
             {
-                _context = (ITwinElement)Context;
-                _context.StartPolling(this.PollingInterval);
+                context = (ITwinElement)Context;
+                context.StartPolling(this.PollingInterval);
             }
             catch 
             {
@@ -89,15 +154,15 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         protected override void OnParametersSet()
         {
             
-            Type layoutType = TryLoadLayoutTypeFromProperty(_context);
+            Type layoutType = TryLoadLayoutTypeFromProperty(context);
             if (layoutType == null)
             { 
-                layoutType = TryLoadLayoutType(_context);
+                layoutType = TryLoadLayoutType(context);
             }
             if (layoutType != null) MainLayoutType = layoutType;
 
-            _groupContainer = TryLoadGroupTypeFromProperty(_context);
-            if(_groupContainer == null) _groupContainer = TryLoadGroupType(_context);
+            _groupContainer = TryLoadGroupTypeFromProperty(context);
+            if(_groupContainer == null) _groupContainer = TryLoadGroupType(context);
 
             if (String.IsNullOrEmpty(Presentation)) Presentation = "";
             _viewModelCache.ResetCounter();
@@ -359,8 +424,24 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         }
         public void Dispose()
         {
-            this._context?.StopPolling();
+            this.context?.StopPolling();
             _viewModelCache.ResetCounter();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            StateHasChanged();
+        }
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }
