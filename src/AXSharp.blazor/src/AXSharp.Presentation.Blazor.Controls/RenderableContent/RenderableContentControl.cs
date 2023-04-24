@@ -26,29 +26,16 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// <summary>
     ///  This class implements main logic behind auto-generated UI. 
     /// </summary>
-    public partial class RenderableContentControl : ComponentBase, IDisposable, INotifyPropertyChanged
+    public partial class RenderableContentControl : ComponentBase, IDisposable
     {
-        private object _context;
         private string _presentation;
-        private string _class;
-        private string _layoutClass;
-        private string _layoutChildrenClass;
-        private int _pollingInterval = 250;
+        
 
         /// <summary>
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
         /// </summary>
         [Parameter]
-        public object Context
-        {
-            get => _context;
-            set
-            {
-                if (Equals(value, _context)) return;
-                _context = value;
-                OnPropertyChanged();
-            }
-        }
+        public object Context { get; set; }
 
         /// <summary>
         /// Parameter Presentation specify mode, in which view UI is generated. Type PresentationType is used.
@@ -59,71 +46,33 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             get => _presentation;
             set
             {
-                if (value == _presentation) return;
                 _presentation = value;
-                OnPropertyChanged();
-            }
+                this.OnInitialized();
+            } 
         }
+
 
         /// <summary>
         /// Parameter Class, in which RenderableContentenControl will be wrapped.
         /// </summary>
         [Parameter]
-        public string Class
-        {
-            get => _class;
-            set
-            {
-                if (value == _class) return;
-                _class = value;
-                OnPropertyChanged();
-            }
-        }
-
+        public string Class { get; set; }
         /// <summary>
         /// Parameter LayoutClass, in which layouts will be wrapped.
         /// </summary>
         [Parameter]
-        public string LayoutClass
-        {
-            get => _layoutClass;
-            set
-            {
-                if (value == _layoutClass) return;
-                _layoutClass = value;
-                OnPropertyChanged();
-            }
-        }
-
+        public string LayoutClass { get; set; }
         /// <summary>
         /// Parameter LayoutChildrenClass, in which children of layouts will be wrapped.
         /// </summary>
         [Parameter]
-        public string LayoutChildrenClass
-        {
-            get => _layoutChildrenClass;
-            set
-            {
-                if (value == _layoutChildrenClass) return;
-                _layoutChildrenClass = value;
-                OnPropertyChanged();
-            }
-        }
+        public string LayoutChildrenClass { get; set; }
 
         /// <summary>
         /// Gets or sets polling interval for PLC variables of this controls context in ms.
         /// </summary>
         [Parameter]
-        public int PollingInterval
-        {
-            get => _pollingInterval;
-            set
-            {
-                if (value == _pollingInterval) return;
-                _pollingInterval = value;
-                OnPropertyChanged();
-            }
-        }
+        public int PollingInterval { get; set; } = 250;
 
         [Inject]
         public ComponentService ComponentService { get; set; }
@@ -136,33 +85,33 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private Type _groupContainer { get; set; }
         public Type MainLayoutType { get; set; }
 
-        private ITwinElement context { get; set; }
+        private ITwinElement _context { get; set; }
         protected override void OnInitialized()
         {
             try
             {
-                context = (ITwinElement)Context;
-                context.StartPolling(this.PollingInterval);
+                _context = (ITwinElement)Context;
+                _context.StartPolling(this.PollingInterval);
             }
-            catch 
+            catch
             {
                 throw new ParameterWrongTypeRendererException(Context.GetType().ToString());
             }
-            
+
             base.OnInitialized();
         }
         protected override void OnParametersSet()
         {
-            
-            Type layoutType = TryLoadLayoutTypeFromProperty(context);
+
+            Type layoutType = TryLoadLayoutTypeFromProperty(_context);
             if (layoutType == null)
-            { 
-                layoutType = TryLoadLayoutType(context);
+            {
+                layoutType = TryLoadLayoutType(_context);
             }
             if (layoutType != null) MainLayoutType = layoutType;
 
-            _groupContainer = TryLoadGroupTypeFromProperty(context);
-            if(_groupContainer == null) _groupContainer = TryLoadGroupType(context);
+            _groupContainer = TryLoadGroupTypeFromProperty(_context);
+            if (_groupContainer == null) _groupContainer = TryLoadGroupType(_context);
 
             if (String.IsNullOrEmpty(Presentation)) Presentation = "";
             _viewModelCache.ResetCounter();
@@ -199,12 +148,12 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                     component = ViewLocatorBuilder(twinType.BaseType, presentationName);
                 }
                 if (component != null) return component;
-            }                
+            }
             return null;
         }
 
 
-       
+
 
         /// <summary>
         /// Method to build Generic component name from passed parameters, which instance will be found in assembly.
@@ -247,7 +196,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             {
                 __builder.AddAttribute(1, "Component", twin);
             }
-            else if(component is IRenderableViewModelBase)
+            else if (component is IRenderableViewModelBase)
             {
                 __builder.AddAttribute(1, "TwinContainer", new TwinContainerObject(twin, _viewModelCache.CreateCacheId(_navigationManager.Uri, twin.Symbol, Presentation.ToLower())));
             }
@@ -349,7 +298,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
             return group;
         }
-       
+
         private bool HasRenderIgnoreAttribute(string presentationType, ITwinElement element)
         {
             var renderIngoreAttribute = AttributesHandler.GetIgnoreRenderingAttribute(element);
@@ -378,7 +327,8 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             {
                 Type genericTypeArg = primitiveKidType.GenericTypeArguments[0];
                 return (baseName, genericTypeArg);
-            } else
+            }
+            else
             {
                 return GetGenericInfo(primitiveKidType.BaseType);
             }
@@ -420,28 +370,13 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 return "Display";
             }
             return Presentation;
-            
+
         }
-        public void Dispose()
+
+        public virtual void Dispose()
         {
-            this.context?.StopPolling();
+            this._context?.StopPolling();
             _viewModelCache.ResetCounter();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            StateHasChanged();
-        }
-
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }
