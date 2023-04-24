@@ -1,8 +1,8 @@
 ﻿@*This class is view part of RenderableContentControl. It contains UI generation pipeline.*@
 
     @*Call rendering method over context object*@
-    <div name="@context.Symbol.Replace(".","-")" class="@Class">
-        @RenderComponent(context)
+    <div name="@_context.Symbol.Replace(".","-")" class="@Class">
+        @RenderComponent(_context)
     </div>
 
 
@@ -36,7 +36,6 @@
                     </MainLayoutSetter>
                 </GroupContainerAttributeSetter>
         }
-
     };
 
     private RenderFragment RenderChildren(ITwinObject twin, Type parentLayout) => __builder =>
