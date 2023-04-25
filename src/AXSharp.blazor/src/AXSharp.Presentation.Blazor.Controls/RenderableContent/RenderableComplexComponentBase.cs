@@ -19,9 +19,24 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// <summary>
     ///  Base class for complex componenets with only code-behind.
     /// </summary>
-    public class RenderableComplexComponentBase<T> : RenderableComponentBase, IRenderableComplexComponentBase
+    public class RenderableComplexComponentBase<T> : RenderableComponentBase, 
+        IRenderableComplexComponentBase, 
+        IDisposable
     {
         [Parameter]
         public T Component { get; set; }
+
+        [Parameter] public int PollingInterval { get; set; } = 250;
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            (Component as ITwinElement)?.StartPolling(PollingInterval);
+        }
+
+        public virtual void Dispose()
+        {
+            (Component as ITwinElement)?.StopPolling();
+        }
     }
 }
