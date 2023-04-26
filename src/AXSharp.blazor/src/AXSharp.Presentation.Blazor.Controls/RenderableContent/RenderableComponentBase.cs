@@ -31,11 +31,10 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         {
             if (element != null)
             {
-                var tags = element.GetValueTags();
-                foreach (OnlinerBase tag in tags)
+                foreach (var twinPrimitive in element.RetrievePrimitives())
                 {
+                    var tag = (OnlinerBase)twinPrimitive;
                     tag.PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChanged);
-                   
                 }
             }
         }
@@ -98,6 +97,5 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             if(!HasFocus) InvokeAsync(StateHasChanged);
         }
 
-      
     }
 }

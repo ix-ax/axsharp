@@ -133,9 +133,14 @@ namespace AXSharp.Connector.S71500.WebAPITests.Exploratory
             }
 
 
-            
+            output.WriteLine($"Number of items {huge.Count}");
+            var s = new Stopwatch();
+            s.Start();
             await connector.ReadBatchAsync(huge);
-            
+            s.Stop();
+
+            output.WriteLine($"Whole {s.ElapsedMilliseconds} | per item: {((double)(s.ElapsedMilliseconds) / ((double)huge.Count))}");
+
             Assert.Equal(42, myBYTE.Cyclic);
             Assert.True(myBOOL.Cyclic);
             Assert.Equal(43, myINT.Cyclic);
@@ -249,7 +254,14 @@ namespace AXSharp.Connector.S71500.WebAPITests.Exploratory
             myBOOL.Cyclic = true;
             myINT.Cyclic = 55;
 
+            
+            output.WriteLine($"Number of items {huge.Count}");
+            var s = new Stopwatch();
+            s.Start();
             await connector.WriteBatchAsync(huge);
+            s.Stop();
+
+            output.WriteLine($"Whole {s.ElapsedMilliseconds} | per item: {((double)(s.ElapsedMilliseconds) / ((double)huge.Count))}");
 
             await connector.ReadBatchAsync(huge);
 

@@ -88,6 +88,8 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private ITwinElement _context { get; set; }
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             try
             {
                 _context = (ITwinElement)Context;
@@ -97,8 +99,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             {
                 throw new ParameterWrongTypeRendererException(Context.GetType().ToString());
             }
-
-            base.OnInitialized();
         }
         protected override void OnParametersSet()
         {
@@ -375,7 +375,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         public virtual void Dispose()
         {
-            this._context?.StopPolling();
+             this._context?.StopPolling();
             _viewModelCache.ResetCounter();
         }
     }
