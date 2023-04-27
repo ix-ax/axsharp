@@ -68,12 +68,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         [Parameter]
         public string LayoutChildrenClass { get; set; }
 
-        /// <summary>
-        /// Gets or sets polling interval for PLC variables of this controls context in ms.
-        /// </summary>
-        [Parameter]
-        public int PollingInterval { get; set; } = 250;
-
         [Inject]
         public ComponentService ComponentService { get; set; }
         [Inject]
@@ -93,7 +87,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             try
             {
                 _context = (ITwinElement)Context;
-                _context.StartPolling(this.PollingInterval);
             }
             catch
             {
@@ -375,7 +368,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         public virtual void Dispose()
         {
-             this._context?.StopPolling();
             _viewModelCache.ResetCounter();
         }
     }
