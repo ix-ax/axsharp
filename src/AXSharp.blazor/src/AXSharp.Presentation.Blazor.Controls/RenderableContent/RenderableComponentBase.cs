@@ -5,32 +5,53 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using AXSharp.Connector;
 using AXSharp.Connector.ValueTypes;
 using AXSharp.Presentation.Blazor.Interfaces;
 using AXSharp.Connector.ValueTypes.Online;
+using System.Xml.Linq;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
     /// <summary>
     ///  Base class which implements methods to update UI when PLC values are changed.
     /// </summary>
-    public partial class RenderableComponentBase : ComponentBase, IRenderableComponent
+    public partial class RenderableComponentBase : ComponentBase, IRenderableComponent, IDisposable
     {
+        [Parameter] public int PollingInterval { get; set; }
+
+        ///<inheritdoc/>        
+        public virtual void Dispose()
+        {
+            PolledElements.ForEach(p =>
+            {
+                p.StopPolling();
+            });
+
+            PolledElements.Clear();
+        }
+
+        private List<ITwinElement> PolledElements { get; } = new List<ITwinElement>();
 
         public bool HasFocus { get; set; }
 
         /// <summary>
         ///  Method, which updates are primitive values of ITwinObject instance
         /// <param name="element">ITwinObject instance.</param>
+        /// <param name="pollingInterval">Polling interval</param>
         /// </summary>
-        public void UpdateValuesOnChange(ITwinObject element)
+        public void UpdateValuesOnChange(ITwinObject element, int pollingInterval = 250)
         {
             if (element != null)
             {
+                element.StartPolling(pollingInterval);
+                PolledElements.Add(element);
                 foreach (var twinPrimitive in element.RetrievePrimitives())
                 {
                     var tag = (OnlinerBase)twinPrimitive;
@@ -38,12 +59,16 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 }
             }
         }
+
         /// <summary>
         ///  Method, which updates primitive value.
         /// <param name="tag">IValueTag instance.</param>
+        /// <param name="pollingInterval">Polling interval</param>
         /// </summary>
-        public void UpdateValuesOnChange(OnlinerBase tag)
+        public void UpdateValuesOnChange(OnlinerBase tag, int pollingInterval = 250)
         {
+            tag.StartPolling(pollingInterval);
+            PolledElements.Add(tag);
             tag.PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChanged);
         }
 
@@ -62,6 +87,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 }
             }
         }
+
         /// <summary>
         ///  Method, which updates shadow primitive value.
         /// <param name="tag">IValueTag instance.</param>
@@ -70,7 +96,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         {
             ((dynamic)tag).ShadowValueChangeEvent += new ValueChangedEventHandlerDelegate(HandleShadowPropertyChanged);
         }
-
 
         /// <summary>
         ///  Method, which updates primitive value only, when element is out of focus.
@@ -96,6 +121,5 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         {
             if(!HasFocus) InvokeAsync(StateHasChanged);
         }
-
     }
 }

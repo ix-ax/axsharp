@@ -21,15 +21,15 @@ using AXSharp.Presentation.Blazor;
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
     /// <summary>
-    ///  Base class for complex componenets with viewmodel support.
+    ///  Base class for complex components with viewmodel support.
     /// </summary>
     public class RenderableViewModelComponentBase<T> : RenderableComponentBase, IRenderableViewModelBase where T : RenderableViewModelBase, new()
     {
-
         [Inject]
         private ViewModelCacheService _viewModelCache { get; set; }
 
         private TwinContainerObject _twinContainer;
+
         [Parameter]
         public TwinContainerObject TwinContainer
         {
@@ -65,7 +65,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
            
         }
-
 
         public T ViewModel { get; set; }
     }
