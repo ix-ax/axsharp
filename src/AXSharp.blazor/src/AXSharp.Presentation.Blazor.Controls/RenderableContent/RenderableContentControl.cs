@@ -29,7 +29,12 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     public partial class RenderableContentControl : ComponentBase, IDisposable
     {
         private string _presentation;
-        
+
+        /// <summary>
+        /// Gets or sets polling interval for this control and nested controls.
+        /// [!NOTE] Nested element can have different polling setting that will override this property.
+        /// </summary>
+        [Parameter] public int PollingInterval { get; set; } = 250;
 
         /// <summary>
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
@@ -87,6 +92,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             try
             {
                 _context = (ITwinElement)Context;
+                _context.StartPolling(this.PollingInterval);
             }
             catch
             {
@@ -368,6 +374,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         public virtual void Dispose()
         {
+            _context?.StopPolling();
             _viewModelCache.ResetCounter();
         }
     }
