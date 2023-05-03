@@ -91,3 +91,5 @@ Following XML tags are currently supported:
 - `<remarks>`
 - `<code>`
 - `<c>`
+- `<see>`
+- `<seealso>`
