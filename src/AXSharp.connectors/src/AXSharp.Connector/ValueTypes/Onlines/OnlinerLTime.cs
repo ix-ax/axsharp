@@ -40,12 +40,12 @@ public class OnlinerLTime : OnlinerBase<TimeSpan>, IOnlineLTime, IShadowLTime
     /// <summary>
     ///     Gets the max value of <see cref="OnlinerLTime" />.
     /// </summary>
-    public static TimeSpan MaxValue { get; } = TimeSpan.FromTicks(9223372036854775807 / 100);
+    public static TimeSpan MaxValue { get; } = TimeSpan.FromTicks(92233720368540000); 
 
     /// <summary>
     ///     Gets the min value of <see cref="OnlinerLTime" />.
     /// </summary>
-    public static TimeSpan MinValue { get; } = TimeSpan.FromTicks(-9223372036854775808 / 100);
+    public static TimeSpan MinValue { get; } = TimeSpan.FromTicks(-92233720368540000);
 
     /// <summary>
     ///     Gets the max value for this instance.
