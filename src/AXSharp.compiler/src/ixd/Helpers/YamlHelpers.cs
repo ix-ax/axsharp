@@ -126,11 +126,15 @@ namespace AXSharp.ixc_doc.Helpers
                             case "c":
                                 text += "<code>";
                                 break;
+                            case "see":
+                            case "seealso":
+                                text += "<xref href=\"" + node.Attributes?.GetNamedItem("cref")?.Value + "\" data-throw-if-not-resolved=\"false\">";
+                                break;
                             default:
                                 text += "<" + node.Name + ">";
                                 break;
                         }
-                        
+
                         text += GetTextFromXml(node, prop);
                         
                         switch (node.Name)
@@ -140,6 +144,10 @@ namespace AXSharp.ixc_doc.Helpers
                                 break;
                             case "c":
                                 text += "</code>";
+                                break;
+                            case "see":
+                            case "seealso":
+                                text += "</xref>";
                                 break;
                             default:
                                 text += "</" + node.Name + ">";
