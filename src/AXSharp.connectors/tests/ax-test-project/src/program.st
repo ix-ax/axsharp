@@ -62,7 +62,7 @@ PROGRAM MyProgram
     mins.myREAL	            :=  REAL#-3.402823e+38    ;
     mins.myLREAL	        :=  LREAL#-1.79769313486231e+308;
     mins.myTIME	            :=  TIME#-106751d23h47m16s854ms;
-    mins.myLTIME	        :=  LTIME#-1067d12h28m40s368ms547us758ns;
+    mins.myLTIME	        :=  LTIME#-106751d23h47m16s854ms;
     mins.myDATE	            :=  DATE#1970-01-01    ;
     mins.myLDATE	        :=  LDATE#1970-01-01    ;
     mins.myTIME_OF_DAY	    :=  TOD#0:0:0.0   ;
@@ -91,7 +91,9 @@ PROGRAM MyProgram
     maxs.myREAL	            :=  REAL#+3.402823e+38    ;
     maxs.myLREAL	        :=  LREAL#1.79769313486231e+308;
     maxs.myTIME	            :=  TIME#106751d23h47m16s854ms;
-    maxs.myLTIME	        :=  LTIME#1067d12h28m40s368ms547us758ns;
+    maxs.myLTIME	        :=  LTIME#106751d23h47m16s854ms;    
+    maxs.myLTIME	        :=  LTIME#106751d23h47m16s854ms;
+    // maxs.myLTIME	        :=  LTIME#1067d12h28m40s368ms547us758ns;      
     maxs.myDATE	            :=  DATE#2262-04-11    ;
     maxs.myLDATE	        :=  LDATE#2262-04-11    ;
     maxs.myTIME_OF_DAY	    :=  TOD#23:59:59.999000000   ;

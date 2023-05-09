@@ -59,27 +59,43 @@ public class WebApiLTime : OnlinerLTime, IWebApiPrimitive
         get
         {
             // TODO: review this casting to string... reason: there is some problem while creating request from long.
-            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite.Ticks.ToString(), _webApiConnector.DBName);
+            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMicroSeconds(CyclicToWrite), _webApiConnector.DBName);
             return _plcWriteRequestData;
         }
     }
 
     /// <inheritdoc />
-    public void Read(string value)
+    public void Read(string result)
     {
-        UpdateRead(TimeSpan.FromTicks(long.Parse(value)));
+        UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(long.Parse(result))));
+    }
+
+
+    private long ToMilliseconds(long nanoseconds)
+    {
+        return nanoseconds / 1000000L;
+    }
+
+    private long ToNanoseconds(long nanoseconds)
+    {
+        return nanoseconds * 1000000L;
+    }
+
+    private string ToMicroSeconds(TimeSpan value)
+    {
+        return ToNanoseconds((long)value.TotalMilliseconds).ToString();
     }
 
     /// <inheritdoc />
     public override async Task<TimeSpan> GetAsync()
     {
-        return TimeSpan.FromTicks(long.Parse(await _webApiConnector.ReadAsync<string>(this)));
+        return TimeSpan.FromMilliseconds(ToMilliseconds(long.Parse(await _webApiConnector.ReadAsync<string>(this))));
     }
 
     /// <inheritdoc />
     public override async Task<TimeSpan> SetAsync(TimeSpan value)
     {
-        await _webApiConnector.WriteAsync(this, value.Ticks.ToString());
+        await _webApiConnector.WriteAsync(this, ToNanoseconds((long)value.TotalMilliseconds).ToString());
         return value;
     }
 }
