@@ -25,6 +25,6 @@ internal class AttributeDeclarationAstNode : AstNode
         var v = visitor as PragmaVisitor;
         if (AttributeLiteral != null)
             if (v != null)
-                v.Product = AttributeLiteral;
+                v.Product.Product = AttributeLiteral;
     }
 }

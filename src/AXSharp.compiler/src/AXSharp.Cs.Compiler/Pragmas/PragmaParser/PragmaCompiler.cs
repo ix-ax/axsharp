@@ -27,14 +27,14 @@ namespace AXSharp.Compiler.Cs.Pragmas.PragmaParser
         protected PragmaCompiler()
         { }
 
-        public static string? Compile(IPragma pragma, IDeclaration declaration)
+        public static VisitorProduct Compile(IPragma pragma, IDeclaration declaration)
         {
             var parser = new Parser(new PragmaGrammar(declaration));
 
             return Compile(pragma, parser);
         }
 
-        private static string? Compile(IPragma pragma, Parser parser)
+        private static VisitorProduct Compile(IPragma pragma, Parser parser)
         {
             try
             {
@@ -56,14 +56,19 @@ namespace AXSharp.Compiler.Cs.Pragmas.PragmaParser
             }
             catch (MalformedPragmaException malformedPragmaException)
             {
-                var diagMessage =
-                    $"[Error]: {pragma.Location.GetLineSpan().Filename}:{pragma.Location.GetLineSpan().StartLinePosition.Line}, {pragma.Location.GetLineSpan().StartLinePosition.Character} {malformedPragmaException.Message}";
+                string diagMessage = malformedPragmaException.Message;
+                if (pragma.Location != null)
+                {
+                    diagMessage =
+                        $"[Error]: {pragma.Location.GetLineSpan().Filename}:{pragma.Location.GetLineSpan().StartLinePosition.Line}, {pragma.Location.GetLineSpan().StartLinePosition.Character} {malformedPragmaException.Message}";
+                }
+
                 Log.Logger.Error(diagMessage);
                 throw new MalformedPragmaException(diagMessage);
             }
         }
 
-        public static string? Compile(IPragma pragma)
+        public static VisitorProduct Compile(IPragma pragma)
         {
             var parser = new Parser(new PragmaGrammar());
 

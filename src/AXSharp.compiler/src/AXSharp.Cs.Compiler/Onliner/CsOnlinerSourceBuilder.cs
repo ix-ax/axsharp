@@ -62,9 +62,10 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IxNodeVisitor visitor)
     {
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
-
+        var generic = classDeclaration.GetGenericAttributes();
+        
         AddToSource(classDeclaration.Pragmas.AddAttributes());
-        AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}");
+        AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}{generic?.Product}");
         AddToSource(":");
 
         var isExtended = false;
@@ -72,8 +73,9 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         if (Compilation.GetSemanticTree().Types
             .Any(p => p.FullyQualifiedName == extendedType?.Type.FullyQualifiedName))
         {
-
-            AddToSource($"{extendedType.Type.FullyQualifiedName}");
+            var extenderGenerics = classDeclaration?.ExtendedType?.GetGenericAttributes();
+            
+            AddToSource($"{extendedType.Type.FullyQualifiedName}{extenderGenerics?.Product}");
             isExtended = true;
         }
         else
@@ -81,20 +83,11 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             AddToSource(typeof(ITwinObject).n()!);
         }
 
-        //var isExtended = false;
-        //if (Compilation.GetSemanticTree().Types
-        //    .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
-        //{
-        //    AddToSource($"{classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
-        //    isExtended = true;
-        //}
-        //else
-        //{
-        //    AddToSource(typeof(ITwinObject).n()!);
-        //}
-
         AddToSource(classDeclarationSyntax.ImplementsList != null ? ", " : string.Empty);
         classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
+
+        AddToSource(generic?.GenericConstrains);
+
         AddToSource("\n{");
 
         AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, this).Output);

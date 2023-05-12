@@ -10,6 +10,7 @@ using Irony.Ast;
 using Irony.Parsing;
 using Polly;
 using System.Xml.Linq;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AXSharp.Compiler.Cs.Pragmas.PragmaParser;
 
@@ -37,6 +38,15 @@ internal class PragmaGrammar : Grammar
     public readonly NonTerminal DeclarationAttribute = new(nameof(DeclarationAttribute), typeof(AttributeDeclarationAstNode));
     public readonly NonTerminal ClrAttribute = new(nameof(ClrAttribute));
 
+    public readonly NonTerminal GenericDeclarationAttribute =
+        new(nameof(GenericDeclarationAttribute), typeof(GenericDeclarationAstNode));
+
+    public readonly NonTerminal GenericTypeIdentifiers = new(nameof(GenericTypeIdentifiers));
+    public readonly IdentifierTerminal GenericTypeIdentifier = new(nameof(GenericTypeIdentifier));
+    public readonly NonTerminal GenericConstraint = new (nameof(GenericConstraint));
+    public readonly NonTerminal GenericConstraints = new (nameof(GenericConstraints));
+    public readonly IdentifierTerminal GenericConstrainTypeIdentifier = new (nameof(GenericConstrainTypeIdentifier));
+
     public readonly FreeTextLiteral ClrAttributeContent =
         new(nameof(ClrAttributeContent), FreeTextOptions.IncludeTerminator, "]");
 
@@ -52,7 +62,8 @@ internal class PragmaGrammar : Grammar
     public Terminal ix_attr = new(nameof(ix_attr));
     public Terminal squareClose = new(nameof(squareClose));
     public Terminal squareOpen = new(nameof(squareOpen));
-
+    public Terminal ix_generic = new(nameof(ix_generic));
+    public Terminal @where = new (nameof(@where));
 
     public PragmaGrammar(IDeclaration declaration) : this()
     {
@@ -69,9 +80,19 @@ internal class PragmaGrammar : Grammar
         ix_prop = ToTerm("#ix-prop", nameof(ix_prop));
         ix_attr = ToTerm("#ix-attr", nameof(ix_attr));
         ix_set = ToTerm("#ix-set", nameof(ix_set));
+        ix_generic = ToTerm("#ix-generic", nameof(ix_generic));
         squareOpen = ToTerm("[", nameof(squareOpen));
         squareClose = ToTerm("]", nameof(squareOpen));
         assing = ToTerm("=", nameof(assing));
+        @where = ToTerm("where", nameof(where));
+
+        //{#ix-generic:<TP, TO> : }
+        GenericConstraint.Rule = @where + GenericTypeIdentifier + colon + GenericConstrainTypeIdentifier;
+        MakeStarRule(GenericConstraints, GenericConstraint);
+        MakeStarRule(GenericTypeIdentifiers, ToTerm(","), GenericTypeIdentifier);
+        GenericDeclarationAttribute.Rule = ix_generic + colon
+                                                      + ToTerm("<") + GenericTypeIdentifiers + ToTerm(">")
+                                                      + GenericConstraints;
 
 
         //{#ix-prop:public string SomeProperty}
@@ -90,7 +111,7 @@ internal class PragmaGrammar : Grammar
         AddedPropertySetter.Rule =
             ix_set + colon + AddedPropertyIdentifier + assing + AddedPropertyInitializer;
 
-        Pragmas.Rule = AddedPropertyDeclaration | DeclarationAttribute | AddedPropertySetter;
+        Pragmas.Rule = AddedPropertyDeclaration | DeclarationAttribute | AddedPropertySetter | GenericDeclarationAttribute;
 
         Root = Pragmas;
 

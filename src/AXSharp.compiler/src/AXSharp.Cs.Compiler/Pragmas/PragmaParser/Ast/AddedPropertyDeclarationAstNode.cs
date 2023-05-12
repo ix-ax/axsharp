@@ -30,7 +30,7 @@ internal class AddedPropertyDeclarationAstNode : AstNode
         {
             if (Type.ToUpperInvariant() == "STRING" || Type.ToUpperInvariant() == "WSTRING")
             {
-                v.Product = $"private {Type} _{Identifier};" +
+                v.Product.Product = $"private {Type} _{Identifier};" +
                             $"\n{AccessQualifier} {Type} {Identifier} " +
                             $"{{ " +
                             $"get => string.IsNullOrEmpty(_{Identifier}) ? SymbolTail : this.Translate(_{Identifier}).Interpolate(this); set => _{Identifier} = value; " +
@@ -38,7 +38,7 @@ internal class AddedPropertyDeclarationAstNode : AstNode
             }
             else
             {
-                v.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
+                v.Product.Product = $"{AccessQualifier} {Type} {Identifier} {{ get; set; }}";
             }
            
         }

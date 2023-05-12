@@ -32,7 +32,7 @@ internal class AddedPropertySetterAstNode : AstNode
     {
 
         if (visitor is PragmaVisitor v)
-            v.Product = MemberName != null
+            v.Product.Product = MemberName != null
                 ? $"{MemberName}.{PropertyName} = {InitValue};"
                 : $"{PropertyName} = {InitValue};";
     }
