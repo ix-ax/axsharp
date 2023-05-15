@@ -313,6 +313,7 @@ public class AXSharpProject : IAXSharpProject
         var hasNamespace = type.ContainingNamespace != null;
         if (hasNamespace) sb.Append($"NAMESPACE {type.ContainingNamespace!.FullyQualifiedName}\n");
 
+        type?.Pragmas?.ToList().ForEach(p => sb.Append($"{{{p.Content}}}"));
 
         switch (kind)
         {
