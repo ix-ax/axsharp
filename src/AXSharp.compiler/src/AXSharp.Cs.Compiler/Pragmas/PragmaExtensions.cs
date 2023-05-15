@@ -9,6 +9,7 @@ using System.Text;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Semantic.Pragmas;
+using AXSharp.Compiler.Cs.Pragmas.PragmaParser;
 
 namespace AXSharp.Compiler.Cs;
 
@@ -17,9 +18,10 @@ namespace AXSharp.Compiler.Cs;
 /// </summary>
 public static class PragmaExtensions
 {
-    private const string PRAGMA_ATTRIBUTE_SIGNATURE = "#ix-attr:";
-    private const string PRAGMA_DECLARE_PROPERTY_SIGNATURE = "#ix-prop:";
-    private const string PRAGMA_PROPERTY_SET_SIGNATURE = "#ix-set:";
+    public const string PRAGMA_ATTRIBUTE_SIGNATURE = "#ix-attr:";
+    public const string PRAGMA_DECLARE_PROPERTY_SIGNATURE = "#ix-prop:";
+    public const string PRAGMA_PROPERTY_SET_SIGNATURE = "#ix-set:";
+    public const string PRAGMA_PROPERTY_GENERIC_ATTRIBUTES = "#ix-generic:";
 
     private static readonly int pragma_attribute_signature_length = PRAGMA_ATTRIBUTE_SIGNATURE.Length;
     private static readonly int pragma_declare_property_signature_length = PRAGMA_DECLARE_PROPERTY_SIGNATURE.Length;
@@ -33,7 +35,8 @@ public static class PragmaExtensions
     public static string AddAttributes(this IEnumerable<IPragma> pragmas)
     {
         return string.Join("\r\n",
-            pragmas.Where(p => p.Content.StartsWith(PRAGMA_ATTRIBUTE_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p)));
+            pragmas.Where(p => p.Content.StartsWith(PRAGMA_ATTRIBUTE_SIGNATURE))
+                .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p).Product));
     }
 
     /// <summary>
@@ -44,7 +47,8 @@ public static class PragmaExtensions
     public static string DeclareProperties(this ITypeDeclaration typeDeclaration)
     {
         return string.Join("\r\n",
-            typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration)));
+            typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE))
+                .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration).Product));
     }
 
     /// <summary>
@@ -55,7 +59,8 @@ public static class PragmaExtensions
     public static string DeclareProperties(this IConfigurationDeclaration configDeclaration)
     {
         return string.Join("\r\n",
-            configDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, configDeclaration)));
+            configDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_DECLARE_PROPERTY_SIGNATURE))
+                .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, configDeclaration).Product));
     }
 
     /// <summary>
@@ -66,7 +71,21 @@ public static class PragmaExtensions
     public static string SetProperties(this IFieldDeclaration fieldDeclaration)
     {
         return string.Join("\r\n",
-            fieldDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, fieldDeclaration)));
+            fieldDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, fieldDeclaration).Product));
+    }
+
+    public static VisitorProduct GetGenericAttributes(this ITypeDeclaration typeDeclaration)
+    {
+        return typeDeclaration.Pragmas
+            .Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_GENERIC_ATTRIBUTES))
+                .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration)).FirstOrDefault();
+    }
+
+    public static IEnumerable<VisitorProduct> GetGenericAttributes(this IFieldDeclaration typeDeclaration)
+    {
+        return typeDeclaration.Pragmas
+            .Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_GENERIC_ATTRIBUTES))
+            .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration));
     }
 
     /// <summary>
@@ -77,7 +96,8 @@ public static class PragmaExtensions
     public static string SetProperties(this IVariableDeclaration variableDeclaration)
     {
         return string.Join("\r\n",
-            variableDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, variableDeclaration)));
+            variableDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE))
+                .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, variableDeclaration).Product));
     }
 
     /// <summary>
@@ -88,7 +108,8 @@ public static class PragmaExtensions
     public static string SetProperties(this ITypeDeclaration typeDeclaration)
     {
         return string.Join("\r\n",
-            typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE)).Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p)));
+            typeDeclaration.Pragmas.Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_SET_SIGNATURE))
+                .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p).Product));
     }
 
     /// <summary>

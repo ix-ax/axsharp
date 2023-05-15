@@ -112,6 +112,110 @@ public class PragmasExtensionsTests
 
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void should_set_generic_multiple_attributes_no_constraints()
+    {
+        var expected = "<T,P>";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:<T,P>")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+        Assert.Equal(expected, actual.Product);
+    }
+    [Fact]
+    public void should_set_generic_single_attributes_no_constraints()
+    {
+        var expected = "<T>";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:<T>")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+        Assert.Equal(expected, actual.Product);
+    }
+
+
+    [Fact]
+    public void should_set_generic_single_attributes_with_constraints()
+    {
+        var expectedGenericDeclaration = "<T>";
+        var expectedGenericConstraints = "where T : class";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:<T> where T : class")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+        Assert.Equal(expectedGenericDeclaration, actual.Product);
+        Assert.Equal(expectedGenericConstraints, actual.GenericConstrains?.Trim());
+        Assert.Equal("T", actual.GenericTypes.ToArray()[0]);
+    }
+
+    [Fact]
+    public void should_set_generic_multiple_attributes_with_constraints()
+    {
+        var expectedGenericDeclaration = "<T,P>";
+        var expectedGenericConstraints = "where T : class where P : struct";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:<T,P> where T : class where P : struct")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+        Assert.Equal(expectedGenericDeclaration, actual.Product);
+        Assert.Equal(expectedGenericConstraints, actual.GenericConstrains?.Trim());
+        Assert.Equal("T", actual.GenericTypes.ToArray()[0]);
+        Assert.Equal("P", actual.GenericTypes.ToArray()[1]);
+    }
+
+    [Fact]
+    public void should_assign_generic_type_to_extender()
+    {
+        var expected = "T";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:T")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+        Assert.Equal(expected, actual.GenericTypeAssignment.type);
+    }
+
+    [Fact]
+    public void should_assign_generic_type_to_extender_as_plain()
+    {
+        var expected = "T";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:T as POCO")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+       Assert.Equal(expected, actual.GenericTypeAssignment.type);
+       Assert.Equal(true, actual.GenericTypeAssignment.isPoco);
+    }
 }
 
 public class PragmaMock : IPragma
@@ -123,7 +227,7 @@ public class PragmaMock : IPragma
 
     public string Content { get; }
 
-    public Location Location => throw new NotImplementedException();
+    public Location Location => null;
 
     public IEnumerable<ISemanticNode> ChildNodes => throw new NotImplementedException();
 

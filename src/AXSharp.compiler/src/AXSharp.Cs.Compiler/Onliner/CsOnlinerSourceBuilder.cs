@@ -56,15 +56,52 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     }
 
 
+    private string ReplaceGenericSignature(IClassDeclaration? classDeclaration)
+    {
+        if (classDeclaration == null)
+            return string.Empty;
+
+        var generics = new List<string>();
+        var genericSignature = classDeclaration?.ExtendedType?.GetGenericAttributes()?.Product;
+        if(string.IsNullOrEmpty(genericSignature))
+        {
+            return string.Empty;
+        }
+
+        foreach (var genericType in classDeclaration?.ExtendedType?.GetGenericAttributes().GenericTypes)
+        {
+            var fieldDeclaresGenericType = classDeclaration.Fields
+                .FirstOrDefault(p => p.GetGenericAttributes().Any(a => a.GenericTypeAssignment.type == genericType));
+
+            if (fieldDeclaresGenericType != null)
+            {
+                foreach (var attribute in fieldDeclaresGenericType?.GetGenericAttributes())
+                {
+                    if (attribute.GenericTypeAssignment.isPoco)
+                    {
+                       genericSignature = genericSignature.Replace(genericType, $"Pocos.{fieldDeclaresGenericType?.Type.FullyQualifiedName}");
+                    }
+                    else
+                    {
+                       genericSignature = genericSignature.Replace(genericType, fieldDeclaresGenericType?.Type.FullyQualifiedName);
+                    }
+                }
+            }
+        }
+
+        return genericSignature;
+    }
+
     /// <inheritdoc />
     public void CreateClassDeclaration(IClassDeclarationSyntax classDeclarationSyntax,
         IClassDeclaration classDeclaration,
         IxNodeVisitor visitor)
     {
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
-
+        var generic = classDeclaration.GetGenericAttributes();
+        
         AddToSource(classDeclaration.Pragmas.AddAttributes());
-        AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}");
+        AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}{generic?.Product}");
         AddToSource(":");
 
         var isExtended = false;
@@ -72,8 +109,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         if (Compilation.GetSemanticTree().Types
             .Any(p => p.FullyQualifiedName == extendedType?.Type.FullyQualifiedName))
         {
-
-            AddToSource($"{extendedType.Type.FullyQualifiedName}");
+            AddToSource($"{extendedType.Type.FullyQualifiedName}{ReplaceGenericSignature(classDeclaration)}");
             isExtended = true;
         }
         else
@@ -81,20 +117,11 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             AddToSource(typeof(ITwinObject).n()!);
         }
 
-        //var isExtended = false;
-        //if (Compilation.GetSemanticTree().Types
-        //    .Any(p => p.FullyQualifiedName == classDeclaration.ExtendedType?.Type.FullyQualifiedName))
-        //{
-        //    AddToSource($"{classDeclarationSyntax.BaseClassName.FullyQualifiedIdentifier}");
-        //    isExtended = true;
-        //}
-        //else
-        //{
-        //    AddToSource(typeof(ITwinObject).n()!);
-        //}
-
         AddToSource(classDeclarationSyntax.ImplementsList != null ? ", " : string.Empty);
         classDeclarationSyntax.ImplementsList?.Visit(visitor, this);
+
+        AddToSource(generic?.GenericConstrains);
+
         AddToSource("\n{");
 
         AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, this).Output);

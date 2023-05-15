@@ -89,6 +89,50 @@ CLASS PUBLIC MyClass
 END_CLASS
 ~~~
 
+### Generic extension attributes
+
+ixc allows to declare generic attributes in ST that will add a genetic notation to transpiled types.
+The use of generics is an advanced scenario aimed at simplifying some tasks where templating is needed. 
+This feature was explicitly crafted for data exchange scenarios, and it does not support the entire range of use of generics in C#.
+
+
+#### Use
+
+Any class can be annotated with the following attribute:
+
+~~~iecst
+   {#ix-generic:<TOnline, TPlain> where TOnline : ITwinObject}
+    CLASS PUBLIC Extender
+    
+    END_CLASS
+~~~
+
+That will create the following type declaration in twin type:
+
+~~~C#
+public partial class Extender<TOnline, TPlain> : AXSharp.Connector.ITwinObject where TOnline : ITwinObject
+~~~
+
+
+When deriving from a class with generic annotation following additional annotation should be used for a generic member of the class:
+
+~~~iecst
+    CLASS PUBLIC Extendee2 EXTENDS Extender
+        VAR PUBLIC
+            {#ix-generic:TOnline}
+            {#ix-generic:TPlain as POCO}
+            SomeType : SomeType;          
+        END_VAR
+    END_CLASS
+~~~
+
+Where TOnline generic type will be substituted with `SomeType`. The `as POCO` will transpale `TPlain` generic attribute as the corresponding plain (aka POCO) type.
+
+The previous example will transpile as follows.
+~~~C#
+public partial class Extendee : Generics.Extender<Generics.SomeType, Pocos.Generics.SomeType>
+~~~
+
 ### See also 
 
 #### [RenderIgnore](../blazor/RENDERABLECONTENT.md#renderignore-and-custom-labels)

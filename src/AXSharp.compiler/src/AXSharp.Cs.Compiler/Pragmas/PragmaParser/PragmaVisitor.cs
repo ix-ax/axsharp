@@ -12,7 +12,7 @@ namespace AXSharp.Compiler.Cs.Pragmas.PragmaParser;
 internal class PragmaVisitor : IAstVisitor
 {
 
-    public string? Product;
+    public VisitorProduct Product { get; } = new();
 
     public void BeginVisit(IVisitableNode node)
     {
@@ -23,4 +23,12 @@ internal class PragmaVisitor : IAstVisitor
     {
             
     }
+}
+
+public class VisitorProduct
+{
+    public string? Product { get; set; }
+    public string? GenericConstrains { get; set; }
+    public IEnumerable<string> GenericTypes { get; set; }
+    public (string type, bool isPoco) GenericTypeAssignment { get; set; }
 }
