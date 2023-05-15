@@ -18,10 +18,10 @@ namespace AXSharp.Compiler.Cs;
 /// </summary>
 public static class PragmaExtensions
 {
-    private const string PRAGMA_ATTRIBUTE_SIGNATURE = "#ix-attr:";
-    private const string PRAGMA_DECLARE_PROPERTY_SIGNATURE = "#ix-prop:";
-    private const string PRAGMA_PROPERTY_SET_SIGNATURE = "#ix-set:";
-    private const string PRAGMA_PROPERTY_GENERIC_ATTRIBUTES = "#ix-generic:";
+    public const string PRAGMA_ATTRIBUTE_SIGNATURE = "#ix-attr:";
+    public const string PRAGMA_DECLARE_PROPERTY_SIGNATURE = "#ix-prop:";
+    public const string PRAGMA_PROPERTY_SET_SIGNATURE = "#ix-set:";
+    public const string PRAGMA_PROPERTY_GENERIC_ATTRIBUTES = "#ix-generic:";
 
     private static readonly int pragma_attribute_signature_length = PRAGMA_ATTRIBUTE_SIGNATURE.Length;
     private static readonly int pragma_declare_property_signature_length = PRAGMA_DECLARE_PROPERTY_SIGNATURE.Length;
@@ -79,6 +79,13 @@ public static class PragmaExtensions
         return typeDeclaration.Pragmas
             .Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_GENERIC_ATTRIBUTES))
                 .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration)).FirstOrDefault();
+    }
+
+    public static IEnumerable<VisitorProduct> GetGenericAttributes(this IFieldDeclaration typeDeclaration)
+    {
+        return typeDeclaration.Pragmas
+            .Where(p => p.Content.StartsWith(PRAGMA_PROPERTY_GENERIC_ATTRIBUTES))
+            .Select(p => Pragmas.PragmaParser.PragmaCompiler.Compile(p, typeDeclaration));
     }
 
     /// <summary>

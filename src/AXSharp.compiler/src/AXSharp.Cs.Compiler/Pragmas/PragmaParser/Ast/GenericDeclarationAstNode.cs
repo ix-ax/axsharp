@@ -12,14 +12,14 @@ internal class GenericDeclarationAstNode : AstNode
 
     public override void Init(AstContext context, ParseTreeNode treeNode)
     {
-        GenericTypeDeclaration = string.Join(",",treeNode.ChildNodes[3].ChildNodes.Select(p => p.Token.Text));
+        GenericTypeDeclaration = string.Join(",",treeNode.ChildNodes[1].ChildNodes.Select(p => p.Token.Text));
 
-        GenericTypes = treeNode.ChildNodes[3].ChildNodes.Select(p => p.Token.Text);
+        GenericTypes = treeNode.ChildNodes[1].ChildNodes.Select(p => p.Token.Text);
 
-        if (treeNode.ChildNodes.Count >= 4)
+        if (treeNode.ChildNodes.Count >= 3)
         {
             
-            foreach (var node in treeNode.ChildNodes[5].ChildNodes)
+            foreach (var node in treeNode.ChildNodes[3].ChildNodes)
             {
                 GenericConstraints = $"{GenericConstraints} where {node.ChildNodes[1].Token.Text} : {node.ChildNodes[3].Token.Text}";
             }

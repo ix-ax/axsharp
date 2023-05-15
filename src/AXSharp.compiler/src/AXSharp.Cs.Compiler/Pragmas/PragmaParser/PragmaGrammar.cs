@@ -41,11 +41,16 @@ internal class PragmaGrammar : Grammar
     public readonly NonTerminal GenericDeclarationAttribute =
         new(nameof(GenericDeclarationAttribute), typeof(GenericDeclarationAstNode));
 
+
+    public readonly NonTerminal GenericAttribute = new (nameof(GenericAttribute), typeof(GenericAttributeAstNode));
     public readonly NonTerminal GenericTypeIdentifiers = new(nameof(GenericTypeIdentifiers));
     public readonly IdentifierTerminal GenericTypeIdentifier = new(nameof(GenericTypeIdentifier));
     public readonly NonTerminal GenericConstraint = new (nameof(GenericConstraint));
     public readonly NonTerminal GenericConstraints = new (nameof(GenericConstraints));
     public readonly IdentifierTerminal GenericConstrainTypeIdentifier = new (nameof(GenericConstrainTypeIdentifier));
+
+    public readonly NonTerminal GenericTypeAssignment = new(nameof(GenericTypeAssignment), typeof(GenericTypeAssignmentAstNode));
+
 
     public readonly FreeTextLiteral ClrAttributeContent =
         new(nameof(ClrAttributeContent), FreeTextOptions.IncludeTerminator, "]");
@@ -64,6 +69,10 @@ internal class PragmaGrammar : Grammar
     public Terminal squareOpen = new(nameof(squareOpen));
     public Terminal ix_generic = new(nameof(ix_generic));
     public Terminal @where = new (nameof(@where));
+    public Terminal @as = new(nameof(@as));
+    public Terminal less = new(nameof(less));
+    public Terminal more = new (nameof(more));
+    public Terminal poco = new (nameof(poco));
 
     public PragmaGrammar(IDeclaration declaration) : this()
     {
@@ -85,15 +94,25 @@ internal class PragmaGrammar : Grammar
         squareClose = ToTerm("]", nameof(squareOpen));
         assing = ToTerm("=", nameof(assing));
         @where = ToTerm("where", nameof(where));
+        @as = ToTerm("as", nameof(@as));
+        less = ToTerm("<", "<");
+        more = ToTerm(">", "<");
+        poco = ToTerm("POCO", nameof(poco));
 
-        //{#ix-generic:<TP, TO> : }
+        //{#ix-generic:<TP, TO> : where TP : something where TO : somethingElse}
         GenericConstraint.Rule = @where + GenericTypeIdentifier + colon + GenericConstrainTypeIdentifier;
+        GenericTypeAssignment.Rule = GenericTypeIdentifier + ((@as  + poco) | this.Empty);
         MakeStarRule(GenericConstraints, GenericConstraint);
         MakeStarRule(GenericTypeIdentifiers, ToTerm(","), GenericTypeIdentifier);
-        GenericDeclarationAttribute.Rule = ix_generic + colon
-                                                      + ToTerm("<") + GenericTypeIdentifiers + ToTerm(">")
-                                                      + GenericConstraints;
+        
+        GenericDeclarationAttribute.Rule = less + GenericTypeIdentifiers + more
+                                           + GenericConstraints;
 
+
+        // GenericAttribute.Rule = ix_generic + colon + (GenericTypeAssignment | GenericDeclarationAttribute);
+
+        GenericAttribute.Rule = (ix_generic + colon +  GenericDeclarationAttribute)
+                                | (ix_generic + colon + GenericTypeAssignment);
 
         //{#ix-prop:public string SomeProperty}
         AddedPropertyDeclaration.Rule = ix_prop + ToTerm(":") +
@@ -111,7 +130,7 @@ internal class PragmaGrammar : Grammar
         AddedPropertySetter.Rule =
             ix_set + colon + AddedPropertyIdentifier + assing + AddedPropertyInitializer;
 
-        Pragmas.Rule = AddedPropertyDeclaration | DeclarationAttribute | AddedPropertySetter | GenericDeclarationAttribute;
+        Pragmas.Rule = AddedPropertyDeclaration | DeclarationAttribute | AddedPropertySetter | GenericAttribute;
 
         Root = Pragmas;
 

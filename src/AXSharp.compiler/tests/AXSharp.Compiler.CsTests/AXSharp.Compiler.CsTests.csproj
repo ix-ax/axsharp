@@ -60,6 +60,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Include="samples\units\expected\.g\POCO\class_generic_extension.g.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="samples\units\expected\.g\Onliners\class_generic_extension.g.cs">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Include="samples\units\expected\.g\PlcResources.g.cs">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>

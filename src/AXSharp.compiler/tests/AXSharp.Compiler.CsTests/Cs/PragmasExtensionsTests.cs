@@ -183,6 +183,39 @@ public class PragmasExtensionsTests
         Assert.Equal("T", actual.GenericTypes.ToArray()[0]);
         Assert.Equal("P", actual.GenericTypes.ToArray()[1]);
     }
+
+    [Fact]
+    public void should_assign_generic_type_to_extender()
+    {
+        var expected = "T";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:T")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+        Assert.Equal(expected, actual.GenericTypeAssignment.type);
+    }
+
+    [Fact]
+    public void should_assign_generic_type_to_extender_as_plain()
+    {
+        var expected = "T";
+        var type = NSubstitute.Substitute.For<ITypeDeclaration>();
+        type.Name.Returns("someField");
+        type.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]
+        {
+            new PragmaMock("#ix-generic:T as POCO")
+        }));
+
+        var actual = type.GetGenericAttributes();
+
+       Assert.Equal(expected, actual.GenericTypeAssignment.type);
+       Assert.Equal(true, actual.GenericTypeAssignment.isPoco);
+    }
 }
 
 public class PragmaMock : IPragma

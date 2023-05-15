@@ -56,6 +56,42 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     }
 
 
+    private string ReplaceGenericSignature(IClassDeclaration? classDeclaration)
+    {
+        if (classDeclaration == null)
+            return string.Empty;
+
+        var generics = new List<string>();
+        var genericSignature = classDeclaration?.ExtendedType?.GetGenericAttributes()?.Product;
+        if(string.IsNullOrEmpty(genericSignature))
+        {
+            return string.Empty;
+        }
+
+        foreach (var genericType in classDeclaration?.ExtendedType?.GetGenericAttributes().GenericTypes)
+        {
+            var fieldDeclaresGenericType = classDeclaration.Fields
+                .FirstOrDefault(p => p.GetGenericAttributes().Any(a => a.GenericTypeAssignment.type == genericType));
+
+            if (fieldDeclaresGenericType != null)
+            {
+                foreach (var attribute in fieldDeclaresGenericType?.GetGenericAttributes())
+                {
+                    if (attribute.GenericTypeAssignment.isPoco)
+                    {
+                       genericSignature = genericSignature.Replace(genericType, $"Pocos.{fieldDeclaresGenericType?.Type.FullyQualifiedName}");
+                    }
+                    else
+                    {
+                       genericSignature = genericSignature.Replace(genericType, fieldDeclaresGenericType?.Type.FullyQualifiedName);
+                    }
+                }
+            }
+        }
+
+        return genericSignature;
+    }
+
     /// <inheritdoc />
     public void CreateClassDeclaration(IClassDeclarationSyntax classDeclarationSyntax,
         IClassDeclaration classDeclaration,
@@ -73,9 +109,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         if (Compilation.GetSemanticTree().Types
             .Any(p => p.FullyQualifiedName == extendedType?.Type.FullyQualifiedName))
         {
-            var extenderGenerics = classDeclaration?.ExtendedType?.GetGenericAttributes();
-            
-            AddToSource($"{extendedType.Type.FullyQualifiedName}{extenderGenerics?.Product}");
+            AddToSource($"{extendedType.Type.FullyQualifiedName}{ReplaceGenericSignature(classDeclaration)}");
             isExtended = true;
         }
         else

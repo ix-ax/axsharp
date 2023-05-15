@@ -30,4 +30,5 @@ public class VisitorProduct
     public string? Product { get; set; }
     public string? GenericConstrains { get; set; }
     public IEnumerable<string> GenericTypes { get; set; }
+    public (string type, bool isPoco) GenericTypeAssignment { get; set; }
 }
