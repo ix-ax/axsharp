@@ -79,11 +79,11 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
                 {
                     if (attribute.GenericTypeAssignment.isPoco)
                     {
-                       genericSignature = genericSignature.Replace(genericType, $"Pocos.{fieldDeclaresGenericType?.Type.FullyQualifiedName}");
+                       genericSignature = genericSignature.Replace(attribute.GenericTypeAssignment.type, $"Pocos.{fieldDeclaresGenericType?.Type.FullyQualifiedName}");
                     }
                     else
                     {
-                       genericSignature = genericSignature.Replace(genericType, fieldDeclaresGenericType?.Type.FullyQualifiedName);
+                       genericSignature = genericSignature.Replace(attribute.GenericTypeAssignment.type, fieldDeclaresGenericType?.Type.FullyQualifiedName);
                     }
                 }
             }

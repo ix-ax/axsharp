@@ -249,7 +249,7 @@ namespace Generics
         }
     }
 
-    public partial class Extendee2 : Generics.Extender<Generics.SomeType, Generics.SomeType>
+    public partial class Extendee2 : Generics.Extender<Generics.SomeType, Pocos.Generics.SomeType>
     {
         public Generics.SomeType SomeType { get; }
 
