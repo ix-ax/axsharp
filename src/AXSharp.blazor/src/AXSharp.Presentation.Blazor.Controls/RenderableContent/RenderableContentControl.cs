@@ -123,7 +123,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// <param name="presentationType">Type of presentation.</param>
         /// </summary>
 
-        internal IRenderableComponent ViewLocatorBuilder(Type twinType, string presentationType)
+        internal IRenderableComponent ViewLocatorBuilder(Type twinType, ITwinElement twin, string presentationType)
         {
             var namespc = twinType.Namespace;
             //set default namespace if is namespace of primitive types or empty
@@ -140,11 +140,11 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 var presentationName = item;
                 if (presentationName.ToLower() == "base") presentationName = "";
                 // try to find component view
-                var component = GetComponent(twinType, presentationName, namespc);
+                var component = GetComponent(twinType, twin, presentationName, namespc);
                 if (component == null)
                 {
                     //if not found, look at predecessor
-                    component = ViewLocatorBuilder(twinType.BaseType, presentationName);
+                    component = ViewLocatorBuilder(twinType.BaseType, twin, presentationName);
                 }
                 if (component != null) return component;
             }
@@ -320,7 +320,9 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         private (string, Type) GetGenericInfo(Type primitiveKidType)
         {
-            var baseName = primitiveKidType?.BaseType.Name;
+            if (primitiveKidType == null) return (null, null);
+
+            var baseName = primitiveKidType?.BaseType?.Name;
 
             if (baseName == "OnlinerBase")
             {
@@ -329,26 +331,32 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
             else
             {
-                return GetGenericInfo(primitiveKidType.BaseType);
+                return GetGenericInfo(primitiveKidType?.BaseType);
             }
         }
-        private IRenderableComponent GetComponent(Type twinType, string presentationName, string namespc)
+        private IRenderableComponent GetComponent(Type twinType, ITwinElement twin, string presentationName, string namespc)
         {
-            // if is generic type, render generic component
-            if (twinType.IsGenericType)
+            switch (twin)
             {
-                var (baseName, genericTypeArg) = GetGenericInfo(twinType);
-                var name = $"{namespc}.{baseName}";
-                var buildedComponentName = $"{name}{presentationName}View`1";
-                return ComponentService.GetGenericComponent(buildedComponentName, genericTypeArg);
+                case OnlinerBase onliner:
+                    if (twinType.IsGenericType)
+                    {
+                        var (baseName, genericTypeArg) = GetGenericInfo(twinType);
+                        var onlinerName = $"{namespc}.{baseName}";
+                        var onlinerBuildedComponentName = $"{onlinerName}{presentationName}View`1";
+                        return ComponentService.GetGenericComponent(onlinerBuildedComponentName, genericTypeArg);
+                    }
+                    else
+                    {
+                        var onlinerName = $"{namespc}.{twinType.Name}";
+                        var onlinerBuildedComponentName = $"{onlinerName}{presentationName}View";
+                        return ComponentService.GetComponent(onlinerBuildedComponentName);
+                    }
+                default:
+                    var name = $"{namespc}.{twinType.Name}";
+                    var buildedComponentName = $"{name}{presentationName}View";
+                    return ComponentService.GetComponent(buildedComponentName);
             }
-            else
-            {
-                var name = $"{namespc}.{twinType.Name}";
-                var buildedComponentName = $"{name}{presentationName}View";
-                return ComponentService.GetComponent(buildedComponentName);
-            }
-
         }
         private bool HasReadAccess(ITwinPrimitive kid) => kid.ReadWriteAccess == ReadWriteAccess.Read;
 
