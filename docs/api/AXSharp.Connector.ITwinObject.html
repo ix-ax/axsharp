@@ -81,7 +81,6 @@
             <article class="content wrap" id="_content" data-uid="AXSharp.Connector.ITwinObject">
 
 
-
   <h1 id="AXSharp_Connector_ITwinObject" data-uid="AXSharp.Connector.ITwinObject" class="text-break">Interface ITwinObject
 </h1>
   <div class="markdown level0 summary"><p>Basic contract for any complex object that is product of build process.</p>
@@ -140,7 +139,7 @@
     <pre><code class="lang-csharp hljs">void AddChild(ITwinObject twinObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -178,7 +177,7 @@
     <pre><code class="lang-csharp hljs">void AddKid(ITwinElement kid)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -216,7 +215,7 @@
     <pre><code class="lang-csharp hljs">void AddValueTag(ITwinPrimitive twinPrimitive)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -250,7 +249,7 @@
     <pre><code class="lang-csharp hljs">IEnumerable&lt;ITwinObject&gt; GetChildren()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -259,7 +258,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AXSharp.Connector.ITwinObject.html">ITwinObject</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="AXSharp.Connector.ITwinObject.html">ITwinObject</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -282,7 +281,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">Connector GetConnector()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -314,7 +313,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">IEnumerable&lt;ITwinElement&gt; GetKids()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -323,7 +322,7 @@ belongs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AXSharp.Connector.ITwinElement.html">ITwinElement</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="AXSharp.Connector.ITwinElement.html">ITwinElement</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -345,7 +344,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">IEnumerable&lt;ITwinPrimitive&gt; GetValueTags()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -354,7 +353,7 @@ belongs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AXSharp.Connector.ITwinPrimitive.html">ITwinPrimitive</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="AXSharp.Connector.ITwinPrimitive.html">ITwinPrimitive</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -376,7 +375,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">Task&lt;T&gt; OnlineToPlain&lt;T&gt;()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -385,14 +384,14 @@ belongs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;T&gt;</td>
         <td><p>POCO with online data of this object</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -423,7 +422,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">Task PlainToOnline&lt;T&gt;(T plain)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -441,7 +440,7 @@ belongs.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -450,13 +449,13 @@ belongs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -487,7 +486,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">Task PlainToShadow&lt;T&gt;(T plain)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -505,7 +504,7 @@ belongs.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -514,13 +513,13 @@ belongs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -551,7 +550,7 @@ belongs.</p>
     <pre><code class="lang-csharp hljs">Task&lt;T&gt; ShadowToPlain&lt;T&gt;()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -560,14 +559,14 @@ belongs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;T&gt;</td>
         <td><p>POCO object populated by data from the shadows of this object.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -633,7 +632,6 @@ belongs.</p>
   <div>
       <a class="xref" href="AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_WriteAsync_AXSharp_Connector_ITwinObject_">TwinObjectExtensions.WriteAsync(ITwinObject)</a>
   </div>
-
 </article>
           </div>
 

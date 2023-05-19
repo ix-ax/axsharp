@@ -81,42 +81,41 @@
             <article class="content wrap" id="_content" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor">
 
 
-
   <h1 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor" class="text-break">Class MyNodeVisitor
 </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level0"><span class="xref">object</span></div>
     <div class="level1"><span class="xref">MyNodeVisitor</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><span class="xref">ISemanticNodeVisitor</span>&lt;<a class="xref" href="AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html">IYamlBuiderVisitor</a>&gt;</div>
+    <div><span class="xref">AX.ST.Semantic.Tree.ISemanticNodeVisitor&lt;TContext&gt;</span>&lt;<a class="xref" href="AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html">IYamlBuiderVisitor</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+      <span class="xref">object.Equals(object)</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+      <span class="xref">object.Equals(object, object)</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+      <span class="xref">object.GetHashCode()</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+      <span class="xref">object.GetType()</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+      <span class="xref">object.MemberwiseClone()</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+      <span class="xref">object.ToString()</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <span class="xref">AXSharp</span>.<span class="xref">ixc_doc</span>.<a class="xref" href="AXSharp.ixc_doc.Visitors.html">Visitors</a></h6>
@@ -143,7 +142,7 @@
     <pre><code class="lang-csharp hljs">public MyNodeVisitor(AxProject? axProject = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -177,7 +176,7 @@
     <pre><code class="lang-csharp hljs">public AxProject axProject { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -207,7 +206,7 @@
     <pre><code class="lang-csharp hljs">public YamlSerializerHelper YamlHelper { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -254,7 +253,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IClassDeclaration classDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -264,7 +263,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IClassDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IClassDeclaration</span></td>
         <td><span class="parametername">classDeclaration</span></td>
         <td></td>
       </tr>
@@ -291,7 +290,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IConfigurationDeclaration configurationDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -301,8 +300,45 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IConfigurationDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration</span></td>
         <td><span class="parametername">configurationDeclaration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html">IYamlBuiderVisitor</a></td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L194">View Source</a>
+  </span>
+  <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
+  <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(IDocComment, IYamlBuiderVisitor)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Visit(IDocComment semanticTypeAccess, IYamlBuiderVisitor data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IDocComment</span></td>
+        <td><span class="parametername">semanticTypeAccess</span></td>
         <td></td>
       </tr>
       <tr>
@@ -328,7 +364,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IEnumValueDeclaration enumValueDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -338,7 +374,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumValueDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration</span></td>
         <td><span class="parametername">enumValueDeclaration</span></td>
         <td></td>
       </tr>
@@ -365,7 +401,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IFieldDeclaration fieldDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -375,7 +411,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IFieldDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IFieldDeclaration</span></td>
         <td><span class="parametername">fieldDeclaration</span></td>
         <td></td>
       </tr>
@@ -402,7 +438,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IFunctionBlockDeclaration functionBlockDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -412,7 +448,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IFunctionBlockDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IFunctionBlockDeclaration</span></td>
         <td><span class="parametername">functionBlockDeclaration</span></td>
         <td></td>
       </tr>
@@ -439,7 +475,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IFunctionDeclaration functionDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -449,7 +485,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IFunctionDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IFunctionDeclaration</span></td>
         <td><span class="parametername">functionDeclaration</span></td>
         <td></td>
       </tr>
@@ -476,7 +512,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IInterfaceDeclaration interfaceDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -486,7 +522,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IInterfaceDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IInterfaceDeclaration</span></td>
         <td><span class="parametername">interfaceDeclaration</span></td>
         <td></td>
       </tr>
@@ -513,7 +549,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IMethodDeclaration methodDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -523,7 +559,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IMethodDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IMethodDeclaration</span></td>
         <td><span class="parametername">methodDeclaration</span></td>
         <td></td>
       </tr>
@@ -550,7 +586,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IMethodPrototypeDeclaration methodPrototypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -560,7 +596,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IMethodPrototypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IMethodPrototypeDeclaration</span></td>
         <td><span class="parametername">methodPrototypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -587,7 +623,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(INamedValueDeclaration namedValueDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -597,7 +633,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">INamedValueDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.INamedValueDeclaration</span></td>
         <td><span class="parametername">namedValueDeclaration</span></td>
         <td></td>
       </tr>
@@ -624,7 +660,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(INamespaceDeclaration namespaceDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -634,7 +670,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">INamespaceDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.INamespaceDeclaration</span></td>
         <td><span class="parametername">namespaceDeclaration</span></td>
         <td></td>
       </tr>
@@ -661,7 +697,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IProgramConfigurationDeclaration programConfigurationDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -671,7 +707,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IProgramConfigurationDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IProgramConfigurationDeclaration</span></td>
         <td><span class="parametername">programConfigurationDeclaration</span></td>
         <td></td>
       </tr>
@@ -698,7 +734,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IProgramDeclaration programDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -708,7 +744,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IProgramDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IProgramDeclaration</span></td>
         <td><span class="parametername">programDeclaration</span></td>
         <td></td>
       </tr>
@@ -735,7 +771,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ITaskConfigurationDeclaration taskConfigurationDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -745,7 +781,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ITaskConfigurationDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.ITaskConfigurationDeclaration</span></td>
         <td><span class="parametername">taskConfigurationDeclaration</span></td>
         <td></td>
       </tr>
@@ -772,7 +808,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ITaskDeclaration taskDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -782,7 +818,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ITaskDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.ITaskDeclaration</span></td>
         <td><span class="parametername">taskDeclaration</span></td>
         <td></td>
       </tr>
@@ -809,7 +845,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IUsingDirective usingDirective, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -819,7 +855,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IUsingDirective</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IUsingDirective</span></td>
         <td><span class="parametername">usingDirective</span></td>
         <td></td>
       </tr>
@@ -846,7 +882,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IVariableDeclaration variableDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -856,7 +892,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IVariableDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.IVariableDeclaration</span></td>
         <td><span class="parametername">variableDeclaration</span></td>
         <td></td>
       </tr>
@@ -883,7 +919,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IArrayTypeDeclaration arrayTypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -893,7 +929,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IArrayTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration</span></td>
         <td><span class="parametername">arrayTypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -920,7 +956,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IDimension dimension, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -930,7 +966,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IDimension</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IDimension</span></td>
         <td><span class="parametername">dimension</span></td>
         <td></td>
       </tr>
@@ -957,7 +993,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IEnumTypeDeclaration enumTypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -967,7 +1003,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration</span></td>
         <td><span class="parametername">enumTypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -994,7 +1030,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(INamedValueTypeDeclaration namedValueTypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1004,7 +1040,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">INamedValueTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.INamedValueTypeDeclaration</span></td>
         <td><span class="parametername">namedValueTypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -1031,7 +1067,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IReferenceTypeDeclaration referenceTypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1041,7 +1077,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReferenceTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IReferenceTypeDeclaration</span></td>
         <td><span class="parametername">referenceTypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -1068,7 +1104,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IScalarTypeDeclaration scalarType, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1078,7 +1114,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IScalarTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IScalarTypeDeclaration</span></td>
         <td><span class="parametername">scalarType</span></td>
         <td></td>
       </tr>
@@ -1105,7 +1141,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IStringTypeDeclaration stringTypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1115,7 +1151,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IStringTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IStringTypeDeclaration</span></td>
         <td><span class="parametername">stringTypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -1142,7 +1178,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IStructuredTypeDeclaration structuredTypeDeclaration, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1152,7 +1188,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IStructuredTypeDeclaration</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration</span></td>
         <td><span class="parametername">structuredTypeDeclaration</span></td>
         <td></td>
       </tr>
@@ -1168,7 +1204,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_IConditionalInstructionList_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.IConditionalInstructionList%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L224">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L229">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_IConditionalInstructionList_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.IConditionalInstructionList,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(IConditionalInstructionList, IYamlBuiderVisitor)</h4>
@@ -1179,7 +1215,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IConditionalInstructionList condInstrList, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1189,7 +1225,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IConditionalInstructionList</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.IConditionalInstructionList</span></td>
         <td><span class="parametername">condInstrList</span></td>
         <td></td>
       </tr>
@@ -1216,7 +1252,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticArrayInitializer arrayInitializer, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1226,7 +1262,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticArrayInitializer</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Init.ISemanticArrayInitializer</span></td>
         <td><span class="parametername">arrayInitializer</span></td>
         <td></td>
       </tr>
@@ -1253,7 +1289,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticInitializerExpression initializerExpression, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1263,7 +1299,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticInitializerExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Init.ISemanticInitializerExpression</span></td>
         <td><span class="parametername">initializerExpression</span></td>
         <td></td>
       </tr>
@@ -1290,7 +1326,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticMemberInitializer memberInitializer, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1300,7 +1336,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticMemberInitializer</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Init.ISemanticMemberInitializer</span></td>
         <td><span class="parametername">memberInitializer</span></td>
         <td></td>
       </tr>
@@ -1327,7 +1363,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticStructureInitializer structureInitializer, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1337,7 +1373,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticStructureInitializer</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.Init.ISemanticStructureInitializer</span></td>
         <td><span class="parametername">structureInitializer</span></td>
         <td></td>
       </tr>
@@ -1353,7 +1389,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_IPartialAccessExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.IPartialAccessExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L329">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L334">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_IPartialAccessExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.IPartialAccessExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(IPartialAccessExpression, IYamlBuiderVisitor)</h4>
@@ -1364,7 +1400,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IPartialAccessExpression partialAccessExpression, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1374,7 +1410,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IPartialAccessExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.IPartialAccessExpression</span></td>
         <td><span class="parametername">partialAccessExpression</span></td>
         <td></td>
       </tr>
@@ -1401,7 +1437,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IPartialSemanticTree partialSemanticTree, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1411,7 +1447,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IPartialSemanticTree</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.IPartialSemanticTree</span></td>
         <td><span class="parametername">partialSemanticTree</span></td>
         <td></td>
       </tr>
@@ -1427,7 +1463,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticArrayAccessExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticArrayAccessExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L309">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L314">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticArrayAccessExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticArrayAccessExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticArrayAccessExpression, IYamlBuiderVisitor)</h4>
@@ -1438,7 +1474,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticArrayAccessExpression arrayAccessExpression, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1448,7 +1484,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticArrayAccessExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticArrayAccessExpression</span></td>
         <td><span class="parametername">arrayAccessExpression</span></td>
         <td></td>
       </tr>
@@ -1464,7 +1500,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticAsmStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticAsmStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L274">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L279">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticAsmStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticAsmStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticAsmStatement, IYamlBuiderVisitor)</h4>
@@ -1475,7 +1511,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticAsmStatement asmStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1485,7 +1521,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticAsmStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticAsmStatement</span></td>
         <td><span class="parametername">asmStatement</span></td>
         <td></td>
       </tr>
@@ -1501,7 +1537,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticAssignmentAttemptInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticAssignmentAttemptInstruction%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L209">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L214">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticAssignmentAttemptInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticAssignmentAttemptInstruction,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticAssignmentAttemptInstruction, IYamlBuiderVisitor)</h4>
@@ -1512,7 +1548,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticAssignmentAttemptInstruction assignmentAttempt, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1522,7 +1558,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticAssignmentAttemptInstruction</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticAssignmentAttemptInstruction</span></td>
         <td><span class="parametername">assignmentAttempt</span></td>
         <td></td>
       </tr>
@@ -1538,7 +1574,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticAssignmentInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticAssignmentInstruction%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L199">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L204">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticAssignmentInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticAssignmentInstruction,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticAssignmentInstruction, IYamlBuiderVisitor)</h4>
@@ -1549,7 +1585,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticAssignmentInstruction assignment, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1559,7 +1595,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticAssignmentInstruction</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticAssignmentInstruction</span></td>
         <td><span class="parametername">assignment</span></td>
         <td></td>
       </tr>
@@ -1575,7 +1611,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticBinaryExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticBinaryExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L289">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L294">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticBinaryExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticBinaryExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticBinaryExpression, IYamlBuiderVisitor)</h4>
@@ -1586,7 +1622,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticBinaryExpression binExpr, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1596,7 +1632,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticBinaryExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticBinaryExpression</span></td>
         <td><span class="parametername">binExpr</span></td>
         <td></td>
       </tr>
@@ -1612,7 +1648,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticCallExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticCallExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L314">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L319">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticCallExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticCallExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticCallExpression, IYamlBuiderVisitor)</h4>
@@ -1623,7 +1659,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticCallExpression call, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1633,7 +1669,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticCallExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticCallExpression</span></td>
         <td><span class="parametername">call</span></td>
         <td></td>
       </tr>
@@ -1649,7 +1685,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticCaseSelection_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticCaseSelection%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L234">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L239">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticCaseSelection_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticCaseSelection,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticCaseSelection, IYamlBuiderVisitor)</h4>
@@ -1660,7 +1696,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticCaseSelection caseSelection, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1670,7 +1706,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticCaseSelection</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticCaseSelection</span></td>
         <td><span class="parametername">caseSelection</span></td>
         <td></td>
       </tr>
@@ -1686,7 +1722,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticCaseStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticCaseStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L229">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L234">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticCaseStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticCaseStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticCaseStatement, IYamlBuiderVisitor)</h4>
@@ -1697,7 +1733,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticCaseStatement caseStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1707,7 +1743,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticCaseStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticCaseStatement</span></td>
         <td><span class="parametername">caseStatement</span></td>
         <td></td>
       </tr>
@@ -1723,7 +1759,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticConstantExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticConstantExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L279">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L284">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticConstantExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticConstantExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticConstantExpression, IYamlBuiderVisitor)</h4>
@@ -1734,7 +1770,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticConstantExpression constExpr, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1744,7 +1780,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticConstantExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticConstantExpression</span></td>
         <td><span class="parametername">constExpr</span></td>
         <td></td>
       </tr>
@@ -1760,7 +1796,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticContinueInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticContinueInstruction%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L259">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L264">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticContinueInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticContinueInstruction,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticContinueInstruction, IYamlBuiderVisitor)</h4>
@@ -1771,7 +1807,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticContinueInstruction continueInstruction, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1781,7 +1817,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticContinueInstruction</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticContinueInstruction</span></td>
         <td><span class="parametername">continueInstruction</span></td>
         <td></td>
       </tr>
@@ -1797,7 +1833,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticExitInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticExitInstruction%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L264">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L269">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticExitInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticExitInstruction,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticExitInstruction, IYamlBuiderVisitor)</h4>
@@ -1808,7 +1844,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticExitInstruction exitInstruction, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1818,7 +1854,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticExitInstruction</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticExitInstruction</span></td>
         <td><span class="parametername">exitInstruction</span></td>
         <td></td>
       </tr>
@@ -1834,7 +1870,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticExpressionInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticExpressionInstruction%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L214">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L219">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticExpressionInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticExpressionInstruction,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticExpressionInstruction, IYamlBuiderVisitor)</h4>
@@ -1845,7 +1881,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticExpressionInstruction expression, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1855,7 +1891,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticExpressionInstruction</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticExpressionInstruction</span></td>
         <td><span class="parametername">expression</span></td>
         <td></td>
       </tr>
@@ -1871,7 +1907,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticForStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticForStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L244">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L249">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticForStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticForStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticForStatement, IYamlBuiderVisitor)</h4>
@@ -1882,7 +1918,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticForStatement forStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1892,7 +1928,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticForStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticForStatement</span></td>
         <td><span class="parametername">forStatement</span></td>
         <td></td>
       </tr>
@@ -1908,7 +1944,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticIdentifierAccess_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticIdentifierAccess%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L284">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L289">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticIdentifierAccess_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticIdentifierAccess,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticIdentifierAccess, IYamlBuiderVisitor)</h4>
@@ -1919,7 +1955,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticIdentifierAccess identifierAccess, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1929,7 +1965,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticIdentifierAccess</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticIdentifierAccess</span></td>
         <td><span class="parametername">identifierAccess</span></td>
         <td></td>
       </tr>
@@ -1945,7 +1981,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticIfConditionalStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticIfConditionalStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L219">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L224">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticIfConditionalStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticIfConditionalStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticIfConditionalStatement, IYamlBuiderVisitor)</h4>
@@ -1956,7 +1992,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticIfConditionalStatement condStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -1966,7 +2002,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticIfConditionalStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticIfConditionalStatement</span></td>
         <td><span class="parametername">condStatement</span></td>
         <td></td>
       </tr>
@@ -1982,7 +2018,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticInstructionList_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticInstructionList%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L194">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L199">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticInstructionList_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticInstructionList,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticInstructionList, IYamlBuiderVisitor)</h4>
@@ -1993,7 +2029,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticInstructionList instrList, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2003,7 +2039,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticInstructionList</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticInstructionList</span></td>
         <td><span class="parametername">instrList</span></td>
         <td></td>
       </tr>
@@ -2019,7 +2055,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticMemberAccessExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticMemberAccessExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L304">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L309">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticMemberAccessExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticMemberAccessExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticMemberAccessExpression, IYamlBuiderVisitor)</h4>
@@ -2030,7 +2066,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticMemberAccessExpression memberAccessExpression, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2040,7 +2076,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticMemberAccessExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticMemberAccessExpression</span></td>
         <td><span class="parametername">memberAccessExpression</span></td>
         <td></td>
       </tr>
@@ -2056,7 +2092,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticParameterAssignment_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticParameterAssignment%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L324">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L329">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticParameterAssignment_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticParameterAssignment,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticParameterAssignment, IYamlBuiderVisitor)</h4>
@@ -2067,7 +2103,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticParameterAssignment paramAssignment, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2077,7 +2113,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticParameterAssignment</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticParameterAssignment</span></td>
         <td><span class="parametername">paramAssignment</span></td>
         <td></td>
       </tr>
@@ -2093,7 +2129,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticParameterList_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticParameterList%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L319">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L324">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticParameterList_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticParameterList,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticParameterList, IYamlBuiderVisitor)</h4>
@@ -2104,7 +2140,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticParameterList paramList, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2114,7 +2150,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticParameterList</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticParameterList</span></td>
         <td><span class="parametername">paramList</span></td>
         <td></td>
       </tr>
@@ -2130,7 +2166,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticQualifiedEnumAccess_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticQualifiedEnumAccess%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L299">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L304">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticQualifiedEnumAccess_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticQualifiedEnumAccess,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticQualifiedEnumAccess, IYamlBuiderVisitor)</h4>
@@ -2141,7 +2177,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticQualifiedEnumAccess qualifiedEnumAccess, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2151,7 +2187,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticQualifiedEnumAccess</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticQualifiedEnumAccess</span></td>
         <td><span class="parametername">qualifiedEnumAccess</span></td>
         <td></td>
       </tr>
@@ -2167,7 +2203,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticRepeatStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticRepeatStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L254">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L259">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticRepeatStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticRepeatStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticRepeatStatement, IYamlBuiderVisitor)</h4>
@@ -2178,7 +2214,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticRepeatStatement repeatStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2188,7 +2224,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticRepeatStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticRepeatStatement</span></td>
         <td><span class="parametername">repeatStatement</span></td>
         <td></td>
       </tr>
@@ -2204,7 +2240,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticReturnStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticReturnStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L269">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L274">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticReturnStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticReturnStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticReturnStatement, IYamlBuiderVisitor)</h4>
@@ -2215,7 +2251,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticReturnStatement returnStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2225,7 +2261,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticReturnStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticReturnStatement</span></td>
         <td><span class="parametername">returnStatement</span></td>
         <td></td>
       </tr>
@@ -2241,7 +2277,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticSubrange_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticSubrange%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L239">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L244">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticSubrange_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticSubrange,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticSubrange, IYamlBuiderVisitor)</h4>
@@ -2252,7 +2288,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticSubrange subrange, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2262,7 +2298,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticSubrange</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticSubrange</span></td>
         <td><span class="parametername">subrange</span></td>
         <td></td>
       </tr>
@@ -2289,7 +2325,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticTypeAccess semanticTypeAccess, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2299,7 +2335,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticTypeAccess</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticTypeAccess</span></td>
         <td><span class="parametername">semanticTypeAccess</span></td>
         <td></td>
       </tr>
@@ -2315,7 +2351,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticUnaryExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticUnaryExpression%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L294">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L299">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticUnaryExpression_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticUnaryExpression,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticUnaryExpression, IYamlBuiderVisitor)</h4>
@@ -2326,7 +2362,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticUnaryExpression unaryExpression, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2336,7 +2372,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticUnaryExpression</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticUnaryExpression</span></td>
         <td><span class="parametername">unaryExpression</span></td>
         <td></td>
       </tr>
@@ -2352,7 +2388,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticUnsafeAssignmentInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticUnsafeAssignmentInstruction%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L204">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L209">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticUnsafeAssignmentInstruction_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticUnsafeAssignmentInstruction,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticUnsafeAssignmentInstruction, IYamlBuiderVisitor)</h4>
@@ -2363,7 +2399,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticUnsafeAssignmentInstruction assignment, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2373,7 +2409,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticUnsafeAssignmentInstruction</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticUnsafeAssignmentInstruction</span></td>
         <td><span class="parametername">assignment</span></td>
         <td></td>
       </tr>
@@ -2389,7 +2425,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticWhileStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_.md&amp;value=---%0Auid%3A%20AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticWhileStatement%2CAXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L249">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.compiler/src/ixd/Visitors/MyNodeVisitor.cs/#L254">View Source</a>
   </span>
   <a id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit*"></a>
   <h4 id="AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_ISemanticWhileStatement_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_" data-uid="AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.ISemanticWhileStatement,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)">Visit(ISemanticWhileStatement, IYamlBuiderVisitor)</h4>
@@ -2400,7 +2436,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISemanticWhileStatement whileStatement, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2410,7 +2446,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISemanticWhileStatement</span></td>
+        <td><span class="xref">AX.ST.Semantic.Model.ISemanticWhileStatement</span></td>
         <td><span class="parametername">whileStatement</span></td>
         <td></td>
       </tr>
@@ -2437,7 +2473,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(IPragma pragma, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2447,7 +2483,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IPragma</span></td>
+        <td><span class="xref">AX.ST.Semantic.Pragmas.IPragma</span></td>
         <td><span class="parametername">pragma</span></td>
         <td></td>
       </tr>
@@ -2474,7 +2510,7 @@
     <pre><code class="lang-csharp hljs">public void Visit(ISymbol symbol, IYamlBuiderVisitor data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
+  <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -2484,7 +2520,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ISymbol</span></td>
+        <td><span class="xref">AX.ST.Semantic.Symbols.ISymbol</span></td>
         <td><span class="parametername">symbol</span></td>
         <td></td>
       </tr>
@@ -2499,7 +2535,6 @@
   <div>
       <span class="xref">AX.ST.Semantic.Tree.ISemanticNodeVisitor&lt;TContext&gt;</span>
   </div>
-
 </article>
           </div>
 

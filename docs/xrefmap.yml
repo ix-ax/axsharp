@@ -733,6 +733,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateConfigDeclaration
   nameWithType: ICombinedThreeVisitor.CreateConfigDeclaration
+- uid: AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: CreateDocComment(IDocComment, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.ICombinedThreeVisitor.html#AXSharp_Compiler_Core_ICombinedThreeVisitor_CreateDocComment_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: ICombinedThreeVisitor.CreateDocComment(IDocComment, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateDocComment*
+  name: CreateDocComment
+  href: api/AXSharp.Compiler.Core.ICombinedThreeVisitor.html#AXSharp_Compiler_Core_ICombinedThreeVisitor_CreateDocComment_
+  commentId: Overload:AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateDocComment
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateDocComment
+  nameWithType: ICombinedThreeVisitor.CreateDocComment
 - uid: AXSharp.Compiler.Core.ICombinedThreeVisitor.CreateEnumTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.Compiler.Core.IxNodeVisitor)
   name: CreateEnumTypeDeclaration(IEnumTypeDeclaration, IxNodeVisitor)
   href: api/AXSharp.Compiler.Core.ICombinedThreeVisitor.html#AXSharp_Compiler_Core_ICombinedThreeVisitor_CreateEnumTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_AXSharp_Compiler_Core_IxNodeVisitor_
@@ -1057,6 +1070,19 @@ references:
   fullName.vb: AXSharp.Compiler.Core.IxNodeVisitor.New
   nameWithType: IxNodeVisitor.IxNodeVisitor
   nameWithType.vb: IxNodeVisitor.New
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Visit(IDocComment, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Visit(IDocComment, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Visit*
+  name: Visit
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Visit_
+  commentId: Overload:AXSharp.Compiler.Core.IxNodeVisitor.Visit
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Visit
+  nameWithType: IxNodeVisitor.Visit
 - uid: AXSharp.Compiler.Core.TypeNotFoundInSemanticTreeException
   name: TypeNotFoundInSemanticTreeException
   href: api/AXSharp.Compiler.Core.TypeNotFoundInSemanticTreeException.html
@@ -1298,6 +1324,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateConfigDeclaration
   nameWithType: CsOnlinerSourceBuilder.CreateConfigDeclaration
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: CreateDocComment(IDocComment, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_CreateDocComment_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: CsOnlinerSourceBuilder.CreateDocComment(IDocComment, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateDocComment*
+  name: CreateDocComment
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_CreateDocComment_
+  commentId: Overload:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateDocComment
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateDocComment
+  nameWithType: CsOnlinerSourceBuilder.CreateDocComment
 - uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateEnumTypeDeclaration(AX.ST.Syntax.Tree.IEnumTypeDeclarationSyntax,AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration,AXSharp.Compiler.Core.IxNodeVisitor)
   name: CreateEnumTypeDeclaration(IEnumTypeDeclarationSyntax, ITypeDeclaration, IxNodeVisitor)
   href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_CreateEnumTypeDeclaration_AX_ST_Syntax_Tree_IEnumTypeDeclarationSyntax_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_AXSharp_Compiler_Core_IxNodeVisitor_
@@ -1568,6 +1607,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateConfigDeclaration
   nameWithType: CsPlainSourceBuilder.CreateConfigDeclaration
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: CreateDocComment(IDocComment, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateDocComment_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateDocComment(AX.ST.Semantic.Model.Declarations.IDocComment, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: CsPlainSourceBuilder.CreateDocComment(IDocComment, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateDocComment*
+  name: CreateDocComment
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateDocComment_
+  commentId: Overload:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateDocComment
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateDocComment
+  nameWithType: CsPlainSourceBuilder.CreateDocComment
 - uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateEnumTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.Compiler.Core.IxNodeVisitor)
   name: CreateEnumTypeDeclaration(IEnumTypeDeclaration, IxNodeVisitor)
   href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateEnumTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_AXSharp_Compiler_Core_IxNodeVisitor_
@@ -1874,6 +1926,25 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.PragmaExtensions.DeclareProperties
   nameWithType: PragmaExtensions.DeclareProperties
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes(AX.ST.Semantic.Model.Declarations.IFieldDeclaration)
+  name: GetGenericAttributes(IFieldDeclaration)
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_GetGenericAttributes_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_
+  commentId: M:AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes(AX.ST.Semantic.Model.Declarations.IFieldDeclaration)
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes(AX.ST.Semantic.Model.Declarations.IFieldDeclaration)
+  nameWithType: PragmaExtensions.GetGenericAttributes(IFieldDeclaration)
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes(AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)
+  name: GetGenericAttributes(ITypeDeclaration)
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_GetGenericAttributes_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_
+  commentId: M:AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes(AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes(AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration)
+  nameWithType: PragmaExtensions.GetGenericAttributes(ITypeDeclaration)
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes*
+  name: GetGenericAttributes
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_GetGenericAttributes_
+  commentId: Overload:AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.GetGenericAttributes
+  nameWithType: PragmaExtensions.GetGenericAttributes
 - uid: AXSharp.Compiler.Cs.PragmaExtensions.GetPropertyValue(AX.ST.Semantic.Model.Declarations.IDeclaration,System.String,System.String)
   name: GetPropertyValue(IDeclaration, string, string)
   href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_GetPropertyValue_AX_ST_Semantic_Model_Declarations_IDeclaration_System_String_System_String_
@@ -1890,6 +1961,30 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.PragmaExtensions.GetPropertyValue
   nameWithType: PragmaExtensions.GetPropertyValue
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_ATTRIBUTE_SIGNATURE
+  name: PRAGMA_ATTRIBUTE_SIGNATURE
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_PRAGMA_ATTRIBUTE_SIGNATURE
+  commentId: F:AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_ATTRIBUTE_SIGNATURE
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_ATTRIBUTE_SIGNATURE
+  nameWithType: PragmaExtensions.PRAGMA_ATTRIBUTE_SIGNATURE
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_DECLARE_PROPERTY_SIGNATURE
+  name: PRAGMA_DECLARE_PROPERTY_SIGNATURE
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_PRAGMA_DECLARE_PROPERTY_SIGNATURE
+  commentId: F:AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_DECLARE_PROPERTY_SIGNATURE
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_DECLARE_PROPERTY_SIGNATURE
+  nameWithType: PragmaExtensions.PRAGMA_DECLARE_PROPERTY_SIGNATURE
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_PROPERTY_GENERIC_ATTRIBUTES
+  name: PRAGMA_PROPERTY_GENERIC_ATTRIBUTES
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_PRAGMA_PROPERTY_GENERIC_ATTRIBUTES
+  commentId: F:AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_PROPERTY_GENERIC_ATTRIBUTES
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_PROPERTY_GENERIC_ATTRIBUTES
+  nameWithType: PragmaExtensions.PRAGMA_PROPERTY_GENERIC_ATTRIBUTES
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_PROPERTY_SET_SIGNATURE
+  name: PRAGMA_PROPERTY_SET_SIGNATURE
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_PRAGMA_PROPERTY_SET_SIGNATURE
+  commentId: F:AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_PROPERTY_SET_SIGNATURE
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.PRAGMA_PROPERTY_SET_SIGNATURE
+  nameWithType: PragmaExtensions.PRAGMA_PROPERTY_SET_SIGNATURE
 - uid: AXSharp.Compiler.Cs.PragmaExtensions.SetProperties(AX.ST.Semantic.Model.Declarations.IFieldDeclaration)
   name: SetProperties(IFieldDeclaration)
   href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_SetProperties_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_
@@ -1915,12 +2010,134 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.PragmaExtensions.SetProperties
   nameWithType: PragmaExtensions.SetProperties
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser
+  name: AXSharp.Compiler.Cs.Pragmas.PragmaParser
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.html
+  commentId: N:AXSharp.Compiler.Cs.Pragmas.PragmaParser
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser
+  nameWithType: AXSharp.Compiler.Cs.Pragmas.PragmaParser
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode
+  name: GenericAttributeAstNode
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html
+  commentId: T:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode
+  nameWithType: GenericAttributeAstNode
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.AcceptVisitor(Irony.Interpreter.Ast.IAstVisitor)
+  name: AcceptVisitor(IAstVisitor)
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_GenericAttributeAstNode_AcceptVisitor_Irony_Interpreter_Ast_IAstVisitor_
+  commentId: M:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.AcceptVisitor(Irony.Interpreter.Ast.IAstVisitor)
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.AcceptVisitor(Irony.Interpreter.Ast.IAstVisitor)
+  nameWithType: GenericAttributeAstNode.AcceptVisitor(IAstVisitor)
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.AcceptVisitor*
+  name: AcceptVisitor
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_GenericAttributeAstNode_AcceptVisitor_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.AcceptVisitor
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.AcceptVisitor
+  nameWithType: GenericAttributeAstNode.AcceptVisitor
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Children
+  name: Children
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_GenericAttributeAstNode_Children
+  commentId: P:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Children
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Children
+  nameWithType: GenericAttributeAstNode.Children
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Children*
+  name: Children
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_GenericAttributeAstNode_Children_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Children
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Children
+  nameWithType: GenericAttributeAstNode.Children
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Init(Irony.Ast.AstContext,Irony.Parsing.ParseTreeNode)
+  name: Init(AstContext, ParseTreeNode)
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_GenericAttributeAstNode_Init_Irony_Ast_AstContext_Irony_Parsing_ParseTreeNode_
+  commentId: M:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Init(Irony.Ast.AstContext,Irony.Parsing.ParseTreeNode)
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Init(Irony.Ast.AstContext, Irony.Parsing.ParseTreeNode)
+  nameWithType: GenericAttributeAstNode.Init(AstContext, ParseTreeNode)
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Init*
+  name: Init
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_GenericAttributeAstNode_Init_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Init
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.GenericAttributeAstNode.Init
+  nameWithType: GenericAttributeAstNode.Init
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct
+  name: VisitorProduct
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html
+  commentId: T:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct
+  nameWithType: VisitorProduct
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericConstrains
+  name: GenericConstrains
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_GenericConstrains
+  commentId: P:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericConstrains
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericConstrains
+  nameWithType: VisitorProduct.GenericConstrains
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericConstrains*
+  name: GenericConstrains
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_GenericConstrains_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericConstrains
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericConstrains
+  nameWithType: VisitorProduct.GenericConstrains
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypeAssignment
+  name: GenericTypeAssignment
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_GenericTypeAssignment
+  commentId: P:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypeAssignment
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypeAssignment
+  nameWithType: VisitorProduct.GenericTypeAssignment
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypeAssignment*
+  name: GenericTypeAssignment
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_GenericTypeAssignment_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypeAssignment
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypeAssignment
+  nameWithType: VisitorProduct.GenericTypeAssignment
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypes
+  name: GenericTypes
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_GenericTypes
+  commentId: P:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypes
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypes
+  nameWithType: VisitorProduct.GenericTypes
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypes*
+  name: GenericTypes
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_GenericTypes_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypes
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.GenericTypes
+  nameWithType: VisitorProduct.GenericTypes
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.Product
+  name: Product
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_Product
+  commentId: P:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.Product
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.Product
+  nameWithType: VisitorProduct.Product
+- uid: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.Product*
+  name: Product
+  href: api/AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.html#AXSharp_Compiler_Cs_Pragmas_PragmaParser_VisitorProduct_Product_
+  commentId: Overload:AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.Product
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Pragmas.PragmaParser.VisitorProduct.Product
+  nameWithType: VisitorProduct.Product
 - uid: AXSharp.Compiler.Cs.SemanticsHelpers
   name: SemanticsHelpers
   href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html
   commentId: T:AXSharp.Compiler.Cs.SemanticsHelpers
   fullName: AXSharp.Compiler.Cs.SemanticsHelpers
   nameWithType: SemanticsHelpers
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ISourceBuilder)
+  name: AddDocumentationComment(IDocComment, ISourceBuilder)
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_AddDocumentationComment_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ISourceBuilder_
+  commentId: M:AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ISourceBuilder)
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment(AX.ST.Semantic.Model.Declarations.IDocComment, AXSharp.Compiler.Core.ISourceBuilder)
+  nameWithType: SemanticsHelpers.AddDocumentationComment(IDocComment, ISourceBuilder)
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment*
+  name: AddDocumentationComment
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_AddDocumentationComment_
+  commentId: Overload:AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment
+  nameWithType: SemanticsHelpers.AddDocumentationComment
 - uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsMemberEligibleForConstructor(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.Compiler.Core.ISourceBuilder,System.String)
   name: IsMemberEligibleForConstructor(IFieldDeclaration, ISourceBuilder, string)
   href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsMemberEligibleForConstructor_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_Compiler_Core_ISourceBuilder_System_String_
@@ -4843,6 +5060,76 @@ references:
   commentId: T:AXSharp.Connector.IPlain
   fullName: AXSharp.Connector.IPlain
   nameWithType: IPlain
+- uid: AXSharp.Connector.IPlainExtensions
+  name: IPlainExtensions
+  href: api/AXSharp.Connector.IPlainExtensions.html
+  commentId: T:AXSharp.Connector.IPlainExtensions
+  fullName: AXSharp.Connector.IPlainExtensions
+  nameWithType: IPlainExtensions
+- uid: AXSharp.Connector.IPlainExtensions.FromOnline*
+  name: FromOnline
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_FromOnline_
+  commentId: Overload:AXSharp.Connector.IPlainExtensions.FromOnline
+  isSpec: "True"
+  fullName: AXSharp.Connector.IPlainExtensions.FromOnline
+  nameWithType: IPlainExtensions.FromOnline
+- uid: AXSharp.Connector.IPlainExtensions.FromOnline``1(``0,AXSharp.Connector.ITwinObject)
+  name: FromOnline<T>(T, ITwinObject)
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_FromOnline__1___0_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.Connector.IPlainExtensions.FromOnline``1(``0,AXSharp.Connector.ITwinObject)
+  name.vb: FromOnline(Of T)(T, ITwinObject)
+  fullName: AXSharp.Connector.IPlainExtensions.FromOnline<T>(T, AXSharp.Connector.ITwinObject)
+  fullName.vb: AXSharp.Connector.IPlainExtensions.FromOnline(Of T)(T, AXSharp.Connector.ITwinObject)
+  nameWithType: IPlainExtensions.FromOnline<T>(T, ITwinObject)
+  nameWithType.vb: IPlainExtensions.FromOnline(Of T)(T, ITwinObject)
+- uid: AXSharp.Connector.IPlainExtensions.FromShadow*
+  name: FromShadow
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_FromShadow_
+  commentId: Overload:AXSharp.Connector.IPlainExtensions.FromShadow
+  isSpec: "True"
+  fullName: AXSharp.Connector.IPlainExtensions.FromShadow
+  nameWithType: IPlainExtensions.FromShadow
+- uid: AXSharp.Connector.IPlainExtensions.FromShadow``1(``0,AXSharp.Connector.ITwinObject)
+  name: FromShadow<T>(T, ITwinObject)
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_FromShadow__1___0_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.Connector.IPlainExtensions.FromShadow``1(``0,AXSharp.Connector.ITwinObject)
+  name.vb: FromShadow(Of T)(T, ITwinObject)
+  fullName: AXSharp.Connector.IPlainExtensions.FromShadow<T>(T, AXSharp.Connector.ITwinObject)
+  fullName.vb: AXSharp.Connector.IPlainExtensions.FromShadow(Of T)(T, AXSharp.Connector.ITwinObject)
+  nameWithType: IPlainExtensions.FromShadow<T>(T, ITwinObject)
+  nameWithType.vb: IPlainExtensions.FromShadow(Of T)(T, ITwinObject)
+- uid: AXSharp.Connector.IPlainExtensions.ToOnline*
+  name: ToOnline
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_ToOnline_
+  commentId: Overload:AXSharp.Connector.IPlainExtensions.ToOnline
+  isSpec: "True"
+  fullName: AXSharp.Connector.IPlainExtensions.ToOnline
+  nameWithType: IPlainExtensions.ToOnline
+- uid: AXSharp.Connector.IPlainExtensions.ToOnline``1(``0,AXSharp.Connector.ITwinObject)
+  name: ToOnline<T>(T, ITwinObject)
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_ToOnline__1___0_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.Connector.IPlainExtensions.ToOnline``1(``0,AXSharp.Connector.ITwinObject)
+  name.vb: ToOnline(Of T)(T, ITwinObject)
+  fullName: AXSharp.Connector.IPlainExtensions.ToOnline<T>(T, AXSharp.Connector.ITwinObject)
+  fullName.vb: AXSharp.Connector.IPlainExtensions.ToOnline(Of T)(T, AXSharp.Connector.ITwinObject)
+  nameWithType: IPlainExtensions.ToOnline<T>(T, ITwinObject)
+  nameWithType.vb: IPlainExtensions.ToOnline(Of T)(T, ITwinObject)
+- uid: AXSharp.Connector.IPlainExtensions.ToShadow*
+  name: ToShadow
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_ToShadow_
+  commentId: Overload:AXSharp.Connector.IPlainExtensions.ToShadow
+  isSpec: "True"
+  fullName: AXSharp.Connector.IPlainExtensions.ToShadow
+  nameWithType: IPlainExtensions.ToShadow
+- uid: AXSharp.Connector.IPlainExtensions.ToShadow``1(``0,AXSharp.Connector.ITwinObject)
+  name: ToShadow<T>(T, ITwinObject)
+  href: api/AXSharp.Connector.IPlainExtensions.html#AXSharp_Connector_IPlainExtensions_ToShadow__1___0_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.Connector.IPlainExtensions.ToShadow``1(``0,AXSharp.Connector.ITwinObject)
+  name.vb: ToShadow(Of T)(T, ITwinObject)
+  fullName: AXSharp.Connector.IPlainExtensions.ToShadow<T>(T, AXSharp.Connector.ITwinObject)
+  fullName.vb: AXSharp.Connector.IPlainExtensions.ToShadow(Of T)(T, AXSharp.Connector.ITwinObject)
+  nameWithType: IPlainExtensions.ToShadow<T>(T, ITwinObject)
+  nameWithType.vb: IPlainExtensions.ToShadow(Of T)(T, ITwinObject)
 - uid: AXSharp.Connector.ITwinController
   name: ITwinController
   href: api/AXSharp.Connector.ITwinController.html
@@ -15445,6 +15732,12 @@ references:
   commentId: M:AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)
   fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IConfigurationDeclaration, AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)
   nameWithType: MyNodeVisitor.Visit(IConfigurationDeclaration, IYamlBuiderVisitor)
+- uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)
+  name: Visit(IDocComment, IYamlBuiderVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment, AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)
+  nameWithType: MyNodeVisitor.Visit(IDocComment, IYamlBuiderVisitor)
 - uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor)
   name: Visit(IEnumValueDeclaration, IYamlBuiderVisitor)
   href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IEnumValueDeclaration_AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_
@@ -17311,6 +17604,19 @@ references:
   commentId: T:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase
   nameWithType: RenderableComponentBase
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose
+  name: Dispose()
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_Dispose
+  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose()
+  nameWithType: RenderableComponentBase.Dispose()
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose*
+  name: Dispose
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_Dispose_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose
+  nameWithType: RenderableComponentBase.Dispose
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.HandlePropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)
   name: HandlePropertyChanged(object, PropertyChangedEventArgs)
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_HandlePropertyChanged_System_Object_System_ComponentModel_PropertyChangedEventArgs_
@@ -17372,6 +17678,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.HasFocus
   nameWithType: RenderableComponentBase.HasFocus
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
+  name: PollingInterval
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_PollingInterval
+  commentId: P:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
+  nameWithType: RenderableComponentBase.PollingInterval
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval*
+  name: PollingInterval
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_PollingInterval_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
+  nameWithType: RenderableComponentBase.PollingInterval
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateShadowValuesOnChange(AXSharp.Connector.ITwinObject)
   name: UpdateShadowValuesOnChange(ITwinObject)
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateShadowValuesOnChange_AXSharp_Connector_ITwinObject_
@@ -17391,18 +17710,24 @@ references:
   isSpec: "True"
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateShadowValuesOnChange
   nameWithType: RenderableComponentBase.UpdateShadowValuesOnChange
-- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject)
-  name: UpdateValuesOnChange(ITwinObject)
-  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ITwinObject_
-  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject)
-  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject)
-  nameWithType: RenderableComponentBase.UpdateValuesOnChange(ITwinObject)
-- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase)
-  name: UpdateValuesOnChange(OnlinerBase)
-  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ValueTypes_OnlinerBase_
-  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase)
-  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase)
-  nameWithType: RenderableComponentBase.UpdateValuesOnChange(OnlinerBase)
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject,System.Int32)
+  name: UpdateValuesOnChange(ITwinObject, int)
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ITwinObject_System_Int32_
+  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject,System.Int32)
+  name.vb: UpdateValuesOnChange(ITwinObject, Integer)
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject, int)
+  fullName.vb: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject, Integer)
+  nameWithType: RenderableComponentBase.UpdateValuesOnChange(ITwinObject, int)
+  nameWithType.vb: RenderableComponentBase.UpdateValuesOnChange(ITwinObject, Integer)
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase,System.Int32)
+  name: UpdateValuesOnChange(OnlinerBase, int)
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ValueTypes_OnlinerBase_System_Int32_
+  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase,System.Int32)
+  name.vb: UpdateValuesOnChange(OnlinerBase, Integer)
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase, int)
+  fullName.vb: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase, Integer)
+  nameWithType: RenderableComponentBase.UpdateValuesOnChange(OnlinerBase, int)
+  nameWithType.vb: RenderableComponentBase.UpdateValuesOnChange(OnlinerBase, Integer)
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange*
   name: UpdateValuesOnChange
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_

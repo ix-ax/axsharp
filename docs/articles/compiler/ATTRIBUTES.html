@@ -160,6 +160,33 @@ END_CLASS
     END_VAR
 END_CLASS
 </code></pre>
+<h3 id="generic-extension-attributes">Generic extension attributes</h3>
+<p>ixc allows to declare generic attributes in ST that will add a genetic notation to transpiled types.
+The use of generics is an advanced scenario aimed at simplifying some tasks where templating is needed.
+This feature was explicitly crafted for data exchange scenarios, and it does not support the entire range of use of generics in C#.</p>
+<h4 id="use">Use</h4>
+<p>Any class can be annotated with the following attribute:</p>
+<pre><code class="lang-iecst">   {#ix-generic:&lt;TOnline, TPlain&gt; where TOnline : ITwinObject}
+    CLASS PUBLIC Extender
+    
+    END_CLASS
+</code></pre>
+<p>That will create the following type declaration in twin type:</p>
+<pre><code class="lang-C#">public partial class Extender&lt;TOnline, TPlain&gt; : AXSharp.Connector.ITwinObject where TOnline : ITwinObject
+</code></pre>
+<p>When deriving from a class with generic annotation following additional annotation should be used for a generic member of the class:</p>
+<pre><code class="lang-iecst">    CLASS PUBLIC Extendee2 EXTENDS Extender
+        VAR PUBLIC
+            {#ix-generic:TOnline}
+            {#ix-generic:TPlain as POCO}
+            SomeType : SomeType;          
+        END_VAR
+    END_CLASS
+</code></pre>
+<p>Where TOnline generic type will be substituted with <code>SomeType</code>. The <code>as POCO</code> will transpale <code>TPlain</code> generic attribute as the corresponding plain (aka POCO) type.</p>
+<p>The previous example will transpile as follows.</p>
+<pre><code class="lang-C#">public partial class Extendee : Generics.Extender&lt;Generics.SomeType, Pocos.Generics.SomeType&gt;
+</code></pre>
 <h3 id="see-also">See also</h3>
 <h4 id="renderignore"><a href="../blazor/RENDERABLECONTENT.html#renderignore-and-custom-labels">RenderIgnore</a></h4>
 </article>
