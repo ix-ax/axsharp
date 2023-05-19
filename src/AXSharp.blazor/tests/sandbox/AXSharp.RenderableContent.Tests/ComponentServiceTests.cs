@@ -302,7 +302,7 @@ namespace AXSharp.RenderableContent.Tests
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testBool.GetType();
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _control);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.testBool, _control);
 
             //Assert
             Assert.NotNull(component);
@@ -318,7 +318,7 @@ namespace AXSharp.RenderableContent.Tests
 
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.testBool, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -333,7 +333,7 @@ namespace AXSharp.RenderableContent.Tests
 
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.TestDateTime, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -347,7 +347,7 @@ namespace AXSharp.RenderableContent.Tests
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Base-Display");
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.TestDateTime,"Base-Display");
 
             //Assert
             Assert.NotNull(component);
@@ -362,7 +362,7 @@ namespace AXSharp.RenderableContent.Tests
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Bases-Displays");
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.TestDateTime, "Bases-Displays");
             //Assert
             Assert.Null(component);
 
@@ -374,7 +374,7 @@ namespace AXSharp.RenderableContent.Tests
             //Arrange
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.TestDateTime.GetType();
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "");
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.TestDateTime, "");
             //Assert
             Assert.Null(component);
 
@@ -389,7 +389,7 @@ namespace AXSharp.RenderableContent.Tests
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testInteger.GetType();
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _control);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.testInteger, _control);
 
             //Assert
             Assert.NotNull(component);
@@ -403,7 +403,7 @@ namespace AXSharp.RenderableContent.Tests
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testInteger.GetType();
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _display);
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.testInteger, _display);
 
             //Assert
             Assert.NotNull(component);
@@ -417,7 +417,7 @@ namespace AXSharp.RenderableContent.Tests
             var testedObjType = _fixture.Connector.testingProgram.testPrimitive.testInteger.GetType();
 
             //Act
-            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, "Base-Manual-Service-Control");
+            var component = _fixture.RenderableContent.ViewLocatorBuilder(testedObjType, _fixture.Connector.testingProgram.testPrimitive.testInteger, "Base-Manual-Service-Control");
 
             //Assert
             Assert.NotNull(component);
