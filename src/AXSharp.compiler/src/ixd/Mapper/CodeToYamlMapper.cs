@@ -30,7 +30,7 @@ namespace AXSharp.ixc_doc.Mapper
                 Namespace = declaration is INamespaceDeclaration ? Helpers.Helpers.GetBaseUid(declaration.FullyQualifiedName) : Helpers.Helpers.GetBaseUid(declaration.ContainingNamespace?.FullyQualifiedName),
                 Summary = _yh.GetComments(declaration.Location).summary,
                 Remarks = _yh.GetComments(declaration.Location).remarks,
-                Assemblies = new string[] { _yh.GetAssembly(_yh.PathToProjectFile) },
+                //Assemblies = new string[] { _yh.GetAssembly(_yh.PathToProjectFile) },
                 
                 
             };
@@ -55,8 +55,8 @@ namespace AXSharp.ixc_doc.Mapper
             var implementedInterfaces = classDeclaration.GetAllImplementedInterfacesUniquely().Select(i => Helpers.Helpers.GetBaseUid(i));
 
             List<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
-            classDeclaration.GetAllExtendedTypes().ToList()
-                .Select(p => ((IClassDeclaration)p).Fields.Where(f => _yh.CanBeFieldInherited(f, classDeclaration, p))).ToList()
+            classDeclaration.GetAllExtendedTypes().OfType<IClassDeclaration>().ToList()
+                .Select(p => p.Fields.Where(f => _yh.CanBeFieldInherited(f, classDeclaration, p))).ToList()
                 .ForEach(list => extendedFields.Concat(list));
 
             var item = PopulateItem((IDeclaration)classDeclaration);

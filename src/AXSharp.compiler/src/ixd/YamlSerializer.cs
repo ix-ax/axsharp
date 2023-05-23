@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization;
+using Polly;
 
 namespace AXSharp.ixc_doc
 {
@@ -44,8 +45,8 @@ namespace AXSharp.ixc_doc
             stringBuilder.AppendLine(serializer.Serialize(model));
 
             
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"{_options.OutputProjectFolder}\{fileName}.yml"))
+            
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@$"{EnsureDirectory(_options.OutputProjectFolder)}\{fileName}.yml"))
             {
 
                 file.WriteLine("## YamlMime:ManagedReference");
@@ -58,6 +59,20 @@ namespace AXSharp.ixc_doc
             return stringBuilder.ToString();
         }
 
-       
+        private string EnsureDirectory(string directory)
+        {
+            Policy
+                .Handle<IOException>()
+                .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
+                .Execute(() =>
+                {
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                });
+
+            return directory;
+        }
     }
 }

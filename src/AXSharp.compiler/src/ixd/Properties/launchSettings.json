@@ -10,8 +10,8 @@
     },
     "ixd-3": {
       "commandName": "Project",
-      "commandLineArgs": "-x .\\src\\core\\ctrl\\ -o .\\docfx\\apictrl\\",
-      "workingDirectory":  "C:\\MTS\\ix-ax\\AXSharp.framework\\"
+      "commandLineArgs": "-x C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\messaging\\ctrl C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\abstractions\\ctrl C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\data\\ctrl C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\core\\ctrl -o C:\\W\\Develop\\gh\\ix-ax\\axopen\\docfx\\apictrl\\",
+      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\data\\ctrl"
     }
   }
 }
