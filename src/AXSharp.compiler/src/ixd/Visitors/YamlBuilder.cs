@@ -28,9 +28,9 @@ namespace AXSharp.ixc_doc.Visitors
         private YamlHelpers _yh { get; set; }
         private CodeToYamlMapper _mp { get; set; }
         private List<NamespaceWrapper> NamespaceWrappers {get; set; } = new List<NamespaceWrapper>();
-        internal YamlBuilder(YamlSerializer serializer, string projectPath)
+        internal YamlBuilder(YamlSerializer serializer)
         {
-            _yh = new YamlHelpers(projectPath);
+            _yh = new YamlHelpers();
             _mp = new CodeToYamlMapper(_yh);
             _s = serializer;
         }

@@ -16,6 +16,8 @@ using System.Text;
 using CliWrap;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using NuGet.Packaging;
 
 const string Logo =
 @"| \ / 
@@ -50,12 +52,28 @@ Parser.Default.ParseArguments<Options>(args)
 
 void GenerateYamls(Options o)
 {
-    
+    //var multipleProjects = new List<AxProject>();
+    //foreach (var sf in Directory.EnumerateDirectories(o.AxSourceProjectFolder, "ctrl", SearchOption.AllDirectories))
+    //{
+    //    multipleProjects.Add(new AxProject(sf));
+    //}
+
     DeleteYamlFilesIfExists(o.OutputProjectFolder);
 
-    var axProject = new AxProject(o.AxSourceProjectFolder);
-    Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
-    var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
+
+    IList<(ISyntaxTree parseTree, SourceFileText source, AxProject project)> projectSources =
+        new List<(ISyntaxTree parseTree, SourceFileText source, AxProject project)>();
+
+    foreach (var source in o.AxSourceProjectFolder)
+    {
+        var axProject = new AxProject(source);
+        Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
+        projectSources.AddRange(axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p, axProject)));
+    }
+
+    //var axProject = new AxProject(o.AxSourceProjectFolder);
+    //Console.WriteLine($"Compiling project {axProject.ProjectInfo.Name}...");
+    //var projectSources = axProject.Sources.Select(p => (parseTree: STParser.ParseTextAsync(p).Result, source: p));
 
     var toCompile = projectSources.Select(p => p.parseTree);
 
@@ -64,9 +82,9 @@ void GenerateYamls(Options o)
     var semanticTree = compilation.GetSemanticTree();
 
     //visit
-    var myNodeVisitor = new MyNodeVisitor(axProject);
+    var myNodeVisitor = new MyNodeVisitor();
     var yamlSerializer = new YamlSerializer(o);
-    var treeWalker = new YamlBuilder(yamlSerializer, axProject.ProjectFile);
+    var treeWalker = new YamlBuilder(yamlSerializer);
 
     semanticTree.GetRoot().Accept(myNodeVisitor, treeWalker);
 

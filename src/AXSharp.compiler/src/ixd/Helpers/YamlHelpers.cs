@@ -18,11 +18,11 @@ namespace AXSharp.ixc_doc.Helpers
 {
     public class YamlHelpers
     {
-        public YamlHelpers(string projectPath)
+        public YamlHelpers()
         {
-            PathToProjectFile = projectPath;
+            
         }
-        public string PathToProjectFile {get; set;}
+        
         // return all inherited members from class declaration
         public string[] GetInheritedMembers(IClassDeclaration classDeclaration)
         {
@@ -30,10 +30,10 @@ namespace AXSharp.ixc_doc.Helpers
             IEnumerable<IFieldDeclaration> extendedFields = new List<IFieldDeclaration>();
 
             // TODO check, if IClassDeclaration in sufficient
-            var members = classDeclaration.GetAllExtendedTypes().ToList()
-                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList();
+            var members = classDeclaration.GetAllExtendedTypes().OfType<IClassDeclaration>().ToList()
+                .Select(p => p.Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList();
 
-            classDeclaration.GetAllExtendedTypes().ToList()
+            classDeclaration.GetAllExtendedTypes().OfType<IClassDeclaration>().ToList()
                .Select(p => ((IClassDeclaration)p).Fields.Where(f => CanBeFieldInherited(f, classDeclaration, p))).ToList()
                .ForEach(member => extendedFields = extendedFields.Concat(member));
 
