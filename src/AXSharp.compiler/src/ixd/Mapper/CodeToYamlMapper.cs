@@ -237,5 +237,20 @@ namespace AXSharp.ixc_doc.Mapper
 
             return item;
         }
+
+        public Item PopulateItem(IStructuredTypeDeclaration structDeclaration)
+        {
+
+            var children = structDeclaration.Fields.Select(p => Helpers.Helpers.GetBaseUid(p));
+          
+            var item = PopulateItem((IDeclaration)structDeclaration);
+            item.Parent = Helpers.Helpers.GetBaseUid(structDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = children.ToList();
+            item.Type = "Struct";
+            item.Syntax = new Syntax { Content = $"STRUCT {structDeclaration.Name}" };
+          
+
+            return item;
+        }
     }
 }
