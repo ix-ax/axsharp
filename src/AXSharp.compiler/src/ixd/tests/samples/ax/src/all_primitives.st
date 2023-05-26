@@ -51,10 +51,10 @@ CLASS all_primitives
 
         myINT := value;
 
-        VAR_OUTPUT
-            varout1 : INT;
-            varout2 : INT;
-        END_VAR
+        // VAR_OUTPUT
+        //     varout1 : INT;
+        //     varout2 : INT;
+        // END_VAR
     END_METHOD
 
     /// <summary>

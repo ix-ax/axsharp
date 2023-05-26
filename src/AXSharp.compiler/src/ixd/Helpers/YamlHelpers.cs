@@ -20,9 +20,9 @@ namespace AXSharp.ixc_doc.Helpers
     {
         public YamlHelpers()
         {
-            
+
         }
-        
+
         // return all inherited members from class declaration
         public string[] GetInheritedMembers(IClassDeclaration classDeclaration)
         {
@@ -48,12 +48,28 @@ namespace AXSharp.ixc_doc.Helpers
         }
 
         //acquire comments from source code
-        public Comments GetComments(Location location)
+        public Comments GetComments(Location location, bool isEnum = false)
         {
             string text = ((SourceLocation)location).SourceText.ToString();
             int lineStart = location.GetFullLineSpan().StartLinePosition.Line;
+            var charStart = location.GetFullLineSpan().StartLinePosition.Character;
+
             string commentsSection = "";
             string[] lines = text.Split('\n');
+
+            if (isEnum)
+            {
+                if (lines[lineStart].Remove(0, charStart).Trim().Equals(","))
+                {
+                    lineStart++;
+                    while (lines[lineStart].Trim() == "" || lines[lineStart].Contains("///"))
+                    {
+                        lineStart++;
+                    }
+                }
+                else if (!(string.IsNullOrEmpty(lines[lineStart].Remove(charStart).Trim())))
+                    return new Comments();
+            }
 
             for (int i = lineStart - 1; i >= 0 && (lines[i].Trim() == "" || lines[i].Contains("///")); i--)
             {
@@ -113,10 +129,11 @@ namespace AXSharp.ixc_doc.Helpers
             {
                 foreach (XmlNode node in element.ChildNodes)
                 {
-                    if(node.Value != null)
+                    if (node.Value != null)
                     {
                         text += node.Value;
-                    } else
+                    }
+                    else
                     {
                         switch (node.Name)
                         {
@@ -136,7 +153,7 @@ namespace AXSharp.ixc_doc.Helpers
                         }
 
                         text += GetTextFromXml(node, prop);
-                        
+
                         switch (node.Name)
                         {
                             case "code":
@@ -160,8 +177,8 @@ namespace AXSharp.ixc_doc.Helpers
         }
 
         //creates parameter types for serialize purposes and creates declaration string
-        public (List<Parameter>,string) CreateParametersAndDeclarationString(IList<IVariableDeclaration> variableDeclarations, Comments comments)
-        { 
+        public (List<Parameter>, string) CreateParametersAndDeclarationString(IList<IVariableDeclaration> variableDeclarations, Comments comments)
+        {
             var inputParams = new List<Parameter>();
             StringBuilder fullDeclaration = new StringBuilder();
             foreach (var p in variableDeclarations)
@@ -169,8 +186,8 @@ namespace AXSharp.ixc_doc.Helpers
                 var parameter = new Parameter
                 {
                     Id = p.Name,
-                    Type = Helpers.GetBaseUid(p.Type) 
-                 };
+                    Type = Helpers.GetBaseUid(p.Type)
+                };
 
                 string description;
                 comments.param.TryGetValue(p.Name, out description);
@@ -178,15 +195,15 @@ namespace AXSharp.ixc_doc.Helpers
 
                 inputParams.Add(parameter);
                 fullDeclaration.Append($"in {parameter.Type} {parameter.Id}");
-                if(variableDeclarations.Last() != p) 
-                { 
+                if (variableDeclarations.Last() != p)
+                {
                     fullDeclaration.Append(",");
                 }
             }
 
-            return(inputParams, fullDeclaration.ToString());
+            return (inputParams, fullDeclaration.ToString());
         }
-    
+
         //create toc schema, grouped if namespace exists, or only global
         public void AddToTocSchema(MyNodeVisitor visitor, TocSchema.Item tocSchemaItem, string? tocGroup)
         {
@@ -237,7 +254,7 @@ namespace AXSharp.ixc_doc.Helpers
             return name.ToString();
         }
 
-          //add references of inherited members
+        //add references of inherited members
         public void AddReferences(string[] references, MyNodeVisitor v)
         {
             foreach (var member in references)
@@ -255,12 +272,12 @@ namespace AXSharp.ixc_doc.Helpers
         }
 
 
-        
-         //add references for namespace
+
+        //add references for namespace
         public Reference CreateNamespaceReference(IFunctionDeclaration functionDeclaration)
         {
 
-          
+
             return new Reference
             {
                 Uid = Helpers.GetBaseUid(functionDeclaration),

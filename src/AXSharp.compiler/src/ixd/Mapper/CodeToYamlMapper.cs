@@ -151,10 +151,55 @@ namespace AXSharp.ixc_doc.Mapper
 
         public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
         {
+            var values = namedValueTypeDeclaration.Values.Select(p => Helpers.Helpers.GetBaseUid(p));
+
             var item = PopulateItem((IDeclaration)namedValueTypeDeclaration);
             item.Parent = Helpers.Helpers.GetBaseUid(namedValueTypeDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = values.ToList();
             item.Type = "Enum";
-            item.Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Type.FullyQualifiedName}" };
+            item.Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Values.FirstOrDefault().Type.FullyQualifiedName}" };
+
+            return item;
+        }
+
+        public Item PopulateItem(IEnumTypeDeclaration enumTypeDeclaration)
+        {
+            var values = enumTypeDeclaration.Values.Select(p => Helpers.Helpers.GetBaseUid(p));
+
+            var item = PopulateItem((IDeclaration)enumTypeDeclaration);
+            item.Parent = Helpers.Helpers.GetBaseUid(enumTypeDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = values.ToList();
+            item.Type = "Enum";
+            item.Syntax = new Syntax { Content = $"{enumTypeDeclaration.Name}" };
+
+            return item;
+        }
+
+        public Item PopulateItem(INamedValueDeclaration namedValueDeclaration)
+        {
+            string text = ((SourceLocation)namedValueDeclaration.ValueExpression.Location).SourceText.ToString();
+            string[] lines = text.Split('\n');
+
+            var line = lines[namedValueDeclaration.ValueExpression.Location.GetFullLineSpan().StartLinePosition.Line];
+            var startChar = namedValueDeclaration.ValueExpression.Location.GetFullLineSpan().StartLinePosition.Character;
+            var endChar = namedValueDeclaration.ValueExpression.Location.GetFullLineSpan().EndLinePosition.Character;
+            var value = line.Substring(startChar, endChar - startChar);
+
+            var item = PopulateItem((IDeclaration)namedValueDeclaration);
+            item.Name = $"{namedValueDeclaration.Name} := {value}";
+            item.Parent = namedValueDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Type = "Field";
+            item.Summary = _yh.GetComments(namedValueDeclaration.Location, true).summary;
+
+            return item;
+        }
+
+        public Item PopulateItem(IEnumValueDeclaration enumValueDeclaration)
+        {
+            var item = PopulateItem((IDeclaration)enumValueDeclaration);
+            item.Parent = enumValueDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Type = "Field";
+            item.Summary = _yh.GetComments(enumValueDeclaration.Location, true).summary;
 
             return item;
         }
@@ -199,6 +244,21 @@ namespace AXSharp.ixc_doc.Mapper
                     Description = comments.returns
                 }
             };
+
+            return item;
+        }
+
+        public Item PopulateItem(IStructuredTypeDeclaration structDeclaration)
+        {
+
+            var children = structDeclaration.Fields.Select(p => Helpers.Helpers.GetBaseUid(p));
+          
+            var item = PopulateItem((IDeclaration)structDeclaration);
+            item.Parent = Helpers.Helpers.GetBaseUid(structDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = children.ToList();
+            item.Type = "Struct";
+            item.Syntax = new Syntax { Content = $"STRUCT {structDeclaration.Name}" };
+          
 
             return item;
         }

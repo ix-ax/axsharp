@@ -153,6 +153,8 @@ namespace AXSharp.ixc_doc.Visitors
 
             _yh.AddToTocSchema(visitor, tocSchemaItem, item.Namespace);
 
+            namedValueTypeDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(visitor, this));
+
             //map helpers list to schema lists
             visitor.MapYamlHelperToSchema();
 
@@ -162,6 +164,42 @@ namespace AXSharp.ixc_doc.Visitors
             visitor.YamlHelper.Schema = new YamlSchema();
             visitor.YamlHelper.Items.Clear();
             visitor.YamlHelper.References.Clear();
+        }
+
+        public virtual void CreateEnumTypeYaml(IEnumTypeDeclaration enumTypeDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(enumTypeDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+
+            var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
+
+            _yh.AddToTocSchema(visitor, tocSchemaItem, item.Namespace);
+
+            enumTypeDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(visitor, this));
+
+            //map helpers list to schema lists
+            visitor.MapYamlHelperToSchema();
+
+            //serialize schema to yaml
+            _s.SchemaToYaml(visitor.YamlHelper.Schema, Helpers.Helpers.GetBaseUid(enumTypeDeclaration));
+            //clear schema for next use
+            visitor.YamlHelper.Schema = new YamlSchema();
+            visitor.YamlHelper.Items.Clear();
+            visitor.YamlHelper.References.Clear();
+        }
+
+        public virtual void CreateNamedValueYaml(INamedValueDeclaration namedValueDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(namedValueDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+            _yh.AddReference(namedValueDeclaration.Type, visitor);
+        }
+
+        public virtual void CreateEnumValueYaml(IEnumValueDeclaration enumValueDeclaration, MyNodeVisitor visitor)
+        {
+            var item = _mp.PopulateItem(enumValueDeclaration);
+            visitor.YamlHelper.Items.Add(item);
+            _yh.AddReference(enumValueDeclaration.Type, visitor);
         }
 
         public virtual void CreateInterfaceYaml(IInterfaceDeclaration interfaceDeclaration, MyNodeVisitor v)
@@ -275,6 +313,39 @@ namespace AXSharp.ixc_doc.Visitors
             wrapper.NamespaceItem.Children.AddRange(wrapper.NamespaceTemporaryChildren);
         }
 
-        
+        public virtual void CreateStructuredTypeYaml(IStructuredTypeDeclaration structuredTypeDeclaration, MyNodeVisitor v)
+        {
+            var item = _mp.PopulateItem(structuredTypeDeclaration);
+
+            //add to items
+            v.YamlHelper.Items.Add(item);
+
+            var tocSchemaItem = new TocSchema.Item(item.Uid, item.FullName);
+
+            if (item.Namespace != "$GLOBAL")
+            {
+                //class is grouped in namespace
+                _yh.AddToTocSchema(v, tocSchemaItem, item.Namespace);
+            }
+            else
+            {
+                // if global, class is not grouped
+                _yh.AddToTocSchema(v, tocSchemaItem, null);
+            }
+
+            structuredTypeDeclaration.ChildNodes.ToList().ForEach(p => p.Accept(v, this));
+
+            //map helpers list to schema lists
+            v.MapYamlHelperToSchema();
+
+            //serialize schema to yaml
+            _s.SchemaToYaml(v.YamlHelper.Schema, Helpers.Helpers.GetBaseUid(structuredTypeDeclaration));
+            //clear schema for next use
+            v.YamlHelper.Schema = new YamlSchema();
+            v.YamlHelper.Items.Clear();
+            v.YamlHelper.References.Clear();
+        }
+
+
     }
 }

@@ -18,13 +18,44 @@ CLASS weathers
 END_CLASS
 
 TYPE
-    Feeling : (Freezing, Cold, Lookworm, Warm, Hot);
+    ///<summary>
+    /// Aa
+    ///</summary>
+    Feeling : (Freezing, 
+        /// <summary>
+        /// Cc
+        /// </summary>
+        Cold, 
+        ///<summary>Dd</summary>
+        Lookworm, Warm, 
+        ///<summary>Ff</summary>
+        Hot
+        );
 END_TYPE
 
 TYPE
-    Colors : INT (
-        RED := 12,
-        GREEN := 14,
-        BLUE := 23
+    ///<summary>
+    /// Zz
+    ///</summary>
+    Colors : STRING (
+        ///<summary>Yy</summary>
+        RED := 'dsa',
+
+
+        /// <summary>
+        /// Xx
+        /// </summary>
+        GREEN := 'fs',
+
+        ///<summary>Ww</summary>
+        BLUE := 'rew'
     );
+END_TYPE
+
+TYPE
+    ErrorStates : WORD (
+        OK := WORD#16#000F,
+        Failed := WORD#16#00F0,
+        Pending := WORD#16#0F00
+    ) := Pending; // Default will be Pending
 END_TYPE
