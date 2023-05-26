@@ -59,6 +59,27 @@ namespace AXSharp.ixc_doc.Interfaces
             throw new NotImplementedException();
         }
 
+        public virtual void CreateEnumTypeYaml(
+            IEnumTypeDeclaration enumTypeDeclaration, 
+            MyNodeVisitor myNodeVisitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        void CreateNamedValueYaml(
+            INamedValueDeclaration namedValueDeclaration, 
+            MyNodeVisitor myNodeVisitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        void CreateEnumValueYaml(
+            IEnumValueDeclaration enumValueDeclaration, 
+            MyNodeVisitor myNodeVisitor)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void CreateInterfaceYaml(
           IInterfaceDeclaration InterfaceDeclaration,
           MyNodeVisitor visitor)
@@ -80,5 +101,11 @@ namespace AXSharp.ixc_doc.Interfaces
             throw new NotImplementedException();
         }
 
+        void CreateStructuredTypeYaml(
+            IStructuredTypeDeclaration structuredTypeDeclaration, 
+            MyNodeVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

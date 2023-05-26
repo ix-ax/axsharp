@@ -34,8 +34,17 @@ CLASS example
         testgroupbox: groupbox;
         testborder: border;
 
+        /// <summary>
+        /// Uses <see cref="ixcomponent"/> to do some magic
+        /// </summary>
         ixcomponent_instance: ixcomponent;
+        /// <summary>
+        /// Uses <see cref="plc.MySecondNamespace.ixcomponent"/> to do some magic
+        /// </summary>
         ixcomponent_instance2: MySecondNamespace.ixcomponent;
+        /// <summary>
+        /// Uses <see cref="plc.example#plc_example_ReferenceToComponent__"/> to do some magic
+        /// </summary>
         ixcomponent_instance3: ThirdNamespace.ixcomponent;
 
         refIxComponent : REF_TO ixcomponent;

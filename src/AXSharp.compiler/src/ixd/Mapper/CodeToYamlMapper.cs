@@ -151,10 +151,45 @@ namespace AXSharp.ixc_doc.Mapper
 
         public Item PopulateItem(INamedValueTypeDeclaration namedValueTypeDeclaration)
         {
+            var values = namedValueTypeDeclaration.Values.Select(p => Helpers.Helpers.GetBaseUid(p));
+
             var item = PopulateItem((IDeclaration)namedValueTypeDeclaration);
             item.Parent = Helpers.Helpers.GetBaseUid(namedValueTypeDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = values.ToList();
             item.Type = "Enum";
-            item.Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Type.FullyQualifiedName}" };
+            item.Syntax = new Syntax { Content = $"{namedValueTypeDeclaration.Name} : {namedValueTypeDeclaration.Values.FirstOrDefault().Type.FullyQualifiedName}" };
+
+            return item;
+        }
+
+        public Item PopulateItem(IEnumTypeDeclaration enumTypeDeclaration)
+        {
+            var values = enumTypeDeclaration.Values.Select(p => Helpers.Helpers.GetBaseUid(p));
+
+            var item = PopulateItem((IDeclaration)enumTypeDeclaration);
+            item.Parent = Helpers.Helpers.GetBaseUid(enumTypeDeclaration.ContainingNamespace.FullyQualifiedName);
+            item.Children = values.ToList();
+            item.Type = "Enum";
+            item.Syntax = new Syntax { Content = $"{enumTypeDeclaration.Name}" };
+
+            return item;
+        }
+
+        public Item PopulateItem(INamedValueDeclaration namedValueDeclaration)
+        {
+            var a = _yh.GetComments(namedValueDeclaration.Location);
+            var item = PopulateItem((IDeclaration)namedValueDeclaration);
+            item.Parent = namedValueDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Type = "Field";
+
+            return item;
+        }
+
+        public Item PopulateItem(IEnumValueDeclaration enumValueDeclaration)
+        {
+            var item = PopulateItem((IDeclaration)enumValueDeclaration);
+            item.Parent = enumValueDeclaration.ContainingNamespace.FullyQualifiedName;
+            item.Type = "Field";
 
             return item;
         }

@@ -18,13 +18,33 @@ CLASS weathers
 END_CLASS
 
 TYPE
-    Feeling : (Freezing, Cold, Lookworm, Warm, Hot);
+    ///<summary>
+    /// Aa
+    ///</summary>
+    Feeling : (
+        ///<summary>LK</summary>
+        Freezing, 
+        ///<summary>LO</summary>
+        Cold, 
+        ///<summary>LP</summary>
+        Lookworm, 
+        ///<summary>LU</summary>
+        Warm, 
+        ///<summary>LZ</summary>
+        Hot
+        );
 END_TYPE
 
 TYPE
+    ///<summary>
+    /// UU
+    ///</summary>
     Colors : INT (
+        ///<summary>BB</summary>
         RED := 12,
+        ///<summary>Ahoj</summary>
         GREEN := 14,
+        ///<summary>POIU</summary>
         BLUE := 23
     );
 END_TYPE

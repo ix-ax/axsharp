@@ -123,6 +123,7 @@ namespace AXSharp.ixc_doc.Visitors
 
         public void Visit(IStructuredTypeDeclaration structuredTypeDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateStructuredTypeYaml(structuredTypeDeclaration, this);
         }
 
         public void Visit(IArrayTypeDeclaration arrayTypeDeclaration, IYamlBuiderVisitor data)
@@ -131,6 +132,7 @@ namespace AXSharp.ixc_doc.Visitors
 
         public void Visit(IEnumTypeDeclaration enumTypeDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateEnumTypeYaml(enumTypeDeclaration, this);
         }
 
         public void Visit(INamedValueTypeDeclaration namedValueTypeDeclaration, IYamlBuiderVisitor data)
@@ -161,10 +163,12 @@ namespace AXSharp.ixc_doc.Visitors
 
         public void Visit(IEnumValueDeclaration enumValueDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateEnumValueYaml(enumValueDeclaration, this);
         }
 
         public void Visit(INamedValueDeclaration namedValueDeclaration, IYamlBuiderVisitor data)
         {
+            data.CreateNamedValueYaml(namedValueDeclaration, this);
         }
 
         public void Visit(ISemanticInitializerExpression initializerExpression, IYamlBuiderVisitor data)
