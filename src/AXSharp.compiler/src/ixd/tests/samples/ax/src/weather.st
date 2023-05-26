@@ -21,30 +21,41 @@ TYPE
     ///<summary>
     /// Aa
     ///</summary>
-    Feeling : (
-        ///<summary>LK</summary>
-        Freezing, 
-        ///<summary>LO</summary>
+    Feeling : (Freezing, 
+        /// <summary>
+        /// Cc
+        /// </summary>
         Cold, 
-        ///<summary>LP</summary>
-        Lookworm, 
-        ///<summary>LU</summary>
-        Warm, 
-        ///<summary>LZ</summary>
+        ///<summary>Dd</summary>
+        Lookworm, Warm, 
+        ///<summary>Ff</summary>
         Hot
         );
 END_TYPE
 
 TYPE
     ///<summary>
-    /// UU
+    /// Zz
     ///</summary>
-    Colors : INT (
-        ///<summary>BB</summary>
-        RED := 12,
-        ///<summary>Ahoj</summary>
-        GREEN := 14,
-        ///<summary>POIU</summary>
-        BLUE := 23
+    Colors : STRING (
+        ///<summary>Yy</summary>
+        RED := 'dsa',
+
+
+        /// <summary>
+        /// Xx
+        /// </summary>
+        GREEN := 'fs',
+
+        ///<summary>Ww</summary>
+        BLUE := 'rew'
     );
+END_TYPE
+
+TYPE
+    ErrorStates : WORD (
+        OK := WORD#16#000F,
+        Failed := WORD#16#00F0,
+        Pending := WORD#16#0F00
+    ) := Pending; // Default will be Pending
 END_TYPE

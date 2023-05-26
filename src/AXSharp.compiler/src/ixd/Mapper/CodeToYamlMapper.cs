@@ -177,10 +177,19 @@ namespace AXSharp.ixc_doc.Mapper
 
         public Item PopulateItem(INamedValueDeclaration namedValueDeclaration)
         {
-            var a = _yh.GetComments(namedValueDeclaration.Location);
+            string text = ((SourceLocation)namedValueDeclaration.ValueExpression.Location).SourceText.ToString();
+            string[] lines = text.Split('\n');
+
+            var line = lines[namedValueDeclaration.ValueExpression.Location.GetFullLineSpan().StartLinePosition.Line];
+            var startChar = namedValueDeclaration.ValueExpression.Location.GetFullLineSpan().StartLinePosition.Character;
+            var endChar = namedValueDeclaration.ValueExpression.Location.GetFullLineSpan().EndLinePosition.Character;
+            var value = line.Substring(startChar, endChar - startChar);
+
             var item = PopulateItem((IDeclaration)namedValueDeclaration);
+            item.Name = $"{namedValueDeclaration.Name} := {value}";
             item.Parent = namedValueDeclaration.ContainingNamespace.FullyQualifiedName;
             item.Type = "Field";
+            item.Summary = _yh.GetComments(namedValueDeclaration.Location, true).summary;
 
             return item;
         }
@@ -190,6 +199,7 @@ namespace AXSharp.ixc_doc.Mapper
             var item = PopulateItem((IDeclaration)enumValueDeclaration);
             item.Parent = enumValueDeclaration.ContainingNamespace.FullyQualifiedName;
             item.Type = "Field";
+            item.Summary = _yh.GetComments(enumValueDeclaration.Location, true).summary;
 
             return item;
         }
