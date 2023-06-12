@@ -20,6 +20,7 @@ using AXSharp.Presentation.Blazor.Exceptions;
 using System.Reflection;
 using System.ComponentModel;
 using AXSharp.Connector.ValueTypes;
+using AXSharp.Abstractions.Dialogs.AlertDialog;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
@@ -83,6 +84,20 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private NavigationManager _navigationManager { get; set; }
         private Type _groupContainer { get; set; }
         public Type MainLayoutType { get; set; }
+
+
+        private IDialogService _dialogService;
+
+        [Parameter]
+        public IDialogService DialogService {
+            get
+            {
+                if(_dialogService == null)
+                    _dialogService = new ToasterServiceBase();
+                return _dialogService;
+            }
+            set => _dialogService = value;
+        }
 
         private ITwinElement _context { get; set; }
         protected override void OnInitialized()

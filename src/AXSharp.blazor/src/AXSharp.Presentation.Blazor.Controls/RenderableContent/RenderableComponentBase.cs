@@ -16,6 +16,7 @@ using AXSharp.Connector.ValueTypes;
 using AXSharp.Presentation.Blazor.Interfaces;
 using AXSharp.Connector.ValueTypes.Online;
 using System.Xml.Linq;
+using AXSharp.Abstractions.Dialogs.AlertDialog;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
@@ -25,6 +26,10 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     public partial class RenderableComponentBase : ComponentBase, IRenderableComponent, IDisposable
     {
         [Parameter] public int PollingInterval { get; set; }
+
+        [CascadingParameter]
+        public IDialogService DialogService { get; set; }
+
 
         ///<inheritdoc/>        
         public virtual void Dispose()
