@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AXSharp.Connector.ValueTypes;
 
 namespace AXSharp.Connector.Identity;
@@ -50,7 +51,7 @@ public class TwinIdentityProvider
     {
         get
         {
-            if (_sortedIdentities.Count == 0) SortIdentities();
+            if (_sortedIdentities.Count == 0) SortIdentitiesAsync().Wait();
 
             return _sortedIdentities;
         }
@@ -186,12 +187,27 @@ public class TwinIdentityProvider
     ///     Reads twin objects identities.
     /// </summary>
     /// <returns>Identity onliners.</returns>
-    public IEnumerable<OnlinerULInt> ReadIdentities()
+    internal async Task<IEnumerable<OnlinerULInt>> ReadIdentitiesAsync()
     {
         if (_connector != null)
         {
             _connector.Logger.Information("Reading identities...");
-            _connector.ReadBatchAsync(_identitiesTags).Wait();
+            await _connector.ReadBatchAsync(_identitiesTags);
+            var lastIdentity = 0ul;
+            if (_identitiesTags.Count > 0)
+            {
+                lastIdentity = _identitiesTags.Max(p => p.LastValue);
+            }
+
+            _connector.Logger.Information("Assigning missing identities...");
+            foreach (var it in _identitiesTags)
+            {
+                if (it.LastValue == 0)
+                {
+                    it.Cyclic = ++lastIdentity;
+                }
+            }
+            await _connector.WriteBatchAsync(_identitiesTags);
             _connector.Logger.Information("Reading identities done.");
             _connector.Logger.Information(
                 $"Number of identities: {_identitiesTags.Count} | Unique :{_identities.Count}");
@@ -203,26 +219,29 @@ public class TwinIdentityProvider
     /// <summary>
     ///     Refreshes and sorts identities.
     /// </summary>
-    public void RefreshIdentities()
+    public async Task ConstructIdentitiesAsync()
     {
-        ReadIdentities();
-        SortIdentities();
+        await ReadIdentitiesAsync();
+        await SortIdentitiesAsync();
     }
 
     /// <summary>
     ///     Sorts identities.
     /// </summary>
-    public void SortIdentities()
+    internal async Task SortIdentitiesAsync()
     {
-        _connector?.Logger.Information("Sorting identities...");
-        _sortedIdentities.Clear();
-        foreach (var identity in _identities)
+        await Task.Run(() =>
         {
-            var key = identity.Key.LastValue == 0 ? identity.Key.GetAsync().Result : identity.Key.LastValue;
-            if (!_sortedIdentities.ContainsKey(key))
-                _sortedIdentities.Add(key, identity.Value);
-        }
+            _connector?.Logger.Information("Sorting identities...");
+            _sortedIdentities.Clear();
+            foreach (var identity in _identities)
+            {
+                var key = identity.Key.LastValue == 0 ? identity.Key.GetAsync().Result : identity.Key.LastValue;
+                if (!_sortedIdentities.ContainsKey(key))
+                    _sortedIdentities.Add(key, identity.Value);
+            }
 
-        _connector?.Logger.Information("Sorting identities done.");
+            _connector?.Logger.Information("Sorting identities done.");
+        });
     }
 }
