@@ -1,7 +1,7 @@
 ﻿@*This class is view part of RenderableContentControl. It contains UI generation pipeline.*@
 
 @*Call rendering method over context object*@
-<CascadingValue Value="@DialogService">
+<CascadingValue Value="@AlertDialogService">
     <div name="@_context.Symbol.Replace(".","-")" class="@Class">
         @RenderComponent(_context)
     </div>

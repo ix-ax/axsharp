@@ -28,7 +28,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         [Parameter] public int PollingInterval { get; set; }
 
         [CascadingParameter]
-        public IDialogService DialogService { get; set; }
+        public IAlertDialogService AlertDialogService { get; set; }
 
 
         ///<inheritdoc/>        

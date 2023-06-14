@@ -2,7 +2,7 @@
 
 namespace AXSharp.Abstractions.Dialogs.AlertDialog
 {
-    public interface IToast
+    public interface IAlertDialog
     {
         public Guid Id { get; set; }
         public string Type { get; set; }

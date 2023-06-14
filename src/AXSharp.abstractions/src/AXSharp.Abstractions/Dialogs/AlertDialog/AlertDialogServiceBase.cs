@@ -6,31 +6,36 @@ using System.Timers;
 
 namespace AXSharp.Abstractions.Dialogs.AlertDialog
 {
-    public class ToasterServiceBase : IDialogService
+    public class AlertDialogServiceBase : IAlertDialogService
     {
-        public event EventHandler? ToasterChanged;
+        public event EventHandler AlertDialogChanged;
 
         public void AddToast(string type, string title, string message, int time)
         {
             throw new NotImplementedException();
         }
 
-        public void AddToast(IToast toast)
+        public void AddAlertDialog(string type, string title, string message, int time)
         {
             throw new NotImplementedException();
         }
 
-        public List<IToast> GetToasts()
+        public void AddAlertDialog(IAlertDialog toast)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveToast(IToast toast)
+        public List<IAlertDialog> GetAlertDialogs()
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveAllToast()
+        public void RemoveAlertDialog(IAlertDialog toast)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAllAlertDialogs()
         {
             throw new NotImplementedException();
         }

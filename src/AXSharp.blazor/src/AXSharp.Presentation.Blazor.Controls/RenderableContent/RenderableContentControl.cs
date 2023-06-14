@@ -86,17 +86,17 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         public Type MainLayoutType { get; set; }
 
 
-        private IDialogService _dialogService;
+        private IAlertDialogService _alertDialogService;
 
         [Parameter]
-        public IDialogService DialogService {
+        public IAlertDialogService AlertDialogService {
             get
             {
-                if(_dialogService == null)
-                    _dialogService = new ToasterServiceBase();
-                return _dialogService;
+                if(_alertDialogService == null)
+                    _alertDialogService = new AlertDialogServiceBase();
+                return _alertDialogService;
             }
-            set => _dialogService = value;
+            set => _alertDialogService = value;
         }
 
         private ITwinElement _context { get; set; }
