@@ -22,7 +22,7 @@ namespace AXSharp.Connector.Identity.Tests
     public class TwinIdentityProviderTests
     {
         [Test()]
-        public void AddIdentityTest()
+        public async Task AddIdentityTest()
         {
             //-- Arrange
             var identityProvider = new TwinIdentityProvider(new DummyConnector());
@@ -33,7 +33,7 @@ namespace AXSharp.Connector.Identity.Tests
             identityProvider.AddIdentity(new IdentityTestObject() { Identity = new OnlinerULInt() { Cyclic = 1000, SetLastValue = 1000 }, AttributeName = "n1000", Symbol = "s1000" });
             identityProvider.AddIdentity(new IdentityTestObject() { Identity = new OnlinerULInt() { Cyclic = 2000, SetLastValue = 2000 }, AttributeName = "n2000", Symbol = "s2000" });
 #pragma warning restore CS0618 // Type or member is obsolete
-            identityProvider.SortIdentities();
+            await identityProvider.SortIdentitiesAsync();
 
             //-- Assert
             var actual = identityProvider.GetTwinByIdentity(1000);
@@ -43,7 +43,7 @@ namespace AXSharp.Connector.Identity.Tests
         }
 
         [Test()]
-        public void GetTwinByIdentityTest()
+        public async Task GetTwinByIdentityTest()
         {
             //-- Arrange
             var identityProvider = new TwinIdentityProvider(new DummyConnector());
@@ -53,7 +53,7 @@ namespace AXSharp.Connector.Identity.Tests
             identityProvider.AddIdentity(new IdentityTestObject() { Identity = new OnlinerULInt() { Cyclic = 1000, SetLastValue = 1000 }, AttributeName = "n1000", Symbol = "s1000" });
             identityProvider.AddIdentity(new IdentityTestObject() { Identity = new OnlinerULInt() { Cyclic = 2000, SetLastValue = 2000 }, AttributeName = "n2000", Symbol = "s2000" });
 #pragma warning restore CS0618 // Type or member is obsolete
-            identityProvider.SortIdentities();
+            await identityProvider.SortIdentitiesAsync();
 
             //-- Assert
             var actual = identityProvider.GetTwinByIdentity(1000);
@@ -66,7 +66,7 @@ namespace AXSharp.Connector.Identity.Tests
         }
 
         [Test()]
-        public void AddIdentityExistingTest()
+        public async Task AddIdentityExistingTest()
         {
             //-- Arrange
             var identityProvider = new TwinIdentityProvider(new DummyConnector());
@@ -80,7 +80,7 @@ namespace AXSharp.Connector.Identity.Tests
             identityProvider.AddIdentity(ident.MemberByIdentityObjectNoAttribute);
             identityProvider.AddIdentity(ident.MemberByIdentityObjectNoAttributeDiffIdentity);
             
-            identityProvider.SortIdentities();
+            await identityProvider.SortIdentitiesAsync();
 
             //-- Assert
             Assert.AreEqual(2, identityProvider.IdentitiesCount);

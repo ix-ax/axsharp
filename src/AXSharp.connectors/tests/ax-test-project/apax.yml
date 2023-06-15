@@ -5,6 +5,7 @@ targets:
   - "1500"
   - axunit-llvm
   - plcsim
+  - swcpu
 devDependencies:
   "@ax/sdk": 3.0.17
 dependencies:

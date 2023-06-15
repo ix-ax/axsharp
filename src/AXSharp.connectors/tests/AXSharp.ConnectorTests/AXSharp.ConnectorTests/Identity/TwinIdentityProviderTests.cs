@@ -184,36 +184,36 @@ namespace AXSharp.ConnectorTests.Identity
         }
 
         [Fact]
-        public void CanCallReadIdentities()
+        public async void CanCallReadIdentities()
         {
             // Arrange
             var connector = Substitute.For<DummyConnector>();
             var testClass = Substitute.For<TwinIdentityProvider>(connector);
 
             // Act
-            var result = testClass.ReadIdentities();
+            var result = await testClass.ReadIdentitiesAsync();
 
             // Assert
             connector.Received().ReadBatchAsync(result).Wait();
         }
 
         [Fact]
-        public void CanCallRefreshIdentities()
+        public async void CanCallRefreshIdentities()
         {
             // Arrange
             var connector = Substitute.For<DummyConnector>();
             var testClass = Substitute.For<TwinIdentityProvider>(_connector);
 
             // Act
-            testClass.RefreshIdentities();
+            await testClass.ConstructIdentitiesAsync();
 
             // Assert
-            testClass.Received().ReadIdentities();
-            testClass.Received().SortIdentities();
+            await testClass.Received().ReadIdentitiesAsync();
+            await testClass.Received().SortIdentitiesAsync();
         }
 
         [Fact]
-        public void CanCallSortIdentities()
+        public async void CanCallSortIdentities()
         {
             // Arrange
             var testClass = Substitute.For<TwinIdentityProvider>();
@@ -238,7 +238,7 @@ namespace AXSharp.ConnectorTests.Identity
             testClass.AddIdentity(obj1);
 
             // Act
-            testClass.SortIdentities();
+            await testClass.SortIdentitiesAsync();
 
             // Assert
             Assert.Equal(1ul, testClass.Identities.ElementAt(0).Key);
