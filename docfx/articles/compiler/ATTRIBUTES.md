@@ -11,10 +11,10 @@ Syntax
 Example
 
 ~~~iecst
-{#ix-attr:[Container(Layoyt.Wrap)]} (* Example of an attribute declared at type level. *)
+{#ix-attr:[Container(Layout.Wrap)]} (* Example of an attribute declared at type level. *)
 CLASS PUBLIC MyClass
     VAR PUBLIC
-        {#ix-attr:[Container(Layoyt.Tabs)]} (* Example of an attribute declared at member level.*)
+        {#ix-attr:[Container(Layout.Tabs)]} (* Example of an attribute declared at member level.*)
         Nested : MyNestedStructure;
     END_VAR
 END_CLASS
