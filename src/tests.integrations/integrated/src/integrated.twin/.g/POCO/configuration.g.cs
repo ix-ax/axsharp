@@ -36,6 +36,7 @@ namespace Pocos
         public all_primitives p_shadow_plain { get; set; } = new all_primitives();
         public all_primitives p_plain_shadow { get; set; } = new all_primitives();
         public RealMonsterData.RealMonster StartPolling_should_update_cyclic_property { get; set; } = new RealMonsterData.RealMonster();
+        public GH_ISSUE_183.GH_ISSUE_183_1 GH_ISSUE_183 { get; set; } = new GH_ISSUE_183.GH_ISSUE_183_1();
     }
 
     public partial class Pokus : AXSharp.Connector.IPlain

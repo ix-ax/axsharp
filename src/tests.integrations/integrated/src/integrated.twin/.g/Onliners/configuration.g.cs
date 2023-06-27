@@ -69,6 +69,8 @@ public partial class integratedTwinController : ITwinController
 
     public RealMonsterData.RealMonster StartPolling_should_update_cyclic_property { get; }
 
+    public GH_ISSUE_183.GH_ISSUE_183_1 GH_ISSUE_183 { get; }
+
     public integratedTwinController(AXSharp.Connector.ConnectorAdapter adapter, object[] parameters)
     {
         this.Connector = adapter.GetConnector(parameters);
@@ -102,6 +104,7 @@ public partial class integratedTwinController : ITwinController
         p_shadow_plain = new all_primitives(this.Connector, "", "p_shadow_plain");
         p_plain_shadow = new all_primitives(this.Connector, "", "p_plain_shadow");
         StartPolling_should_update_cyclic_property = new RealMonsterData.RealMonster(this.Connector, "", "StartPolling_should_update_cyclic_property");
+        GH_ISSUE_183 = new GH_ISSUE_183.GH_ISSUE_183_1(this.Connector, "", "GH_ISSUE_183");
     }
 
     public integratedTwinController(AXSharp.Connector.ConnectorAdapter adapter)
@@ -137,6 +140,7 @@ public partial class integratedTwinController : ITwinController
         p_shadow_plain = new all_primitives(this.Connector, "", "p_shadow_plain");
         p_plain_shadow = new all_primitives(this.Connector, "", "p_plain_shadow");
         StartPolling_should_update_cyclic_property = new RealMonsterData.RealMonster(this.Connector, "", "StartPolling_should_update_cyclic_property");
+        GH_ISSUE_183 = new GH_ISSUE_183.GH_ISSUE_183_1(this.Connector, "", "GH_ISSUE_183");
     }
 }
 

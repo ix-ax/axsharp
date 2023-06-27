@@ -38,9 +38,9 @@ namespace RealMonsterData
             TestDateTime = @Connector.ConnectorAdapter.AdapterFactory.CreateDATE_AND_TIME(this, "TestDateTime", "TestDateTime");
             TestTimeSpan = @Connector.ConnectorAdapter.AdapterFactory.CreateTIME_OF_DAY(this, "TestTimeSpan", "TestTimeSpan");
             ArrayOfBytes = new OnlinerByte[4];
-            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfBytes, this, "ArrayOfBytes", "ArrayOfBytes", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st));
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfBytes, this, "ArrayOfBytes", "ArrayOfBytes", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st), new[]{(0, 3)});
             ArrayOfDrives = new RealMonsterData.DriveBaseNested[4];
-            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfDrives, this, "ArrayOfDrives", "ArrayOfDrives", (p, rt, st) => new RealMonsterData.DriveBaseNested(p, rt, st));
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfDrives, this, "ArrayOfDrives", "ArrayOfDrives", (p, rt, st) => new RealMonsterData.DriveBaseNested(p, rt, st), new[]{(0, 3)});
             parent.AddChild(this);
             parent.AddKid(this);
             PostConstruct(parent, readableTail, symbolTail);

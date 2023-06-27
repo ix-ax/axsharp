@@ -225,7 +225,7 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
         type.Accept(visitor, this);
         AddToSource(";");
 
-
+        
         AddToSource($"{typeof(Arrays).n()}.InstantiateArray({field.Name}, " +
                     "this, " +
                     $"\"{field.GetAttributeNameValue(field.Name)}\", " +
@@ -250,7 +250,18 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
                 break;
         }
 
-        AddToSource("(p, rt, st));");
+        var dimensions = "new[] {";
+        foreach (var dimension in type.Dimensions)
+        {
+            dimensions = $"{dimensions}({dimension.LowerBoundValue}, {dimension.UpperBoundValue})";
+        }
+
+        dimensions = $"{dimensions}}}";
+
+        AddToSource($"(p, rt, st), {dimensions});");
+
+        
+
     }
 
     private void AddMemberInitialization(IClassDeclaration type, IFieldDeclaration field, IxNodeVisitor visitor)
