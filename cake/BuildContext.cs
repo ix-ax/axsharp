@@ -181,6 +181,35 @@ public class BuildContext : FrostingContext
         return templates;
     }
 
+
+    private static void DeleteDirectory(string target_dir)
+    {
+        string[] files = Directory.GetFiles(target_dir);
+        string[] dirs = Directory.GetDirectories(target_dir);
+
+        foreach (string file in files)
+        {
+            File.SetAttributes(file, FileAttributes.Normal);
+            File.Delete(file);
+        }
+
+        foreach (string dir in dirs)
+        {
+            DeleteDirectory(dir);
+        }
+
+        Directory.Delete(target_dir, false);
+    }
+
+    public void CleaUpAllBinsAndObjs()
+    {
+        foreach (var directory in Directory.EnumerateDirectories(this.ScrDir, "*.*", SearchOption.AllDirectories).Select(p => new DirectoryInfo(p))
+                     .Where(p => p.Name == "bin" || p.Name == "obj"))
+        {
+            DeleteDirectory(directory.FullName);
+        }
+    }
+
     public void CheckLicenseComplianceInArtifacts()
     {
         //var licensedFiles = Directory.EnumerateFiles(Path.Combine(context.RootDir, "apax", ".apax", "packages"),

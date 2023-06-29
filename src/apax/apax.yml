@@ -5,4 +5,4 @@ targets:
   - "1500"
   - axunit-llvm
 devDependencies:
-  "@ax/stc": 4.5.85
+  "@ax/stc": 5.3.28
