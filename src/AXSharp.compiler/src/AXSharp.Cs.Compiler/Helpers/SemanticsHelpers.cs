@@ -80,14 +80,21 @@ public static class SemanticsHelpers
     /// <returns></returns>
     public static bool IsTypeEligibleForTranspile(this ITypeDeclaration typeDeclaration, ISourceBuilder sourceBuilder)
     {
-        return !(typeDeclaration is IReferenceTypeDeclaration)
-               &&
-               (typeDeclaration is IScalarTypeDeclaration ||
-                typeDeclaration is IStringTypeDeclaration ||
-                typeDeclaration is IStructuredTypeDeclaration ||
-                typeDeclaration is INamedValueTypeDeclaration ||
-                sourceBuilder.Compilation.GetSemanticTree().Types.Any(p => p.FullyQualifiedName == typeDeclaration.FullyQualifiedName))
-            ;
+        var asArray = typeDeclaration as IArrayTypeDeclaration;
+        var singleDimensionalArray = asArray is null || asArray.Dimensions.Count == 1;
+
+
+        var isEligibleType = !(typeDeclaration is IReferenceTypeDeclaration)
+                             &&
+                             (typeDeclaration is IScalarTypeDeclaration ||
+                              typeDeclaration is IStringTypeDeclaration ||
+                              typeDeclaration is IStructuredTypeDeclaration ||
+                              typeDeclaration is INamedValueTypeDeclaration ||
+                              sourceBuilder.Compilation.GetSemanticTree().Types.Any(p =>
+                                  p.FullyQualifiedName == typeDeclaration.FullyQualifiedName));
+
+        return isEligibleType && singleDimensionalArray;
+
     }
 
     /// <summary>
