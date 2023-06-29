@@ -62,9 +62,13 @@ public static class Program
 [TaskName("CleanUp")]
 public sealed class CleanUpTask : FrostingTask<BuildContext>
 {
+
+    
+
     public override void Run(BuildContext context)
     {
         context.DotNetClean(Path.Combine(context.ScrDir, "AXSharp.sln"), new DotNetCleanSettings() { Verbosity = context.BuildParameters.Verbosity });
+        context.CleaUpAllBinsAndObjs();
         context.CleanDirectory(context.Artifacts);
         context.CleanDirectory(context.TestResults);
     }

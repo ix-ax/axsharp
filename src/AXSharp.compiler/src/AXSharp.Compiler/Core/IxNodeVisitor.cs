@@ -626,13 +626,6 @@ public partial class IxNodeVisitor : ISyntaxNodeVisitor<ICombinedThreeVisitor>
         throw new NotSupportedException();
     }
 
-    void ISyntaxNodeVisitor<ICombinedThreeVisitor>.Accept(IProgConfigSyntax progConfigSyntax,
-        ICombinedThreeVisitor data)
-    {
-        throw new NotSupportedException();
-    }
-
-
     void ISyntaxNodeVisitor<ICombinedThreeVisitor>.Accept(
         IAbstractMethodDeclarationSyntax abstractMethodDeclarationSyntax, ICombinedThreeVisitor data)
     {
@@ -815,6 +808,16 @@ public partial class IxNodeVisitor : ISyntaxNodeVisitor<ICombinedThreeVisitor>
         ICombinedThreeVisitor data)
     {
         throw new NotSupportedException();
+    }
+
+    public void Accept(IConditionalAndExpressionSyntax conditionalAndExpressionSyntax, ICombinedThreeVisitor data)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Accept(IConditionalOrExpressionSyntax conditionalOrExpressionSyntax, ICombinedThreeVisitor data)
+    {
+        throw new NotImplementedException();
     }
 
     void ISyntaxNodeVisitor<ICombinedThreeVisitor>.Accept(IConditionalStatementSyntax conditionalStatementSyntax,
@@ -1072,6 +1075,11 @@ public partial class IxNodeVisitor : ISyntaxNodeVisitor<ICombinedThreeVisitor>
 
     void ISyntaxNodeVisitor<ICombinedThreeVisitor>.Accept(IPrioritySpecSyntax prioritySpecSyntax,
         ICombinedThreeVisitor data)
+    {
+        throw new NotSupportedException();
+    }
+
+    public void Accept(IProgramConfigurationSyntax programConfigurationSyntax, ICombinedThreeVisitor data)
     {
         throw new NotSupportedException();
     }

@@ -625,7 +625,7 @@ namespace AXSharp.CompilerTests.Core
         public void CanCallAcceptForISyntaxNodeVisitor_ICombinedThreeVisitor_WithProgConfigSyntaxAndData()
         {
             // Arrange
-            var progConfigSyntax = new Mock<IProgConfigSyntax>().Object;
+            var progConfigSyntax = new Mock<IProgramConfigurationSyntax>().Object;
             var data = new Mock<ICombinedThreeVisitor>().Object;
 
             // Act
