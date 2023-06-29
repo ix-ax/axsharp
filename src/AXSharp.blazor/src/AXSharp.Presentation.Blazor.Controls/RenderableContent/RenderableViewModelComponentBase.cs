@@ -30,6 +30,8 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         private TwinContainerObject _twinContainer;
 
+       
+
         [Parameter]
         public TwinContainerObject TwinContainer
         {
