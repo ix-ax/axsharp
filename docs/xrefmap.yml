@@ -1,6 +1,280 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: AXSharp.Abstractions.Dialogs.ActionDialog
+  name: AXSharp.Abstractions.Dialogs.ActionDialog
+  href: api/AXSharp.Abstractions.Dialogs.ActionDialog.html
+  commentId: N:AXSharp.Abstractions.Dialogs.ActionDialog
+  fullName: AXSharp.Abstractions.Dialogs.ActionDialog
+  nameWithType: AXSharp.Abstractions.Dialogs.ActionDialog
+- uid: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog
+  name: IsDialog
+  href: api/AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.html
+  commentId: T:AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog
+  fullName: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog
+  nameWithType: IsDialog
+- uid: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.DialogId
+  name: DialogId
+  href: api/AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.html#AXSharp_Abstractions_Dialogs_ActionDialog_IsDialog_DialogId
+  commentId: P:AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.DialogId
+  fullName: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.DialogId
+  nameWithType: IsDialog.DialogId
+- uid: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.DialogId*
+  name: DialogId
+  href: api/AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.html#AXSharp_Abstractions_Dialogs_ActionDialog_IsDialog_DialogId_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.DialogId
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.DialogId
+  nameWithType: IsDialog.DialogId
+- uid: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.Initialize(System.Action)
+  name: Initialize(Action)
+  href: api/AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.html#AXSharp_Abstractions_Dialogs_ActionDialog_IsDialog_Initialize_System_Action_
+  commentId: M:AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.Initialize(System.Action)
+  fullName: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.Initialize(System.Action)
+  nameWithType: IsDialog.Initialize(Action)
+- uid: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.Initialize*
+  name: Initialize
+  href: api/AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.html#AXSharp_Abstractions_Dialogs_ActionDialog_IsDialog_Initialize_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.Initialize
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.ActionDialog.IsDialog.Initialize
+  nameWithType: IsDialog.Initialize
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog
+  name: AXSharp.Abstractions.Dialogs.AlertDialog
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.html
+  commentId: N:AXSharp.Abstractions.Dialogs.AlertDialog
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog
+  nameWithType: AXSharp.Abstractions.Dialogs.AlertDialog
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase
+  name: AlertDialogServiceBase
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html
+  commentId: T:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase
+  nameWithType: AlertDialogServiceBase
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  name: AddAlertDialog(IAlertDialog)
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_AddAlertDialog_AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  nameWithType: AlertDialogServiceBase.AddAlertDialog(IAlertDialog)
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(System.String,System.String,System.String,System.Int32)
+  name: AddAlertDialog(string, string, string, int)
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_AddAlertDialog_System_String_System_String_System_String_System_Int32_
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(System.String,System.String,System.String,System.Int32)
+  name.vb: AddAlertDialog(String, String, String, Integer)
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(string, string, string, int)
+  fullName.vb: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog(String, String, String, Integer)
+  nameWithType: AlertDialogServiceBase.AddAlertDialog(string, string, string, int)
+  nameWithType.vb: AlertDialogServiceBase.AddAlertDialog(String, String, String, Integer)
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog*
+  name: AddAlertDialog
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_AddAlertDialog_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AddAlertDialog
+  nameWithType: AlertDialogServiceBase.AddAlertDialog
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AlertDialogChanged
+  name: AlertDialogChanged
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_AlertDialogChanged
+  commentId: E:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AlertDialogChanged
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.AlertDialogChanged
+  nameWithType: AlertDialogServiceBase.AlertDialogChanged
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.GetAlertDialogs
+  name: GetAlertDialogs()
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_GetAlertDialogs
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.GetAlertDialogs
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.GetAlertDialogs()
+  nameWithType: AlertDialogServiceBase.GetAlertDialogs()
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.GetAlertDialogs*
+  name: GetAlertDialogs
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_GetAlertDialogs_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.GetAlertDialogs
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.GetAlertDialogs
+  nameWithType: AlertDialogServiceBase.GetAlertDialogs
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  name: RemoveAlertDialog(IAlertDialog)
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_RemoveAlertDialog_AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  nameWithType: AlertDialogServiceBase.RemoveAlertDialog(IAlertDialog)
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAlertDialog*
+  name: RemoveAlertDialog
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_RemoveAlertDialog_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAlertDialog
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAlertDialog
+  nameWithType: AlertDialogServiceBase.RemoveAlertDialog
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAllAlertDialogs
+  name: RemoveAllAlertDialogs()
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_RemoveAllAlertDialogs
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAllAlertDialogs
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAllAlertDialogs()
+  nameWithType: AlertDialogServiceBase.RemoveAllAlertDialogs()
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAllAlertDialogs*
+  name: RemoveAllAlertDialogs
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.html#AXSharp_Abstractions_Dialogs_AlertDialog_AlertDialogServiceBase_RemoveAllAlertDialogs_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAllAlertDialogs
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.AlertDialogServiceBase.RemoveAllAlertDialogs
+  nameWithType: AlertDialogServiceBase.RemoveAllAlertDialogs
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog
+  name: IAlertDialog
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html
+  commentId: T:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog
+  nameWithType: IAlertDialog
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Id
+  name: Id
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Id
+  commentId: P:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Id
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Id
+  nameWithType: IAlertDialog.Id
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Id*
+  name: Id
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Id_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Id
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Id
+  nameWithType: IAlertDialog.Id
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Message
+  name: Message
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Message
+  commentId: P:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Message
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Message
+  nameWithType: IAlertDialog.Message
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Message*
+  name: Message
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Message_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Message
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Message
+  nameWithType: IAlertDialog.Message
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Posted
+  name: Posted
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Posted
+  commentId: P:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Posted
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Posted
+  nameWithType: IAlertDialog.Posted
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Posted*
+  name: Posted
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Posted_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Posted
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Posted
+  nameWithType: IAlertDialog.Posted
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.TimeToBurn
+  name: TimeToBurn
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_TimeToBurn
+  commentId: P:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.TimeToBurn
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.TimeToBurn
+  nameWithType: IAlertDialog.TimeToBurn
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.TimeToBurn*
+  name: TimeToBurn
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_TimeToBurn_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.TimeToBurn
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.TimeToBurn
+  nameWithType: IAlertDialog.TimeToBurn
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Title
+  name: Title
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Title
+  commentId: P:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Title
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Title
+  nameWithType: IAlertDialog.Title
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Title*
+  name: Title
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Title_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Title
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Title
+  nameWithType: IAlertDialog.Title
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Type
+  name: Type
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Type
+  commentId: P:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Type
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Type
+  nameWithType: IAlertDialog.Type
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Type*
+  name: Type
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_Type_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Type
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog.Type
+  nameWithType: IAlertDialog.Type
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService
+  name: IAlertDialogService
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html
+  commentId: T:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService
+  nameWithType: IAlertDialogService
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  name: AddAlertDialog(IAlertDialog)
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_AddAlertDialog_AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  nameWithType: IAlertDialogService.AddAlertDialog(IAlertDialog)
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(System.String,System.String,System.String,System.Int32)
+  name: AddAlertDialog(string, string, string, int)
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_AddAlertDialog_System_String_System_String_System_String_System_Int32_
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(System.String,System.String,System.String,System.Int32)
+  name.vb: AddAlertDialog(String, String, String, Integer)
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(string, string, string, int)
+  fullName.vb: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog(String, String, String, Integer)
+  nameWithType: IAlertDialogService.AddAlertDialog(string, string, string, int)
+  nameWithType.vb: IAlertDialogService.AddAlertDialog(String, String, String, Integer)
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog*
+  name: AddAlertDialog
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_AddAlertDialog_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AddAlertDialog
+  nameWithType: IAlertDialogService.AddAlertDialog
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AlertDialogChanged
+  name: AlertDialogChanged
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_AlertDialogChanged
+  commentId: E:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AlertDialogChanged
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.AlertDialogChanged
+  nameWithType: IAlertDialogService.AlertDialogChanged
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.GetAlertDialogs
+  name: GetAlertDialogs()
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_GetAlertDialogs
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.GetAlertDialogs
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.GetAlertDialogs()
+  nameWithType: IAlertDialogService.GetAlertDialogs()
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.GetAlertDialogs*
+  name: GetAlertDialogs
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_GetAlertDialogs_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.GetAlertDialogs
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.GetAlertDialogs
+  nameWithType: IAlertDialogService.GetAlertDialogs
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  name: RemoveAlertDialog(IAlertDialog)
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_RemoveAlertDialog_AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialog_
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAlertDialog(AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialog)
+  nameWithType: IAlertDialogService.RemoveAlertDialog(IAlertDialog)
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAlertDialog*
+  name: RemoveAlertDialog
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_RemoveAlertDialog_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAlertDialog
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAlertDialog
+  nameWithType: IAlertDialogService.RemoveAlertDialog
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAllAlertDialogs
+  name: RemoveAllAlertDialogs()
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_RemoveAllAlertDialogs
+  commentId: M:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAllAlertDialogs
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAllAlertDialogs()
+  nameWithType: IAlertDialogService.RemoveAllAlertDialogs()
+- uid: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAllAlertDialogs*
+  name: RemoveAllAlertDialogs
+  href: api/AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.html#AXSharp_Abstractions_Dialogs_AlertDialog_IAlertDialogService_RemoveAllAlertDialogs_
+  commentId: Overload:AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAllAlertDialogs
+  isSpec: "True"
+  fullName: AXSharp.Abstractions.Dialogs.AlertDialog.IAlertDialogService.RemoveAllAlertDialogs
+  nameWithType: IAlertDialogService.RemoveAllAlertDialogs
 - uid: AXSharp.Abstractions.Presentation
   name: AXSharp.Abstractions.Presentation
   href: api/AXSharp.Abstractions.Presentation.html
@@ -1070,6 +1344,31 @@ references:
   fullName.vb: AXSharp.Compiler.Core.IxNodeVisitor.New
   nameWithType: IxNodeVisitor.IxNodeVisitor
   nameWithType.vb: IxNodeVisitor.New
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalAndExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Accept(IConditionalAndExpressionSyntax, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_AX_ST_Syntax_Tree_IConditionalAndExpressionSyntax_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalAndExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalAndExpressionSyntax, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Accept(IConditionalAndExpressionSyntax, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalOrExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Accept(IConditionalOrExpressionSyntax, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_AX_ST_Syntax_Tree_IConditionalOrExpressionSyntax_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalOrExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalOrExpressionSyntax, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Accept(IConditionalOrExpressionSyntax, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IProgramConfigurationSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Accept(IProgramConfigurationSyntax, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_AX_ST_Syntax_Tree_IProgramConfigurationSyntax_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IProgramConfigurationSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IProgramConfigurationSyntax, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Accept(IProgramConfigurationSyntax, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept*
+  name: Accept
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_
+  commentId: Overload:AXSharp.Compiler.Core.IxNodeVisitor.Accept
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept
+  nameWithType: IxNodeVisitor.Accept
 - uid: AXSharp.Compiler.Core.IxNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
   name: Visit(IDocComment, ICombinedThreeVisitor)
   href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ICombinedThreeVisitor_
@@ -4930,6 +5229,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Identity.TwinIdentityProvider.AddIdentity
   nameWithType: TwinIdentityProvider.AddIdentity
+- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  name: ConstructIdentitiesAsync()
+  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ConstructIdentitiesAsync
+  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync()
+  nameWithType: TwinIdentityProvider.ConstructIdentitiesAsync()
+- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync*
+  name: ConstructIdentitiesAsync
+  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ConstructIdentitiesAsync_
+  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  isSpec: "True"
+  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  nameWithType: TwinIdentityProvider.ConstructIdentitiesAsync
 - uid: AXSharp.Connector.Identity.TwinIdentityProvider.GetTwinByIdentity(AXSharp.Connector.Identity.ITwinIdentity)
   name: GetTwinByIdentity(ITwinIdentity)
   href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_GetTwinByIdentity_AXSharp_Connector_Identity_ITwinIdentity_
@@ -4987,45 +5299,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Identity.TwinIdentityProvider.IdentitiesCount
   nameWithType: TwinIdentityProvider.IdentitiesCount
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  name: ReadIdentities()
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ReadIdentities
-  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities()
-  nameWithType: TwinIdentityProvider.ReadIdentities()
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities*
-  name: ReadIdentities
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ReadIdentities_
-  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  isSpec: "True"
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  nameWithType: TwinIdentityProvider.ReadIdentities
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  name: RefreshIdentities()
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_RefreshIdentities
-  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities()
-  nameWithType: TwinIdentityProvider.RefreshIdentities()
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities*
-  name: RefreshIdentities
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_RefreshIdentities_
-  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  isSpec: "True"
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  nameWithType: TwinIdentityProvider.RefreshIdentities
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  name: SortIdentities()
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_SortIdentities
-  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities()
-  nameWithType: TwinIdentityProvider.SortIdentities()
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities*
-  name: SortIdentities
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_SortIdentities_
-  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  isSpec: "True"
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  nameWithType: TwinIdentityProvider.SortIdentities
 - uid: AXSharp.Connector.IgnoreReflectionAttribute
   name: IgnoreReflectionAttribute
   href: api/AXSharp.Connector.IgnoreReflectionAttribute.html
@@ -14264,15 +14537,15 @@ references:
   commentId: T:AXSharp.ixc_doc.Helpers.YamlHelpers
   fullName: AXSharp.ixc_doc.Helpers.YamlHelpers
   nameWithType: YamlHelpers
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor(System.String)
-  name: YamlHelpers(string)
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers__ctor_System_String_
-  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor(System.String)
-  name.vb: New(String)
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.YamlHelpers(string)
-  fullName.vb: AXSharp.ixc_doc.Helpers.YamlHelpers.New(String)
-  nameWithType: YamlHelpers.YamlHelpers(string)
-  nameWithType.vb: YamlHelpers.New(String)
+- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor
+  name: YamlHelpers()
+  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers__ctor
+  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor
+  name.vb: New()
+  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.YamlHelpers()
+  fullName.vb: AXSharp.ixc_doc.Helpers.YamlHelpers.New()
+  nameWithType: YamlHelpers.YamlHelpers()
+  nameWithType.vb: YamlHelpers.New()
 - uid: AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor*
   name: YamlHelpers
   href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers__ctor_
@@ -14424,12 +14697,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetClassFromXml
   nameWithType: YamlHelpers.GetClassFromXml
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location)
-  name: GetComments(Location)
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_GetComments_AX_Text_Location_
-  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location)
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location)
-  nameWithType: YamlHelpers.GetComments(Location)
+- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location,System.Boolean)
+  name: GetComments(Location, bool)
+  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_GetComments_AX_Text_Location_System_Boolean_
+  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location,System.Boolean)
+  name.vb: GetComments(Location, Boolean)
+  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location, bool)
+  fullName.vb: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location, Boolean)
+  nameWithType: YamlHelpers.GetComments(Location, bool)
+  nameWithType.vb: YamlHelpers.GetComments(Location, Boolean)
 - uid: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments*
   name: GetComments
   href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_GetComments_
@@ -14450,19 +14726,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetInheritedMembers
   nameWithType: YamlHelpers.GetInheritedMembers
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  name: PathToProjectFile
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_PathToProjectFile
-  commentId: P:AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  nameWithType: YamlHelpers.PathToProjectFile
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile*
-  name: PathToProjectFile
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_PathToProjectFile_
-  commentId: Overload:AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  isSpec: "True"
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  nameWithType: YamlHelpers.PathToProjectFile
 - uid: AXSharp.ixc_doc.Helpers.YamlSerializerHelper
   name: YamlSerializerHelper
   href: api/AXSharp.ixc_doc.Helpers.YamlSerializerHelper.html
@@ -14604,6 +14867,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateClassYaml
   nameWithType: IYamlBuiderVisitor.CreateClassYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml*
+  name: CreateEnumTypeYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml
+  nameWithType: IYamlBuiderVisitor.CreateEnumTypeYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumValueYaml_AX_ST_Semantic_Model_Declarations_IEnumValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml*
+  name: CreateEnumValueYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml
+  nameWithType: IYamlBuiderVisitor.CreateEnumValueYaml
 - uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateFieldYaml(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateFieldYaml(IFieldDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateFieldYaml_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -14695,6 +14984,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueTypeYaml
   nameWithType: IYamlBuiderVisitor.CreateNamedValueTypeYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateNamedValueYaml_AX_ST_Semantic_Model_Declarations_INamedValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml*
+  name: CreateNamedValueYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateNamedValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml
+  nameWithType: IYamlBuiderVisitor.CreateNamedValueYaml
 - uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamespaceYaml(AX.ST.Semantic.Model.Declarations.INamespaceDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateNamespaceYaml(INamespaceDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateNamespaceYaml_AX_ST_Semantic_Model_Declarations_INamespaceDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -14708,6 +15010,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamespaceYaml
   nameWithType: IYamlBuiderVisitor.CreateNamespaceYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateStructuredTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml*
+  name: CreateStructuredTypeYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateStructuredTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml
+  nameWithType: IYamlBuiderVisitor.CreateStructuredTypeYaml
 - uid: AXSharp.ixc_doc.Models
   name: AXSharp.ixc_doc.Models
   href: api/AXSharp.ixc_doc.Models.html
@@ -15694,19 +16009,6 @@ references:
   fullName.vb: AXSharp.ixc_doc.Visitors.MyNodeVisitor.New
   nameWithType: MyNodeVisitor.MyNodeVisitor
   nameWithType.vb: MyNodeVisitor.New
-- uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  name: axProject
-  href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_axProject
-  commentId: P:AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  nameWithType: MyNodeVisitor.axProject
-- uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject*
-  name: axProject
-  href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_axProject_
-  commentId: Overload:AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  isSpec: "True"
-  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  nameWithType: MyNodeVisitor.axProject
 - uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.MapYamlHelperToSchema
   name: MapYamlHelperToSchema()
   href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_MapYamlHelperToSchema
@@ -16131,6 +16433,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateClassYaml
   nameWithType: YamlBuilder.CreateClassYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml*
+  name: CreateEnumTypeYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml
+  nameWithType: YamlBuilder.CreateEnumTypeYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumValueYaml_AX_ST_Semantic_Model_Declarations_IEnumValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml*
+  name: CreateEnumValueYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml
+  nameWithType: YamlBuilder.CreateEnumValueYaml
 - uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateFieldYaml(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateFieldYaml(IFieldDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateFieldYaml_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -16209,6 +16537,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueTypeYaml
   nameWithType: YamlBuilder.CreateNamedValueTypeYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateNamedValueYaml_AX_ST_Semantic_Model_Declarations_INamedValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml*
+  name: CreateNamedValueYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateNamedValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml
+  nameWithType: YamlBuilder.CreateNamedValueYaml
 - uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamespaceYaml(AX.ST.Semantic.Model.Declarations.INamespaceDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateNamespaceYaml(INamespaceDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateNamespaceYaml_AX_ST_Semantic_Model_Declarations_INamespaceDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -16222,6 +16563,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamespaceYaml
   nameWithType: YamlBuilder.CreateNamespaceYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateStructuredTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml*
+  name: CreateStructuredTypeYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateStructuredTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml
+  nameWithType: YamlBuilder.CreateStructuredTypeYaml
 - uid: AXSharp.ixr_doc
   name: AXSharp.ixr_doc
   href: api/AXSharp.ixr_doc.html
@@ -17604,6 +17958,19 @@ references:
   commentId: T:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase
   nameWithType: RenderableComponentBase
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AlertDialogService
+  name: AlertDialogService
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_AlertDialogService
+  commentId: P:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AlertDialogService
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AlertDialogService
+  nameWithType: RenderableComponentBase.AlertDialogService
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AlertDialogService*
+  name: AlertDialogService
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_AlertDialogService_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AlertDialogService
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AlertDialogService
+  nameWithType: RenderableComponentBase.AlertDialogService
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose
   name: Dispose()
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_Dispose
@@ -17754,6 +18121,19 @@ references:
   commentId: T:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl
   nameWithType: RenderableContentControl
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AlertDialogService
+  name: AlertDialogService
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableContentControl_AlertDialogService
+  commentId: P:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AlertDialogService
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AlertDialogService
+  nameWithType: RenderableContentControl.AlertDialogService
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AlertDialogService*
+  name: AlertDialogService
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableContentControl_AlertDialogService_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AlertDialogService
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AlertDialogService
+  nameWithType: RenderableContentControl.AlertDialogService
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.AttributesHandler
   name: AttributesHandler
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableContentControl_AttributesHandler

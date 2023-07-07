@@ -10,7 +10,7 @@ namespace AXSharp.Abstractions.Dialogs.AlertDialog
     {
         public event EventHandler AlertDialogChanged;
 
-        public void AddAlertDialog(string type, string title, string message, int time)
+        public void AddAlertDialog(eDialogType type, string title, string message, int time)
         {
             //throw new NotImplementedException();
         }
