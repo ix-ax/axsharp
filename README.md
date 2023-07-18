@@ -34,7 +34,7 @@ There are some **known issues** that we are looking into in the development proc
 
 
 
-**AX#** is the underlying technology for the [AXOpen](https://github.com/ix-ax/ix.framework) that will be rendered public in this organization and will provide a series of libraries and components for building automation projects.
+**AX#** is the underlying technology for the [AXOpen](https://github.com/ix-ax/AXOpen) that will be rendered public in this organization and will provide a series of libraries and components for building automation projects.
 
 ## Disclaimer
 
