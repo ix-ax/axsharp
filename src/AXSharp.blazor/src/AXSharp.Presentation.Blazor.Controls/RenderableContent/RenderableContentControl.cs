@@ -84,19 +84,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private Type _groupContainer { get; set; }
         public Type MainLayoutType { get; set; }
 
-        private IAlertDialogService _alertDialogService;
-
-        [Parameter]
-        public IAlertDialogService AlertDialogService {
-            get
-            {
-                if(_alertDialogService == null)
-                    _alertDialogService = new AlertDialogServiceBase();
-                return _alertDialogService;
-            }
-            set => _alertDialogService = value;
-        }
-
         private ITwinElement _context { get; set; }
         protected override void OnInitialized()
         {
