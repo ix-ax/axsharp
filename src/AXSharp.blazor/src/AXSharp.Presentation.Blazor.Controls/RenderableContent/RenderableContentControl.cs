@@ -53,7 +53,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             set
             {
                 _presentation = value;
-                this.OnInitialized();
+                //this.OnInitialized();
             } 
         }
 
@@ -84,7 +84,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private NavigationManager _navigationManager { get; set; }
         private Type _groupContainer { get; set; }
         public Type MainLayoutType { get; set; }
-
 
         private IAlertDialogService _alertDialogService;
 

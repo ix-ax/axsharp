@@ -65,6 +65,12 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         IdentityProvider = new TwinIdentityProvider(this);
     }
 
+    public void SetLoggerConfiguration(ILogger logger)
+    {
+        this._logger = logger;
+    }
+
+
     /// <summary>
     ///     Provides logging capability for this connector.
     /// </summary>
@@ -79,6 +85,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
                 .File($"connector{GetType()}.log",
                     outputTemplate: "{Timestamp:yyyy-MMM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}",
                     fileSizeLimitBytes: 100000)
+                .MinimumLevel.Information()
                 .CreateLogger();
         }
     }
@@ -366,11 +373,17 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// </summary>
     protected async Task CyclicRead()
     {
+       
         var primitivesToRead = new List<ITwinPrimitive>();
         primitivesToRead.AddRange(NextPeriodicReadSet.Values);
         primitivesToRead.AddRange(Subscribed.Values);
-        var distinctPrimitivesToRead = primitivesToRead.Distinct();
-        
+        var distinctPrimitivesToRead = primitivesToRead.Distinct().ToList();
+
+        if (distinctPrimitivesToRead.Any())
+        {
+            Logger.Debug($"Periodic reading of '{distinctPrimitivesToRead.Count()}' items.");
+        }
+
         await ReadBatchAsync(distinctPrimitivesToRead
             .Where(p => !(p.ReadOnce && p.AccessStatus.LastAccess != OnlinerBase.DefaultDateTime)));
 
