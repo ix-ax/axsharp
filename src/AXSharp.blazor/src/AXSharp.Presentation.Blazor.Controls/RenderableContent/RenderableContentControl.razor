@@ -1,11 +1,9 @@
 ﻿@*This class is view part of RenderableContentControl. It contains UI generation pipeline.*@
 
 @*Call rendering method over context object*@
-<CascadingValue Value="@AlertDialogService">
-    <div name="@_context.Symbol.Replace(".","-")" class="@Class">
-        @RenderComponent(_context)
-    </div>
-</CascadingValue>
+<div name="@_context.Symbol.Replace(".","-")" class="@Class">
+    @RenderComponent(_context)
+</div>
 
 
 
@@ -69,9 +67,9 @@
                     var name = String.IsNullOrEmpty(child.AttributeName) ? child.GetSymbolTail() : child.AttributeName;
                     //otherwise is value tag or has mainLayout set, add children layout and continue
                     <ChildrenLayoutPropSetter ChildName="@name"
-                          ChildrenLayout="@parentLayout"
-                          ChildContent="@Generator(child,null)"
-                          Class="@LayoutChildrenClass" />
+                                              ChildrenLayout="@parentLayout"
+                                              ChildContent="@Generator(child,null)"
+                                              Class="@LayoutChildrenClass" />
                 }
                 canEnumerate = enumerator.MoveNext();
             }
@@ -82,10 +80,10 @@
                 var groupContainer = TryLoadGroupTypeFromProperty(child);
 
                 <GroupLayoutSetter ParentLayout="@parentLayout"
-                   GroupLayout="@groupLayout"
-                   GroupContainer="@groupContainer"
-                   GroupName="@group.GroupName"
-                   LayoutClass="@LayoutClass">
+                                   GroupLayout="@groupLayout"
+                                   GroupContainer="@groupContainer"
+                                   GroupName="@group.GroupName"
+                                   LayoutClass="@LayoutClass">
                     @RenderGroup(group, groupLayout)
                 </GroupLayoutSetter>
 
@@ -109,9 +107,9 @@
             {
                 var name = String.IsNullOrEmpty(child.AttributeName) ? child.GetSymbolTail() : child.AttributeName;
                 <ChildrenLayoutPropSetter ChildName="@name"
-                          ChildrenLayout="@groupLayout"
-                          ChildContent="@Generator(child, groupLayout)"
-                          Class="@LayoutChildrenClass" />
+                                          ChildrenLayout="@groupLayout"
+                                          ChildContent="@Generator(child, groupLayout)"
+                                          Class="@LayoutChildrenClass" />
             }
         }
 
@@ -147,9 +145,9 @@
         {
             var name = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
             <ChildrenLayoutPropSetter ChildName="@name"
-                          ChildrenLayout="layout"
-                          ChildContent="@CreateComplexComponent(twin, component)"
-                          Class="@LayoutChildrenClass" />
+                                      ChildrenLayout="layout"
+                                      ChildContent="@CreateComplexComponent(twin, component)"
+                                      Class="@LayoutChildrenClass" />
         }
         else
         {
