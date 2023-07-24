@@ -20,7 +20,6 @@ using AXSharp.Presentation.Blazor.Exceptions;
 using System.Reflection;
 using System.ComponentModel;
 using AXSharp.Connector.ValueTypes;
-using AXSharp.Abstractions.Dialogs.AlertDialog;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
