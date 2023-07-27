@@ -35,11 +35,11 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             RemovePolledElements();
         }
 
-        private HashSet<ITwinElement> PolledElements { get; } = new HashSet<ITwinElement>();
+        protected HashSet<ITwinElement> PolledElements { get; } = new HashSet<ITwinElement>();
 
         public bool HasFocus { get; set; }
 
-        public void AddToPolling(ITwinElement element, int pollingInterval = 250)
+        public virtual void AddToPolling(ITwinElement element, int pollingInterval = 250) 
         {
             if (AutoSubscribe)
             {

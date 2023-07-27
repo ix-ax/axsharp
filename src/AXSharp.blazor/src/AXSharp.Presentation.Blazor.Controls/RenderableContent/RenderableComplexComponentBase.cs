@@ -30,7 +30,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             set
             {
                 _component = value;
-                // this.UpdateValuesOnChange(_component, PollingInterval);
             } 
         }
     }
