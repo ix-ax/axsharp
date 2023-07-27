@@ -190,7 +190,10 @@ public class WebApiConnector : Connector
         if (!twinPrimitives.Any()) return;
 
         this.Logger.Debug($"Bulk reading: {twinPrimitives.Count()} items.");
-        this.Logger.Verbose("{vars}",string.Join("\n", (twinPrimitives).Select(p => $"{((OnlinerBase)p).Symbol} | poll counter: {((OnlinerBase)p).PollingsCount}")));
+        this.Logger
+            .Verbose("{vars}",
+                string.Join("\n", 
+                    (twinPrimitives).Select(p => $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.ToString()))}]")));
         
         var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
         

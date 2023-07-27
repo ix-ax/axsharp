@@ -32,7 +32,7 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     internal string _humanReadable;
 
-    public int PollingsCount { get; internal set; }
+    public HashSet<object> PollingHolders { get; internal set; } = new HashSet<object>();
 
     public int PollingInterval { get; internal set; }
 

@@ -5,9 +5,15 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using AXSharp.Connector;
+
 namespace AXSharp.Presentation.Blazor.Interfaces
 {
     public interface IRenderableComponent
     {
+        void AddToPolling(ITwinElement element, int pollingInterval = 250);
+
+        void RemovePolledElements();
+
     }
 }
