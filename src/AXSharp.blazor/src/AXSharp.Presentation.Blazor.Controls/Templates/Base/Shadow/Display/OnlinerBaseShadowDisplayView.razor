@@ -3,12 +3,12 @@
 @inherits TemplateBaseShadow<T>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
-        <label for="@ComponentId" >@Onliner.AttributeName</label>
-        <input id="@ComponentId"
-               class="w-100 form-control @AccessStatus"
-               style=@(IsReadOnly? "" : "background-color:transparent")
-               readonly="readonly"
-               type="text"
-               step=any
-               value=@Onliner.Shadow />
+    <label for="@ComponentId">@Onliner.AttributeName</label>
+    <input id="@ComponentId"
+           readonly="readonly"
+           class="w-100 form-control @AccessStatus"
+           style=@(IsReadOnly? "" : "background-color:transparent")
+           type="text"
+           step=any
+           @bind=@Onliner.Shadow>
 </TemplateView>

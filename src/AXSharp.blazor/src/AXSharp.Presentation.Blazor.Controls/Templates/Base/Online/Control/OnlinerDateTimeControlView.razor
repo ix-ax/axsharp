@@ -2,14 +2,10 @@
 @inherits TemplateBaseOnline<DateTime>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
-  
-    <label for="@ComponentId" >@Onliner.AttributeName</label>
+    <label for="@ComponentId">@Onliner.AttributeName</label>
     <input id="@ComponentId"
-            readonly="@IsReadOnly"
-            class="w-100 form-control @AccessStatus"
-            type="datetime-local"
-            step=1
-            name="onlineDateTime"
-            @bind="Value">
-      
+           readonly="@IsReadOnly"
+           class="w-100 form-control @AccessStatus"
+           type="datetime-local"
+           @bind="Value">
 </TemplateView>

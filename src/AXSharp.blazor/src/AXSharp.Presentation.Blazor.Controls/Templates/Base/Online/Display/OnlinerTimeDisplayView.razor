@@ -1,11 +1,12 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
-@inherits TemplateBaseShadow<DateTime>
+@inherits TemplateBaseOnline<TimeSpan>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
     <label for="@ComponentId">@Onliner.AttributeName</label>
     <input id="@ComponentId"
-           readonly="@IsReadOnly"
+           readonly="readonly"
            class="w-100 form-control @AccessStatus"
-           type="datetime-local"
-           @bind="Value">
+           style=@(IsReadOnly? "" : "background-color:transparent")
+           type="text"
+           value="@Onliner.Cyclic">
 </TemplateView>

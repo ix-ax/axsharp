@@ -1,25 +1,20 @@
-﻿@typeparam T
+﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
 @inherits TemplateBaseOnline<T>
-@namespace AXSharp.Presentation.Blazor.Controls.Templates
-
+@typeparam T
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
-
     <label for="@ComponentId">@Onliner.AttributeName</label>
     <input id="@ComponentId"
            readonly="@IsReadOnly"
            class="w-100 form-control @AccessStatus"
            type=@IsNumeric(typeof(T))
            step=any
-           @onfocus="@( () => {HasFocus = true; LastValue = Onliner.LastValue;} )"
-           @onblur="@( () => HasFocus = false )"
-           @bind="Value" />
-
+           @onfocus="@(() => { HasFocus = true; LastValue = Onliner.LastValue; })"
+           @onblur="@(() => HasFocus = false)"
+           @bind="Value">
 </TemplateView>
 
-
-@code{
-
+@code {
     private string IsNumeric(Type type)
     {
         if (type == null) return "text";
