@@ -211,6 +211,30 @@ namespace ix_integration_library.IxComponentServiceViewModel
 }
 </code></pre>
 <p>Note: viewmodel properties and variables can be accessed with inherited <code>ViewModel</code> variable.</p>
+<h2 id="optimizing-plc-data-polling">Optimizing PLC Data Polling</h2>
+<p>The <code>RenderableComponentBase</code> class contains an overridable method, <code>AddToPolling</code>, which is primarily tasked with adding elements to the polling queue. However, given the automatic subscription of all inner elements within a given object to the polling queue by default, it becomes imperative to manage this operation more precisely, especially when dealing with large objects.</p>
+<p>Overriding this method in derived classes allows for the customization of how many and which elements are added to the polling queue. This capability is crucial for controlling resources and optimizing performance by preventing the automatic addition of potentially large numbers of elements to the polling queue.</p>
+<p>Here is an example where the overridden method ensures that no elements are added to the polling queue:</p>
+<pre><code class="lang-C#">public override void AddToPolling(ITwinElement element, int pollingInterval = 250)
+{
+    // Overriding with an empty method ensures no elements are added to the polling queue.
+}
+</code></pre>
+<p>Contrastingly, in the following example, the overridden method only subscribes first-level primitive elements for polling, thus creating a more resource-efficient application:</p>
+<pre><code class="lang-C#">public override void AddToPolling(ITwinElement element, int pollingInterval = 250)
+{
+    var sequencer = (AxoSequencer)element;
+    var firstLevelPrimitives = sequencer.GetValueTags().ToList();
+
+    firstLevelPrimitives.ForEach(p =&gt;
+    {
+        p.StartPolling(pollingInterval, this);
+        PolledElements.Add(p);
+    });
+}
+</code></pre>
+<p>This strategy allows for a more efficient use of resources by reducing the load of polled elements on the system.</p>
+<p>For more details about polling <a href="../connectors/README.html#polling">General Polling</a>.</p>
 <h3 id="3-render-created-component">3. Render created component</h3>
 <pre><code class="lang-C#">&lt;RenderableContentControl 
     Presentation=&quot;Service&quot; 
