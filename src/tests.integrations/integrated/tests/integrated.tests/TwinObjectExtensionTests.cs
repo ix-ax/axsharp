@@ -357,6 +357,7 @@ namespace integrated.tests
         public async Task StartPolling_polling_should_continue_until_last_subscriber()
         {
             var holderObject = new object();
+            var holderObject1 = new object();
 
             //arrange
             var polling = Entry.Plc.StartPolling_should_update_cyclic_property;
@@ -367,27 +368,27 @@ namespace integrated.tests
             var pos = await polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.GetAsync();
 
             polling.StartPolling(50, holderObject);
-            polling.StartPolling(150, holderObject);
+            polling.StartPolling(150, holderObject1);
 
             Task.Delay(250).Wait();
 
-            Assert.True(polling.Id.Cyclic != id);
-            Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
+            Assert.NotEqual(id, polling.Id.Cyclic);
+            Assert.NotEqual(pos, polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic);
 
             polling.StopPolling(holderObject);
 
             Task.Delay(250).Wait();
-
+           
             id = polling.Id.Cyclic;
             pos = polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic;
 
             Task.Delay(250).Wait();
 
-            Assert.True(polling.Id.Cyclic != id);
-            Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
+            Assert.NotEqual(id, polling.Id.Cyclic);
+            Assert.NotEqual(pos, polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic);
 
 
-            polling.StopPolling(holderObject);
+            polling.StopPolling(holderObject1);
 
             Task.Delay(250).Wait();
 

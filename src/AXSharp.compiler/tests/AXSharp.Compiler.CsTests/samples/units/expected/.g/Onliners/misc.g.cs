@@ -829,9 +829,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             _complexKnown = new UnknownArraysShouldNotBeTraspiled.Complex[11];
-            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(_complexKnown, this, "_complexKnown", "_complexKnown", (p, rt, st) => new UnknownArraysShouldNotBeTraspiled.Complex(p, rt, st), new[]{(0, 10)});
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(_complexKnown, this, "_complexKnown", "_complexKnown", (p, rt, st) => new UnknownArraysShouldNotBeTraspiled.Complex(p, rt, st), new[] { (0, 10) });
             _primitive = new OnlinerByte[11];
-            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(_primitive, this, "_primitive", "_primitive", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st), new[]{(0, 10)});
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(_primitive, this, "_primitive", "_primitive", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st), new[] { (0, 10) });
             parent.AddChild(this);
             parent.AddKid(this);
             PostConstruct(parent, readableTail, symbolTail);
