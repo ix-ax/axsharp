@@ -23,9 +23,9 @@ namespace ArrayDeclarationSimpleNamespace
             HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
             PreConstruct(parent, readableTail, symbolTail);
             primitive = new OnlinerInt[100];
-            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(primitive, this, "primitive", "primitive", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateINT(p, rt, st), new[]{(1, 100)});
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(primitive, this, "primitive", "primitive", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateINT(p, rt, st), new[] { (1, 100) });
             complex = new ArrayDeclarationSimpleNamespace.some_complex_type[100];
-            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(complex, this, "complex", "complex", (p, rt, st) => new ArrayDeclarationSimpleNamespace.some_complex_type(p, rt, st), new[]{(1, 100)});
+            AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(complex, this, "complex", "complex", (p, rt, st) => new ArrayDeclarationSimpleNamespace.some_complex_type(p, rt, st), new[] { (1, 100) });
             parent.AddChild(this);
             parent.AddKid(this);
             PostConstruct(parent, readableTail, symbolTail);

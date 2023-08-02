@@ -16,6 +16,7 @@ using AXSharp.Connector.ValueTypes;
 using AXSharp.Presentation.Blazor.Interfaces;
 using AXSharp.Connector.ValueTypes.Online;
 using System.Xml.Linq;
+using Serilog;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
@@ -26,32 +27,57 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     {
         [Parameter] public int PollingInterval { get; set; }
 
-        ///<inheritdoc/>        
+        /// <summary>
+        /// Disposes this object as well as communication resources used by this component.
+        /// </summary>
         public virtual void Dispose()
         {
-            PolledElements.ForEach(p =>
+            RemovePolledElements();
+        }
+
+        /// <summary>
+        /// Contains set of elements polled for this component.
+        /// </summary>
+        protected HashSet<ITwinElement> PolledElements { get; } = new HashSet<ITwinElement>();
+
+        public bool HasFocus { get; set; }
+
+        /// <summary>
+        /// Adds <see cref="element"/> to the polling queue.
+        /// >[!IMPORTANT] This method should be overriden in the derived class to limit the number of elements to be polled for large objects.
+        /// > All inner primitive types of the element will be added to the polling queue by default. When creating override remember to add the polled element to
+        /// > the <see cref="PolledElements"/> set that is needed for removal of the element from the polling queue once the component is disposed.
+        /// </summary>
+        /// <param name="element">Element to be added to the polling queue.</param>
+        /// <param name="pollingInterval">Sets polling interval for the element.</param>
+        public virtual void AddToPolling(ITwinElement element, int pollingInterval = 250) 
+        {
+            element.StartPolling(pollingInterval, this);
+            PolledElements.Add(element);
+        }
+
+        /// <summary>
+        /// Removes elements added for polling from this component.
+        /// </summary>
+        public void RemovePolledElements()
+        {
+            PolledElements.ToList().ForEach(p =>
             {
-                p.StopPolling();
+                p.StopPolling(this);
             });
 
             PolledElements.Clear();
         }
-
-        private List<ITwinElement> PolledElements { get; } = new List<ITwinElement>();
-
-        public bool HasFocus { get; set; }
 
         /// <summary>
         ///  Method, which updates are primitive values of ITwinObject instance
         /// <param name="element">ITwinObject instance.</param>
         /// <param name="pollingInterval">Polling interval</param>
         /// </summary>
-        public void UpdateValuesOnChange(ITwinObject element, int pollingInterval = 250)
+        private void UpdateValuesOnChange(ITwinObject element, int pollingInterval = 250)
         {
             if (element != null)
             {
-                element.StartPolling(pollingInterval);
-                PolledElements.Add(element);
                 foreach (var twinPrimitive in element.RetrievePrimitives())
                 {
                     var tag = (OnlinerBase)twinPrimitive;
@@ -65,11 +91,29 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// <param name="tag">IValueTag instance.</param>
         /// <param name="pollingInterval">Polling interval</param>
         /// </summary>
-        public void UpdateValuesOnChange(OnlinerBase tag, int pollingInterval = 250)
+        private void UpdateValuesOnChange(OnlinerBase tag, int pollingInterval = 250)
         {
-            tag.StartPolling(pollingInterval);
-            PolledElements.Add(tag);
             tag.PropertyChanged += new PropertyChangedEventHandler(HandlePropertyChanged);
+        }
+
+        /// <summary>
+        ///  Method, which updates are primitive values of ITwinObject instance
+        /// <param name="element">ITwinElement instance.</param>
+        /// <param name="pollingInterval">Polling interval</param>
+        /// </summary>
+        public void UpdateValuesOnChange(ITwinElement element, int pollingInterval = 250)
+        {
+            AddToPolling(element, pollingInterval);
+
+            switch (element)
+            {
+                case ITwinObject o:
+                    UpdateValuesOnChange(o, pollingInterval);
+                    break;
+                case OnlinerBase b:
+                    UpdateValuesOnChange(b, pollingInterval);
+                    break;
+            }
         }
 
         /// <summary>

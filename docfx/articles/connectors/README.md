@@ -109,47 +109,42 @@ public class BatchedAccess
 }
 ~~~
 
-## Polling
+Polling allows an application to query a structure or variable at different intervals. The values are stored in the `Cyclic` property of value types. The polled variables are retrieved from the controller in the same way as during cyclic reading but at a specified interval. Unlike automatic subscription mode, the polled values can be unsubscribed.
 
-Polling allows the application to query a structure or variable in different intervals. The values are stored in `Cyclic` property of value types. Polled variables are retrieved from the controlled in the same way as during cylic reading but in a given interval. In contrast to automatic subscription mode the polled values can be unsubscribed.
+To enable polling, the subscription of the twin connector must be set to `Polling`.
 
-To allow polling, the twin connector's subscription must be set to `Polling`
-
-~~~ C#
+```C#
 Entry.Plc.Connector.SubscriptionMode = ReadSubscriptionMode.Polling;
 Entry.Plc.Connector.BuildAndStart();
-~~~
+```
 
 > **WARNING** 
-> The subscription mechanism must be selected at the application's start-up before any operation on the twin connector. Mixing subscription mode during lifetime of the application may result in inconsistent behavior.
+> The subscription mechanism must be selected at the application's start-up before any operation on the twin connector. Mixing subscription modes during the lifetime of the application may result in inconsistent behavior.
 
-### Start polling
+### Starting Polling
 
-To start polling a structure at given interval, use `StartPolling` method with an interval in `ms`.
-StartPolling is an extension method, remember to import the namespace `AXSharp.Connector`.
+To start polling a structure at a given interval, use the `StartPolling` method with an interval in milliseconds. `StartPolling` is an extension method, so remember to import the `AXSharp.Connector` namespace.
 
-~~~ C#
+```C#
 using AXSharp.Connector;
 .
 .
 
 Entry.Plc.Settings.StartPolling(50);
-~~~
+```
 
+### Stopping Polling 
 
-### Stop polling 
+To stop polling, call the `StopPolling` method on the structure you want to stop polling. `StopPolling` is also an extension method, so remember to import the `AXSharp.Connector` namespace.
 
-To stop polling call `StopPolling` method on the structure you want to stop polling.
-
-StopPolling is an extension method, remember to import the namespace `AXSharp.Connector`.
-
-~~~ C#
+```C#
 using AXSharp.Connector;
 .
 .
 
 Entry.Plc.Settings.StopPolling();
-~~~
+```
+
 See also
 
 [Polling in Blazor application](../blazor/RENDERABLECONTENT.md#renderable-content-control-polling)
