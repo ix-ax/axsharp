@@ -324,6 +324,7 @@ namespace integrated.tests
         [Fact]
         public async Task StartPolling_should_update_cyclic_property()
         {
+            var holderObject = new object();
             //arrange
             var polling = Entry.Plc.StartPolling_should_update_cyclic_property;
             polling.GetParent().GetConnector().SubscriptionMode = ReadSubscriptionMode.Polling;
@@ -332,14 +333,14 @@ namespace integrated.tests
             var id = await polling.Id.GetAsync();
             var pos = await polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.GetAsync();
 
-            polling.StartPolling(50);
+            polling.StartPolling(50, holderObject);
 
             Task.Delay(250).Wait();
 
             Assert.True(polling.Id.Cyclic != id);
             Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
 
-            polling.StopPolling();
+            polling.StopPolling(holderObject);
 
             Task.Delay(250).Wait();
 
@@ -355,6 +356,8 @@ namespace integrated.tests
         [Fact]
         public async Task StartPolling_polling_should_continue_until_last_subscriber()
         {
+            var holderObject = new object();
+
             //arrange
             var polling = Entry.Plc.StartPolling_should_update_cyclic_property;
             polling.GetParent().GetConnector().SubscriptionMode = ReadSubscriptionMode.Polling;
@@ -363,15 +366,15 @@ namespace integrated.tests
             var id = await polling.Id.GetAsync();
             var pos = await polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.GetAsync();
 
-            polling.StartPolling(50);
-            polling.StartPolling(150);
+            polling.StartPolling(50, holderObject);
+            polling.StartPolling(150, holderObject);
 
             Task.Delay(250).Wait();
 
             Assert.True(polling.Id.Cyclic != id);
             Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
 
-            polling.StopPolling();
+            polling.StopPolling(holderObject);
 
             Task.Delay(250).Wait();
 
@@ -384,7 +387,7 @@ namespace integrated.tests
             Assert.True(polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic != pos);
 
 
-            polling.StopPolling();
+            polling.StopPolling(holderObject);
 
             Task.Delay(250).Wait();
 

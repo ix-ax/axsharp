@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -31,9 +32,9 @@ public abstract class OnlinerBase : ITwinPrimitive
     private string _attributeName;
 
     internal string _humanReadable;
-
-    public HashSet<object> PollingHolders { get; internal set; } = new HashSet<object>();
-
+    
+    public ConcurrentDictionary<object, byte> PollingHolders = new ConcurrentDictionary<object, byte>();
+    
     public int PollingInterval { get; internal set; }
 
 

@@ -27,27 +27,38 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     {
         [Parameter] public int PollingInterval { get; set; }
 
-        [Parameter] public bool AutoSubscribe { get; set; } = true;
-
-        ///<inheritdoc/>        
+        /// <summary>
+        /// Disposes this object as well as communication resources used by this component.
+        /// </summary>
         public virtual void Dispose()
         {
             RemovePolledElements();
         }
 
+        /// <summary>
+        /// Contains set of elements polled for this component.
+        /// </summary>
         protected HashSet<ITwinElement> PolledElements { get; } = new HashSet<ITwinElement>();
 
         public bool HasFocus { get; set; }
 
+        /// <summary>
+        /// Adds <see cref="element"/> to the polling queue.
+        /// >[!IMPORTANT] This method should be overriden in the derived class to limit the number of elements to be polled for large objects.
+        /// > All inner primitive types of the element will be added to the polling queue by default. When creating override remember to add the polled element to
+        /// > the <see cref="PolledElements"/> set that is needed for removal of the element from the polling queue once the component is disposed.
+        /// </summary>
+        /// <param name="element">Element to be added to the polling queue.</param>
+        /// <param name="pollingInterval">Sets polling interval for the element.</param>
         public virtual void AddToPolling(ITwinElement element, int pollingInterval = 250) 
         {
-            if (AutoSubscribe)
-            {
-                element.StartPolling(pollingInterval, this);
-                PolledElements.Add(element);
-            }
+            element.StartPolling(pollingInterval, this);
+            PolledElements.Add(element);
         }
 
+        /// <summary>
+        /// Removes elements added for polling from this component.
+        /// </summary>
         public void RemovePolledElements()
         {
             PolledElements.ToList().ForEach(p =>

@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
+using Polly;
 
 namespace AXSharp.Connector
 {
@@ -60,21 +62,57 @@ namespace AXSharp.Connector
                         List<OnlinerBase> list = new List<OnlinerBase>();
                         foreach (var primitive in PollingPool) list.Add((OnlinerBase)primitive);
                         foreach (var twinPrimitive in
-                                 list.Where(p => p.PollingInterval == interval && p.PollingHolders.Any(a => a is not null)))
+                                 list.Where(p => p.PollingInterval == interval && p.PollingHolders.Any(a => a.Key is not null)))
                         {
                             twinPrimitive.Poll();
                         }
 
-                        //PollingPool.FirstOrDefault()?.GetParent()?.GetConnector().ReadBatchAsync(PollingPool);
                         Task.Delay(interval).Wait();
                     }
                 });
             }
         }
 
+        private static Policy _retryPolicy = Policy
+            .Handle<InvalidOperationException>()
+            .WaitAndRetry(5, retryAttempt => TimeSpan.FromMilliseconds(100));
+
+        private static void AddHolder(OnlinerBase primitive, object holder)
+        {
+            _retryPolicy.Execute(() =>
+            {
+                if (!primitive.PollingHolders.TryAdd(holder, 0))
+                {
+                    if (primitive.PollingHolders.ContainsKey(holder))
+                        return;
+
+                    throw new InvalidOperationException($"Failed to add: ({holder.GetHashCode()})");
+                }
+            });
+
+            primitive.PollingHolders.TryAdd(holder, 0);
+        }
+
+        private static void RemoveHolder(OnlinerBase primitive, object holder)
+        {
+
+            _retryPolicy.Execute(() =>
+            {
+                byte o = 0;
+                if (!primitive.PollingHolders.TryRemove(holder, out o))
+                {
+                    if (!primitive.PollingHolders.ContainsKey(holder))
+                        return;
+
+                    throw new InvalidOperationException($"Failed to remove value with key: {holder.GetHashCode()}");
+                }
+            });
+        }
+
         private static void UpdatePolling(int interval, OnlinerBase primitive, object holder)
         {
-            primitive.PollingHolders.Add(holder);
+            AddHolder(primitive, holder);
+
             primitive.PollingInterval = primitive.PollingInterval > interval
                 ? interval
                 : primitive.PollingInterval;
@@ -83,22 +121,23 @@ namespace AXSharp.Connector
         private static void AddToPolling(int interval, OnlinerBase primitive, object holder)
         {
             primitive.PollingInterval = interval;
-            primitive.PollingHolders.Add(holder);
+            AddHolder(primitive, holder);
         }
 
         public static void Remove(ITwinElement obj, object holder)
         {
+            byte dummy;
             switch (obj)
             {
                 case ITwinPrimitive primitive:
-                    ((OnlinerBase)primitive).PollingHolders.Remove(holder);
+                    RemoveHolder((OnlinerBase)primitive, holder);
                     if (((OnlinerBase)primitive).PollingHolders.Count <= 0)
                         PollingPool.Remove(primitive);
                     break;
                 case ITwinObject twinObject:
                     foreach (var primitive in twinObject.RetrievePrimitives())
                     {
-                        ((OnlinerBase)primitive).PollingHolders.Remove(holder);
+                        RemoveHolder((OnlinerBase)primitive, holder);
                         if (((OnlinerBase)primitive).PollingHolders.Count <= 0)
                             PollingPool.Remove(primitive);
 

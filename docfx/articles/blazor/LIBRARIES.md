@@ -179,6 +179,40 @@ Copy following code into `IxComponentServiceView.razor` file. Make sure, that `R
 ```
 Note: viewmodel properties and variables can be accessed with inherited `ViewModel` variable.
 
+## Optimizing PLC Data Polling
+
+The `RenderableComponentBase` class contains an overridable method, `AddToPolling`, which is primarily tasked with adding elements to the polling queue. However, given the automatic subscription of all inner elements within a given object to the polling queue by default, it becomes imperative to manage this operation more precisely, especially when dealing with large objects.
+
+Overriding this method in derived classes allows for the customization of how many and which elements are added to the polling queue. This capability is crucial for controlling resources and optimizing performance by preventing the automatic addition of potentially large numbers of elements to the polling queue.
+
+Here is an example where the overridden method ensures that no elements are added to the polling queue:
+
+```C#
+public override void AddToPolling(ITwinElement element, int pollingInterval = 250)
+{
+    // Overriding with an empty method ensures no elements are added to the polling queue.
+}
+```
+
+Contrastingly, in the following example, the overridden method only subscribes first-level primitive elements for polling, thus creating a more resource-efficient application:
+
+```C#
+public override void AddToPolling(ITwinElement element, int pollingInterval = 250)
+{
+    var sequencer = (AxoSequencer)element;
+    var firstLevelPrimitives = sequencer.GetValueTags().ToList();
+
+    firstLevelPrimitives.ForEach(p =>
+    {
+        p.StartPolling(pollingInterval, this);
+        PolledElements.Add(p);
+    });
+}
+```
+This strategy allows for a more efficient use of resources by reducing the load of polled elements on the system.
+
+For more details about polling [General Polling](../connectors/README.md#polling).
+
 ### 3. Render created component
 
 ```C#
