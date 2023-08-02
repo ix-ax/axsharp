@@ -6,12 +6,15 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using AXSharp.Connector.S71500.WebAPI;
+using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json;
+using Serilog.Events;
 using Siemens.Simatic.S7.Webserver.API.Exceptions;
 using Siemens.Simatic.S7.Webserver.API.Models.Responses;
 using Siemens.Simatic.S7.Webserver.API.Services;
@@ -175,14 +178,35 @@ public class WebApiConnector : Connector
     private const int MAX_READ_REQUEST_SEGMENT = (64 * 1024) - 628;
     private const int MAX_WRITE_REQUEST_SEGMENT = (64 * 1024) - 628;
 
+
+    private System.Diagnostics.Stopwatch stopwatch = new ();
+
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
+        
         if (primitives == null) return;
+
         var responseData = new ApiBulkResponse();
 
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+
         if (!twinPrimitives.Any()) return;
+
+        if (Logger.IsEnabled(LogEventLevel.Debug))
+        {
+            stopwatch.Restart();
+        }
+
+        if (Logger.IsEnabled(LogEventLevel.Verbose))
+        {
+            this.Logger
+                .Verbose("{vars}",
+                    string.Join("\n",
+                        (twinPrimitives).Select(p =>
+                            $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
+        }
+
         var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
         
         foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
@@ -210,7 +234,12 @@ public class WebApiConnector : Connector
             }
         }
 
-       
+        if (Logger.IsEnabled(LogEventLevel.Debug))
+        {
+            this.Logger.Debug($"Bulk reading: {twinPrimitives.Count()} items read in {stopwatch.ElapsedMilliseconds} ms.");
+        }
+
+
     }
 
     /// <inheritdoc />
@@ -219,6 +248,13 @@ public class WebApiConnector : Connector
         if (primitives == null) return;
         var responseData = new ApiBulkResponse();
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+
+        if (twinPrimitives.Any())
+        {
+            if (Logger.IsEnabled(LogEventLevel.Verbose))
+                this.Logger.Verbose($"Bulk writing: {twinPrimitives.Count()} items.");
+        }
+
         var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
         
         foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))

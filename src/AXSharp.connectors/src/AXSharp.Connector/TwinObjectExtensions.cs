@@ -267,9 +267,10 @@ public static class TwinObjectExtensions
     /// </summary>
     /// <param name="obj">Object to be polled.</param>
     /// <param name="interval">Polling interval in ms.</param>
-    public static void StartPolling(this ITwinElement obj, int interval)
+    /// <param name="holder">Object which owns this polling.</param>
+    public static void StartPolling(this ITwinElement obj, int interval, object holder)
     {
-        Polling.Add(obj, interval);
+        Polling.Add(obj, interval, holder);
     }
 
     /// <summary>
@@ -278,9 +279,10 @@ public static class TwinObjectExtensions
     /// If there is any remaining instance active the polling will continue until the last instance is stopped.
     /// </summary>
     /// <param name="obj">Object for which the polling should be stopped.</param>
-    public static void StopPolling(this ITwinElement obj)
+    /// <param name="holder">Object which owns this polling.</param>
+    public static void StopPolling(this ITwinElement obj, object holder)
     {
-        Polling.Remove(obj);
+        Polling.Remove(obj, holder);
     }
 
     /// <summary>

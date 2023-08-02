@@ -20,6 +20,7 @@ using AXSharp.Presentation.Blazor.Exceptions;
 using System.Reflection;
 using System.ComponentModel;
 using AXSharp.Connector.ValueTypes;
+using System.Xml.Linq;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
@@ -28,7 +29,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// </summary>
     public partial class RenderableContentControl : ComponentBase, IDisposable
     {
-        private string _presentation;
+        private ITwinElement _context;
 
         /// <summary>
         /// Gets or sets polling interval for this control and nested controls.
@@ -36,25 +37,22 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter] public int PollingInterval { get; set; } = 250;
 
+        
         /// <summary>
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
         /// </summary>
         [Parameter]
-        public object Context { get; set; }
+        public object Context
+        {
+            get => _context;
+            set { _context =  value as ITwinElement;  }
+        }
 
         /// <summary>
         /// Parameter Presentation specify mode, in which view UI is generated. Type PresentationType is used.
         /// </summary>
         [Parameter]
-        public string Presentation
-        {
-            get => _presentation;
-            set
-            {
-                _presentation = value;
-                this.OnInitialized();
-            } 
-        }
+        public string Presentation { get; set; }
 
 
         /// <summary>
@@ -84,24 +82,19 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         private Type _groupContainer { get; set; }
         public Type MainLayoutType { get; set; }
 
-        private ITwinElement _context { get; set; }
         protected override void OnInitialized()
         {
             base.OnInitialized();
 
-            try
-            {
-                _context = (ITwinElement)Context;
-                _context.StartPolling(this.PollingInterval);
-            }
-            catch
+            if(_context is null)
             {
                 throw new ParameterWrongTypeRendererException(Context.GetType().ToString());
-            }
+            }           
         }
+
         protected override void OnParametersSet()
         {
-
+            
             Type layoutType = TryLoadLayoutTypeFromProperty(_context);
             if (layoutType == null)
             {
@@ -116,6 +109,22 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             _viewModelCache.ResetCounter();
         }
 
+        private IList<IRenderableComponent> PolledComponents { get; } = new List<IRenderableComponent>();
+
+        private void SubscribeForPolling(IRenderableComponent component, ITwinElement element)
+        {
+            if (component == null) return;
+            PolledComponents?.Add(component);
+            component?.AddToPolling(element, this.PollingInterval);
+        }
+
+        private void UnSubscribeFromPolling()
+        {
+            foreach (var renderableComponent in PolledComponents)
+            {
+                renderableComponent.RemovePolledElements();
+            }
+        }
 
         /// <summary>
         /// Method to build component name from passed parameters, which instance will be found in assembly.
@@ -150,9 +159,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
             return null;
         }
-
-
-
 
         /// <summary>
         /// Method to build Generic component name from passed parameters, which instance will be found in assembly.
@@ -203,6 +209,9 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             {
                 __builder.AddAttribute(1, "Twin", twin);
             }
+
+           
+
             __builder.CloseComponent();
         };
 
@@ -344,18 +353,24 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                         var (baseName, genericTypeArg) = GetGenericInfo(twinType);
                         var onlinerName = $"{namespc}.{baseName}";
                         var onlinerBuildedComponentName = $"{onlinerName}{presentationName}View`1";
-                        return ComponentService.GetGenericComponent(onlinerBuildedComponentName, genericTypeArg);
+                        var genericComponent = ComponentService.GetGenericComponent(onlinerBuildedComponentName, genericTypeArg);
+                        SubscribeForPolling(genericComponent, twin);
+                        return genericComponent;
                     }
                     else
                     {
                         var onlinerName = $"{namespc}.{twinType.Name}";
                         var onlinerBuildedComponentName = $"{onlinerName}{presentationName}View";
-                        return ComponentService.GetComponent(onlinerBuildedComponentName);
+                        var primitiveComponent = ComponentService.GetComponent(onlinerBuildedComponentName);
+                        SubscribeForPolling(primitiveComponent, twin);
+                        return primitiveComponent;
                     }
                 default:
                     var name = $"{namespc}.{twinType.Name}";
                     var buildedComponentName = $"{name}{presentationName}View";
-                    return ComponentService.GetComponent(buildedComponentName);
+                    var defaultComponent = ComponentService.GetComponent(buildedComponentName);
+                    SubscribeForPolling(defaultComponent, twin);
+                    return defaultComponent;
             }
         }
         private bool HasReadAccess(ITwinPrimitive kid) => kid.ReadWriteAccess == ReadWriteAccess.Read;
@@ -382,7 +397,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         public virtual void Dispose()
         {
-            _context?.StopPolling();
+            UnSubscribeFromPolling();
             _viewModelCache.ResetCounter();
         }
     }
