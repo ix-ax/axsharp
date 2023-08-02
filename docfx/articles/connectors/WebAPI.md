@@ -40,3 +40,6 @@ Entry.Plc.Connector.SetLoggerConfiguration(new LoggerConfiguration()
     .MinimumLevel.Debug()
     .CreateLogger());
 ```
+
+> [!WARNING]
+> **Enabling monitoring will impact the connector perfomance.**

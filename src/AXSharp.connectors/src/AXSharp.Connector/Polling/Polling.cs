@@ -24,7 +24,8 @@ namespace AXSharp.Connector
 
         private static Dictionary<int, Task> PollingTasks { get; } = new();
 
-        public static void Add(ITwinElement obj, int interval, object holder)
+
+        internal static void Add(ITwinElement obj, int interval, object holder)
         {
             switch (obj)
             {
@@ -124,7 +125,7 @@ namespace AXSharp.Connector
             AddHolder(primitive, holder);
         }
 
-        public static void Remove(ITwinElement obj, object holder)
+        internal static void Remove(ITwinElement obj, object holder)
         {
             byte dummy;
             switch (obj)

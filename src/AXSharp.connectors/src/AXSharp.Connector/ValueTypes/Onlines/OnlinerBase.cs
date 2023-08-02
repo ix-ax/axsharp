@@ -33,7 +33,7 @@ public abstract class OnlinerBase : ITwinPrimitive
 
     internal string _humanReadable;
     
-    public ConcurrentDictionary<object, byte> PollingHolders = new ConcurrentDictionary<object, byte>();
+    internal ConcurrentDictionary<object, byte> PollingHolders = new ConcurrentDictionary<object, byte>();
     
     public int PollingInterval { get; internal set; }
 

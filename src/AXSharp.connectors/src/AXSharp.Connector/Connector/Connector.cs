@@ -65,6 +65,11 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         IdentityProvider = new TwinIdentityProvider(this);
     }
 
+    /// <summary>
+    /// Sets logger for this connector.
+    /// >![NOTE] The default logger is implemented. Default implementation will log into console and in simple text file.
+    /// </summary>
+    /// <param name="logger">Logger</param>
     public void SetLoggerConfiguration(ILogger logger)
     {
         this._logger = logger;
