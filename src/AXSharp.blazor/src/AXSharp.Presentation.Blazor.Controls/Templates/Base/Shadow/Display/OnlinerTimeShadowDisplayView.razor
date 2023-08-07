@@ -1,4 +1,5 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
+@using System.Globalization;
 @inherits TemplateBaseShadow<TimeSpan>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
@@ -8,5 +9,5 @@
            class="w-100 form-control @AccessStatus"
            style=@(IsReadOnly? "" : "background-color:transparent")
            type="text"
-           value="@Onliner.Shadow">
+           value="@Onliner.Shadow.ToString(Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture)">
 </TemplateView>

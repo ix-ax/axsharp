@@ -1,13 +1,13 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
 @using System.Globalization;
-@inherits TemplateBaseOnline<TimeSpan>
+@inherits TemplateBaseOnline<Double>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
     <label for="@ComponentId">@Onliner.AttributeName</label>
     <input id="@ComponentId"
            readonly="readonly"
            class="w-100 form-control @AccessStatus"
-           style="@(IsReadOnly? "" : "background-color:transparent")"
+           style=@(IsReadOnly? "" : "background-color:transparent")
            type="text"
-           value="@Onliner.Cyclic.ToString(@"hh\:mm\:ss", CultureInfo.InvariantCulture)">
+           value="@Onliner.Shadow">
 </TemplateView>

@@ -1,30 +1,24 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
 @using System.Globalization;
-@using System.Text.RegularExpressions;
-@inherits TemplateBaseOnline<TimeSpan>
+@inherits TemplateBaseOnline<Single>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
     <label for="@ComponentId">@Onliner.AttributeName</label>
     <input id="@ComponentId"
            readonly="@IsReadOnly"
            class="w-100 form-control @AccessStatus"
-           type="text"
-           value="@Value.ToString(Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture)"
+           type="number"
+           step="any"
+           value="@Value.ToString().Replace(',', '.')"
            @onfocus="@(() => { HasFocus = true; LastValue = Onliner.LastValue; })"
            @onblur="@(() => HasFocus = false)"
-           @onchange="Change"
-           @key="Key">
+           @onchange="Change">
 </TemplateView>
 
-@code
-{
-    private int Key = 0;
-
+@code {
     private void Change(ChangeEventArgs args)
     {
-        if (TimeSpan.TryParseExact(args.Value.ToString(), Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture, out var parseValue))
+        if (Single.TryParse(args.Value.ToString().Replace('.', ','), out var parseValue))
             Value = parseValue;
-
-        Key++;
     }
 }

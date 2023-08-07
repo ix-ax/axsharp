@@ -1,4 +1,5 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
+@using System.Globalization;
 @inherits TemplateBaseOnline<TimeSpan>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
@@ -6,7 +7,7 @@
     <input id="@ComponentId"
            readonly="readonly"
            class="w-100 form-control @AccessStatus"
-           style=@(IsReadOnly? "" : "background-color:transparent")
+           style="@(IsReadOnly? "" : "background-color:transparent")"
            type="text"
-           value="@Onliner.Cyclic">
+           value="@Onliner.Cyclic.ToString(Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture)">
 </TemplateView>

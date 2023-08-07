@@ -8,8 +8,8 @@
            readonly="@IsReadOnly"
            class="w-100 form-control @AccessStatus"
            type="@IsNumeric(typeof(T))"
-           step=any
-           @bind=@Onliner.Shadow>
+           step="any"
+           @bind="@Onliner.Shadow">
 </TemplateView>
 @code
 {

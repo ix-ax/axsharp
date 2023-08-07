@@ -1,4 +1,5 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
+@using System.Globalization;
 @inherits TemplateBaseOnline<T>
 @typeparam T
 
@@ -7,11 +8,11 @@
     <input id="@ComponentId"
            readonly="@IsReadOnly"
            class="w-100 form-control @AccessStatus"
-           type=@IsNumeric(typeof(T))
-           step=any
+           type="@IsNumeric(typeof(T))"
+           step="any"
+           @bind="Value"
            @onfocus="@(() => { HasFocus = true; LastValue = Onliner.LastValue; })"
-           @onblur="@(() => HasFocus = false)"
-           @bind="Value">
+           @onblur="@(() => HasFocus = false)">
 </TemplateView>
 
 @code {
