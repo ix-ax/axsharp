@@ -111,11 +111,15 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         private IList<IRenderableComponent> PolledComponents { get; } = new List<IRenderableComponent>();
 
+        private bool _pollingStarted = false;
+
         private void SubscribeForPolling(IRenderableComponent component, ITwinElement element)
         {
+            if (_pollingStarted) return;
             if (component == null) return;
             PolledComponents?.Add(component);
             component?.AddToPolling(element, this.PollingInterval);
+            _pollingStarted = true;
         }
 
         private void UnSubscribeFromPolling()
@@ -124,6 +128,8 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             {
                 renderableComponent.RemovePolledElements();
             }
+
+            _pollingStarted = false;
         }
 
         /// <summary>
@@ -326,7 +332,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
             return false;
         }
-
+        
         private (string, Type) GetGenericInfo(Type primitiveKidType)
         {
             if (primitiveKidType == null) return (null, null);
