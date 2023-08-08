@@ -115,7 +115,8 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         private void SubscribeForPolling(IRenderableComponent component, ITwinElement element)
         {
-            if (this.Presentation.StartsWith("Shadow")) return;
+            var presentation = this.Presentation;
+            if (presentation != null && presentation.StartsWith("Shadow")) return;
             if (component == null) return;
             if(PolledComponents.Contains(component)) return;
             PolledComponents?.Add(component);
