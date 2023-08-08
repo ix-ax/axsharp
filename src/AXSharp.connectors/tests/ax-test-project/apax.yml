@@ -7,11 +7,7 @@ targets:
   - plcsim
   - swcpu
 devDependencies:
-  "@ax/sdk": 3.0.17
-dependencies:
-  "@ax/hwld": ^0.7.10
-  "@ax/hwc": ^0.7.92
-  "@ax/sld": ^0.14.2
+  "@ax/sdk": ^4.0.3
 scripts:
   postbuild: dotnet run --project
     ..//..//..//AXSharp.compiler//src//ixc//AXSharp.ixc.csproj --framework
