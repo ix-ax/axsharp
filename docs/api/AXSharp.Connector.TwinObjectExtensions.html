@@ -246,7 +246,7 @@
     <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_Connector_TwinObjectExtensions_CreatePoco_AXSharp_Connector_ITwinObject_.md&amp;value=---%0Auid%3A%20AXSharp.Connector.TwinObjectExtensions.CreatePoco(AXSharp.Connector.ITwinObject)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.connectors/src/AXSharp.Connector/TwinObjectExtensions.cs/#L294">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.connectors/src/AXSharp.Connector/TwinObjectExtensions.cs/#L296">View Source</a>
   </span>
   <a id="AXSharp_Connector_TwinObjectExtensions_CreatePoco_" data-uid="AXSharp.Connector.TwinObjectExtensions.CreatePoco*"></a>
   <h4 id="AXSharp_Connector_TwinObjectExtensions_CreatePoco_AXSharp_Connector_ITwinObject_" data-uid="AXSharp.Connector.TwinObjectExtensions.CreatePoco(AXSharp.Connector.ITwinObject)">CreatePoco(ITwinObject)</h4>
@@ -586,19 +586,19 @@ Connector.MAIN.Read();</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_Connector_TwinObjectExtensions_StartPolling_AXSharp_Connector_ITwinElement_System_Int32_.md&amp;value=---%0Auid%3A%20AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_Connector_TwinObjectExtensions_StartPolling_AXSharp_Connector_ITwinElement_System_Int32_System_Object_.md&amp;value=---%0Auid%3A%20AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement%2CSystem.Int32%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.connectors/src/AXSharp.Connector/TwinObjectExtensions.cs/#L270">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.connectors/src/AXSharp.Connector/TwinObjectExtensions.cs/#L271">View Source</a>
   </span>
   <a id="AXSharp_Connector_TwinObjectExtensions_StartPolling_" data-uid="AXSharp.Connector.TwinObjectExtensions.StartPolling*"></a>
-  <h4 id="AXSharp_Connector_TwinObjectExtensions_StartPolling_AXSharp_Connector_ITwinElement_System_Int32_" data-uid="AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement,System.Int32)">StartPolling(ITwinElement, int)</h4>
+  <h4 id="AXSharp_Connector_TwinObjectExtensions_StartPolling_AXSharp_Connector_ITwinElement_System_Int32_System_Object_" data-uid="AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement,System.Int32,System.Object)">StartPolling(ITwinElement, int, object)</h4>
   <div class="markdown level1 summary"><p>Starts polling data from a <a class="xref" href="AXSharp.Connector.ITwinElement.html">ITwinElement</a> at given interval.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void StartPolling(this ITwinElement obj, int interval)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void StartPolling(this ITwinElement obj, int interval, object holder)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -622,17 +622,23 @@ Connector.MAIN.Read();</code></pre>
         <td><p>Polling interval in ms.</p>
 </td>
       </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">holder</span></td>
+        <td><p>Object which owns this polling.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_Connector_TwinObjectExtensions_StopPolling_AXSharp_Connector_ITwinElement_.md&amp;value=---%0Auid%3A%20AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/ix-ax/ix/new/dev/apiSpec/new?filename=AXSharp_Connector_TwinObjectExtensions_StopPolling_AXSharp_Connector_ITwinElement_System_Object_.md&amp;value=---%0Auid%3A%20AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.connectors/src/AXSharp.Connector/TwinObjectExtensions.cs/#L281">View Source</a>
+    <a href="https://github.com/ix-ax/ix/blob/dev/src/AXSharp.connectors/src/AXSharp.Connector/TwinObjectExtensions.cs/#L283">View Source</a>
   </span>
   <a id="AXSharp_Connector_TwinObjectExtensions_StopPolling_" data-uid="AXSharp.Connector.TwinObjectExtensions.StopPolling*"></a>
-  <h4 id="AXSharp_Connector_TwinObjectExtensions_StopPolling_AXSharp_Connector_ITwinElement_" data-uid="AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement)">StopPolling(ITwinElement)</h4>
+  <h4 id="AXSharp_Connector_TwinObjectExtensions_StopPolling_AXSharp_Connector_ITwinElement_System_Object_" data-uid="AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement,System.Object)">StopPolling(ITwinElement, object)</h4>
   <div class="markdown level1 summary"><p>Stop polling data from a <a class="xref" href="AXSharp.Connector.ITwinElement.html">ITwinElement</a>.
 Polling mechanism checks whether there is another polling instance active for the given object.
 If there is any remaining instance active the polling will continue until the last instance is stopped.</p>
@@ -640,7 +646,7 @@ If there is any remaining instance active the polling will continue until the la
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void StopPolling(this ITwinElement obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void StopPolling(this ITwinElement obj, object holder)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -656,6 +662,12 @@ If there is any remaining instance active the polling will continue until the la
         <td><a class="xref" href="AXSharp.Connector.ITwinElement.html">ITwinElement</a></td>
         <td><span class="parametername">obj</span></td>
         <td><p>Object for which the polling should be stopped.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">holder</span></td>
+        <td><p>Object which owns this polling.</p>
 </td>
       </tr>
     </tbody>

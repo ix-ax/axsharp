@@ -1070,6 +1070,31 @@ references:
   fullName.vb: AXSharp.Compiler.Core.IxNodeVisitor.New
   nameWithType: IxNodeVisitor.IxNodeVisitor
   nameWithType.vb: IxNodeVisitor.New
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalAndExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Accept(IConditionalAndExpressionSyntax, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_AX_ST_Syntax_Tree_IConditionalAndExpressionSyntax_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalAndExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalAndExpressionSyntax, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Accept(IConditionalAndExpressionSyntax, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalOrExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Accept(IConditionalOrExpressionSyntax, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_AX_ST_Syntax_Tree_IConditionalOrExpressionSyntax_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalOrExpressionSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IConditionalOrExpressionSyntax, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Accept(IConditionalOrExpressionSyntax, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IProgramConfigurationSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  name: Accept(IProgramConfigurationSyntax, ICombinedThreeVisitor)
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_AX_ST_Syntax_Tree_IProgramConfigurationSyntax_AXSharp_Compiler_Core_ICombinedThreeVisitor_
+  commentId: M:AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IProgramConfigurationSyntax,AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept(AX.ST.Syntax.Tree.IProgramConfigurationSyntax, AXSharp.Compiler.Core.ICombinedThreeVisitor)
+  nameWithType: IxNodeVisitor.Accept(IProgramConfigurationSyntax, ICombinedThreeVisitor)
+- uid: AXSharp.Compiler.Core.IxNodeVisitor.Accept*
+  name: Accept
+  href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Accept_
+  commentId: Overload:AXSharp.Compiler.Core.IxNodeVisitor.Accept
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Core.IxNodeVisitor.Accept
+  nameWithType: IxNodeVisitor.Accept
 - uid: AXSharp.Compiler.Core.IxNodeVisitor.Visit(AX.ST.Semantic.Model.Declarations.IDocComment,AXSharp.Compiler.Core.ICombinedThreeVisitor)
   name: Visit(IDocComment, ICombinedThreeVisitor)
   href: api/AXSharp.Compiler.Core.IxNodeVisitor.html#AXSharp_Compiler_Core_IxNodeVisitor_Visit_AX_ST_Semantic_Model_Declarations_IDocComment_AXSharp_Compiler_Core_ICombinedThreeVisitor_
@@ -3394,6 +3419,19 @@ references:
   fullName.vb: AXSharp.Connector.Connector.SetField(Of T)(T, T, String)
   nameWithType: Connector.SetField<T>(ref T, T, string)
   nameWithType.vb: Connector.SetField(Of T)(T, T, String)
+- uid: AXSharp.Connector.Connector.SetLoggerConfiguration(Serilog.ILogger)
+  name: SetLoggerConfiguration(ILogger)
+  href: api/AXSharp.Connector.Connector.html#AXSharp_Connector_Connector_SetLoggerConfiguration_Serilog_ILogger_
+  commentId: M:AXSharp.Connector.Connector.SetLoggerConfiguration(Serilog.ILogger)
+  fullName: AXSharp.Connector.Connector.SetLoggerConfiguration(Serilog.ILogger)
+  nameWithType: Connector.SetLoggerConfiguration(ILogger)
+- uid: AXSharp.Connector.Connector.SetLoggerConfiguration*
+  name: SetLoggerConfiguration
+  href: api/AXSharp.Connector.Connector.html#AXSharp_Connector_Connector_SetLoggerConfiguration_
+  commentId: Overload:AXSharp.Connector.Connector.SetLoggerConfiguration
+  isSpec: "True"
+  fullName: AXSharp.Connector.Connector.SetLoggerConfiguration
+  nameWithType: Connector.SetLoggerConfiguration
 - uid: AXSharp.Connector.Connector.StartReadWriteOps
   name: StartReadWriteOps()
   href: api/AXSharp.Connector.Connector.html#AXSharp_Connector_Connector_StartReadWriteOps
@@ -4930,6 +4968,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Identity.TwinIdentityProvider.AddIdentity
   nameWithType: TwinIdentityProvider.AddIdentity
+- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  name: ConstructIdentitiesAsync()
+  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ConstructIdentitiesAsync
+  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync()
+  nameWithType: TwinIdentityProvider.ConstructIdentitiesAsync()
+- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync*
+  name: ConstructIdentitiesAsync
+  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ConstructIdentitiesAsync_
+  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  isSpec: "True"
+  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ConstructIdentitiesAsync
+  nameWithType: TwinIdentityProvider.ConstructIdentitiesAsync
 - uid: AXSharp.Connector.Identity.TwinIdentityProvider.GetTwinByIdentity(AXSharp.Connector.Identity.ITwinIdentity)
   name: GetTwinByIdentity(ITwinIdentity)
   href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_GetTwinByIdentity_AXSharp_Connector_Identity_ITwinIdentity_
@@ -4987,45 +5038,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Identity.TwinIdentityProvider.IdentitiesCount
   nameWithType: TwinIdentityProvider.IdentitiesCount
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  name: ReadIdentities()
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ReadIdentities
-  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities()
-  nameWithType: TwinIdentityProvider.ReadIdentities()
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities*
-  name: ReadIdentities
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_ReadIdentities_
-  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  isSpec: "True"
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.ReadIdentities
-  nameWithType: TwinIdentityProvider.ReadIdentities
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  name: RefreshIdentities()
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_RefreshIdentities
-  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities()
-  nameWithType: TwinIdentityProvider.RefreshIdentities()
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities*
-  name: RefreshIdentities
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_RefreshIdentities_
-  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  isSpec: "True"
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.RefreshIdentities
-  nameWithType: TwinIdentityProvider.RefreshIdentities
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  name: SortIdentities()
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_SortIdentities
-  commentId: M:AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities()
-  nameWithType: TwinIdentityProvider.SortIdentities()
-- uid: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities*
-  name: SortIdentities
-  href: api/AXSharp.Connector.Identity.TwinIdentityProvider.html#AXSharp_Connector_Identity_TwinIdentityProvider_SortIdentities_
-  commentId: Overload:AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  isSpec: "True"
-  fullName: AXSharp.Connector.Identity.TwinIdentityProvider.SortIdentities
-  nameWithType: TwinIdentityProvider.SortIdentities
 - uid: AXSharp.Connector.IgnoreReflectionAttribute
   name: IgnoreReflectionAttribute
   href: api/AXSharp.Connector.IgnoreReflectionAttribute.html
@@ -9047,15 +9059,15 @@ references:
   commentId: F:AXSharp.Connector.TwinObjectExtensions.ShadowToPlainMethodName
   fullName: AXSharp.Connector.TwinObjectExtensions.ShadowToPlainMethodName
   nameWithType: TwinObjectExtensions.ShadowToPlainMethodName
-- uid: AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement,System.Int32)
-  name: StartPolling(ITwinElement, int)
-  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_StartPolling_AXSharp_Connector_ITwinElement_System_Int32_
-  commentId: M:AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement,System.Int32)
-  name.vb: StartPolling(ITwinElement, Integer)
-  fullName: AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement, int)
-  fullName.vb: AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement, Integer)
-  nameWithType: TwinObjectExtensions.StartPolling(ITwinElement, int)
-  nameWithType.vb: TwinObjectExtensions.StartPolling(ITwinElement, Integer)
+- uid: AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement,System.Int32,System.Object)
+  name: StartPolling(ITwinElement, int, object)
+  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_StartPolling_AXSharp_Connector_ITwinElement_System_Int32_System_Object_
+  commentId: M:AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement,System.Int32,System.Object)
+  name.vb: StartPolling(ITwinElement, Integer, Object)
+  fullName: AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement, int, object)
+  fullName.vb: AXSharp.Connector.TwinObjectExtensions.StartPolling(AXSharp.Connector.ITwinElement, Integer, Object)
+  nameWithType: TwinObjectExtensions.StartPolling(ITwinElement, int, object)
+  nameWithType.vb: TwinObjectExtensions.StartPolling(ITwinElement, Integer, Object)
 - uid: AXSharp.Connector.TwinObjectExtensions.StartPolling*
   name: StartPolling
   href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_StartPolling_
@@ -9063,12 +9075,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.TwinObjectExtensions.StartPolling
   nameWithType: TwinObjectExtensions.StartPolling
-- uid: AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement)
-  name: StopPolling(ITwinElement)
-  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_StopPolling_AXSharp_Connector_ITwinElement_
-  commentId: M:AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement)
-  fullName: AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement)
-  nameWithType: TwinObjectExtensions.StopPolling(ITwinElement)
+- uid: AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement,System.Object)
+  name: StopPolling(ITwinElement, object)
+  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_StopPolling_AXSharp_Connector_ITwinElement_System_Object_
+  commentId: M:AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement,System.Object)
+  name.vb: StopPolling(ITwinElement, Object)
+  fullName: AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement, object)
+  fullName.vb: AXSharp.Connector.TwinObjectExtensions.StopPolling(AXSharp.Connector.ITwinElement, Object)
+  nameWithType: TwinObjectExtensions.StopPolling(ITwinElement, object)
+  nameWithType.vb: TwinObjectExtensions.StopPolling(ITwinElement, Object)
 - uid: AXSharp.Connector.TwinObjectExtensions.StopPolling*
   name: StopPolling
   href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_StopPolling_
@@ -9863,19 +9878,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ValueTypes.OnlinerBase.PollingInterval
   nameWithType: OnlinerBase.PollingInterval
-- uid: AXSharp.Connector.ValueTypes.OnlinerBase.PollingsCount
-  name: PollingsCount
-  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_PollingsCount
-  commentId: P:AXSharp.Connector.ValueTypes.OnlinerBase.PollingsCount
-  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.PollingsCount
-  nameWithType: OnlinerBase.PollingsCount
-- uid: AXSharp.Connector.ValueTypes.OnlinerBase.PollingsCount*
-  name: PollingsCount
-  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_PollingsCount_
-  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase.PollingsCount
-  isSpec: "True"
-  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.PollingsCount
-  nameWithType: OnlinerBase.PollingsCount
 - uid: AXSharp.Connector.ValueTypes.OnlinerBase.PropertyChanged
   name: PropertyChanged
   href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_PropertyChanged
@@ -14264,15 +14266,15 @@ references:
   commentId: T:AXSharp.ixc_doc.Helpers.YamlHelpers
   fullName: AXSharp.ixc_doc.Helpers.YamlHelpers
   nameWithType: YamlHelpers
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor(System.String)
-  name: YamlHelpers(string)
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers__ctor_System_String_
-  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor(System.String)
-  name.vb: New(String)
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.YamlHelpers(string)
-  fullName.vb: AXSharp.ixc_doc.Helpers.YamlHelpers.New(String)
-  nameWithType: YamlHelpers.YamlHelpers(string)
-  nameWithType.vb: YamlHelpers.New(String)
+- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor
+  name: YamlHelpers()
+  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers__ctor
+  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor
+  name.vb: New()
+  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.YamlHelpers()
+  fullName.vb: AXSharp.ixc_doc.Helpers.YamlHelpers.New()
+  nameWithType: YamlHelpers.YamlHelpers()
+  nameWithType.vb: YamlHelpers.New()
 - uid: AXSharp.ixc_doc.Helpers.YamlHelpers.#ctor*
   name: YamlHelpers
   href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers__ctor_
@@ -14424,12 +14426,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetClassFromXml
   nameWithType: YamlHelpers.GetClassFromXml
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location)
-  name: GetComments(Location)
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_GetComments_AX_Text_Location_
-  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location)
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location)
-  nameWithType: YamlHelpers.GetComments(Location)
+- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location,System.Boolean)
+  name: GetComments(Location, bool)
+  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_GetComments_AX_Text_Location_System_Boolean_
+  commentId: M:AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location,System.Boolean)
+  name.vb: GetComments(Location, Boolean)
+  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location, bool)
+  fullName.vb: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments(AX.Text.Location, Boolean)
+  nameWithType: YamlHelpers.GetComments(Location, bool)
+  nameWithType.vb: YamlHelpers.GetComments(Location, Boolean)
 - uid: AXSharp.ixc_doc.Helpers.YamlHelpers.GetComments*
   name: GetComments
   href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_GetComments_
@@ -14450,19 +14455,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.GetInheritedMembers
   nameWithType: YamlHelpers.GetInheritedMembers
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  name: PathToProjectFile
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_PathToProjectFile
-  commentId: P:AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  nameWithType: YamlHelpers.PathToProjectFile
-- uid: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile*
-  name: PathToProjectFile
-  href: api/AXSharp.ixc_doc.Helpers.YamlHelpers.html#AXSharp_ixc_doc_Helpers_YamlHelpers_PathToProjectFile_
-  commentId: Overload:AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  isSpec: "True"
-  fullName: AXSharp.ixc_doc.Helpers.YamlHelpers.PathToProjectFile
-  nameWithType: YamlHelpers.PathToProjectFile
 - uid: AXSharp.ixc_doc.Helpers.YamlSerializerHelper
   name: YamlSerializerHelper
   href: api/AXSharp.ixc_doc.Helpers.YamlSerializerHelper.html
@@ -14604,6 +14596,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateClassYaml
   nameWithType: IYamlBuiderVisitor.CreateClassYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml*
+  name: CreateEnumTypeYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumTypeYaml
+  nameWithType: IYamlBuiderVisitor.CreateEnumTypeYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumValueYaml_AX_ST_Semantic_Model_Declarations_IEnumValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml*
+  name: CreateEnumValueYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateEnumValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateEnumValueYaml
+  nameWithType: IYamlBuiderVisitor.CreateEnumValueYaml
 - uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateFieldYaml(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateFieldYaml(IFieldDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateFieldYaml_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -14695,6 +14713,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueTypeYaml
   nameWithType: IYamlBuiderVisitor.CreateNamedValueTypeYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateNamedValueYaml_AX_ST_Semantic_Model_Declarations_INamedValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml*
+  name: CreateNamedValueYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateNamedValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamedValueYaml
+  nameWithType: IYamlBuiderVisitor.CreateNamedValueYaml
 - uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamespaceYaml(AX.ST.Semantic.Model.Declarations.INamespaceDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateNamespaceYaml(INamespaceDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateNamespaceYaml_AX_ST_Semantic_Model_Declarations_INamespaceDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -14708,6 +14739,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateNamespaceYaml
   nameWithType: IYamlBuiderVisitor.CreateNamespaceYaml
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateStructuredTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: IYamlBuiderVisitor.CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml*
+  name: CreateStructuredTypeYaml
+  href: api/AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.html#AXSharp_ixc_doc_Interfaces_IYamlBuiderVisitor_CreateStructuredTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Interfaces.IYamlBuiderVisitor.CreateStructuredTypeYaml
+  nameWithType: IYamlBuiderVisitor.CreateStructuredTypeYaml
 - uid: AXSharp.ixc_doc.Models
   name: AXSharp.ixc_doc.Models
   href: api/AXSharp.ixc_doc.Models.html
@@ -15694,19 +15738,6 @@ references:
   fullName.vb: AXSharp.ixc_doc.Visitors.MyNodeVisitor.New
   nameWithType: MyNodeVisitor.MyNodeVisitor
   nameWithType.vb: MyNodeVisitor.New
-- uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  name: axProject
-  href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_axProject
-  commentId: P:AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  nameWithType: MyNodeVisitor.axProject
-- uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject*
-  name: axProject
-  href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_axProject_
-  commentId: Overload:AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  isSpec: "True"
-  fullName: AXSharp.ixc_doc.Visitors.MyNodeVisitor.axProject
-  nameWithType: MyNodeVisitor.axProject
 - uid: AXSharp.ixc_doc.Visitors.MyNodeVisitor.MapYamlHelperToSchema
   name: MapYamlHelperToSchema()
   href: api/AXSharp.ixc_doc.Visitors.MyNodeVisitor.html#AXSharp_ixc_doc_Visitors_MyNodeVisitor_MapYamlHelperToSchema
@@ -16131,6 +16162,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateClassYaml
   nameWithType: YamlBuilder.CreateClassYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IEnumTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IEnumTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateEnumTypeYaml(IEnumTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml*
+  name: CreateEnumTypeYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumTypeYaml
+  nameWithType: YamlBuilder.CreateEnumTypeYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumValueYaml_AX_ST_Semantic_Model_Declarations_IEnumValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml(AX.ST.Semantic.Model.Declarations.IEnumValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateEnumValueYaml(IEnumValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml*
+  name: CreateEnumValueYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateEnumValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateEnumValueYaml
+  nameWithType: YamlBuilder.CreateEnumValueYaml
 - uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateFieldYaml(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateFieldYaml(IFieldDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateFieldYaml_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -16209,6 +16266,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueTypeYaml
   nameWithType: YamlBuilder.CreateNamedValueTypeYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateNamedValueYaml_AX_ST_Semantic_Model_Declarations_INamedValueDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml(AX.ST.Semantic.Model.Declarations.INamedValueDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateNamedValueYaml(INamedValueDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml*
+  name: CreateNamedValueYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateNamedValueYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamedValueYaml
+  nameWithType: YamlBuilder.CreateNamedValueYaml
 - uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamespaceYaml(AX.ST.Semantic.Model.Declarations.INamespaceDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
   name: CreateNamespaceYaml(INamespaceDeclaration, MyNodeVisitor)
   href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateNamespaceYaml_AX_ST_Semantic_Model_Declarations_INamespaceDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
@@ -16222,6 +16292,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateNamespaceYaml
   nameWithType: YamlBuilder.CreateNamespaceYaml
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  name: CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateStructuredTypeYaml_AX_ST_Semantic_Model_Declarations_Types_IStructuredTypeDeclaration_AXSharp_ixc_doc_Visitors_MyNodeVisitor_
+  commentId: M:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration,AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml(AX.ST.Semantic.Model.Declarations.Types.IStructuredTypeDeclaration, AXSharp.ixc_doc.Visitors.MyNodeVisitor)
+  nameWithType: YamlBuilder.CreateStructuredTypeYaml(IStructuredTypeDeclaration, MyNodeVisitor)
+- uid: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml*
+  name: CreateStructuredTypeYaml
+  href: api/AXSharp.ixc_doc.Visitors.YamlBuilder.html#AXSharp_ixc_doc_Visitors_YamlBuilder_CreateStructuredTypeYaml_
+  commentId: Overload:AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Visitors.YamlBuilder.CreateStructuredTypeYaml
+  nameWithType: YamlBuilder.CreateStructuredTypeYaml
 - uid: AXSharp.ixr_doc
   name: AXSharp.ixr_doc
   href: api/AXSharp.ixr_doc.html
@@ -17604,6 +17687,22 @@ references:
   commentId: T:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase
   nameWithType: RenderableComponentBase
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling(AXSharp.Connector.ITwinElement,System.Int32)
+  name: AddToPolling(ITwinElement, int)
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_AddToPolling_AXSharp_Connector_ITwinElement_System_Int32_
+  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling(AXSharp.Connector.ITwinElement,System.Int32)
+  name.vb: AddToPolling(ITwinElement, Integer)
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling(AXSharp.Connector.ITwinElement, int)
+  fullName.vb: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling(AXSharp.Connector.ITwinElement, Integer)
+  nameWithType: RenderableComponentBase.AddToPolling(ITwinElement, int)
+  nameWithType.vb: RenderableComponentBase.AddToPolling(ITwinElement, Integer)
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling*
+  name: AddToPolling
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_AddToPolling_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.AddToPolling
+  nameWithType: RenderableComponentBase.AddToPolling
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.Dispose
   name: Dispose()
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_Dispose
@@ -17678,6 +17777,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.HasFocus
   nameWithType: RenderableComponentBase.HasFocus
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PolledElements
+  name: PolledElements
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_PolledElements
+  commentId: P:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PolledElements
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PolledElements
+  nameWithType: RenderableComponentBase.PolledElements
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PolledElements*
+  name: PolledElements
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_PolledElements_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PolledElements
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PolledElements
+  nameWithType: RenderableComponentBase.PolledElements
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
   name: PollingInterval
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_PollingInterval
@@ -17691,6 +17803,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.PollingInterval
   nameWithType: RenderableComponentBase.PollingInterval
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.RemovePolledElements
+  name: RemovePolledElements()
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_RemovePolledElements
+  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.RemovePolledElements
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.RemovePolledElements()
+  nameWithType: RenderableComponentBase.RemovePolledElements()
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.RemovePolledElements*
+  name: RemovePolledElements
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_RemovePolledElements_
+  commentId: Overload:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.RemovePolledElements
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.RemovePolledElements
+  nameWithType: RenderableComponentBase.RemovePolledElements
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateShadowValuesOnChange(AXSharp.Connector.ITwinObject)
   name: UpdateShadowValuesOnChange(ITwinObject)
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateShadowValuesOnChange_AXSharp_Connector_ITwinObject_
@@ -17710,24 +17835,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateShadowValuesOnChange
   nameWithType: RenderableComponentBase.UpdateShadowValuesOnChange
-- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject,System.Int32)
-  name: UpdateValuesOnChange(ITwinObject, int)
-  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ITwinObject_System_Int32_
-  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject,System.Int32)
-  name.vb: UpdateValuesOnChange(ITwinObject, Integer)
-  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject, int)
-  fullName.vb: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinObject, Integer)
-  nameWithType: RenderableComponentBase.UpdateValuesOnChange(ITwinObject, int)
-  nameWithType.vb: RenderableComponentBase.UpdateValuesOnChange(ITwinObject, Integer)
-- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase,System.Int32)
-  name: UpdateValuesOnChange(OnlinerBase, int)
-  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ValueTypes_OnlinerBase_System_Int32_
-  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase,System.Int32)
-  name.vb: UpdateValuesOnChange(OnlinerBase, Integer)
-  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase, int)
-  fullName.vb: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ValueTypes.OnlinerBase, Integer)
-  nameWithType: RenderableComponentBase.UpdateValuesOnChange(OnlinerBase, int)
-  nameWithType.vb: RenderableComponentBase.UpdateValuesOnChange(OnlinerBase, Integer)
+- uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinElement,System.Int32)
+  name: UpdateValuesOnChange(ITwinElement, int)
+  href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_AXSharp_Connector_ITwinElement_System_Int32_
+  commentId: M:AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinElement,System.Int32)
+  name.vb: UpdateValuesOnChange(ITwinElement, Integer)
+  fullName: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinElement, int)
+  fullName.vb: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange(AXSharp.Connector.ITwinElement, Integer)
+  nameWithType: RenderableComponentBase.UpdateValuesOnChange(ITwinElement, int)
+  nameWithType.vb: RenderableComponentBase.UpdateValuesOnChange(ITwinElement, Integer)
 - uid: AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.UpdateValuesOnChange*
   name: UpdateValuesOnChange
   href: api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html#AXSharp_Presentation_Blazor_Controls_RenderableContent_RenderableComponentBase_UpdateValuesOnChange_
@@ -19101,6 +19217,35 @@ references:
   commentId: T:AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent
   fullName: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent
   nameWithType: IRenderableComponent
+- uid: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling(AXSharp.Connector.ITwinElement,System.Int32)
+  name: AddToPolling(ITwinElement, int)
+  href: api/AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.html#AXSharp_Presentation_Blazor_Interfaces_IRenderableComponent_AddToPolling_AXSharp_Connector_ITwinElement_System_Int32_
+  commentId: M:AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling(AXSharp.Connector.ITwinElement,System.Int32)
+  name.vb: AddToPolling(ITwinElement, Integer)
+  fullName: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling(AXSharp.Connector.ITwinElement, int)
+  fullName.vb: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling(AXSharp.Connector.ITwinElement, Integer)
+  nameWithType: IRenderableComponent.AddToPolling(ITwinElement, int)
+  nameWithType.vb: IRenderableComponent.AddToPolling(ITwinElement, Integer)
+- uid: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling*
+  name: AddToPolling
+  href: api/AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.html#AXSharp_Presentation_Blazor_Interfaces_IRenderableComponent_AddToPolling_
+  commentId: Overload:AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.AddToPolling
+  nameWithType: IRenderableComponent.AddToPolling
+- uid: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.RemovePolledElements
+  name: RemovePolledElements()
+  href: api/AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.html#AXSharp_Presentation_Blazor_Interfaces_IRenderableComponent_RemovePolledElements
+  commentId: M:AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.RemovePolledElements
+  fullName: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.RemovePolledElements()
+  nameWithType: IRenderableComponent.RemovePolledElements()
+- uid: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.RemovePolledElements*
+  name: RemovePolledElements
+  href: api/AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.html#AXSharp_Presentation_Blazor_Interfaces_IRenderableComponent_RemovePolledElements_
+  commentId: Overload:AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.RemovePolledElements
+  isSpec: "True"
+  fullName: AXSharp.Presentation.Blazor.Interfaces.IRenderableComponent.RemovePolledElements
+  nameWithType: IRenderableComponent.RemovePolledElements
 - uid: AXSharp.Presentation.Blazor.Interfaces.IRenderableViewModelBase
   name: IRenderableViewModelBase
   href: api/AXSharp.Presentation.Blazor.Interfaces.IRenderableViewModelBase.html
