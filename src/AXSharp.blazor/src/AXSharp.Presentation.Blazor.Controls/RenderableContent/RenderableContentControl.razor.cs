@@ -115,8 +115,10 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         private void SubscribeForPolling(IRenderableComponent component, ITwinElement element)
         {
-            if (_pollingStarted) return;
+            var presentation = this.Presentation;
+            if (presentation != null && presentation.StartsWith("Shadow")) return;
             if (component == null) return;
+            if(PolledComponents.Contains(component)) return;
             PolledComponents?.Add(component);
             component?.AddToPolling(element, this.PollingInterval);
             _pollingStarted = true;
@@ -126,7 +128,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         {
             foreach (var renderableComponent in PolledComponents)
             {
-                renderableComponent.RemovePolledElements();
+                renderableComponent?.RemovePolledElements();
             }
 
             _pollingStarted = false;
