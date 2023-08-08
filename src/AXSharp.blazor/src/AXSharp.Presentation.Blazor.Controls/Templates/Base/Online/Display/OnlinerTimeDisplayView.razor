@@ -9,5 +9,5 @@
            class="w-100 form-control @AccessStatus"
            style="@(IsReadOnly? "" : "background-color:transparent")"
            type="text"
-           value="@Onliner.Cyclic.ToString(@"hh\:mm\:ss", CultureInfo.InvariantCulture)">
+           value="@Onliner.Cyclic.ToString(Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture)">
 </TemplateView>
