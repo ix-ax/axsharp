@@ -1,5 +1,6 @@
 ﻿@namespace AXSharp.Presentation.Blazor.Controls.Templates
 @using System.Globalization;
+@using System.Text.RegularExpressions;
 @inherits TemplateBaseOnline<TimeSpan>
 
 <TemplateView Symbol="@OnlinerSymbol" FailureReason="@Onliner.AccessStatus.FailureReason">
@@ -7,33 +8,23 @@
     <input id="@ComponentId"
            readonly="@IsReadOnly"
            class="w-100 form-control @AccessStatus"
-           type="time"
-           step="1"
-           value="@Value.ToString(@"hh\:mm\:ss", CultureInfo.InvariantCulture)"
+           type="text"
+           value="@Value.ToString(Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture)"
            @onfocus="@(() => { HasFocus = true; LastValue = Onliner.LastValue; })"
            @onblur="@(() => HasFocus = false)"
-           @onfocusout="FocusOut"
            @onchange="Change"
            @key="Key">
 </TemplateView>
 
 @code
 {
-    private TimeSpan InputValue { get; set; }
     private int Key = 0;
-
-    private void FocusOut(FocusEventArgs args)
-    {
-        if (InputValue != new TimeSpan())
-            Value = InputValue;
-        InputValue = new TimeSpan();
-
-        Key++;
-    }
 
     private void Change(ChangeEventArgs args)
     {
-        if (TimeSpan.TryParse(args.Value.ToString(), CultureInfo.InvariantCulture, out var parseValue))
-            InputValue = parseValue;
+        if (TimeSpan.TryParseExact(args.Value.ToString(), Onliner.AttributeFormatString ?? "c", CultureInfo.InvariantCulture, out var parseValue))
+            Value = parseValue;
+
+        Key++;
     }
 }
