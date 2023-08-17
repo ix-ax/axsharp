@@ -14,6 +14,10 @@ Let's have following .razor file with localized strings
 
 ```
 
+We can call this script:
+
+`ltr -f test.razor -o test.resx`
+
 Following resx file will be generated:
 
 ![example](../../images/example-resx.png)
@@ -23,12 +27,19 @@ Following resx file will be generated:
 dotnet tool install AXSharp.ltr --prerelease --local
 
 
-## Usage
+## Parameters
 
-This cli tool have following parameters:
+This cli tool can be used with following parameters:
 
-- -i (--identifier) - identifier represent localizer, which is used to locate localized strings
-- -o (--)
--f
--d
--o
+- -i (--identifier) 
+    - identifier which represent localizer, which is used to locate localized strings (default is `Localizer`)
+    - not required
+- -o (--output)
+    - output resx file
+    - mandatory
+- -f (--file)
+    - source file, where localized string are located
+    - not required if -d is present
+- -d (--directory) 
+    - source directory, which files are enumerated and localized string are then located
+    - not required if -f is present

@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackAsTool>True</PackAsTool>
-		<ToolCommandName>axltr</ToolCommandName>
+		<ToolCommandName>ltr</ToolCommandName>
 	</PropertyGroup>
 
 	<ItemGroup>

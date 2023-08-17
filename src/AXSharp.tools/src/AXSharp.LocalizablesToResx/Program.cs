@@ -44,7 +44,7 @@ public static class ResXGen
 {
     public static uint count;
     public static Regex LocalizableRegex;
-    static Dictionary<string, string> ResxDictionary = new Dictionary<string, string>();
+    public static Dictionary<string, string> ResxDictionary = new Dictionary<string, string>();
 
 
     /// <summary>

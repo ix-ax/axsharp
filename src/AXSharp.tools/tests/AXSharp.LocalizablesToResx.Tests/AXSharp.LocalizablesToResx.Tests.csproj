@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="output\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="input\DifferentIdentifier.razor">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
