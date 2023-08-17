@@ -35,6 +35,7 @@
       "AXSharp.templates\\working\\templates\\ixconsole\\ixconsole.twin\\ixconsole.csproj",
       "AXSharp.templates\\working\\templates\\ixconsole\\ixconsole\\ixconsole.app.csproj",
       "AXSharp.templates\\working\\templates\\ixtwin\\ixtwin.csproj",
+      "AXSharp.tools\\tests\\AXSharp.LocalizablesToResx.Tests\\AXSharp.LocalizablesToResx.Tests.csproj"
       "AXSharp.tools\\src\\AXSharp.nuget.update\\AXSharp.nuget.update.csproj",
       "AXSharp.tools\\tests\\AXSharp.nuget.update.Tests\\AXSharp.nuget.update.Tests.csproj",
       "sanbox\\integration\\ix-integration-blazor\\ix-integration-blazor.csproj",
