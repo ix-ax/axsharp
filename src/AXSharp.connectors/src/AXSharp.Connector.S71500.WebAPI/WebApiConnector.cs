@@ -97,7 +97,7 @@ public class WebApiConnector : Connector
     {
         get
         {
-            lock (_locker)
+            //lock (_locker)
             {
                 return _requestHandler;
             }
@@ -181,10 +181,12 @@ public class WebApiConnector : Connector
 
     private System.Diagnostics.Stopwatch stopwatch = new ();
 
+
+    private int concurrentRequest = 0;
+
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
-        
         if (primitives == null) return;
 
         var responseData = new ApiBulkResponse();
@@ -192,86 +194,120 @@ public class WebApiConnector : Connector
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
 
         if (!twinPrimitives.Any()) return;
-
-        if (Logger.IsEnabled(LogEventLevel.Debug))
+        try
         {
-            stopwatch.Restart();
-        }
+            if (Logger.IsEnabled(LogEventLevel.Debug))
+            {
+                stopwatch.Restart();
+            }
 
-        if (Logger.IsEnabled(LogEventLevel.Verbose))
-        {
-            this.Logger
-                .Verbose("{vars}",
+            if (Logger.IsEnabled(LogEventLevel.Verbose))
+            {
+                this.Logger
+                    .Verbose("{vars}",
                     string.Join("\n",
                         (twinPrimitives).Select(p =>
                             $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
-        }
+            }
 
-        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-        
-        foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
+            concurrentRequest++;
+
+            while (concurrentRequest > 3)
+            {
+                System.Threading.Thread.Sleep(10);
+            }
+
+            var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+
+            foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
+            {
+                var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
+                var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
+                try
+                {
+                    responseData = await RequestHandler.ApiBulkAsync(segment);
+                    var position = 0;
+                    apiPrimitives.ToList()
+                        .ForEach(p =>
+                        {
+                            p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
+                            p.AccessStatus.Update(RwCycleCount);
+                        });
+                }
+                catch (ApiBulkRequestException apiException)
+                {
+                    HandleCommFailure(apiException, "Batch read failed.", apiPrimitives, apiException.BulkResponse,
+                        apiPrimitives.Select(p => p.PeekPlcReadRequestData));
+                }
+                catch (Exception e)
+                {
+                    HandleCommFailure(e, "Batch read failed.", apiPrimitives, responseData,
+                        apiPrimitives.Select(p => p.PeekPlcReadRequestData));
+                }
+            }
+        }
+        finally
         {
-            var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
-            var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
-            try
-            {
-                responseData = await RequestHandler.ApiBulkAsync(segment);
-                var position = 0;
-                apiPrimitives.ToList()
-                    .ForEach(p =>
-                    {
-                        p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
-                        p.AccessStatus.Update(RwCycleCount);
-                    });
-            }
-            catch (ApiBulkRequestException apiException)
-            {
-                HandleCommFailure(apiException, "Batch read failed.", apiPrimitives, apiException.BulkResponse, apiPrimitives.Select(p => p.PeekPlcReadRequestData));
-            }
-            catch (Exception e)
-            {
-                HandleCommFailure(e, "Batch read failed.", apiPrimitives, responseData, apiPrimitives.Select(p => p.PeekPlcReadRequestData));
-            }
+            concurrentRequest--;
         }
 
         if (Logger.IsEnabled(LogEventLevel.Debug))
         {
-            this.Logger.Debug($"Bulk reading: {twinPrimitives.Count()} items read in {stopwatch.ElapsedMilliseconds} ms.");
+                this.Logger.Debug($"Bulk reading: {twinPrimitives.Count()} items read in {stopwatch.ElapsedMilliseconds} ms.");
         }
-
-
     }
 
     /// <inheritdoc />
     public override async Task WriteBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
+
+       
+
         if (primitives == null) return;
-        var responseData = new ApiBulkResponse();
-        var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-
-        if (twinPrimitives.Any())
+        try
         {
-            if (Logger.IsEnabled(LogEventLevel.Verbose))
-                this.Logger.Verbose($"Bulk writing: {twinPrimitives.Count()} items.");
+
+            concurrentRequest++;
+
+            while (concurrentRequest > 3)
+            {
+                System.Threading.Thread.Sleep(10);
+            }
+
+            var responseData = new ApiBulkResponse();
+            var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+
+            if (twinPrimitives.Any())
+            {
+                if (Logger.IsEnabled(LogEventLevel.Verbose))
+                    this.Logger.Verbose($"Bulk writing: {twinPrimitives.Count()} items.");
+            }
+
+            var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+
+            foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))
+            {
+                var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
+                try
+                {
+                    responseData =
+                        await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                }
+                catch (ApiBulkRequestException apiException)
+                {
+                    HandleCommFailure(apiException, "Batch write failed.", twinPrimitives, apiException.BulkResponse,
+                        apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                }
+                catch (Exception e)
+                {
+                    HandleCommFailure(e, "Batch write failed.", twinPrimitives, responseData,
+                        apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                }
+            }
         }
-
-        var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-        
-        foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))
+        finally
         {
-            var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
-            try
-            {
-                responseData = await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p =>p.PeekPlcWriteRequestData));
-            }
-            catch (ApiBulkRequestException apiException)
-            {
-                HandleCommFailure(apiException, "Batch write failed.", twinPrimitives, apiException.BulkResponse, apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
-            }
-            catch (Exception e)
-            {
-                HandleCommFailure(e, "Batch write failed.", twinPrimitives, responseData, apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
-            }
+            concurrentRequest--;
         }
     }
 
@@ -285,7 +321,7 @@ public class WebApiConnector : Connector
     {
         base.ClearPeriodicReadSet();
         var hitCount = RwCycleCount;
-        Task.Delay(300).Wait(); //TODO: we have to address this differently... preventing concurrency...
+        //Task.Delay(300).Wait(); //TODO: we have to address this differently... preventing concurrency...
     }
 
 
