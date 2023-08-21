@@ -34,6 +34,9 @@ PROGRAM MyProgram
         maxsmatch : full_of_primitives_match;
 
         myColors : Colors;
+
+        Hierarchy : hierarchy;
+
     END_VAR
 
     VAR

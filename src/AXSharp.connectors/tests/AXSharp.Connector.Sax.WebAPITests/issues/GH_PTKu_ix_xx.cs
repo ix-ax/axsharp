@@ -20,6 +20,13 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
 {
     public class GH_PTKu_ix_xx
     {
+
+        public GH_PTKu_ix_xx()
+        {
+                Entry.Plc.Connector.ReadWriteCycleDelay = 250;
+                Entry.Plc.Connector.BuildAndStart();
+        }
+
         [Fact()]
         public async Task reproductionRead()
         {
@@ -34,6 +41,7 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
                     results.Add(Entry.Plc.mins.ReadAsync());
                     results.Add(Entry.Plc.maxsmatch.ReadAsync());
                     results.Add(Entry.Plc.minsmatch.ReadAsync());
+                    results.Add(Entry.Plc.Hierarchy.ReadAsync());
 
                     //await Entry.Plc.maxs.ReadAsync();
                     //await Entry.Plc.mins.ReadAsync();
@@ -65,6 +73,7 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
                     results.Add(Entry.Plc.mins.WriteAsync());
                     results.Add(Entry.Plc.maxsmatch.WriteAsync());
                     results.Add(Entry.Plc.minsmatch.WriteAsync());
+                    results.Add(Entry.Plc.Hierarchy.WriteAsync());
                 }
 
                 foreach (var task in results)
@@ -95,6 +104,7 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
                     results.Add(Entry.Plc.maxsmatch.ReadAsync());
                     results.Add(Entry.Plc.minsmatch.WriteAsync());
                     results.Add(Entry.Plc.minsmatch.ReadAsync());
+                    results.Add(Entry.Plc.Hierarchy.ReadAsync());
                 }
 
                 foreach (var task in results)
