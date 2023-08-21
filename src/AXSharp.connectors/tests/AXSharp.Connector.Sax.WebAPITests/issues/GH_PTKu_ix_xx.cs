@@ -18,35 +18,44 @@ using exploratory;
 
 namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
 {
-    public class GH_PTKu_ix_xx
+    public class GH_PTKu_ix_xx : IDisposable
     {
+
+        public void Dispose()
+        {
+            Plc.Hierarchy.StopPolling( this);
+            Plc = null;
+            System.GC.Collect();
+        }
+
+        public ax_test_projectTwinController Plc { get; private set; }
 
         public GH_PTKu_ix_xx()
         {
-                Entry.Plc.Connector.ReadWriteCycleDelay = 250;
-                Entry.Plc.Connector.BuildAndStart();
+            Plc = new ax_test_projectTwinController(ConnectorAdapterBuilder.Build().CreateWebApi("10.10.10.100", "Everybody", "", true));
+            Plc.Connector.ReadWriteCycleDelay = 250;
+            Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
+            Plc.Connector.SubscriptionMode = ReadSubscriptionMode.Polling;
+            Plc.Connector.BuildAndStart();
+            Plc.Hierarchy.StartPolling(250, this);
+            Task.Delay(1000).Wait();
+
         }
 
         [Fact()]
         public async Task reproductionRead()
         {
 
-            Entry.Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
             //while (true)
             {
                 var results = new List<Task>();
                 for (int i = 0; i < 100; i++)
                 {
-                    results.Add(Entry.Plc.maxs.ReadAsync());
-                    results.Add(Entry.Plc.mins.ReadAsync());
-                    results.Add(Entry.Plc.maxsmatch.ReadAsync());
-                    results.Add(Entry.Plc.minsmatch.ReadAsync());
-                    results.Add(Entry.Plc.Hierarchy.ReadAsync());
-
-                    //await Entry.Plc.maxs.ReadAsync();
-                    //await Entry.Plc.mins.ReadAsync();
-                    //await Entry.Plc.maxsmatch.ReadAsync();
-                    //await Entry.Plc.minsmatch.ReadAsync();
+                    results.Add(Plc.maxs.ReadAsync());
+                    results.Add(Plc.mins.ReadAsync());
+                    results.Add(Plc.maxsmatch.ReadAsync());
+                    results.Add(Plc.minsmatch.ReadAsync());
+                    results.Add(Plc.Hierarchy.ReadAsync());
                 }
 
                 foreach (var task in results)
@@ -62,18 +71,17 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
         public async Task reproductionWrite()
         {
 
-            Entry.Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
             //while (true)
             {
 
                 var results = new List<Task>();
                 for (int i = 0; i < 100; i++)
                 {
-                    results.Add(Entry.Plc.maxs.WriteAsync());
-                    results.Add(Entry.Plc.mins.WriteAsync());
-                    results.Add(Entry.Plc.maxsmatch.WriteAsync());
-                    results.Add(Entry.Plc.minsmatch.WriteAsync());
-                    results.Add(Entry.Plc.Hierarchy.WriteAsync());
+                    results.Add(Plc.maxs.WriteAsync());
+                    results.Add(Plc.mins.WriteAsync());
+                    results.Add(Plc.maxsmatch.WriteAsync());
+                    results.Add(Plc.minsmatch.WriteAsync());
+                    results.Add(Plc.Hierarchy.WriteAsync());
                 }
 
                 foreach (var task in results)
@@ -88,23 +96,20 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
         [Fact()]
         public async Task reproductionReadWrite()
         {
-
-            Entry.Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
-            //while (true)
             {
 
                 var results = new List<Task>();
                 for (int i = 0; i < 100; i++)
                 {
-                    results.Add(Entry.Plc.maxs.WriteAsync());
-                    results.Add(Entry.Plc.maxs.ReadAsync());
-                    results.Add(Entry.Plc.mins.WriteAsync());
-                    results.Add(Entry.Plc.mins.ReadAsync());
-                    results.Add(Entry.Plc.maxsmatch.WriteAsync());
-                    results.Add(Entry.Plc.maxsmatch.ReadAsync());
-                    results.Add(Entry.Plc.minsmatch.WriteAsync());
-                    results.Add(Entry.Plc.minsmatch.ReadAsync());
-                    results.Add(Entry.Plc.Hierarchy.ReadAsync());
+                    results.Add(Plc.maxs.WriteAsync());
+                    results.Add(Plc.maxs.ReadAsync());
+                    results.Add(Plc.mins.WriteAsync());
+                    results.Add(Plc.mins.ReadAsync());
+                    results.Add(Plc.maxsmatch.WriteAsync());
+                    results.Add(Plc.maxsmatch.ReadAsync());
+                    results.Add(Plc.minsmatch.WriteAsync());
+                    results.Add(Plc.minsmatch.ReadAsync());
+                    results.Add(Plc.Hierarchy.ReadAsync());
                 }
 
                 foreach (var task in results)

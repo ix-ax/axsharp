@@ -97,7 +97,7 @@ public class WebApiConnector : Connector
     {
         get
         {
-            //lock (_locker)
+            // lock (_locker)
             {
                 return _requestHandler;
             }
@@ -427,7 +427,7 @@ public class WebApiConnector : Connector
         return connector as WebApiConnector ?? new WebApiConnector();
     }
 
-    internal override async Task ReadBatchAsyncCylic(IEnumerable<ITwinPrimitive> primitives)
+    internal override async Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
     {
         if (primitives == null) return;
 
@@ -453,17 +453,14 @@ public class WebApiConnector : Connector
             }
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-            int segmetsCount = 0;
+            
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
             {
-                if (++segmetsCount > 1)
-                    Logger.Warning($"Read segmation... {webApiPrimitives.Count()} {segmetsCount}");
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
                 var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
                 try
                 {
                     responseData = await RequestHandler.ApiBulkAsync(segment);
-                    System.Threading.Thread.Sleep(3);
                     var position = 0;
                     apiPrimitives.ToList()
                         .ForEach(p =>
@@ -471,6 +468,8 @@ public class WebApiConnector : Connector
                             p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
                             p.AccessStatus.Update(RwCycleCount);
                         });
+
+                    Task.Delay(10).Wait();
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -494,7 +493,7 @@ public class WebApiConnector : Connector
         }
     }
 
-    internal override async Task WriteBatchAsyncCylic(IEnumerable<ITwinPrimitive> primitives)
+    internal override async Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
     {
         if (primitives == null) return;
         try
@@ -510,17 +509,15 @@ public class WebApiConnector : Connector
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
 
-            int segmetsCount = 0;
             foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))
             {
-                if (++segmetsCount > 1)
-                    Logger.Warning($"Write segmation... {webApiPrimitives.Count()} {segmetsCount}");
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
                 try
                 {
                     responseData =
                         await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
-                    System.Threading.Thread.Sleep(20);
+
+                    Task.Delay(10).Wait();
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -532,6 +529,8 @@ public class WebApiConnector : Connector
                     HandleCommFailure(e, "Batch write failed.", twinPrimitives, responseData,
                         apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
                 }
+
+                
             }
         }
         finally

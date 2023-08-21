@@ -76,12 +76,4 @@
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>
 	</ItemGroup>
-
-	<!--<ItemGroup>
-		<ProjectReference Include="..\..\..\..\..\simatic-s7-webserver-api\src\Webserver.API\Webserver.API.csproj">
-			<IncludeAssets>WebServer.API.dll</IncludeAssets>
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-		</ProjectReference>
-		<ProjectReference Include="..\AXSharp.Connector\AXSharp.Connector.csproj" />
-	</ItemGroup>-->
 </Project>

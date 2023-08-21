@@ -186,7 +186,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     {
         get
         {
-            if (concurrentRequestDelay == 0) concurrentRequestDelay = 5;
+            if (concurrentRequestDelay < 5) concurrentRequestDelay = 5;
 
             return concurrentRequestDelay;
         }
@@ -202,7 +202,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     {
         get
         {
-            if (concurrentRequestMaxCount== 0) concurrentRequestMaxCount = 3;
+            if (concurrentRequestMaxCount < 3) concurrentRequestMaxCount = 3;
 
             return concurrentRequestMaxCount;
         }
@@ -263,7 +263,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// <param name="primitives">Primitive items to be read.</param>
     public abstract Task ReadBatchAsync(IEnumerable<ITwinPrimitive> primitives);
 
-    internal abstract Task ReadBatchAsyncCylic(IEnumerable<ITwinPrimitive> primitives);
+    internal abstract Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
 
     /// <summary>
     ///     Writes batch of value items to the plc.
@@ -271,7 +271,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// <param name="primitives">Primitive items to be written.</param>
     public abstract Task WriteBatchAsync(IEnumerable<ITwinPrimitive> primitives);
 
-    internal abstract Task WriteBatchAsyncCylic(IEnumerable<ITwinPrimitive> primitives);
+    internal abstract Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
 
     /// <summary>
     ///     Return symbol path combining parent's and member's symbol.
@@ -428,7 +428,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
             Logger.Debug($"Periodic reading of '{distinctPrimitivesToRead.Count()}' items.");
         }
 
-        await ReadBatchAsyncCylic(distinctPrimitivesToRead
+        await ReadBatchAsyncCyclic(distinctPrimitivesToRead
             .Where(p => !(p.ReadOnce && p.AccessStatus.LastAccess != OnlinerBase.DefaultDateTime)));
 
         this.ClearPeriodicReadSet();
@@ -439,7 +439,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// </summary>
     protected async Task CyclicWrite()
     {
-        await WriteBatchAsyncCylic(NextCycleWriteSet.Values);
+        await WriteBatchAsyncCyclic(NextCycleWriteSet.Values);
         ClearPeriodicWriteSet();
     }
 

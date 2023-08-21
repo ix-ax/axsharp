@@ -96,7 +96,7 @@ public class DummyConnector : Connector
     {
     }
 
-    internal override async Task ReadBatchAsyncCylic(IEnumerable<ITwinPrimitive> primitives)
+    internal override async Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
     {
         ArgumentNullException.ThrowIfNull(primitives);
 
@@ -111,7 +111,7 @@ public class DummyConnector : Connector
         });
     }
 
-    internal override async Task WriteBatchAsyncCylic(IEnumerable<ITwinPrimitive> primitives)
+    internal override async Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
     {
         ArgumentNullException.ThrowIfNull(primitives);
 
