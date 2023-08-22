@@ -41,6 +41,8 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
 
     private bool isRwLoopSuspended;
     private int readWriteCycleDealy;
+    private int concurrentRequestDelay;
+    private int concurrentRequestMaxCount;
 
     /// <summary>Creates an instance of Connector class</summary>
     /// <param name="parameters">
@@ -177,6 +179,39 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         set => SetField(ref readWriteCycleDealy, value, nameof(ReadWriteCycleDelay));
     }
 
+    /// <summary>
+    ///     Gets or sets delay between Concurrent Request.It is applied when ConcurrentRequestMaxCount is reached.
+    /// </summary>
+    public int ConcurrentRequestDelay
+    {
+        get
+        {
+            if (concurrentRequestDelay < 5) concurrentRequestDelay = 5;
+
+            return concurrentRequestDelay;
+        }
+
+        set => SetField(ref concurrentRequestDelay, value, nameof(concurrentRequestDelay));
+    }
+
+
+    /// <summary>
+    ///     Gets or sets maximal count of Concurrent Request. 
+    /// </summary>
+    public int ConcurrentRequestMaxCount
+    {
+        get
+        {
+            if (concurrentRequestMaxCount < 3) concurrentRequestMaxCount = 3;
+
+            return concurrentRequestMaxCount;
+        }
+
+        set => SetField(ref concurrentRequestMaxCount, value, nameof(concurrentRequestMaxCount));
+    }
+
+
+
 
     /// <summary>
     ///     Gets online value items tags attached to this connector.
@@ -228,11 +263,15 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// <param name="primitives">Primitive items to be read.</param>
     public abstract Task ReadBatchAsync(IEnumerable<ITwinPrimitive> primitives);
 
+    internal abstract Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
+
     /// <summary>
     ///     Writes batch of value items to the plc.
     /// </summary>
     /// <param name="primitives">Primitive items to be written.</param>
     public abstract Task WriteBatchAsync(IEnumerable<ITwinPrimitive> primitives);
+
+    internal abstract Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
 
     /// <summary>
     ///     Return symbol path combining parent's and member's symbol.
@@ -343,12 +382,12 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         var startTimeStamp = DateTime.Now;
 
         await Task.Run(async () =>
-        {
+        {            
             while (true)
                 if (!IsRwLoopSuspended)
                 {
-                    Thread.Sleep(ReadWriteCycleDelay);
-
+                    //Thread.Sleep(ReadWriteCycleDelay);
+                    await Task.Delay(ReadWriteCycleDelay);
                     sw.Restart();
                     try
                     {
@@ -389,7 +428,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
             Logger.Debug($"Periodic reading of '{distinctPrimitivesToRead.Count()}' items.");
         }
 
-        await ReadBatchAsync(distinctPrimitivesToRead
+        await ReadBatchAsyncCyclic(distinctPrimitivesToRead
             .Where(p => !(p.ReadOnce && p.AccessStatus.LastAccess != OnlinerBase.DefaultDateTime)));
 
         this.ClearPeriodicReadSet();
@@ -400,7 +439,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// </summary>
     protected async Task CyclicWrite()
     {
-        await WriteBatchAsync(NextCycleWriteSet.Values);
+        await WriteBatchAsyncCyclic(NextCycleWriteSet.Values);
         ClearPeriodicWriteSet();
     }
 

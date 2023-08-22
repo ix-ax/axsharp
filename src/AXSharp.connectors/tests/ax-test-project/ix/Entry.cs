@@ -18,6 +18,6 @@ namespace exploratory
 {
     public static class Entry
     {
-        public static ax_test_projectTwinController Plc { get; } = new ax_test_projectTwinController(new ConnectorAdapter(typeof(WebApiConnectorFactory)), new object[] { "192.168.0.1", "Everybody", "" });
+        public static ax_test_projectTwinController Plc { get; } = new ax_test_projectTwinController(ConnectorAdapterBuilder.Build().CreateWebApi("10.10.10.100", "Everybody", "", true));
     }
 }

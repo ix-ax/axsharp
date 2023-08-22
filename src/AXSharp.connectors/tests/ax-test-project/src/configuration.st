@@ -39,6 +39,7 @@ CONFIGURATION MyConfiguration
 
         myColors : Colors;
 
+        Hierarchy : hierarchy;
         // Issues  
         GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
     END_VAR
