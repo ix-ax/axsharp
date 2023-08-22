@@ -39,7 +39,17 @@ namespace AXSharp.ConnectorTests
                 return default(Task);
             }
 
+            internal override Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
+            {
+                return default(Task);
+            }
+
             public override Task WriteBatchAsync(IEnumerable<ITwinPrimitive> primitives)
+            {
+                return default(Task);
+            }
+
+            internal override Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
             {
                 return default(Task);
             }

@@ -32,7 +32,7 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
 
         public GH_PTKu_ix_xx()
         {
-            Plc = new ax_test_projectTwinController(ConnectorAdapterBuilder.Build().CreateWebApi("10.10.10.100", "Everybody", "", true));
+            Plc = new ax_test_projectTwinController(ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"), "Everybody", "", true));
             Plc.Connector.ReadWriteCycleDelay = 250;
             Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
             Plc.Connector.SubscriptionMode = ReadSubscriptionMode.Polling;

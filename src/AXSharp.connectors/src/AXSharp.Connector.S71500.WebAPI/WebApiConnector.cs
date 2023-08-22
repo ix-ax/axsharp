@@ -28,8 +28,6 @@ namespace AXSharp.Connector.S71500.WebApi;
 /// </summary>
 public class WebApiConnector : Connector
 {
-    private readonly ApiHttpClientRequestHandler _requestHandler;
-
     private volatile object _locker = new();
 
 
@@ -50,7 +48,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        _requestHandler = new ApiHttpClientRequestHandler(client,
+        RequestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         NumberOfInstances++;
@@ -76,7 +74,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        _requestHandler = new ApiHttpClientRequestHandler(client,
+        RequestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         NumberOfInstances++;
@@ -93,16 +91,7 @@ public class WebApiConnector : Connector
     private ApiRequestParameterChecker RequestParameterChecker { get; } = new();
     private ApiResponseChecker ApiResponseChecker { get; } = new();
 
-    private ApiHttpClientRequestHandler RequestHandler
-    {
-        get
-        {
-            // lock (_locker)
-            {
-                return _requestHandler;
-            }
-        }
-    }
+    private ApiHttpClientRequestHandler RequestHandler { get; }
 
     /// <summary>
     ///     Gets number of instance of WebAPI connector in this application.
@@ -468,7 +457,7 @@ public class WebApiConnector : Connector
                             p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
                             p.AccessStatus.Update(RwCycleCount);
                         });
-
+                    
                     Task.Delay(10).Wait();
                 }
                 catch (ApiBulkRequestException apiException)
@@ -517,7 +506,7 @@ public class WebApiConnector : Connector
                     responseData =
                         await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
 
-                    Task.Delay(10).Wait();
+                    // Task.Delay(10).Wait();
                 }
                 catch (ApiBulkRequestException apiException)
                 {
