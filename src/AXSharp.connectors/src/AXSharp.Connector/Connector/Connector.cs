@@ -263,7 +263,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// <param name="primitives">Primitive items to be read.</param>
     public abstract Task ReadBatchAsync(IEnumerable<ITwinPrimitive> primitives);
 
-    public abstract Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
+    internal abstract Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
 
     /// <summary>
     ///     Writes batch of value items to the plc.
@@ -271,7 +271,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     /// <param name="primitives">Primitive items to be written.</param>
     public abstract Task WriteBatchAsync(IEnumerable<ITwinPrimitive> primitives);
 
-    public abstract Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
+    internal abstract Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives);
 
     /// <summary>
     ///     Return symbol path combining parent's and member's symbol.
