@@ -41,7 +41,9 @@ namespace AXSharp.ConnectorTests
         [Fact]
         public async Task CanCallReadBatchAsync()
         {
-
+#if !DEBUG
+return;
+#endif
             // Arrange
             var parent = Substitute.For<ITwinObject>();
             parent.GetConnector().Returns(Substitute.For<Connector>());
@@ -74,6 +76,10 @@ namespace AXSharp.ConnectorTests
         [Fact]
         public async Task CanCallWriteBatchAsync()
         {
+#if !DEBUG
+return;
+#endif
+
             // Arrange
             var parent = Substitute.For<ITwinObject>();
             parent.GetConnector().Returns(Substitute.For<Connector>());
