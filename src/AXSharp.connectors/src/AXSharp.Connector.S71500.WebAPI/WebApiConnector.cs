@@ -479,7 +479,8 @@ public class WebApiConnector : Connector
                             p.AccessStatus.Update(RwCycleCount);
                         });
 
-                    System.Threading.Thread.Sleep(10);
+                   // System.Threading.Thread.Sleep(10); // sleep not reduce load
+                   await Task.Delay(10); // await due to async method
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -527,7 +528,8 @@ public class WebApiConnector : Connector
                     responseData =
                         await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
 
-                    System.Threading.Thread.Sleep(10);
+                    // System.Threading.Thread.Sleep(10); // sleep not reduce load
+                    await Task.Delay(10); // await due to async method
                 }
                 catch (ApiBulkRequestException apiException)
                 {
