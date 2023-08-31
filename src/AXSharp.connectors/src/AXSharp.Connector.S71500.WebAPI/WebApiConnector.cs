@@ -104,9 +104,7 @@ public class WebApiConnector : Connector
 
     private readonly object concurentCountMutex = new object();
 
-    private Dictionary<string, int> ConcurentCallers = new();
-
-    internal async Task IncremenConcurent(string InPath)
+    internal async Task IncremenConcurent()
     {
         while (concurrentRequest > ConcurrentRequestMaxCount)
         {
@@ -115,31 +113,17 @@ public class WebApiConnector : Connector
 
         lock (concurentCountMutex)
         {
-            if (!ConcurentCallers.ContainsKey(InPath))
-            {
-                ConcurentCallers.Add(InPath, 0);
-            }
-
-            ConcurentCallers[InPath] = ConcurentCallers[InPath] + 1;
             concurrentRequest = concurrentRequest + 1;
         }
     }
 
-    internal void DecremenConcurent(string InPath)
+    internal void DecremenConcurent()
     {
         lock (concurentCountMutex)
         {
-            if (!ConcurentCallers.ContainsKey(InPath))
-            {
-                ConcurentCallers.Add(InPath, 0);
-            }
-
-            ConcurentCallers[InPath] = ConcurentCallers[InPath] - 1;
             concurrentRequest = concurrentRequest - 1;
         }
     }
-
-
 
     /// <summary>
     ///     Gets number of instance of WebAPI connector in this application.
@@ -224,8 +208,6 @@ public class WebApiConnector : Connector
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
-        string MethodName = "RBA-primitives";
-
         if (primitives == null) return;
 
         var responseData = new ApiBulkResponse();
@@ -249,7 +231,7 @@ public class WebApiConnector : Connector
                             $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
             }
 
-            await IncremenConcurent(MethodName);
+            await IncremenConcurent();
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
@@ -281,7 +263,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            DecremenConcurent(MethodName);
+            DecremenConcurent();
         }
 
         if (Logger.IsEnabled(LogEventLevel.Debug))
@@ -293,14 +275,10 @@ public class WebApiConnector : Connector
     /// <inheritdoc />
     public override async Task WriteBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
-        //Task.Delay(ConcurrentRequestDelay).Wait();
-
-        string MethodName = "WBA-primitives";
-
         if (primitives == null) return;
         try
         {
-            await IncremenConcurent(MethodName);
+            await IncremenConcurent();
 
             var responseData = new ApiBulkResponse();
             var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
@@ -334,7 +312,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            DecremenConcurent(MethodName);
+            DecremenConcurent();
         }
     }
 
