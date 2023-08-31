@@ -5,12 +5,6 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using AXSharp.Connector.S71500.WebAPI;
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json;
@@ -20,6 +14,10 @@ using Siemens.Simatic.S7.Webserver.API.Models.Responses;
 using Siemens.Simatic.S7.Webserver.API.Services;
 using Siemens.Simatic.S7.Webserver.API.Services.IdGenerator;
 using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
+using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -48,7 +46,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        RequestHandler = new ApiHttpClientRequestHandler(client,
+        requestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         NumberOfInstances++;
@@ -74,7 +72,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        RequestHandler = new ApiHttpClientRequestHandler(client,
+        requestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         NumberOfInstances++;
@@ -91,7 +89,57 @@ public class WebApiConnector : Connector
     private ApiRequestParameterChecker RequestParameterChecker { get; } = new();
     private ApiResponseChecker ApiResponseChecker { get; } = new();
 
-    private ApiHttpClientRequestHandler RequestHandler { get; }
+    private readonly ApiHttpClientRequestHandler requestHandler;
+
+    private ApiHttpClientRequestHandler RequestHandler
+    {
+        get
+        {
+            lock (_locker)
+            {
+                return requestHandler;
+            }
+        }
+    }
+
+    private readonly object concurentCountMutex = new object();
+
+    private Dictionary<string, int> ConcurentCallers = new();
+
+    internal async Task IncremenConcurent(string InPath)
+    {
+        while (concurrentRequest > ConcurrentRequestMaxCount)
+        {
+            await Task.Delay(ConcurrentRequestDelay);
+        }
+
+        lock (concurentCountMutex)
+        {
+            if (!ConcurentCallers.ContainsKey(InPath))
+            {
+                ConcurentCallers.Add(InPath, 0);
+            }
+
+            ConcurentCallers[InPath] = ConcurentCallers[InPath] + 1;
+            concurrentRequest = concurrentRequest + 1;
+        }
+    }
+
+    internal void DecremenConcurent(string InPath)
+    {
+        lock (concurentCountMutex)
+        {
+            if (!ConcurentCallers.ContainsKey(InPath))
+            {
+                ConcurentCallers.Add(InPath, 0);
+            }
+
+            ConcurentCallers[InPath] = ConcurentCallers[InPath] - 1;
+            concurrentRequest = concurrentRequest - 1;
+        }
+    }
+
+
 
     /// <summary>
     ///     Gets number of instance of WebAPI connector in this application.
@@ -171,11 +219,13 @@ public class WebApiConnector : Connector
 
     private System.Diagnostics.Stopwatch stopwatch = new();
 
-    private int concurrentRequest = 0;
+    private volatile int concurrentRequest = 0;
 
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
+        string MethodName = "RBA-primitives";
+
         if (primitives == null) return;
 
         var responseData = new ApiBulkResponse();
@@ -199,12 +249,7 @@ public class WebApiConnector : Connector
                             $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
             }
 
-            concurrentRequest++;
-
-            while (concurrentRequest > ConcurrentRequestMaxCount)
-            {
-                Task.Delay(ConcurrentRequestDelay).Wait();
-            }
+            await IncremenConcurent(MethodName);
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
@@ -236,7 +281,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            concurrentRequest--;
+            DecremenConcurent(MethodName);
         }
 
         if (Logger.IsEnabled(LogEventLevel.Debug))
@@ -248,15 +293,14 @@ public class WebApiConnector : Connector
     /// <inheritdoc />
     public override async Task WriteBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
+        //Task.Delay(ConcurrentRequestDelay).Wait();
+
+        string MethodName = "WBA-primitives";
+
         if (primitives == null) return;
         try
         {
-            concurrentRequest++;
-
-            while (concurrentRequest > ConcurrentRequestMaxCount)
-            {
-                Task.Delay(ConcurrentRequestDelay).Wait();
-            }
+            await IncremenConcurent(MethodName);
 
             var responseData = new ApiBulkResponse();
             var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
@@ -274,8 +318,7 @@ public class WebApiConnector : Connector
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
                 try
                 {
-                    responseData =
-                        await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                    await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -291,7 +334,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            concurrentRequest--;
+            DecremenConcurent(MethodName);
         }
     }
 
@@ -442,7 +485,7 @@ public class WebApiConnector : Connector
             }
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-            
+
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
             {
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
@@ -457,8 +500,8 @@ public class WebApiConnector : Connector
                             p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
                             p.AccessStatus.Update(RwCycleCount);
                         });
-                    
-                    Task.Delay(10).Wait();
+
+                    System.Threading.Thread.Sleep(10);
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -506,7 +549,7 @@ public class WebApiConnector : Connector
                     responseData =
                         await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
 
-                    // Task.Delay(10).Wait();
+                    System.Threading.Thread.Sleep(10);
                 }
                 catch (ApiBulkRequestException apiException)
                 {
