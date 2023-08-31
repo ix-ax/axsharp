@@ -186,7 +186,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     {
         get
         {
-            if (concurrentRequestDelay < 5) concurrentRequestDelay = 5;
+            if (concurrentRequestDelay <= 25) concurrentRequestDelay = 25;
 
             return concurrentRequestDelay;
         }
@@ -202,7 +202,7 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     {
         get
         {
-            if (concurrentRequestMaxCount < 3) concurrentRequestMaxCount = 3;
+            if (concurrentRequestMaxCount >= 3) concurrentRequestMaxCount = 3;
 
             return concurrentRequestMaxCount;
         }
