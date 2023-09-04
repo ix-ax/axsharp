@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AXSharp.Connector.S71500.WebAPITests.Primitives;
 using exploratory;
+using Xunit.Abstractions;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
 {
@@ -28,9 +30,14 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
             System.GC.Collect();
         }
 
+        private readonly ITestOutputHelper report;
+
         public ax_test_projectTwinController Plc { get; private set; }
 
-        public GH_PTKu_ix_xx()
+        private int simultaneousCycles = 10;
+        private int batchCycles = 2;
+
+        public GH_PTKu_ix_xx(ITestOutputHelper output)
         {
             Plc = new ax_test_projectTwinController(ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"), "Everybody", "", true));
             Plc.Connector.ReadWriteCycleDelay = 250;
@@ -39,24 +46,36 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
             Plc.Connector.BuildAndStart();
             Plc.Hierarchy.StartPolling(250, this);
             Task.Delay(1000).Wait();
+            report = output;
+            Plc.Connector.ConcurrentRequestMaxCount = 1;
+            Plc.Connector.ConcurrentRequestDelay = 3;
+            report.WriteLine($"Max requests limit: {Plc.Connector.ConcurrentRequestMaxCount}");
+            report.WriteLine($"Concurrent request delay: {Plc.Connector.ConcurrentRequestDelay}");
 
         }
 
         [Fact()]
-        public async Task reproductionRead()
+        public async Task reproductionConsecutiveParalellRead()
         {
 
             //while (true)
             {
                 var results = new List<Task>();
-                for (int i = 0; i < 100; i++)
-                {
-                    results.Add(Plc.maxs.ReadAsync());
-                    results.Add(Plc.mins.ReadAsync());
-                    results.Add(Plc.maxsmatch.ReadAsync());
-                    results.Add(Plc.minsmatch.ReadAsync());
-                    results.Add(Plc.Hierarchy.ReadAsync());
-                }
+                
+
+                
+                  
+                        for (int a = 0; a < batchCycles; a++)
+                        {
+                            results.Add(Plc.maxs.ReadAsync());
+                            results.Add(Plc.mins.ReadAsync());
+                            results.Add(Plc.maxsmatch.ReadAsync());
+                            results.Add(Plc.minsmatch.ReadAsync());
+                            results.Add(Plc.Hierarchy.ReadAsync());
+                        }
+             
+
+               
 
                 foreach (var task in results)
                 {
@@ -64,18 +83,98 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
                 }
             }
 
+
+        }
+
+        [Fact()]
+        public async Task reproductionOverloadRead()
+        {
+           
+            //while (true)
+            {
+                //System.Threading.Thread.Sleep(1000);
+                var results = new List<Task>();
+                var simulatneous = new List<Task>();
+
+                for (int i = 0; i < simultaneousCycles; i++)
+                {
+                    simulatneous.Add(Task.Run(() =>
+                    {
+                        for (int a = 0; a < batchCycles; a++)
+                        {
+                            results.Add(Plc.maxs.ReadAsync());
+                            results.Add(Plc.mins.ReadAsync());
+                            results.Add(Plc.maxsmatch.ReadAsync());
+                            results.Add(Plc.minsmatch.ReadAsync());
+                            results.Add(Plc.Hierarchy.ReadAsync());
+                        }
+                    }));
+                }
+                
+                foreach (var task in simulatneous)
+                {
+                    task.Wait();
+                    report.WriteLine($"Simultaneous {task.Id}");
+                }
+
+                foreach (var task in results)
+                {
+                    task.Wait();
+                    report.WriteLine($"Partial {task.Id}");
+                }
+            }
+
             
         }
 
         [Fact()]
-        public async Task reproductionWrite()
+        public async Task reproductionOverloadWrite()
+        {
+
+            //while (true)
+            {
+                //System.Threading.Thread.Sleep(1000);
+                var results = new List<Task>();
+                var simulatneous = new List<Task>();
+
+                for (int i = 0; i < simultaneousCycles; i++)
+                {
+                    simulatneous.Add(Task.Run(() =>
+                    {
+                        for (int a = 0; a < batchCycles; a++)
+                        {
+                            results.Add(Plc.maxs.WriteAsync());
+                            results.Add(Plc.mins.WriteAsync());
+                            results.Add(Plc.maxsmatch.WriteAsync());
+                            results.Add(Plc.minsmatch.WriteAsync());
+                            results.Add(Plc.Hierarchy.WriteAsync());
+                        }
+                    }));
+                }
+
+                foreach (var task in simulatneous)
+                {
+                    task.Wait();
+                    report.WriteLine($"Simultaneous {task.Id}");
+                }
+
+                foreach (var task in results)
+                {
+                    task.Wait();
+                    report.WriteLine($"Partial {task.Id}");
+                }
+            }
+        }
+
+        [Fact()]
+        public async Task reproductionConsecutiveParalellWrite()
         {
 
             //while (true)
             {
 
                 var results = new List<Task>();
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < batchCycles; i++)
                 {
                     results.Add(Plc.maxs.WriteAsync());
                     results.Add(Plc.mins.WriteAsync());
@@ -94,12 +193,12 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
         }
 
         [Fact()]
-        public async Task reproductionReadWrite()
+        public async Task reproductionConsecutiveReadWrite()
         {
             {
 
                 var results = new List<Task>();
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < batchCycles; i++)
                 {
                     results.Add(Plc.maxs.WriteAsync());
                     results.Add(Plc.maxs.ReadAsync());
@@ -115,6 +214,50 @@ namespace AXSharp.Connector.S71500.WebApi.Tests.Issues
                 foreach (var task in results)
                 {
                     task.Wait();
+                }
+            }
+
+
+        }
+
+        [Fact()]
+        public async Task reproductionOverloadReadWrite()
+        {
+            //while (true)
+            {
+                //System.Threading.Thread.Sleep(1000);
+                var results = new List<Task>();
+                var simulatneous = new List<Task>();
+
+                for (int i = 0; i < simultaneousCycles; i++)
+                {
+                    simulatneous.Add(Task.Run(() =>
+                    {
+                        for (int a = 0; a < batchCycles; a++)
+                        {
+                            results.Add(Plc.maxs.WriteAsync());
+                            results.Add(Plc.maxs.ReadAsync());
+                            results.Add(Plc.mins.WriteAsync());
+                            results.Add(Plc.mins.ReadAsync());
+                            results.Add(Plc.maxsmatch.WriteAsync());
+                            results.Add(Plc.maxsmatch.ReadAsync());
+                            results.Add(Plc.minsmatch.WriteAsync());
+                            results.Add(Plc.minsmatch.ReadAsync());
+                            results.Add(Plc.Hierarchy.ReadAsync());
+                        }
+                    }));
+                }
+
+                foreach (var task in simulatneous)
+                {
+                    task.Wait();
+                    report.WriteLine($"Simultaneous {task.Id}");
+                }
+
+                foreach (var task in results)
+                {
+                    task.Wait();
+                    report.WriteLine($"Partial {task.Id}");
                 }
             }
 

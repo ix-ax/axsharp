@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.Collections.Concurrent;
 using AXSharp.Connector.S71500.WebAPI;
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json;
@@ -72,6 +73,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
+        
         requestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
@@ -95,7 +97,7 @@ public class WebApiConnector : Connector
     {
         get
         {
-            lock (_locker)
+            //lock (_locker)
             {
                 return requestHandler;
             }
@@ -104,20 +106,39 @@ public class WebApiConnector : Connector
 
     private readonly object concurentCountMutex = new object();
 
-    internal async Task IncremenConcurent()
+    private static async Task WaitWhile(Func<bool> predicate)
     {
+        await Task.Run(async () =>
+        {
+            while (predicate())
+            {
+                await Task.Delay(10);
+            }
+        });
+    }
+
+    internal void AwaitWhenConcurrents()
+    {
+
+        // await WaitWhile(() => concurrentRequest > ConcurrentRequestMaxCount);
+
         while (concurrentRequest > ConcurrentRequestMaxCount)
         {
-            await Task.Delay(ConcurrentRequestDelay);
+            System.Threading.Thread.Sleep(10);
         }
 
-        lock (concurentCountMutex)
+        if (concurrentRequest > ConcurrentRequestMaxCount)
         {
-            concurrentRequest = concurrentRequest + 1;
+            //throw new Exception($"Too many requests {concurrentRequest}");
+        }
+
+        lock (concurentCountMutex) 
+        {
+             concurrentRequest = concurrentRequest + 1;
         }
     }
 
-    internal void DecremenConcurent()
+    internal void ReleaseConcurrent()
     {
         lock (concurentCountMutex)
         {
@@ -231,7 +252,7 @@ public class WebApiConnector : Connector
                             $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
             }
 
-            await IncremenConcurent();
+            AwaitWhenConcurrents();
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
@@ -240,7 +261,8 @@ public class WebApiConnector : Connector
                 var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
                 try
                 {
-                    responseData = await RequestHandler.ApiBulkAsync(segment);
+                    //responseData = await RequestHandler.ApiBulkAsync(segment);
+                    responseData =  RequestHandler.ApiBulkAsync(segment).Result;
                     var position = 0;
                     apiPrimitives.ToList()
                         .ForEach(p =>
@@ -263,7 +285,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            DecremenConcurent();
+            ReleaseConcurrent();
         }
 
         if (Logger.IsEnabled(LogEventLevel.Debug))
@@ -278,7 +300,7 @@ public class WebApiConnector : Connector
         if (primitives == null) return;
         try
         {
-            await IncremenConcurent();
+            AwaitWhenConcurrents();
 
             var responseData = new ApiBulkResponse();
             var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
@@ -296,7 +318,8 @@ public class WebApiConnector : Connector
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
                 try
                 {
-                    await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                    //await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                    RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData)).Wait();
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -312,7 +335,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            DecremenConcurent();
+            ReleaseConcurrent();
         }
     }
 
