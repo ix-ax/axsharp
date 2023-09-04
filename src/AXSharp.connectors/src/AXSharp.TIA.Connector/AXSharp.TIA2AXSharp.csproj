@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\simatic-s7-webserver-api\src\Webserver.API\Webserver.API.csproj" />
+		<ProjectReference Include="..\AXSharp.Connector.S71500.WebAPI\AXSharp.Connector.S71500.WebAPI.csproj" />
+		<ProjectReference Include="..\AXSharp.Connector\AXSharp.Connector.csproj" />
+	</ItemGroup>
+
+</Project>

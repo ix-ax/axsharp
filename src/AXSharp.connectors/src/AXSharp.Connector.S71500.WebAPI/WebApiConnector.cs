@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -101,7 +102,7 @@ public class WebApiConnector : Connector
     /// <summary>
     ///     Get the address of the target system.
     /// </summary>
-    private string IPAddress { get; }
+    internal string IPAddress { get; }
 
     internal string DBName { get; }
 
@@ -310,8 +311,17 @@ public class WebApiConnector : Connector
 
     internal async Task<(T result, ApiResultResponse<T> response)> ReadAsync<T>(string symbol)
     {
-        var response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{symbol}");
-        return (response.Result, response);
+        if (symbol.StartsWith("\""))
+        {
+            var response = await RequestHandler.PlcProgramReadAsync<T>($"{symbol}");
+            return (response.Result, response);
+        }
+        else
+        {
+            var response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{symbol}");
+            return (response.Result, response);
+        }
+
     }
 
     internal async Task<T> ReadAsync<T>(IWebApiPrimitive primitive)
@@ -319,8 +329,17 @@ public class WebApiConnector : Connector
         var response = new ApiResultResponse<T>();
         try
         {
-            response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{primitive.Symbol}");
-            return response.Result;
+
+            if (primitive.Symbol.StartsWith("\""))
+            {
+                response = await RequestHandler.PlcProgramReadAsync<T>($"{primitive.Symbol}");
+                return response.Result;
+            }
+            else
+            {
+                response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{primitive.Symbol}");
+                return response.Result;
+            }
         }
         catch (Exception e)
         {
@@ -402,13 +421,28 @@ public class WebApiConnector : Connector
 
     internal static ApiPlcReadRequest CreateReadRequest(string symbol, string root = "\"TGlobalVariablesDB\"")
     {
-        return new ApiPlcReadRequest($"{root}.{symbol}");
+        if (string.IsNullOrEmpty(root))
+        {
+            return new ApiPlcReadRequest($"{symbol}");
+        }
+        else
+        {
+            return new ApiPlcReadRequest($"{root}.{symbol}");
+        }
     }
 
     internal static ApiPlcWriteRequest CreateWriteRequest(string symbol, object value,
         string root = "\"TGlobalVariablesDB\"")
     {
-        return new ApiPlcWriteRequest($"{root}.{symbol}", value);
+        if (string.IsNullOrEmpty(root))
+        {
+            return new ApiPlcWriteRequest($"{symbol}", value);
+        }
+        else
+        {
+            return new ApiPlcWriteRequest($"{root}.{symbol}", value);
+        }
+       
     }
 
     internal static WebApiConnector Cast(Connector connector)
