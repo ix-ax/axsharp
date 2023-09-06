@@ -80,7 +80,6 @@ public class WebApiULInt : OnlinerULInt, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<ulong> SetAsync(ulong value)
     {
-        await _webApiConnector.WriteAsync(this, value.ToString());
-        return value;
+        return await _webApiConnector.WriteAsync(this, value);
     }
 }
