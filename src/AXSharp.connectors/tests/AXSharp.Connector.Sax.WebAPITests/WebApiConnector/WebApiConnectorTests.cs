@@ -45,7 +45,8 @@ namespace AXSharp.Connector.S71500.WebAPITests
         {
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true).BuildAndStart() as WebApiConnector;
             //await connector.Authenticate(TargetIp, "Everybody", "");
-            var actual = await connector.WriteAsync<bool>("myBOOL", true);
+            var myBOOL = new WebApiBool(connector, "", "myBOOL");
+            var actual = await connector.WriteAsync<bool>(myBOOL, true);
 
             Assert.True(actual);
         }
@@ -54,7 +55,8 @@ namespace AXSharp.Connector.S71500.WebAPITests
         public async Task should_read_bool()
         {
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
-            await connector.WriteAsync<bool>("myBOOL", true);
+            var myBOOL = new WebApiBool(connector, "", "myBOOL");
+            await connector.WriteAsync<bool>(myBOOL, true);
             var response = await connector.ReadAsync<bool>("myBOOL");
             output.WriteLine(response.ToString());
             Assert.Equal(response.result, true);
@@ -64,7 +66,8 @@ namespace AXSharp.Connector.S71500.WebAPITests
         public async Task should_write_byte()
         {
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
-            var actual = await connector.WriteAsync<byte>("myBYTE", 155);
+            var myBYTE = new WebApiByte(connector, "", "myBYTE");
+            var actual = await connector.WriteAsync<byte>(myBYTE, 155);
 
             Assert.True(155 == actual);
         }
@@ -73,7 +76,8 @@ namespace AXSharp.Connector.S71500.WebAPITests
         public async Task should_read_byte()
         {
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
-            await connector.WriteAsync<byte>("myBYTE", 158);
+            var myBYTE = new WebApiByte(connector, "", "myBYTE");
+            await connector.WriteAsync<byte>(myBYTE, 158);
             var response = await connector.ReadAsync<byte>("myBYTE");
             output.WriteLine(response.ToString());
             Assert.Equal(response.result, 158);
@@ -83,7 +87,9 @@ namespace AXSharp.Connector.S71500.WebAPITests
         public async Task should_read_lint()
         {
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
-            await connector.WriteAsync<object>("myLINT", "9223372036854775807");
+            var myLINT = new WebApiLInt(connector, "", "myLINT");
+            await connector.WriteAsync<long>(myLINT, 9223372036854775807);
+
             var response = await connector.ReadAsync<long>("myLINT");
             output.WriteLine(response.ToString());
             Assert.Equal(9223372036854775807, response.result);
@@ -94,9 +100,6 @@ namespace AXSharp.Connector.S71500.WebAPITests
         {
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
 
-            await connector.WriteAsync<byte>("myBYTE", 42);
-            await connector.WriteAsync<bool>("myBOOL", true);
-            await connector.WriteAsync<short>("myINT", 43);
 
             var myBOOL = new WebApiBool(connector, "", "myBOOL");
             var myBYTE = new WebApiByte(connector, "", "myBYTE");
@@ -126,6 +129,10 @@ namespace AXSharp.Connector.S71500.WebAPITests
             var mySTRING = new WebApiString(connector, "", "mySTRING");
             //   myWSTRING	    :       WSTRING	      ;
 
+
+            await connector.WriteAsync<byte>(myBYTE, 42);
+            await connector.WriteAsync<bool>(myBOOL, true);
+            await connector.WriteAsync<short>(myINT, 43);
 
             IEnumerable<ITwinPrimitive> primitives = new ITwinPrimitive[]
             {
@@ -895,9 +902,7 @@ namespace AXSharp.Connector.S71500.WebAPITests
 #endif
             var connector = new WebApiConnector(TargetIp, "Everybody", "", true);
 
-            await connector.WriteAsync<byte>("myBYTE", 42);
-            await connector.WriteAsync<bool>("myBOOL", true);
-            await connector.WriteAsync<short>("myINT", 43);
+           
 
             var myBOOL = new WebApiBool(connector, "", "myBOOL");
             var myBYTE = new WebApiByte(connector, "", "myBYTE");
@@ -927,6 +932,9 @@ namespace AXSharp.Connector.S71500.WebAPITests
             var mySTRING = new WebApiString(connector, "", "mySTRING");
             //   myWSTRING	    :       WSTRING	      ;
 
+            await connector.WriteAsync<byte>(myBYTE, 42);
+            await connector.WriteAsync<bool>(myBOOL, true);
+            await connector.WriteAsync<short>(myINT, 43);
 
             IEnumerable<ITwinPrimitive> primitives = new ITwinPrimitive[]
             {
@@ -1771,7 +1779,7 @@ namespace AXSharp.Connector.S71500.WebAPITests
 
             Assert.Equal(true, myBYTE.AccessStatus.Failure);
             output.WriteLine(myBYTE.AccessStatus.FailureReason);
-            Assert.Equal("Failed to read item: 'The requested address does not exist or the webserver cannot access the requested address.'", myBYTE.AccessStatus.FailureReason);
+            Assert.Equal("Batch read failed.: 'During Bulk request for 1 there have been 1 Errors:\r\nFor details: Check the Property BulkResponse' [var : \"TGlobalVariablesDB\".myBYTE_does_not_exist] ", myBYTE.AccessStatus.FailureReason);
         }
 
         [Fact]
@@ -1784,7 +1792,7 @@ namespace AXSharp.Connector.S71500.WebAPITests
 
             Assert.Equal(true, myBYTE.AccessStatus.Failure);
             output.WriteLine(myBYTE.AccessStatus.FailureReason);
-            Assert.Equal("Failed to write item: 'The requested address does not exist or the webserver cannot access the requested address.'", myBYTE.AccessStatus.FailureReason);
+            Assert.Equal("Batch write failed.: 'During Bulk request for 1 there have been 1 Errors:\r\nFor details: Check the Property BulkResponse' [var : \"TGlobalVariablesDB\".myBYTE_does_not_exist;value : 55] ", myBYTE.AccessStatus.FailureReason);
         }
 
        

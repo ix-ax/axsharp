@@ -180,13 +180,14 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
     }
 
     /// <summary>
-    ///     Gets or sets delay between Concurrent Request.It is applied when ConcurrentRequestMaxCount is reached.
+    ///     Gets or sets delay between Concurrent Requests.
+    ///     It is applied when ConcurrentRequestMaxCount is reached.
     /// </summary>
     public int ConcurrentRequestDelay
     {
         get
         {
-            if (concurrentRequestDelay <= 1) concurrentRequestDelay = 1;
+            if (concurrentRequestDelay <= 10) concurrentRequestDelay = 10;
 
             return concurrentRequestDelay;
         }
@@ -196,14 +197,19 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
 
 
     /// <summary>
-    ///     Gets or sets maximal count of Concurrent Request. 
+    ///     Gets or sets maximal count of Concurrent Request.
+    ///     Maximum number of simultaneous requests is `4`.
+    ///     >[!NOTE]
+    ///     > The property will be capped to this value if higher value is assigned.
+    ///     >[!IMPORTANT]
+    ///     > When setting this value take into account that other devices may communicate with your target system.
     /// </summary>
     public int ConcurrentRequestMaxCount
     {
         get
         {
-            if (concurrentRequestMaxCount >= 5) concurrentRequestMaxCount = 5;
-
+            if (concurrentRequestMaxCount > 4) concurrentRequestMaxCount = 4;
+            if (concurrentRequestMaxCount <= 0) concurrentRequestMaxCount = 1;
             return concurrentRequestMaxCount;
         }
 

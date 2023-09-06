@@ -74,13 +74,12 @@ public class WebApiLWord : OnlinerLWord, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<ulong> GetAsync()
     {
-        return await _webApiConnector.ReadAsync(this, LastValue);
+        return await _webApiConnector.ReadAsync<ulong>(this);
     }
 
     /// <inheritdoc />
     public override async Task<ulong> SetAsync(ulong value)
     {
-        await _webApiConnector.WriteAsync(this, value.ToString());
-        return value;
+        return await _webApiConnector.WriteAsync(this, value);
     }
 }

@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -89,13 +90,12 @@ public class WebApiLTime : OnlinerLTime, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<TimeSpan> GetAsync()
     {
-        return TimeSpan.FromMilliseconds(ToMilliseconds(long.Parse(await _webApiConnector.ReadAsync<string>(this))));
+        return await _webApiConnector.ReadAsync<TimeSpan>(this);
     }
 
     /// <inheritdoc />
     public override async Task<TimeSpan> SetAsync(TimeSpan value)
     {
-        await _webApiConnector.WriteAsync(this, ToNanoseconds((long)value.TotalMilliseconds).ToString());
-        return value;
+        return await _webApiConnector.WriteAsync(this, value);
     }
 }
