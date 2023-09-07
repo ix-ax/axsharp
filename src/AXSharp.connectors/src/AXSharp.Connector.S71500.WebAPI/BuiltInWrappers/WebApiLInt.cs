@@ -85,7 +85,6 @@ public class WebApiLInt : OnlinerLInt, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<long> SetAsync(long value)
     {
-        await _webApiConnector.WriteAsync(this, value.ToString());
-        return value;
+        return await _webApiConnector.WriteAsync(this, value);
     }
 }

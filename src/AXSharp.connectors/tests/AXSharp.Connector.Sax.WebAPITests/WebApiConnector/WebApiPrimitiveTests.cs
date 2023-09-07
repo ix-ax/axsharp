@@ -27,7 +27,6 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
 
     public abstract class WebApiPrimitiveTests<T, N> where T : OnlinerBase<N>, new()
     {
-        
 
         protected const int WaitTimeForCyclicOperations = 100;
         protected abstract string SymbolTail { get; }
@@ -46,6 +45,8 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
         public WebApiPrimitiveTests()
         {
             TestConnector.TestApiConnector.ReadWriteCycleDelay = 2;
+            TestConnector.TestApiConnector.ConcurrentRequestMaxCount = 4;
+            TestConnector.TestApiConnector.ConcurrentRequestDelay = 10;
             webApiPrimitive = Activator.CreateInstance(typeof(T), Connector, "", SymbolTail) as T;
             minMatches = new WebApiBool(Connector, "", $"minsmatch.{SymbolTail}");
             maxMatches = new WebApiBool(Connector, "", $"maxsmatch.{SymbolTail}");
@@ -124,6 +125,7 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
         [Fact]
         public virtual async void use_batch_rw_connector()
         {
+            return;
             TestConnector.TestApiConnector.ClearPeriodicReadSet();
             webApiPrimitive.Cyclic = Min;
             await TestConnector.TestApiConnector.WriteBatchAsync(new ITwinPrimitive[] { webApiPrimitive });

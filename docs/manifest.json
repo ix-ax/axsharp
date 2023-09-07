@@ -616,7 +616,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.Connector.html",
-          "hash": "0BnS2KGNCpIUPOt90wNksRDkh1/DGD+YDnHNKepn6Vs="
+          "hash": "4wERxz0oIe3JFhoUE/WLkcpUQ5d1Q1JxuiO+wJW8nzw="
         }
       },
       "version": ""
@@ -660,7 +660,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.DummyConnector.html",
-          "hash": "f4Vl8RwGerGobV4u6BElZCGWTzA4ID5FTUKkuN9NNtA="
+          "hash": "1oHuz770VeMiglI2maLOCy/6lSxhAGPgHmQV78voshM="
         }
       },
       "version": ""
@@ -1001,7 +1001,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.S71500.WebApi.WebApiConnector.html",
-          "hash": "wXoUuupCQS7DfrQnEv5dB8KW0uga8KQka4R2Q5W7y3E="
+          "hash": "3LL76i8hqdXZNoclT2MBJX9y4/277JvgnP70nxh7lcA="
         }
       },
       "version": ""
@@ -1045,7 +1045,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.S71500.WebApi.WebApiDate.html",
-          "hash": "qqTa36cH0FG7+HPavWQ17Ly6g1ABZwVVXaud3CYLsyc="
+          "hash": "Ys1ZyNB1bb2aZoIOj0UoBrt0vbBD2WAiVEqqboJ8pWg="
         }
       },
       "version": ""
@@ -1056,7 +1056,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.S71500.WebApi.WebApiDateTime.html",
-          "hash": "l6LnZGxAkVATYbusO0v0z3HTxr73yLJqjjVxBHz2F/s="
+          "hash": "G/Xp6I+YiB/+S6Ow8m3k5iuTHVenCyRvz1GQB+qlS3Q="
         }
       },
       "version": ""
@@ -1078,7 +1078,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.S71500.WebApi.WebApiLDate.html",
-          "hash": "qCFRvyBckJlRiumY6VYa47h0gMRhwV0VE/a21c7HXbg="
+          "hash": "8ZL1ceTS6KuOgyooZ1znr3btYtZ3wZUFm6K+W+gI4jM="
         }
       },
       "version": ""
@@ -1089,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.S71500.WebApi.WebApiLDateTime.html",
-          "hash": "hQHcbjXzPDOSiLejbx0t4Ag6g3zfCC7bDiQ+bljk9Lw="
+          "hash": "b+sOeFHxeGWHSfQ0DsN0iXk+CBaeiGM4H6fEmVLm+cY="
         }
       },
       "version": ""
@@ -1122,7 +1122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.S71500.WebApi.WebApiLTime.html",
-          "hash": "q1u9p5qlHgofI65+FgzKOvpqoKCdWQlVoWqmXNv7sLw="
+          "hash": "sjfVkqKYySZwmgaTDo1zLpFjjmOXTZc93gadNziyi4w="
         }
       },
       "version": ""
@@ -1639,7 +1639,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html",
-          "hash": "N6/lDjBDVl7GVxcXlY2grP/EpkEGY/i6FmHvKI6PIq4="
+          "hash": "/rRqJsusKWktNdmaP/SI0Sp4fIogySWtOGIT8Y+J/T4="
         }
       },
       "version": ""
@@ -2790,187 +2790,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.BorderLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.BorderLayout.html",
-          "hash": "PyV0VprzuFd4SXXj52BF9xrd+NKThQWE2ZQEDSbie3Y="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.GroupBoxLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.GroupBoxLayout.html",
-          "hash": "rsLXU25CP93YDeZmb/pJ5Pcfh5Nhfai0MdWKoJ3K2X4="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.ArrayBorderSetter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.ArrayBorderSetter.html",
-          "hash": "1zeyp8p1wnM1Y8mwXp2IdjgD1uLUkOJfEaGDrUn4MEY="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.ChildrenLayoutPropSetter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.ChildrenLayoutPropSetter.html",
-          "hash": "p4AxgJVsYJA8JKYLI3whquhbzu7vSp2vr4A3XKOw4SE="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.GroupContainerAttributeSetter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.GroupContainerAttributeSetter.html",
-          "hash": "1s6NtBau52sARrLnpaOilIHfx2ujTGT4+tk5aW023KM="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.GroupLayoutSetter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.GroupLayoutSetter.html",
-          "hash": "PqPbO4dYUQQkV0/WypEv2Os6XLwjFvlBjh6ujsfo+4U="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.MainLayoutSetter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.MainLayoutSetter.html",
-          "hash": "RlsO/9oY7jpCKW/cq7mG0oHcYTAj57mw/eMAKrysdaA="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.LayoutSetters.html",
-          "hash": "xAFpZF3Q9bE8+tz6Yrb9VwozlyNNw3ICcISqA5IGZAo="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.StackPanelLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.StackPanelLayout.html",
-          "hash": "233sMgX7UH4JrVXGi+teuy2+roZ1u/SA6lcASF8dlUw="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlComponents.TabControl.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlComponents.TabControl.html",
-          "hash": "dV9TxkeN71zoY2WkPT3WFR89PSLsx6vTc2y7Gof0mX4="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlComponents.TabPage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlComponents.TabPage.html",
-          "hash": "czuEdbFbWxsgLuUa+8CkZXXSVK4NAE4E2jvHf5GEREk="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlComponents.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlComponents.html",
-          "hash": "sd6X5+A2ir5Rh1yNPszowVml93CM8sGpGkaUb7FOKUM="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.TabControlLayout.html",
-          "hash": "CjY2o2bwTWkzR9i8UOIm5EPcvNv/Zb3kiaUY1ECz5M4="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.UniformGridLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.UniformGridLayout.html",
-          "hash": "mqSpfn35yz3oRONWBn2eLuuXgvRg/0hgz5ij/10CY8c="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.WrapPanelLayout.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.WrapPanelLayout.html",
-          "hash": "y8s/oVrjCE3uu1nMkLaMYeZxYI5G8PhLKX6Egx8TQYc="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Layouts.html",
-          "hash": "BR/Vs97ufA6sROtEkRczO1xvlvnMP1WNrQX+X3KHtvo="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComplexComponentBase-1.yml",
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComplexComponentBase-1.html",
-          "hash": "0+kmYsamOdoFetjL22/5RTHIbINbggS+lyExDtXWM3M="
+          "hash": "8KwkrdnYc4Rqr6IePZPBL+FA8kqtndPM5ZFEZVFsb2I="
         }
       },
       "version": ""
@@ -2984,7 +2808,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableComponentBase.html",
-          "hash": "RdDrqpSSscGZe+vLXeVZIwpGlDp40ClaEcu/jdA3sgA="
+          "hash": "ynXE6lpalqGnP/xitRe64NR/1UXBAl5nHJlx19TWuvc="
         }
       },
       "version": ""
@@ -2995,7 +2819,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableContentControl.html",
-          "hash": "iDr0rvjFAcV54Bi9JCYSdibcqpCYn3TfR6xpG7eiudY="
+          "hash": "nSKI5gXwyphfon2iZrbEgasfZoaFDRWVGQYCeP1znV8="
         }
       },
       "version": ""
@@ -3006,7 +2830,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.RenderableContent.RenderableViewModelComponentBase-1.html",
-          "hash": "WMVJGc6/FBADwnof05xzyd3L0V9M7OX/xzqaW8tcm24="
+          "hash": "/4bgJtzTR/ZSibpbCGFBWtTygi4tIbPWKVT50/BDMrc="
         }
       },
       "version": ""
@@ -3024,55 +2848,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerControlView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerControlView-1.html",
-          "hash": "fK3NHyJgLWueQbz9FJXSb90AqtbYt06zVFAw2SXfu/0="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerDisplayView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerDisplayView-1.html",
-          "hash": "JvCZbSfTHQRz8JvL2/OfU70AvJQhSeLFgeFJIcDsLrM="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerShadowControlView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerShadowControlView-1.html",
-          "hash": "nO9UW0eP+9hQpD3LIu/4sjG0AzjWVQM6O+SXS4wCE8g="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerShadowDisplayView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorContainerShadowDisplayView-1.html",
-          "hash": "QasWFlhDPpk3zOW1m+f85GiTU4kCbJ3ElGZMNy6D2t0="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorsBaseOnline-1.yml",
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorsBaseOnline-1.html",
-          "hash": "zNwdG6sVplGB81RLAZoueN+3l7pq2jVfa+E+8AYDy4c="
+          "hash": "OzcQou10MKQ2UaM9uuqcTpOZcRXxC5wVbCqKqY2YAow="
         }
       },
       "version": ""
@@ -3083,227 +2863,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.EnumeratorsBaseShadow-1.html",
-          "hash": "lyPYDqCrsObBQwcyXfgVpP/ovU8DvqcFmnGLXrlJYNU="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseControlView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseControlView-1.html",
-          "hash": "hfIsU3wt6maN5bF4VTgfUGdEsos/dyUop7WxYpRddo8="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseDisplayView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseDisplayView-1.html",
-          "hash": "a+4gTMvC8+oUC6wTBWc698IZ+PqNsyjdqA8HJ0sFSIQ="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseShadowControlView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseShadowControlView-1.html",
-          "hash": "fgC3vogFtCRNdoaKrjbLuRK4PK1LQx8u/euvwSaswNg="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseShadowDisplayView-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBaseShadowDisplayView-1.html",
-          "hash": "ALJbaKiC0AwIIcsep4UXEtNkPewbsHVBPvda01SwpV4="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolControlView.html",
-          "hash": "RlXiP1Oh8gAdTNP/6U4KMZm5efr5t6KIRHD5eQHjR1c="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolDisplayView.html",
-          "hash": "0bifFfq3okm5pObPrR1xELAZEmyfPvGCC+PsfQF8TjQ="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolShadowControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolShadowControlView.html",
-          "hash": "ESdci0rcx4pYxtuSeK6VlbH5xOYvUVFTY8AXEERrCfs="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolShadowDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerBoolShadowDisplayView.html",
-          "hash": "dHILnKkscZuqU4nej7z/6rH/8iyFIY1nnB5ScKLpi3U="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateControlView.html",
-          "hash": "UtudTn29J7uaJwZWd1yQwqLlCLNrBSFoDOcmRnR2V34="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateDisplayView.html",
-          "hash": "0E6bKF0w+WIuqNLopZG7c7ehLfBF5a4VZL3of3FqHh8="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateShadowControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateShadowControlView.html",
-          "hash": "WCzWBUsCfjWUFf0nRSFOR1MHYAVigeqaso7+pRrx4g4="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateShadowDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateShadowDisplayView.html",
-          "hash": "D4ojXGr2JYTmAbG4Qbp9V5Hlr0f7iN7R/z6WD7K1Vkg="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeControlView.html",
-          "hash": "v8aPOoR9SYKeVkuwWH859iRXJ659FhuDt/NU7Lsz9qg="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeDisplayView.html",
-          "hash": "buQlbb17Twj7mQHKjslaB3j561qLVy8NTPMwpfVDZcI="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeShadowControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeShadowControlView.html",
-          "hash": "kocVZjniU7K0LHrF4is1okgQvE2BEvMSrsQewIAXJuM="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeShadowDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerDateTimeShadowDisplayView.html",
-          "hash": "Xcn+LtcpPbqWTBOvEOhUA+8q9ryqwXzxg7rMMsaEH7Y="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayControlView.html",
-          "hash": "RLRVcVDZNNaCUfXgkAhMPeFQLD0KAElaFel/A+QOXqM="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayDisplayView.html",
-          "hash": "kbDc5L5QRgaSIBMBEugASrVqdlOGDsov48qCutn0r6w="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayShadowControlView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayShadowControlView.html",
-          "hash": "CTV3/OLJRQECUP0Eb1o+QphRwl9pm4oDqzTV4VUYKjs="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayShadowDisplayView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.OnlinerTimeOfDayShadowDisplayView.html",
-          "hash": "EWiuP8vnAKOKy2CxYh7iHDMjYyrSKrcSnzsTGNKxGl4="
+          "hash": "pPy5eSnIz7Vn8r8xyWtaaEv6AUwiLpON/3SFaYpJTpU="
         }
       },
       "version": ""
@@ -3314,7 +2874,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.TemplateBase-1.html",
-          "hash": "E73iVTaLzU9+lcvxR6lqvRzDjLEjaCgyl4E4GDsjxKg="
+          "hash": "42XhptPwHZSbeiABPnys1BFx50VxBRtw6UIyW7r9f7Q="
         }
       },
       "version": ""
@@ -3325,7 +2885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.TemplateBaseOnline-1.html",
-          "hash": "LK2nu8FOyAe0SaRgv66X5SFSAuGkhLpzG776/ufyr6A="
+          "hash": "uU5v/fLS+kfrLJ6uK/mWk+r0ohwodl2rxVuFIi32HPc="
         }
       },
       "version": ""
@@ -3336,18 +2896,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.TemplateBaseShadow-1.html",
-          "hash": "kSDr1+S2Asj+vYjDvFbXajH/X2vjMabfTxo6liae9LU="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.TemplateView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.TemplateView.html",
-          "hash": "0dT6mi/SrYvepZj729EWVrHt0qL/Q7MpTP2lSQ+4qik="
+          "hash": "KVUGIDI1Pk542BxB25UgbNwhgNKVnMOEJjIhLSQkejI="
         }
       },
       "version": ""
@@ -3358,29 +2907,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AXSharp.Presentation.Blazor.Controls.Templates.html",
-          "hash": "Qy/EYnZZ5YCT1yCYvujuHT0gyfRYTwdgy3zfKOXwLPM="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls._Imports.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls._Imports.html",
-          "hash": "IuII28Pu1zSEK1CWwmwgyvamGkCoSjgMzW/g4U39dUw="
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/AXSharp.Presentation.Blazor.Controls.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/AXSharp.Presentation.Blazor.Controls.html",
-          "hash": "7F2z5AHvi1IH603VdHtljz1zkywuoGMZ0J5xVplavZ0="
+          "hash": "JEvjvK9GQzzcw0F+WDqaC/gP9LYRk5xYMrygKNtTwf4="
         }
       },
       "version": ""
@@ -3974,7 +3501,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "ae0OJfHAObjSeknPk3Qghke7QMosAlrtjKniMfqerO8="
+          "hash": "Nj0fxOoACaMlamP6lgNcSXsjHXNyGmnanto6bxNuCeU="
         }
       },
       "version": ""
@@ -3985,7 +3512,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/blazor/LAYOUTS.html",
-          "hash": "Asadz+cij1qXbLxPUz1QpFHP4KNbv8Gy8kacSHCkXiA="
+          "hash": "bMzMkc/AItcaPlfUvMIoXPeuhTcEUu4Y/JwgGb2te5k="
         }
       },
       "version": ""
@@ -4128,7 +3655,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/connectors/WebAPI.html",
-          "hash": "dUd/mLtu2RwS29xBV7czZJnAfnJeqUO9ymTrkYnNkVM="
+          "hash": "8jjAQUN1IfzgT6RlqCyrO88aYR+zTnBWrRF4Y5TsSho="
         }
       },
       "version": ""
@@ -4173,6 +3700,17 @@
         ".html": {
           "relative_path": "articles/ixr/IXR.html",
           "hash": "DVdy/il3KQ4wH0MipzNPwvpQrKO4DO9C2JmE+ZIUzAM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/ltr/LTR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/ltr/LTR.html",
+          "hash": "a0FmBl214q2IJZ1E8thoJB/pqXbBBXGSSgZUFegHLdg="
         }
       },
       "version": ""
@@ -4414,6 +3952,16 @@
       "output": {
         "resource": {
           "relative_path": "images/conceptual/ix_ixc_con.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/example-resx.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/example-resx.png"
         }
       },
       "version": ""

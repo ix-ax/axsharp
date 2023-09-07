@@ -109,6 +109,11 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
 
     private long CwCycle { get; set; }
 
+    internal void SetValueToWrite(T val)
+    {
+        CyclicToWrite = val;
+    }
+
     /// <summary>
     ///     Gets the value that will be written in the next cycle.
     /// </summary>
