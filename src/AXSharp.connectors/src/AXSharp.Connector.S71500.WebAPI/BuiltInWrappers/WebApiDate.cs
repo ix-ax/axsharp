@@ -72,8 +72,7 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<DateOnly> GetAsync()
     {
-        var dt = await _webApiConnector.ReadAsync<long>(this);
-        return GetFromBinary(dt);
+        return await _webApiConnector.ReadAsync<DateOnly>(this);
     }
 
     private DateOnly GetFromBinary(string value)
@@ -100,7 +99,6 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<DateOnly> SetAsync(DateOnly value)
     {
-        await _webApiConnector.WriteAsync(this, GetFromDate(value));
-        return value;
+        return await _webApiConnector.WriteAsync(this, value);
     }
 }

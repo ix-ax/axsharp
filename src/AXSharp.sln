@@ -124,9 +124,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ix_integration_plc", "sanbo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ax_blazor_example", "AXSharp.blazor\tests\sandbox\ax-blazor-example\ix\ax_blazor_example.csproj", "{6605983C-F5BF-4DD5-8F06-640505C0D6B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AXSharp.LocalizablesToResx", "AXSharp.tools\src\AXSharp.LocalizablesToResx\AXSharp.LocalizablesToResx.csproj", "{CC79093E-00B6-42A6-9548-E3A88494DC27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.LocalizablesToResx", "AXSharp.tools\src\AXSharp.LocalizablesToResx\AXSharp.LocalizablesToResx.csproj", "{CC79093E-00B6-42A6-9548-E3A88494DC27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AXSharp.LocalizablesToResx.Tests", "AXSharp.tools\tests\AXSharp.LocalizablesToResx.Tests\AXSharp.LocalizablesToResx.Tests.csproj", "{4C18C927-8CD6-4ED5-80F1-91DE60D2DD07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.LocalizablesToResx.Tests", "AXSharp.tools\tests\AXSharp.LocalizablesToResx.Tests\AXSharp.LocalizablesToResx.Tests.csproj", "{4C18C927-8CD6-4ED5-80F1-91DE60D2DD07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

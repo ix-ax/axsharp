@@ -43,3 +43,18 @@ Entry.Plc.Connector.SetLoggerConfiguration(new LoggerConfiguration()
 
 > [!WARNING]
 > **Enabling monitoring will impact the connector perfomance.**
+
+## Performance
+
+Communication via WebAPI has inherent performance constraints based on the target system, request frequency, and payload size. The S71500.WebAPI connector tackles the 64kB limit for single requests by fragmenting them into manageable chunks. However, there is a restriction on the number of requests that can be sent to the controller simultaneously. The maximum threshold is four simultaneous requests, though this can be reduced. Any requests exceeding this limit will be queued and processed after a specified waiting period. 
+
+> [!NOTE]
+> It's worth noting that the controller might be communicating with other devices like HMI or OPC-UA, further intensifying the overall communication load.
+
+Here's a C# code snippet demonstrating how to adjust the concurrent request limit and the associated delay:
+
+```C#
+Entry.Plc.Connector.ConcurrentRequestMaxCount = 1; // Reducing to a single request 
+Entry.Plc.Connector.ConcurrentRequestDelay = 100; // Setting the waiting period to 100ms
+```
+

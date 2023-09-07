@@ -73,13 +73,12 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<TimeSpan> GetAsync()
     {
-        return TimeSpan.FromMilliseconds(long.Parse(await _webApiConnector.ReadAsync<string>(this)) / 1000000);
+        return await _webApiConnector.ReadAsync<TimeSpan>(this);
     }
 
     /// <inheritdoc />
     public override async Task<TimeSpan> SetAsync(TimeSpan value)
     {
-        await _webApiConnector.WriteAsync(this, ((long)value.TotalMilliseconds * 1000000).ToString());
-        return value;
+        return await _webApiConnector.WriteAsync(this, value);
     }
 }

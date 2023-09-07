@@ -5,12 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using System.Collections.Concurrent;
 using AXSharp.Connector.S71500.WebAPI;
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json;
@@ -20,6 +15,15 @@ using Siemens.Simatic.S7.Webserver.API.Models.Responses;
 using Siemens.Simatic.S7.Webserver.API.Services;
 using Siemens.Simatic.S7.Webserver.API.Services.IdGenerator;
 using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
+using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Net;
+using Polly;
+using Polly.Retry;
+using Newtonsoft.Json.Linq;
+using Serilog;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -48,7 +52,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        RequestHandler = new ApiHttpClientRequestHandler(client,
+        requestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         NumberOfInstances++;
@@ -73,8 +77,9 @@ public class WebApiConnector : Connector
                 (sender, cert, chain, sslPolicyErrors) => true;
 
         var serviceFactory = new ApiStandardServiceFactory();
-        var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        RequestHandler = new ApiHttpClientRequestHandler(client,
+        Client = serviceFactory.GetHttpClient(ipAddress, userName, password);
+        
+        requestHandler = new ApiHttpClientRequestHandler(Client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         NumberOfInstances++;
@@ -87,11 +92,62 @@ public class WebApiConnector : Connector
     {
     }
 
+    private readonly HttpClient Client;
+
     private GUIDGenerator ReqIdGenerator { get; } = new();
     private ApiRequestParameterChecker RequestParameterChecker { get; } = new();
     private ApiResponseChecker ApiResponseChecker { get; } = new();
 
-    private ApiHttpClientRequestHandler RequestHandler { get; }
+    private readonly ApiHttpClientRequestHandler requestHandler;
+
+    private ApiHttpClientRequestHandler RequestHandler
+    {
+        get
+        {
+           return requestHandler;
+        }
+    }
+
+    private readonly object concurentCountMutex = new object();
+
+    private void AntiThrottling(IEnumerable<ITwinPrimitive> primitives)
+    {
+        var concurrent = 0;
+
+        do
+        {
+            lock (concurentCountMutex)
+            {
+                concurrent = concurrentRequest;
+            }
+
+            if (concurrent >= ConcurrentRequestMaxCount)
+            {
+                // We need this to be like it is to effectively prevent throttling over WebAPI
+                // `async awaiting` degrades overall comm performance.
+                Task.Delay(ConcurrentRequestDelay).Wait();
+            }
+
+        } while (concurrent >= ConcurrentRequestMaxCount);
+
+        if (concurrent > ConcurrentRequestMaxCount)
+        {
+            throw new Exception($"Too many requests {concurrent}");
+        }
+
+        lock (concurentCountMutex) 
+        {
+             concurrentRequest = concurrentRequest + 1;
+        }
+    }
+
+    private void ReleaseConcurrent(IEnumerable<ITwinPrimitive> primitives)
+    {
+        lock (concurentCountMutex)
+        {
+            concurrentRequest = concurrentRequest - 1;
+        }
+    }
 
     /// <summary>
     ///     Gets number of instance of WebAPI connector in this application.
@@ -171,8 +227,29 @@ public class WebApiConnector : Connector
 
     private System.Diagnostics.Stopwatch stopwatch = new();
 
-    private int concurrentRequest = 0;
+    private volatile int concurrentRequest = 0;
 
+
+    private AsyncRetryPolicy _retryPolicy;
+
+    // TODO: This has been added for additional resiliency.
+    // when target system responds with HTTP exception 'premature end...' the connector will recover.
+    // it may take several second before the exception arises.
+    private AsyncRetryPolicy RetryPolicy
+    {
+        get
+        {
+            return _retryPolicy ??= Polly.Policy
+                .Handle<HttpRequestException>()
+                .RetryAsync(5, (exception, i) =>
+                {
+                    Log.Logger.Error($"{exception.Message} : {exception.InnerException?.Message} | Number of concurrent requests {concurrentRequest}");
+                    Task.Delay(100).Wait();
+                });
+        }
+    }
+
+    
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
@@ -199,21 +276,18 @@ public class WebApiConnector : Connector
                             $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
             }
 
-            concurrentRequest++;
-
-            while (concurrentRequest > ConcurrentRequestMaxCount)
-            {
-                Task.Delay(ConcurrentRequestDelay).Wait();
-            }
+            AntiThrottling(primitives);
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
+           
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
             {
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
                 var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
                 try
                 {
-                    responseData = await RequestHandler.ApiBulkAsync(segment);
+                    await RetryPolicy.ExecuteAsync(async () => responseData = await RequestHandler.ApiBulkAsync(segment));
+
                     var position = 0;
                     apiPrimitives.ToList()
                         .ForEach(p =>
@@ -236,7 +310,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            concurrentRequest--;
+            ReleaseConcurrent(primitives);
         }
 
         if (Logger.IsEnabled(LogEventLevel.Debug))
@@ -249,14 +323,10 @@ public class WebApiConnector : Connector
     public override async Task WriteBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
         if (primitives == null) return;
+
         try
         {
-            concurrentRequest++;
-
-            while (concurrentRequest > ConcurrentRequestMaxCount)
-            {
-                Task.Delay(ConcurrentRequestDelay).Wait();
-            }
+            AntiThrottling(primitives);
 
             var responseData = new ApiBulkResponse();
             var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
@@ -274,8 +344,7 @@ public class WebApiConnector : Connector
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
                 try
                 {
-                    responseData =
-                        await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
+                    await RetryPolicy.ExecuteAsync(async () => await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData)));
                 }
                 catch (ApiBulkRequestException apiException)
                 {
@@ -291,7 +360,7 @@ public class WebApiConnector : Connector
         }
         finally
         {
-            concurrentRequest--;
+            ReleaseConcurrent(primitives);
         }
     }
 
@@ -316,60 +385,22 @@ public class WebApiConnector : Connector
 
     internal async Task<T> ReadAsync<T>(IWebApiPrimitive primitive)
     {
-        var response = new ApiResultResponse<T>();
-        try
-        {
-            response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{primitive.Symbol}");
-            return response.Result;
-        }
-        catch (Exception e)
-        {
-            HandleCommFailure(e, "Failed to read item", primitive, response);
-            return ((dynamic)primitive).LastValue;
-        }
+        await ReadBatchAsync(new IWebApiPrimitive[] { primitive });
+        return ((OnlinerBase<T>)primitive).LastValue;
     }
 
-    internal async Task<T> ReadAsync<T>(string symbol, T value)
-    {
-        return (await ReadAsync<T>(symbol)).result;
-    }
-
+  
     internal async Task<T> ReadAsync<T>(IWebApiPrimitive primitive, T value)
     {
-        var response = new ApiResultResponse<T>();
-        try
-        {
-            var res = await ReadAsync<T>(primitive.Symbol);
-            response = res.response;
-            return response.Result;
-        }
-        catch (Exception e)
-        {
-            HandleCommFailure(e, "Failed to read item", primitive, response);
-            return ((dynamic)primitive).LastValue;
-        }
-    }
-
-    internal async Task<T> WriteAsync<T>(string symbol, T value)
-    {
-        await RequestHandler.PlcProgramWriteAsync($"{DBName}.{symbol}", value);
-        return value;
+        await ReadBatchAsync(new IWebApiPrimitive[] { primitive });
+        return ((OnlinerBase<T>)primitive).LastValue;
     }
 
     internal async Task<T> WriteAsync<T>(IWebApiPrimitive primitive, T value)
     {
-        var response = new ApiTrueOnSuccessResponse();
-
-        try
-        {
-            response = await RequestHandler.PlcProgramWriteAsync($"{DBName}.{primitive.Symbol}", value);
-            return value;
-        }
-        catch (Exception e)
-        {
-            HandleCommFailure(e, "Failed to write item", primitive, response);
-            return ((dynamic)primitive).LastValue;
-        }
+        ((OnlinerBase<T>)primitive).SetValueToWrite(value);
+        await WriteBatchAsync(new List<IWebApiPrimitive>() { primitive });
+        return value;
     }
 
     private static volatile object mutex = new();
@@ -384,20 +415,6 @@ public class WebApiConnector : Connector
                 return _id++.ToString(); // TODO: Consider something more appropriate here.
             }
         }
-    }
-
-    internal static ByteArrayContent ToByteArrayContent(object payload)
-    {
-        var apiLoginRequestString = JsonConvert.SerializeObject(payload,
-            new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            });
-
-        var byteArr = Encoding.UTF8.GetBytes(apiLoginRequestString);
-        var body = new ByteArrayContent(byteArr);
-        body.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        return body;
     }
 
     internal static ApiPlcReadRequest CreateReadRequest(string symbol, string root = "\"TGlobalVariablesDB\"")
@@ -418,112 +435,11 @@ public class WebApiConnector : Connector
 
     internal override async Task ReadBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
     {
-        if (primitives == null) return;
-
-        var responseData = new ApiBulkResponse();
-
-        var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-
-        if (!twinPrimitives.Any()) return;
-        try
-        {
-            if (Logger.IsEnabled(LogEventLevel.Debug))
-            {
-                stopwatch.Restart();
-            }
-
-            if (Logger.IsEnabled(LogEventLevel.Verbose))
-            {
-                this.Logger
-                    .Verbose("{vars}",
-                    string.Join("\n",
-                        (twinPrimitives).Select(p =>
-                            $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
-            }
-
-            var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-            
-            foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
-            {
-                var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
-                var segment = apiPrimitives.Select(p => p.PeekPlcReadRequestData).ToList();
-                try
-                {
-                    responseData = await RequestHandler.ApiBulkAsync(segment);
-                    var position = 0;
-                    apiPrimitives.ToList()
-                        .ForEach(p =>
-                        {
-                            p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
-                            p.AccessStatus.Update(RwCycleCount);
-                        });
-                    
-                    Task.Delay(10).Wait();
-                }
-                catch (ApiBulkRequestException apiException)
-                {
-                    HandleCommFailure(apiException, "Batch read failed.", apiPrimitives, apiException.BulkResponse,
-                        apiPrimitives.Select(p => p.PeekPlcReadRequestData));
-                }
-                catch (Exception e)
-                {
-                    HandleCommFailure(e, "Batch read failed.", apiPrimitives, responseData,
-                        apiPrimitives.Select(p => p.PeekPlcReadRequestData));
-                }
-            }
-        }
-        finally
-        {
-        }
-
-        if (Logger.IsEnabled(LogEventLevel.Debug))
-        {
-            this.Logger.Debug($"Bulk reading: {twinPrimitives.Count()} items read in {stopwatch.ElapsedMilliseconds} ms.");
-        }
+        await ReadBatchAsync(primitives);
     }
 
     internal override async Task WriteBatchAsyncCyclic(IEnumerable<ITwinPrimitive> primitives)
     {
-        if (primitives == null) return;
-        try
-        {
-            var responseData = new ApiBulkResponse();
-            var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
-
-            if (twinPrimitives.Any())
-            {
-                if (Logger.IsEnabled(LogEventLevel.Verbose))
-                    this.Logger.Verbose($"Bulk writing: {twinPrimitives.Count()} items.");
-            }
-
-            var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-
-            foreach (var requestSegment in webApiPrimitives.SegmentWriteRequest(MAX_WRITE_REQUEST_SEGMENT))
-            {
-                var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
-                try
-                {
-                    responseData =
-                        await RequestHandler.ApiBulkAsync(apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
-
-                    // Task.Delay(10).Wait();
-                }
-                catch (ApiBulkRequestException apiException)
-                {
-                    HandleCommFailure(apiException, "Batch write failed.", twinPrimitives, apiException.BulkResponse,
-                        apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
-                }
-                catch (Exception e)
-                {
-                    HandleCommFailure(e, "Batch write failed.", twinPrimitives, responseData,
-                        apiPrimitives.Select(p => p.PeekPlcWriteRequestData));
-                }
-
-                
-            }
-        }
-        finally
-        {
-        }
+        await WriteBatchAsync(primitives);
     }
 }
