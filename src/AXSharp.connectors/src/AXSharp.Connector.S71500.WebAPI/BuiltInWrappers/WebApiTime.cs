@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -65,9 +66,12 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
     }
 
     /// <inheritdoc />
-    public void Read(string result)
+    public void Read(string value)
     {
-        UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(long.Parse(result))));
+        if (long.TryParse(value, out var val))
+        {
+            UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(val)));
+        }
     }
 
 

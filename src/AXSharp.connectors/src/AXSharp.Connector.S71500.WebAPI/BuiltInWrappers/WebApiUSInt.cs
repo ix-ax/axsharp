@@ -67,7 +67,10 @@ public class WebApiUSInt : OnlinerUSInt, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(byte.Parse(value));
+        if (byte.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

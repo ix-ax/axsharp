@@ -68,7 +68,10 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(TimeSpan.FromMilliseconds(long.Parse(value) / 1000000));
+        if (long.TryParse(value, out var val))
+        {
+            UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
+        }
     }
 
     /// <inheritdoc />

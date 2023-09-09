@@ -66,7 +66,10 @@ public class WebApiUdInt : OnlinerUDInt, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(uint.Parse(value));
+        if (uint.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

@@ -66,9 +66,12 @@ public class WebApiLTime : OnlinerLTime, IWebApiPrimitive
     }
 
     /// <inheritdoc />
-    public void Read(string result)
+    public void Read(string value)
     {
-        UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(long.Parse(result))));
+        if (long.TryParse(value, out var val))
+        {
+            UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(val)));
+        }
     }
 
 

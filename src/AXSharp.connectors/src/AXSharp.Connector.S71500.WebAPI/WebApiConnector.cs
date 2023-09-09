@@ -20,6 +20,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Net;
+using System.Xml.Serialization;
 using Polly;
 using Polly.Retry;
 using Newtonsoft.Json.Linq;
@@ -287,6 +288,8 @@ public class WebApiConnector : Connector
                 try
                 {
                     await RetryPolicy.ExecuteAsync(async () => responseData = await RequestHandler.ApiBulkAsync(segment));
+
+                   
 
                     var position = 0;
                     apiPrimitives.ToList()
