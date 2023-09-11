@@ -32,13 +32,22 @@ public class TIA2AXSharpAdapter
         List<ApiPlcProgramData> programBlocks =
             (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
 
+
+        // TODO consider multiple program data blocks
+        //var myPlcProgramDataBlock = programBlocks.First(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
+        //var db = new TIATwinObject(connector, $"\"{myPlcProgramDataBlock.Name}\"", $"\"{myPlcProgramDataBlock.Name}\"");
+
+        //await BrowseParent(myPlcProgramDataBlock, requestHandler, db, 1);
+        //twinDataBlocks.Add(db);
+
+
         var dataBlockNodes = programBlocks.Where(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
 
         foreach (var dataBlockNode in dataBlockNodes)
         {
             var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
+            await BrowseParent(dataBlockNode, requestHandler, db, 1);
             twinDataBlocks.Add(db);
-            BrowseParent(dataBlockNode, requestHandler, db, 1).Wait();
         }
 
         return twinDataBlocks;
@@ -52,60 +61,103 @@ public class TIA2AXSharpAdapter
         if (dept > 9)
             return;
 
-        try
+
+
+        var children = requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, parentNode).Result.Result;
+        parentNode.Children = children;
+
+
+        if (children == null)
         {
-            if (parentNode.ArrayElements.Count > 0)
-            {
-                foreach (var arrayElement in parentNode.ArrayElements)
-                {
-                    var children = requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, arrayElement).Result
-                        .Result;
-
-                    arrayElement.Children = children;
-                    
-                    CreateTwin(arrayElement, requestHandler, parentTwinObject, dept);
-                }
-            }
-            else
-            {
-                var children = requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, parentNode).Result
-                    .Result;
-                parentNode.Children = children;
-
-                CreateTwin(parentNode, requestHandler, parentTwinObject, dept);
-            }
+            Console.WriteLine("null");
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return;
-        }
-
+        await CreateTwin(parentNode, requestHandler, parentTwinObject, dept);
 
       
+        //if (parentNode.ArrayElements.Count > 0)
+        //{
+        //    foreach (var arrayElement in parentNode.ArrayElements)
+        //    {
+        //    //browsing children of array
+        //        var children = requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, arrayElement).Result
+        //            .Result;
 
-       // dept--;
+        //        arrayElement.Children = children;
+
+        //        await CreateTwin(arrayElement, requestHandler, parentTwinObject, dept);
+        //    }
+        //}
+        //else
+        //{
+
+        //}
+
+
+
+        dept--;
     }
 
-    private static void CreateTwin(ApiPlcProgramData parentNode, IApiRequestHandler requestHandler,
+    private static async Task CreateTwin(ApiPlcProgramData parentNode, IApiRequestHandler requestHandler,
         TIATwinObject parentTwinObject, int dept)
     {
         foreach (var child in parentNode.Children)
         {
+
             child.Parents.AddRange(parentNode.Parents);
             child.Parents.Add(parentNode);
 
-            if (child.Has_children == true)
+
+            if(child.ArrayElements.Count > 0)
             {
-                var nested = new TIATwinObject(parentTwinObject, child.Name, child.Name);
-                parentTwinObject.AddChild(nested);
-                parentTwinObject.AddKid(nested);
-                BrowseParent(child, requestHandler, nested, dept).Wait();
+
+                foreach (var arrayElement in child.ArrayElements)
+                {
+                    if (arrayElement.Has_children == true)
+                    {
+                        //is this neccessary? will plcread read arrays of complex objects?
+                        var nested = new TIATwinObject(parentTwinObject, arrayElement.Name, arrayElement.Name);
+                        parentTwinObject.AddChild(nested);
+                        parentTwinObject.AddKid(nested);
+                        await BrowseParent(arrayElement, requestHandler, nested, dept);
+                    }
+                    else
+                    {
+                        //this method automaticcaly adds valuetag and kid
+                        CreatePrimitive(arrayElement, parentTwinObject);
+                        //parentTwinObject.AddValueTag(primitive);
+                        // parentTwinObject.AddKid(primitive);
+                    }
+                }
+                
+
+            }
+            else if (child.Has_children == true)
+            {
+
+                if (string.IsNullOrEmpty(child.Name))
+                {
+                    child.Name = "inheritance";
+                    var nested = new TIATwinObject(parentTwinObject, child.Name, child.Name);
+                    parentTwinObject.AddChild(nested);
+                    parentTwinObject.AddKid(nested);
+                    await BrowseParent(child, requestHandler, nested, dept);
+
+                    var x = 10;
+                }
+                else
+                {
+                    var nested = new TIATwinObject(parentTwinObject, child.Name, child.Name);
+                    parentTwinObject.AddChild(nested);
+                    parentTwinObject.AddKid(nested);
+                    await BrowseParent(child, requestHandler, nested, dept);
+                }
             }
             else
             {
-                parentTwinObject.AddValueTag(CreatePrimitive(child, parentTwinObject));
-                parentTwinObject.AddKid(CreatePrimitive(child, parentTwinObject));
+                //this method automaticcaly adds valuetag and kid
+               CreatePrimitive(child, parentTwinObject);
+                //parentTwinObject.AddValueTag(primitive);
+                // parentTwinObject.AddKid(primitive);
             }
         }
     }

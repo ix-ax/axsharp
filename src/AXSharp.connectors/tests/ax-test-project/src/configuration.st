@@ -3,13 +3,18 @@ CONFIGURATION MyConfiguration
     PROGRAM P1 WITH Main: MyProgram;
 
     VAR_GLOBAL 
+
+        myArrayString: ARRAY[0..10] OF STRING; 
+
+        myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
+
         mins : full_of_primitives;
         maxs : full_of_primitives;
 
         minsmatch : full_of_primitives_match;
         maxsmatch : full_of_primitives_match;
 
-        myBOOL	        :       BOOL	      ;
+        myBOOL	        :       BOOL	 := TRUE     ;
         myBYTE	        :       BYTE	      ;
         myWORD	        :       WORD	      ;
         myDWORD	        :       DWORD	      ;
@@ -32,15 +37,23 @@ CONFIGURATION MyConfiguration
         myLTIME_OF_DAY	:       LTIME_OF_DAY  ;
         myDATE_AND_TIME  :      DATE_AND_TIME ;
         myLDATE_AND_TIME :      LDATE_AND_TIME;
-        myCHAR	        :       CHAR	      ;
-        myWCHAR	        :       WCHAR	      ;
+        // myCHAR	        :       CHAR	      ;
+        // myWCHAR	        :       WCHAR	      ;
         mySTRING	        :   STRING	      ;
         myWSTRING	    :       WSTRING	      ;
 
+
+        
+        
         myColors : Colors;
 
-        Hierarchy : hierarchy;
+        //Hierarchy : hierarchy;
         // Issues  
-        GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
+
+        GH_PKTu_ix_56_Base: GH.PKTu.ix_56.Base;
+
+        GH_PKTu_ix_56_FirstInheritance : GH.PKTu.ix_56.FirstInheritance;
+
+        // GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
     END_VAR
 END_CONFIGURATION

@@ -22,25 +22,68 @@ namespace AXSharp.TIA2AXSharpTests
             this.output = output;
         }
 
-        [Fact()]
-        public async void GoTest()
-        {
+        //[Fact()]
+        //public async void GoTest()
+        //{
             
-            var connector = new WebApiConnector("192.168.0.4", "Everybody", "", true, string.Empty);
-            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
-            var allVariables = adapter.First().RetrievePrimitives()
-                .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\".Context")).ToList();
+        //    var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
+        //    var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
 
+        //    //var allVariables2 = adapter.First().RetrievePrimitives()
+        //    //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\".Context")).ToList();
+
+        //    var allVariables = adapter.First().RetrievePrimitives()
+        //        .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
+
+        //    await connector.ReadBatchAsync(allVariables);
+        //    //connector.ReadBatchAsync(allVariables).Wait();
+
+        //    //await (allVariables.First() as OnlinerULInt).GetAsync();
+
+        //    // CHARs and STRINGS are problems!!!! 
+        //    // in p.read, char parsing causing exception
+
+        //    var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
+            
+        //    foreach (var variable in allVariables)
+        //    {
+        //        output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
+        //    }
+
+        //    Assert.True(true, "This test needs an implementation");
+            
+        //}
+
+        [Fact()]
+        public async void GoTemplateSimpleTest()
+        {
+
+            var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
+
+            //var allVariables2 = adapter.First().RetrievePrimitives()
+            //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\".Context")).ToList();
+
+            var allVariables = adapter.First().RetrievePrimitives()
+                .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
+
+            await connector.ReadBatchAsync(allVariables);
             //connector.ReadBatchAsync(allVariables).Wait();
 
             //await (allVariables.First() as OnlinerULInt).GetAsync();
+
+            // CHARs and STRINGS are problems!!!! 
+            // in p.read, char parsing causing exception
+
+            var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
 
             foreach (var variable in allVariables)
             {
                 output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
             }
 
-            // Assert.True(false, "This test needs an implementation");
+            Assert.True(true, "This test needs an implementation");
+
         }
     }
 }

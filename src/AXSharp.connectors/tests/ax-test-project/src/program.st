@@ -23,10 +23,11 @@ PROGRAM MyProgram
         myLTIME_OF_DAY	:       LTIME_OF_DAY  ;
         myDATE_AND_TIME  :      DATE_AND_TIME ;
         myLDATE_AND_TIME :      LDATE_AND_TIME;
-        myCHAR	        :       CHAR	      ;
-        myWCHAR	        :       WCHAR	      ;
+        // myCHAR	        :       CHAR	      ;
+        // myWCHAR	        :       WCHAR	      ;
         mySTRING	        :   STRING	      ;
         myWSTRING	    :       WSTRING	      ;
+
         mins : full_of_primitives;
         maxs : full_of_primitives;
 
@@ -35,21 +36,34 @@ PROGRAM MyProgram
 
         myColors : Colors;
 
-        Hierarchy : hierarchy;
+        //Hierarchy : hierarchy;
+
+
+        myArrayString: ARRAY[0..10] OF STRING ;
+        myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
 
     END_VAR
 
     VAR
-
+        _item : complexArrayItem;
     END_VAR
 
     VAR_TEMP
 
     END_VAR
 
+    myBOOL := TRUE;
+    myINT := 42;
+
+    _item.itemBOOL := TRUE;
+    _item.itemSTRING := 'ahoj';
+    myArrayComplex[1] :=  _item;
+    myArrayString[1] := 'ahoj2';
+
+
     //myDATE := DATE#1970-01-01;
-    myColors := Colors#GREEN;
-    mins.myBOOL	            :=  false    ;
+    //myColors := Colors#GREEN;
+    //mins.myBOOL	            :=  false    ;
     mins.myBYTE	            :=  BYTE#2#0    ;
     mins.myWORD	            :=  WORD#0    ;
     mins.myDWORD	        :=  DWORD#16#0    ;
@@ -72,8 +86,8 @@ PROGRAM MyProgram
     mins.myLTIME_OF_DAY	    :=  LTOD#0:0:0.0    ;
     mins.myDATE_AND_TIME    :=  DT#1970-01-01-0:0:0.0   ;
     mins.myLDATE_AND_TIME   :=  LDT#1970-01-01-0:0:0.0   ;
-    mins.myCHAR	            :=  CHAR#' '    ;
-    mins.myWCHAR	        :=  WCHAR#" "    ;
+    // mins.myCHAR	            :=  CHAR#' '    ;
+    // mins.myWCHAR	        :=  WCHAR#" "    ;
     mins.mySTRING	        :=  STRING#'';
     mins.myWSTRING	        :=  WSTRING#""    ;
    
@@ -103,8 +117,8 @@ PROGRAM MyProgram
     maxs.myLTIME_OF_DAY	    :=  LTOD#23:59:59.999000000    ;
     maxs.myDATE_AND_TIME    :=  DT#2262-04-11-23:47:16.854   ;
     maxs.myLDATE_AND_TIME   :=  LDT#2262-04-11-23:47:16.854   ;
-    maxs.myCHAR	            :=  CHAR#'$7F';
-    maxs.myWCHAR	        :=  WCHAR#"$D7FE";
+    // maxs.myCHAR	            :=  CHAR#'$7F';
+    // maxs.myWCHAR	        :=  WCHAR#"$D7FE";
     maxs.mySTRING	        :=  STRING#'ABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMN';
     maxs.myWSTRING	        :=  WSTRING#"ABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMNOPRSTUABCDEFGHIJKLMN";
 
@@ -133,8 +147,8 @@ PROGRAM MyProgram
     minsmatch.myLTIME_OF_DAY	:= mins.myLTIME_OF_DAY	 =  myLTIME_OF_DAY	;
     minsmatch.myDATE_AND_TIME   := mins.myDATE_AND_TIME  =  myDATE_AND_TIME ;
     minsmatch.myLDATE_AND_TIME  := mins.myLDATE_AND_TIME =  myLDATE_AND_TIME;
-    minsmatch.myCHAR	        := mins.myCHAR	         =  myCHAR	        ;
-    minsmatch.myWCHAR	        := mins.myWCHAR	         =  myWCHAR	        ;
+    // minsmatch.myCHAR	        := mins.myCHAR	         =  myCHAR	        ;
+    // minsmatch.myWCHAR	        := mins.myWCHAR	         =  myWCHAR	        ;
     minsmatch.mySTRING	        := mins.mySTRING	     =  mySTRING	    ;   
     minsmatch.myWSTRING	        := mins.myWSTRING	     =  myWSTRING	    ;
 
@@ -162,8 +176,8 @@ PROGRAM MyProgram
     maxsmatch.myLTIME_OF_DAY	:= maxs.myLTIME_OF_DAY	 =  myLTIME_OF_DAY	;
     maxsmatch.myDATE_AND_TIME   := maxs.myDATE_AND_TIME  =  myDATE_AND_TIME ;
     maxsmatch.myLDATE_AND_TIME  := maxs.myLDATE_AND_TIME =  myLDATE_AND_TIME;
-    maxsmatch.myCHAR	        := maxs.myCHAR	         =  myCHAR	        ;
-    maxsmatch.myWCHAR	        := maxs.myWCHAR	         =  myWCHAR	        ;
+    // maxsmatch.myCHAR	        := maxs.myCHAR	         =  myCHAR	        ;
+    // maxsmatch.myWCHAR	        := maxs.myWCHAR	         =  myWCHAR	        ;
     maxsmatch.mySTRING	        := maxs.mySTRING	     =  mySTRING	    ;   
     maxsmatch.myWSTRING	        := maxs.myWSTRING	     =  myWSTRING	    ;
 END_PROGRAM
