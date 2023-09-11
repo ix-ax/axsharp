@@ -289,15 +289,28 @@ public class WebApiConnector : Connector
                 {
                     await RetryPolicy.ExecuteAsync(async () => responseData = await RequestHandler.ApiBulkAsync(segment));
 
-                   
-
-                    var position = 0;
-                    apiPrimitives.ToList()
-                        .ForEach(p =>
+                    // This is needed when unassigned CHAR or WCHAR are read; they won't be present in the response.
+                    if (responseData.SuccessfulResponses.Count() != apiPrimitives.Length)
+                    {
+                        foreach (var response in responseData.SuccessfulResponses)
                         {
-                            p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
-                            p.AccessStatus.Update(RwCycleCount);
-                        });
+                            var a = apiPrimitives.FirstOrDefault(p => p.PeekPlcReadRequestData.Id == response.Id);
+                            if (a == null) continue;
+                            a.Read(response.Result.ToString());
+                            a.AccessStatus.Update(RwCycleCount);
+                        }
+                    }
+                    else
+                    {
+                        var position = 0;
+                        apiPrimitives.ToList()
+                            .ForEach(p =>
+                            {
+                                p.Read(responseData.SuccessfulResponses.ElementAt(position++).Result.ToString());
+                                p.AccessStatus.Update(RwCycleCount);
+                            });
+                    }
+
                 }
                 catch (ApiBulkRequestException apiException)
                 {
