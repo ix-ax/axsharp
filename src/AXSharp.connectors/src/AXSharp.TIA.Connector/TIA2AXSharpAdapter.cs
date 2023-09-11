@@ -35,20 +35,23 @@ public class TIA2AXSharpAdapter
 
         // TODO consider multiple program data blocks
         //var myPlcProgramDataBlock = programBlocks.First(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
-        //var db = new TIATwinObject(connector, $"\"{myPlcProgramDataBlock.Name}\"", $"\"{myPlcProgramDataBlock.Name}\"");
 
-        //await BrowseParent(myPlcProgramDataBlock, requestHandler, db, 1);
-        //twinDataBlocks.Add(db);
+        //var myPlcProgramDataBlock = programBlocks.First(el => el.Name == "dbtest");
+        var myPlcProgramDataBlock = programBlocks.First(el => el.Name == "DbData");
+        var db = new TIATwinObject(connector, $"\"{myPlcProgramDataBlock.Name}\"", $"\"{myPlcProgramDataBlock.Name}\"");
+
+        await BrowseParent(myPlcProgramDataBlock, requestHandler, db, 1);
+        twinDataBlocks.Add(db);
 
 
-        var dataBlockNodes = programBlocks.Where(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
+        //var dataBlockNodes = programBlocks.Where(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
 
-        foreach (var dataBlockNode in dataBlockNodes)
-        {
-            var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
-            await BrowseParent(dataBlockNode, requestHandler, db, 1);
-            twinDataBlocks.Add(db);
-        }
+        //foreach (var dataBlockNode in dataBlockNodes)
+        //{
+        //    var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
+        //    await BrowseParent(dataBlockNode, requestHandler, db, 1);
+        //    twinDataBlocks.Add(db);
+        //}
 
         return twinDataBlocks;
     }
@@ -137,12 +140,7 @@ public class TIA2AXSharpAdapter
                 if (string.IsNullOrEmpty(child.Name))
                 {
                     child.Name = "inheritance";
-                    var nested = new TIATwinObject(parentTwinObject, child.Name, child.Name);
-                    parentTwinObject.AddChild(nested);
-                    parentTwinObject.AddKid(nested);
-                    await BrowseParent(child, requestHandler, nested, dept);
-
-                    var x = 10;
+                    throw new Exception($"Inheritance error, not supported. Parent is {parentNode.Name}");
                 }
                 else
                 {
@@ -154,10 +152,9 @@ public class TIA2AXSharpAdapter
             }
             else
             {
-                //this method automaticcaly adds valuetag and kid
+               //this method automaticcaly adds value tags and kids
                CreatePrimitive(child, parentTwinObject);
-                //parentTwinObject.AddValueTag(primitive);
-                // parentTwinObject.AddKid(primitive);
+
             }
         }
     }

@@ -24,8 +24,8 @@ CLASS full_of_primitives_match
         myLTIME_OF_DAY	    : BOOL;
         myDATE_AND_TIME    : BOOL;
         myLDATE_AND_TIME   : BOOL;
-        // myCHAR	            : BOOL;
-        // myWCHAR	        : BOOL;
+        myCHAR	            : BOOL;
+        myWCHAR	        : BOOL;
         mySTRING	        : BOOL;
         myWSTRING	        : BOOL;
     END_VAR    

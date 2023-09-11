@@ -4,6 +4,8 @@ CONFIGURATION MyConfiguration
 
     VAR_GLOBAL 
 
+        myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
+        
         myArrayString: ARRAY[0..10] OF STRING; 
 
         myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
@@ -37,8 +39,8 @@ CONFIGURATION MyConfiguration
         myLTIME_OF_DAY	:       LTIME_OF_DAY  ;
         myDATE_AND_TIME  :      DATE_AND_TIME ;
         myLDATE_AND_TIME :      LDATE_AND_TIME;
-        // myCHAR	        :       CHAR	      ;
-        // myWCHAR	        :       WCHAR	      ;
+        myCHAR	        :       CHAR	      ;
+        myWCHAR	        :       WCHAR	      ;
         mySTRING	        :   STRING	      ;
         myWSTRING	    :       WSTRING	      ;
 
@@ -50,9 +52,9 @@ CONFIGURATION MyConfiguration
         //Hierarchy : hierarchy;
         // Issues  
 
-        GH_PKTu_ix_56_Base: GH.PKTu.ix_56.Base;
+        //GH_PKTu_ix_56_Base: GH.PKTu.ix_56.Base;
 
-        GH_PKTu_ix_56_FirstInheritance : GH.PKTu.ix_56.FirstInheritance;
+        // GH_PKTu_ix_56_FirstInheritance : GH.PKTu.ix_56.FirstInheritance;
 
         // GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
     END_VAR

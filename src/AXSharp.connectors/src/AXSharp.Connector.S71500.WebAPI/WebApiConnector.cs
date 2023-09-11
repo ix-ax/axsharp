@@ -90,6 +90,9 @@ public class WebApiConnector : Connector
         requestHandler = new ApiHttpClientRequestHandler(Client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
+        requestHandler.ApiLogout();
+        requestHandler.ApiLogin(userName, string.Empty, true);
+
         NumberOfInstances++;
     }
 
@@ -262,7 +265,7 @@ public class WebApiConnector : Connector
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
         if (primitives == null) return;
-
+                       
         var responseData = new ApiBulkResponse();
 
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();

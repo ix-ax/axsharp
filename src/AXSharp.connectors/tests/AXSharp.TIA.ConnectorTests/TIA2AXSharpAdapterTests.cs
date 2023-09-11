@@ -10,6 +10,10 @@ using AXSharp.Connector.S71500.WebApi;
 using System.Reflection;
 using AXSharp.Connector.ValueTypes;
 using Xunit.Abstractions;
+using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
+using Siemens.Simatic.S7.Webserver.API.Services;
+using System.Net;
+using Siemens.Simatic.S7.Webserver.API.Services.IdGenerator;
 
 namespace AXSharp.TIA2AXSharpTests
 {
@@ -55,17 +59,22 @@ namespace AXSharp.TIA2AXSharpTests
         //}
 
         [Fact()]
-        public async void GoTemplateSimpleTest()
+        public async void GoTiaPortalDbTest()
         {
 
-            var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
 
             //var allVariables2 = adapter.First().RetrievePrimitives()
             //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\".Context")).ToList();
 
+
             var allVariables = adapter.First().RetrievePrimitives()
-                .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
+               .Where(p => p.Symbol.StartsWith("\"dbtest\"")).ToList();
+
+            //var allVariables = adapter.First().RetrievePrimitives()
+            //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
 
             await connector.ReadBatchAsync(allVariables);
             //connector.ReadBatchAsync(allVariables).Wait();
@@ -84,6 +93,86 @@ namespace AXSharp.TIA2AXSharpTests
 
             Assert.True(true, "This test needs an implementation");
 
+        }
+
+        [Fact()]
+        public async void GoAxTest()
+        {
+
+            //var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
+
+           
+            var allVariables = adapter.First().RetrievePrimitives()
+               .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
+
+            
+
+            await connector.ReadBatchAsync(allVariables);
+           
+            //await (allVariables.First() as OnlinerULInt).GetAsync();
+
+            // CHARs and STRINGS are problems!!!! 
+            // in p.read, char parsing causing exception
+
+            var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
+
+            foreach (var variable in allVariables)
+            {
+                output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
+            }
+
+            Assert.True(true, "This test needs an implementation");
+
+        }
+
+        [Fact()]
+        public async void GoTiaPortalDbData()
+        {
+
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
+
+
+            var allVariables = adapter.First().RetrievePrimitives()
+               .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();
+
+
+            await connector.ReadBatchAsync(allVariables);
+            
+
+            var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
+
+            foreach (var variable in allVariables)
+            {
+                output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
+            }
+
+            Assert.True(true, "This test needs an implementation");
+
+        }
+
+        [Fact]
+        public async void Check()
+        {
+
+            ApiResponseChecker ApiResponseChecker = new();
+            GUIDGenerator ReqIdGenerator = new();
+            ApiRequestParameterChecker RequestParameterChecker = new();
+        ServerCertificateCallback.CertificateCallback =
+                (sender, cert, chain, sslPolicyErrors) => true;
+
+            var serviceFactory = new ApiStandardServiceFactory();
+            var Client = serviceFactory.GetHttpClient("10.10.10.180", "Everybody", string.Empty);
+
+            var requestHandler = new ApiHttpClientRequestHandler(Client,
+                new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
+
+            await requestHandler.ApiLogoutAsync();
+
+            await requestHandler.ApiLoginAsync("Everybody", string.Empty, true);
         }
     }
 }
