@@ -73,7 +73,10 @@ public class WebApiLInt : OnlinerLInt, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(long.Parse(value));
+        if (long.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

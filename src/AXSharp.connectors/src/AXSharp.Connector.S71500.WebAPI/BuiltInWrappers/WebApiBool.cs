@@ -66,7 +66,10 @@ public class WebApiBool : OnlinerBool, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(bool.Parse(value));
+        if (bool.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -65,9 +66,12 @@ public class WebApiLWord : OnlinerLWord, IWebApiPrimitive
     }
 
     /// <inheritdoc />
-    public void Read(string result)
+    public void Read(string value)
     {
-        UpdateRead(ulong.Parse(result));
+        if (ulong.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
 

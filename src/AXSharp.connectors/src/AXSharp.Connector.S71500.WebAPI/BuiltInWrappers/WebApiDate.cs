@@ -77,8 +77,12 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
 
     private DateOnly GetFromBinary(string value)
     {
-        var val = long.Parse(value);
-        return GetFromBinary(val);
+        if (long.TryParse(value, out var val))
+        {
+            return GetFromBinary(val);
+        }
+
+        return DateOnly.MinValue;
     }
 
     private DateOnly GetFromBinary(long value)
