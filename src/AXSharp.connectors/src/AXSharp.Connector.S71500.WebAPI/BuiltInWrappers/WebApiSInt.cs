@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -64,9 +65,12 @@ public class WebApiSInt : OnlinerSInt, IWebApiPrimitive
     }
 
     /// <inheritdoc />
-    public void Read(string result)
+    public void Read(string value)
     {
-        UpdateRead(sbyte.Parse(result));
+        if (sbyte.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

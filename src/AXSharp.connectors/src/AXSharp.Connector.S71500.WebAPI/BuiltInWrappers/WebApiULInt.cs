@@ -68,7 +68,10 @@ public class WebApiULInt : OnlinerULInt, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(ulong.Parse(value));
+        if (ulong.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

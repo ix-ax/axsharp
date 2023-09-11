@@ -7,6 +7,7 @@
 
 using System.Globalization;
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -65,9 +66,12 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
     }
 
     /// <inheritdoc />
-    public void Read(string result)
+    public void Read(string value)
     {
-        UpdateRead(TimeSpan.FromMilliseconds(long.Parse(result) / 1000000));
+        if (long.TryParse(value, out var val))
+        {
+            UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
+        }
     }
 
     /// <inheritdoc />

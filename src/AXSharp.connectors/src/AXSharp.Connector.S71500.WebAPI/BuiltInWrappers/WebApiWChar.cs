@@ -72,7 +72,10 @@ public class WebApiWChar : OnlinerWChar, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(char.Parse(value));
+        if (char.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

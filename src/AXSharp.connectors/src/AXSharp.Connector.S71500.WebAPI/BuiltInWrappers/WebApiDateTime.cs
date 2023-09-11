@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.ValueTypes;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -75,9 +76,14 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
         return await _webApiConnector.ReadAsync<DateTime>(this);
     }
 
-    private DateTime GetFromBinary(string val)
+    private DateTime GetFromBinary(string value)
     {
-        return GetFromBinary(long.Parse(val));
+        if (long.TryParse(value, out var val))
+        {
+            return GetFromBinary(val);
+        }
+
+        return DateTime.MinValue;
     }
 
     private DateTime GetFromBinary(long val)

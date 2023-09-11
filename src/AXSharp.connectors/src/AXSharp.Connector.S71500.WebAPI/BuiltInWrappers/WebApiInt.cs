@@ -66,7 +66,10 @@ public class WebApiInt : OnlinerInt, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(short.Parse(value));
+        if (short.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />

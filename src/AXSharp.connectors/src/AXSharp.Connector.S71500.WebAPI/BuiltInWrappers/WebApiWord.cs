@@ -66,7 +66,10 @@ public class WebApiWord : OnlinerWord, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(ushort.Parse(value));
+        if (ushort.TryParse(value, out var val))
+        {
+            UpdateRead(val);
+        }
     }
 
     /// <inheritdoc />
