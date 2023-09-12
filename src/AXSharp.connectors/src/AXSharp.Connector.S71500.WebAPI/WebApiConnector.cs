@@ -111,7 +111,7 @@ public class WebApiConnector : Connector
 
     private readonly object concurentCountMutex = new object();
 
-    private void AntiThrottling(IEnumerable<ITwinPrimitive> primitives)
+    private async Task AntiThrottling(IEnumerable<ITwinPrimitive> primitives)
     {
         var concurrent = 0;
 
@@ -124,9 +124,7 @@ public class WebApiConnector : Connector
 
             if (concurrent >= ConcurrentRequestMaxCount)
             {
-                // We need this to be like it is to effectively prevent throttling over WebAPI
-                // `async awaiting` degrades overall comm performance.
-                Task.Delay(ConcurrentRequestDelay).Wait();
+                await Task.Delay(ConcurrentRequestDelay);
             }
 
         } while (concurrent >= ConcurrentRequestMaxCount);
@@ -277,7 +275,7 @@ public class WebApiConnector : Connector
                             $"{((OnlinerBase)p).Symbol} | pollings: [{string.Join(";", ((OnlinerBase)p).PollingHolders.Select(a => a.Key.ToString()))}]")));
             }
 
-            AntiThrottling(primitives);
+            await AntiThrottling(primitives);
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
            
@@ -342,7 +340,7 @@ public class WebApiConnector : Connector
 
         try
         {
-            AntiThrottling(primitives);
+            await AntiThrottling(primitives);
 
             var responseData = new ApiBulkResponse();
             var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
