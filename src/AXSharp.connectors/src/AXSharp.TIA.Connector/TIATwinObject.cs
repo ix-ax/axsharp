@@ -7,6 +7,7 @@
 
 using AXSharp.Connector;
 using AXSharp.Connector.Localizations;
+using Newtonsoft.Json;
 
 namespace AXSharp.TIA.Connector;
 
@@ -14,7 +15,9 @@ public class TIATwinObject : ITwinObject
 {
     public readonly IList<ITwinObject> _children = new List<ITwinObject>();
     public readonly IList<ITwinElement> _kids = new List<ITwinElement>();
+
     public readonly ITwinObject _parent;
+
     public readonly IList<ITwinPrimitive> _primitives = new List<ITwinPrimitive>();
 
 
