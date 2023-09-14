@@ -9,7 +9,7 @@ namespace AXSharp.TIA2AXSharp
 {
     public class TIARootObject
     {
-        public List<TIABrowseElement> TIATwinObjects { get; set; } = new List<TIABrowseElement>();
+        public List<TIABrowseElement> TIABrowseElements { get; set; } = new List<TIABrowseElement>();
 
     }
 }

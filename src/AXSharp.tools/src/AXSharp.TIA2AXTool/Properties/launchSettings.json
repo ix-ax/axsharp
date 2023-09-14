@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "tia2ax": {
+      "commandName": "Project",
+      "commandLineArgs": "-i 172.20.30.110 -o D:\\test.json"
+    },
+    "tia2ax2": {
+      "commandName": "Project",
+      "commandLineArgs": "-i 10.10.10.180 -o D:\\testdata.json -d DbData"
+    }
+
+  }
+ }

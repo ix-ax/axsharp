@@ -134,14 +134,18 @@ namespace AXSharp.TIA2AXSharpTests
         
 
         [Fact()]
-        public async void GoAxDeSerializableTest()
+        public async void GoAxTest()
         {
 
             //var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
             var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
-            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, false);
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
 
-            
+
+            var root = await TIA2AXSharpAdapter.CreateTIARootObject(connector);
+
+            TIA2AXSharpSerializer.Serialize(root, "root.json");
+
             var allVariables = adapter.First().RetrievePrimitives()
                .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
 
@@ -167,17 +171,23 @@ namespace AXSharp.TIA2AXSharpTests
         {
 
             var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-            //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
-            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, true);
+
+
+            //var rootObject = await TIA2AXSharpAdapter.CreateTIARootObject(connector, new[] { "DbData" });
+            //TIA2AXSharpSerializer.Serialize(rootObject, "dbData.json");
+
+
+            var rootObject = TIA2AXSharpSerializer.Deserialize("dbData.json");
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, rootObject);
 
 
             var allVariables = adapter.First(p=> p.Symbol == "\"DbData\"").RetrievePrimitives()
                .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();
 
 
-            await connector.ReadBatchAsync(allVariables);
+            await connector.ReadBatchAsync(allVariables.Take(100));
 
-
+            
             var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
 
             foreach (var variable in allVariables)
@@ -194,49 +204,44 @@ namespace AXSharp.TIA2AXSharpTests
         {
 
             var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-            //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
 
             var rootObject = await TIA2AXSharpAdapter.CreateTIARootObject(connector, new[] { "dbtest" });
 
             TIA2AXSharpSerializer.Serialize(rootObject, "test.json");
 
 
-
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, rootObject);
-
 
 
             var allVariables = adapter.First().RetrievePrimitives();
 
-            //var allVariables = adapter.First(p => p.Symbol == "\"DbData\"").RetrievePrimitives()
-            //   .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();
 
 
             await connector.ReadBatchAsync(allVariables);
 
-
-            var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
 
             foreach (var variable in allVariables)
             {
                 output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
             }
 
-            Assert.True(true, "This test needs an implementation");
+            Assert.NotNull(allVariables);
+            Assert.True(true);
 
         }
+
+       
 
         [Fact()]
         public async void GoAdapterFromDeSerializedTest()
         {
 
             var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-            //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
 
 
             var rootObject = TIA2AXSharpSerializer.Deserialize("test.json");
 
-            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, new[] { "DbData" }, rootObject);
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, rootObject);
 
             var allVariables = adapter.First(p => p.Symbol == "\"DbData\"").RetrievePrimitives()
                .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();

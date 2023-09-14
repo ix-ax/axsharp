@@ -28,85 +28,36 @@ public class TIA2AXSharpAdapter
     public static async Task<TIARootObject> CreateTIARootObject(WebApiConnector connector, string[] dataBlockNames)
     {
         var browseElements = new List<TIABrowseElement>();
-        var dataBlockNodes = new List<ApiPlcProgramData>();
         var adapter = new TIA2AXSharpAdapter();
-        var requestHandler =
-               await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
+        var requestHandler = await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
 
+        List<ApiPlcProgramData> programBlocks = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
 
-        List<ApiPlcProgramData> programBlocks =
-        (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
-
-
-
-        foreach (var dataBlockName in dataBlockNames)
+        if (dataBlockNames != null && dataBlockNames.Length > 0)
         {
-            var dataBlockNode = programBlocks.FirstOrDefault(p => p.Name == dataBlockName);
-            if(dataBlockNode != null)
-            {
-                dataBlockNodes.Add(dataBlockNode);
-            }
+            programBlocks = programBlocks.Where(x => dataBlockNames.Any(name => name == x.Name)).ToList();
         }
 
-
-        foreach (var dataBlockNode in dataBlockNodes)
+        foreach (var dataBlockNode in programBlocks)
         {
-            var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
             var dbe = new TIABrowseElement(dataBlockNode.Name, dataBlockNode.Datatype, true);
-            await BrowseParent(dataBlockNode, requestHandler, db, dbe, 1);
+            await BrowseParent(dataBlockNode, requestHandler, dbe, 1);
             browseElements.Add(dbe);
         }
 
-        return new TIARootObject { TIATwinObjects = browseElements };
+        return new TIARootObject { TIABrowseElements = browseElements };
     }
 
     public static async Task<TIARootObject> CreateTIARootObject(WebApiConnector connector)
-    {
-        var browseElements = new List<TIABrowseElement>();
-        var adapter = new TIA2AXSharpAdapter();
-        var requestHandler =
-               await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
+        => await CreateTIARootObject(connector, new string[] { });
 
 
-        List<ApiPlcProgramData> programBlocks =
-        (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
-
-        var dataBlockNodes = programBlocks.Where(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
-
-        foreach (var dataBlockNode in dataBlockNodes)
-        {
-            var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
-            var dbe = new TIABrowseElement(dataBlockNode.Name, dataBlockNode.Datatype, true);
-            await BrowseParent(dataBlockNode, requestHandler, db, dbe, 1);
-            browseElements.Add(dbe);
-        }
-
-        return new TIARootObject { TIATwinObjects = browseElements };
-    }
-
-    public static async Task<IEnumerable<ITwinObject>> CreateAdapter(WebApiConnector connector, string[] dataBlockNames, TIARootObject rootObject )
-    {
-        var twins = new List<ITwinObject>();
-        
-        foreach (var datablockName in dataBlockNames)
-        {
-            var dataBlockNode = rootObject.TIATwinObjects.FirstOrDefault(p => p.Symbol == datablockName);
-
-            if (dataBlockNode != null)
-            {
-                var db = new TIATwinObject(connector, $"\"{dataBlockNode.Symbol}\"", $"\"{dataBlockNode.Symbol}\"");
-                await CreateTwinFromSerialized(dataBlockNode, db, 1);
-                twins.Add(db);
-            }
-        }
-        return twins;
-    }
 
     public static async Task<IEnumerable<ITwinObject>> CreateAdapter(WebApiConnector connector, TIARootObject rootObject)
     {
         var twins = new List<ITwinObject>();
 
-        foreach (var dataBlockNode in rootObject.TIATwinObjects)
+        foreach (var dataBlockNode in rootObject.TIABrowseElements)
         {
             var db = new TIATwinObject(connector, $"\"{dataBlockNode.Symbol}\"", $"\"{dataBlockNode.Symbol}\"");
             await CreateTwinFromSerialized(dataBlockNode, db, 1);
@@ -117,83 +68,31 @@ public class TIA2AXSharpAdapter
 
 
 
-    public static async Task<IEnumerable<ITwinObject>> CreateAdapter(WebApiConnector connector, bool serializeDefault)
+    public static async Task<IEnumerable<ITwinObject>> CreateAdapter(WebApiConnector connector)
     {
-     
+
         var twins = new List<ITwinObject>();
-        var browseElements = new List<TIABrowseElement>();
         var adapter = new TIA2AXSharpAdapter();
         var rootObject = new TIARootObject();
 
-        TIARootObject? deserialize = TryToDeSerializeDefaultRootObject();
+        var requestHandler =
+            await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
 
-        if (deserialize != null)
+        List<ApiPlcProgramData> programBlocks =
+        (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
+
+        var dataBlockNodes = programBlocks.Where(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
+
+        foreach (var dataBlockNode in dataBlockNodes)
         {
-            foreach (var dataBlockNode in deserialize.TIATwinObjects)
-            {
-                var db = new TIATwinObject(connector, $"\"{dataBlockNode.Symbol}\"", $"\"{dataBlockNode.Symbol}\"");
-                await CreateTwinFromSerialized(dataBlockNode, db, 1);
-                twins.Add(db);
-            }
+            var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
+            await BrowseParent(dataBlockNode, requestHandler, db, 1);
+            twins.Add(db);
         }
-        else
-        {
 
-            var requestHandler =
-                await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
-
-
-            List<ApiPlcProgramData> programBlocks =
-            (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
-
-            var dataBlockNodes = programBlocks.Where(el => el.Datatype == ApiPlcProgramDataType.DataBlock);
-
-            foreach (var dataBlockNode in dataBlockNodes)
-            {
-                var db = new TIATwinObject(connector, $"\"{dataBlockNode.Name}\"", $"\"{dataBlockNode.Name}\"");
-                var dbe = new TIABrowseElement(dataBlockNode.Name, dataBlockNode.Datatype, true);
-                await BrowseParent(dataBlockNode, requestHandler, db, dbe, 1);
-                twins.Add(db);
-                browseElements.Add(dbe);
-            }
-
-            if(serializeDefault)
-            {
-                var rootObj = new TIARootObject();
-                rootObj.TIATwinObjects = browseElements;
-                SerializeDefault(rootObj);
-            }
-        }
         return twins;
     }
 
-    private static TIARootObject? TryToDeSerializeDefaultRootObject()
-    {
-
-        if (!File.Exists("defaultRootObj.json")) return null;
-
-        using (StreamReader file = File.OpenText("defaultRootObj.json"))
-        {
-            JsonSerializer serializer = new JsonSerializer ();
-            serializer.NullValueHandling = NullValueHandling.Ignore;
-            serializer.Formatting = Formatting.Indented;
-            return (TIARootObject?)serializer.Deserialize(file, typeof(TIARootObject));
-        }
-    }
-
-
-    private static void SerializeDefault(TIARootObject adapter)
-    {
-        JsonSerializer serializer = new JsonSerializer();
-        serializer.NullValueHandling = NullValueHandling.Ignore;
-        serializer.Formatting = Formatting.Indented;
-
-        using (StreamWriter sw = new StreamWriter("defaultRootObj.json"))
-        using (JsonWriter writer = new JsonTextWriter(sw))
-        {
-            serializer.Serialize(writer, adapter);
-        }
-    }
 
     private static async Task CreateTwinFromSerialized(TIABrowseElement parentNode,
         ITwinObject parentTwinObject, int dept)
@@ -215,9 +114,10 @@ public class TIA2AXSharpAdapter
         }
 
     }
-   
+
+
     private static async Task BrowseParent(ApiPlcProgramData parentNode, IApiRequestHandler requestHandler,
-        TIATwinObject parentTwinObject, TIABrowseElement parentBrowseObject, int dept)
+    ITIAGenericObject parent, int dept)
     {
         dept++;
 
@@ -227,12 +127,12 @@ public class TIA2AXSharpAdapter
         var children = requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, parentNode).Result.Result;
         parentNode.Children = children;
 
-        await CreateTwin(parentNode, requestHandler, parentTwinObject, parentBrowseObject, dept);
+        await CreateTwin(parentNode, requestHandler, parent, dept);
 
     }
 
     private static async Task CreateTwin(ApiPlcProgramData parentNode, IApiRequestHandler requestHandler,
-        TIATwinObject parentTwinObject, TIABrowseElement parentBrowseObject, int dept)
+        ITIAGenericObject parentObject, int dept)
     {
 
         foreach (var child in parentNode.Children)
@@ -240,32 +140,24 @@ public class TIA2AXSharpAdapter
             child.Parents.AddRange(parentNode.Parents);
             child.Parents.Add(parentNode);
 
-            if(child.ArrayElements.Any())
+            if (child.ArrayElements.Any())
             {
                 foreach (var arrayElement in child.ArrayElements)
                 {
                     if (arrayElement.Has_children == true)
                     {
-                        //is this neccessary? will plcread read arrays of complex objects?
-                        var nested = new TIATwinObject(parentTwinObject, arrayElement.Name, arrayElement.Name);
-                        parentTwinObject.AddChild(nested);
-                        parentTwinObject.AddKid(nested);
 
-                        var browse = new TIABrowseElement(arrayElement.Name, arrayElement.Datatype, true);
-                        parentBrowseObject.Children.Add(browse);
+                        var tiaObject = CreateTIAObject(parentObject, arrayElement.Name, arrayElement.Datatype, true);
 
-                        await BrowseParent(arrayElement, requestHandler, nested, browse, dept);
+                        await BrowseParent(arrayElement, requestHandler, tiaObject, dept);
                     }
                     else
                     {
                         //this method automaticcaly adds valuetag and kid
-                        CreatePrimitive(arrayElement, parentTwinObject);
-
-                        var primitive = new TIABrowseElement(arrayElement.Name, arrayElement.Datatype, false);
-                        parentBrowseObject.Children.Add(primitive);
+                        CreateTIAPrimitive(parentObject, arrayElement);
                     }
                 }
-                
+
             }
             else if (child.Has_children == true)
             {
@@ -276,27 +168,63 @@ public class TIA2AXSharpAdapter
                 }
                 else
                 {
-                    var nested = new TIATwinObject(parentTwinObject, child.Name, child.Name);
-                    parentTwinObject.AddChild(nested);
-                    parentTwinObject.AddKid(nested);
+                    var tiaObject = CreateTIAObject(parentObject, child.Name, child.Datatype, true);
 
-                    var browse = new TIABrowseElement(child.Name, child.Datatype, true);
-                    parentBrowseObject.Children.Add(browse);
-
-                    await BrowseParent(child, requestHandler, nested, browse, dept);
+                    await BrowseParent(child, requestHandler, tiaObject, dept);
                 }
             }
             else
             {
-               //this method automaticcaly adds value tags and kids
-               CreatePrimitive(child, parentTwinObject);
-
-                var primitive = new TIABrowseElement(child.Name, child.Datatype, false);
-                parentBrowseObject.Children.Add(primitive);
+                //this method automaticcaly adds value tags and kids
+                CreateTIAPrimitive(parentObject, child);
             }
         }
 
     }
+
+
+    private static ITIAGenericObject CreateTIAObject(ITIAGenericObject parent, string name, ApiPlcProgramDataType dataType, bool isNested) 
+    {
+        ITIAGenericObject tIAGenericObject = null;
+
+        if (parent is TIATwinObject tiaTwin)
+        {
+            var nested = new TIATwinObject(tiaTwin, name, name);
+            tiaTwin.AddChild(nested);
+            tiaTwin.AddKid(nested);
+            tIAGenericObject = nested;
+        }
+
+        if (parent is TIABrowseElement tiaBrowse)
+        {
+            var browse = new TIABrowseElement(name, dataType, isNested);
+            tiaBrowse.Children.Add(browse);
+            tIAGenericObject = browse;
+        }
+
+        if(tIAGenericObject == null) 
+        {
+            throw new Exception("Parent object cannot be null! Check your input.");
+        }
+        return tIAGenericObject;
+    }
+
+    private static void CreateTIAPrimitive(ITIAGenericObject parent, ApiPlcProgramData child)
+    {
+
+        if (parent is TIATwinObject tiaTwin)
+        {
+            CreatePrimitive(child, tiaTwin);
+        }
+
+        if (parent is TIABrowseElement tiaBrowse)
+        {
+            var primitive = new TIABrowseElement(child.Name, child.Datatype, false);
+            tiaBrowse.Children.Add(primitive);
+
+        }
+    }
+
 
     private static ITwinPrimitive CreatePrimitive(ApiPlcProgramData node, ITwinObject parent)
     {

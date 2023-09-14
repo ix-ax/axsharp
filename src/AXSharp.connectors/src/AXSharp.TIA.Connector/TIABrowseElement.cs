@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AXSharp.TIA2AXSharp
 {
-    public class TIABrowseElement
+    public class TIABrowseElement : ITIAGenericObject
     {
         public TIABrowseElement(string symbol, ApiPlcProgramDataType datatype, bool isNested)
         {
