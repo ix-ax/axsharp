@@ -202,7 +202,7 @@ public class AXSharpProject : IAXSharpProject
 
     private void CompileProjectReferences(IEnumerable<IReference> referencedDependencies)
     {
-        foreach (var ixProjectReference in AxProject.IxReferences)
+        foreach (var ixProjectReference in AxProject.AXSharpReferences)
         {
             string apaxFolder = ixProjectReference.AxProjectFolder == null
                 ? referencedDependencies
