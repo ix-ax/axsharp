@@ -82,7 +82,11 @@ public static class Program
         var project = new AXSharpProject(ax, new[] { typeof(CsOnlinerSourceBuilder), typeof(CsPlainSourceBuilder) },
             typeof(CsProject), o);
 
+        var sw = new System.Diagnostics.Stopwatch();
+        sw.Start();
         project.Generate();
+        sw.Stop();
+        Log.Logger.Information($"Done in {TimeSpan.FromMilliseconds(sw.ElapsedMilliseconds)}");
         return project;
     }
 
