@@ -235,6 +235,7 @@ public class AXSharpProject : IAXSharpProject
 
                 project.Generate();
 
+            if(!string.IsNullOrEmpty(ixProjectReference.AxProjectFolder))
                 compiled.Add(ixProjectReference.AxProjectFolder);
 
         }
