@@ -7,6 +7,14 @@
     "tia2ax2": {
       "commandName": "Project",
       "commandLineArgs": "-i 10.10.10.180 -o D:\\testdata.json -d DbData"
+    },
+    "tia2ax3": {
+      "commandName": "Project",
+      "commandLineArgs": "-i 10.10.10.180 -o D:\\testdata.json -d dbtest"
+    },
+    "tia2ax4": {
+      "commandName": "Project",
+      "commandLineArgs": "-i 10.10.10.180 -o D:\\testdata2.json -s dbtest.station[0]"
     }
 
   }

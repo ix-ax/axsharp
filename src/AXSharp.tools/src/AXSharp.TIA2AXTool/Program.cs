@@ -8,30 +8,56 @@ using AXSharp.TIA.Connector;
 using AXSharp.TIA2AXSharp;
 using System.Diagnostics;
 using Siemens.Simatic.S7.Webserver.API.Exceptions;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 Parser.Default.ParseArguments<Options>(args)
 .WithParsed(o =>
 {
-   
     Main(o);
-
 });
+
+string TransformSymbol(string symbol)
+{
+    var splitted = symbol.Split('.');
+    var sb = new StringBuilder();
+    foreach (var item in splitted)
+    {
+        sb.AppendDelim($"\"{item}\"");
+    }
+
+   
+    return sb.ToString();   
+}
+
 
 void Main(Options o)
 {
     Console.WriteLine("** TIA2AX **");
     Console.WriteLine("Generator of TwinObjects for TIA projects");
     Console.WriteLine("------------------------------------------");
-    Console.WriteLine("Generating...");
-
+    Console.WriteLine($"Connecting to {o.Ip}...");
+  
     Stopwatch sw = new Stopwatch();
     sw.Start();
     var connector = new WebApiConnector(o.Ip, o.Username, o.Password, true, string.Empty);
+    Console.WriteLine("Connected.");
+    Console.WriteLine("Generating...");
+
     TIARootObject root;
 
     try
     {
-        root = TIA2AXSharpAdapter.CreateTIARootObject(connector, o.DataBlocks?.ToArray()).Result;
+        if (o.Symbol != null)
+        {
+            var requestedSymbol = TransformSymbol(o.Symbol);
+            Console.WriteLine($"Requested symbol:{requestedSymbol}");
+            root = TIA2AXSharpAdapter.CreateTIARootObject(connector, requestedSymbol).Result;
+        }
+        else
+        {
+            root = TIA2AXSharpAdapter.CreateTIARootObject(connector, o.DataBlocks?.ToArray()).Result;
+        }
     }
     catch (Exception ex)
     {
@@ -63,4 +89,22 @@ void Main(Options o)
     Environment.ExitCode = 0;
     return;
 
+}
+
+static class StringBuilderExtensions
+{
+    public static void AppendDelim(this StringBuilder sb, string text, string delim = ".", bool writeEmptyString = true)
+    {
+        if (writeEmptyString || !String.IsNullOrWhiteSpace(text))
+        {
+            if (sb.Length != 0)
+            {
+                sb.Append(delim + text);
+            }
+            else
+            {
+                sb.Append(text);
+            }
+        }
+    }
 }

@@ -13,10 +13,11 @@ using Siemens.Simatic.S7.Webserver.API.Enums;
 using Siemens.Simatic.S7.Webserver.API.Models;
 using Siemens.Simatic.S7.Webserver.API.Services;
 using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
-using System.Runtime.InteropServices;
-
 namespace AXSharp.TIA.Connector;
 
+/// <summary>
+/// Class containing methods for creating a TIA2AX adapter
+/// </summary>
 public class TIA2AXSharpAdapter
 {
     private readonly ApiStandardServiceFactory serviceFactory = new();
@@ -24,7 +25,12 @@ public class TIA2AXSharpAdapter
     private TIA2AXSharpAdapter()
     {
     }
-
+    /// <summary>
+    /// Creates TIARootObject by scanning provided datablock with WebApi
+    /// </summary>
+    /// <param name="connector">Instance of WebApiConnector</param>
+    /// <param name="dataBlockNames">Datablock names</param>
+    /// <returns>TIARootObject</returns>
     public static async Task<TIARootObject> CreateTIARootObject(WebApiConnector connector, string[] dataBlockNames)
     {
         var browseElements = new List<TIABrowseElement>();
@@ -47,13 +53,50 @@ public class TIA2AXSharpAdapter
 
         return new TIARootObject { TIABrowseElements = browseElements };
     }
-
+    /// <summary>
+    /// Creates TIARootObject from provided connector
+    /// </summary>
+    /// <param name="connector">Instance of WebApiConnector</param>
+    /// <returns>TIARootObject</returns>
     public static async Task<TIARootObject> CreateTIARootObject(WebApiConnector connector)
-        => await CreateTIARootObject(connector, new string[] { });
+        => await CreateTIARootObject(connector, new string[]{});
+
+    /// <summary>
+    /// Creates TIARootObject from provided connector and from symbol downwards
+    /// </summary>
+    /// <param name="connector">Instance of WebApiConnector</param>
+    /// <returns>TIARootObject</returns>
+    public static async Task<TIARootObject> CreateTIARootObject(WebApiConnector connector, string symbol)
+    {
+        var browseElements = new List<TIABrowseElement>();
+        var adapter = new TIA2AXSharpAdapter();
+        var requestHandler = await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
 
 
+        var x = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Var, "\"dbtest\".\"station\"[0]")).Result;
 
-    public static async Task<IEnumerable<ITwinObject>> CreateAdapter(WebApiConnector connector, TIARootObject rootObject)
+        List<ApiPlcProgramData> programBlocks = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, symbol)).Result;
+
+
+        foreach (var dataBlockNode in programBlocks)
+        {
+            var dbe = new TIABrowseElement(dataBlockNode.Name, dataBlockNode.Datatype, true);
+            //await BrowseParent(dataBlockNode, requestHandler, dbe, 1);
+            await CreateTwin(dataBlockNode, requestHandler, dbe, 1);
+            browseElements.Add(dbe);
+        }
+
+        return new TIARootObject { TIABrowseElements = browseElements };
+    }
+
+
+    /// <summary>
+    /// Creates adapter to Connector in form of list of generated TwinObjects from TIARootObject
+    /// </summary>
+    /// <param name="connector">Connector instance</param>
+    /// <param name="rootObject">Input TIARootObject</param>
+    /// <returns>List of ITwinObjects</returns>
+    public static async Task<IEnumerable<ITwinObject>> CreateAdapter(AXSharp.Connector.Connector connector, TIARootObject rootObject)
     {
         var twins = new List<ITwinObject>();
 
@@ -66,17 +109,37 @@ public class TIA2AXSharpAdapter
         return twins;
     }
 
+    /// <summary>
+    /// Creates adapter to Connector in form of list of generated TwinObjects from TIARootObject
+    /// </summary>
+    /// <param name="connector">Connector instance</param>
+    /// <param name="path">Path to json containing TIARootObject</param>
+    /// <returns>List of ITwinObjects</returns>
+    public static async Task<IEnumerable<ITwinObject>> CreateAdapter(AXSharp.Connector.Connector connector, string path)
+    {
+        var rootObject = TIA2AXSharpSerializer.Deserialize(path);
+        if(rootObject == null)
+        {
+            throw new Exception("Deserialization error, check your path or rootobject.");
+        }
 
+        return await CreateAdapter(connector, rootObject);
 
+    }
+    /// <summary>
+    /// Creates adapter to WebApiConnector by scanning it with PlcBrowse
+    /// </summary>
+    /// <param name="connector">WepApiConnector</param>
+    /// <returns>List of ITwinObjects</returns>
     public static async Task<IEnumerable<ITwinObject>> CreateAdapter(WebApiConnector connector)
     {
-
         var twins = new List<ITwinObject>();
         var adapter = new TIA2AXSharpAdapter();
         var rootObject = new TIARootObject();
 
         var requestHandler =
             await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
+
 
         List<ApiPlcProgramData> programBlocks =
         (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children)).Result;
@@ -92,7 +155,6 @@ public class TIA2AXSharpAdapter
 
         return twins;
     }
-
 
     private static async Task CreateTwinFromSerialized(TIABrowseElement parentNode,
         ITwinObject parentTwinObject, int dept)
@@ -221,10 +283,8 @@ public class TIA2AXSharpAdapter
         {
             var primitive = new TIABrowseElement(child.Name, child.Datatype, false);
             tiaBrowse.Children.Add(primitive);
-
         }
     }
-
 
     private static ITwinPrimitive CreatePrimitive(ApiPlcProgramData node, ITwinObject parent)
     {

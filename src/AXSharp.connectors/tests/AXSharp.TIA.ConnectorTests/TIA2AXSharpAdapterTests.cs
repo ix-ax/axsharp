@@ -17,6 +17,8 @@ using Siemens.Simatic.S7.Webserver.API.Services.IdGenerator;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using AXSharp.TIA2AXSharp;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace AXSharp.TIA2AXSharpTests
 {
@@ -29,129 +31,24 @@ namespace AXSharp.TIA2AXSharpTests
             this.output = output;
         }
 
-        //[Fact()]
-        //public async void GoTest()
-        //{
-
-        //    var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
-        //    var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
-
-        //    //var allVariables2 = adapter.First().RetrievePrimitives()
-        //    //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\".Context")).ToList();
-
-        //    var allVariables = adapter.First().RetrievePrimitives()
-        //        .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
-
-        //    await connector.ReadBatchAsync(allVariables);
-        //    //connector.ReadBatchAsync(allVariables).Wait();
-
-        //    //await (allVariables.First() as OnlinerULInt).GetAsync();
-
-        //    // CHARs and STRINGS are problems!!!! 
-        //    // in p.read, char parsing causing exception
-
-        //    var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
-
-        //    foreach (var variable in allVariables)
-        //    {
-        //        output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
-        //    }
-
-        //    Assert.True(true, "This test needs an implementation");
-
-        //}
-
-        //[Fact()]
-        //public async void GoTiaPortalDbTest()
-        //{
-
-        //    var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-        //    //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
-        //    var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
-
-        //    //var allVariables2 = adapter.First().RetrievePrimitives()
-        //    //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\".Context")).ToList();
-
-
-        //    var allVariables = adapter.First().RetrievePrimitives()
-        //       .Where(p => p.Symbol.StartsWith("\"dbtest\"")).ToList();
-
-        //    //var allVariables = adapter.First().RetrievePrimitives()
-        //    //    .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
-
-        //    await connector.ReadBatchAsync(allVariables);
-        //    //connector.ReadBatchAsync(allVariables).Wait();
-
-        //    //await (allVariables.First() as OnlinerULInt).GetAsync();
-
-        //    // CHARs and STRINGS are problems!!!! 
-        //    // in p.read, char parsing causing exception
-
-        //    var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
-
-        //    foreach (var variable in allVariables)
-        //    {
-        //        output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
-        //    }
-
-        //    Assert.True(true, "This test needs an implementation");
-
-        //}
-
-        //[Fact()]
-        //public async void GoAxTest()
-        //{
-
-        //    //var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-        //    var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
-        //    var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
-
-
-        //    var allVariables = adapter.First().RetrievePrimitives()
-        //       .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
-
-
-
-        //    await connector.ReadBatchAsync(allVariables);
-
-        //    //await (allVariables.First() as OnlinerULInt).GetAsync();
-
-        //    // CHARs and STRINGS are problems!!!! 
-        //    // in p.read, char parsing causing exception
-
-        //    var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
-
-        //    foreach (var variable in allVariables)
-        //    {
-        //        output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
-        //    }
-
-        //    Assert.True(true, "This test needs an implementation");
-
-        //}
-
-
-        
 
         [Fact()]
         public async void GoAxTest()
         {
 
-            //var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-            var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
 
 
-            var root = await TIA2AXSharpAdapter.CreateTIARootObject(connector);
-
-            TIA2AXSharpSerializer.Serialize(root, "root.json");
+            //var root = await TIA2AXSharpAdapter.CreateTIARootObject(connector);
+            //TIA2AXSharpSerializer.Serialize(root, "root.json");
 
             var allVariables = adapter.First().RetrievePrimitives()
                .Where(p => p.Symbol.StartsWith("\"TGlobalVariablesDB\"")).ToList();
 
 
             await connector.ReadBatchAsync(allVariables);
-
 
             var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
 
@@ -166,16 +63,15 @@ namespace AXSharp.TIA2AXSharpTests
 
         }
 
+
         [Fact()]
         public async void GoTiaPortalDbData()
         {
 
             var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
 
-
             //var rootObject = await TIA2AXSharpAdapter.CreateTIARootObject(connector, new[] { "DbData" });
             //TIA2AXSharpSerializer.Serialize(rootObject, "dbData.json");
-
 
             var rootObject = TIA2AXSharpSerializer.Deserialize("dbData.json");
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, rootObject);
@@ -184,10 +80,47 @@ namespace AXSharp.TIA2AXSharpTests
             var allVariables = adapter.First(p=> p.Symbol == "\"DbData\"").RetrievePrimitives()
                .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            await connector.ReadBatchAsync(allVariables.Take(1000));
+            sw.Stop();
+            output.WriteLine(sw.Elapsed.ToString());
 
-            await connector.ReadBatchAsync(allVariables.Take(100));
-
+            sw.Reset();
             
+            sw.Start();
+            await connector.ReadBatchAsync(allVariables.Take(1000));
+            sw.Stop();
+
+            output.WriteLine(sw.Elapsed.ToString());
+
+            var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
+
+            foreach (var variable in allVariables)
+            {
+                output.WriteLine($"{variable.Symbol} : {((dynamic)variable).LastValue}");
+            }
+
+            Assert.True(true, "This test needs an implementation");
+
+        }
+
+
+        [Fact()]
+        public async void GoTiaPortalDbDataFromParamTest()
+        {
+
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+
+
+            var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, "dbData.json");
+
+
+            var allVariables = adapter.First(p => p.Symbol == "\"DbData\"").RetrievePrimitives()
+               .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();
+
+            await connector.ReadBatchAsync(allVariables.Take(1000));
+
             var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
 
             foreach (var variable in allVariables)
@@ -204,19 +137,11 @@ namespace AXSharp.TIA2AXSharpTests
         {
 
             var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-
             var rootObject = await TIA2AXSharpAdapter.CreateTIARootObject(connector, new[] { "dbtest" });
-
             TIA2AXSharpSerializer.Serialize(rootObject, "test.json");
 
-
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, rootObject);
-
-
             var allVariables = adapter.First().RetrievePrimitives();
-
-
-
             await connector.ReadBatchAsync(allVariables);
 
 

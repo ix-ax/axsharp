@@ -11,8 +11,7 @@ namespace AXSharp.TIA2AXTool
     public class Options
     {
     
-
-        [Option('i', "ipadress", Required = true, HelpText = "Ip address for connector")]
+        [Option('i', "ipaddress", Required = true, HelpText = "ip address for connector")]
         public string Ip { get; set; }
 
         [Option('u', "username", Default = "Everybody", HelpText = "username")]
@@ -27,7 +26,9 @@ namespace AXSharp.TIA2AXTool
         [Option('o', "output", Required = true, HelpText = "output serialized adapter")]
         public string? Output{ get; set; }
 
+        [Option('s', "symbol", HelpText = "symbol from which scanning will occur")]
+        public string? Symbol { get; set; }
+
     }
-  
 
 }

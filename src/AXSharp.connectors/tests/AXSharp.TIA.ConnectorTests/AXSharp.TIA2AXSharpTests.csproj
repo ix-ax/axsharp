@@ -22,4 +22,14 @@
     <ProjectReference Include="..\..\src\AXSharp.TIA.Connector\AXSharp.TIA2AXSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="generated\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="generated\dbData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
