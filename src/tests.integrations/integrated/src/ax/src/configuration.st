@@ -43,7 +43,9 @@ CONFIGURATION MyConfiguration
        p_shadow_plain: all_primitives;
        p_plain_shadow: all_primitives;
 
-       StartPolling_should_update_cyclic_property : RealMonsterData.RealMonster;  
+       StartPolling_should_update_cyclic_property : RealMonsterData.RealMonster;
+
+       StartPolling_ConcurentOverload : RealMonsterData.RealMonster;  
 
        GH_ISSUE_183 : GH_ISSUE_183.GH_ISSUE_183_1;
     END_VAR

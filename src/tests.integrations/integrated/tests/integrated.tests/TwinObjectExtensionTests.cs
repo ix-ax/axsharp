@@ -1,14 +1,15 @@
 using AXSharp.Connector;
 using AXSharp.Connector.ValueTypes;
+using Microsoft.VisualBasic;
 
 namespace integrated.tests
 {
     public class TwinObjectExtensionTests
     {
         [Fact]
-        public async  Task OnlineToShadowAsync_should_copy_entire_structure()
+        public async Task OnlineToShadowAsync_should_copy_entire_structure()
         {
-            
+
             var monster = Entry.Plc.OnlineToShadowAsync_should_copy_entire_structure;
             monster.Description.Cyclic = "from online to shadow";
             monster.Id.Cyclic = 111222;
@@ -35,20 +36,20 @@ namespace integrated.tests
 
             Assert.Equal(monster.Description.Cyclic, monster.Description.Shadow);
             Assert.Equal(monster.Id.Cyclic, monster.Id.Shadow);
-            Assert.Equal(monster.ArrayOfBytes[0].Cyclic          , monster.ArrayOfBytes[0].Shadow)          ;
-            Assert.Equal(monster.ArrayOfBytes[1].Cyclic          , monster.ArrayOfBytes[1].Shadow)          ;
-            Assert.Equal(monster.ArrayOfBytes[2].Cyclic          , monster.ArrayOfBytes[2].Shadow)          ;
-            Assert.Equal(monster.ArrayOfDrives[0].Velo.Cyclic    , monster.ArrayOfDrives[0].Velo.Shadow)    ;
-            Assert.Equal(monster.ArrayOfDrives[0].Acc.Cyclic     , monster.ArrayOfDrives[0].Acc.Shadow)     ;
-            Assert.Equal(monster.ArrayOfDrives[0].Dcc.Cyclic     , monster.ArrayOfDrives[0].Dcc.Shadow)     ;
-            Assert.Equal(monster.ArrayOfDrives[0].Position.Cyclic, monster.ArrayOfDrives[0].Position.Shadow);  
-            Assert.Equal(monster.ArrayOfDrives[1].Velo.Cyclic    , monster.ArrayOfDrives[1].Velo.Shadow)    ;
-            Assert.Equal(monster.ArrayOfDrives[1].Acc.Cyclic     , monster.ArrayOfDrives[1].Acc.Shadow)     ;
-            Assert.Equal(monster.ArrayOfDrives[1].Dcc.Cyclic     , monster.ArrayOfDrives[1].Dcc.Shadow)     ;
-            Assert.Equal(monster.ArrayOfDrives[1].Position.Cyclic, monster.ArrayOfDrives[1].Position.Shadow);  
-            Assert.Equal(monster.ArrayOfDrives[2].Velo.Cyclic    , monster.ArrayOfDrives[2].Velo.Shadow)    ;
-            Assert.Equal(monster.ArrayOfDrives[2].Acc.Cyclic     , monster.ArrayOfDrives[2].Acc.Shadow)     ;
-            Assert.Equal(monster.ArrayOfDrives[2].Dcc.Cyclic     , monster.ArrayOfDrives[2].Dcc.Shadow)     ;
+            Assert.Equal(monster.ArrayOfBytes[0].Cyclic, monster.ArrayOfBytes[0].Shadow);
+            Assert.Equal(monster.ArrayOfBytes[1].Cyclic, monster.ArrayOfBytes[1].Shadow);
+            Assert.Equal(monster.ArrayOfBytes[2].Cyclic, monster.ArrayOfBytes[2].Shadow);
+            Assert.Equal(monster.ArrayOfDrives[0].Velo.Cyclic, monster.ArrayOfDrives[0].Velo.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[0].Acc.Cyclic, monster.ArrayOfDrives[0].Acc.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[0].Dcc.Cyclic, monster.ArrayOfDrives[0].Dcc.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[0].Position.Cyclic, monster.ArrayOfDrives[0].Position.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[1].Velo.Cyclic, monster.ArrayOfDrives[1].Velo.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[1].Acc.Cyclic, monster.ArrayOfDrives[1].Acc.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[1].Dcc.Cyclic, monster.ArrayOfDrives[1].Dcc.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[1].Position.Cyclic, monster.ArrayOfDrives[1].Position.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[2].Velo.Cyclic, monster.ArrayOfDrives[2].Velo.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[2].Acc.Cyclic, monster.ArrayOfDrives[2].Acc.Shadow);
+            Assert.Equal(monster.ArrayOfDrives[2].Dcc.Cyclic, monster.ArrayOfDrives[2].Dcc.Shadow);
             Assert.Equal(monster.ArrayOfDrives[2].Position.Cyclic, monster.ArrayOfDrives[2].Position.Shadow);
         }
 
@@ -58,21 +59,21 @@ namespace integrated.tests
             var monster = Entry.Plc.ShadowToOnlineAsync_should_copy_entire_structure;
             monster.Description.Cyclic = "from shadow to online";
             monster.Id.Cyclic = 333444;
-            
+
             monster.ArrayOfBytes[0].Shadow = 41;
             monster.ArrayOfBytes[1].Shadow = 42;
             monster.ArrayOfBytes[2].Shadow = 43;
-            
+
             monster.ArrayOfDrives[0].Velo.Shadow = 510;
             monster.ArrayOfDrives[0].Acc.Shadow = 520;
             monster.ArrayOfDrives[0].Dcc.Shadow = 530;
             monster.ArrayOfDrives[0].Position.Shadow = 540;
-            
+
             monster.ArrayOfDrives[1].Velo.Shadow = 610;
             monster.ArrayOfDrives[1].Acc.Shadow = 620;
             monster.ArrayOfDrives[1].Dcc.Shadow = 630;
             monster.ArrayOfDrives[1].Position.Shadow = 640;
-            
+
             monster.ArrayOfDrives[2].Velo.Shadow = 710;
             monster.ArrayOfDrives[2].Acc.Shadow = 720;
             monster.ArrayOfDrives[2].Dcc.Shadow = 730;
@@ -120,7 +121,7 @@ namespace integrated.tests
         public async Task OnlineToShadow_RealMonster_should_copy()
         {
             var monster = Entry.Plc.OnlineToShadow_should_copy;
-            var today = new DateTime(2022,12,15);
+            var today = new DateTime(2022, 12, 15);
             var date = new DateOnly(1999, 2, 13);
             var timespan = new TimeSpan(13, 13, 13);
 
@@ -133,7 +134,7 @@ namespace integrated.tests
             await monster.WriteAsync();
 
             await monster.OnlineToShadowAsync();
-        
+
 
 
             Assert.Equal(monster.Description.Cyclic, monster.Description.Shadow);
@@ -169,7 +170,7 @@ namespace integrated.tests
             Assert.Equal(monster.TestTimeSpan.Shadow, monster.TestTimeSpan.Cyclic);
         }
 
-     
+
 
         //tests primitives all
 
@@ -209,7 +210,7 @@ namespace integrated.tests
             Assert.Equal(primitives.myDATE_AND_TIME.Shadow, primitives.myDATE_AND_TIME.Cyclic);
             Assert.Equal(primitives.mySTRING.Shadow, primitives.mySTRING.Cyclic);
             Assert.Equal(primitives.myWSTRING.Shadow, primitives.myWSTRING.Cyclic);
-            Assert.Equal(primitives.myEnum.Shadow  , primitives.myEnum.Cyclic);
+            Assert.Equal(primitives.myEnum.Shadow, primitives.myEnum.Cyclic);
 
         }
 
@@ -329,7 +330,7 @@ namespace integrated.tests
             var polling = Entry.Plc.StartPolling_should_update_cyclic_property;
             polling.GetParent().GetConnector().SubscriptionMode = ReadSubscriptionMode.Polling;
             Entry.Plc.Connector.BuildAndStart();
-            
+
             var id = await polling.Id.GetAsync();
             var pos = await polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.GetAsync();
 
@@ -378,7 +379,7 @@ namespace integrated.tests
             polling.StopPolling(holderObject);
 
             Task.Delay(250).Wait();
-           
+
             id = polling.Id.Cyclic;
             pos = polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic;
 
@@ -400,6 +401,77 @@ namespace integrated.tests
 
             Assert.Equal(id, polling.Id.Cyclic);
             Assert.Equal(pos, polling.DriveA.NestedLevelOne.NestedLevelTwo.NestedLevelThree.Position.Cyclic);
+        }
+
+        [Fact]
+        public async Task StartPolling_ConcurentOverload()
+        {
+            var overloadMembers = new List<OverLoadMember>();
+
+            var polling = Entry.Plc.StartPolling_ConcurentOverload;
+
+            var pollingConnector = polling.GetParent().GetConnector();
+
+            pollingConnector.SubscriptionMode = ReadSubscriptionMode.Polling;
+            pollingConnector.BuildAndStart().ReadWriteCycleDelay = 10;
+            pollingConnector.ConcurrentRequestMaxCount = 4;
+            pollingConnector.ConcurrentRequestDelay = 10;
+
+
+            List<ITwinPrimitive> allMembers = polling.RetrievePrimitives().ToList();
+
+            int pInterval = 10;
+            foreach (var item in allMembers)
+            {
+                overloadMembers.Add(new OverLoadMember(item, pInterval));
+                pInterval = pInterval + 10;
+            }
+
+
+            foreach (var item in overloadMembers)
+            {
+                item.InitializePollingOnTask();
+            }
+
+            
+            foreach (var item in overloadMembers)
+            {
+                await item.OnTask;
+            }
+
+        }
+
+
+        public class OverLoadMember
+        {
+            public OverLoadMember(ITwinElement element, int poolingInterval)
+            {
+                Element = element;
+                PoolingInterval = poolingInterval;
+            }
+
+
+            public async void InitializePollingOnTask()
+            {
+                this.OnTask = System.Threading.Tasks.Task.Run(async () =>
+                {
+                    this.Element.StartPolling(this.PoolingInterval, this.ObjectHolder);
+
+                    await Task.Delay(3000);
+
+                    this.Element.StopPolling(this.ObjectHolder);
+                });
+
+            }
+
+            public object ObjectHolder { get; private set; } = new();
+
+            public Task OnTask { get; private set; }
+
+            public AXSharp.Connector.ITwinElement Element { get; private set; }
+            public int PoolingInterval { get; private set; }
+            public dynamic FistValue { get; private set; }
+
         }
     }
 }
