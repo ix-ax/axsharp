@@ -47,6 +47,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="LibGit2Sharp" Version="0.27.2" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="YamlDotNet" Version="13.0.0" />
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
