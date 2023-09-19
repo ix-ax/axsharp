@@ -13,7 +13,8 @@ namespace AXSharp.Connector
     internal class Polling
     {
 
-        private static HashSet<ITwinPrimitive> PollingPool { get; } = new HashSet<ITwinPrimitive>();
+        private static ConcurrentSet<ITwinPrimitive> PollingPool { get; } = new();
+
 
         private Polling(ITwinElement twinObject,
                             object holdingObject,
