@@ -1,6 +1,6 @@
 dotnet tool restore
 cd ax
-apax install
+apax install -L
 apax build
 axcode .
 axcode -g ..\README.md:0
