@@ -83,7 +83,7 @@ public class AxProject
     /// <summary>
     /// Gets paths of this project's references to other ix projects.
     /// </summary>
-    public IEnumerable<AXSharpConfig> IxReferences
+    public IEnumerable<AXSharpConfig> AXSharpReferences
     {
         get
         {
@@ -98,6 +98,12 @@ public class AxProject
                 .Select(p => new DirectoryInfo(p))
                 .Select(p => Directory.EnumerateFiles(p.LinkTarget ?? p.FullName, AXSharpConfig.CONFIG_FILE_NAME, SearchOption.TopDirectoryOnly))
                 .SelectMany(p => p).Select(c => AXSharpConfig.RetrieveIxConfig(c));
+
+            if (retVal.Count() == 0)
+            {
+                Log.Logger.Information("Retrieving possible project references from .apax packages did not produce results. " +
+                                       "If you have referenced AX# projects, the packages must be previously installed by 'apax install'");
+            }
 
             return retVal;
         }

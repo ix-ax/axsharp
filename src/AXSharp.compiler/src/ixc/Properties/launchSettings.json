@@ -6,11 +6,11 @@
     },
     "integration_plc": {
       "commandName": "Project",
-      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axsharp\\src\\sanbox\\integration\\ix-integration-plc\\"
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\integrations\\ctrl\\"
     },
     "ixc-simple-template": {
       "commandName": "Project",
-      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\ix.framework\\src\\templates.simple\\ctrl\\"
+      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\templates.simple\\ctrl\\"
     },
     "ixc-template-ref": {
       "commandName": "Project",

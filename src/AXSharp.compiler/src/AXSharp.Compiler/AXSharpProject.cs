@@ -200,10 +200,19 @@ public class AXSharpProject : IAXSharpProject
         return refParseTrees;
     }
 
+    private static HashSet<string> compiled = new();
+
     private void CompileProjectReferences(IEnumerable<IReference> referencedDependencies)
     {
-        foreach (var ixProjectReference in AxProject.IxReferences)
+        foreach (var ixProjectReference in AxProject.AXSharpReferences)
         {
+
+            if (compiled.Contains(ixProjectReference.AxProjectFolder))
+            {
+                Log.Logger.Information($"Skipping '{ixProjectReference.AxProjectFolder}' compiled in this session previously");
+                continue;
+            }
+
             string apaxFolder = ixProjectReference.AxProjectFolder == null
                 ? referencedDependencies
                     .Where(p => p.IsIxDependency)
@@ -225,6 +234,10 @@ public class AXSharpProject : IAXSharpProject
                 var project = new AXSharpProject(ax, BuilderTypes, targetProject.GetType());
 
                 project.Generate();
+
+            if(!string.IsNullOrEmpty(ixProjectReference.AxProjectFolder))
+                compiled.Add(ixProjectReference.AxProjectFolder);
+
         }
     }
 
