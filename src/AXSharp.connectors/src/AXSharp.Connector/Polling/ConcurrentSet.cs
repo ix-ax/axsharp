@@ -5,8 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
+
 namespace AXSharp.Connector
 {
+    /// <summary>
+    /// Concurent implementation HasSet comes from:  
+    /// https://stackoverflow.com/questions/18922985/concurrent-hashsett-in-net-framework
+    /// https://stackoverflow.com/questions/4306936/how-to-implement-concurrenthashset-in-net
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ConcurrentSet<T> : IEnumerable<T>, ISet<T>, ICollection<T>
     {
         private readonly ConcurrentDictionary<T, byte> _dictionary = new ConcurrentDictionary<T, byte>();

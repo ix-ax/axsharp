@@ -406,72 +406,101 @@ namespace integrated.tests
         [Fact]
         public async Task StartPolling_ConcurentOverload()
         {
-            var overloadMembers = new List<OverLoadMember>();
-
             var polling = Entry.Plc.StartPolling_ConcurentOverload;
 
             var pollingConnector = polling.GetParent().GetConnector();
-
             pollingConnector.SubscriptionMode = ReadSubscriptionMode.Polling;
             pollingConnector.BuildAndStart().ReadWriteCycleDelay = 10;
-            pollingConnector.ConcurrentRequestMaxCount = 4;
-            pollingConnector.ConcurrentRequestDelay = 10;
+            pollingConnector.ConcurrentRequestMaxCount = 6;
+            pollingConnector.ConcurrentRequestDelay = 20;
 
-
-            List<ITwinPrimitive> allMembers = polling.RetrievePrimitives().ToList();
-
-            int pInterval = 10;
-            foreach (var item in allMembers)
+            var testedMembes = new List<PollingTestMember>();
+            foreach (var item in polling.RetrievePrimitives().ToList())
             {
-                overloadMembers.Add(new OverLoadMember(item, pInterval));
-                pInterval = pInterval + 10;
+                testedMembes.Add(new PollingTestMember(item));
             }
 
-
-            foreach (var item in overloadMembers)
+            try
             {
-                item.InitializePollingOnTask();
-            }
+                // 20 polling groups
+                int intervalMin = 10;
+                int intervalMax = 70;
+                int intervalStep = 3;
 
-            
-            foreach (var item in overloadMembers)
+                // 20 diff. test times
+                int duratonTimeMin = 500;
+                int durationTimeMax = 1000;
+                int durationTimeStep = 3;
+
+
+                int PollingRepetionsPerMember =2;
+                int TestRepetitions =2;
+
+
+                int itemPollingTime = durationTimeMax;
+
+                for (int i = 0; i < TestRepetitions; i++)
+                {
+                    int itemInterval = intervalMin;
+
+                    foreach (var item in testedMembes)
+                    {
+                        item.InitializePollingOnTask(itemInterval, itemPollingTime, PollingRepetionsPerMember);
+
+                        itemInterval = itemInterval + intervalStep;
+                        if (itemInterval >= intervalMax) { itemInterval = intervalMin; }
+                    }
+
+                    // wait for all tests
+                    foreach (var item in testedMembes)
+                    {
+                        await item.OnTask;
+                    }
+
+                    itemPollingTime = itemPollingTime - durationTimeStep;
+                    if (itemPollingTime < duratonTimeMin) { itemPollingTime = durationTimeMax; }
+                }
+            }
+            catch (Exception ex)
             {
-                await item.OnTask;
+                throw new Exception("Polling exception!", ex);
             }
-
         }
 
-
-        public class OverLoadMember
+        public class PollingTestMember
         {
-            public OverLoadMember(ITwinElement element, int poolingInterval)
+            public PollingTestMember(ITwinElement element)
             {
                 Element = element;
-                PoolingInterval = poolingInterval;
             }
 
-
-            public async void InitializePollingOnTask()
+            public async void InitializePollingOnTask(int pollingInterval = 10, int pollingDurationTime = 100, int pollingRepetitions = 2)
             {
+                PollingInterval = pollingInterval;
+                Repetitions = pollingRepetitions;
+                DurationTime = pollingDurationTime;
+
                 this.OnTask = System.Threading.Tasks.Task.Run(async () =>
                 {
-                    this.Element.StartPolling(this.PoolingInterval, this.ObjectHolder);
+                    for (int i = 0; i < Repetitions; i++)
+                    {
+                        this.Element.StartPolling(this.PollingInterval, this.ObjectHolder);
 
-                    await Task.Delay(3000);
+                        await Task.Delay(DurationTime);
 
-                    this.Element.StopPolling(this.ObjectHolder);
+                        this.Element.StopPolling(this.ObjectHolder);
+                    }
                 });
-
             }
 
-            public object ObjectHolder { get; private set; } = new();
-
+            public ITwinElement Element { get; private set; }
             public Task OnTask { get; private set; }
 
-            public AXSharp.Connector.ITwinElement Element { get; private set; }
-            public int PoolingInterval { get; private set; }
-            public dynamic FistValue { get; private set; }
+            public int PollingInterval { get; private set; }
+            public int Repetitions { get; private set; }
+            public int DurationTime { get; private set; }
 
+            public object ObjectHolder { get; private set; } = new();
         }
     }
 }
