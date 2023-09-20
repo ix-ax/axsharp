@@ -25,7 +25,7 @@ CLASS full_of_primitives
         myLDATE_AND_TIME :      LDATE_AND_TIME;
         myCHAR	        :       CHAR	      ;
         myWCHAR	        :       WCHAR	      ;
-        mySTRING	        :   STRING	      ;
-        myWSTRING	    :       WSTRING	      ;
+         mySTRING	        :   STRING	      ;
+         myWSTRING	    :       WSTRING	      ;
     END_VAR    
 END_CLASS

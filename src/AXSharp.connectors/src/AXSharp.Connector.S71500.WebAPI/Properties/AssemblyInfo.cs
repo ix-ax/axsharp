@@ -8,3 +8,4 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("AXSharp.Connector.S71500.WebAPITests")]
+[assembly: InternalsVisibleTo("AXSharp.TIA2AXSharp")]

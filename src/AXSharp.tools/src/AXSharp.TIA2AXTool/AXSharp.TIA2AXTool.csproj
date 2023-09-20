@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <!--NuGet Specific part-->
+	  <Description>Generator of TwinObjects from TIA datablocks</Description>
+	  <PackAsTool>True</PackAsTool>
+	  <ToolCommandName>tia2ax</ToolCommandName>
+
+	  <!-- NuGet Common part-->
+	  <PackageProjectUrl>https://github.com/ix-ax/</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/ix-ax/axsharp</RepositoryUrl>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	  <Authors>ix-ax</Authors>
+	  <Copyright>(c) Peter Kurhajec and Contributors</Copyright>
+	  <PackageTags>simatix-ax, PLC, industrial automation, SCADA, HMI</PackageTags>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <Title>AX# compiler CLI</Title>
+	  <PackageIcon>icon_128_128.png</PackageIcon>
+	  <RepositoryType>git</RepositoryType>
+	  <IncludeSymbols>True</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageReleaseNotes>
+		  Release notes are published here:
+		  https://github.com/ix-ax/axsharp/releases
+	  </PackageReleaseNotes>
+	  <PackageReadmeFile>NUGET-README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+	
+	<ItemGroup>
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+	</ItemGroup>
+	
+		<ItemGroup>
+    <ProjectReference Include="..\..\..\AXSharp.connectors\src\AXSharp.TIA.Connector\AXSharp.TIA2AXSharp.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -15,6 +15,10 @@
     "ixc-template-ref": {
       "commandName": "Project",
       "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\templates.simple\\ctrl"
+    },
+    "ax-connectors-test-project": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axsharp\\src\\AXSharp.connectors\\tests\\ax-test-project\\"
     }
   }
 }

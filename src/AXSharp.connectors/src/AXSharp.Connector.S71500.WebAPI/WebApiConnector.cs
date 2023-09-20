@@ -6,6 +6,13 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Collections.Concurrent;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using AXSharp.Connector.S71500.WebAPI;
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json;
@@ -83,6 +90,9 @@ public class WebApiConnector : Connector
         requestHandler = new ApiHttpClientRequestHandler(Client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
+        requestHandler.ApiLogout();
+        requestHandler.ApiLogin(userName, string.Empty, true);
+
         NumberOfInstances++;
     }
 
@@ -156,7 +166,7 @@ public class WebApiConnector : Connector
     /// <summary>
     ///     Get the address of the target system.
     /// </summary>
-    private string IPAddress { get; }
+    internal string IPAddress { get; }
 
     internal string DBName { get; }
 
@@ -253,7 +263,7 @@ public class WebApiConnector : Connector
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
         if (primitives == null) return;
-
+                       
         var responseData = new ApiBulkResponse();
 
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
@@ -393,8 +403,17 @@ public class WebApiConnector : Connector
 
     internal async Task<(T result, ApiResultResponse<T> response)> ReadAsync<T>(string symbol)
     {
-        var response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{symbol}");
-        return (response.Result, response);
+        if (symbol.StartsWith("\""))
+        {
+            var response = await RequestHandler.PlcProgramReadAsync<T>($"{symbol}");
+            return (response.Result, response);
+        }
+        else
+        {
+            var response = await RequestHandler.PlcProgramReadAsync<T>($"{DBName}.{symbol}");
+            return (response.Result, response);
+        }
+
     }
 
     internal async Task<T> ReadAsync<T>(IWebApiPrimitive primitive)
@@ -433,13 +452,28 @@ public class WebApiConnector : Connector
 
     internal static ApiPlcReadRequest CreateReadRequest(string symbol, string root = "\"TGlobalVariablesDB\"")
     {
-        return new ApiPlcReadRequest($"{root}.{symbol}");
+        if (string.IsNullOrEmpty(root))
+        {
+            return new ApiPlcReadRequest($"{symbol}");
+        }
+        else
+        {
+            return new ApiPlcReadRequest($"{root}.{symbol}");
+        }
     }
 
     internal static ApiPlcWriteRequest CreateWriteRequest(string symbol, object value,
         string root = "\"TGlobalVariablesDB\"")
     {
-        return new ApiPlcWriteRequest($"{root}.{symbol}", value);
+        if (string.IsNullOrEmpty(root))
+        {
+            return new ApiPlcWriteRequest($"{symbol}", value);
+        }
+        else
+        {
+            return new ApiPlcWriteRequest($"{root}.{symbol}", value);
+        }
+       
     }
 
     internal static WebApiConnector Cast(Connector connector)
