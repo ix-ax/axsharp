@@ -9,9 +9,7 @@ using System.Text.RegularExpressions;
 Parser.Default.ParseArguments<Options>(args)
 .WithParsed(o =>
 {
-
     Main(o);
-    
 });
 
 

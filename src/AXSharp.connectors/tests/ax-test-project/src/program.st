@@ -1,5 +1,8 @@
 PROGRAM MyProgram
     VAR_EXTERNAL
+
+        myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
+
         myBOOL	        :       BOOL	      ;
         myBYTE	        :       BYTE	      ;
         myWORD	        :       WORD	      ;
@@ -27,6 +30,7 @@ PROGRAM MyProgram
         myWCHAR	        :       WCHAR	      ;
         mySTRING	        :   STRING	      ;
         myWSTRING	    :       WSTRING	      ;
+
         mins : full_of_primitives;
         maxs : full_of_primitives;
 
@@ -37,19 +41,33 @@ PROGRAM MyProgram
 
         Hierarchy : hierarchy;
 
+
+        myArrayString: ARRAY[0..10] OF STRING ;
+        //myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
+
     END_VAR
 
     VAR
-
+        _item : complexArrayItem;
     END_VAR
 
     VAR_TEMP
 
     END_VAR
 
+    myBOOL := TRUE;
+    myINT := 42;
+
+    _item.itemBOOL := TRUE;
+    _item.itemSTRING := 'ahoj';
+    //myArrayComplex[1] :=  _item;
+    //myArrayString[1] := 'ahoj2';
+
+    
+
     //myDATE := DATE#1970-01-01;
-    myColors := Colors#GREEN;
-    mins.myBOOL	            :=  false    ;
+    //myColors := Colors#GREEN;
+    //mins.myBOOL	            :=  false    ;
     mins.myBYTE	            :=  BYTE#2#0    ;
     mins.myWORD	            :=  WORD#0    ;
     mins.myDWORD	        :=  DWORD#16#0    ;
