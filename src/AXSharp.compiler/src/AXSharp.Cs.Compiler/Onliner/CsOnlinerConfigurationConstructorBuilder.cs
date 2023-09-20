@@ -91,7 +91,7 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
 
 
         AddToSource($"{typeof(Arrays).n()}.InstantiateArray({field.Name}, " +
-                    "this, " +
+                    "this.Connector, " +
                     $"\"{field.GetAttributeNameValue(field.Name)}\", " +
                     $"\"{field.Name}\", " +
                     "(p, rt, st) => ");
