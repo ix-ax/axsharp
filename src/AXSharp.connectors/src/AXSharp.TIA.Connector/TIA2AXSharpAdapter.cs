@@ -212,6 +212,9 @@ public class TIA2AXSharpAdapter
 
             if (child.ArrayElements.Any())
             {
+                if (child.Array_dimensions.Count > 1)
+                    continue;
+
                 foreach (var arrayElement in child.ArrayElements)
                 {
                     if (arrayElement.Has_children == true)
