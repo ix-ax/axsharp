@@ -81,6 +81,9 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
     private void AddArrayMemberInitialization(IArrayTypeDeclaration type, IVariableDeclaration field,
         IxNodeVisitor visitor)
     {
+        if (!type.IsMemberEligibleForConstructor(this.SourceBuilder))
+            return;
+
         AddToSource($"{field.Name}");
         AddToSource("= new");
         type.Accept(visitor, this);
@@ -88,12 +91,38 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
 
 
         AddToSource($"{typeof(Arrays).n()}.InstantiateArray({field.Name}, " +
-                    "this, " +
-                    "\"\", " +
+                    "this.Connector, " +
+                    $"\"{field.GetAttributeNameValue(field.Name)}\", " +
                     $"\"{field.Name}\", " +
-                    "(p, rt, st) => new");
-        type.ElementTypeAccess.Type.Accept(visitor, this);
-        AddToSource("(p, rt, st));");
+                    "(p, rt, st) => ");
+
+        switch (type.ElementTypeAccess.Type)
+        {
+
+            case IClassDeclaration classDeclaration:
+            case IStructuredTypeDeclaration structuredTypeDeclaration:
+            case IEnumTypeDeclaration enumTypeDeclaration:
+            case INamedValueTypeDeclaration namedValueTypeDeclaration:
+                AddToSource("new");
+                type.ElementTypeAccess.Type.Accept(visitor, this);
+                break;
+            case IScalarTypeDeclaration scalarTypeDeclaration:
+                AddToSource($"@Connector.ConnectorAdapter.AdapterFactory.Create{IecToAdapterExtensions.ToAdapterType(scalarTypeDeclaration)}");
+                break;
+            case IStringTypeDeclaration stringTypeDeclaration:
+                AddToSource($"@Connector.ConnectorAdapter.AdapterFactory.Create{IecToAdapterExtensions.ToAdapterType(stringTypeDeclaration)}");
+                break;
+        }
+
+        var dimensions = "new[] {";
+        foreach (var dimension in type.Dimensions)
+        {
+            dimensions = $"{dimensions}({dimension.LowerBoundValue}, {dimension.UpperBoundValue})";
+        }
+
+        dimensions = $"{dimensions}}}";
+
+        AddToSource($"(p, rt, st), {dimensions});");
     }
 
     private void AddMemberInitialization(IClassDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
