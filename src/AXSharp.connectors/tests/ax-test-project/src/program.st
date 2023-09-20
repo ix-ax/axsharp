@@ -54,12 +54,7 @@ PROGRAM MyProgram
     VAR_TEMP
 
     END_VAR
-
-    myBOOL := TRUE;
-    myINT := 42;
-
-    _item.itemBOOL := TRUE;
-    _item.itemSTRING := 'ahoj';
+   
     //myArrayComplex[1] :=  _item;
     //myArrayString[1] := 'ahoj2';
 
