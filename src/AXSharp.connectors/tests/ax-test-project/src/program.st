@@ -1,7 +1,7 @@
 PROGRAM MyProgram
     VAR_EXTERNAL
 
-        myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
+        //myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
 
         myBOOL	        :       BOOL	      ;
         myBYTE	        :       BYTE	      ;
@@ -42,7 +42,7 @@ PROGRAM MyProgram
         Hierarchy : hierarchy;
 
 
-        myArrayString: ARRAY[0..10] OF STRING ;
+        //myArrayString: ARRAY[0..10] OF STRING ;
         //myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
 
     END_VAR
