@@ -14,7 +14,7 @@
     },
     "tia2ax4": {
       "commandName": "Project",
-      "commandLineArgs": "-i 172.20.30.110 -o D:\\test.json -s TGlobalVariablesDB.mins"
+      "commandLineArgs": "-i 172.20.30.110 -o D:\\test.json -s TGlobalVariablesDB.myArrayString[0]"
     }
 
   }

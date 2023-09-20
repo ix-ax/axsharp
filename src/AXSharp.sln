@@ -130,9 +130,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.LocalizablesToResx.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.TIA2AXSharp", "AXSharp.connectors\src\AXSharp.TIA.Connector\AXSharp.TIA2AXSharp.csproj", "{E4EA5E5B-FA1A-4348-A826-F95FA16DC2C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.TIA2AXSharpTests", "AXSharp.connectors\tests\AXSharp.TIA.ConnectorTests\AXSharp.TIA2AXSharpTests.csproj", "{597C4C50-1F9D-4302-8A66-05009DF32CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.TIA2AXSharpTests_L3", "AXSharp.connectors\tests\AXSharp.TIA.ConnectorTests\AXSharp.TIA2AXSharpTests_L3.csproj", "{597C4C50-1F9D-4302-8A66-05009DF32CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AXSharp.TIA2AXTool", "AXSharp.tools\src\AXSharp.TIA2AXTool\AXSharp.TIA2AXTool.csproj", "{9C5A4D17-FEA3-4880-AE0D-66C01EAA7FD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AXSharp.TIA2AXTool", "AXSharp.tools\src\AXSharp.TIA2AXTool\AXSharp.TIA2AXTool.csproj", "{9C5A4D17-FEA3-4880-AE0D-66C01EAA7FD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

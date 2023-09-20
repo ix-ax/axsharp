@@ -4,9 +4,9 @@ CONFIGURATION MyConfiguration
 
     VAR_GLOBAL 
 
-        // myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
+        myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
         
-        //myArrayString: ARRAY[0..10] OF STRING; 
+        myArrayString: ARRAY[0..10] OF STRING; 
 
         // myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
 
