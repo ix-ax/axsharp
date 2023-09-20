@@ -73,17 +73,25 @@ public class TIA2AXSharpAdapter
         var requestHandler = await adapter.serviceFactory.GetApiHttpClientRequestHandlerAsync(connector.IPAddress, "Everybody", "");
 
 
-        var x = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Var, "\"dbtest\".\"station\"[0]")).Result;
-
-        List<ApiPlcProgramData> programBlocks = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, symbol)).Result;
-
-
-        foreach (var dataBlockNode in programBlocks)
+        var programBlocksVar = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Var, symbol)).Result;
+ 
+        // if it object with no children, just create it 
+        if (programBlocksVar.Count == 1 && programBlocksVar.First().Has_children.GetValueOrDefault() == false)
         {
-            var dbe = new TIABrowseElement(dataBlockNode.Name, dataBlockNode.Datatype, true);
-            //await BrowseParent(dataBlockNode, requestHandler, dbe, 1);
-            await CreateTwin(dataBlockNode, requestHandler, dbe, 1);
+            var dbe = new TIABrowseElement(programBlocksVar.First().Name, programBlocksVar.First().Datatype, false);
             browseElements.Add(dbe);
+        }
+        else
+        {
+            // otherwise, we have to go recursively through his children
+            List<ApiPlcProgramData> programBlocks = (await requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, symbol)).Result;
+
+            foreach (var dataBlockNode in programBlocks)
+            {
+                var dbe = new TIABrowseElement(dataBlockNode.Name, dataBlockNode.Datatype, true);
+                await CreateTwin(dataBlockNode, requestHandler, dbe, 1);
+                browseElements.Add(dbe);
+            }
         }
 
         return new TIARootObject { TIABrowseElements = browseElements };

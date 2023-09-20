@@ -4,11 +4,11 @@ CONFIGURATION MyConfiguration
 
     VAR_GLOBAL 
 
-        myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
+        // myArrayComplexNested: ARRAY[0..10] OF complexArrayItemNested; 
         
-        myArrayString: ARRAY[0..10] OF STRING; 
+        //myArrayString: ARRAY[0..10] OF STRING; 
 
-        myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
+        // myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
 
         mins : full_of_primitives;
         maxs : full_of_primitives;
@@ -49,13 +49,13 @@ CONFIGURATION MyConfiguration
         
         myColors : Colors;
 
-        //Hierarchy : hierarchy;
+        Hierarchy : hierarchy;
         // Issues  
 
         //GH_PKTu_ix_56_Base: GH.PKTu.ix_56.Base;
 
         // GH_PKTu_ix_56_FirstInheritance : GH.PKTu.ix_56.FirstInheritance;
 
-        // GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
+        GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
     END_VAR
 END_CONFIGURATION

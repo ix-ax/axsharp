@@ -80,19 +80,8 @@ namespace AXSharp.TIA2AXSharpTests
             var allVariables = adapter.First(p=> p.Symbol == "\"DbData\"").RetrievePrimitives()
                .Where(p => p.Symbol.StartsWith("\"DbData\"")).ToList();
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            await connector.ReadBatchAsync(allVariables.Take(1000));
-            sw.Stop();
-            output.WriteLine(sw.Elapsed.ToString());
 
-            sw.Reset();
-            
-            sw.Start();
             await connector.ReadBatchAsync(allVariables.Take(1000));
-            sw.Stop();
-
-            output.WriteLine(sw.Elapsed.ToString());
 
             var x = allVariables.FirstOrDefault(p => p.Symbol.Contains("myBOOL"));
 

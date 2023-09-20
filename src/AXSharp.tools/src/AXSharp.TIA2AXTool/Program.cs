@@ -23,7 +23,17 @@ string TransformSymbol(string symbol)
     var sb = new StringBuilder();
     foreach (var item in splitted)
     {
-        sb.AppendDelim($"\"{item}\"");
+        // if it is array, add quoation marks only to text part for correct syntax for webapi
+        // two dimensional array are not supported yet
+        if (item.Last() == ']')
+        {
+            var arraySplitted = item.Split('[');
+            sb.AppendDelim($"\"{arraySplitted[0]}\"[{arraySplitted[1]}");
+        }
+        else
+        {
+            sb.AppendDelim($"\"{item}\"");
+        }
     }
 
    
@@ -51,7 +61,7 @@ void Main(Options o)
         if (o.Symbol != null)
         {
             var requestedSymbol = TransformSymbol(o.Symbol);
-            Console.WriteLine($"Requested symbol:{requestedSymbol}");
+            Console.WriteLine($"Requested symbol: {requestedSymbol}");
             root = TIA2AXSharpAdapter.CreateTIARootObject(connector, requestedSymbol).Result;
         }
         else
@@ -61,7 +71,7 @@ void Main(Options o)
     }
     catch (Exception ex)
     {
-        Console.Error.WriteLine($"Cannot create adapter! \n {ex}");
+        Console.Error.WriteLine($"Cannot create adapter! \n -------------------- \n {ex}");
         Environment.ExitCode = -1;
         return;
     }
@@ -73,7 +83,7 @@ void Main(Options o)
     }  
     catch (Exception ex) 
     {
-        Console.Error.WriteLine($"Serialization error occured! \n {ex}");
+        Console.Error.WriteLine($"Serialization error occured! \n -------------------- \n {ex}");
         Environment.ExitCode = -1;
         return;
     }
@@ -83,7 +93,7 @@ void Main(Options o)
 
     Console.WriteLine("Done.");
     Console.WriteLine("------------------------------------------");
-    Console.WriteLine($"Returned {root.TIABrowseElements.Count} datablocks.");
+    Console.WriteLine($"Returned {root.TIABrowseElements.Count} TIABrowseElements.");
     Console.WriteLine($"Location: {o.Output}");
     Console.WriteLine($"Elapsed time: {sw.Elapsed}");
     Environment.ExitCode = 0;

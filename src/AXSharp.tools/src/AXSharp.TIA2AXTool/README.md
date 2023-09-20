@@ -11,11 +11,17 @@ TIA2AXTool is simple CLI program, which is used for generation of AX# TwinObject
 - -u --username : username for connection (default value: *Everybody*)
 - -p --password : password for connection (default value: "")
 - -d --datablocks : list of datablocks names, which should be scanned (if not provided, all datablocks will be serialized)
+- -s --symbol : name of symbol, which only his children will be deserialized
 
+Notes:
+  - -d and -s parameters shouldn't be used together
+  - two dimensional arrays are not supported in -s parameter
 
 ## Examples
 
-tia2ax -i 10.10.10.180 -o D:\\testdata.json -d dbtest
+Get elements by in `dbtest` datablock:
+
+`tia2ax -i 10.10.10.180 -o D:\\testdata.json -d dbtest`
 
 Output is following .json file:
 
@@ -40,16 +46,35 @@ Output is following .json file:
             },
             //truncated...
 ```
+Get elements only from symbol `TGlobalVariablesDB.mins` downwards datablock:
 
-This file can be deserialized and read in following way:
+`tia2ax -i 172.20.30.110 -o D:\\test.json -s TGlobalVariablesDB.mins`
+
+```json
+{
+  "TIABrowseElements": [
+    {
+      "Symbol": "myBOOL",
+      "Datatype": 2,
+      "IsNested": true,
+      "Children": []
+    },
+    {
+      "Symbol": "myBYTE",
+      "Datatype": 3,
+      "IsNested": true,
+      "Children": []
+    },
+    //truncated...
+```
+## Usage in application
+The generated file can be deserialized and used in following way:
 
 ```C#
   // connect to your plc
   var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
-  // deserialize generated root object
-  var rootObject = TIA2AXSharpSerializer.Deserialize("test.json");
-  //creates adapter from deserialized root object
-  var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, rootObject);
+  //creates adapter from deserialized root object from test.json file
+  var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, "test.json");
   //retrieve all primitive variables
   var allVariables = adapter.RetrievePrimitives();
   // read variables  
