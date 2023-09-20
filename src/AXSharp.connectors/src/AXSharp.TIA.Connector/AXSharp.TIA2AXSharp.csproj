@@ -35,4 +35,16 @@
 		<ProjectReference Include="..\AXSharp.Connector\AXSharp.Connector.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="..\..\..\..\assets\icons\icon_128_128.png" Link="icon_128_128.png">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\..\..\NUGET-README.md" Link="NUGET-README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>
