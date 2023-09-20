@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,7 +24,7 @@ namespace AXSharp.Connector
 
         }
 
-        private static Dictionary<int, Task> PollingTasks { get; } = new();
+        private static ConcurrentDictionary<int, Task> PollingTasks { get; } = new();
 
 
         internal static void Add(ITwinElement obj, int interval, object holder)
