@@ -43,7 +43,9 @@ public class AXSharpConfig : ICompilerOptions
         set => _outputProjectFolder = value;
     }
 
-    
+    public bool UseBase { get; set; }
+
+
     private string _axProjectFolder;
 
     /// <summary>

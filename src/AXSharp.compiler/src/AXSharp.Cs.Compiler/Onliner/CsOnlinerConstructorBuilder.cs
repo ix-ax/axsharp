@@ -11,6 +11,7 @@ using AX.ST.Semantic;
 using AX.ST.Semantic.Model;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
+using AX.ST.Syntax.Parser;
 using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Cs.Helpers;
 using AXSharp.Compiler.Cs.Helpers.Onliners;
@@ -138,14 +139,22 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
     }
 
     public static CsOnlinerConstructorBuilder Create(IxNodeVisitor visitor, IClassDeclaration semantics,
-        ISourceBuilder sourceBuilder, bool isExtended)
+        ISourceBuilder sourceBuilder, bool isExtended, AXSharpProject project)
     {
         var builder = new CsOnlinerConstructorBuilder(sourceBuilder);
 
 
         builder.AddToSource(
             $"public {semantics.Name}({typeof(ITwinObject).n()} parent, string readableTail, string symbolTail)");
-        if (isExtended) builder.AddToSource(": base(parent, readableTail, symbolTail)");
+
+
+        if (isExtended)
+        {
+            builder.AddToSource(project.UseBaseSymbol
+                ? ": base(parent, readableTail, symbolTail + \".$base\") "
+                : ": base(parent, readableTail, symbolTail)");
+        }
+
 
         builder.AddToSource("{");
 

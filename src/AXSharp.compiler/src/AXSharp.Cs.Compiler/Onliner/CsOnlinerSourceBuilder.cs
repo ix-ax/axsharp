@@ -126,7 +126,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
 
         AddToSource(CsOnlinerMemberBuilder.Create(visitor, classDeclaration, this).Output);
 
-        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        AddToSource(CsOnlinerConstructorBuilder.Create(visitor, classDeclaration, this, isExtended, this.Project).Output);
 
         AddToSource(CsOnlinerPlainerOnlineToPlainBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
         AddToSource(CsOnlinerPlainerOnlineToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);

@@ -44,6 +44,7 @@ public class AXSharpProject : IAXSharpProject
         AxProject = axProject;
         CompilerOptions = AXSharpConfig.UpdateAndGetIxConfig(axProject.ProjectFolder, cliCompilerOptions);
         OutputFolder = Path.GetFullPath(Path.Combine(AxProject.ProjectFolder, CompilerOptions.OutputProjectFolder));
+        if (cliCompilerOptions != null) UseBaseSymbol = cliCompilerOptions.UseBase;
         BuilderTypes = builderTypes;
         TargetProject = Activator.CreateInstance(targetProjectType, this) as ITargetProject ?? throw new
             InvalidOperationException("Target project type must implement ITargetProject interface.");
@@ -72,6 +73,8 @@ public class AXSharpProject : IAXSharpProject
     ///     Gets root output folder where the generated sources will be emitted.
     /// </summary>
     public string OutputFolder { get; }
+
+    public bool UseBaseSymbol { get; }
 
     /// <summary>
     ///     Generates outputs from the builders and emits the files into output folder.
