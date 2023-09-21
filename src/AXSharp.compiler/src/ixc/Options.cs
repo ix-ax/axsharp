@@ -21,5 +21,9 @@ internal class Options : ICompilerOptions
     [Option('o', "output-project-folder", Required = false,
         HelpText = "Output project folder where compiler emits result. It must be either absolute path or path relative to the Simatic-ax project folder.")]
     public string? OutputProjectFolder { get; set; }
+
+    [Option('b', "use-base-symbol", Required = false, Default = false,
+        HelpText = "Will use base symbol in inherited types")]
+    public bool UseBase { get; set; }
 }
 
