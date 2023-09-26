@@ -1,5 +1,40 @@
 # TIA2AXTool
 
+## Installation
+
+To install the tool run the following command. 
+~~~
+dotnet tool install AXSharp.TIA2AXTool --global
+~~~
+
+Or copy `dotnet-tools.json` in your local folder
+
+~~~~
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "axsharp.tia2axtool": {
+      "version": YOUR_VERSION,
+      "commands": [
+        "tia2ax"
+      ]
+    }
+  }
+}
+~~~~
+
+and  run
+
+~~~
+dotnet tool restore
+~~~
+
+## How to prepare TIA portal project
+
+[!Video https://youtu.be/d9EX2FixY1A?t=151]
+
+
 TIA2AXTool is simple CLI program, which is used for generation of AX# TwinObjects in form of Json from TIA datablocks. Output of CLI command is .json file which contains list of TIABrowseElements. This .json file can be deserialized into `TIARootObject` which than can be used for data exchange operations between TIA based plc and .NET application.
 
 
