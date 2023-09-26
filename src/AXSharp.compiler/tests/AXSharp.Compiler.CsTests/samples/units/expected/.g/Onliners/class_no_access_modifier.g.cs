@@ -29,7 +29,7 @@ public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
     public async Task<Pocos.NoAccessModifierClass> OnlineToPlainAsync()
     {
         Pocos.NoAccessModifierClass plain = new Pocos.NoAccessModifierClass();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
@@ -45,7 +45,7 @@ public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.NoAccessModifierClass plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

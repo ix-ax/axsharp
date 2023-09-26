@@ -44,7 +44,7 @@ namespace Simatic.Ax.StateFramework
         public async Task<Pocos.Simatic.Ax.StateFramework.using_type_named_values> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.using_type_named_values plain = new Pocos.Simatic.Ax.StateFramework.using_type_named_values();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.LColors = LColors.LastValue;
             return plain;
         }
@@ -63,7 +63,7 @@ namespace Simatic.Ax.StateFramework
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain)
         {
             LColors.Cyclic = plain.LColors;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

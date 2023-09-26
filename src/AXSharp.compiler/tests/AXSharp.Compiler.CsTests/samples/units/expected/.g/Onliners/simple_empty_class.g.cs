@@ -29,7 +29,7 @@ public partial class simple_class : AXSharp.Connector.ITwinObject
     public async Task<Pocos.simple_class> OnlineToPlainAsync()
     {
         Pocos.simple_class plain = new Pocos.simple_class();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
@@ -45,7 +45,7 @@ public partial class simple_class : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.simple_class plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

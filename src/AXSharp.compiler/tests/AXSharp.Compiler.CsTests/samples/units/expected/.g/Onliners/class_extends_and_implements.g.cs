@@ -23,7 +23,7 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
     public new async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync()
     {
         Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         await base.OnlineToPlainAsync(plain);
         return plain;
     }
@@ -42,7 +42,7 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendsAndImplements plain)
     {
         await base.PlainToOnlineAsync(plain);
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async override Task<T> ShadowToPlain<T>()
@@ -110,7 +110,7 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
     public async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync()
     {
         Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
@@ -126,7 +126,7 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendeeExtendsAndImplements plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

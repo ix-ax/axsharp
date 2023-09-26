@@ -39,7 +39,7 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> OnlineToPlainAsync()
         {
             Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain = new Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.primitive = primitive.Select(p => p.LastValue).ToArray();
             plain.complex = complex.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
             return plain;
@@ -63,7 +63,7 @@ namespace ArrayDeclarationSimpleNamespace
             primitive.Select(p => p.Cyclic = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
             var _complex_i_FE8484DAB3 = 0;
             complex.Select(p => p.PlainToOnlineAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -199,7 +199,7 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> OnlineToPlainAsync()
         {
             Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain = new Pocos.ArrayDeclarationSimpleNamespace.some_complex_type();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
@@ -215,7 +215,7 @@ namespace ArrayDeclarationSimpleNamespace
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

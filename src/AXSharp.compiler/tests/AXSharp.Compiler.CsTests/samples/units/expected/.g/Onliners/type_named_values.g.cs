@@ -42,7 +42,7 @@ namespace NamedValuesNamespace
         public async Task<Pocos.NamedValuesNamespace.using_type_named_values> OnlineToPlainAsync()
         {
             Pocos.NamedValuesNamespace.using_type_named_values plain = new Pocos.NamedValuesNamespace.using_type_named_values();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.LColors = LColors.LastValue;
             return plain;
         }
@@ -61,7 +61,7 @@ namespace NamedValuesNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
         {
             LColors.Cyclic = plain.LColors;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

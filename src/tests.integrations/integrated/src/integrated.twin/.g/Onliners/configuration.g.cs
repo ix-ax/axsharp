@@ -176,7 +176,7 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Pokus> OnlineToPlainAsync()
     {
         Pocos.Pokus plain = new Pocos.Pokus();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.Nested = await Nested.OnlineToPlainAsync();
         return plain;
     }
@@ -195,7 +195,7 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Pokus plain)
     {
         await this.Nested.PlainToOnlineAsync(plain.Nested);
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -335,7 +335,7 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Nested> OnlineToPlainAsync()
     {
         Pocos.Nested plain = new Pocos.Nested();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.SomeString = SomeString.LastValue;
         plain.SomeInt = SomeInt.LastValue;
         plain.SomeByte = SomeByte.LastValue;
@@ -360,7 +360,7 @@ public partial class Nested : AXSharp.Connector.ITwinObject
         SomeString.Cyclic = plain.SomeString;
         SomeInt.Cyclic = plain.SomeInt;
         SomeByte.Cyclic = plain.SomeByte;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

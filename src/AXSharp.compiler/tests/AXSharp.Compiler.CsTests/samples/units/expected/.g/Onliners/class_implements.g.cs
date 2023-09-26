@@ -29,7 +29,7 @@ public partial class _NULL_CONTEXT : AXSharp.Connector.ITwinObject, IContext
     public async Task<Pocos._NULL_CONTEXT> OnlineToPlainAsync()
     {
         Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
@@ -45,7 +45,7 @@ public partial class _NULL_CONTEXT : AXSharp.Connector.ITwinObject, IContext
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos._NULL_CONTEXT plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

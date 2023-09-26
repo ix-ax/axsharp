@@ -127,7 +127,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
-        builder.AddToSource("return await this.WriteAsync();");
+        builder.AddToSource("return await this.WriteAsync<IgnoreOnPocoOperation>();");
 
         builder.AddToSource($"}}");
         return builder;
@@ -153,7 +153,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
-        builder.AddToSource("return await this.WriteAsync();");
+        builder.AddToSource("return await this.WriteAsync<IgnoreOnPocoOperation>();");
 
         builder.AddToSource($"}}");
         return builder;

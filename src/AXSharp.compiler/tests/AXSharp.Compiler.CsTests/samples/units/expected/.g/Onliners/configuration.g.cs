@@ -283,7 +283,7 @@ public partial class ComplexForConfig : AXSharp.Connector.ITwinObject
     public async Task<Pocos.ComplexForConfig> OnlineToPlainAsync()
     {
         Pocos.ComplexForConfig plain = new Pocos.ComplexForConfig();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.myBOOL = myBOOL.LastValue;
         plain.myBYTE = myBYTE.LastValue;
         plain.myWORD = myWORD.LastValue;
@@ -383,7 +383,7 @@ public partial class ComplexForConfig : AXSharp.Connector.ITwinObject
         mySTRING.Cyclic = plain.mySTRING;
         myWSTRING.Cyclic = plain.myWSTRING;
         await this.myMotor.PlainToOnlineAsync(plain.myMotor);
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -608,7 +608,7 @@ public partial class Motor : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Motor> OnlineToPlainAsync()
     {
         Pocos.Motor plain = new Pocos.Motor();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.isRunning = isRunning.LastValue;
         return plain;
     }
@@ -627,7 +627,7 @@ public partial class Motor : AXSharp.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Motor plain)
     {
         isRunning.Cyclic = plain.isRunning;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -760,7 +760,7 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Vehicle> OnlineToPlainAsync()
     {
         Pocos.Vehicle plain = new Pocos.Vehicle();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.m = await m.OnlineToPlainAsync();
         plain.displacement = displacement.LastValue;
         return plain;
@@ -782,7 +782,7 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
     {
         await this.m.PlainToOnlineAsync(plain.m);
         displacement.Cyclic = plain.displacement;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

@@ -54,7 +54,7 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.RealMonsterBase> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonsterBase plain = new Pocos.RealMonsterData.RealMonsterBase();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Description = Description.LastValue;
             plain.Id = Id.LastValue;
             plain.TestDate = TestDate.LastValue;
@@ -93,7 +93,7 @@ namespace RealMonsterData
             ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
             ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -241,7 +241,7 @@ namespace RealMonsterData
         public new async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             await base.OnlineToPlainAsync(plain);
             plain.DriveA = await DriveA.OnlineToPlainAsync();
             return plain;
@@ -263,7 +263,7 @@ namespace RealMonsterData
         {
             await base.PlainToOnlineAsync(plain);
             await this.DriveA.PlainToOnlineAsync(plain.DriveA);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -349,7 +349,7 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.DriveBaseNested> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.DriveBaseNested plain = new Pocos.RealMonsterData.DriveBaseNested();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -380,7 +380,7 @@ namespace RealMonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelOne.PlainToOnlineAsync(plain.NestedLevelOne);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -538,7 +538,7 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.NestedLevelOne> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelOne plain = new Pocos.RealMonsterData.NestedLevelOne();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -569,7 +569,7 @@ namespace RealMonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelTwo.PlainToOnlineAsync(plain.NestedLevelTwo);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -727,7 +727,7 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.NestedLevelTwo> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelTwo plain = new Pocos.RealMonsterData.NestedLevelTwo();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -758,7 +758,7 @@ namespace RealMonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             await this.NestedLevelThree.PlainToOnlineAsync(plain.NestedLevelThree);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -913,7 +913,7 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.NestedLevelThree> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelThree plain = new Pocos.RealMonsterData.NestedLevelThree();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -941,7 +941,7 @@ namespace RealMonsterData
             Velo.Cyclic = plain.Velo;
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

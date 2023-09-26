@@ -39,7 +39,7 @@ namespace TypesWithPropertyAttributes
         public async Task<Pocos.TypesWithPropertyAttributes.SomeAddedProperties> OnlineToPlainAsync()
         {
             Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain = new Pocos.TypesWithPropertyAttributes.SomeAddedProperties();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Counter = Counter.LastValue;
             return plain;
         }
@@ -58,7 +58,7 @@ namespace TypesWithPropertyAttributes
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)
         {
             Counter.Cyclic = plain.Counter;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

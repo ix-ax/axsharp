@@ -31,7 +31,7 @@ namespace sampleNamespace
         public async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> OnlineToPlainAsync()
         {
             Pocos.sampleNamespace.simple_empty_class_within_namespace plain = new Pocos.sampleNamespace.simple_empty_class_within_namespace();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
@@ -47,7 +47,7 @@ namespace sampleNamespace
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

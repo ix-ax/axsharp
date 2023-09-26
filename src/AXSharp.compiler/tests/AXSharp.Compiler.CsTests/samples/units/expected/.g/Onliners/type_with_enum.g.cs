@@ -55,7 +55,7 @@ namespace Simatic.Ax.StateFramework
         public async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain = new Pocos.Simatic.Ax.StateFramework.CompareGuardLint();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.CompareToValue = CompareToValue.LastValue;
             plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.LastValue;
             return plain;
@@ -77,7 +77,7 @@ namespace Simatic.Ax.StateFramework
         {
             CompareToValue.Cyclic = plain.CompareToValue;
             Condition.Cyclic = (short)plain.Condition;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

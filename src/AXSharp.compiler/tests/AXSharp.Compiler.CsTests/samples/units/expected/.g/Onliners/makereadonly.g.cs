@@ -47,7 +47,7 @@ namespace makereadonly
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync()
         {
             Pocos.makereadonly.MembersWithMakeReadOnly plain = new Pocos.makereadonly.MembersWithMakeReadOnly();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.makeReadOnceMember = makeReadOnceMember.LastValue;
             plain.someOtherMember = someOtherMember.LastValue;
             plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
@@ -75,7 +75,7 @@ namespace makereadonly
             someOtherMember.Cyclic = plain.someOtherMember;
             await this.makeReadComplexMember.PlainToOnlineAsync(plain.makeReadComplexMember);
             await this.someotherComplexMember.PlainToOnlineAsync(plain.someotherComplexMember);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -221,7 +221,7 @@ namespace makereadonly
         public async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync()
         {
             Pocos.makereadonly.ComplexMember plain = new Pocos.makereadonly.ComplexMember();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.someMember = someMember.LastValue;
             plain.someOtherMember = someOtherMember.LastValue;
             return plain;
@@ -243,7 +243,7 @@ namespace makereadonly
         {
             someMember.Cyclic = plain.someMember;
             someOtherMember.Cyclic = plain.someOtherMember;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

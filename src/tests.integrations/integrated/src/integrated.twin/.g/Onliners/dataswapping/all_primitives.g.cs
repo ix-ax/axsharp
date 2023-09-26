@@ -99,7 +99,7 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
     public async Task<Pocos.all_primitives> OnlineToPlainAsync()
     {
         Pocos.all_primitives plain = new Pocos.all_primitives();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.myBOOL = myBOOL.LastValue;
         plain.myBYTE = myBYTE.LastValue;
         plain.myWORD = myWORD.LastValue;
@@ -184,7 +184,7 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
         mySTRING.Cyclic = plain.mySTRING;
         myWSTRING.Cyclic = plain.myWSTRING;
         myEnum.Cyclic = (short)plain.myEnum;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

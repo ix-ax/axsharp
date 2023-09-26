@@ -31,7 +31,7 @@ namespace RefToSimple
         public async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync()
         {
             Pocos.RefToSimple.ref_to_simple plain = new Pocos.RefToSimple.ref_to_simple();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
@@ -47,7 +47,7 @@ namespace RefToSimple
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.ref_to_simple plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -178,7 +178,7 @@ namespace RefToSimple
         public async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync()
         {
             Pocos.RefToSimple.referenced plain = new Pocos.RefToSimple.referenced();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.b = b.LastValue;
             return plain;
         }
@@ -197,7 +197,7 @@ namespace RefToSimple
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.referenced plain)
         {
             b.Cyclic = plain.b;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

@@ -29,7 +29,7 @@ internal partial class ClassWithComplexTypes : AXSharp.Connector.ITwinObject
     public async Task<Pocos.ClassWithComplexTypes> OnlineToPlainAsync()
     {
         Pocos.ClassWithComplexTypes plain = new Pocos.ClassWithComplexTypes();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
@@ -45,7 +45,7 @@ internal partial class ClassWithComplexTypes : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypes plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

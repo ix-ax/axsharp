@@ -112,7 +112,7 @@ namespace ClassWithPrimitiveTypesNamespace
         public async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> OnlineToPlainAsync()
         {
             Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain = new Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.myBOOL = myBOOL.LastValue;
             plain.myBYTE = myBYTE.LastValue;
             plain.myWORD = myWORD.LastValue;
@@ -209,7 +209,7 @@ namespace ClassWithPrimitiveTypesNamespace
             myWCHAR.Cyclic = plain.myWCHAR;
             mySTRING.Cyclic = plain.mySTRING;
             myWSTRING.Cyclic = plain.myWSTRING;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

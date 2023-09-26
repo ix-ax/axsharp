@@ -31,7 +31,7 @@ namespace Generics
         public async Task<Pocos.Generics.Extender> OnlineToPlainAsync()
         {
             Pocos.Generics.Extender plain = new Pocos.Generics.Extender();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
@@ -47,7 +47,7 @@ namespace Generics
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Generics.Extender plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -175,7 +175,7 @@ namespace Generics
         public new async Task<Pocos.Generics.Extendee> OnlineToPlainAsync()
         {
             Pocos.Generics.Extendee plain = new Pocos.Generics.Extendee();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             await base.OnlineToPlainAsync(plain);
             plain.SomeType = await SomeType.OnlineToPlainAsync();
             plain.SomeTypeAsPoco = await SomeTypeAsPoco.OnlineToPlainAsync();
@@ -200,7 +200,7 @@ namespace Generics
             await base.PlainToOnlineAsync(plain);
             await this.SomeType.PlainToOnlineAsync(plain.SomeType);
             await this.SomeTypeAsPoco.PlainToOnlineAsync(plain.SomeTypeAsPoco);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -271,7 +271,7 @@ namespace Generics
         public new async Task<Pocos.Generics.Extendee2> OnlineToPlainAsync()
         {
             Pocos.Generics.Extendee2 plain = new Pocos.Generics.Extendee2();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             await base.OnlineToPlainAsync(plain);
             plain.SomeType = await SomeType.OnlineToPlainAsync();
             return plain;
@@ -293,7 +293,7 @@ namespace Generics
         {
             await base.PlainToOnlineAsync(plain);
             await this.SomeType.PlainToOnlineAsync(plain.SomeType);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -364,7 +364,7 @@ namespace Generics
         public async Task<Pocos.Generics.SomeType> OnlineToPlainAsync()
         {
             Pocos.Generics.SomeType plain = new Pocos.Generics.SomeType();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
@@ -380,7 +380,7 @@ namespace Generics
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Generics.SomeType plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

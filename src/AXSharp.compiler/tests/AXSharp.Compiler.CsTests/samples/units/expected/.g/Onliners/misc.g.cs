@@ -39,7 +39,7 @@ namespace Enums
         public async Task<Pocos.Enums.ClassWithEnums> OnlineToPlainAsync()
         {
             Pocos.Enums.ClassWithEnums plain = new Pocos.Enums.ClassWithEnums();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.colors = (Enums.Colors)colors.LastValue;
             plain.NamedValuesColors = NamedValuesColors.LastValue;
             return plain;
@@ -61,7 +61,7 @@ namespace Enums
         {
             colors.Cyclic = (short)plain.colors;
             NamedValuesColors.Cyclic = plain.NamedValuesColors;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -218,7 +218,7 @@ namespace misc
         public async Task<Pocos.misc.VariousMembers> OnlineToPlainAsync()
         {
             Pocos.misc.VariousMembers plain = new Pocos.misc.VariousMembers();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain._SomeClass = await _SomeClass.OnlineToPlainAsync();
             plain._Motor = await _Motor.OnlineToPlainAsync();
             return plain;
@@ -240,7 +240,7 @@ namespace misc
         {
             await this._SomeClass.PlainToOnlineAsync(plain._SomeClass);
             await this._Motor.PlainToOnlineAsync(plain._Motor);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -377,7 +377,7 @@ namespace misc
         public async Task<Pocos.misc.SomeClass> OnlineToPlainAsync()
         {
             Pocos.misc.SomeClass plain = new Pocos.misc.SomeClass();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.SomeClassVariable = SomeClassVariable.LastValue;
             return plain;
         }
@@ -396,7 +396,7 @@ namespace misc
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.SomeClass plain)
         {
             SomeClassVariable.Cyclic = plain.SomeClassVariable;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -526,7 +526,7 @@ namespace misc
         public async Task<Pocos.misc.Motor> OnlineToPlainAsync()
         {
             Pocos.misc.Motor plain = new Pocos.misc.Motor();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.isRunning = isRunning.LastValue;
             return plain;
         }
@@ -545,7 +545,7 @@ namespace misc
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.Motor plain)
         {
             isRunning.Cyclic = plain.isRunning;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -678,7 +678,7 @@ namespace misc
         public async Task<Pocos.misc.Vehicle> OnlineToPlainAsync()
         {
             Pocos.misc.Vehicle plain = new Pocos.misc.Vehicle();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.m = await m.OnlineToPlainAsync();
             plain.displacement = displacement.LastValue;
             return plain;
@@ -700,7 +700,7 @@ namespace misc
         {
             await this.m.PlainToOnlineAsync(plain.m);
             displacement.Cyclic = plain.displacement;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -845,7 +845,7 @@ namespace UnknownArraysShouldNotBeTraspiled
         public async Task<Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays> OnlineToPlainAsync()
         {
             Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays plain = new Pocos.UnknownArraysShouldNotBeTraspiled.ClassWithArrays();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain._complexKnown = _complexKnown.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
             plain._primitive = _primitive.Select(p => p.LastValue).ToArray();
             return plain;
@@ -869,7 +869,7 @@ namespace UnknownArraysShouldNotBeTraspiled
             _complexKnown.Select(p => p.PlainToOnlineAsync(plain._complexKnown[__complexKnown_i_FE8484DAB3++])).ToArray();
             var __primitive_i_FE8484DAB3 = 0;
             _primitive.Select(p => p.Cyclic = plain._primitive[__primitive_i_FE8484DAB3++]).ToArray();
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -1011,7 +1011,7 @@ namespace UnknownArraysShouldNotBeTraspiled
         public async Task<Pocos.UnknownArraysShouldNotBeTraspiled.Complex> OnlineToPlainAsync()
         {
             Pocos.UnknownArraysShouldNotBeTraspiled.Complex plain = new Pocos.UnknownArraysShouldNotBeTraspiled.Complex();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.HelloString = HelloString.LastValue;
             plain.Id = Id.LastValue;
             return plain;
@@ -1033,7 +1033,7 @@ namespace UnknownArraysShouldNotBeTraspiled
         {
             HelloString.Cyclic = plain.HelloString;
             Id.Cyclic = plain.Id;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

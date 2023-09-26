@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Timers;
 using AXSharp.Connector.ValueTypes;
@@ -88,6 +89,15 @@ public static class TwinObjectExtensions
         return twinPrimitives;
     }
 
+    public static async Task<IEnumerable<ITwinPrimitive>> ReadAsync<T>(this ITwinObject structure) where T : Attribute
+    {
+        ArgumentNullException.ThrowIfNull(structure);
+        var primitives = RetrievePrimitives<T>(structure);
+        var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+        await structure.GetConnector().ReadBatchAsync(twinPrimitives);
+        return twinPrimitives;
+    }
+
     /// <summary>
     ///     Writes all value tags of instance <see cref="ITwinOnlineObject" />
     /// </summary>
@@ -107,6 +117,13 @@ public static class TwinObjectExtensions
         return twinPrimitives;
     }
 
+    public static async Task<IEnumerable<ITwinPrimitive>> WriteAsync<T>(this ITwinObject structure) where T : Attribute
+    {
+        var primitives = structure.RetrievePrimitives<T>();
+        var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
+        await structure.GetConnector().WriteBatchAsync(twinPrimitives);
+        return twinPrimitives;
+    }
 
     /// <summary>
     ///     Retrieves all value tags of given object recursively.
@@ -141,6 +158,89 @@ public static class TwinObjectExtensions
 
         return valueTags;
     }
+
+    /// <summary>
+    ///     Retrieves all value tags of given object recursively.
+    /// </summary>
+    /// <param name="onlineObject">Object from which the value tags are to be retrieved.</param>
+    /// <param name="valueTags">Pre-existing value tags.</param>
+    /// <returns>Value tags of given object.</returns>
+    /// <example>
+    ///     This example demonstrates how to get all value tags of the MAIN PRG object.
+    ///     <code>
+    ///     var mainProgramTags = Connector.MAIN.RetrievePrimitives();
+    /// </code>
+    /// </example>
+    public static IEnumerable<ITwinPrimitive> RetrievePrimitives<T>(this ITwinObject onlineObject,
+        List<ITwinPrimitive> valueTags = null) where T : Attribute
+    {
+        ArgumentNullException.ThrowIfNull(onlineObject);
+
+        valueTags ??= new List<ITwinPrimitive>();
+
+        var children = onlineObject.GetChildren().Where(p => !p.HasAttribute<T>());
+
+        if (children != null)
+            foreach (var child in children)
+                RetrievePrimitives(child, valueTags);
+
+        var tags = onlineObject.GetValueTags().Where(p => !p.HasAttribute<T>());
+
+        if (tags != null)
+            foreach (var valueTag in tags)
+                valueTags.Add(valueTag);
+
+        return valueTags;
+    }
+
+    private static PropertyInfo GetPropertyViaSymbol(ITwinElement twinObject)
+    {
+        if (twinObject == null) return null;
+        var propertyName = twinObject.GetSymbolTail();
+
+        if (twinObject.Symbol == null)
+            return null;
+
+        if (twinObject.Symbol.EndsWith("]"))
+        {
+            propertyName = propertyName?.Substring(0, propertyName.IndexOf('[') - 1);
+        }
+
+        var propertyInfo = twinObject?.GetParent()?.GetType().GetProperty(propertyName);
+
+        return propertyInfo;
+    }
+
+    public static bool HasAttribute<T>(this ITwinElement twinElement) where T : Attribute
+    {
+        if (twinElement == null) return false;
+        try
+        {
+            var propertyInfo = GetPropertyViaSymbol(twinElement);
+            if (propertyInfo != null)
+            {
+                if (propertyInfo
+                        .GetCustomAttributes().FirstOrDefault(p => p is T) is T propertyAttribute)
+                {
+                    return true;
+                }
+            }
+
+            var typeAttribute = twinElement
+                .GetType()
+                .GetCustomAttributes(true)
+                .FirstOrDefault(p => p is T) as T;
+
+            return true;
+        }
+        catch (Exception)
+        {
+            //throw;
+        }
+
+        return false;
+    }
+
 
     /// <summary>
     ///     Subscribes a delegate to be invoked when any <see cref="OnlinerBase{T}.Shadow" /> value on given object changes its

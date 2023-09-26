@@ -25,7 +25,7 @@ namespace Simatic.Ax.StateFramework
         public new async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             await base.OnlineToPlainAsync(plain);
             return plain;
         }
@@ -44,7 +44,7 @@ namespace Simatic.Ax.StateFramework
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
         {
             await base.PlainToOnlineAsync(plain);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -121,7 +121,7 @@ namespace Simatic.Ax.StateFramework
         public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.AbstractState plain = new Pocos.Simatic.Ax.StateFramework.AbstractState();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.StateID = StateID.LastValue;
             plain.StateName = StateName.LastValue;
             return plain;
@@ -143,7 +143,7 @@ namespace Simatic.Ax.StateFramework
         {
             StateID.Cyclic = plain.StateID;
             StateName.Cyclic = plain.StateName;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

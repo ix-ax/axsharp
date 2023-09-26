@@ -32,7 +32,7 @@ internal partial class ClassWithUsingDirectives : AXSharp.Connector.ITwinObject
     public async Task<Pocos.ClassWithUsingDirectives> OnlineToPlainAsync()
     {
         Pocos.ClassWithUsingDirectives plain = new Pocos.ClassWithUsingDirectives();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
@@ -48,7 +48,7 @@ internal partial class ClassWithUsingDirectives : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithUsingDirectives plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

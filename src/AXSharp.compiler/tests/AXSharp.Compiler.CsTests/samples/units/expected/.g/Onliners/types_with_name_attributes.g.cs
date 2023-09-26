@@ -31,7 +31,7 @@ namespace TypeWithNameAttributes
         public async Task<Pocos.TypeWithNameAttributes.Motor> OnlineToPlainAsync()
         {
             Pocos.TypeWithNameAttributes.Motor plain = new Pocos.TypeWithNameAttributes.Motor();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.isRunning = isRunning.LastValue;
             return plain;
         }
@@ -50,7 +50,7 @@ namespace TypeWithNameAttributes
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.Motor plain)
         {
             isRunning.Cyclic = plain.isRunning;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -183,7 +183,7 @@ namespace TypeWithNameAttributes
         public async Task<Pocos.TypeWithNameAttributes.Vehicle> OnlineToPlainAsync()
         {
             Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.m = await m.OnlineToPlainAsync();
             plain.displacement = displacement.LastValue;
             return plain;
@@ -205,7 +205,7 @@ namespace TypeWithNameAttributes
         {
             await this.m.PlainToOnlineAsync(plain.m);
             displacement.Cyclic = plain.displacement;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -345,7 +345,7 @@ namespace TypeWithNameAttributes
         public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> OnlineToPlainAsync()
         {
             Pocos.TypeWithNameAttributes.NoAccessModifierClass plain = new Pocos.TypeWithNameAttributes.NoAccessModifierClass();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.SomeClassVariable = SomeClassVariable.LastValue;
             return plain;
         }
@@ -364,7 +364,7 @@ namespace TypeWithNameAttributes
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
         {
             SomeClassVariable.Cyclic = plain.SomeClassVariable;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

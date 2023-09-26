@@ -45,7 +45,7 @@ namespace MonsterData
         public async Task<Pocos.MonsterData.MonsterBase> OnlineToPlainAsync()
         {
             Pocos.MonsterData.MonsterBase plain = new Pocos.MonsterData.MonsterBase();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Description = Description.LastValue;
             plain.Id = Id.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
@@ -75,7 +75,7 @@ namespace MonsterData
             ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
             ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -214,7 +214,7 @@ namespace MonsterData
         public new async Task<Pocos.MonsterData.Monster> OnlineToPlainAsync()
         {
             Pocos.MonsterData.Monster plain = new Pocos.MonsterData.Monster();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             await base.OnlineToPlainAsync(plain);
             plain.DriveA = await DriveA.OnlineToPlainAsync();
             return plain;
@@ -236,7 +236,7 @@ namespace MonsterData
         {
             await base.PlainToOnlineAsync(plain);
             await this.DriveA.PlainToOnlineAsync(plain.DriveA);
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -319,7 +319,7 @@ namespace MonsterData
         public async Task<Pocos.MonsterData.DriveBase> OnlineToPlainAsync()
         {
             Pocos.MonsterData.DriveBase plain = new Pocos.MonsterData.DriveBase();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -347,7 +347,7 @@ namespace MonsterData
             Velo.Cyclic = plain.Velo;
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

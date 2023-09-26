@@ -120,7 +120,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
 
         builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
-        builder.AddToSource("await this.ReadAsync();");
+        builder.AddToSource("await this.ReadAsync<IgnoreOnPocoOperation>();");
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
@@ -140,7 +140,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         
         builder.AddToSource($"public {qualifier} async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
-        builder.AddToSource("await this.ReadAsync();");
+        builder.AddToSource("await this.ReadAsync<IgnoreOnPocoOperation>();");
 
         if (isExtended)
         {
