@@ -16,6 +16,12 @@ namespace MonsterData
 
         public MonsterData.DriveBase[] ArrayOfDrives { get; }
 
+        [IgnoreOnPocoOperation()]
+        public MonsterData.DriveBase DriveBase_tobeignoredbypocooperations { get; }
+
+        [IgnoreOnPocoOperation()]
+        public OnlinerString Description_tobeignoredbypocooperations { get; }
+
         partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
         partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
         public MonsterBase(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
@@ -32,6 +38,8 @@ namespace MonsterData
             AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfBytes, this, "ArrayOfBytes", "ArrayOfBytes", (p, rt, st) => @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(p, rt, st), new[] { (0, 3) });
             ArrayOfDrives = new MonsterData.DriveBase[4];
             AXSharp.Connector.BuilderHelpers.Arrays.InstantiateArray(ArrayOfDrives, this, "ArrayOfDrives", "ArrayOfDrives", (p, rt, st) => new MonsterData.DriveBase(p, rt, st), new[] { (0, 3) });
+            DriveBase_tobeignoredbypocooperations = new MonsterData.DriveBase(this, "DriveBase_tobeignoredbypocooperations", "DriveBase_tobeignoredbypocooperations");
+            Description_tobeignoredbypocooperations = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "Description_tobeignoredbypocooperations", "Description_tobeignoredbypocooperations");
             parent.AddChild(this);
             parent.AddKid(this);
             PostConstruct(parent, readableTail, symbolTail);
@@ -50,6 +58,8 @@ namespace MonsterData
             plain.Id = Id.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
             plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations.OnlineToPlainAsync();
+            plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.LastValue;
             return plain;
         }
 
@@ -59,6 +69,8 @@ namespace MonsterData
             plain.Id = Id.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
             plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations.OnlineToPlainAsync();
+            plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.LastValue;
             return plain;
         }
 
@@ -75,6 +87,8 @@ namespace MonsterData
             ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
             ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+            await this.DriveBase_tobeignoredbypocooperations.PlainToOnlineAsync(plain.DriveBase_tobeignoredbypocooperations);
+            Description_tobeignoredbypocooperations.Cyclic = plain.Description_tobeignoredbypocooperations;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -90,6 +104,8 @@ namespace MonsterData
             plain.Id = Id.Shadow;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
             plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations.ShadowToPlainAsync();
+            plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.Shadow;
             return plain;
         }
 
@@ -99,6 +115,8 @@ namespace MonsterData
             plain.Id = Id.Shadow;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.Shadow).ToArray();
             plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.ShadowToPlainAsync()).Select(p => p.Result).ToArray();
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations.ShadowToPlainAsync();
+            plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.Shadow;
             return plain;
         }
 
@@ -115,6 +133,8 @@ namespace MonsterData
             ArrayOfBytes.Select(p => p.Shadow = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
             ArrayOfDrives.Select(p => p.PlainToShadowAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+            await this.DriveBase_tobeignoredbypocooperations.PlainToShadowAsync(plain.DriveBase_tobeignoredbypocooperations);
+            Description_tobeignoredbypocooperations.Shadow = plain.Description_tobeignoredbypocooperations;
             return this.RetrievePrimitives();
         }
 

@@ -182,7 +182,7 @@ public static class TwinObjectExtensions
 
         if (children != null)
             foreach (var child in children)
-                RetrievePrimitives(child, valueTags);
+                RetrievePrimitives<T>(child, valueTags);
 
         var tags = onlineObject.GetValueTags().Where(p => !p.HasAttribute<T>());
 
@@ -213,6 +213,7 @@ public static class TwinObjectExtensions
 
     public static bool HasAttribute<T>(this ITwinElement twinElement) where T : Attribute
     {
+        var retVal = false;
         if (twinElement == null) return false;
         try
         {
@@ -222,23 +223,26 @@ public static class TwinObjectExtensions
                 if (propertyInfo
                         .GetCustomAttributes().FirstOrDefault(p => p is T) is T propertyAttribute)
                 {
-                    return true;
+                    retVal = true;
                 }
             }
 
-            var typeAttribute = twinElement
-                .GetType()
-                .GetCustomAttributes(true)
-                .FirstOrDefault(p => p is T) as T;
+            if (twinElement
+                    .GetType()
+                    .GetCustomAttributes(true)
+                    .FirstOrDefault(p => p is T) != null)
+            {
+                retVal = true;
+            }
 
-            return true;
+            
         }
         catch (Exception)
         {
             //throw;
         }
 
-        return false;
+        return retVal;
     }
 
 

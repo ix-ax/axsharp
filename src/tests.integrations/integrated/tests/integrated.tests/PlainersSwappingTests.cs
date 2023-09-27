@@ -65,6 +65,71 @@ namespace integrated.tests
         }
 
         [Fact]
+        public async Task OnlineToPlain_should_copy_entire_structure_ignore_on_poco_operations()
+        {
+            var monster = Entry.Plc.OnlineToPlain_should_copy_entire_structure;
+
+            monster.Description.Cyclic = "from online to shadow";
+            monster.Id.Cyclic = 111222;
+            monster.ArrayOfBytes[0].Cyclic = 11;
+            monster.ArrayOfBytes[1].Cyclic = 22;
+            monster.ArrayOfBytes[2].Cyclic = 33;
+
+            monster.ArrayOfDrives[0].Velo.Cyclic = 110;
+            monster.ArrayOfDrives[0].Acc.Cyclic = 120;
+            monster.ArrayOfDrives[0].Dcc.Cyclic = 130;
+            monster.ArrayOfDrives[0].Position.Cyclic = 140;
+
+            monster.ArrayOfDrives[1].Velo.Cyclic = 210;
+            monster.ArrayOfDrives[1].Acc.Cyclic = 220;
+            monster.ArrayOfDrives[1].Dcc.Cyclic = 230;
+            monster.ArrayOfDrives[1].Position.Cyclic = 240;
+
+            monster.ArrayOfDrives[2].Velo.Cyclic = 310;
+            monster.ArrayOfDrives[2].Acc.Cyclic = 320;
+            monster.ArrayOfDrives[2].Dcc.Cyclic = 330;
+            monster.ArrayOfDrives[2].Position.Cyclic = 340;
+
+            monster.DriveBase_tobeignoredbypocooperations.Velo.Cyclic = 510;
+            monster.DriveBase_tobeignoredbypocooperations.Acc.Cyclic = 520; 
+            monster.DriveBase_tobeignoredbypocooperations.Dcc.Cyclic = 530;
+            monster.DriveBase_tobeignoredbypocooperations.Position.Cyclic = 540;
+
+
+            await monster.WriteAsync();
+
+            monster.DriveBase_tobeignoredbypocooperations.Velo.Cyclic = 610;
+            monster.DriveBase_tobeignoredbypocooperations.Acc.Cyclic = 620;
+            monster.DriveBase_tobeignoredbypocooperations.Dcc.Cyclic = 630;
+            monster.DriveBase_tobeignoredbypocooperations.Position.Cyclic = 640;
+
+            var p = await monster.OnlineToPlainAsync();
+
+            Assert.Equal(610, p.DriveBase_tobeignoredbypocooperations.Velo);
+            Assert.Equal(620, p.DriveBase_tobeignoredbypocooperations.Acc);
+            Assert.Equal(630, p.DriveBase_tobeignoredbypocooperations.Dcc);
+            Assert.Equal(640, p.DriveBase_tobeignoredbypocooperations.Position);
+
+            Assert.Equal(monster.Description.Cyclic, p.Description);
+            Assert.Equal(monster.Id.Cyclic, p.Id);
+            Assert.Equal(monster.ArrayOfBytes[0].Cyclic, p.ArrayOfBytes[0]);
+            Assert.Equal(monster.ArrayOfBytes[1].Cyclic, p.ArrayOfBytes[1]);
+            Assert.Equal(monster.ArrayOfBytes[2].Cyclic, p.ArrayOfBytes[2]);
+            Assert.Equal(monster.ArrayOfDrives[0].Velo.Cyclic, p.ArrayOfDrives[0].Velo);
+            Assert.Equal(monster.ArrayOfDrives[0].Acc.Cyclic, p.ArrayOfDrives[0].Acc);
+            Assert.Equal(monster.ArrayOfDrives[0].Dcc.Cyclic, p.ArrayOfDrives[0].Dcc);
+            Assert.Equal(monster.ArrayOfDrives[0].Position.Cyclic, p.ArrayOfDrives[0].Position);
+            Assert.Equal(monster.ArrayOfDrives[1].Velo.Cyclic, p.ArrayOfDrives[1].Velo);
+            Assert.Equal(monster.ArrayOfDrives[1].Acc.Cyclic, p.ArrayOfDrives[1].Acc);
+            Assert.Equal(monster.ArrayOfDrives[1].Dcc.Cyclic, p.ArrayOfDrives[1].Dcc);
+            Assert.Equal(monster.ArrayOfDrives[1].Position.Cyclic, p.ArrayOfDrives[1].Position);
+            Assert.Equal(monster.ArrayOfDrives[2].Velo.Cyclic, p.ArrayOfDrives[2].Velo);
+            Assert.Equal(monster.ArrayOfDrives[2].Acc.Cyclic, p.ArrayOfDrives[2].Acc);
+            Assert.Equal(monster.ArrayOfDrives[2].Dcc.Cyclic, p.ArrayOfDrives[2].Dcc);
+            Assert.Equal(monster.ArrayOfDrives[2].Position.Cyclic, p.ArrayOfDrives[2].Position);
+        }
+
+        [Fact]
         public async Task ITwinObject_OnlineToPlain_should_copy_entire_structure()
         {
             var monster = Entry.Plc.ITwinObjectOnlineToPlain_should_copy_entire_structure;
