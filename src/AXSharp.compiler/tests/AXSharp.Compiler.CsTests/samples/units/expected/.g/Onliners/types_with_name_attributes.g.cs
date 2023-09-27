@@ -38,7 +38,7 @@ namespace TypeWithNameAttributes
 
         [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-        public public async Task<Pocos.TypeWithNameAttributes.Motor> _OnlineToPlainNoacAsync()
+        public async Task<Pocos.TypeWithNameAttributes.Motor> _OnlineToPlainNoacAsync()
         {
             Pocos.TypeWithNameAttributes.Motor plain = new Pocos.TypeWithNameAttributes.Motor();
             plain.isRunning = isRunning.LastValue;
@@ -209,7 +209,7 @@ namespace TypeWithNameAttributes
 
         [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-        public public async Task<Pocos.TypeWithNameAttributes.Vehicle> _OnlineToPlainNoacAsync()
+        public async Task<Pocos.TypeWithNameAttributes.Vehicle> _OnlineToPlainNoacAsync()
         {
             Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
 #pragma warning disable CS0612

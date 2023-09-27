@@ -35,7 +35,7 @@ public partial class Motor : AXSharp.Connector.ITwinObject
 
     [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-    public public async Task<Pocos.Motor> _OnlineToPlainNoacAsync()
+    public async Task<Pocos.Motor> _OnlineToPlainNoacAsync()
     {
         Pocos.Motor plain = new Pocos.Motor();
         plain.isRunning = isRunning.LastValue;
@@ -206,7 +206,7 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
 
     [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-    public public async Task<Pocos.Vehicle> _OnlineToPlainNoacAsync()
+    public async Task<Pocos.Vehicle> _OnlineToPlainNoacAsync()
     {
         Pocos.Vehicle plain = new Pocos.Vehicle();
 #pragma warning disable CS0612

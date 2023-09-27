@@ -611,7 +611,7 @@ namespace misc
 
         [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-        public public async Task<Pocos.misc.Motor> _OnlineToPlainNoacAsync()
+        public async Task<Pocos.misc.Motor> _OnlineToPlainNoacAsync()
         {
             Pocos.misc.Motor plain = new Pocos.misc.Motor();
             plain.isRunning = isRunning.LastValue;
@@ -782,7 +782,7 @@ namespace misc
 
         [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-        public public async Task<Pocos.misc.Vehicle> _OnlineToPlainNoacAsync()
+        public async Task<Pocos.misc.Vehicle> _OnlineToPlainNoacAsync()
         {
             Pocos.misc.Vehicle plain = new Pocos.misc.Vehicle();
 #pragma warning disable CS0612
