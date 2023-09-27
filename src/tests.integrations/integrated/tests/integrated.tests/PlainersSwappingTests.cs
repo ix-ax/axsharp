@@ -47,20 +47,20 @@ namespace integrated.tests
 
             Assert.Equal(monster.Description.Cyclic, p.Description);
             Assert.Equal(monster.Id.Cyclic, p.Id);
-            Assert.Equal(monster.ArrayOfBytes[0].Cyclic          , p.ArrayOfBytes[0])          ;
-            Assert.Equal(monster.ArrayOfBytes[1].Cyclic          , p.ArrayOfBytes[1])          ;
-            Assert.Equal(monster.ArrayOfBytes[2].Cyclic          , p.ArrayOfBytes[2])          ;
-            Assert.Equal(monster.ArrayOfDrives[0].Velo.Cyclic    , p.ArrayOfDrives[0].Velo)    ;
-            Assert.Equal(monster.ArrayOfDrives[0].Acc.Cyclic     , p.ArrayOfDrives[0].Acc)     ;
-            Assert.Equal(monster.ArrayOfDrives[0].Dcc.Cyclic     , p.ArrayOfDrives[0].Dcc)     ;
-            Assert.Equal(monster.ArrayOfDrives[0].Position.Cyclic, p.ArrayOfDrives[0].Position);  
-            Assert.Equal(monster.ArrayOfDrives[1].Velo.Cyclic    , p.ArrayOfDrives[1].Velo)    ;
-            Assert.Equal(monster.ArrayOfDrives[1].Acc.Cyclic     , p.ArrayOfDrives[1].Acc)     ;
-            Assert.Equal(monster.ArrayOfDrives[1].Dcc.Cyclic     , p.ArrayOfDrives[1].Dcc)     ;
-            Assert.Equal(monster.ArrayOfDrives[1].Position.Cyclic, p.ArrayOfDrives[1].Position);  
-            Assert.Equal(monster.ArrayOfDrives[2].Velo.Cyclic    , p.ArrayOfDrives[2].Velo)    ;
-            Assert.Equal(monster.ArrayOfDrives[2].Acc.Cyclic     , p.ArrayOfDrives[2].Acc)     ;
-            Assert.Equal(monster.ArrayOfDrives[2].Dcc.Cyclic     , p.ArrayOfDrives[2].Dcc)     ;
+            Assert.Equal(monster.ArrayOfBytes[0].Cyclic, p.ArrayOfBytes[0]);
+            Assert.Equal(monster.ArrayOfBytes[1].Cyclic, p.ArrayOfBytes[1]);
+            Assert.Equal(monster.ArrayOfBytes[2].Cyclic, p.ArrayOfBytes[2]);
+            Assert.Equal(monster.ArrayOfDrives[0].Velo.Cyclic, p.ArrayOfDrives[0].Velo);
+            Assert.Equal(monster.ArrayOfDrives[0].Acc.Cyclic, p.ArrayOfDrives[0].Acc);
+            Assert.Equal(monster.ArrayOfDrives[0].Dcc.Cyclic, p.ArrayOfDrives[0].Dcc);
+            Assert.Equal(monster.ArrayOfDrives[0].Position.Cyclic, p.ArrayOfDrives[0].Position);
+            Assert.Equal(monster.ArrayOfDrives[1].Velo.Cyclic, p.ArrayOfDrives[1].Velo);
+            Assert.Equal(monster.ArrayOfDrives[1].Acc.Cyclic, p.ArrayOfDrives[1].Acc);
+            Assert.Equal(monster.ArrayOfDrives[1].Dcc.Cyclic, p.ArrayOfDrives[1].Dcc);
+            Assert.Equal(monster.ArrayOfDrives[1].Position.Cyclic, p.ArrayOfDrives[1].Position);
+            Assert.Equal(monster.ArrayOfDrives[2].Velo.Cyclic, p.ArrayOfDrives[2].Velo);
+            Assert.Equal(monster.ArrayOfDrives[2].Acc.Cyclic, p.ArrayOfDrives[2].Acc);
+            Assert.Equal(monster.ArrayOfDrives[2].Dcc.Cyclic, p.ArrayOfDrives[2].Dcc);
             Assert.Equal(monster.ArrayOfDrives[2].Position.Cyclic, p.ArrayOfDrives[2].Position);
         }
 
@@ -98,17 +98,31 @@ namespace integrated.tests
 
             await monster.WriteAsync();
 
+            monster.Id.Cyclic = 3344;
+            monster.ArrayOfBytes[0].Cyclic = 111;
+            monster.ArrayOfBytes[1].Cyclic = 122;
+            monster.ArrayOfBytes[2].Cyclic = 133;
+
+            monster.ArrayOfDrives[0].Velo.Cyclic = 310;
+            monster.ArrayOfDrives[0].Acc.Cyclic  = 320;
+            monster.ArrayOfDrives[0].Dcc.Cyclic  = 330;
+            monster.ArrayOfDrives[0].Position.Cyclic = 140;
+
+            //those members should be not written
             monster.DriveBase_tobeignoredbypocooperations.Velo.Cyclic = 610;
             monster.DriveBase_tobeignoredbypocooperations.Acc.Cyclic = 620;
             monster.DriveBase_tobeignoredbypocooperations.Dcc.Cyclic = 630;
             monster.DriveBase_tobeignoredbypocooperations.Position.Cyclic = 640;
 
+            await monster.WriteAsync<IgnoreOnPocoOperation>();
+
+
             var p = await monster.OnlineToPlainAsync();
 
-            Assert.Equal(610, p.DriveBase_tobeignoredbypocooperations.Velo);
-            Assert.Equal(620, p.DriveBase_tobeignoredbypocooperations.Acc);
-            Assert.Equal(630, p.DriveBase_tobeignoredbypocooperations.Dcc);
-            Assert.Equal(640, p.DriveBase_tobeignoredbypocooperations.Position);
+            Assert.Equal(510, p.DriveBase_tobeignoredbypocooperations.Velo);
+            Assert.Equal(520, p.DriveBase_tobeignoredbypocooperations.Acc);
+            Assert.Equal(530, p.DriveBase_tobeignoredbypocooperations.Dcc);
+            Assert.Equal(540, p.DriveBase_tobeignoredbypocooperations.Position);
 
             Assert.Equal(monster.Description.Cyclic, p.Description);
             Assert.Equal(monster.Id.Cyclic, p.Id);
@@ -620,29 +634,29 @@ namespace integrated.tests
 
 
             //assert
-            Assert.Equal(p.myBOOL, primitives.myBOOL.Cyclic );
-            Assert.Equal(p.myBYTE, primitives.myBYTE.Cyclic );
-            Assert.Equal(p.myWORD, primitives.myWORD.Cyclic );
-            Assert.Equal( p.myDWORD, primitives.myDWORD.Cyclic );
-            Assert.Equal( p.myLWORD, primitives.myLWORD.Cyclic );
-            Assert.Equal(p.mySINT ,primitives.mySINT.Cyclic );
-            Assert.Equal(p.myINT ,primitives.myINT. Cyclic  );
-            Assert.Equal(p.myDINT ,primitives.myDINT.Cyclic    );
-            Assert.Equal(p.myLINT ,primitives.myLINT.Cyclic  );
-            Assert.Equal( p.myUSINT ,primitives.myUSINT.Cyclic);
-            Assert.Equal(p.myUINT ,primitives.myUINT.Cyclic    );
-            Assert.Equal( p.myUDINT ,primitives.myUDINT.Cyclic  );
-            Assert.Equal( p.myULINT, primitives.myULINT.Cyclic   );
-            Assert.Equal(p.myREAL ,primitives.myREAL.Cyclic    );
-            Assert.Equal( p.myLREAL ,primitives.myLREAL.Cyclic   );
-            Assert.Equal(p.myTIME ,primitives.myTIME.Cyclic    );
-            Assert.Equal( p.myLTIME, primitives.myLTIME.Cyclic );
-            Assert.Equal(p.myDATE ,primitives.myDATE.Cyclic     );
-            Assert.Equal(p.myTIME_OF_DAY, primitives.myTIME_OF_DAY.Cyclic );
-            Assert.Equal(p.myDATE_AND_TIME, primitives.myDATE_AND_TIME.Cyclic  );
-            Assert.Equal(p.mySTRING, primitives.mySTRING.Cyclic  );
-            Assert.Equal(p.myWSTRING, primitives.myWSTRING.Cyclic );
-            Assert.Equal((int)p.myEnum, primitives.myEnum.Cyclic    );
+            Assert.Equal(p.myBOOL, primitives.myBOOL.Cyclic);
+            Assert.Equal(p.myBYTE, primitives.myBYTE.Cyclic);
+            Assert.Equal(p.myWORD, primitives.myWORD.Cyclic);
+            Assert.Equal(p.myDWORD, primitives.myDWORD.Cyclic);
+            Assert.Equal(p.myLWORD, primitives.myLWORD.Cyclic);
+            Assert.Equal(p.mySINT, primitives.mySINT.Cyclic);
+            Assert.Equal(p.myINT, primitives.myINT.Cyclic);
+            Assert.Equal(p.myDINT, primitives.myDINT.Cyclic);
+            Assert.Equal(p.myLINT, primitives.myLINT.Cyclic);
+            Assert.Equal(p.myUSINT, primitives.myUSINT.Cyclic);
+            Assert.Equal(p.myUINT, primitives.myUINT.Cyclic);
+            Assert.Equal(p.myUDINT, primitives.myUDINT.Cyclic);
+            Assert.Equal(p.myULINT, primitives.myULINT.Cyclic);
+            Assert.Equal(p.myREAL, primitives.myREAL.Cyclic);
+            Assert.Equal(p.myLREAL, primitives.myLREAL.Cyclic);
+            Assert.Equal(p.myTIME, primitives.myTIME.Cyclic);
+            Assert.Equal(p.myLTIME, primitives.myLTIME.Cyclic);
+            Assert.Equal(p.myDATE, primitives.myDATE.Cyclic);
+            Assert.Equal(p.myTIME_OF_DAY, primitives.myTIME_OF_DAY.Cyclic);
+            Assert.Equal(p.myDATE_AND_TIME, primitives.myDATE_AND_TIME.Cyclic);
+            Assert.Equal(p.mySTRING, primitives.mySTRING.Cyclic);
+            Assert.Equal(p.myWSTRING, primitives.myWSTRING.Cyclic);
+            Assert.Equal((int)p.myEnum, primitives.myEnum.Cyclic);
 
         }
 
