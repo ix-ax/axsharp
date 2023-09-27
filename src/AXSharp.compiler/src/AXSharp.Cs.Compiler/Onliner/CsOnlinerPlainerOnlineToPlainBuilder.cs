@@ -136,7 +136,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         // Noac method
         builder.AddToSource($"[Obsolete(\"This method should not be used if you indent to access the controllers data. Use `{MethodName}` instead.\")]");
         builder.AddToSource("[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]");
-        builder.AddToSource($"public public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodNameNoac}Async(){{\n");
+        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodNameNoac}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
