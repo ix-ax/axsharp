@@ -76,7 +76,7 @@ public static class TwinObjectExtensions
     /// <example>
     ///     <code>
     /// // Reads all value tags of the MAIN PRG. The value is stored in property 'Cyclic' and 'LastValue' of the respective value tag.
-    /// Connector.MAIN.Read();
+    /// Connector.MAIN.ReadAsync();
     /// </code>
     /// </example>
     /// <param name="structure"></param>
@@ -89,6 +89,15 @@ public static class TwinObjectExtensions
         return twinPrimitives;
     }
 
+    /// <summary>
+    /// Reads all value tags of instance <see cref="ITwinOnlineObject"/>, but ignores members that are annotated with attribute as generic parameter.
+    /// > [!IMPORTANT]
+    /// > This method is used for specific framework purposed and there is no specific reason to use it in your application.
+    /// > Use non generic version of this method <see cref="ReadAsync"/> instead.
+    /// </summary>
+    /// <typeparam name="T">Attribute parameter to be ignored</typeparam>
+    /// <param name="structure">Structure to be read</param>
+    /// <returns>List of read items.</returns>
     public static async Task<IEnumerable<ITwinPrimitive>> ReadAsync<T>(this ITwinObject structure) where T : Attribute
     {
         ArgumentNullException.ThrowIfNull(structure);
@@ -117,6 +126,16 @@ public static class TwinObjectExtensions
         return twinPrimitives;
     }
 
+    /// <summary>
+    /// Writes all value tags of instance <see cref="ITwinOnlineObject" />,
+    /// but ignores members that are annotated with attribute as generic parameter.
+    /// > [!IMPORTANT]
+    /// > This method is used for specific framework purposed and there is no specific reason to use it in your application.
+    /// > Use non generic version of this method <see cref="WriteAsync"/> instead.
+    /// </summary>
+    /// <typeparam name="T">Attribute parameter to be ignored</typeparam>
+    /// <param name="structure">Structure to be written.</param>
+    /// <returns>List of written items.</returns>
     public static async Task<IEnumerable<ITwinPrimitive>> WriteAsync<T>(this ITwinObject structure) where T : Attribute
     {
         var primitives = structure.RetrievePrimitives<T>();
@@ -171,7 +190,7 @@ public static class TwinObjectExtensions
     ///     var mainProgramTags = Connector.MAIN.RetrievePrimitives();
     /// </code>
     /// </example>
-    public static IEnumerable<ITwinPrimitive> RetrievePrimitives<T>(this ITwinObject onlineObject,
+    private static IEnumerable<ITwinPrimitive> RetrievePrimitives<T>(this ITwinObject onlineObject,
         List<ITwinPrimitive> valueTags = null) where T : Attribute
     {
         ArgumentNullException.ThrowIfNull(onlineObject);
