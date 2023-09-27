@@ -35,7 +35,14 @@
 		<ProjectReference Include="..\AXSharp.Connector\AXSharp.Connector.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>    
+  </ItemGroup>
+
+  <ItemGroup>
 		<None Include="..\..\..\..\assets\icons\icon_128_128.png" Link="icon_128_128.png">
 			<PackagePath>\</PackagePath>
 			<Pack>True</Pack>
