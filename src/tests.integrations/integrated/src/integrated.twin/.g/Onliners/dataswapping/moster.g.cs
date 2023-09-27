@@ -57,19 +57,47 @@ namespace MonsterData
             plain.Description = Description.LastValue;
             plain.Id = Id.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
-            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
-            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.LastValue;
             return plain;
         }
 
-        protected async Task<Pocos.MonsterData.MonsterBase> OnlineToPlainAsync(Pocos.MonsterData.MonsterBase plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.MonsterData.MonsterBase> _OnlineToPlainNoacAsync()
+        {
+            Pocos.MonsterData.MonsterBase plain = new Pocos.MonsterData.MonsterBase();
+            plain.Description = Description.LastValue;
+            plain.Id = Id.LastValue;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
+#pragma warning disable CS0612
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.MonsterData.MonsterBase> _OnlineToPlainNoacAsync(Pocos.MonsterData.MonsterBase plain)
         {
             plain.Description = Description.LastValue;
             plain.Id = Id.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
-            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
-            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveBase_tobeignoredbypocooperations = await DriveBase_tobeignoredbypocooperations._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             plain.Description_tobeignoredbypocooperations = Description_tobeignoredbypocooperations.LastValue;
             return plain;
         }
@@ -86,10 +114,32 @@ namespace MonsterData
             var _ArrayOfBytes_i_FE8484DAB3 = 0;
             ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
-            ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
-            await this.DriveBase_tobeignoredbypocooperations.PlainToOnlineAsync(plain.DriveBase_tobeignoredbypocooperations);
+#pragma warning disable CS0612
+            ArrayOfDrives.Select(p => p._PlainToOnlineNoacAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            await this.DriveBase_tobeignoredbypocooperations._PlainToOnlineNoacAsync(plain.DriveBase_tobeignoredbypocooperations);
+#pragma warning restore CS0612
             Description_tobeignoredbypocooperations.Cyclic = plain.Description_tobeignoredbypocooperations;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.MonsterData.MonsterBase plain)
+        {
+            Description.Cyclic = plain.Description;
+            Id.Cyclic = plain.Id;
+            var _ArrayOfBytes_i_FE8484DAB3 = 0;
+            ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+            var _ArrayOfDrives_i_FE8484DAB3 = 0;
+#pragma warning disable CS0612
+            ArrayOfDrives.Select(p => p._PlainToOnlineNoacAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            await this.DriveBase_tobeignoredbypocooperations._PlainToOnlineNoacAsync(plain.DriveBase_tobeignoredbypocooperations);
+#pragma warning restore CS0612
+            Description_tobeignoredbypocooperations.Cyclic = plain.Description_tobeignoredbypocooperations;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -235,15 +285,39 @@ namespace MonsterData
         {
             Pocos.MonsterData.Monster plain = new Pocos.MonsterData.Monster();
             await this.ReadAsync<IgnoreOnPocoOperation>();
-            await base.OnlineToPlainAsync(plain);
-            plain.DriveA = await DriveA.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveA = await DriveA._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.MonsterData.Monster> OnlineToPlainAsync(Pocos.MonsterData.Monster plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public new async Task<Pocos.MonsterData.Monster> _OnlineToPlainNoacAsync()
         {
-            await base.OnlineToPlainAsync(plain);
-            plain.DriveA = await DriveA.OnlineToPlainAsync();
+            Pocos.MonsterData.Monster plain = new Pocos.MonsterData.Monster();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveA = await DriveA._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.MonsterData.Monster> _OnlineToPlainNoacAsync(Pocos.MonsterData.Monster plain)
+        {
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveA = await DriveA._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -254,9 +328,21 @@ namespace MonsterData
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.Monster plain)
         {
-            await base.PlainToOnlineAsync(plain);
-            await this.DriveA.PlainToOnlineAsync(plain.DriveA);
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.DriveA._PlainToOnlineNoacAsync(plain.DriveA);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.MonsterData.Monster plain)
+        {
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.DriveA._PlainToOnlineNoacAsync(plain.DriveA);
+#pragma warning restore CS0612
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -347,7 +433,21 @@ namespace MonsterData
             return plain;
         }
 
-        protected async Task<Pocos.MonsterData.DriveBase> OnlineToPlainAsync(Pocos.MonsterData.DriveBase plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.MonsterData.DriveBase> _OnlineToPlainNoacAsync()
+        {
+            Pocos.MonsterData.DriveBase plain = new Pocos.MonsterData.DriveBase();
+            plain.Position = Position.LastValue;
+            plain.Velo = Velo.LastValue;
+            plain.Acc = Acc.LastValue;
+            plain.Dcc = Dcc.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.MonsterData.DriveBase> _OnlineToPlainNoacAsync(Pocos.MonsterData.DriveBase plain)
         {
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
@@ -368,6 +468,16 @@ namespace MonsterData
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.MonsterData.DriveBase plain)
+        {
+            Position.Cyclic = plain.Position;
+            Velo.Cyclic = plain.Velo;
+            Acc.Cyclic = plain.Acc;
+            Dcc.Cyclic = plain.Dcc;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

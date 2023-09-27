@@ -33,7 +33,17 @@ public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
         return plain;
     }
 
-    protected async Task<Pocos.NoAccessModifierClass> OnlineToPlainAsync(Pocos.NoAccessModifierClass plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.NoAccessModifierClass> _OnlineToPlainNoacAsync()
+    {
+        Pocos.NoAccessModifierClass plain = new Pocos.NoAccessModifierClass();
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.NoAccessModifierClass> _OnlineToPlainNoacAsync(Pocos.NoAccessModifierClass plain)
     {
         return plain;
     }
@@ -46,6 +56,12 @@ public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.NoAccessModifierClass plain)
     {
         return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.NoAccessModifierClass plain)
+    {
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

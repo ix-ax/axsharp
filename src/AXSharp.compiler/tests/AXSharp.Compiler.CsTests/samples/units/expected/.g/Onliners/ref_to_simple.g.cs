@@ -35,7 +35,17 @@ namespace RefToSimple
             return plain;
         }
 
-        protected async Task<Pocos.RefToSimple.ref_to_simple> OnlineToPlainAsync(Pocos.RefToSimple.ref_to_simple plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RefToSimple.ref_to_simple> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RefToSimple.ref_to_simple plain = new Pocos.RefToSimple.ref_to_simple();
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RefToSimple.ref_to_simple> _OnlineToPlainNoacAsync(Pocos.RefToSimple.ref_to_simple plain)
         {
             return plain;
         }
@@ -48,6 +58,12 @@ namespace RefToSimple
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.ref_to_simple plain)
         {
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RefToSimple.ref_to_simple plain)
+        {
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -183,7 +199,18 @@ namespace RefToSimple
             return plain;
         }
 
-        protected async Task<Pocos.RefToSimple.referenced> OnlineToPlainAsync(Pocos.RefToSimple.referenced plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RefToSimple.referenced> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RefToSimple.referenced plain = new Pocos.RefToSimple.referenced();
+            plain.b = b.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RefToSimple.referenced> _OnlineToPlainNoacAsync(Pocos.RefToSimple.referenced plain)
         {
             plain.b = b.LastValue;
             return plain;
@@ -198,6 +225,13 @@ namespace RefToSimple
         {
             b.Cyclic = plain.b;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RefToSimple.referenced plain)
+        {
+            b.Cyclic = plain.b;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

@@ -61,7 +61,19 @@ namespace Simatic.Ax.StateFramework
             return plain;
         }
 
-        protected async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> _OnlineToPlainNoacAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain = new Pocos.Simatic.Ax.StateFramework.CompareGuardLint();
+            plain.CompareToValue = CompareToValue.LastValue;
+            plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Simatic.Ax.StateFramework.CompareGuardLint> _OnlineToPlainNoacAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
         {
             plain.CompareToValue = CompareToValue.LastValue;
             plain.Condition = (Simatic.Ax.StateFramework.Condition)Condition.LastValue;
@@ -78,6 +90,14 @@ namespace Simatic.Ax.StateFramework
             CompareToValue.Cyclic = plain.CompareToValue;
             Condition.Cyclic = (short)plain.Condition;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
+        {
+            CompareToValue.Cyclic = plain.CompareToValue;
+            Condition.Cyclic = (short)plain.Condition;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

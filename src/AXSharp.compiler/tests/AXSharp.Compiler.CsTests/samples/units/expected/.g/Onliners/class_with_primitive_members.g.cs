@@ -143,7 +143,44 @@ namespace ClassWithPrimitiveTypesNamespace
             return plain;
         }
 
-        protected async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> OnlineToPlainAsync(Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> _OnlineToPlainNoacAsync()
+        {
+            Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain = new Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes();
+            plain.myBOOL = myBOOL.LastValue;
+            plain.myBYTE = myBYTE.LastValue;
+            plain.myWORD = myWORD.LastValue;
+            plain.myDWORD = myDWORD.LastValue;
+            plain.myLWORD = myLWORD.LastValue;
+            plain.mySINT = mySINT.LastValue;
+            plain.myINT = myINT.LastValue;
+            plain.myDINT = myDINT.LastValue;
+            plain.myLINT = myLINT.LastValue;
+            plain.myUSINT = myUSINT.LastValue;
+            plain.myUINT = myUINT.LastValue;
+            plain.myUDINT = myUDINT.LastValue;
+            plain.myULINT = myULINT.LastValue;
+            plain.myREAL = myREAL.LastValue;
+            plain.myLREAL = myLREAL.LastValue;
+            plain.myTIME = myTIME.LastValue;
+            plain.myLTIME = myLTIME.LastValue;
+            plain.myDATE = myDATE.LastValue;
+            plain.myLDATE = myLDATE.LastValue;
+            plain.myTIME_OF_DAY = myTIME_OF_DAY.LastValue;
+            plain.myLTIME_OF_DAY = myLTIME_OF_DAY.LastValue;
+            plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
+            plain.myLDATE_AND_TIME = myLDATE_AND_TIME.LastValue;
+            plain.myCHAR = myCHAR.LastValue;
+            plain.myWCHAR = myWCHAR.LastValue;
+            plain.mySTRING = mySTRING.LastValue;
+            plain.myWSTRING = myWSTRING.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes> _OnlineToPlainNoacAsync(Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain)
         {
             plain.myBOOL = myBOOL.LastValue;
             plain.myBYTE = myBYTE.LastValue;
@@ -210,6 +247,39 @@ namespace ClassWithPrimitiveTypesNamespace
             mySTRING.Cyclic = plain.mySTRING;
             myWSTRING.Cyclic = plain.myWSTRING;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain)
+        {
+            myBOOL.Cyclic = plain.myBOOL;
+            myBYTE.Cyclic = plain.myBYTE;
+            myWORD.Cyclic = plain.myWORD;
+            myDWORD.Cyclic = plain.myDWORD;
+            myLWORD.Cyclic = plain.myLWORD;
+            mySINT.Cyclic = plain.mySINT;
+            myINT.Cyclic = plain.myINT;
+            myDINT.Cyclic = plain.myDINT;
+            myLINT.Cyclic = plain.myLINT;
+            myUSINT.Cyclic = plain.myUSINT;
+            myUINT.Cyclic = plain.myUINT;
+            myUDINT.Cyclic = plain.myUDINT;
+            myULINT.Cyclic = plain.myULINT;
+            myREAL.Cyclic = plain.myREAL;
+            myLREAL.Cyclic = plain.myLREAL;
+            myTIME.Cyclic = plain.myTIME;
+            myLTIME.Cyclic = plain.myLTIME;
+            myDATE.Cyclic = plain.myDATE;
+            myLDATE.Cyclic = plain.myLDATE;
+            myTIME_OF_DAY.Cyclic = plain.myTIME_OF_DAY;
+            myLTIME_OF_DAY.Cyclic = plain.myLTIME_OF_DAY;
+            myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
+            myLDATE_AND_TIME.Cyclic = plain.myLDATE_AND_TIME;
+            myCHAR.Cyclic = plain.myCHAR;
+            myWCHAR.Cyclic = plain.myWCHAR;
+            mySTRING.Cyclic = plain.mySTRING;
+            myWSTRING.Cyclic = plain.myWSTRING;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

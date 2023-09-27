@@ -41,14 +41,32 @@ namespace ArrayDeclarationSimpleNamespace
             Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain = new Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class();
             await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.primitive = primitive.Select(p => p.LastValue).ToArray();
-            plain.complex = complex.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+#pragma warning disable CS0612
+            plain.complex = complex.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> OnlineToPlainAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> _OnlineToPlainNoacAsync()
+        {
+            Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain = new Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class();
+            plain.primitive = primitive.Select(p => p.LastValue).ToArray();
+#pragma warning disable CS0612
+            plain.complex = complex.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class> _OnlineToPlainNoacAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
         {
             plain.primitive = primitive.Select(p => p.LastValue).ToArray();
-            plain.complex = complex.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+#pragma warning disable CS0612
+            plain.complex = complex.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -62,8 +80,22 @@ namespace ArrayDeclarationSimpleNamespace
             var _primitive_i_FE8484DAB3 = 0;
             primitive.Select(p => p.Cyclic = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
             var _complex_i_FE8484DAB3 = 0;
-            complex.Select(p => p.PlainToOnlineAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
+#pragma warning disable CS0612
+            complex.Select(p => p._PlainToOnlineNoacAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
+        {
+            var _primitive_i_FE8484DAB3 = 0;
+            primitive.Select(p => p.Cyclic = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
+            var _complex_i_FE8484DAB3 = 0;
+#pragma warning disable CS0612
+            complex.Select(p => p._PlainToOnlineNoacAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -203,7 +235,17 @@ namespace ArrayDeclarationSimpleNamespace
             return plain;
         }
 
-        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> OnlineToPlainAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> _OnlineToPlainNoacAsync()
+        {
+            Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain = new Pocos.ArrayDeclarationSimpleNamespace.some_complex_type();
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.ArrayDeclarationSimpleNamespace.some_complex_type> _OnlineToPlainNoacAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
         {
             return plain;
         }
@@ -216,6 +258,12 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
         {
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
+        {
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

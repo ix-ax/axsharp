@@ -36,7 +36,17 @@ internal partial class ClassWithUsingDirectives : AXSharp.Connector.ITwinObject
         return plain;
     }
 
-    protected async Task<Pocos.ClassWithUsingDirectives> OnlineToPlainAsync(Pocos.ClassWithUsingDirectives plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.ClassWithUsingDirectives> _OnlineToPlainNoacAsync()
+    {
+        Pocos.ClassWithUsingDirectives plain = new Pocos.ClassWithUsingDirectives();
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.ClassWithUsingDirectives> _OnlineToPlainNoacAsync(Pocos.ClassWithUsingDirectives plain)
     {
         return plain;
     }
@@ -49,6 +59,12 @@ internal partial class ClassWithUsingDirectives : AXSharp.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithUsingDirectives plain)
     {
         return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.ClassWithUsingDirectives plain)
+    {
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

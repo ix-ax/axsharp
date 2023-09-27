@@ -64,7 +64,9 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:
-                AddToSource($" await this.{declaration.Name}.{MethodName}Async(plain.{declaration.Name});");
+                AddToSource($"#pragma warning disable CS0612\n");
+                AddToSource($" await this.{declaration.Name}.{MethodNameNoac}Async(plain.{declaration.Name});");
+                AddToSource($"#pragma warning restore CS0612\n");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
                 
@@ -74,7 +76,9 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                     case IClassDeclaration classDeclaration:
                     case IStructuredTypeDeclaration structuredTypeDeclaration:
                         AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                        AddToSource($"{declaration.Name}.Select(p => p.{MethodName}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                        AddToSource($"#pragma warning disable CS0612\n");
+                        AddToSource($"{declaration.Name}.Select(p => p.{MethodNameNoac}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                        AddToSource($"#pragma warning restore CS0612\n");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:
@@ -115,6 +119,8 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
     }
 
     private static readonly string MethodName = TwinObjectExtensions.PlainToOnlineMethodName;
+    private static readonly string MethodNameNoac = $"_{TwinObjectExtensions.PlainToOnlineMethodName}Noac";
+
 
     public static CsOnlinerPlainerPlainToOnlineBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
         ISourceBuilder sourceBuilder)
@@ -130,6 +136,16 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         builder.AddToSource("return await this.WriteAsync<IgnoreOnPocoOperation>();");
 
         builder.AddToSource($"}}");
+
+        // Noac method
+        builder.AddToSource($"[Obsolete(\"This method should not be used if you indent to access the controllers data. Use `{MethodName}` instead.\")]");
+        builder.AddToSource("[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]");
+        builder.AddToSource($"public async Task {MethodNameNoac}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+
+        semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+
+        builder.AddToSource($"}}");
+
         return builder;
     }
 
@@ -148,7 +164,7 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
 
         if (isExtended)
         {
-            builder.AddToSource($"await base.{MethodName}Async(plain);");
+            builder.AddToSource($"await base.{MethodNameNoac}Async(plain);");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
@@ -156,6 +172,21 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
         builder.AddToSource("return await this.WriteAsync<IgnoreOnPocoOperation>();");
 
         builder.AddToSource($"}}");
+
+        // Noac method
+        builder.AddToSource($"[Obsolete(\"This method should not be used if you indent to access the controllers data. Use `{MethodName}` instead.\")]");
+        builder.AddToSource("[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]");
+        builder.AddToSource($"public async Task {MethodNameNoac}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+        
+        if (isExtended)
+        {
+            builder.AddToSource($"await base.{MethodNameNoac}Async(plain);");
+        }
+
+        semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+
+        builder.AddToSource($"}}");
+
         return builder;
     }
 

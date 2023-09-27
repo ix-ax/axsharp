@@ -35,7 +35,17 @@ namespace sampleNamespace
             return plain;
         }
 
-        protected async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> OnlineToPlainAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> _OnlineToPlainNoacAsync()
+        {
+            Pocos.sampleNamespace.simple_empty_class_within_namespace plain = new Pocos.sampleNamespace.simple_empty_class_within_namespace();
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.sampleNamespace.simple_empty_class_within_namespace> _OnlineToPlainNoacAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
         {
             return plain;
         }
@@ -48,6 +58,12 @@ namespace sampleNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
         {
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.sampleNamespace.simple_empty_class_within_namespace plain)
+        {
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

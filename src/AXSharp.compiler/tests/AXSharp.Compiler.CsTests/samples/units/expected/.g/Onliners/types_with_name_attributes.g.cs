@@ -36,6 +36,15 @@ namespace TypeWithNameAttributes
             return plain;
         }
 
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public public async Task<Pocos.TypeWithNameAttributes.Motor> _OnlineToPlainNoacAsync()
+        {
+            Pocos.TypeWithNameAttributes.Motor plain = new Pocos.TypeWithNameAttributes.Motor();
+            plain.isRunning = isRunning.LastValue;
+            return plain;
+        }
+
         protected async Task<Pocos.TypeWithNameAttributes.Motor> OnlineToPlainAsync(Pocos.TypeWithNameAttributes.Motor plain)
         {
             plain.isRunning = isRunning.LastValue;
@@ -51,6 +60,13 @@ namespace TypeWithNameAttributes
         {
             isRunning.Cyclic = plain.isRunning;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.TypeWithNameAttributes.Motor plain)
+        {
+            isRunning.Cyclic = plain.isRunning;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -184,14 +200,30 @@ namespace TypeWithNameAttributes
         {
             Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
             await this.ReadAsync<IgnoreOnPocoOperation>();
-            plain.m = await m.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.m = await m._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            plain.displacement = displacement.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public public async Task<Pocos.TypeWithNameAttributes.Vehicle> _OnlineToPlainNoacAsync()
+        {
+            Pocos.TypeWithNameAttributes.Vehicle plain = new Pocos.TypeWithNameAttributes.Vehicle();
+#pragma warning disable CS0612
+            plain.m = await m._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             plain.displacement = displacement.LastValue;
             return plain;
         }
 
         protected async Task<Pocos.TypeWithNameAttributes.Vehicle> OnlineToPlainAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
         {
-            plain.m = await m.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.m = await m._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             plain.displacement = displacement.LastValue;
             return plain;
         }
@@ -203,9 +235,21 @@ namespace TypeWithNameAttributes
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
         {
-            await this.m.PlainToOnlineAsync(plain.m);
+#pragma warning disable CS0612
+            await this.m._PlainToOnlineNoacAsync(plain.m);
+#pragma warning restore CS0612
             displacement.Cyclic = plain.displacement;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.TypeWithNameAttributes.Vehicle plain)
+        {
+#pragma warning disable CS0612
+            await this.m._PlainToOnlineNoacAsync(plain.m);
+#pragma warning restore CS0612
+            displacement.Cyclic = plain.displacement;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -350,7 +394,18 @@ namespace TypeWithNameAttributes
             return plain;
         }
 
-        protected async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> OnlineToPlainAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> _OnlineToPlainNoacAsync()
+        {
+            Pocos.TypeWithNameAttributes.NoAccessModifierClass plain = new Pocos.TypeWithNameAttributes.NoAccessModifierClass();
+            plain.SomeClassVariable = SomeClassVariable.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.TypeWithNameAttributes.NoAccessModifierClass> _OnlineToPlainNoacAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
         {
             plain.SomeClassVariable = SomeClassVariable.LastValue;
             return plain;
@@ -365,6 +420,13 @@ namespace TypeWithNameAttributes
         {
             SomeClassVariable.Cyclic = plain.SomeClassVariable;
             return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain)
+        {
+            SomeClassVariable.Cyclic = plain.SomeClassVariable;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
