@@ -47,12 +47,16 @@ internal class CsOnlinerPlainerOnlineToPlainProtectedBuilder : CsOnlinerPlainerO
 
         //var qualifier = isExtended ? "new" : string.Empty;
         var qualifier = string.Empty;
-        builder.AddToSource($"protected {qualifier} async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
+        builder.AddToSource($"[Obsolete(\"This method should not be used if you indent to access the controllers data. Use `{MethodName}` instead.\")]");
+        builder.AddToSource("[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]");
+        builder.AddToSource($"protected {qualifier} async Task<Pocos.{semantics.FullyQualifiedName}> {MethodNameNoac}Async(Pocos.{semantics.FullyQualifiedName} plain){{\n");
         
         
         if (isExtended)
         {
-            builder.AddToSource($"await base.{MethodName}Async(plain);");
+            builder.AddToSource($"#pragma warning disable CS0612\n");
+            builder.AddToSource($"await base.{MethodNameNoac}Async(plain);");
+            builder.AddToSource($"#pragma warning restore CS0612\n");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));

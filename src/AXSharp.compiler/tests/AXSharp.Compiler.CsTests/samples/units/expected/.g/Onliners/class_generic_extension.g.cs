@@ -31,11 +31,21 @@ namespace Generics
         public async Task<Pocos.Generics.Extender> OnlineToPlainAsync()
         {
             Pocos.Generics.Extender plain = new Pocos.Generics.Extender();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
-        protected async Task<Pocos.Generics.Extender> OnlineToPlainAsync(Pocos.Generics.Extender plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.Generics.Extender> _OnlineToPlainNoacAsync()
+        {
+            Pocos.Generics.Extender plain = new Pocos.Generics.Extender();
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Generics.Extender> _OnlineToPlainNoacAsync(Pocos.Generics.Extender plain)
         {
             return plain;
         }
@@ -47,7 +57,13 @@ namespace Generics
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Generics.Extender plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Generics.Extender plain)
+        {
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -175,18 +191,49 @@ namespace Generics
         public new async Task<Pocos.Generics.Extendee> OnlineToPlainAsync()
         {
             Pocos.Generics.Extendee plain = new Pocos.Generics.Extendee();
-            await this.ReadAsync();
-            await base.OnlineToPlainAsync(plain);
-            plain.SomeType = await SomeType.OnlineToPlainAsync();
-            plain.SomeTypeAsPoco = await SomeTypeAsPoco.OnlineToPlainAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeType = await SomeType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeTypeAsPoco = await SomeTypeAsPoco._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.Generics.Extendee> OnlineToPlainAsync(Pocos.Generics.Extendee plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public new async Task<Pocos.Generics.Extendee> _OnlineToPlainNoacAsync()
         {
-            await base.OnlineToPlainAsync(plain);
-            plain.SomeType = await SomeType.OnlineToPlainAsync();
-            plain.SomeTypeAsPoco = await SomeTypeAsPoco.OnlineToPlainAsync();
+            Pocos.Generics.Extendee plain = new Pocos.Generics.Extendee();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeType = await SomeType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeTypeAsPoco = await SomeTypeAsPoco._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Generics.Extendee> _OnlineToPlainNoacAsync(Pocos.Generics.Extendee plain)
+        {
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeType = await SomeType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeTypeAsPoco = await SomeTypeAsPoco._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -197,10 +244,27 @@ namespace Generics
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Generics.Extendee plain)
         {
-            await base.PlainToOnlineAsync(plain);
-            await this.SomeType.PlainToOnlineAsync(plain.SomeType);
-            await this.SomeTypeAsPoco.PlainToOnlineAsync(plain.SomeTypeAsPoco);
-            return await this.WriteAsync();
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.SomeType._PlainToOnlineNoacAsync(plain.SomeType);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            await this.SomeTypeAsPoco._PlainToOnlineNoacAsync(plain.SomeTypeAsPoco);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Generics.Extendee plain)
+        {
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.SomeType._PlainToOnlineNoacAsync(plain.SomeType);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            await this.SomeTypeAsPoco._PlainToOnlineNoacAsync(plain.SomeTypeAsPoco);
+#pragma warning restore CS0612
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -271,16 +335,40 @@ namespace Generics
         public new async Task<Pocos.Generics.Extendee2> OnlineToPlainAsync()
         {
             Pocos.Generics.Extendee2 plain = new Pocos.Generics.Extendee2();
-            await this.ReadAsync();
-            await base.OnlineToPlainAsync(plain);
-            plain.SomeType = await SomeType.OnlineToPlainAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeType = await SomeType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.Generics.Extendee2> OnlineToPlainAsync(Pocos.Generics.Extendee2 plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public new async Task<Pocos.Generics.Extendee2> _OnlineToPlainNoacAsync()
         {
-            await base.OnlineToPlainAsync(plain);
-            plain.SomeType = await SomeType.OnlineToPlainAsync();
+            Pocos.Generics.Extendee2 plain = new Pocos.Generics.Extendee2();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeType = await SomeType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Generics.Extendee2> _OnlineToPlainNoacAsync(Pocos.Generics.Extendee2 plain)
+        {
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.SomeType = await SomeType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -291,9 +379,21 @@ namespace Generics
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Generics.Extendee2 plain)
         {
-            await base.PlainToOnlineAsync(plain);
-            await this.SomeType.PlainToOnlineAsync(plain.SomeType);
-            return await this.WriteAsync();
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.SomeType._PlainToOnlineNoacAsync(plain.SomeType);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Generics.Extendee2 plain)
+        {
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.SomeType._PlainToOnlineNoacAsync(plain.SomeType);
+#pragma warning restore CS0612
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -364,11 +464,21 @@ namespace Generics
         public async Task<Pocos.Generics.SomeType> OnlineToPlainAsync()
         {
             Pocos.Generics.SomeType plain = new Pocos.Generics.SomeType();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
-        protected async Task<Pocos.Generics.SomeType> OnlineToPlainAsync(Pocos.Generics.SomeType plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.Generics.SomeType> _OnlineToPlainNoacAsync()
+        {
+            Pocos.Generics.SomeType plain = new Pocos.Generics.SomeType();
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Generics.SomeType> _OnlineToPlainNoacAsync(Pocos.Generics.SomeType plain)
         {
             return plain;
         }
@@ -380,7 +490,13 @@ namespace Generics
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Generics.SomeType plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Generics.SomeType plain)
+        {
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

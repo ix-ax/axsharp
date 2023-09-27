@@ -29,11 +29,21 @@ public partial class _NULL_CONTEXT : AXSharp.Connector.ITwinObject, IContext
     public async Task<Pocos._NULL_CONTEXT> OnlineToPlainAsync()
     {
         Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
-    protected async Task<Pocos._NULL_CONTEXT> OnlineToPlainAsync(Pocos._NULL_CONTEXT plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos._NULL_CONTEXT> _OnlineToPlainNoacAsync()
+    {
+        Pocos._NULL_CONTEXT plain = new Pocos._NULL_CONTEXT();
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos._NULL_CONTEXT> _OnlineToPlainNoacAsync(Pocos._NULL_CONTEXT plain)
     {
         return plain;
     }
@@ -45,7 +55,13 @@ public partial class _NULL_CONTEXT : AXSharp.Connector.ITwinObject, IContext
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos._NULL_CONTEXT plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos._NULL_CONTEXT plain)
+    {
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

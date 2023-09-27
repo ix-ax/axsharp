@@ -89,6 +89,20 @@ CLASS PUBLIC MyClass
 END_CLASS
 ~~~
 
+### Ignoring Communication with the Controller for POCO Operations
+
+To minimize the communication overhead between the application and the controller during POCO operations, you can annotate specific members of a type to bypass data exchange. This attribute should be applied when the compiler omits the compilation of particular members in the POCO object.
+
+```iecst
+CLASS PUBLIC MyClass
+    VAR PUBLIC        
+        {#ix-attr:[CompilerOmits("POCO")]} 
+        {#ix-attr:[IgnoreOnPocoOperation()]} 
+        MyStringIgnoredInPocos : STRING;        
+    END_VAR
+END_CLASS
+```
+
 ### Generic extension attributes
 
 ixc allows to declare generic attributes in ST that will add a genetic notation to transpiled types.

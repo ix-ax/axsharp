@@ -54,18 +54,39 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.RealMonsterBase> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonsterBase plain = new Pocos.RealMonsterData.RealMonsterBase();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Description = Description.LastValue;
             plain.Id = Id.LastValue;
             plain.TestDate = TestDate.LastValue;
             plain.TestDateTime = TestDateTime.LastValue;
             plain.TestTimeSpan = TestTimeSpan.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
-            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+#pragma warning disable CS0612
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.RealMonsterData.RealMonsterBase> OnlineToPlainAsync(Pocos.RealMonsterData.RealMonsterBase plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RealMonsterData.RealMonsterBase> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RealMonsterData.RealMonsterBase plain = new Pocos.RealMonsterData.RealMonsterBase();
+            plain.Description = Description.LastValue;
+            plain.Id = Id.LastValue;
+            plain.TestDate = TestDate.LastValue;
+            plain.TestDateTime = TestDateTime.LastValue;
+            plain.TestTimeSpan = TestTimeSpan.LastValue;
+            plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
+#pragma warning disable CS0612
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RealMonsterData.RealMonsterBase> _OnlineToPlainNoacAsync(Pocos.RealMonsterData.RealMonsterBase plain)
         {
             plain.Description = Description.LastValue;
             plain.Id = Id.LastValue;
@@ -73,7 +94,9 @@ namespace RealMonsterData
             plain.TestDateTime = TestDateTime.LastValue;
             plain.TestTimeSpan = TestTimeSpan.LastValue;
             plain.ArrayOfBytes = ArrayOfBytes.Select(p => p.LastValue).ToArray();
-            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p.OnlineToPlainAsync()).Select(p => p.Result).ToArray();
+#pragma warning disable CS0612
+            plain.ArrayOfDrives = ArrayOfDrives.Select(async p => await p._OnlineToPlainNoacAsync()).Select(p => p.Result).ToArray();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -92,8 +115,27 @@ namespace RealMonsterData
             var _ArrayOfBytes_i_FE8484DAB3 = 0;
             ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
-            ArrayOfDrives.Select(p => p.PlainToOnlineAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
-            return await this.WriteAsync();
+#pragma warning disable CS0612
+            ArrayOfDrives.Select(p => p._PlainToOnlineNoacAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RealMonsterData.RealMonsterBase plain)
+        {
+            Description.Cyclic = plain.Description;
+            Id.Cyclic = plain.Id;
+            TestDate.Cyclic = plain.TestDate;
+            TestDateTime.Cyclic = plain.TestDateTime;
+            TestTimeSpan.Cyclic = plain.TestTimeSpan;
+            var _ArrayOfBytes_i_FE8484DAB3 = 0;
+            ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+            var _ArrayOfDrives_i_FE8484DAB3 = 0;
+#pragma warning disable CS0612
+            ArrayOfDrives.Select(p => p._PlainToOnlineNoacAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -241,16 +283,40 @@ namespace RealMonsterData
         public new async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
-            await this.ReadAsync();
-            await base.OnlineToPlainAsync(plain);
-            plain.DriveA = await DriveA.OnlineToPlainAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveA = await DriveA._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.RealMonsterData.RealMonster> OnlineToPlainAsync(Pocos.RealMonsterData.RealMonster plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public new async Task<Pocos.RealMonsterData.RealMonster> _OnlineToPlainNoacAsync()
         {
-            await base.OnlineToPlainAsync(plain);
-            plain.DriveA = await DriveA.OnlineToPlainAsync();
+            Pocos.RealMonsterData.RealMonster plain = new Pocos.RealMonsterData.RealMonster();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveA = await DriveA._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RealMonsterData.RealMonster> _OnlineToPlainNoacAsync(Pocos.RealMonsterData.RealMonster plain)
+        {
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.DriveA = await DriveA._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -261,9 +327,21 @@ namespace RealMonsterData
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RealMonsterData.RealMonster plain)
         {
-            await base.PlainToOnlineAsync(plain);
-            await this.DriveA.PlainToOnlineAsync(plain.DriveA);
-            return await this.WriteAsync();
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.DriveA._PlainToOnlineNoacAsync(plain.DriveA);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RealMonsterData.RealMonster plain)
+        {
+            await base._PlainToOnlineNoacAsync(plain);
+#pragma warning disable CS0612
+            await this.DriveA._PlainToOnlineNoacAsync(plain.DriveA);
+#pragma warning restore CS0612
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -349,22 +427,43 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.DriveBaseNested> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.DriveBaseNested plain = new Pocos.RealMonsterData.DriveBaseNested();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
-            plain.NestedLevelOne = await NestedLevelOne.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.NestedLevelOne = await NestedLevelOne._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.RealMonsterData.DriveBaseNested> OnlineToPlainAsync(Pocos.RealMonsterData.DriveBaseNested plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RealMonsterData.DriveBaseNested> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RealMonsterData.DriveBaseNested plain = new Pocos.RealMonsterData.DriveBaseNested();
+            plain.Position = Position.LastValue;
+            plain.Velo = Velo.LastValue;
+            plain.Acc = Acc.LastValue;
+            plain.Dcc = Dcc.LastValue;
+#pragma warning disable CS0612
+            plain.NestedLevelOne = await NestedLevelOne._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RealMonsterData.DriveBaseNested> _OnlineToPlainNoacAsync(Pocos.RealMonsterData.DriveBaseNested plain)
         {
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
-            plain.NestedLevelOne = await NestedLevelOne.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.NestedLevelOne = await NestedLevelOne._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -379,8 +478,23 @@ namespace RealMonsterData
             Velo.Cyclic = plain.Velo;
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
-            await this.NestedLevelOne.PlainToOnlineAsync(plain.NestedLevelOne);
-            return await this.WriteAsync();
+#pragma warning disable CS0612
+            await this.NestedLevelOne._PlainToOnlineNoacAsync(plain.NestedLevelOne);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RealMonsterData.DriveBaseNested plain)
+        {
+            Position.Cyclic = plain.Position;
+            Velo.Cyclic = plain.Velo;
+            Acc.Cyclic = plain.Acc;
+            Dcc.Cyclic = plain.Dcc;
+#pragma warning disable CS0612
+            await this.NestedLevelOne._PlainToOnlineNoacAsync(plain.NestedLevelOne);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -538,22 +652,43 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.NestedLevelOne> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelOne plain = new Pocos.RealMonsterData.NestedLevelOne();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
-            plain.NestedLevelTwo = await NestedLevelTwo.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.NestedLevelTwo = await NestedLevelTwo._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.RealMonsterData.NestedLevelOne> OnlineToPlainAsync(Pocos.RealMonsterData.NestedLevelOne plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RealMonsterData.NestedLevelOne> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RealMonsterData.NestedLevelOne plain = new Pocos.RealMonsterData.NestedLevelOne();
+            plain.Position = Position.LastValue;
+            plain.Velo = Velo.LastValue;
+            plain.Acc = Acc.LastValue;
+            plain.Dcc = Dcc.LastValue;
+#pragma warning disable CS0612
+            plain.NestedLevelTwo = await NestedLevelTwo._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RealMonsterData.NestedLevelOne> _OnlineToPlainNoacAsync(Pocos.RealMonsterData.NestedLevelOne plain)
         {
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
-            plain.NestedLevelTwo = await NestedLevelTwo.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.NestedLevelTwo = await NestedLevelTwo._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -568,8 +703,23 @@ namespace RealMonsterData
             Velo.Cyclic = plain.Velo;
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
-            await this.NestedLevelTwo.PlainToOnlineAsync(plain.NestedLevelTwo);
-            return await this.WriteAsync();
+#pragma warning disable CS0612
+            await this.NestedLevelTwo._PlainToOnlineNoacAsync(plain.NestedLevelTwo);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RealMonsterData.NestedLevelOne plain)
+        {
+            Position.Cyclic = plain.Position;
+            Velo.Cyclic = plain.Velo;
+            Acc.Cyclic = plain.Acc;
+            Dcc.Cyclic = plain.Dcc;
+#pragma warning disable CS0612
+            await this.NestedLevelTwo._PlainToOnlineNoacAsync(plain.NestedLevelTwo);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -727,22 +877,43 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.NestedLevelTwo> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelTwo plain = new Pocos.RealMonsterData.NestedLevelTwo();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
-            plain.NestedLevelThree = await NestedLevelThree.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.NestedLevelThree = await NestedLevelThree._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.RealMonsterData.NestedLevelTwo> OnlineToPlainAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RealMonsterData.NestedLevelTwo> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RealMonsterData.NestedLevelTwo plain = new Pocos.RealMonsterData.NestedLevelTwo();
+            plain.Position = Position.LastValue;
+            plain.Velo = Velo.LastValue;
+            plain.Acc = Acc.LastValue;
+            plain.Dcc = Dcc.LastValue;
+#pragma warning disable CS0612
+            plain.NestedLevelThree = await NestedLevelThree._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RealMonsterData.NestedLevelTwo> _OnlineToPlainNoacAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
         {
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
             plain.Dcc = Dcc.LastValue;
-            plain.NestedLevelThree = await NestedLevelThree.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.NestedLevelThree = await NestedLevelThree._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -757,8 +928,23 @@ namespace RealMonsterData
             Velo.Cyclic = plain.Velo;
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
-            await this.NestedLevelThree.PlainToOnlineAsync(plain.NestedLevelThree);
-            return await this.WriteAsync();
+#pragma warning disable CS0612
+            await this.NestedLevelThree._PlainToOnlineNoacAsync(plain.NestedLevelThree);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RealMonsterData.NestedLevelTwo plain)
+        {
+            Position.Cyclic = plain.Position;
+            Velo.Cyclic = plain.Velo;
+            Acc.Cyclic = plain.Acc;
+            Dcc.Cyclic = plain.Dcc;
+#pragma warning disable CS0612
+            await this.NestedLevelThree._PlainToOnlineNoacAsync(plain.NestedLevelThree);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -913,7 +1099,7 @@ namespace RealMonsterData
         public async Task<Pocos.RealMonsterData.NestedLevelThree> OnlineToPlainAsync()
         {
             Pocos.RealMonsterData.NestedLevelThree plain = new Pocos.RealMonsterData.NestedLevelThree();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
             plain.Acc = Acc.LastValue;
@@ -921,7 +1107,21 @@ namespace RealMonsterData
             return plain;
         }
 
-        protected async Task<Pocos.RealMonsterData.NestedLevelThree> OnlineToPlainAsync(Pocos.RealMonsterData.NestedLevelThree plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.RealMonsterData.NestedLevelThree> _OnlineToPlainNoacAsync()
+        {
+            Pocos.RealMonsterData.NestedLevelThree plain = new Pocos.RealMonsterData.NestedLevelThree();
+            plain.Position = Position.LastValue;
+            plain.Velo = Velo.LastValue;
+            plain.Acc = Acc.LastValue;
+            plain.Dcc = Dcc.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.RealMonsterData.NestedLevelThree> _OnlineToPlainNoacAsync(Pocos.RealMonsterData.NestedLevelThree plain)
         {
             plain.Position = Position.LastValue;
             plain.Velo = Velo.LastValue;
@@ -941,7 +1141,17 @@ namespace RealMonsterData
             Velo.Cyclic = plain.Velo;
             Acc.Cyclic = plain.Acc;
             Dcc.Cyclic = plain.Dcc;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.RealMonsterData.NestedLevelThree plain)
+        {
+            Position.Cyclic = plain.Position;
+            Velo.Cyclic = plain.Velo;
+            Acc.Cyclic = plain.Acc;
+            Dcc.Cyclic = plain.Dcc;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

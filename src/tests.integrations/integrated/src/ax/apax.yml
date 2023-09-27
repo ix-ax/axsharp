@@ -7,14 +7,15 @@ targets:
   - plcsim
   - swcpu
 devDependencies:
-  "@ax/sdk": ^4.0.3
+  "@ax/sdk": ^4.0.8
+  "@ax/sld": ^0.15.9
+  "@ax/stc": ^5.4.89
+
 variables:
   APAX_BUILD_ARGS: [ -d ]
 scripts:
   ixc:
-    - dotnet run --project
-      ..\\..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework
-      net7.0
+    - dotnet run --project ..\\..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework net7.0
   postbuild: dotnet run --project
     ..\\..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework
     net7.0

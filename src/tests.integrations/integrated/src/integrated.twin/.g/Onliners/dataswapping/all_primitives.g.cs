@@ -99,7 +99,7 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
     public async Task<Pocos.all_primitives> OnlineToPlainAsync()
     {
         Pocos.all_primitives plain = new Pocos.all_primitives();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.myBOOL = myBOOL.LastValue;
         plain.myBYTE = myBYTE.LastValue;
         plain.myWORD = myWORD.LastValue;
@@ -126,7 +126,40 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
         return plain;
     }
 
-    protected async Task<Pocos.all_primitives> OnlineToPlainAsync(Pocos.all_primitives plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.all_primitives> _OnlineToPlainNoacAsync()
+    {
+        Pocos.all_primitives plain = new Pocos.all_primitives();
+        plain.myBOOL = myBOOL.LastValue;
+        plain.myBYTE = myBYTE.LastValue;
+        plain.myWORD = myWORD.LastValue;
+        plain.myDWORD = myDWORD.LastValue;
+        plain.myLWORD = myLWORD.LastValue;
+        plain.mySINT = mySINT.LastValue;
+        plain.myINT = myINT.LastValue;
+        plain.myDINT = myDINT.LastValue;
+        plain.myLINT = myLINT.LastValue;
+        plain.myUSINT = myUSINT.LastValue;
+        plain.myUINT = myUINT.LastValue;
+        plain.myUDINT = myUDINT.LastValue;
+        plain.myULINT = myULINT.LastValue;
+        plain.myREAL = myREAL.LastValue;
+        plain.myLREAL = myLREAL.LastValue;
+        plain.myTIME = myTIME.LastValue;
+        plain.myLTIME = myLTIME.LastValue;
+        plain.myDATE = myDATE.LastValue;
+        plain.myTIME_OF_DAY = myTIME_OF_DAY.LastValue;
+        plain.myDATE_AND_TIME = myDATE_AND_TIME.LastValue;
+        plain.mySTRING = mySTRING.LastValue;
+        plain.myWSTRING = myWSTRING.LastValue;
+        plain.myEnum = (myEnum)myEnum.LastValue;
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.all_primitives> _OnlineToPlainNoacAsync(Pocos.all_primitives plain)
     {
         plain.myBOOL = myBOOL.LastValue;
         plain.myBYTE = myBYTE.LastValue;
@@ -184,7 +217,36 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
         mySTRING.Cyclic = plain.mySTRING;
         myWSTRING.Cyclic = plain.myWSTRING;
         myEnum.Cyclic = (short)plain.myEnum;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.all_primitives plain)
+    {
+        myBOOL.Cyclic = plain.myBOOL;
+        myBYTE.Cyclic = plain.myBYTE;
+        myWORD.Cyclic = plain.myWORD;
+        myDWORD.Cyclic = plain.myDWORD;
+        myLWORD.Cyclic = plain.myLWORD;
+        mySINT.Cyclic = plain.mySINT;
+        myINT.Cyclic = plain.myINT;
+        myDINT.Cyclic = plain.myDINT;
+        myLINT.Cyclic = plain.myLINT;
+        myUSINT.Cyclic = plain.myUSINT;
+        myUINT.Cyclic = plain.myUINT;
+        myUDINT.Cyclic = plain.myUDINT;
+        myULINT.Cyclic = plain.myULINT;
+        myREAL.Cyclic = plain.myREAL;
+        myLREAL.Cyclic = plain.myLREAL;
+        myTIME.Cyclic = plain.myTIME;
+        myLTIME.Cyclic = plain.myLTIME;
+        myDATE.Cyclic = plain.myDATE;
+        myTIME_OF_DAY.Cyclic = plain.myTIME_OF_DAY;
+        myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
+        mySTRING.Cyclic = plain.mySTRING;
+        myWSTRING.Cyclic = plain.myWSTRING;
+        myEnum.Cyclic = (short)plain.myEnum;
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

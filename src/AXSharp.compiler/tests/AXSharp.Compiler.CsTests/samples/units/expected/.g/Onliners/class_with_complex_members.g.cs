@@ -34,14 +34,31 @@ namespace ClassWithComplexTypesNamespace
         public async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> OnlineToPlainAsync()
         {
             Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain = new Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes();
-            await this.ReadAsync();
-            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+            plain.myComplexType = await myComplexType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> OnlineToPlainAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> _OnlineToPlainNoacAsync()
         {
-            plain.myComplexType = await myComplexType.OnlineToPlainAsync();
+            Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain = new Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes();
+#pragma warning disable CS0612
+            plain.myComplexType = await myComplexType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes> _OnlineToPlainNoacAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
+        {
+#pragma warning disable CS0612
+            plain.myComplexType = await myComplexType._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -52,8 +69,19 @@ namespace ClassWithComplexTypesNamespace
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
         {
-            await this.myComplexType.PlainToOnlineAsync(plain.myComplexType);
-            return await this.WriteAsync();
+#pragma warning disable CS0612
+            await this.myComplexType._PlainToOnlineNoacAsync(plain.myComplexType);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.ClassWithComplexTypesNamespace.ClassWithComplexTypes plain)
+        {
+#pragma warning disable CS0612
+            await this.myComplexType._PlainToOnlineNoacAsync(plain.myComplexType);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -184,11 +212,21 @@ namespace ClassWithComplexTypesNamespace
         public async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> OnlineToPlainAsync()
         {
             Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain = new Pocos.ClassWithComplexTypesNamespace.ComplexType1();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             return plain;
         }
 
-        protected async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> OnlineToPlainAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> _OnlineToPlainNoacAsync()
+        {
+            Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain = new Pocos.ClassWithComplexTypesNamespace.ComplexType1();
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.ClassWithComplexTypesNamespace.ComplexType1> _OnlineToPlainNoacAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
         {
             return plain;
         }
@@ -200,7 +238,13 @@ namespace ClassWithComplexTypesNamespace
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
         {
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.ClassWithComplexTypesNamespace.ComplexType1 plain)
+        {
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

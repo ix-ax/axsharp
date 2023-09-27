@@ -176,14 +176,31 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Pokus> OnlineToPlainAsync()
     {
         Pocos.Pokus plain = new Pocos.Pokus();
-        await this.ReadAsync();
-        plain.Nested = await Nested.OnlineToPlainAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+        plain.Nested = await Nested._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
         return plain;
     }
 
-    protected async Task<Pocos.Pokus> OnlineToPlainAsync(Pocos.Pokus plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.Pokus> _OnlineToPlainNoacAsync()
     {
-        plain.Nested = await Nested.OnlineToPlainAsync();
+        Pocos.Pokus plain = new Pocos.Pokus();
+#pragma warning disable CS0612
+        plain.Nested = await Nested._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.Pokus> _OnlineToPlainNoacAsync(Pocos.Pokus plain)
+    {
+#pragma warning disable CS0612
+        plain.Nested = await Nested._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
         return plain;
     }
 
@@ -194,8 +211,19 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Pokus plain)
     {
-        await this.Nested.PlainToOnlineAsync(plain.Nested);
-        return await this.WriteAsync();
+#pragma warning disable CS0612
+        await this.Nested._PlainToOnlineNoacAsync(plain.Nested);
+#pragma warning restore CS0612
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.Pokus plain)
+    {
+#pragma warning disable CS0612
+        await this.Nested._PlainToOnlineNoacAsync(plain.Nested);
+#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -335,14 +363,27 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Nested> OnlineToPlainAsync()
     {
         Pocos.Nested plain = new Pocos.Nested();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         plain.SomeString = SomeString.LastValue;
         plain.SomeInt = SomeInt.LastValue;
         plain.SomeByte = SomeByte.LastValue;
         return plain;
     }
 
-    protected async Task<Pocos.Nested> OnlineToPlainAsync(Pocos.Nested plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.Nested> _OnlineToPlainNoacAsync()
+    {
+        Pocos.Nested plain = new Pocos.Nested();
+        plain.SomeString = SomeString.LastValue;
+        plain.SomeInt = SomeInt.LastValue;
+        plain.SomeByte = SomeByte.LastValue;
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.Nested> _OnlineToPlainNoacAsync(Pocos.Nested plain)
     {
         plain.SomeString = SomeString.LastValue;
         plain.SomeInt = SomeInt.LastValue;
@@ -360,7 +401,16 @@ public partial class Nested : AXSharp.Connector.ITwinObject
         SomeString.Cyclic = plain.SomeString;
         SomeInt.Cyclic = plain.SomeInt;
         SomeByte.Cyclic = plain.SomeByte;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.Nested plain)
+    {
+        SomeString.Cyclic = plain.SomeString;
+        SomeInt.Cyclic = plain.SomeInt;
+        SomeByte.Cyclic = plain.SomeByte;
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
