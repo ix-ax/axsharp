@@ -39,6 +39,7 @@ using Polly;
 using Credentials = Octokit.Credentials;
 using Path = System.IO.Path;
 using ProductHeaderValue = Octokit.ProductHeaderValue;
+using static NuGet.Packaging.PackagingConstants;
 
 
 public static class Program
@@ -71,6 +72,8 @@ public sealed class CleanUpTask : FrostingTask<BuildContext>
         context.CleaUpAllBinsAndObjs();
         context.CleanDirectory(context.Artifacts);
         context.CleanDirectory(context.TestResults);
+
+      
     }
 }
 

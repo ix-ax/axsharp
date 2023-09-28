@@ -63,14 +63,18 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
             case IClassDeclaration classDeclaration:
             //case IAnonymousTypeDeclaration anonymousTypeDeclaration:
             case IStructuredTypeDeclaration structuredTypeDeclaration:
-                AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodName}Async();");
+                AddToSource($"#pragma warning disable CS0612\n");
+                AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodNameNoac}Async();");
+                AddToSource($"#pragma warning restore CS0612\n");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
                 switch (arrayTypeDeclaration.ElementTypeAccess.Type)
                 {
                     case IClassDeclaration classDeclaration:
-                    case IStructuredTypeDeclaration structuredTypeDeclaration:                        
-                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}Async()).Select(p => p.Result).ToArray();");
+                    case IStructuredTypeDeclaration structuredTypeDeclaration:
+                        AddToSource($"#pragma warning disable CS0612\n");
+                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodNameNoac}Async()).Select(p => p.Result).ToArray();");
+                        AddToSource($"#pragma warning restore CS0612\n");
                         break;
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:                        
@@ -110,6 +114,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
     }
 
     protected static readonly string MethodName = TwinObjectExtensions.OnlineToPlainMethodName;
+    protected static readonly string MethodNameNoac = $"_{TwinObjectExtensions.OnlineToPlainMethodName}Noac";
 
     public static CsOnlinerPlainerOnlineToPlainBuilder Create(IxNodeVisitor visitor, IStructuredTypeDeclaration semantics,
         ISourceBuilder sourceBuilder)
@@ -120,12 +125,24 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
 
         builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
-        builder.AddToSource("await this.ReadAsync();");
+        builder.AddToSource("await this.ReadAsync<IgnoreOnPocoOperation>();");
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
 
         builder.AddToSource($"return plain;");
         builder.AddToSource($"}}");
+
+
+        // Noac method
+        builder.AddToSource($"[Obsolete(\"This method should not be used if you indent to access the controllers data. Use `{MethodName}` instead.\")]");
+        builder.AddToSource("[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]");
+        builder.AddToSource($"public async Task<Pocos.{semantics.FullyQualifiedName}> {MethodNameNoac}Async(){{\n");
+        builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
+
+        semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+        builder.AddToSource($"return plain;");
+        builder.AddToSource($"}}");
+
         return builder;
     }
 
@@ -140,16 +157,37 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         
         builder.AddToSource($"public {qualifier} async Task<Pocos.{semantics.FullyQualifiedName}> {MethodName}Async(){{\n");
         builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
-        builder.AddToSource("await this.ReadAsync();");
+        builder.AddToSource("await this.ReadAsync<IgnoreOnPocoOperation>();");
 
         if (isExtended)
         {
-            builder.AddToSource($"await base.{MethodName}Async(plain);");
+            builder.AddToSource($"#pragma warning disable CS0612\n");
+            builder.AddToSource($"await base.{MethodNameNoac}Async(plain);");
+            builder.AddToSource($"#pragma warning restore CS0612\n");
         }
 
         semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
         builder.AddToSource($"return plain;");
         builder.AddToSource($"}}");
+
+        // Noac method
+
+        builder.AddToSource($"[Obsolete(\"This method should not be used if you indent to access the controllers data. Use `{MethodName}` instead.\")]");
+        builder.AddToSource("[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]");
+        builder.AddToSource($"public {qualifier} async Task<Pocos.{semantics.FullyQualifiedName}> {MethodNameNoac}Async(){{\n");
+        builder.AddToSource($"Pocos.{semantics.FullyQualifiedName} plain = new Pocos.{semantics.FullyQualifiedName}();");
+        
+        if (isExtended)
+        {
+            builder.AddToSource($"#pragma warning disable CS0612\n");
+            builder.AddToSource($"await base.{MethodNameNoac}Async(plain);");
+            builder.AddToSource($"#pragma warning restore CS0612\n");
+        }
+
+        semantics.Fields.ToList().ForEach(p => p.Accept(visitor, builder));
+        builder.AddToSource($"return plain;");
+        builder.AddToSource($"}}");
+
         return builder;
     }
 

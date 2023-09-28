@@ -23,14 +23,31 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
     public new async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync()
     {
         Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
-        await this.ReadAsync();
-        await base.OnlineToPlainAsync(plain);
+        await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+        await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
         return plain;
     }
 
-    protected async Task<Pocos.ExtendsAndImplements> OnlineToPlainAsync(Pocos.ExtendsAndImplements plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public new async Task<Pocos.ExtendsAndImplements> _OnlineToPlainNoacAsync()
     {
-        await base.OnlineToPlainAsync(plain);
+        Pocos.ExtendsAndImplements plain = new Pocos.ExtendsAndImplements();
+#pragma warning disable CS0612
+        await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.ExtendsAndImplements> _OnlineToPlainNoacAsync(Pocos.ExtendsAndImplements plain)
+    {
+#pragma warning disable CS0612
+        await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
         return plain;
     }
 
@@ -41,8 +58,15 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendsAndImplements plain)
     {
-        await base.PlainToOnlineAsync(plain);
-        return await this.WriteAsync();
+        await base._PlainToOnlineNoacAsync(plain);
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.ExtendsAndImplements plain)
+    {
+        await base._PlainToOnlineNoacAsync(plain);
     }
 
     public async override Task<T> ShadowToPlain<T>()
@@ -110,11 +134,21 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
     public async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync()
     {
         Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
         return plain;
     }
 
-    protected async Task<Pocos.ExtendeeExtendsAndImplements> OnlineToPlainAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.ExtendeeExtendsAndImplements> _OnlineToPlainNoacAsync()
+    {
+        Pocos.ExtendeeExtendsAndImplements plain = new Pocos.ExtendeeExtendsAndImplements();
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    protected async Task<Pocos.ExtendeeExtendsAndImplements> _OnlineToPlainNoacAsync(Pocos.ExtendeeExtendsAndImplements plain)
     {
         return plain;
     }
@@ -126,7 +160,13 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ExtendeeExtendsAndImplements plain)
     {
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.ExtendeeExtendsAndImplements plain)
+    {
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

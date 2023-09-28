@@ -47,20 +47,46 @@ namespace makereadonly
         public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync()
         {
             Pocos.makereadonly.MembersWithMakeReadOnly plain = new Pocos.makereadonly.MembersWithMakeReadOnly();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.makeReadOnceMember = makeReadOnceMember.LastValue;
             plain.someOtherMember = someOtherMember.LastValue;
-            plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
-            plain.someotherComplexMember = await someotherComplexMember.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.makeReadComplexMember = await makeReadComplexMember._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.someotherComplexMember = await someotherComplexMember._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.makereadonly.MembersWithMakeReadOnly> OnlineToPlainAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.makereadonly.MembersWithMakeReadOnly> _OnlineToPlainNoacAsync()
+        {
+            Pocos.makereadonly.MembersWithMakeReadOnly plain = new Pocos.makereadonly.MembersWithMakeReadOnly();
+            plain.makeReadOnceMember = makeReadOnceMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+#pragma warning disable CS0612
+            plain.makeReadComplexMember = await makeReadComplexMember._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.someotherComplexMember = await someotherComplexMember._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.makereadonly.MembersWithMakeReadOnly> _OnlineToPlainNoacAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
         {
             plain.makeReadOnceMember = makeReadOnceMember.LastValue;
             plain.someOtherMember = someOtherMember.LastValue;
-            plain.makeReadComplexMember = await makeReadComplexMember.OnlineToPlainAsync();
-            plain.someotherComplexMember = await someotherComplexMember.OnlineToPlainAsync();
+#pragma warning disable CS0612
+            plain.makeReadComplexMember = await makeReadComplexMember._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            plain.someotherComplexMember = await someotherComplexMember._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -73,9 +99,27 @@ namespace makereadonly
         {
             makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
             someOtherMember.Cyclic = plain.someOtherMember;
-            await this.makeReadComplexMember.PlainToOnlineAsync(plain.makeReadComplexMember);
-            await this.someotherComplexMember.PlainToOnlineAsync(plain.someotherComplexMember);
-            return await this.WriteAsync();
+#pragma warning disable CS0612
+            await this.makeReadComplexMember._PlainToOnlineNoacAsync(plain.makeReadComplexMember);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            await this.someotherComplexMember._PlainToOnlineNoacAsync(plain.someotherComplexMember);
+#pragma warning restore CS0612
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
+        {
+            makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
+            someOtherMember.Cyclic = plain.someOtherMember;
+#pragma warning disable CS0612
+            await this.makeReadComplexMember._PlainToOnlineNoacAsync(plain.makeReadComplexMember);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            await this.someotherComplexMember._PlainToOnlineNoacAsync(plain.someotherComplexMember);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -221,13 +265,25 @@ namespace makereadonly
         public async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync()
         {
             Pocos.makereadonly.ComplexMember plain = new Pocos.makereadonly.ComplexMember();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.someMember = someMember.LastValue;
             plain.someOtherMember = someOtherMember.LastValue;
             return plain;
         }
 
-        protected async Task<Pocos.makereadonly.ComplexMember> OnlineToPlainAsync(Pocos.makereadonly.ComplexMember plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.makereadonly.ComplexMember> _OnlineToPlainNoacAsync()
+        {
+            Pocos.makereadonly.ComplexMember plain = new Pocos.makereadonly.ComplexMember();
+            plain.someMember = someMember.LastValue;
+            plain.someOtherMember = someOtherMember.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.makereadonly.ComplexMember> _OnlineToPlainNoacAsync(Pocos.makereadonly.ComplexMember plain)
         {
             plain.someMember = someMember.LastValue;
             plain.someOtherMember = someOtherMember.LastValue;
@@ -243,7 +299,15 @@ namespace makereadonly
         {
             someMember.Cyclic = plain.someMember;
             someOtherMember.Cyclic = plain.someOtherMember;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.makereadonly.ComplexMember plain)
+        {
+            someMember.Cyclic = plain.someMember;
+            someOtherMember.Cyclic = plain.someOtherMember;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

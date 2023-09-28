@@ -11,6 +11,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using Build.FilteredSolution;
+using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.Build;
 using Cake.Common.Tools.DotNet.MSBuild;
@@ -22,6 +23,8 @@ using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Frosting;
+using Polly;
+using static NuGet.Packaging.PackagingConstants;
 using Path = System.IO.Path;
 
 public class BuildContext : FrostingContext
@@ -90,6 +93,8 @@ public class BuildContext : FrostingContext
     public void UploadTestPlc(string workingDirectory, string targetIp,
         string targetPlatform)
     {
+        var lockFile = Path.Combine(workingDirectory, "apax-lock.json");
+        if (File.Exists(lockFile)) this.DeleteFile(lockFile);
 
         this.Log.Information($"Installing dependencies for ax project '{workingDirectory}' at {targetIp}");
 

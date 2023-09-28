@@ -25,14 +25,31 @@ namespace Simatic.Ax.StateFramework
         public new async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
-            await this.ReadAsync();
-            await base.OnlineToPlainAsync(plain);
+            await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
             return plain;
         }
 
-        protected async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public new async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> _OnlineToPlainNoacAsync()
         {
-            await base.OnlineToPlainAsync(plain);
+            Pocos.Simatic.Ax.StateFramework.State1Transition plain = new Pocos.Simatic.Ax.StateFramework.State1Transition();
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Simatic.Ax.StateFramework.State1Transition> _OnlineToPlainNoacAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        {
+#pragma warning disable CS0612
+            await base._OnlineToPlainNoacAsync(plain);
+#pragma warning restore CS0612
             return plain;
         }
 
@@ -43,8 +60,15 @@ namespace Simatic.Ax.StateFramework
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
         {
-            await base.PlainToOnlineAsync(plain);
-            return await this.WriteAsync();
+            await base._PlainToOnlineNoacAsync(plain);
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Simatic.Ax.StateFramework.State1Transition plain)
+        {
+            await base._PlainToOnlineNoacAsync(plain);
         }
 
         public async override Task<T> ShadowToPlain<T>()
@@ -121,13 +145,25 @@ namespace Simatic.Ax.StateFramework
         public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync()
         {
             Pocos.Simatic.Ax.StateFramework.AbstractState plain = new Pocos.Simatic.Ax.StateFramework.AbstractState();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.StateID = StateID.LastValue;
             plain.StateName = StateName.LastValue;
             return plain;
         }
 
-        protected async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> OnlineToPlainAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> _OnlineToPlainNoacAsync()
+        {
+            Pocos.Simatic.Ax.StateFramework.AbstractState plain = new Pocos.Simatic.Ax.StateFramework.AbstractState();
+            plain.StateID = StateID.LastValue;
+            plain.StateName = StateName.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.Simatic.Ax.StateFramework.AbstractState> _OnlineToPlainNoacAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
         {
             plain.StateID = StateID.LastValue;
             plain.StateName = StateName.LastValue;
@@ -143,7 +179,15 @@ namespace Simatic.Ax.StateFramework
         {
             StateID.Cyclic = plain.StateID;
             StateName.Cyclic = plain.StateName;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.Simatic.Ax.StateFramework.AbstractState plain)
+        {
+            StateID.Cyclic = plain.StateID;
+            StateName.Cyclic = plain.StateName;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

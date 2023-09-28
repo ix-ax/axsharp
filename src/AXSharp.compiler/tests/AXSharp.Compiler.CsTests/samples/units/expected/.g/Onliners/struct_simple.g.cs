@@ -28,7 +28,16 @@ public partial class Motor : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Motor> OnlineToPlainAsync()
     {
         Pocos.Motor plain = new Pocos.Motor();
-        await this.ReadAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
+        plain.isRunning = isRunning.LastValue;
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.Motor> _OnlineToPlainNoacAsync()
+    {
+        Pocos.Motor plain = new Pocos.Motor();
         plain.isRunning = isRunning.LastValue;
         return plain;
     }
@@ -47,7 +56,14 @@ public partial class Motor : AXSharp.Connector.ITwinObject
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Motor plain)
     {
         isRunning.Cyclic = plain.isRunning;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.Motor plain)
+    {
+        isRunning.Cyclic = plain.isRunning;
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -180,15 +196,31 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Vehicle> OnlineToPlainAsync()
     {
         Pocos.Vehicle plain = new Pocos.Vehicle();
-        await this.ReadAsync();
-        plain.m = await m.OnlineToPlainAsync();
+        await this.ReadAsync<IgnoreOnPocoOperation>();
+#pragma warning disable CS0612
+        plain.m = await m._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
+        plain.displacement = displacement.LastValue;
+        return plain;
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task<Pocos.Vehicle> _OnlineToPlainNoacAsync()
+    {
+        Pocos.Vehicle plain = new Pocos.Vehicle();
+#pragma warning disable CS0612
+        plain.m = await m._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
         plain.displacement = displacement.LastValue;
         return plain;
     }
 
     protected async Task<Pocos.Vehicle> OnlineToPlainAsync(Pocos.Vehicle plain)
     {
-        plain.m = await m.OnlineToPlainAsync();
+#pragma warning disable CS0612
+        plain.m = await m._OnlineToPlainNoacAsync();
+#pragma warning restore CS0612
         plain.displacement = displacement.LastValue;
         return plain;
     }
@@ -200,9 +232,21 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Vehicle plain)
     {
-        await this.m.PlainToOnlineAsync(plain.m);
+#pragma warning disable CS0612
+        await this.m._PlainToOnlineNoacAsync(plain.m);
+#pragma warning restore CS0612
         displacement.Cyclic = plain.displacement;
-        return await this.WriteAsync();
+        return await this.WriteAsync<IgnoreOnPocoOperation>();
+    }
+
+    [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public async Task _PlainToOnlineNoacAsync(Pocos.Vehicle plain)
+    {
+#pragma warning disable CS0612
+        await this.m._PlainToOnlineNoacAsync(plain.m);
+#pragma warning restore CS0612
+        displacement.Cyclic = plain.displacement;
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

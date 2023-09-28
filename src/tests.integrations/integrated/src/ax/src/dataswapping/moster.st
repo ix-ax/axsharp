@@ -3,8 +3,14 @@ NAMESPACE MonsterData
         VAR PUBLIC
             Description : STRING;
             Id : ULINT;
-            ArrayOfBytes : ARRAY[0..3] OF BYTE;
+            ArrayOfBytes : ARRAY[0..3] OF BYTE;            
             ArrayOfDrives : ARRAY[0..3] OF DriveBase;
+
+            {#ix-attr:[IgnoreOnPocoOperation()]}            
+            DriveBase_tobeignoredbypocooperations : DriveBase;
+
+            {#ix-attr:[IgnoreOnPocoOperation()]}            
+            Description_tobeignoredbypocooperations : STRING;
         END_VAR        
     END_CLASS
     CLASS Monster EXTENDS MonsterBase

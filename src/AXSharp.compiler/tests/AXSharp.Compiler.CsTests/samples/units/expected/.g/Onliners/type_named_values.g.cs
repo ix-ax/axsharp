@@ -42,12 +42,23 @@ namespace NamedValuesNamespace
         public async Task<Pocos.NamedValuesNamespace.using_type_named_values> OnlineToPlainAsync()
         {
             Pocos.NamedValuesNamespace.using_type_named_values plain = new Pocos.NamedValuesNamespace.using_type_named_values();
-            await this.ReadAsync();
+            await this.ReadAsync<IgnoreOnPocoOperation>();
             plain.LColors = LColors.LastValue;
             return plain;
         }
 
-        protected async Task<Pocos.NamedValuesNamespace.using_type_named_values> OnlineToPlainAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task<Pocos.NamedValuesNamespace.using_type_named_values> _OnlineToPlainNoacAsync()
+        {
+            Pocos.NamedValuesNamespace.using_type_named_values plain = new Pocos.NamedValuesNamespace.using_type_named_values();
+            plain.LColors = LColors.LastValue;
+            return plain;
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `OnlineToPlain` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        protected async Task<Pocos.NamedValuesNamespace.using_type_named_values> _OnlineToPlainNoacAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
         {
             plain.LColors = LColors.LastValue;
             return plain;
@@ -61,7 +72,14 @@ namespace NamedValuesNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
         {
             LColors.Cyclic = plain.LColors;
-            return await this.WriteAsync();
+            return await this.WriteAsync<IgnoreOnPocoOperation>();
+        }
+
+        [Obsolete("This method should not be used if you indent to access the controllers data. Use `PlainToOnline` instead.")]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public async Task _PlainToOnlineNoacAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
+        {
+            LColors.Cyclic = plain.LColors;
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
