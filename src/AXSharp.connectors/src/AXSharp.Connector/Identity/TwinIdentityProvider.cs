@@ -199,15 +199,20 @@ public class TwinIdentityProvider
                 lastIdentity = _identitiesTags.Max(p => p.LastValue);
             }
 
+            List<ITwinPrimitive> IdentitiesToWrite = new();
+
             _connector.Logger.Information("Assigning missing identities...");
             foreach (var it in _identitiesTags)
             {
                 if (it.LastValue == 0)
                 {
                     it.Cyclic = ++lastIdentity;
+                    IdentitiesToWrite.Add(it);  
                 }
+               
             }
-            await _connector.WriteBatchAsync(_identitiesTags);
+            await _connector.WriteBatchAsync(IdentitiesToWrite);
+
             _connector.Logger.Information("Reading identities done.");
             _connector.Logger.Information(
                 $"Number of identities: {_identitiesTags.Count} | Unique :{_identities.Count}");
