@@ -6,7 +6,7 @@
 ![semver](https://img.shields.io/badge/semver-0.10.0-blue)
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/ix-ax/axsharp/blob/dev/LICENSE)
 
-> **Warning**
+> **NOTE**
 > **We have just gone through project-wide refactoring changing the name from **IX** to **AX#** (AXSharp). Some links and documentation may still be using the IX and some links are still broken at this point. We are working hard on fixing those issues. Should any of these block you please feel free to reach out to the team.**
 
 
