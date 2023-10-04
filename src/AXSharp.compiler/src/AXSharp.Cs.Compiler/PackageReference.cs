@@ -20,7 +20,7 @@ public class PackageReference : IPackageReference
     private static readonly string NugetDir =
         SettingsUtility.GetGlobalPackagesFolder(Settings.LoadDefaultSettings(null));
 
-    private static IEnumerable<(string? include, string? version)> GetVersionFromCentralPackageManagement(string csprojFile)
+    internal static IEnumerable<(string? include, string? version)> GetVersionFromCentralPackageManagement(string csprojFile)
     {
         var scFile = new FileInfo(csprojFile);
         string? currentDirectory = scFile.DirectoryName;

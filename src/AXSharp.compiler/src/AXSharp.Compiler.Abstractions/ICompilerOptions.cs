@@ -10,5 +10,8 @@ namespace AXSharp.Compiler;
 public interface ICompilerOptions
 {
     string? OutputProjectFolder { get; set; }
+    string? ProjectFile { get; set; }
     bool UseBase { get; set; }
+
+    bool NoDependencyUpdate { get; set; }
 }

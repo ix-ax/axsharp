@@ -22,5 +22,13 @@ namespace AXSharp.ixc_doc
         [Option('b', "use-base-symbol", Required = false, Default = false,
             HelpText = "Will use base symbol in inherited types")]
         public bool UseBase { get; set; }
+
+        [Option('u', "no-dependency-update", Required = false, Default = false,
+            HelpText = "Prevent dependency of twins from apax")]
+        public bool NoDependencyUpdate { get; set; }
+
+        [Option('p', "project-file", Required = false, Default = "",
+            HelpText = "Output project file")]
+        public string? ProjectFile { get; set; }
     }
 }

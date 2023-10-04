@@ -18,8 +18,18 @@ namespace AXSharp.ixc_doc
         [Option('o', "output-project-folder", Required = false, HelpText = "Output project folder where compiler emits result.")]
         public string? OutputProjectFolder { get; set; }
 
-        [Option('b', "use-base-symbol", Required = false, Default = false,
+        [Option('p', "project-file", Required = false, Default = false,
+            HelpText = "Output project file")]
+        public string? ProjectFile { get; set; }
+
+        [Option('b', "use-base-symbol", Required = false, Default = "",
             HelpText = "Will use base symbol in inherited types")]
         public bool UseBase { get; set; }
+
+        [Option('u', "no-dependency-update", Required = false, Default = false,
+            HelpText = "Prevent dependency of twins from apax")]
+        public bool NoDependencyUpdate { get; set; }
+
+
     }
 }

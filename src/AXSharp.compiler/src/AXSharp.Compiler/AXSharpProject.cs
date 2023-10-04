@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using System.Text;
+using System.Xml.Linq;
 using AX.ST.Semantic;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
@@ -14,6 +15,7 @@ using AX.ST.Syntax.Tree;
 using AX.Text;
 using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Exceptions;
+using Microsoft.CodeAnalysis.Diagnostics;
 using Newtonsoft.Json;
 using Polly;
 
@@ -42,7 +44,7 @@ public class AXSharpProject : IAXSharpProject
     public AXSharpProject(AxProject axProject, IEnumerable<Type> builderTypes, Type targetProjectType, ICompilerOptions? cliCompilerOptions = null)
     {
         AxProject = axProject;
-        CompilerOptions = AXSharpConfig.UpdateAndGetIxConfig(axProject.ProjectFolder, cliCompilerOptions);
+        CompilerOptions = AXSharpConfig.UpdateAndGetAXSharpConfig(axProject.ProjectFolder, cliCompilerOptions);
         OutputFolder = Path.GetFullPath(Path.Combine(AxProject.ProjectFolder, CompilerOptions.OutputProjectFolder));
         if (cliCompilerOptions != null) UseBaseSymbol = cliCompilerOptions.UseBase;
         BuilderTypes = builderTypes;
@@ -50,8 +52,7 @@ public class AXSharpProject : IAXSharpProject
             InvalidOperationException("Target project type must implement ITargetProject interface.");
     }
 
-    
-    
+
     /// <summary>
     ///     Get AX project.
     /// </summary>
@@ -134,8 +135,11 @@ public class AXSharpProject : IAXSharpProject
         TargetProject.ProvisionProjectStructure();
         GenerateMetadata(compilation);
         TargetProject.GenerateResources();
+        TargetProject.GenerateCompanionData();
         Log.Logger.Information($"Compilation of project '{AxProject.SrcFolder}' done.");
     }
+
+    
 
     /// <summary>
     /// Cleans all output files from the output directory
@@ -207,7 +211,8 @@ public class AXSharpProject : IAXSharpProject
 
     private void CompileProjectReferences(IEnumerable<IReference> referencedDependencies)
     {
-        foreach (var ixProjectReference in AxProject.AXSharpReferences)
+        TargetProject.InstallAXSharpDependencies(AxProject.AXSharpReferences);
+        foreach (var ixProjectReference in AxProject.AXSharpReferences.OfType<AXSharpConfig>())
         {
 
             if (compiled.Contains(ixProjectReference.AxProjectFolder))

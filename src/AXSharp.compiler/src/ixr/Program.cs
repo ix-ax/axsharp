@@ -65,7 +65,7 @@ void Generate(Options o)
 
     var axProject = new AxProject(axProjectFolder);
     var axProjectConfig =
-        AXSharpConfig.RetrieveIxConfig(Path.Combine(axProject.ProjectFolder, AXSharpConfig.CONFIG_FILE_NAME));
+        AXSharpConfig.RetrieveAXSharpConfig(Path.Combine(axProject.ProjectFolder, AXSharpConfig.CONFIG_FILE_NAME));
 
     (string folder, string file) output = string.IsNullOrEmpty(axProjectConfig.OutputProjectFolder)
         ? (string.Empty, o.OutputProjectFolder)

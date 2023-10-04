@@ -25,5 +25,9 @@ public interface ITargetProject
 
     void GenerateResources();
 
+    void GenerateCompanionData();
+
+    void InstallAXSharpDependencies(IEnumerable<object> dependencies);
+    
     IEnumerable<IReference> LoadReferences();
 }

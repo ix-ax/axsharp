@@ -62,7 +62,7 @@ namespace AXSharp.ixcTests
         public void should_run_with_setting_retrieved_from_config_file_settings()
         {
             var axProjectFolder = Path.Combine(TestFolder, "samples","plt","app");
-            var config = AXSharpConfig.UpdateAndGetIxConfig(axProjectFolder);
+            var config = AXSharpConfig.UpdateAndGetAXSharpConfig(axProjectFolder);
             var outputDirectory = Path.GetFullPath(Path.Combine(axProjectFolder, config.OutputProjectFolder));
             
             if (Directory.Exists(outputDirectory))
@@ -96,7 +96,7 @@ namespace AXSharp.ixcTests
         public void should_run_with_setting_retrieved_from_config_file_settings_but_override_from_cli()
         {
             var axProjectFolder = Path.Combine(TestFolder, "samples","plt","lib");
-            var config = AXSharpConfig.UpdateAndGetIxConfig(axProjectFolder);
+            var config = AXSharpConfig.UpdateAndGetAXSharpConfig(axProjectFolder);
             var outputDirectory = Path.GetFullPath(Path.Combine(axProjectFolder, $"..{Path.DirectorySeparatorChar}ix-lib-override"));
             
             if (Directory.Exists(outputDirectory))
