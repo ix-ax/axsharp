@@ -384,6 +384,16 @@ namespace AXSharp.Compiler.Tests
                 
             }
 
+            public void GenerateCompanionData()
+            {
+               
+            }
+
+            public void InstallAXSharpDependencies(IEnumerable<object> dependencies)
+            {
+                
+            }
+
             public IEnumerable<IReference> LoadReferences()
             {
                 return new List<IReference>();

@@ -20,7 +20,7 @@ public class AXSharpConfig : ICompilerOptions
     /// <summary>
     /// Creates new instance of IxConfig object.
     /// </summary>
-    [Obsolete("Use 'Create IxConfig' instead.")]
+    [Obsolete($"Use 'Create {nameof(RetrieveAXSharpConfig)} instead.")]
     public AXSharpConfig()
     {
             
@@ -31,7 +31,9 @@ public class AXSharpConfig : ICompilerOptions
     /// </summary>
     public const string CONFIG_FILE_NAME = "AXSharp.config.json";
 
-   
+    
+
+
     private string _outputProjectFolder = "ix";
 
     /// <summary>
@@ -43,8 +45,18 @@ public class AXSharpConfig : ICompilerOptions
         set => _outputProjectFolder = value;
     }
 
+    /// <summary>
+    /// Gets or sets whether compiler should use $base for base types of a class.
+    /// </summary>
     public bool UseBase { get; set; }
 
+    public bool NoDependencyUpdate { get; set; } 
+
+
+    /// <summary>
+    /// Gets or sets name of the output project file.
+    /// </summary>
+    public string? ProjectFile { get; set; }
 
     private string _axProjectFolder;
 
@@ -62,9 +74,9 @@ public class AXSharpConfig : ICompilerOptions
     /// Gets updated or creates default config for given AX project.
     /// </summary>
     /// <param name="directory">AX project directory</param>
-    /// <param name="cliCompilerOptions">Compiler options.</param>
+    /// <param name="newCompilerOptions">Compiler options.</param>
     /// <returns>Ix configuration for given AX project.</returns>
-    public static AXSharpConfig UpdateAndGetIxConfig(string directory, ICompilerOptions? cliCompilerOptions = null)
+    public static AXSharpConfig UpdateAndGetAXSharpConfig(string directory, ICompilerOptions? newCompilerOptions = null)
     {
         var ixConfigFilePath = Path.Combine(directory, CONFIG_FILE_NAME);
 
@@ -81,7 +93,7 @@ public class AXSharpConfig : ICompilerOptions
         if (AXSharpConfig != null)
         {
             AXSharpConfig.AxProjectFolder = directory;
-            OverridesFromCli(AXSharpConfig, cliCompilerOptions);
+            OverridesFromCli(AXSharpConfig, newCompilerOptions);
         }
 
         using (StreamWriter file = File.CreateText(ixConfigFilePath))
@@ -107,7 +119,7 @@ public class AXSharpConfig : ICompilerOptions
     }
 
    
-    public static AXSharpConfig RetrieveIxConfig(string ixConfigFilePath)
+    public static AXSharpConfig RetrieveAXSharpConfig(string ixConfigFilePath)
     {
         try
         {
@@ -128,13 +140,15 @@ public class AXSharpConfig : ICompilerOptions
         
     }
 
-    private static void OverridesFromCli(ICompilerOptions fromConfig, ICompilerOptions? fromCli)
+    private static void OverridesFromCli(ICompilerOptions fromConfig, ICompilerOptions? newCompilerOptions)
     {
         // No CLI params
-        if (fromCli == null)
+        if (newCompilerOptions == null)
             return;
 
         // Items to override from the CLI
-        fromConfig.OutputProjectFolder = fromCli.OutputProjectFolder ?? fromConfig.OutputProjectFolder;
+        fromConfig.OutputProjectFolder = newCompilerOptions.OutputProjectFolder ?? fromConfig.OutputProjectFolder;
+        fromConfig.ProjectFile = string.IsNullOrEmpty(newCompilerOptions.ProjectFile) ? fromConfig.ProjectFile : newCompilerOptions.ProjectFile;
+        fromConfig.NoDependencyUpdate = newCompilerOptions.NoDependencyUpdate;
     }
 }

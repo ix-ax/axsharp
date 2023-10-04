@@ -67,10 +67,31 @@ public class Apax
     /// <param name="projectFile">Project file from which the ApaxFile object will be created.</param>
     /// <returns></returns>
     /// <exception cref="FileNotFoundException"></exception>
-    public static Apax CreateApax(string projectFile)
+    public static Apax CreateApaxDto(string projectFile)
     {
         try
         {
+            var deserializer = new DeserializerBuilder()
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .IgnoreUnmatchedProperties()
+                .Build();
+
+            return deserializer.Deserialize<Apax>(File.ReadAllText(projectFile));
+        }
+        catch (FileNotFoundException)
+        {
+            throw new FileNotFoundException(
+                "'apax.yml' file was not found in the working directory. Make sure your current directory is simatic-ax project directory or provide source directory argument (for details see ixc --help)");
+        }
+    }
+
+    public static Apax TryCreateApaxDto(string projectFile)
+    {
+        try
+        {
+            if (!File.Exists(projectFile))
+                return null;
+
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .IgnoreUnmatchedProperties()
@@ -95,7 +116,7 @@ public class Apax
     {
         try
         {
-            var apax = CreateApax(apaxFile);
+            var apax = CreateApaxDto(apaxFile);
             apax.Version = version;
 
 

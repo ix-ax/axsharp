@@ -35,7 +35,7 @@ namespace AXSharp.CompilerTests
         [Fact]
         public void should_load_and_parse_apax_workspace_file()
         {
-           var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//apax.yml"));
+           var apaxWorkspaceFile = Apax.CreateApaxDto(Path.Combine(testFolder, @"samples//plt//apax.yml"));
 
            Assert.Equal("plt", apaxWorkspaceFile.Name);
            Assert.Equal("workspace", apaxWorkspaceFile.Type);
@@ -45,7 +45,7 @@ namespace AXSharp.CompilerTests
         [Fact()]
         public void should_load_and_parse_apax_library_file()
         {
-            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//lib2//apax.yml"));
+            var apaxWorkspaceFile = Apax.CreateApaxDto(Path.Combine(testFolder, @"samples//plt//lib2//apax.yml"));
 
             Assert.Equal("plt-lib2", apaxWorkspaceFile.Name);
             Assert.Equal("lib", apaxWorkspaceFile.Type);
@@ -60,7 +60,7 @@ namespace AXSharp.CompilerTests
         [Fact()]
         public void should_load_and_parse_apax_app_file()
         {
-            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt//app//apax.yml"));
+            var apaxWorkspaceFile = Apax.CreateApaxDto(Path.Combine(testFolder, @"samples//plt//app//apax.yml"));
 
             Assert.Equal("plt-app", apaxWorkspaceFile.Name);
             Assert.Equal("app", apaxWorkspaceFile.Type);
@@ -76,13 +76,13 @@ namespace AXSharp.CompilerTests
         [Fact()]
         public void should_update_apax_version()
         {
-            var apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"));
+            var apaxWorkspaceFile = Apax.CreateApaxDto(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"));
             Assert.Equal("plt-app", apaxWorkspaceFile.Name);
             Assert.Equal("app", apaxWorkspaceFile.Type);
             Assert.Equal("0.1.0", apaxWorkspaceFile.Version);
 
             Apax.UpdateVersion(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"), "33.88.50");
-            apaxWorkspaceFile = Apax.CreateApax(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"));
+            apaxWorkspaceFile = Apax.CreateApaxDto(Path.Combine(testFolder, @"samples//plt1//app//apax.yml"));
 
             Assert.Equal("plt-app", apaxWorkspaceFile.Name);
             Assert.Equal("app", apaxWorkspaceFile.Type);

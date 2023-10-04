@@ -5,8 +5,11 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.Diagnostics;
 using System.Reflection;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 using AXSharp.Compiler.Cs.Exceptions;
 using Microsoft.CodeAnalysis.CSharp;
 using NuGet.Configuration;
@@ -83,13 +86,32 @@ public class CsProject : ITargetProject
     {
         if (AxSharpProject.AxProject.ProjectInfo.Name != null)
         {
-            var expectedCsProjFile = Path.Combine(AxSharpProject.OutputFolder,
-                $"{MakeValidFileName(AxSharpProject.AxProject.ProjectInfo.Name)}.csproj");
+            string expectedCsProjFileFullPath = string.Empty;
+            string expectedCsProjFile = string.Empty;
+            if (string.IsNullOrEmpty(this.AxSharpProject.CompilerOptions?.ProjectFile))
+            {
+                expectedCsProjFile = $"{MakeValidFileName(AxSharpProject.AxProject.ProjectInfo.Name)}.csproj";
+                expectedCsProjFileFullPath = Path.Combine(AxSharpProject.OutputFolder,
+                    expectedCsProjFile);
+            }
+            else
+            {
+                expectedCsProjFile = this.AxSharpProject.CompilerOptions.ProjectFile;
+                expectedCsProjFileFullPath = Path.Combine(AxSharpProject.OutputFolder,
+                    expectedCsProjFile);
+            }
+
+            var compilerOptions = this.AxSharpProject.CompilerOptions;
+            if (compilerOptions != null)
+            {
+                compilerOptions.ProjectFile = expectedCsProjFile;
+                AXSharpConfig.UpdateAndGetAXSharpConfig(AxSharpProject.AxProject.ProjectFolder, compilerOptions);
+            }
 
             var defaultCsProjectWhenNotProvidedByTemplate =
                 $@"<Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -110,9 +132,9 @@ public class CsProject : ITargetProject
                 .WaitAndRetry(5, a => TimeSpan.FromMilliseconds(500))
                 .Execute(() =>
                 {
-                    if (!File.Exists(expectedCsProjFile))
+                    if (!File.Exists(expectedCsProjFileFullPath))
                     {
-                        using (var swr = new StreamWriter(expectedCsProjFile))
+                        using (var swr = new StreamWriter(expectedCsProjFileFullPath))
                         {
                             swr.Write(defaultCsProjectWhenNotProvidedByTemplate);
                         }
@@ -169,6 +191,137 @@ namespace {this.ProjectRootNamespace}
 
     /// <inheritdoc />
     public string GetMetaDataFolder => Path.Combine(AxSharpProject.OutputFolder, ".meta");
+
+    public static string GetRelativePath(string fromPath, string toPath)
+    {
+        var fromUri = new Uri(fromPath);
+        var toUri = new Uri(toPath);
+
+        if (fromUri.Scheme != toUri.Scheme)
+        {
+            // Handle different schemes. 
+            // You could throw an exception here or return the `toPath` as is, 
+            // depending on your needs.
+            return toPath;
+        }
+
+        Uri relativeUri = fromUri.MakeRelativeUri(toUri);
+        var relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+
+        return relativePath.Replace('/', System.IO.Path.DirectorySeparatorChar);
+    }
+
+    private static bool ProjectReferenceExists(string mainProjectPath, string referenceProjectPath)
+    {
+        var xDocument = XDocument.Load(mainProjectPath);
+        
+        // Using XPath to search for the ProjectReference with a specific Include path
+        var projectReferenceElements = xDocument.XPathSelectElements($"//ProjectReference[@Include='{referenceProjectPath}']");
+
+        return projectReferenceElements.Any();
+    }
+
+    private static void AddProjectReference(string mainProjectPath, string referenceProjectPath)
+    {
+        if (ProjectReferenceExists(mainProjectPath, referenceProjectPath))
+            return;
+
+        using (var process = new Process())
+        {
+            process.StartInfo.FileName = "dotnet";
+            process.StartInfo.Arguments = $"add \"{mainProjectPath}\" reference \"{referenceProjectPath}\"";
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+
+            process.OutputDataReceived += (sender, data) => { if (!string.IsNullOrEmpty(data.Data)) { Console.WriteLine(data.Data); } };
+            process.ErrorDataReceived += (sender, data) => { if (!string.IsNullOrEmpty(data.Data)) { Console.WriteLine(data.Data); } };
+
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            process.WaitForExit();
+        }
+    }
+
+    private static bool PackageReferenceExists(string projectFilePath, string packageName, string version)
+    {
+        var xDocument = XDocument.Load(projectFilePath);
+
+        var package
+            = PackageReference.GetVersionFromCentralPackageManagement(projectFilePath)?
+                .FirstOrDefault(p => p.include == packageName);
+        
+
+        // Using XPath to search for the PackageReference with a specific Include attribute and Version child element
+        
+        return  xDocument.XPathSelectElements(
+                    $"//PackageReference[@Include='{packageName}']/Version[text()='{version}']").Any()
+                || 
+                (xDocument.XPathSelectElements(
+            $"//PackageReference[@Include='{packageName}']").Any() && package != null && package?.version == version);
+    }
+
+    private static void AddNuGetPackageReference(string projectPath, string packageName, string version = null)
+    {
+
+        if (PackageReferenceExists(projectPath, packageName, version))
+            return;
+
+        using (var process = new Process())
+        {
+            process.StartInfo.FileName = "dotnet";
+            process.StartInfo.Arguments = $"add \"{projectPath}\" package {packageName}" + (string.IsNullOrEmpty(version) ? "" : $" --version {version}");
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+
+            process.OutputDataReceived += (sender, data) => { if (!string.IsNullOrEmpty(data.Data)) { Console.WriteLine(data.Data); } };
+            process.ErrorDataReceived += (sender, data) => { if (!string.IsNullOrEmpty(data.Data)) { Console.WriteLine(data.Data); } };
+
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            process.WaitForExit();
+        }
+    }
+
+    /// <summary>
+    /// Installs dependencies to the companion twin project from using dependencies from `apax.yml` file of a given AX project.
+    /// </summary>
+    /// <param name="dependencies"></param>
+    public void InstallAXSharpDependencies(IEnumerable<object> dependencies)
+    {
+        var compilerOptions = this.AxSharpProject.CompilerOptions;
+        if (compilerOptions != null && compilerOptions.NoDependencyUpdate) return;
+
+        var compilerOptionsProjectFile = this.AxSharpProject.CompilerOptions?.ProjectFile;
+
+        if (compilerOptionsProjectFile != null)
+        {
+            var dependent = Path.Combine(this.AxSharpProject.OutputFolder, compilerOptionsProjectFile);
+            foreach (var dependency in dependencies)
+            {
+               
+                switch (dependency)
+                {
+                    case CompanionInfo package:
+                        AddNuGetPackageReference(dependent, package.Id, package.Version);
+                        break;
+                    case AXSharpConfig project:
+                        var projectPath = Path.GetFullPath(Path.Combine(project.AxProjectFolder, project.OutputProjectFolder, project.ProjectFile));
+                        AddProjectReference(dependent, GetRelativePath(dependent, projectPath));
+                        break;
+                }
+            }
+        }
+    }
 
     /// <summary>
     ///     Retrieves references from csproj file associated with given project.
@@ -336,4 +489,34 @@ namespace {this.ProjectRootNamespace}
     }
 
     #endregion
+
+    static string GetPackageId(string csprojPath)
+    {
+        XDocument xDocument = XDocument.Load(csprojPath);
+
+        var packageIdElement = xDocument.Descendants("PackageId").FirstOrDefault();
+
+        if (packageIdElement != null)
+        {
+            return packageIdElement.Value;
+        }
+
+        // If PackageId element is not found, default to the project's name
+        return Path.GetFileNameWithoutExtension(csprojPath);
+    }
+
+    public void GenerateCompanionData()
+    {
+        var compilerOptions = this.AxSharpProject.CompilerOptions;
+        if (compilerOptions != null)
+        {
+            if (compilerOptions.ProjectFile != null)
+            {
+                var packageId = GetPackageId(Path.Combine(this.AxSharpProject.OutputFolder,
+                    compilerOptions.ProjectFile));
+
+                CompanionInfo.ToFile(new CompanionInfo() { Id = packageId, Version = this.AxSharpProject.AxProject.ProjectInfo.Version }, Path.Combine(this.AxSharpProject.AxProject.ProjectFolder, CompanionInfo.COMPANIONS_FILE_NAME));
+            }
+        }
+    }
 }
