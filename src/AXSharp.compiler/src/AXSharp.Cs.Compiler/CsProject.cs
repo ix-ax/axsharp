@@ -16,6 +16,7 @@ using NuGet.Configuration;
 using NuGet.Packaging;
 using NuGet.Versioning;
 using Polly;
+using Serilog.Core;
 
 namespace AXSharp.Compiler;
 
@@ -216,9 +217,9 @@ namespace {this.ProjectRootNamespace}
         var xDocument = XDocument.Load(mainProjectPath);
         
         // Using XPath to search for the ProjectReference with a specific Include path
-        var projectReferenceElements = xDocument.XPathSelectElements($"//ProjectReference[@Include='{referenceProjectPath}']");
-
-        return projectReferenceElements.Any();
+        var projectReferenceElements = xDocument.XPathSelectElements($"//ProjectReference[@Include='{referenceProjectPath}']").Any();
+        var any = xDocument.Descendants("ProjectReference").Any(p => p.Attribute("Include")?.Value == referenceProjectPath);
+        return projectReferenceElements || any;
     }
 
     private static void AddProjectReference(string mainProjectPath, string referenceProjectPath)
@@ -226,8 +227,11 @@ namespace {this.ProjectRootNamespace}
         if (ProjectReferenceExists(mainProjectPath, referenceProjectPath))
             return;
 
+        Log.Logger.Information($"Adding project reference '{referenceProjectPath}' to '{mainProjectPath}'");
+
         using (var process = new Process())
         {
+            process.StartInfo.WorkingDirectory = new FileInfo(mainProjectPath).DirectoryName;
             process.StartInfo.FileName = "dotnet";
             process.StartInfo.Arguments = $"add \"{mainProjectPath}\" reference \"{referenceProjectPath}\"";
             process.StartInfo.RedirectStandardOutput = true;
@@ -272,6 +276,7 @@ namespace {this.ProjectRootNamespace}
 
         using (var process = new Process())
         {
+            process.StartInfo.WorkingDirectory = new FileInfo(projectPath).DirectoryName;
             process.StartInfo.FileName = "dotnet";
             process.StartInfo.Arguments = $"add \"{projectPath}\" package {packageName}" + (string.IsNullOrEmpty(version) ? "" : $" --version {version}");
             process.StartInfo.RedirectStandardOutput = true;
