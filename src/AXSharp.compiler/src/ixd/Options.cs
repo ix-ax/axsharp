@@ -28,7 +28,7 @@ namespace AXSharp.ixc_doc
         public bool NoDependencyUpdate { get; set; }
 
         [Option('p', "project-file", Required = false, Default = "",
-            HelpText = "Output project file")]
+            HelpText = "(ignored here)Output project file")]
         public string? ProjectFile { get; set; }
     }
 }
