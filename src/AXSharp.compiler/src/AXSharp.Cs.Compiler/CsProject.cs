@@ -254,15 +254,14 @@ namespace {this.ProjectRootNamespace}
         var package
             = PackageReference.GetVersionFromCentralPackageManagement(projectFilePath)?
                 .FirstOrDefault(p => p.include == packageName);
-        
 
-        // Using XPath to search for the PackageReference with a specific Include attribute and Version child element
-        
-        return  xDocument.XPathSelectElements(
-                    $"//PackageReference[@Include='{packageName}']/Version[text()='{version}']").Any()
-                || 
-                (xDocument.XPathSelectElements(
+        var hasWithVersion = xDocument.XPathSelectElements($"//PackageReference[@Include='{packageName}' and @Version='{version}']").Any();
+
+        var hasVersionInCentralPackageManagement = (xDocument.XPathSelectElements(
             $"//PackageReference[@Include='{packageName}']").Any() && package != null && package?.version == version);
+
+        return hasWithVersion || hasVersionInCentralPackageManagement;
+
     }
 
     private static void AddNuGetPackageReference(string projectPath, string packageName, string version = null)

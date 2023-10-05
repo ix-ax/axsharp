@@ -21,8 +21,12 @@
       "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axsharp\\src\\AXSharp.connectors\\tests\\ax-test-project\\"
     },
     "app-withref": {
-      "commandName": "Project",      
-      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\.application\\app\\"
+      "commandName": "Project",
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axopen.templates\\templates.simple\\app\\"
+    },
+    "app-withref-cpm": {
+      "commandName": "Project",
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\templates.simple\\app\\"
     }
   }
 }
