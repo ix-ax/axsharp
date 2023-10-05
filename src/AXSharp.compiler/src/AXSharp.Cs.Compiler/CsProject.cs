@@ -218,14 +218,7 @@ namespace {this.ProjectRootNamespace}
         
         // Using XPath to search for the ProjectReference with a specific Include path
         var projectReferenceElements = xDocument.XPathSelectElements($"//ProjectReference[@Include='{referenceProjectPath}']").Any();
-
         var any = xDocument.Descendants("ProjectReference").Any(p => p.Attribute("Include")?.Value == referenceProjectPath);
-
-        if (any != projectReferenceElements)
-        {
-            Console.WriteLine();
-        }
-
         return projectReferenceElements || any;
     }
 
