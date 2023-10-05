@@ -105,6 +105,61 @@ public class AxProject
     /// </summary>
     public IEnumerable<object> AXSharpReferences => GetProjectDependencies();
 
+    private static string GetStartDirectory(string givenDirectory, int levelsUp)
+    {
+        try
+        {
+            // Move 'levelsUp' safely
+            DirectoryInfo dirInfo = new DirectoryInfo(givenDirectory);
+
+            for (int i = 0; i < levelsUp; i++)
+            {
+                if (dirInfo.Parent != null)
+                {
+                    dirInfo = dirInfo.Parent;
+                }
+                else
+                {
+                    return dirInfo.FullName; // Return root if we hit it before moving the desired levels up
+                }
+            }
+
+            return dirInfo.FullName;
+        }
+        catch
+        {
+            return null; // return null if any error occurs
+        }
+    }
+
+    private static IEnumerable<string> SearchForApaxFiles(string directory, int currentDepth, int maxDepth)
+    {
+        var apaxFilesList = new List<string>();
+
+        if (currentDepth > maxDepth) return apaxFilesList;
+
+        try
+        {
+            apaxFilesList.AddRange(Directory.GetFiles(directory, "apax.yml"));
+
+            foreach (var subDir in Directory.GetDirectories(directory))
+            {
+                // Exclude '.apax' directories
+                if (Path.GetFileName(subDir) != ".apax")
+                {
+                    apaxFilesList.AddRange(SearchForApaxFiles(subDir, currentDepth + 1, maxDepth));
+                }
+            }
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // Handle permissions issues, if any
+            Console.WriteLine($"Access denied to: {directory}");
+        }
+
+        return apaxFilesList;
+    }
+
     private IEnumerable<object> GetProjectDependencies()
     {
         var dependencies = ProjectInfo.Dependencies ?? new Dictionary<string, string>();
@@ -118,14 +173,11 @@ public class AxProject
                     ApaxFile = new FileInfo(Path.Combine(p, "apax.yml"))
                 }).ToList();
 
-
-        nearByProjects ??= Directory.EnumerateFiles(
-                Path.GetFullPath(Path.Combine(this.ProjectFolder, "../../..")),
-                "apax.yml", SearchOption.AllDirectories)
+        nearByProjects = SearchForApaxFiles(GetStartDirectory(this.ProjectFolder, 2), 0, 2)
             .Select(p => new FileInfo(p))
             .Where(p => !p.Directory.FullName.Contains(".apax"))
             .Select(a => new NearByProjects() { Apax = Apax.TryCreateApaxDto(a.FullName), ApaxFile = a })
-            .ToList();
+            .ToList(); ;
 
         var projectDependencies = new List<object>();
 
