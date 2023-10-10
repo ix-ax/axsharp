@@ -100,7 +100,7 @@ public class BuildContext : FrostingContext
 
         this.ProcessRunner.Start(Helpers.GetApaxCommand(), new ProcessSettings()
         {
-            Arguments = " install -L",
+            Arguments = " install",
             WorkingDirectory = workingDirectory,
             RedirectStandardOutput = false,
             RedirectStandardError = false,

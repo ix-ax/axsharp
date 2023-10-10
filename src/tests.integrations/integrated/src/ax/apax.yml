@@ -20,7 +20,7 @@ scripts:
     ..\\..\\..\\..\\AXSharp.compiler\\src\\ixc\\AXSharp.ixc.csproj --framework
     net7.0
   download:
-    - apax install -L
+    - apax install
     - apax build
     # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
     # --default-server-interface is a must if you are using WebAPI      

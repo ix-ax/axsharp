@@ -29,7 +29,7 @@ scripts:
        echo "Environment variable AXTARGET not defined!!!"
      fi
    do-it-all:
-     - apax install -L
+     - apax install
      - apax build 
      - apax check+download
 
