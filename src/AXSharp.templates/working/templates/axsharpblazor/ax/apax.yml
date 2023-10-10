@@ -17,7 +17,7 @@ scripts:
   - dotnet ixc -o ..\\ixsharpblazor.twin
   postbuild: apax ixc
   download :   
-    - apax install -L    
+    - apax install 
     - apax build
     # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
     # --default-server-interface is a must if you are using WebAPI      

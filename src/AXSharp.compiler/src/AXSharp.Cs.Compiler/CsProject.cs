@@ -112,7 +112,7 @@ public class CsProject : ITargetProject
             var defaultCsProjectWhenNotProvidedByTemplate =
                 $@"<Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFrameworks>net7.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -123,7 +123,12 @@ public class CsProject : ITargetProject
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="".g\**"" />
+    	<Compile Include="".g\**"" />
+  	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="".meta\"" />
+		<Content Include="".meta\**"" />
 	</ItemGroup>
 </Project>";
 
