@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AXSharp.Connector.Localizations;
@@ -19,6 +20,15 @@ namespace AXSharp.Connector.Tests
         public string Symbol => "testTwinObjectSymbol";
 
         public string AttributeName => "testTwinObjectAttributeName";
+        public string GetAttributeName(CultureInfo culture)
+        {
+            return this.Translate(this.AttributeName, culture);
+        }
+
+        public string GetHumanReadable(CultureInfo culture)
+        {
+            return this.Translate(this.HumanReadable, culture);
+        }
 
         public string HumanReadable => "testTwinObjectHumanReadable";
 

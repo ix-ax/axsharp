@@ -10,6 +10,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
 using AXSharp.Connector.Localizations;
 
@@ -221,9 +222,16 @@ public abstract class OnlinerBase : ITwinPrimitive
     {
         get => string.IsNullOrEmpty(_attributeName)
             ? SymbolTail
-            : this.Translate(_attributeName).Interpolate(this);
+            : _attributeName.Interpolate(this).CleanUpLocalizationTokens();
 
         set => _attributeName = value;
+    }
+
+    public string GetAttributeName(CultureInfo culture)
+    {
+        return string.IsNullOrEmpty(_attributeName)
+            ? SymbolTail
+            : this.Translate(_attributeName, culture).Interpolate(this);
     }
 
     /// <summary>
@@ -232,8 +240,13 @@ public abstract class OnlinerBase : ITwinPrimitive
     /// </summary>
     public string HumanReadable
     {
-        get => this.Translate(_humanReadable).Interpolate(this);
+        get => this._humanReadable.Interpolate(this).CleanUpLocalizationTokens();
         protected set => _humanReadable = value;
+    }
+
+    public string GetHumanReadable(CultureInfo culture) 
+    {
+        return this.Translate(_humanReadable, culture).Interpolate(this);
     }
 
     /// <summary>

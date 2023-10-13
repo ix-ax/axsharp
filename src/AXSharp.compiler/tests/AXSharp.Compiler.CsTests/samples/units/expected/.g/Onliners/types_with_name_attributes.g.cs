@@ -161,9 +161,20 @@ namespace TypeWithNameAttributes
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : _attributeName.Interpolate(this).CleanUpLocalizationTokens(); set => _attributeName = value; }
 
-        public string HumanReadable { get; set; }
+        public System.String GetAttributeName(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_attributeName, culture).Interpolate(this);
+        }
+
+        private string _humanReadable;
+        public string HumanReadable { get => string.IsNullOrEmpty(_humanReadable) ? SymbolTail : _humanReadable.Interpolate(this).CleanUpLocalizationTokens(); set => _humanReadable = value; }
+
+        public System.String GetHumanReadable(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_humanReadable, culture);
+        }
 
         protected System.String @SymbolTail { get; set; }
 
@@ -347,9 +358,20 @@ namespace TypeWithNameAttributes
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : _attributeName.Interpolate(this).CleanUpLocalizationTokens(); set => _attributeName = value; }
 
-        public string HumanReadable { get; set; }
+        public System.String GetAttributeName(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_attributeName, culture).Interpolate(this);
+        }
+
+        private string _humanReadable;
+        public string HumanReadable { get => string.IsNullOrEmpty(_humanReadable) ? SymbolTail : _humanReadable.Interpolate(this).CleanUpLocalizationTokens(); set => _humanReadable = value; }
+
+        public System.String GetHumanReadable(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_humanReadable, culture);
+        }
 
         protected System.String @SymbolTail { get; set; }
 
@@ -361,7 +383,12 @@ namespace TypeWithNameAttributes
     public partial class NoAccessModifierClass : AXSharp.Connector.ITwinObject
     {
         private string _AttributeName;
-        public string AttributeName { get => string.IsNullOrEmpty(_AttributeName) ? SymbolTail : this.Translate(_AttributeName).Interpolate(this); set => _AttributeName = value; }
+        public string AttributeName { get => string.IsNullOrEmpty(_AttributeName) ? SymbolTail : _AttributeName.Interpolate(this).CleanUpLocalizationTokens(); set => _AttributeName = value; }
+
+        public string GetAttributeName(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_AttributeName, culture).Interpolate(this);
+        }
 
         public OnlinerString SomeClassVariable { get; }
 
@@ -521,9 +548,20 @@ namespace TypeWithNameAttributes
         public string Symbol { get; protected set; }
 
         private string _attributeName;
-        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : this.Translate(_attributeName).Interpolate(this); set => _attributeName = value; }
+        public System.String AttributeName { get => string.IsNullOrEmpty(_attributeName) ? SymbolTail : _attributeName.Interpolate(this).CleanUpLocalizationTokens(); set => _attributeName = value; }
 
-        public string HumanReadable { get; set; }
+        public System.String GetAttributeName(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_attributeName, culture).Interpolate(this);
+        }
+
+        private string _humanReadable;
+        public string HumanReadable { get => string.IsNullOrEmpty(_humanReadable) ? SymbolTail : _humanReadable.Interpolate(this).CleanUpLocalizationTokens(); set => _humanReadable = value; }
+
+        public System.String GetHumanReadable(System.Globalization.CultureInfo culture)
+        {
+            return this.Translate(_humanReadable, culture);
+        }
 
         protected System.String @SymbolTail { get; set; }
 

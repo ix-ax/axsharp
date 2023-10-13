@@ -9,6 +9,7 @@ using NUnit.Framework;
 using AXSharp.Connector;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,6 +119,15 @@ namespace AXSharp.Connector.Tests
         public string Symbol => throw new NotImplementedException();
 
         public string AttributeName => throw new NotImplementedException();
+        public string GetAttributeName(CultureInfo culture)
+        {
+           return this.Translate(this.AttributeName, culture);
+        }
+
+        public string GetHumanReadable(CultureInfo culture)
+        {
+           return this.Translate(this.HumanReadable, culture);
+        }
 
         public string HumanReadable => throw new NotImplementedException();
 
@@ -232,6 +242,16 @@ namespace AXSharp.Connector.Tests
         public string AttributeName => throw new NotImplementedException();
 
         public string HumanReadable => throw new NotImplementedException();
+
+        public string GetAttributeName(CultureInfo culture)
+        {
+            return this.Translate(this.AttributeName, culture);
+        }
+
+        public string GetHumanReadable(CultureInfo culture)
+        {
+            return this.Translate(this.HumanReadable, culture);
+        }
 
         public void AddChild(ITwinObject twinObject)
         {
@@ -353,6 +373,16 @@ namespace AXSharp.Connector.Tests
         public ITwinObject GetParent()
         {
             return _parent;
+        }
+
+        public string GetAttributeName(CultureInfo culture)
+        {
+            return this.Translate(this.AttributeName, culture);
+        }
+
+        public string GetHumanReadable(CultureInfo culture)
+        {
+            return this.Translate(this.HumanReadable, culture);
         }
 
         public string GetSymbolTail()

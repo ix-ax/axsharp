@@ -33,7 +33,11 @@ internal class AddedPropertyDeclarationAstNode : AstNode
                 v.Product.Product = $"private {Type} _{Identifier};" +
                             $"\n{AccessQualifier} {Type} {Identifier} " +
                             $"{{ " +
-                            $"get => string.IsNullOrEmpty(_{Identifier}) ? SymbolTail : this.Translate(_{Identifier}).Interpolate(this); set => _{Identifier} = value; " +
+                            $"get => string.IsNullOrEmpty(_{Identifier}) ? SymbolTail : _{Identifier}.Interpolate(this).CleanUpLocalizationTokens(); set => _{Identifier} = value; " +
+                            $"}}"+
+                            $"{AccessQualifier} {Type} Get{Identifier}(System.Globalization.CultureInfo culture)" +
+                            $"{{"+
+                            $"return this.Translate(_{Identifier}, culture).Interpolate(this);" +
                             $"}}";
             }
             else
