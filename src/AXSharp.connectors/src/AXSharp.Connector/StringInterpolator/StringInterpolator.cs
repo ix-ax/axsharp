@@ -43,6 +43,9 @@ public static class StringInterpolator
     {
         try
         {
+            if (original == null)
+                return string.Empty;
+
             if (!original.Contains(OpenToken))
                 return original;
 

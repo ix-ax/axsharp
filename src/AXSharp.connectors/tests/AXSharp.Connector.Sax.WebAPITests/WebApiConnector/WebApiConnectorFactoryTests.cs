@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -30,6 +31,16 @@ namespace AXSharp.Connector.S71500.WebAPITests
 
             public string Symbol { get; }
             public string AttributeName { get; }
+            public string GetAttributeName(CultureInfo culture)
+            {
+                return AttributeName;
+            }
+
+            public string GetHumanReadable(CultureInfo culture)
+            {
+                return HumanReadable;
+            }
+
             public string HumanReadable { get; }
 
             private IList<ITwinPrimitive> _primitives = new List<ITwinPrimitive>();

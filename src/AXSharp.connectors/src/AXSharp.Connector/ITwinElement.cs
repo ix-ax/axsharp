@@ -6,6 +6,7 @@
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
 using AXSharp.Connector.Localizations;
+using System.Globalization;
 
 namespace AXSharp.Connector;
 
@@ -23,6 +24,10 @@ public interface ITwinElement
     ///     Gets Name of this instance.
     /// </summary>
     string AttributeName { get; }
+
+    string GetAttributeName(CultureInfo culture);
+    
+    string GetHumanReadable(CultureInfo culture);
 
     /// <summary>
     ///     Provides a string combined from <see cref="AttributeName" /> of ancestors (<see cref="GetParent" />) of this

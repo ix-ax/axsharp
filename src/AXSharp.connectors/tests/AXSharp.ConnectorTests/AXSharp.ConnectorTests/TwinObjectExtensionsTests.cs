@@ -19,6 +19,7 @@ namespace AXSharp.Connector.Tests
     using System.Collections.Generic;
     using AXSharp.Connector.ValueTypes;
     using System.Threading.Tasks;
+    using System.Globalization;
 
     public static class TwinObjectExtensionsTests
     {
@@ -383,6 +384,17 @@ namespace AXSharp.Connector.Tests
             public string Symbol { get; }
             public string AttributeName { get; }
             public string HumanReadable { get; }
+
+            public string GetAttributeName(CultureInfo culture)
+            {
+                return this.Translate(this.AttributeName, culture);
+            }
+
+            public string GetHumanReadable(CultureInfo culture)
+            {
+                return this.Translate(this.HumanReadable, culture);
+            }
+
             public ITwinObject GetParent()
             {
                 throw new NotImplementedException();

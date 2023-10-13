@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes;
@@ -60,6 +61,16 @@ public class RootTwinObject : ITwinObject
     ///     Gets empty name for this root object.
     /// </summary>
     public string AttributeName => string.Empty;
+
+    public string GetAttributeName(CultureInfo culture)
+    {
+        return AttributeName;
+    }
+
+    public string GetHumanReadable(CultureInfo culture)
+    {
+        return HumanReadable;
+    }
 
     /// <summary>
     ///     Gets empty symbol for this root object.

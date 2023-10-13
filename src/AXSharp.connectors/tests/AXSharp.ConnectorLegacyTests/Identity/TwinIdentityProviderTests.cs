@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes;
+using System.Globalization;
 
 namespace AXSharp.Connector.Identity.Tests
 {
@@ -192,6 +193,16 @@ namespace AXSharp.Connector.Identity.Tests
             throw new NotImplementedException();
         }
 
+        public string GetAttributeName(CultureInfo culture)
+        {
+            return this.Translate(this.AttributeName, culture);
+        }
+
+        public string GetHumanReadable(CultureInfo culture)
+        {
+            return this.Translate(this.HumanReadable, culture);
+        }
+
         public Connector GetConnector()
         {
             throw new NotImplementedException();
@@ -293,6 +304,16 @@ namespace AXSharp.Connector.Identity.Tests
         public string Symbol { get; set; }
 
         public string HumanReadable => throw new NotImplementedException();
+
+        public string GetAttributeName(CultureInfo culture)
+        {
+            return this.Translate(this.AttributeName, culture);
+        }
+
+        public string GetHumanReadable(CultureInfo culture)
+        {
+            return this.Translate(this.HumanReadable, culture);
+        }
 
         public IEnumerable<ITwinObject> GetChildren()
         {

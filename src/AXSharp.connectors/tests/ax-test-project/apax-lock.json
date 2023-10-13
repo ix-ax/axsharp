@@ -220,20 +220,26 @@
     ]
   },
   "@ax/sdk": {
-    "version": "4.0.9",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdk/-/sdk-4.0.9.tgz",
-    "integrity": "sha512-WU8Q7Ozjr197x20X0dEY7cuQ1MtSs3W4TF/4C3Bm8C9u7JBJQHqTiNbpeHmC3XdtxeLHK3l0wQ+f5e5hQYPF4w==",
+    "version": "4.0.12",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdk/-/sdk-4.0.12.tgz",
+    "integrity": "sha512-EXB8J2voETlwzYWe7GPt25NA/FM+qskre83oahARvS7/7hIoEhinfx7AhZqj63hUruAr9P1XcMZL8cTyQhOYgQ==",
     "dependencies": {
       "@ax/axunit": "4.0.6",
       "@ax/axunit-ls-contrib": "4.0.6",
       "@ax/mod": "0.19.6",
       "@ax/mon": "0.19.6",
       "@ax/sdb": "0.19.6",
+      "@ax/simatic-pragma-stc-plugin": "1.0.26",
       "@ax/sld": "1.0.11",
-      "@ax/st": "4.0.9",
+      "@ax/st": "4.0.12",
       "@ax/target-llvm": "5.4.89",
       "@ax/target-mc7plus": "5.4.89"
     }
+  },
+  "@ax/simatic-pragma-stc-plugin": {
+    "version": "1.0.26",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/simatic-pragma-stc-plugin/-/simatic-pragma-stc-plugin-1.0.26.tgz",
+    "integrity": "sha512-2Pj/Encd6bUgsRfXyj3rA4YOUpRroqwzODKU37T95dMNle+BpFXYS3V88FYJyTdOgSrJik4VVdV1AFzH7NUQ8g=="
   },
   "@ax/sld": {
     "version": "0.15.9",
@@ -267,32 +273,32 @@
     ]
   },
   "@ax/st": {
-    "version": "4.0.9",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/st/-/st-4.0.9.tgz",
-    "integrity": "sha512-WLmJ7c9fotx9+/wIWQaj8u0cRhXWh+2g5wr9IwdOfY+5UBkDe0AJcUkKJFWOipi2rZFDHruOhbP/XkrzWvAcmA==",
+    "version": "4.0.12",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/st/-/st-4.0.12.tgz",
+    "integrity": "sha512-Y/SZG+Y7Cf9C+kuFBpU0zunU0Jkr7PQaybnlPAnoSt3Vl9XIk1JWIlHi7axKz62TRzlqi2MyBFuAVZKXtSLkIg==",
     "dependencies": {
       "@ax/apax-build": "0.7.0",
       "@ax/stc": "5.4.89"
     }
   },
   "@ax/st-docs": {
-    "version": "5.4.92",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-docs/-/st-docs-5.4.92.tgz",
-    "integrity": "sha512-nBNjUsS3YIP4ww9QPEW5H5zleHUSnkUAzZdKatLhF/ffOvFCRO/s78ECDD43QUI33+yuoP2wsaotCcoz0qnk4g=="
+    "version": "5.4.98",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-docs/-/st-docs-5.4.98.tgz",
+    "integrity": "sha512-RDpNMptkgGqEIpQJVPVTEEs2070WMwuCK9fT/EIFZuERJM4Nd7fp3QlA1897yqdIbVk6fXBU2o7PkjZU4UJrPw=="
   },
   "@ax/stc": {
-    "version": "5.4.92",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc/-/stc-5.4.92.tgz",
-    "integrity": "sha512-yiOSa2zkG5s+/JHAbYFxcVXW0ud/cCP5HmVlcF0+AiH9smQX1qwydbx76zW0vz2tLUOkfgTmhzGhwbQAXm3sOw==",
+    "version": "5.4.98",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc/-/stc-5.4.98.tgz",
+    "integrity": "sha512-CXVxt+9xRtxQ1+ZtLQU0ip4QI5A7u3AZM5pyWm8oBVnEb7XBfS2+8Nzbse/cWFnV8e/QVa3xOkI46PQ/1e9lng==",
     "dependencies": {
-      "@ax/stc-linux-x64": "5.4.92",
-      "@ax/stc-win-x64": "5.4.92"
+      "@ax/stc-linux-x64": "5.4.98",
+      "@ax/stc-win-x64": "5.4.98"
     }
   },
   "@ax/stc-linux-x64": {
-    "version": "5.4.92",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-linux-x64/-/stc-linux-x64-5.4.92.tgz",
-    "integrity": "sha512-OCxzgK9L0CFYnuuEEcaUMn3C35gjq4odqx1q0VSOu90Sk8BKKXHhCf0bLerhRXsbdkdwvZRa2NQpcLFiiti2mQ==",
+    "version": "5.4.98",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-linux-x64/-/stc-linux-x64-5.4.98.tgz",
+    "integrity": "sha512-nZtQL4DhHHxO78TIFdeCHn23xG6Dr2jPy7qOh3ACXqMIEtqblsWaR3lUe4AV0fA1OTHJrXrFWOdIMxCQ/BuhnA==",
     "os": [
       "linux"
     ],
@@ -300,13 +306,13 @@
       "x64"
     ],
     "dependencies": {
-      "@ax/st-docs": "5.4.92"
+      "@ax/st-docs": "5.4.98"
     }
   },
   "@ax/stc-win-x64": {
-    "version": "5.4.92",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-win-x64/-/stc-win-x64-5.4.92.tgz",
-    "integrity": "sha512-wgfHPuROR8nrcPy69R6tBbfNe+VRGdZ0b7R0RcW8msLQua+oHu5dlRD/rzlb16+6+KkkvC2XSO0roDL23UtXZA==",
+    "version": "5.4.98",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-win-x64/-/stc-win-x64-5.4.98.tgz",
+    "integrity": "sha512-B3BiyxwqiMJk//Q3PVSlVcBfhaxZjyJNPFd7J9yAe3bMAvA59p6981vfEu2dVJ+vLI34DrbSPg6E4eeGyY3fQw==",
     "os": [
       "win32"
     ],
@@ -314,7 +320,7 @@
       "x64"
     ],
     "dependencies": {
-      "@ax/st-docs": "5.4.92"
+      "@ax/st-docs": "5.4.98"
     }
   },
   "@ax/target-axunit": {

@@ -49,7 +49,7 @@ public class PragmasExtensionsTests
     [Fact]
     public void should_declare_property()
     {
-        var expected = "private string _SomeField;\npublic string SomeField { get => string.IsNullOrEmpty(_SomeField) ? SymbolTail : this.Translate(_SomeField).Interpolate(this); set => _SomeField = value; }";
+        var expected = "private string _SomeField;\npublic string SomeField { get => string.IsNullOrEmpty(_SomeField) ? SymbolTail : _SomeField.Interpolate(this).CleanUpLocalizationTokens(); set => _SomeField = value; }public string GetSomeField(System.Globalization.CultureInfo culture){return this.Translate(_SomeField, culture).Interpolate(this);}";
         var field = NSubstitute.Substitute.For<ITypeDeclaration>();
         field.Name.Returns("someField");
         field.Pragmas.Returns(new ReadOnlyCollection<IPragma>(new IPragma[]

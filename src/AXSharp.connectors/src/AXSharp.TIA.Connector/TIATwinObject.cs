@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/dev/notices.md
 
+using System.Globalization;
 using AXSharp.Connector;
 using AXSharp.Connector.Localizations;
 using AXSharp.TIA2AXSharp;
@@ -30,6 +31,16 @@ public class TIATwinObject : ITwinObject, ITIAGenericObject
 
     public string Symbol { get; }
     public string AttributeName { get; }
+    public string GetAttributeName(CultureInfo culture)
+    {
+        return AttributeName;
+    }
+
+    public string GetHumanReadable(CultureInfo culture)
+    {
+        return HumanReadable;
+    }
+
     public string HumanReadable { get; }
 
     public ITwinObject GetParent()

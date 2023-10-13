@@ -152,6 +152,16 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     }
 
     /// <summary>
+    /// Gets <see cref="Cyclic"/> translated with provided <see cref="CultureInfo"/>
+    /// </summary>
+    /// <param name="culture">Desired culture.</param>
+    /// <returns>Translated value</returns>
+    public virtual T GetCyclic(CultureInfo culture = default)
+    {
+        return Cyclic;
+    }
+
+    /// <summary>
     ///     Gets the cyclically read value. Setter set the value that will be written in the next cycle. The value is validated
     ///     prior to performing write operation.
     ///     The value must fall between <see cref="InstanceMinValue" /> and <see cref="InstanceMaxValue" />, any value outside
@@ -231,10 +241,20 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     /// </summary>
     public string AttributeToolTip
     {
-        get => this.Translate(attributeToolTip);
+        get => attributeToolTip.Interpolate(this);
         set => attributeToolTip = value;
     }
 
+    /// <summary>
+    /// Gets translated tooltip for given <see cref="CultureInfo"/>
+    /// </summary>
+    /// <param name="culture">Culture used to translate this tooltip</param>
+    /// <returns>Translated tooltip</returns>
+    public string GetAttributeToolTip(CultureInfo culture)
+    {
+        return this.Translate(AttributeToolTip, culture);
+        
+    }
 
     /// <summary>
     ///     Gets information about this tag's online variable info.
@@ -484,6 +504,16 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     public virtual async Task<T> GetAsync()
     {
         return await Task.Run(() => Cyclic);
+    }
+
+    /// <summary>
+    /// Gets value translated in give <see cref="CultureInfo"/>
+    /// </summary>
+    /// <param name="culture">Culture into which the value should be translated.</param>
+    /// <returns>Translated value.</returns>
+    public virtual Task<T> GetAsync(CultureInfo culture = default)
+    {
+        return Task.Run(() => GetCyclic(culture));
     }
 
     /// <summary>

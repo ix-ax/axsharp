@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.Globalization;
 using System.Threading.Tasks;
 using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes.Online;
@@ -53,8 +54,18 @@ public class OnlinerWString : OnlinerBase<string>, IOnlineWString, IShadowWStrin
     /// </summary>
     public override string Cyclic
     {
-        get => this.Translate(base.Cyclic).Interpolate(this);
+        get => base.Cyclic.Interpolate(this);
         set => base.Cyclic = value;
+    }
+
+    /// <summary>
+    /// Gets cyclic with provided <see cref="CultureInfo"/>
+    /// </summary>
+    /// <param name="culture">Desired culture.</param>
+    /// <returns>Translated value</returns>
+    public override string GetCyclic(CultureInfo culture = default)
+    {
+        return this.Translate(this.Cyclic, culture);
     }
 
     /// <summary>
@@ -72,7 +83,13 @@ public class OnlinerWString : OnlinerBase<string>, IOnlineWString, IShadowWStrin
     /// <returns>Value of this <see cref="OnlinerWString" /></returns>
     public override async Task<string> GetAsync()
     {
-        return this.Translate(await base.GetAsync()).Interpolate(this);
+        var retVal = await base.GetAsync();
+        return retVal.Interpolate(this).CleanUpLocalizationTokens();
+    }
+
+    public override async Task<string> GetAsync(CultureInfo culture)
+    {
+        return this.Translate(await this.GetAsync(),culture).Interpolate(this);
     }
 
     /// <summary>
