@@ -386,13 +386,12 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         var sw = new Stopwatch();
         long cycleCount = 0;
         var startTimeStamp = DateTime.Now;
-
+        
         await Task.Run(async () =>
-        {            
+        {
             while (true)
                 if (!IsRwLoopSuspended)
                 {
-                    //Thread.Sleep(ReadWriteCycleDelay);
                     await Task.Delay(ReadWriteCycleDelay);
                     sw.Restart();
                     try
