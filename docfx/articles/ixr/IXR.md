@@ -43,14 +43,8 @@ Ixr support all these special characters:
 ``!"#$'()*+,-.:;<=>?@[\]^_`{|}~€``  
 No other characters can be used.
 
-## Localization in a client in server-side application
 
-In order to get translation in given culture for a client in a server side application you should use methods `Get{ProperyName}(CultureInfo culture)` to get translation for client current culture. The properties will returned original string where localization tokens are removed.
-
-~~~csharp
-var notTranlsated = obj.AttributeName;
-var translated = obj.GetAttribute(new CultureInfo("sk-SK"));
-~~~
+[See also](../connectors/README.md#controller-string-localization)
 
 ## Notes
 

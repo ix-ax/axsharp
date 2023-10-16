@@ -11,9 +11,11 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AXSharp.Connector.Identity;
 using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes;
@@ -378,6 +380,19 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
         NextPeriodicReadSet[primitive.Symbol] = primitive;
     }
 
+    private static CultureInfo desiredCulture = CultureInfo.InvariantCulture;
+    
+    /// <summary>
+    /// Sets the culture for this connector.
+    /// </summary>
+    /// <param name="culture">Desired culture</param>
+    public static void SetCulture(CultureInfo culture)
+    {
+        desiredCulture = culture;
+    }
+
+   
+
     /// <summary>
     ///     Starts cyclical read write operation on this connector.
     /// </summary>
@@ -392,6 +407,14 @@ public abstract class Connector : RootTwinObject, INotifyPropertyChanged
             while (true)
                 if (!IsRwLoopSuspended)
                 {
+                    if (desiredCulture.Name != CultureInfo.InvariantCulture.Name 
+                        && (Thread.CurrentThread.CurrentUICulture.Name != desiredCulture.Name ||
+                        Thread.CurrentThread.CurrentCulture.Name != desiredCulture.Name))
+                    {
+                        Thread.CurrentThread.CurrentUICulture = desiredCulture;
+                        Thread.CurrentThread.CurrentCulture = desiredCulture;
+                    }
+
                     await Task.Delay(ReadWriteCycleDelay);
                     sw.Restart();
                     try

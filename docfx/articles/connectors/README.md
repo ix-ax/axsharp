@@ -346,6 +346,23 @@ Example
 ix_plc.PlcTranslator.Instance.SetLocalizationResource(typeof(myproject.ResourcesOverride.OverridePlcStringResources));
 ~~~
 
+### Localization in a client in server-side application
+
+In order to get translation in given culture for a client in a server side application you should use methods `Get{ProperyName}(CultureInfo culture)` to get translation for client current culture. The properties will returned original string where localization tokens are removed.
+
+~~~csharp
+var notTranlsated = obj.AttributeName;
+var translated = obj.GetAttribute(new CultureInfo("sk-SK"));
+~~~
+
+### Setting connector's culture
+
+In some instances it might be necessary to set the culture for the threads handling connectors. In that case use the following method to impose a specific culture.
+
+~~~csharp
+AXSharp.Connector.Connector.SetCulture(new CultureInfo("en-US"));
+~~~
+
 See also
 
 [Dummy Connector](Dummy.md)
