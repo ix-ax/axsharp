@@ -21,7 +21,7 @@ namespace AXSharp.Connector.Localizations
         
         private ResourceManager _resourceManager;
 
-        private CultureInfo Culture = new CultureInfo("sk-SK");
+        private CultureInfo Culture = CultureInfo.InvariantCulture;
 
         /// <summary>
         /// Translates localized string.
@@ -33,11 +33,7 @@ namespace AXSharp.Connector.Localizations
         {
             if(culture == null) culture = Culture;
 
-            if (_resourceManager == null)
-            {
-                return originalString.CleanUpLocalizationTokens();
-            }
-
+            
             return Localize(originalString, twin, culture);
         }
 
@@ -119,13 +115,13 @@ namespace AXSharp.Connector.Localizations
 
         public string Localize(string str, ITwinElement twinElement, CultureInfo culture)
         {
-            Console.WriteLine($"{str}");
+            
             foreach (var localizable in GetTranslatable(str))
             {
                 var validIdentifier = LocalizationHelper.CreateId(localizable.CleanUpLocalizationTokens());
 
                 // Search in first level resource
-                var translation = _resourceManager.GetString(validIdentifier, culture);
+                var translation = _resourceManager?.GetString(validIdentifier, culture);
                 
                 // Search in parent resources
                 if (translation == null)
