@@ -10,7 +10,8 @@
     },
     "ixc-simple-template": {
       "commandName": "Project",
-      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\templates.simple\\ctrl\\"
+      "commandLineArgs": "-b",
+      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\templates.simple\\app\\"
     },
     "ixc-template-ref": {
       "commandName": "Project",
