@@ -374,13 +374,24 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                         return primitiveComponent;
                     }
                 default:
-                    var name = $"{namespc}.{twinType.Name}";
+                    var name = $"{namespc}.{FilterOutGeneric(twinType.Name)}";
                     var buildedComponentName = $"{name}{presentationName}View";
                     var defaultComponent = ComponentService.GetComponent(buildedComponentName);
                     SubscribeForPolling(defaultComponent, twin);
                     return defaultComponent;
             }
         }
+
+        private string FilterOutGeneric(string twinTypeName)
+        {
+            int indexOfBacktick = twinTypeName.IndexOf('`');
+            if (indexOfBacktick >= 0)
+            {
+                return twinTypeName.Substring(0, indexOfBacktick);
+            }
+            return twinTypeName;
+        }
+
         private bool HasReadAccess(ITwinPrimitive kid) => kid.ReadWriteAccess == ReadWriteAccess.Read;
 
         private bool CheckForArray(ITwinObject twinObject)
