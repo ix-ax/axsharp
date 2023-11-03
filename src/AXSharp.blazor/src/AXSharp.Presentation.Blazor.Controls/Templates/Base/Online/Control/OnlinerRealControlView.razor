@@ -21,7 +21,7 @@
 
     private void Change(ChangeEventArgs args)
     {
-        if (Single.TryParse(args.Value.ToString().Replace('.', ','), out var parseValue))
+        if (Single.TryParse(args.Value.ToString(), out var parseValue))
             Value = parseValue;
 
         Key++;
