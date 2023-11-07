@@ -13,7 +13,8 @@ using Siemens.Simatic.S7.Webserver.API.Enums;
 using Siemens.Simatic.S7.Webserver.API.Models;
 using Siemens.Simatic.S7.Webserver.API.Services;
 using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
-namespace AXSharp.TIA.Connector;
+
+namespace AXSharp.TIA2AXSharp;
 
 /// <summary>
 /// Class containing methods for creating a TIA2AX adapter
@@ -65,6 +66,7 @@ public class TIA2AXSharpAdapter
     /// Creates TIARootObject from provided connector and from symbol downwards
     /// </summary>
     /// <param name="connector">Instance of WebApiConnector</param>
+    /// <param name="symbol">Symbol from which browsing should start.</param>
     /// <returns>TIARootObject</returns>
     public static async Task<TIARootObject> CreateTIARootObject(WebApiConnector connector, string symbol)
     {

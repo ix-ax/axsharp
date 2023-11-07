@@ -11,7 +11,7 @@ using AXSharp.Connector.Localizations;
 using AXSharp.TIA2AXSharp;
 using Newtonsoft.Json;
 
-namespace AXSharp.TIA.Connector;
+namespace AXSharp.TIA2AXSharp;
 
 public class TIATwinObject : ITwinObject, ITIAGenericObject
 {
