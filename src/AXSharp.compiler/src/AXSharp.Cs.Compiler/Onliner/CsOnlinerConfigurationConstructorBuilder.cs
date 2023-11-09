@@ -12,6 +12,7 @@ using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Cs.Helpers;
 using AXSharp.Connector;
 using AXSharp.Connector.BuilderHelpers;
+using AXSharp.Compiler.Cs;
 using System;
 
 namespace AXSharp.Compiler.Cs.Onliner;
@@ -127,10 +128,13 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
 
     private void AddMemberInitialization(IClassDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)
     {
+        var attributes = variable.Pragmas.AddAttributes();
+        var isdb = attributes.Split('\n').Any(p => p == "[DBAttribute()]");
         AddToSource($"{variable.Name}");
         AddToSource("= new");
         type.Accept(visitor, this);
-        AddToSource($"(this.Connector, \"\", \"{variable.Name}\");");
+        var symbol = isdb ? $"\"\\\"{variable.Name}\\\"\"" : $"\"{variable.Name}\"";
+        AddToSource($"(this.Connector, \"\", {symbol});");
     }
 
     private void AddMemberInitialization(IStructuredTypeDeclaration type, IVariableDeclaration variable, IxNodeVisitor visitor)

@@ -4,7 +4,6 @@
 using CommandLine;
 using AXSharp.TIA2AXTool;
 using AXSharp.Connector.S71500.WebApi;
-using AXSharp.TIA.Connector;
 using AXSharp.TIA2AXSharp;
 using System.Diagnostics;
 using Siemens.Simatic.S7.Webserver.API.Exceptions;

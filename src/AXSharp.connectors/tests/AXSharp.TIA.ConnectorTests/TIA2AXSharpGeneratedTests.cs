@@ -1,11 +1,11 @@
 ﻿using AXSharp.Connector;
 using AXSharp.Connector.ValueTypes;
-using AXSharp.TIA.Connector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AXSharp.TIA2AXSharp;
 using Xunit;
 
 namespace AXSharp.TIA2AXSharpTests

@@ -1,5 +1,4 @@
 ﻿using Xunit;
-using AXSharp.TIA.Connector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
