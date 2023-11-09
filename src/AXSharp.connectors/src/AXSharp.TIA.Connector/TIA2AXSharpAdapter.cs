@@ -199,6 +199,7 @@ public class TIA2AXSharpAdapter
         var children = requestHandler.PlcProgramBrowseAsync(ApiPlcProgramBrowseMode.Children, parentNode).Result.Result;
         parentNode.Children = children;
 
+
         await CreateTwin(parentNode, requestHandler, parent, dept);
 
     }

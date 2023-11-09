@@ -27,6 +27,7 @@ public class TIATwinObject : ITwinObject, ITIAGenericObject
     {
         _parent = parent;
         Symbol = Symbol = AXSharp.Connector.Connector.CreateSymbol(parent.Symbol, symbolTail);
+        _symbolTail = symbolTail;
     }
 
     public string Symbol { get; }
@@ -48,9 +49,11 @@ public class TIATwinObject : ITwinObject, ITIAGenericObject
         return _parent;
     }
 
+    private readonly string _symbolTail;
+
     public string GetSymbolTail()
     {
-        throw new NotImplementedException();
+        return _symbolTail;
     }
 
     public void Poll()

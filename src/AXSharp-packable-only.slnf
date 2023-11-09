@@ -14,6 +14,8 @@
       "AXSharp.connectors\\src\\AXSharp.Connector.S71500.WebAPI\\AXSharp.Connector.S71500.WebAPI.csproj",
       "AXSharp.connectors\\src\\AXSharp.Connector\\AXSharp.Connector.csproj",
       "AXSharp.connectors\\src\\AXSharp.TIA.Connector\\AXSharp.TIA2AXSharp.csproj",
+      "AXSharp.tools\\src\\AXSharp.LocalizablesToResx\\AXSharp.LocalizablesToResx.csproj",
+      "AXSharp.tools\\src\\AXSharp.TIA2AX.Tranformer\\AXSharp.TIA2AX.Transformer.csproj",
       "AXSharp.tools\\src\\AXSharp.TIA2AXTool\\AXSharp.TIA2AXTool.csproj"
     ]
   }
