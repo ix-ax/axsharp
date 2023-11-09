@@ -31,7 +31,7 @@ public static class WebApiConnectorExtensions
         string dbName = "\"TGlobalVariablesDB\"")
     {
         return new ConnectorAdapter(typeof(WebApiConnectorFactory))
-            { Parameters = new object[] { ipAddress, userName, password, ignoreSSLErros } };
+            { Parameters = new object[] { ipAddress, userName, password, ignoreSSLErros, dbName } };
     }
 
     /// <summary>

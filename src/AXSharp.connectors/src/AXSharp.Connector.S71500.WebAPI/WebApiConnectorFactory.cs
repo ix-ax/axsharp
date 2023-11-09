@@ -18,7 +18,8 @@ public class WebApiConnectorFactory : ConnectorFactory
         return new WebApiConnector((string)parameters[0],
             (string)parameters[1],
             (string)parameters[2],
-            (bool)parameters[3]);
+            (bool)parameters[3],
+            (string)parameters[4]);
     }
 
     /// <inheritdoc />
