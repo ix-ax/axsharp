@@ -41,6 +41,8 @@ public class BuildContext : FrostingContext
 
     public string ScrDir => Path.GetFullPath(Path.Combine(Environment.WorkingDirectory.FullPath, "..//src//"));
 
+    public string TemplatesDir => Path.GetFullPath(Path.Combine(Environment.WorkingDirectory.FullPath, "..//templates//"));
+
     public Cake.Common.Tools.DotNet.Build.DotNetBuildSettings DotNetBuildSettings { get; }
 
     public DotNetRestoreSettings DotNetRestoreTemplatesSettings { get; }
@@ -173,13 +175,13 @@ public class BuildContext : FrostingContext
     {
         var templates = new List<(string ax, string approject, string solution)>()
         {
-            (Path.Combine(this.ScrDir, "AXSharp.templates\\working\\templates\\axsharpblazor\\ax\\"),
-                Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.app\\axsharpblazor.hmi.csproj"),
-                    Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpblazor\\axsharpblazor.sln")),
+            (Path.Combine(this.TemplatesDir, "working\\templates\\axsharpblazor\\ax\\"),
+                Path.Combine(this.TemplatesDir,"working\\templates\\axsharpblazor\\axsharpblazor.app\\axsharpblazor.hmi.csproj"),
+                    Path.Combine(this.TemplatesDir,"working\\templates\\axsharpblazor\\axsharpblazor.sln")),
 
-            (Path.Combine(this.ScrDir, "AXSharp.templates\\working\\templates\\axsharpconsole\\ax"),
-                Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpconsole\\axsharpconsole\\axsharpconsole.app.csproj"),
-                    Path.Combine(this.ScrDir,"AXSharp.templates\\working\\templates\\axsharpconsole\\axsharpconsole.sln"))
+            (Path.Combine(this.TemplatesDir, "working\\templates\\axsharpconsole\\ax"),
+                Path.Combine(this.TemplatesDir,"working\\templates\\axsharpconsole\\axsharpconsole\\axsharpconsole.app.csproj"),
+                    Path.Combine(this.TemplatesDir,"working\\templates\\axsharpconsole\\axsharpconsole.sln"))
            
         };
 
