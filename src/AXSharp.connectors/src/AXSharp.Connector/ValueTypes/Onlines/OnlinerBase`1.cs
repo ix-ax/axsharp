@@ -15,6 +15,7 @@ using AXSharp.Connector.Localizations;
 using AXSharp.Connector.ValueTypes.Online;
 using AXSharp.Connector.ValueTypes.Shadows;
 using AXSharp.Connector.ValueValidation;
+using Newtonsoft.Json.Linq;
 
 namespace AXSharp.Connector.ValueTypes;
 
@@ -151,6 +152,24 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
         }
     }
 
+
+    /// <summary>
+    /// Writes the value to be written in the next call of bulk write to the PLC.
+    /// </summary>
+    /// <param name="val">Value to be written.</param>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete("Not to be used in your code my friend... use only if you know what you're doing")]
+    public T LethargicWrite(T val)
+    {
+        if (HasWriteAccess())
+        {
+            CyclicToWrite = val;
+        }
+
+        return val;
+    }
+
+
     /// <summary>
     /// Gets <see cref="Cyclic"/> translated with provided <see cref="CultureInfo"/>
     /// </summary>
@@ -259,7 +278,7 @@ public abstract class OnlinerBase<T> : OnlinerBase, IOnline<T>, IShadow<T>, INot
     /// <summary>
     ///     Gets information about this tag's online variable info.
     /// </summary>
-    public ITwinPrimitiveInfo VariableInfo { get; protected set; }
+    protected ITwinPrimitiveInfo VariableInfo { get; set; }
 
 
     /// <summary>

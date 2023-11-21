@@ -409,9 +409,15 @@ public partial class Nested : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Nested plain)
     {
-        SomeString.Cyclic = plain.SomeString;
-        SomeInt.Cyclic = plain.SomeInt;
-        SomeByte.Cyclic = plain.SomeByte;
+#pragma warning disable CS0612
+        SomeString.LethargicWrite(plain.SomeString);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        SomeInt.LethargicWrite(plain.SomeInt);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        SomeByte.LethargicWrite(plain.SomeByte);
+#pragma warning restore CS0612
         return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
@@ -419,9 +425,15 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public async Task _PlainToOnlineNoacAsync(Pocos.Nested plain)
     {
-        SomeString.Cyclic = plain.SomeString;
-        SomeInt.Cyclic = plain.SomeInt;
-        SomeByte.Cyclic = plain.SomeByte;
+#pragma warning disable CS0612
+        SomeString.LethargicWrite(plain.SomeString);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        SomeInt.LethargicWrite(plain.SomeInt);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        SomeByte.LethargicWrite(plain.SomeByte);
+#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

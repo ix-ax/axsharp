@@ -55,7 +55,9 @@ public partial class Motor : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Motor plain)
     {
-        isRunning.Cyclic = plain.isRunning;
+#pragma warning disable CS0612
+        isRunning.LethargicWrite(plain.isRunning);
+#pragma warning restore CS0612
         return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
@@ -63,7 +65,9 @@ public partial class Motor : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public async Task _PlainToOnlineNoacAsync(Pocos.Motor plain)
     {
-        isRunning.Cyclic = plain.isRunning;
+#pragma warning disable CS0612
+        isRunning.LethargicWrite(plain.isRunning);
+#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -246,7 +250,9 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
 #pragma warning disable CS0612
         await this.m._PlainToOnlineNoacAsync(plain.m);
 #pragma warning restore CS0612
-        displacement.Cyclic = plain.displacement;
+#pragma warning disable CS0612
+        displacement.LethargicWrite(plain.displacement);
+#pragma warning restore CS0612
         return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
@@ -257,7 +263,9 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
 #pragma warning disable CS0612
         await this.m._PlainToOnlineNoacAsync(plain.m);
 #pragma warning restore CS0612
-        displacement.Cyclic = plain.displacement;
+#pragma warning disable CS0612
+        displacement.LethargicWrite(plain.displacement);
+#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

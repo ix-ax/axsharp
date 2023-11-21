@@ -71,7 +71,9 @@ namespace NamedValuesNamespace
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
         {
-            LColors.Cyclic = plain.LColors;
+#pragma warning disable CS0612
+            LColors.LethargicWrite(plain.LColors);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -79,7 +81,9 @@ namespace NamedValuesNamespace
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.NamedValuesNamespace.using_type_named_values plain)
         {
-            LColors.Cyclic = plain.LColors;
+#pragma warning disable CS0612
+            LColors.LethargicWrite(plain.LColors);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

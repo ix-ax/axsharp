@@ -109,10 +109,16 @@ namespace MonsterData
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.MonsterBase plain)
         {
-            Description.Cyclic = plain.Description;
-            Id.Cyclic = plain.Id;
+#pragma warning disable CS0612
+            Description.LethargicWrite(plain.Description);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Id.LethargicWrite(plain.Id);
+#pragma warning restore CS0612
             var _ArrayOfBytes_i_FE8484DAB3 = 0;
-            ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+#pragma warning disable CS0612
+            ArrayOfBytes.Select(p => p.LethargicWrite(plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
 #pragma warning disable CS0612
             ArrayOfDrives.Select(p => p._PlainToOnlineNoacAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
@@ -120,7 +126,9 @@ namespace MonsterData
 #pragma warning disable CS0612
             await this.DriveBase_tobeignoredbypocooperations._PlainToOnlineNoacAsync(plain.DriveBase_tobeignoredbypocooperations);
 #pragma warning restore CS0612
-            Description_tobeignoredbypocooperations.Cyclic = plain.Description_tobeignoredbypocooperations;
+#pragma warning disable CS0612
+            Description_tobeignoredbypocooperations.LethargicWrite(plain.Description_tobeignoredbypocooperations);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -128,10 +136,16 @@ namespace MonsterData
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.MonsterData.MonsterBase plain)
         {
-            Description.Cyclic = plain.Description;
-            Id.Cyclic = plain.Id;
+#pragma warning disable CS0612
+            Description.LethargicWrite(plain.Description);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Id.LethargicWrite(plain.Id);
+#pragma warning restore CS0612
             var _ArrayOfBytes_i_FE8484DAB3 = 0;
-            ArrayOfBytes.Select(p => p.Cyclic = plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++]).ToArray();
+#pragma warning disable CS0612
+            ArrayOfBytes.Select(p => p.LethargicWrite(plain.ArrayOfBytes[_ArrayOfBytes_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
             var _ArrayOfDrives_i_FE8484DAB3 = 0;
 #pragma warning disable CS0612
             ArrayOfDrives.Select(p => p._PlainToOnlineNoacAsync(plain.ArrayOfDrives[_ArrayOfDrives_i_FE8484DAB3++])).ToArray();
@@ -139,7 +153,9 @@ namespace MonsterData
 #pragma warning disable CS0612
             await this.DriveBase_tobeignoredbypocooperations._PlainToOnlineNoacAsync(plain.DriveBase_tobeignoredbypocooperations);
 #pragma warning restore CS0612
-            Description_tobeignoredbypocooperations.Cyclic = plain.Description_tobeignoredbypocooperations;
+#pragma warning disable CS0612
+            Description_tobeignoredbypocooperations.LethargicWrite(plain.Description_tobeignoredbypocooperations);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -474,10 +490,18 @@ namespace MonsterData
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.MonsterData.DriveBase plain)
         {
-            Position.Cyclic = plain.Position;
-            Velo.Cyclic = plain.Velo;
-            Acc.Cyclic = plain.Acc;
-            Dcc.Cyclic = plain.Dcc;
+#pragma warning disable CS0612
+            Position.LethargicWrite(plain.Position);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Velo.LethargicWrite(plain.Velo);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Acc.LethargicWrite(plain.Acc);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Dcc.LethargicWrite(plain.Dcc);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -485,10 +509,18 @@ namespace MonsterData
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.MonsterData.DriveBase plain)
         {
-            Position.Cyclic = plain.Position;
-            Velo.Cyclic = plain.Velo;
-            Acc.Cyclic = plain.Acc;
-            Dcc.Cyclic = plain.Dcc;
+#pragma warning disable CS0612
+            Position.LethargicWrite(plain.Position);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Velo.LethargicWrite(plain.Velo);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Acc.LethargicWrite(plain.Acc);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Dcc.LethargicWrite(plain.Dcc);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

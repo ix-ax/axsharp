@@ -87,8 +87,12 @@ namespace Simatic.Ax.StateFramework
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
         {
-            CompareToValue.Cyclic = plain.CompareToValue;
-            Condition.Cyclic = (short)plain.Condition;
+#pragma warning disable CS0612
+            CompareToValue.LethargicWrite(plain.CompareToValue);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Condition.LethargicWrite((short)plain.Condition);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -96,8 +100,12 @@ namespace Simatic.Ax.StateFramework
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.Simatic.Ax.StateFramework.CompareGuardLint plain)
         {
-            CompareToValue.Cyclic = plain.CompareToValue;
-            Condition.Cyclic = (short)plain.Condition;
+#pragma warning disable CS0612
+            CompareToValue.LethargicWrite(plain.CompareToValue);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Condition.LethargicWrite((short)plain.Condition);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
