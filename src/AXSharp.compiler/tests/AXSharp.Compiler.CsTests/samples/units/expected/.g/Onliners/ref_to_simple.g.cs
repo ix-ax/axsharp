@@ -234,7 +234,9 @@ namespace RefToSimple
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.RefToSimple.referenced plain)
         {
-            b.Cyclic = plain.b;
+#pragma warning disable CS0612
+            b.LethargicWrite(plain.b);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -242,7 +244,9 @@ namespace RefToSimple
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.RefToSimple.referenced plain)
         {
-            b.Cyclic = plain.b;
+#pragma warning disable CS0612
+            b.LethargicWrite(plain.b);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

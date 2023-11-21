@@ -97,8 +97,12 @@ namespace makereadonly
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
         {
-            makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
-            someOtherMember.Cyclic = plain.someOtherMember;
+#pragma warning disable CS0612
+            makeReadOnceMember.LethargicWrite(plain.makeReadOnceMember);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            someOtherMember.LethargicWrite(plain.someOtherMember);
+#pragma warning restore CS0612
 #pragma warning disable CS0612
             await this.makeReadComplexMember._PlainToOnlineNoacAsync(plain.makeReadComplexMember);
 #pragma warning restore CS0612
@@ -112,8 +116,12 @@ namespace makereadonly
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.makereadonly.MembersWithMakeReadOnly plain)
         {
-            makeReadOnceMember.Cyclic = plain.makeReadOnceMember;
-            someOtherMember.Cyclic = plain.someOtherMember;
+#pragma warning disable CS0612
+            makeReadOnceMember.LethargicWrite(plain.makeReadOnceMember);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            someOtherMember.LethargicWrite(plain.someOtherMember);
+#pragma warning restore CS0612
 #pragma warning disable CS0612
             await this.makeReadComplexMember._PlainToOnlineNoacAsync(plain.makeReadComplexMember);
 #pragma warning restore CS0612
@@ -308,8 +316,12 @@ namespace makereadonly
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.makereadonly.ComplexMember plain)
         {
-            someMember.Cyclic = plain.someMember;
-            someOtherMember.Cyclic = plain.someOtherMember;
+#pragma warning disable CS0612
+            someMember.LethargicWrite(plain.someMember);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            someOtherMember.LethargicWrite(plain.someOtherMember);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -317,8 +329,12 @@ namespace makereadonly
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.makereadonly.ComplexMember plain)
         {
-            someMember.Cyclic = plain.someMember;
-            someOtherMember.Cyclic = plain.someOtherMember;
+#pragma warning disable CS0612
+            someMember.LethargicWrite(plain.someMember);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            someOtherMember.LethargicWrite(plain.someOtherMember);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

@@ -78,7 +78,9 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
         {
             var _primitive_i_FE8484DAB3 = 0;
-            primitive.Select(p => p.Cyclic = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
+#pragma warning disable CS0612
+            primitive.Select(p => p.LethargicWrite(plain.primitive[_primitive_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
             var _complex_i_FE8484DAB3 = 0;
 #pragma warning disable CS0612
             complex.Select(p => p._PlainToOnlineNoacAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();
@@ -91,7 +93,9 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task _PlainToOnlineNoacAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain)
         {
             var _primitive_i_FE8484DAB3 = 0;
-            primitive.Select(p => p.Cyclic = plain.primitive[_primitive_i_FE8484DAB3++]).ToArray();
+#pragma warning disable CS0612
+            primitive.Select(p => p.LethargicWrite(plain.primitive[_primitive_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
             var _complex_i_FE8484DAB3 = 0;
 #pragma warning disable CS0612
             complex.Select(p => p._PlainToOnlineNoacAsync(plain.complex[_complex_i_FE8484DAB3++])).ToArray();

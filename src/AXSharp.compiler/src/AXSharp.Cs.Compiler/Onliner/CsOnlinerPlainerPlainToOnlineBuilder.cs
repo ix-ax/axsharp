@@ -83,21 +83,29 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                     case IScalarTypeDeclaration scalarTypeDeclaration:
                     case IStringTypeDeclaration stringTypeDeclaration:
                         AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                        AddToSource($"{declaration.Name}.Select(p => p.Cyclic = plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++]).ToArray();");
+                        AddToSource($"#pragma warning disable CS0612\n");
+                        AddToSource($"{declaration.Name}.Select(p => p.LethargicWrite(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                        AddToSource($"#pragma warning restore CS0612\n");
                         break;
                 }
                 break;
             case IReferenceTypeDeclaration referenceTypeDeclaration:
                 break;
             case IEnumTypeDeclaration enumTypeDeclaration:
-                AddToSource($" {declaration.Name}.Cyclic = (short)plain.{declaration.Name};");
+                AddToSource($"#pragma warning disable CS0612\n");
+                AddToSource($" {declaration.Name}.LethargicWrite((short)plain.{declaration.Name});");
+                AddToSource($"#pragma warning restore CS0612\n");
                 break;
             case INamedValueTypeDeclaration namedValueTypeDeclaration:
-                AddToSource($" {declaration.Name}.Cyclic = plain.{declaration.Name};");
+                AddToSource($"#pragma warning disable CS0612\n");
+                AddToSource($" {declaration.Name}.LethargicWrite(plain.{declaration.Name});");
+                AddToSource($"#pragma warning restore CS0612\n");
                 break;
             case IScalarTypeDeclaration scalarTypeDeclaration:
             case IStringTypeDeclaration stringTypeDeclaration:
-                AddToSource($" {declaration.Name}.Cyclic = plain.{declaration.Name};");
+                AddToSource($"#pragma warning disable CS0612\n");
+                AddToSource($" {declaration.Name}.LethargicWrite(plain.{declaration.Name});");
+                AddToSource($"#pragma warning restore CS0612\n");
                 break;
         }
     }

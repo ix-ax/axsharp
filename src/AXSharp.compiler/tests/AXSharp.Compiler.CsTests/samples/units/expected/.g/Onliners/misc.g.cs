@@ -71,8 +71,12 @@ namespace Enums
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Enums.ClassWithEnums plain)
         {
-            colors.Cyclic = (short)plain.colors;
-            NamedValuesColors.Cyclic = plain.NamedValuesColors;
+#pragma warning disable CS0612
+            colors.LethargicWrite((short)plain.colors);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            NamedValuesColors.LethargicWrite(plain.NamedValuesColors);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -80,8 +84,12 @@ namespace Enums
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.Enums.ClassWithEnums plain)
         {
-            colors.Cyclic = (short)plain.colors;
-            NamedValuesColors.Cyclic = plain.NamedValuesColors;
+#pragma warning disable CS0612
+            colors.LethargicWrite((short)plain.colors);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            NamedValuesColors.LethargicWrite(plain.NamedValuesColors);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -488,7 +496,9 @@ namespace misc
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.SomeClass plain)
         {
-            SomeClassVariable.Cyclic = plain.SomeClassVariable;
+#pragma warning disable CS0612
+            SomeClassVariable.LethargicWrite(plain.SomeClassVariable);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -496,7 +506,9 @@ namespace misc
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.misc.SomeClass plain)
         {
-            SomeClassVariable.Cyclic = plain.SomeClassVariable;
+#pragma warning disable CS0612
+            SomeClassVariable.LethargicWrite(plain.SomeClassVariable);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -664,7 +676,9 @@ namespace misc
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.misc.Motor plain)
         {
-            isRunning.Cyclic = plain.isRunning;
+#pragma warning disable CS0612
+            isRunning.LethargicWrite(plain.isRunning);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -672,7 +686,9 @@ namespace misc
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.misc.Motor plain)
         {
-            isRunning.Cyclic = plain.isRunning;
+#pragma warning disable CS0612
+            isRunning.LethargicWrite(plain.isRunning);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -855,7 +871,9 @@ namespace misc
 #pragma warning disable CS0612
             await this.m._PlainToOnlineNoacAsync(plain.m);
 #pragma warning restore CS0612
-            displacement.Cyclic = plain.displacement;
+#pragma warning disable CS0612
+            displacement.LethargicWrite(plain.displacement);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -866,7 +884,9 @@ namespace misc
 #pragma warning disable CS0612
             await this.m._PlainToOnlineNoacAsync(plain.m);
 #pragma warning restore CS0612
-            displacement.Cyclic = plain.displacement;
+#pragma warning disable CS0612
+            displacement.LethargicWrite(plain.displacement);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -1065,7 +1085,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             _complexKnown.Select(p => p._PlainToOnlineNoacAsync(plain._complexKnown[__complexKnown_i_FE8484DAB3++])).ToArray();
 #pragma warning restore CS0612
             var __primitive_i_FE8484DAB3 = 0;
-            _primitive.Select(p => p.Cyclic = plain._primitive[__primitive_i_FE8484DAB3++]).ToArray();
+#pragma warning disable CS0612
+            _primitive.Select(p => p.LethargicWrite(plain._primitive[__primitive_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -1078,7 +1100,9 @@ namespace UnknownArraysShouldNotBeTraspiled
             _complexKnown.Select(p => p._PlainToOnlineNoacAsync(plain._complexKnown[__complexKnown_i_FE8484DAB3++])).ToArray();
 #pragma warning restore CS0612
             var __primitive_i_FE8484DAB3 = 0;
-            _primitive.Select(p => p.Cyclic = plain._primitive[__primitive_i_FE8484DAB3++]).ToArray();
+#pragma warning disable CS0612
+            _primitive.Select(p => p.LethargicWrite(plain._primitive[__primitive_i_FE8484DAB3++])).ToArray();
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
@@ -1263,8 +1287,12 @@ namespace UnknownArraysShouldNotBeTraspiled
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.UnknownArraysShouldNotBeTraspiled.Complex plain)
         {
-            HelloString.Cyclic = plain.HelloString;
-            Id.Cyclic = plain.Id;
+#pragma warning disable CS0612
+            HelloString.LethargicWrite(plain.HelloString);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Id.LethargicWrite(plain.Id);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -1272,8 +1300,12 @@ namespace UnknownArraysShouldNotBeTraspiled
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.UnknownArraysShouldNotBeTraspiled.Complex plain)
         {
-            HelloString.Cyclic = plain.HelloString;
-            Id.Cyclic = plain.Id;
+#pragma warning disable CS0612
+            HelloString.LethargicWrite(plain.HelloString);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+            Id.LethargicWrite(plain.Id);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()

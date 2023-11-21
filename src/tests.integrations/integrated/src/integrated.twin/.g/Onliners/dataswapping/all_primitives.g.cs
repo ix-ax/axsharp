@@ -194,29 +194,75 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.all_primitives plain)
     {
-        myBOOL.Cyclic = plain.myBOOL;
-        myBYTE.Cyclic = plain.myBYTE;
-        myWORD.Cyclic = plain.myWORD;
-        myDWORD.Cyclic = plain.myDWORD;
-        myLWORD.Cyclic = plain.myLWORD;
-        mySINT.Cyclic = plain.mySINT;
-        myINT.Cyclic = plain.myINT;
-        myDINT.Cyclic = plain.myDINT;
-        myLINT.Cyclic = plain.myLINT;
-        myUSINT.Cyclic = plain.myUSINT;
-        myUINT.Cyclic = plain.myUINT;
-        myUDINT.Cyclic = plain.myUDINT;
-        myULINT.Cyclic = plain.myULINT;
-        myREAL.Cyclic = plain.myREAL;
-        myLREAL.Cyclic = plain.myLREAL;
-        myTIME.Cyclic = plain.myTIME;
-        myLTIME.Cyclic = plain.myLTIME;
-        myDATE.Cyclic = plain.myDATE;
-        myTIME_OF_DAY.Cyclic = plain.myTIME_OF_DAY;
-        myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
-        mySTRING.Cyclic = plain.mySTRING;
-        myWSTRING.Cyclic = plain.myWSTRING;
-        myEnum.Cyclic = (short)plain.myEnum;
+#pragma warning disable CS0612
+        myBOOL.LethargicWrite(plain.myBOOL);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myBYTE.LethargicWrite(plain.myBYTE);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myWORD.LethargicWrite(plain.myWORD);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDWORD.LethargicWrite(plain.myDWORD);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLWORD.LethargicWrite(plain.myLWORD);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        mySINT.LethargicWrite(plain.mySINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myINT.LethargicWrite(plain.myINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDINT.LethargicWrite(plain.myDINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLINT.LethargicWrite(plain.myLINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myUSINT.LethargicWrite(plain.myUSINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myUINT.LethargicWrite(plain.myUINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myUDINT.LethargicWrite(plain.myUDINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myULINT.LethargicWrite(plain.myULINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myREAL.LethargicWrite(plain.myREAL);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLREAL.LethargicWrite(plain.myLREAL);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myTIME.LethargicWrite(plain.myTIME);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLTIME.LethargicWrite(plain.myLTIME);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDATE.LethargicWrite(plain.myDATE);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myTIME_OF_DAY.LethargicWrite(plain.myTIME_OF_DAY);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDATE_AND_TIME.LethargicWrite(plain.myDATE_AND_TIME);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        mySTRING.LethargicWrite(plain.mySTRING);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myWSTRING.LethargicWrite(plain.myWSTRING);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myEnum.LethargicWrite((short)plain.myEnum);
+#pragma warning restore CS0612
         return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
@@ -224,29 +270,75 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public async Task _PlainToOnlineNoacAsync(Pocos.all_primitives plain)
     {
-        myBOOL.Cyclic = plain.myBOOL;
-        myBYTE.Cyclic = plain.myBYTE;
-        myWORD.Cyclic = plain.myWORD;
-        myDWORD.Cyclic = plain.myDWORD;
-        myLWORD.Cyclic = plain.myLWORD;
-        mySINT.Cyclic = plain.mySINT;
-        myINT.Cyclic = plain.myINT;
-        myDINT.Cyclic = plain.myDINT;
-        myLINT.Cyclic = plain.myLINT;
-        myUSINT.Cyclic = plain.myUSINT;
-        myUINT.Cyclic = plain.myUINT;
-        myUDINT.Cyclic = plain.myUDINT;
-        myULINT.Cyclic = plain.myULINT;
-        myREAL.Cyclic = plain.myREAL;
-        myLREAL.Cyclic = plain.myLREAL;
-        myTIME.Cyclic = plain.myTIME;
-        myLTIME.Cyclic = plain.myLTIME;
-        myDATE.Cyclic = plain.myDATE;
-        myTIME_OF_DAY.Cyclic = plain.myTIME_OF_DAY;
-        myDATE_AND_TIME.Cyclic = plain.myDATE_AND_TIME;
-        mySTRING.Cyclic = plain.mySTRING;
-        myWSTRING.Cyclic = plain.myWSTRING;
-        myEnum.Cyclic = (short)plain.myEnum;
+#pragma warning disable CS0612
+        myBOOL.LethargicWrite(plain.myBOOL);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myBYTE.LethargicWrite(plain.myBYTE);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myWORD.LethargicWrite(plain.myWORD);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDWORD.LethargicWrite(plain.myDWORD);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLWORD.LethargicWrite(plain.myLWORD);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        mySINT.LethargicWrite(plain.mySINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myINT.LethargicWrite(plain.myINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDINT.LethargicWrite(plain.myDINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLINT.LethargicWrite(plain.myLINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myUSINT.LethargicWrite(plain.myUSINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myUINT.LethargicWrite(plain.myUINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myUDINT.LethargicWrite(plain.myUDINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myULINT.LethargicWrite(plain.myULINT);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myREAL.LethargicWrite(plain.myREAL);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLREAL.LethargicWrite(plain.myLREAL);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myTIME.LethargicWrite(plain.myTIME);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myLTIME.LethargicWrite(plain.myLTIME);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDATE.LethargicWrite(plain.myDATE);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myTIME_OF_DAY.LethargicWrite(plain.myTIME_OF_DAY);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myDATE_AND_TIME.LethargicWrite(plain.myDATE_AND_TIME);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        mySTRING.LethargicWrite(plain.mySTRING);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myWSTRING.LethargicWrite(plain.myWSTRING);
+#pragma warning restore CS0612
+#pragma warning disable CS0612
+        myEnum.LethargicWrite((short)plain.myEnum);
+#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()

@@ -73,7 +73,9 @@ namespace TypesWithPropertyAttributes
 
         public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)
         {
-            Counter.Cyclic = plain.Counter;
+#pragma warning disable CS0612
+            Counter.LethargicWrite(plain.Counter);
+#pragma warning restore CS0612
             return await this.WriteAsync<IgnoreOnPocoOperation>();
         }
 
@@ -81,7 +83,9 @@ namespace TypesWithPropertyAttributes
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public async Task _PlainToOnlineNoacAsync(Pocos.TypesWithPropertyAttributes.SomeAddedProperties plain)
         {
-            Counter.Cyclic = plain.Counter;
+#pragma warning disable CS0612
+            Counter.LethargicWrite(plain.Counter);
+#pragma warning restore CS0612
         }
 
         public async virtual Task<T> ShadowToPlain<T>()
