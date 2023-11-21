@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "AXSharp.ixc": {
-      "version": "0.16.0-move-template-to-separate-dir.168",
+      "version": "0.17.0-PTKu-patch-2.169",
       "commands": [
         "ixc"
       ]
