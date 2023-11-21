@@ -83,7 +83,7 @@ public class BuildContext : FrostingContext
         DotNetRunSettings = new DotNetRunSettings()
         {
             Verbosity = buildParameters.Verbosity,
-            Framework = "net7.0",
+            Framework = "net8.0",
             Configuration = buildParameters.Configuration,
             NoBuild = true,
             NoRestore = true,
@@ -167,7 +167,7 @@ public class BuildContext : FrostingContext
         }
     }
 
-    public IEnumerable<string> TargetFrameworks { get; } = new List<string>() { "net6.0", "net7.0" };
+    public IEnumerable<string> TargetFrameworks { get; } = new List<string>() { "net7.0", "net8.0" };
 
     public IEnumerable<(string ax, string approject, string solution)> GetTemplateProjects()
     {
@@ -189,6 +189,9 @@ public class BuildContext : FrostingContext
 
     private static void DeleteDirectory(string target_dir)
     {
+        if (!Directory.Exists(target_dir))
+            return;
+        
         string[] files = Directory.GetFiles(target_dir);
         string[] dirs = Directory.GetDirectories(target_dir);
 
@@ -209,7 +212,7 @@ public class BuildContext : FrostingContext
     public void CleaUpAllBinsAndObjs()
     {
         foreach (var directory in Directory.EnumerateDirectories(this.ScrDir, "*.*", SearchOption.AllDirectories).Select(p => new DirectoryInfo(p))
-                     .Where(p => p.Name == "bin" || p.Name == "obj"))
+                     .Where(p => (p.Name == "bin" || p.Name == "obj") && !string.IsNullOrEmpty(p.LinkTarget)))
         {
             DeleteDirectory(directory.FullName);
         }

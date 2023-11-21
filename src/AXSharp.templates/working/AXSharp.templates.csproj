@@ -8,7 +8,7 @@
     <Description>AXSharp project templates.</Description>
     <PackageTags>simatic-ax;axsharp;templates</PackageTags>
 
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -35,13 +35,5 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="GitVersion.MsBuild" Version="5.11.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
+  </ItemGroup>  
 </Project>
