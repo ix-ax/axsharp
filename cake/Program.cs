@@ -414,8 +414,13 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
             return;
         }
 
+       
+       
         PackTemplatePackages(context,
-            Path.Combine(context.TemplatesDir, "AXSharp.templates.sln"));
+            Path.Combine(context.TemplatesDir,"working", "AXSharp.templates.sln"));
+        
+        
+        
         context.PushNugetPackages("templates");
 
         context.CheckLicenseComplianceInArtifacts();

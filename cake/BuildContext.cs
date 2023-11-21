@@ -66,7 +66,7 @@ public class BuildContext : FrostingContext
             NoRestore = false,
             MSBuildSettings = new DotNetMSBuildSettings()
             {
-                Verbosity = DotNetVerbosity.Quiet
+                Verbosity = buildParameters.Verbosity
             }
         };
         

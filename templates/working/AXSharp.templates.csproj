@@ -22,9 +22,13 @@
     <Compile Remove="**\*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\assets\icons\icon_128_128.png" Link="templates\icon_128_128.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\NUGET-README.md" Link="templates\NUGET-README.md" />
+    <None Include="..\..\assets\icons\icon_128_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\src\NUGET-README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 </Project>

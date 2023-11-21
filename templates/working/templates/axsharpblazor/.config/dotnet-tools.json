@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "AXSharp.ixc": {
-      "version": "0.17.0-PTKu-patch-2.169",
+      "version": "0.17.0-alpha.169",
       "commands": [
         "ixc"
       ]
