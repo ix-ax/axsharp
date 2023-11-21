@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
@@ -34,13 +34,7 @@
 		<ProjectReference Include="..\AXSharp.Connector.S71500.WebAPI\AXSharp.Connector.S71500.WebAPI.csproj" />
 		<ProjectReference Include="..\AXSharp.Connector\AXSharp.Connector.csproj" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>    
-  </ItemGroup>
+  
 
   <ItemGroup>
 		<None Include="..\..\..\..\assets\icons\icon_128_128.png" Link="icon_128_128.png">

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    
     <RootNamespace>AXSharp.ixc_doc</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -47,14 +47,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LibGit2Sharp" Version="0.27.2" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-		<PackageReference Include="YamlDotNet" Version="13.0.0" />
-		<PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		<PackageReference Include="LibGit2Sharp"/>
+		<PackageReference Include="Newtonsoft.Json"/>
+		<PackageReference Include="YamlDotNet"/>
+		<PackageReference Include="CommandLineParser"/>    
 	</ItemGroup>
 
 	

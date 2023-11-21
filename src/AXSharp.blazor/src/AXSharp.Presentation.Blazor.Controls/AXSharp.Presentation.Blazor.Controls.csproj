@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    
 
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
@@ -81,12 +81,8 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+  <ItemGroup>  
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
   </ItemGroup>
 
   <ItemGroup>
