@@ -317,7 +317,7 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
             return;
         }
 
-        var templatesDirectory = Path.Combine(context.ScrDir, "AXSharp.templates\\working\\templates");
+        var templatesDirectory = Path.Combine(context.TemplatesDir);
         var templateCsProjFiles = Directory.EnumerateFiles(templatesDirectory, "*.csproj", SearchOption.AllDirectories);
 
         foreach (var templateCsProjFile in templateCsProjFiles)
@@ -369,8 +369,8 @@ public sealed class TemplatesUpdateAndBuildTask : FrostingTask<BuildContext>
 
         foreach (var template in context.GetTemplateProjects())
         {
-            context.DotNetRestore(Path.Combine(context.ScrDir, template.solution), context.DotNetRestoreTemplatesSettings);
-            context.DotNetBuild(Path.Combine(context.ScrDir, template.solution), context.DotNetBuildSettings);
+            context.DotNetRestore(Path.Combine(context.TemplatesDir, template.solution), context.DotNetRestoreTemplatesSettings);
+            context.DotNetBuild(Path.Combine(context.TemplatesDir, template.solution), context.DotNetBuildSettings);
         }
     }
 }
@@ -415,7 +415,7 @@ public class TemplatesPackTask : FrostingTask<BuildContext>
         }
 
         PackTemplatePackages(context,
-            Path.Combine(context.ScrDir, "AXSharp.templates\\working\\AXSharp.templates.sln"));
+            Path.Combine(context.TemplatesDir, "AXSharp.templates.sln"));
         context.PushNugetPackages("templates");
 
         context.CheckLicenseComplianceInArtifacts();
