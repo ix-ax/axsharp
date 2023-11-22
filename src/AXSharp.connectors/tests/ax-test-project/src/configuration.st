@@ -57,5 +57,11 @@ CONFIGURATION MyConfiguration
         // GH_PKTu_ix_56_FirstInheritance : GH.PKTu.ix_56.FirstInheritance;
 
         GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
+
+        myLeapDATE : DATE;
+        myAfterLeapDATE : DATE;
+        myEdgeCaseLeapDATE1 : DATE;
+        myEdgeCaseLeapDATE2 : DATE;
+        myLeapEndDATE : DATE;
     END_VAR
 END_CONFIGURATION

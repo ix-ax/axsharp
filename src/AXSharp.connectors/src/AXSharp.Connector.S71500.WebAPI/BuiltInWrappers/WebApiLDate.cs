@@ -84,7 +84,18 @@ public class WebApiLDate : OnlinerDate, IWebApiPrimitive
     private DateOnly GetFromBinary(long value)
     {
         var val = value / 100;
-        return DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
+        var pd = DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
+        // temporary and not full fix for leap years (27.february and 28.february returns same value in year 2001)
+        // TODO (should be deleted)
+        // if is a leap year and is after a leap day, correct date
+        // if are first 2 months after leap year, correct date
+        if ((DateTime.IsLeapYear(pd.Year) && pd.Month > 2) ||
+         ((DateTime.IsLeapYear(pd.Year - 1) && pd.Month < 3)))
+        {
+            pd = pd.AddDays(-1);
+        }
+
+        return pd;
     }
 
     private string GetFromDate(DateOnly date)

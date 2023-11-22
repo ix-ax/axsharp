@@ -20,7 +20,7 @@ PROGRAM MyProgram
         myLREAL	        :       LREAL	      ;
         myTIME	        :       TIME	      ;
         myLTIME	        :       LTIME	      ;
-        myDATE	        :       DATE	      ;
+        myDATE	        :       DATE	      ; 
         myLDATE	        :       LDATE	      ;
         myTIME_OF_DAY	:       TIME_OF_DAY	  ;
         myLTIME_OF_DAY	:       LTIME_OF_DAY  ;
@@ -41,7 +41,11 @@ PROGRAM MyProgram
 
         Hierarchy : hierarchy;
 
-
+        myLeapDATE : DATE; 
+        myAfterLeapDATE : DATE;
+        myEdgeCaseLeapDATE1 : DATE;
+        myEdgeCaseLeapDATE2 : DATE;
+        myLeapEndDATE : DATE;
         //myArrayString: ARRAY[0..10] OF STRING ;
         //myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
 
@@ -60,7 +64,12 @@ PROGRAM MyProgram
 
     
 
-    //myDATE := DATE#1970-01-01;
+    myLeapDATE := DATE#2000-03-20;
+    myLeapEndDATE := DATE#2000-12-31;
+    myAfterLeapDATE := DATE#2001-02-10;
+    myEdgeCaseLeapDATE1 := DATE#2001-02-27;
+    myEdgeCaseLeapDATE2 := DATE#2001-02-28;
+    
     //myColors := Colors#GREEN;
     //mins.myBOOL	            :=  false    ;
     mins.myBYTE	            :=  BYTE#2#0    ;
