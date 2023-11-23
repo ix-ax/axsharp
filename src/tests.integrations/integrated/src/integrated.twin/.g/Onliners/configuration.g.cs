@@ -150,8 +150,6 @@ public partial class integratedTwinController : ITwinController
 
 public partial class Pokus : AXSharp.Connector.ITwinObject
 {
-    public Nested Nested { get; }
-
     partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
     partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public Pokus(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
@@ -162,7 +160,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
         this.@Parent = parent;
         HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         PreConstruct(parent, readableTail, symbolTail);
-        Nested = new Nested(this, "Nested", "Nested");
         parent.AddChild(this);
         parent.AddKid(this);
         PostConstruct(parent, readableTail, symbolTail);
@@ -177,9 +174,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     {
         Pocos.Pokus plain = new Pocos.Pokus();
         await this.ReadAsync<IgnoreOnPocoOperation>();
-#pragma warning disable CS0612
-        plain.Nested = await Nested._OnlineToPlainNoacAsync();
-#pragma warning restore CS0612
         return plain;
     }
 
@@ -188,9 +182,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Pokus> _OnlineToPlainNoacAsync()
     {
         Pocos.Pokus plain = new Pocos.Pokus();
-#pragma warning disable CS0612
-        plain.Nested = await Nested._OnlineToPlainNoacAsync();
-#pragma warning restore CS0612
         return plain;
     }
 
@@ -198,9 +189,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     protected async Task<Pocos.Pokus> _OnlineToPlainNoacAsync(Pocos.Pokus plain)
     {
-#pragma warning disable CS0612
-        plain.Nested = await Nested._OnlineToPlainNoacAsync();
-#pragma warning restore CS0612
         return plain;
     }
 
@@ -211,9 +199,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Pokus plain)
     {
-#pragma warning disable CS0612
-        await this.Nested._PlainToOnlineNoacAsync(plain.Nested);
-#pragma warning restore CS0612
         return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
@@ -221,9 +206,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public async Task _PlainToOnlineNoacAsync(Pocos.Pokus plain)
     {
-#pragma warning disable CS0612
-        await this.Nested._PlainToOnlineNoacAsync(plain.Nested);
-#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -234,13 +216,11 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Pokus> ShadowToPlainAsync()
     {
         Pocos.Pokus plain = new Pocos.Pokus();
-        plain.Nested = await Nested.ShadowToPlainAsync();
         return plain;
     }
 
     protected async Task<Pocos.Pokus> ShadowToPlainAsync(Pocos.Pokus plain)
     {
-        plain.Nested = await Nested.ShadowToPlainAsync();
         return plain;
     }
 
@@ -251,7 +231,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Pokus plain)
     {
-        await this.Nested.PlainToShadowAsync(plain.Nested);
         return this.RetrievePrimitives();
     }
 
@@ -342,12 +321,6 @@ public partial class Pokus : AXSharp.Connector.ITwinObject
 
 public partial class Nested : AXSharp.Connector.ITwinObject
 {
-    public OnlinerString SomeString { get; }
-
-    public OnlinerInt SomeInt { get; }
-
-    public OnlinerByte SomeByte { get; }
-
     partial void PreConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
     partial void PostConstruct(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail);
     public Nested(AXSharp.Connector.ITwinObject parent, string readableTail, string symbolTail)
@@ -358,9 +331,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
         this.@Parent = parent;
         HumanReadable = AXSharp.Connector.Connector.CreateHumanReadable(parent.HumanReadable, readableTail);
         PreConstruct(parent, readableTail, symbolTail);
-        SomeString = @Connector.ConnectorAdapter.AdapterFactory.CreateSTRING(this, "SomeString", "SomeString");
-        SomeInt = @Connector.ConnectorAdapter.AdapterFactory.CreateINT(this, "SomeInt", "SomeInt");
-        SomeByte = @Connector.ConnectorAdapter.AdapterFactory.CreateBYTE(this, "SomeByte", "SomeByte");
         parent.AddChild(this);
         parent.AddKid(this);
         PostConstruct(parent, readableTail, symbolTail);
@@ -375,9 +345,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     {
         Pocos.Nested plain = new Pocos.Nested();
         await this.ReadAsync<IgnoreOnPocoOperation>();
-        plain.SomeString = SomeString.LastValue;
-        plain.SomeInt = SomeInt.LastValue;
-        plain.SomeByte = SomeByte.LastValue;
         return plain;
     }
 
@@ -386,9 +353,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Nested> _OnlineToPlainNoacAsync()
     {
         Pocos.Nested plain = new Pocos.Nested();
-        plain.SomeString = SomeString.LastValue;
-        plain.SomeInt = SomeInt.LastValue;
-        plain.SomeByte = SomeByte.LastValue;
         return plain;
     }
 
@@ -396,9 +360,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     protected async Task<Pocos.Nested> _OnlineToPlainNoacAsync(Pocos.Nested plain)
     {
-        plain.SomeString = SomeString.LastValue;
-        plain.SomeInt = SomeInt.LastValue;
-        plain.SomeByte = SomeByte.LastValue;
         return plain;
     }
 
@@ -409,15 +370,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToOnlineAsync(Pocos.Nested plain)
     {
-#pragma warning disable CS0612
-        SomeString.LethargicWrite(plain.SomeString);
-#pragma warning restore CS0612
-#pragma warning disable CS0612
-        SomeInt.LethargicWrite(plain.SomeInt);
-#pragma warning restore CS0612
-#pragma warning disable CS0612
-        SomeByte.LethargicWrite(plain.SomeByte);
-#pragma warning restore CS0612
         return await this.WriteAsync<IgnoreOnPocoOperation>();
     }
 
@@ -425,15 +377,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public async Task _PlainToOnlineNoacAsync(Pocos.Nested plain)
     {
-#pragma warning disable CS0612
-        SomeString.LethargicWrite(plain.SomeString);
-#pragma warning restore CS0612
-#pragma warning disable CS0612
-        SomeInt.LethargicWrite(plain.SomeInt);
-#pragma warning restore CS0612
-#pragma warning disable CS0612
-        SomeByte.LethargicWrite(plain.SomeByte);
-#pragma warning restore CS0612
     }
 
     public async virtual Task<T> ShadowToPlain<T>()
@@ -444,17 +387,11 @@ public partial class Nested : AXSharp.Connector.ITwinObject
     public async Task<Pocos.Nested> ShadowToPlainAsync()
     {
         Pocos.Nested plain = new Pocos.Nested();
-        plain.SomeString = SomeString.Shadow;
-        plain.SomeInt = SomeInt.Shadow;
-        plain.SomeByte = SomeByte.Shadow;
         return plain;
     }
 
     protected async Task<Pocos.Nested> ShadowToPlainAsync(Pocos.Nested plain)
     {
-        plain.SomeString = SomeString.Shadow;
-        plain.SomeInt = SomeInt.Shadow;
-        plain.SomeByte = SomeByte.Shadow;
         return plain;
     }
 
@@ -465,9 +402,6 @@ public partial class Nested : AXSharp.Connector.ITwinObject
 
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.Nested plain)
     {
-        SomeString.Shadow = plain.SomeString;
-        SomeInt.Shadow = plain.SomeInt;
-        SomeByte.Shadow = plain.SomeByte;
         return this.RetrievePrimitives();
     }
 

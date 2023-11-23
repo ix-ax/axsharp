@@ -66,18 +66,24 @@ namespace AXSharp.Compiler.Cs.Onliner
                     AddToSource($" plain.{declaration.Name} = await {declaration.Name}.{MethodName}Async();");
                     break;
                 case IArrayTypeDeclaration arrayTypeDeclaration:
-                    switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                    if (arrayTypeDeclaration.IsMemberEligibleForConstructor(SourceBuilder))
                     {
-                        case IClassDeclaration classDeclaration:
-                        case IStructuredTypeDeclaration structuredTypeDeclaration:
-                            AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}Async()).Select(p => p.Result).ToArray();");
-                            break;
-                        case IScalarTypeDeclaration scalarTypeDeclaration:
-                        case IStringTypeDeclaration stringTypeDeclaration:
+                        switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                        {
+                            case IClassDeclaration classDeclaration:
+                            case IStructuredTypeDeclaration structuredTypeDeclaration:
+                                AddToSource(
+                                    $"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodName}Async()).Select(p => p.Result).ToArray();");
+                                break;
+                            case IScalarTypeDeclaration scalarTypeDeclaration:
+                            case IStringTypeDeclaration stringTypeDeclaration:
 
-                            AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(p => p.Shadow).ToArray();");
-                            break;
+                                AddToSource(
+                                    $"plain.{declaration.Name} = {declaration.Name}.Select(p => p.Shadow).ToArray();");
+                                break;
+                        }
                     }
+
                     break;
                 case IReferenceTypeDeclaration referenceTypeDeclaration:
                     break;

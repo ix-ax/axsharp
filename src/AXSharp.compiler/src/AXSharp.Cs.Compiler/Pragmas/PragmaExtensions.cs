@@ -157,6 +157,11 @@ public static class PragmaExtensions
                     sb.AppendLine($"{declaration.Name}.MakeReadOnly();");
                     break;
             }
+
+            if (declaration.IsAvailableReadOnlyForComm())
+            {
+                sb.AppendLine($"{declaration.Name}.MakeReadOnly();");
+            }
         }
             
 

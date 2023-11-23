@@ -1,3 +1,4 @@
+{S7.extern=ReadWrite}
 CLASS hierarchy_2
     VAR PUBLIC
         item_member_property_1   :     hierarchy_0;

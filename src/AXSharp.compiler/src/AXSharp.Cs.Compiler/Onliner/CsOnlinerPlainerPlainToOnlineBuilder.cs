@@ -69,25 +69,30 @@ internal class CsOnlinerPlainerPlainToOnlineBuilder : ICombinedThreeVisitor
                 AddToSource($"#pragma warning restore CS0612\n");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
-                
 
-                switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                if (arrayTypeDeclaration.IsMemberEligibleForConstructor(SourceBuilder))
                 {
-                    case IClassDeclaration classDeclaration:
-                    case IStructuredTypeDeclaration structuredTypeDeclaration:
-                        AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                        AddToSource($"#pragma warning disable CS0612\n");
-                        AddToSource($"{declaration.Name}.Select(p => p.{MethodNameNoac}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
-                        AddToSource($"#pragma warning restore CS0612\n");
-                        break;
-                    case IScalarTypeDeclaration scalarTypeDeclaration:
-                    case IStringTypeDeclaration stringTypeDeclaration:
-                        AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                        AddToSource($"#pragma warning disable CS0612\n");
-                        AddToSource($"{declaration.Name}.Select(p => p.LethargicWrite(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
-                        AddToSource($"#pragma warning restore CS0612\n");
-                        break;
+                    switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                    {
+                        case IClassDeclaration classDeclaration:
+                        case IStructuredTypeDeclaration structuredTypeDeclaration:
+                            AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
+                            AddToSource($"#pragma warning disable CS0612\n");
+                            AddToSource(
+                                $"{declaration.Name}.Select(p => p.{MethodNameNoac}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                            AddToSource($"#pragma warning restore CS0612\n");
+                            break;
+                        case IScalarTypeDeclaration scalarTypeDeclaration:
+                        case IStringTypeDeclaration stringTypeDeclaration:
+                            AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
+                            AddToSource($"#pragma warning disable CS0612\n");
+                            AddToSource(
+                                $"{declaration.Name}.Select(p => p.LethargicWrite(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                            AddToSource($"#pragma warning restore CS0612\n");
+                            break;
+                    }
                 }
+
                 break;
             case IReferenceTypeDeclaration referenceTypeDeclaration:
                 break;

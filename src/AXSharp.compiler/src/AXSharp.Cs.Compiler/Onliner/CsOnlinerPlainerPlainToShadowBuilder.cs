@@ -67,20 +67,25 @@ namespace AXSharp.Compiler.Cs.Onliner
                     break;
                 case IArrayTypeDeclaration arrayTypeDeclaration:
 
-
-                    switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                    if (arrayTypeDeclaration.IsMemberEligibleForConstructor(SourceBuilder))
                     {
-                        case IClassDeclaration classDeclaration:
-                        case IStructuredTypeDeclaration structuredTypeDeclaration:
-                            AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                            AddToSource($"{declaration.Name}.Select(p => p.{MethodName}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
-                            break;
-                        case IScalarTypeDeclaration scalarTypeDeclaration:
-                        case IStringTypeDeclaration stringTypeDeclaration:
-                            AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
-                            AddToSource($"{declaration.Name}.Select(p => p.Shadow = plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++]).ToArray();");
-                            break;
+                        switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                        {
+                            case IClassDeclaration classDeclaration:
+                            case IStructuredTypeDeclaration structuredTypeDeclaration:
+                                AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
+                                AddToSource(
+                                    $"{declaration.Name}.Select(p => p.{MethodName}Async(plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++])).ToArray();");
+                                break;
+                            case IScalarTypeDeclaration scalarTypeDeclaration:
+                            case IStringTypeDeclaration stringTypeDeclaration:
+                                AddToSource($"var _{declaration.Name}_i_FE8484DAB3 = 0;");
+                                AddToSource(
+                                    $"{declaration.Name}.Select(p => p.Shadow = plain.{declaration.Name}[_{declaration.Name}_i_FE8484DAB3++]).ToArray();");
+                                break;
+                        }
                     }
+
                     break;
                 case IReferenceTypeDeclaration referenceTypeDeclaration:
                     break;

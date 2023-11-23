@@ -242,32 +242,9 @@
     "integrity": "sha512-2Pj/Encd6bUgsRfXyj3rA4YOUpRroqwzODKU37T95dMNle+BpFXYS3V88FYJyTdOgSrJik4VVdV1AFzH7NUQ8g=="
   },
   "@ax/sld": {
-    "version": "0.15.9",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/sld/-/sld-0.15.9.tgz",
-    "integrity": "sha512-Moqh0zbGNcpD88Z3uax2iXL0exnjsgXQodaZXiIFy5CrQaJzM3X/EzEHKBXQ8q+Xr8hs/Q6fWTUkkbDezVBZ6Q==",
-    "dependencies": {
-      "@ax/sld-linux-x64": "0.15.9",
-      "@ax/sld-win-x64": "0.15.9"
-    }
-  },
-  "@ax/sld-linux-x64": {
-    "version": "0.15.9",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/sld-linux-x64/-/sld-linux-x64-0.15.9.tgz",
-    "integrity": "sha512-jChM/HtZIP+nfMdkKYpkDkllg+tGkK9Y8qpVmCUjmliJ1nyO2mprVMRJKI9Q3m81mGdzpuD+vew4Vgx2e6xptw==",
-    "os": [
-      "linux"
-    ],
-    "cpu": [
-      "x64"
-    ]
-  },
-  "@ax/sld-win-x64": {
-    "version": "0.15.9",
-    "resolved": "https://registry.simatic-ax.siemens.io/@ax/sld-win-x64/-/sld-win-x64-0.15.9.tgz",
-    "integrity": "sha512-NYPJWNaNAZAL3t33gRb6cI9n1rvogbyrbb/Y0agBnvjY+MBqNxviyizFyMsloql//vZwKKl674TPFx4FFWcYDg==",
-    "os": [
-      "win32"
-    ],
+    "version": "2.0.5",
+    "resolved": "https://registry.simatic-ax.siemens.io/@ax/sld/-/sld-2.0.5.tgz",
+    "integrity": "sha512-upa0HyRVdYyzNu6j7E+gTAnpzP2mfZxvo+0jbm8H6Ci9ergL56SHaCVBC35PnociMZpdZ5d1/LTy6f8lwpDxXA==",
     "cpu": [
       "x64"
     ]

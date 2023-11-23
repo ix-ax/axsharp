@@ -8,7 +8,7 @@ targets:
   - swcpu
 devDependencies:
   "@ax/sdk": ^4.0.8
-  "@ax/sld": ^0.15.9
+  "@ax/sld": ^2.0.5
   "@ax/stc": ^5.4.89
 
 variables:
@@ -24,5 +24,4 @@ scripts:
     - apax build
     # Here you will need to set the argumen -t to your plc OP and -i to platfrom you are dowloading to
     # --default-server-interface is a must if you are using WebAPI      
-    - apax sld --accept-security-disclaimer -t $AXTARGET -i
-      $AXTARGETPLATFORMINPUT -r --default-server-interface
+    - apax sld load --accept-security-disclaimer -t $AXTARGET -i $AXTARGETPLATFORMINPUT -r

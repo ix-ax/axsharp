@@ -72,7 +72,7 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
                     AddToSource("{get;}");
                     break;
                 case IArrayTypeDeclaration array:
-                    if (array.ElementTypeAccess.Type.IsTypeEligibleForTranspile(SourceBuilder))
+                    if (array.IsEligibleForTranspile(SourceBuilder))
                     {
                         AddToSource($"{fieldDeclaration.AccessModifier.Transform()} ");
                         fieldDeclaration.Type.Accept(visitor, this);
@@ -161,7 +161,7 @@ internal class CsOnlinerMemberBuilder : ICombinedThreeVisitor
                     AddToSource("{get;}");
                     break;
                 case IArrayTypeDeclaration array:
-                    if (array.ElementTypeAccess.Type.IsTypeEligibleForTranspile(SourceBuilder))
+                    if (array.IsEligibleForTranspile(SourceBuilder))
                     {
                         AddToSource($"public");
                         semantics.Type.Accept(visitor, this);

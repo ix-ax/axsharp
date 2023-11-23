@@ -1,4 +1,5 @@
 NAMESPACE ArrayDeclarationSimpleNamespace
+    {S7.extern=ReadWrite}
     CLASS array_declaration_class
         VAR PUBLIC
             primitive : ARRAY[1..100] OF INT;
@@ -8,7 +9,7 @@ NAMESPACE ArrayDeclarationSimpleNamespace
             primitive_multidim : ARRAY[1..100, 0..100, 0..300] OF INT;
         END_VAR        
     END_CLASS
-
+    {S7.extern=ReadWrite}
     CLASS some_complex_type
         VAR
             

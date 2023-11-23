@@ -1,4 +1,5 @@
 NAMESPACE MonsterData
+    {S7.extern=ReadWrite}
     CLASS MonsterBase
         VAR PUBLIC
             Description : STRING;
@@ -13,12 +14,14 @@ NAMESPACE MonsterData
             Description_tobeignoredbypocooperations : STRING;
         END_VAR        
     END_CLASS
+    {S7.extern=ReadWrite}
     CLASS Monster EXTENDS MonsterBase
         VAR PUBLIC
             DriveA : DriveBase;
         END_VAR        
     END_CLASS
 
+    {S7.extern=ReadWrite}
     CLASS DriveBase
         VAR PUBLIC
             Position : LREAL;

@@ -40,6 +40,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public Compilation Compilation { get; }
 
+    public eCommAccessibility TypeCommAccessibility { get; private set; }
+
 
     private StringBuilder _sourceBuilder { get; } = new();
 
@@ -48,6 +50,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IClassDeclaration classDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = classDeclaration.GetCommAccessibility();
+        
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
         AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}");
 
@@ -92,7 +96,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             switch (fieldDeclaration.Type)
             {
                 case IArrayTypeDeclaration arrayType:
-                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(this))
+                    if (arrayType.IsEligibleForTranspile(this))
                     {
                         fieldDeclaration.Pragmas.AddAttributes();
                         AddToSource($"{fieldDeclaration.AccessModifier.Transform()}");
@@ -171,6 +175,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IConfigurationDeclaration configurationDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = eCommAccessibility.None;
+        
         AddToSource($"public partial class {Project.TargetProject.ProjectRootNamespace}TwinController{{");
         configurationDeclaration.Variables.ToList().ForEach(p => p.Accept(visitor, this));
         AddToSource("}");
@@ -232,7 +238,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
             switch (fieldDeclaration.Type)
             {
                 case IArrayTypeDeclaration arrayType:
-                    if (arrayType.ElementTypeAccess.Type.IsTypeEligibleForTranspile(this))
+                    if (arrayType.IsEligibleForTranspile(this))
                     {
                         fieldDeclaration.Pragmas.AddAttributes();
                         AddToSource($"public");
@@ -279,6 +285,8 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IStructuredTypeDeclaration structuredTypeDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = structuredTypeDeclaration.GetCommAccessibility();
+
         AddToSource(
             $"{structuredTypeDeclaration.AccessModifier.Transform()}partial class {structTypeDeclarationSyntax.Name.Text} ");
         AddToSource("{");
@@ -319,7 +327,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateArrayTypeDeclaration(IArrayTypeDeclaration arrayTypeDeclaration, IxNodeVisitor visitor)
     {
-        if (arrayTypeDeclaration.ElementTypeAccess.Type.IsTypeEligibleForTranspile(this)) return;
+        if (arrayTypeDeclaration.IsEligibleForTranspile(this)) return;
 
         arrayTypeDeclaration.ElementTypeAccess.Type.Accept(visitor, this);
         AddToSource("[]");

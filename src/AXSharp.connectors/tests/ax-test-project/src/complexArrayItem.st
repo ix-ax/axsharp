@@ -1,3 +1,4 @@
+{S7.extern=ReadWrite}
 CLASS complexArrayItem
     VAR PUBLIC
         itemBOOL	        :       BOOL	      ;
