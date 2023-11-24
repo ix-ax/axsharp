@@ -14,6 +14,7 @@ Syntax
 Example
 
 ~~~iecst
+{S7.extern=ReadWrite}
 {#ix-prop:public string Description}
 CLASS PUBLIC MyClass
     VAR PUBLIC
@@ -49,6 +50,7 @@ CLASS_DECLARATION | STRUCTURED_TYPE_DECLARATION
 Example
 
 ~~~iecst
+{S7.extern=ReadWrite}
 {#ix-prop:public string Description}
 {#ix-set:Description = "This is my classy description."}
 CLASS PUBLIC MyClass
@@ -81,6 +83,7 @@ FIELD_DECLARATION | VARIABLE_DECLARATION
 ~~~
 
 ~~~iecst
+{S7.extern=ReadWrite}
 CLASS PUBLIC MyClass
     VAR PUBLIC
         {#ix-set:Description = "This is my nested classy description."}
@@ -88,6 +91,7 @@ CLASS PUBLIC MyClass
     END_VAR
 END_CLASS
 
+{S7.extern=ReadWrite}
 {#ix-prop:public string Description}
 CLASS PUBLIC MyNestedStructure 
 END_CLASS
