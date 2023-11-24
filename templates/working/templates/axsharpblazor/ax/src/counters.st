@@ -1,4 +1,5 @@
 
+{S7.extern=ReadWrite}
 CLASS Counters
     VAR PUBLIC
         {#ix-attr:[Container(Layout.Wrap)]}    
@@ -12,6 +13,7 @@ CLASS Counters
     END_VAR    
 END_CLASS
 
+{S7.extern=ReadWrite}
 CLASS PUBLIC Counter
     VAR PUBLIC
         {#ix-set:AttributeName = "Number of revolutions"}
