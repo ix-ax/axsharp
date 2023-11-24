@@ -36,10 +36,13 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         Project = project;
         Compilation = compilation;
+        CompilerOptions = project.CompilerOptions;
     }
 
     /// <inheritdoc />
     public Compilation Compilation { get; }
+
+    public ICompilerOptions? CompilerOptions { get; }
 
     private AXSharpProject Project { get; }
 
@@ -99,7 +102,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IClassDeclaration classDeclaration,
         IxNodeVisitor visitor)
     {
-        TypeCommAccessibility = classDeclaration.GetCommAccessibility();
+        TypeCommAccessibility = classDeclaration.GetCommAccessibility(this);
         
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
         var generic = classDeclaration.GetGenericAttributes();
@@ -270,7 +273,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IStructuredTypeDeclaration structuredTypeDeclaration,
         IxNodeVisitor visitor)
     {
-        TypeCommAccessibility = structuredTypeDeclaration.GetCommAccessibility();
+        TypeCommAccessibility = structuredTypeDeclaration.GetCommAccessibility(this);
 
         AddToSource(structuredTypeDeclaration.Pragmas.AddAttributes());
         AddToSource(

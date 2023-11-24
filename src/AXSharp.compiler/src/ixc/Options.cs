@@ -33,5 +33,9 @@ internal class Options : ICompilerOptions
     [Option('u', "no-dependency-update", Required = false, Default = false,
         HelpText = "Prevent dependency of twins from apax")]
     public bool NoDependencyUpdate { get; set; }
+
+    [Option('s', "no-s7-pragmas", Required = false, Default = false,
+        HelpText = "Compiler ignores S7.Extern=ReadWrite & S7.Extern=ReadOnly. Compiles all types and members regardless comm settings.")]
+    public bool IgnoreS7Pragmas { get; set; }
 }
 

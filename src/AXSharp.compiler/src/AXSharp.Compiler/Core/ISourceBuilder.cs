@@ -39,7 +39,9 @@ public interface ISourceBuilder
     /// <summary>
     /// Get the semantic compilation for this builder.
     /// </summary>
-    public Compilation Compilation { get; }
+    Compilation Compilation { get; }
+
+    ICompilerOptions? CompilerOptions { get; }
 
     eCommAccessibility TypeCommAccessibility { get; }
 }

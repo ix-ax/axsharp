@@ -14,4 +14,6 @@ public interface ICompilerOptions
     bool UseBase { get; set; }
 
     bool NoDependencyUpdate { get; set; }
+
+    bool IgnoreS7Pragmas { get; set; }
 }

@@ -50,7 +50,9 @@ public class AXSharpConfig : ICompilerOptions
     /// </summary>
     public bool UseBase { get; set; }
 
-    public bool NoDependencyUpdate { get; set; } 
+    public bool NoDependencyUpdate { get; set; }
+
+    public bool IgnoreS7Pragmas { get; set; }
 
 
     /// <summary>
@@ -150,5 +152,6 @@ public class AXSharpConfig : ICompilerOptions
         fromConfig.OutputProjectFolder = newCompilerOptions.OutputProjectFolder ?? fromConfig.OutputProjectFolder;
         fromConfig.ProjectFile = string.IsNullOrEmpty(newCompilerOptions.ProjectFile) ? fromConfig.ProjectFile : newCompilerOptions.ProjectFile;
         fromConfig.NoDependencyUpdate = newCompilerOptions.NoDependencyUpdate;
+        fromConfig.IgnoreS7Pragmas = newCompilerOptions.IgnoreS7Pragmas;
     }
 }

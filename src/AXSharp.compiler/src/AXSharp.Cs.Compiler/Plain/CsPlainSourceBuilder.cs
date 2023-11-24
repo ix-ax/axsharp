@@ -33,12 +33,15 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         Project = project;
         Compilation = compilation;
+        CompilerOptions = project.CompilerOptions;
     }
 
     private AXSharpProject Project { get; }
 
     /// <inheritdoc />
     public Compilation Compilation { get; }
+
+    public ICompilerOptions? CompilerOptions { get; }
 
     public eCommAccessibility TypeCommAccessibility { get; private set; }
 
@@ -50,7 +53,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IClassDeclaration classDeclaration,
         IxNodeVisitor visitor)
     {
-        TypeCommAccessibility = classDeclaration.GetCommAccessibility();
+        TypeCommAccessibility = classDeclaration.GetCommAccessibility(this);
         
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
         AddToSource($"{classDeclaration.AccessModifier.Transform()}partial class {classDeclaration.Name}");
@@ -285,7 +288,7 @@ public class CsPlainSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IStructuredTypeDeclaration structuredTypeDeclaration,
         IxNodeVisitor visitor)
     {
-        TypeCommAccessibility = structuredTypeDeclaration.GetCommAccessibility();
+        TypeCommAccessibility = structuredTypeDeclaration.GetCommAccessibility(this);
 
         AddToSource(
             $"{structuredTypeDeclaration.AccessModifier.Transform()}partial class {structTypeDeclarationSyntax.Name.Text} ");

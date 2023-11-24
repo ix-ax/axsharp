@@ -181,6 +181,7 @@ public static class SemanticsHelpers
 
     private static bool IsAvailableForComm(this IDeclaration declaration, ISourceBuilder sourceBuilder)
     {
+        if (sourceBuilder.CompilerOptions is { IgnoreS7Pragmas: true }) return true;
         var pragmaReadWrite = "S7.extern=ReadWrite".ToLower();
         var pragmaRead = "S7.extern=ReadOnly".ToLower();
         return declaration.Pragmas.Any(p =>
@@ -189,8 +190,10 @@ public static class SemanticsHelpers
             return (prgma == pragmaReadWrite || prgma == pragmaRead);
         }) || (sourceBuilder.TypeCommAccessibility == eCommAccessibility.ReadOnly || sourceBuilder.TypeCommAccessibility == eCommAccessibility.ReadWrite);
     }
-    internal static bool IsAvailableReadOnlyForComm(this IDeclaration declaration)
+    internal static bool IsAvailableReadOnlyForComm(this IDeclaration declaration, ISourceBuilder sourceBuilder)
     {
+        if (sourceBuilder.CompilerOptions is { IgnoreS7Pragmas: true }) return false;
+
         var pargmaContent = "S7.extern=Read".ToLower();
         return declaration.Pragmas.Any(p =>
         {
@@ -198,8 +201,11 @@ public static class SemanticsHelpers
             return (prgma == pargmaContent);
         });
     }
-    private static bool IsAvailableReadWriteForComm(this IDeclaration declaration)
+
+    private static bool IsAvailableReadWriteForComm(this IDeclaration declaration, ISourceBuilder sourceBuilder)
     {
+        if (sourceBuilder.CompilerOptions is { IgnoreS7Pragmas: true }) return false;
+
         var pargmaContent = "S7.extern=ReadWrite".ToLower();
         return declaration.Pragmas.Any(p =>
         {
@@ -208,15 +214,15 @@ public static class SemanticsHelpers
         });
     }
 
-    public static eCommAccessibility GetCommAccessibility(this IDeclaration declaration)
+    public static eCommAccessibility GetCommAccessibility(this IDeclaration declaration, ISourceBuilder sourceBuilder)
     {
 
-        if (declaration.IsAvailableReadOnlyForComm())
+        if (declaration.IsAvailableReadOnlyForComm(sourceBuilder))
         {
             return eCommAccessibility.ReadOnly;
         }
 
-        if (declaration.IsAvailableReadWriteForComm())
+        if (declaration.IsAvailableReadWriteForComm(sourceBuilder))
         {
             return eCommAccessibility.ReadWrite;
         }

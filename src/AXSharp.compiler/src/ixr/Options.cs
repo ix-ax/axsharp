@@ -30,6 +30,6 @@ namespace AXSharp.ixc_doc
             HelpText = "Prevent dependency of twins from apax")]
         public bool NoDependencyUpdate { get; set; }
 
-
+        public bool IgnoreS7Pragmas { get; set; }
     }
 }
