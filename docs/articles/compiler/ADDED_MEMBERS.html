@@ -86,7 +86,8 @@ Added members are also a useful feature to provide additional context about the 
 <pre><code class="lang-iecst">{#ix-prop:access_modifier type member_name}
 </code></pre>
 <p>Example</p>
-<pre><code class="lang-iecst">{#ix-prop:public string Description}
+<pre><code class="lang-iecst">{S7.extern=ReadWrite}
+{#ix-prop:public string Description}
 CLASS PUBLIC MyClass
     VAR PUBLIC
         Nested : MyNestedStructure;
@@ -110,7 +111,8 @@ END_CLASS
 CLASS_DECLARATION | STRUCTURED_TYPE_DECLARATION
 </code></pre>
 <p>Example</p>
-<pre><code class="lang-iecst">{#ix-prop:public string Description}
+<pre><code class="lang-iecst">{S7.extern=ReadWrite}
+{#ix-prop:public string Description}
 {#ix-set:Description = &quot;This is my classy description.&quot;}
 CLASS PUBLIC MyClass
     VAR PUBLIC
@@ -132,13 +134,15 @@ END_CLASS
 <pre><code class="lang-iecst">{#ix-set:member_name = value}
 FIELD_DECLARATION | VARIABLE_DECLARATION
 </code></pre>
-<pre><code class="lang-iecst">CLASS PUBLIC MyClass
+<pre><code class="lang-iecst">{S7.extern=ReadWrite}
+CLASS PUBLIC MyClass
     VAR PUBLIC
         {#ix-set:Description = &quot;This is my nested classy description.&quot;}
         Nested : MyNestedStructure;
     END_VAR
 END_CLASS
 
+{S7.extern=ReadWrite}
 {#ix-prop:public string Description}
 CLASS PUBLIC MyNestedStructure 
 END_CLASS

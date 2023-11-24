@@ -321,6 +321,15 @@ someWString := &quot;&lt;#This woule be localized#&gt; and this would stay as it
 <p>Example</p>
 <pre><code class="lang-C#">ix_plc.PlcTranslator.Instance.SetLocalizationResource(typeof(myproject.ResourcesOverride.OverridePlcStringResources));
 </code></pre>
+<h3 id="localization-in-a-client-in-server-side-application">Localization in a client in server-side application</h3>
+<p>In order to get translation in given culture for a client in a server side application you should use methods <code>Get{ProperyName}(CultureInfo culture)</code> to get translation for client current culture. The properties will returned original string where localization tokens are removed.</p>
+<pre><code class="lang-csharp">var notTranlsated = obj.AttributeName;
+var translated = obj.GetAttribute(new CultureInfo(&quot;sk-SK&quot;));
+</code></pre>
+<h3 id="setting-connectors-culture">Setting connector's culture</h3>
+<p>In some instances it might be necessary to set the culture for the threads handling connectors. In that case use the following method to impose a specific culture.</p>
+<pre><code class="lang-csharp">AXSharp.Connector.Connector.SetCulture(new CultureInfo(&quot;en-US&quot;));
+</code></pre>
 <p>See also</p>
 <p><a href="Dummy.html">Dummy Connector</a></p>
 <p><a href="WebAPI.html">WebAPI Connector</a></p>

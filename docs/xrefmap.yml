@@ -224,22 +224,22 @@ references:
   fullName.vb: AXSharp.Compiler.Apax.New
   nameWithType: Apax.Apax
   nameWithType.vb: Apax.New
-- uid: AXSharp.Compiler.Apax.CreateApax(System.String)
-  name: CreateApax(string)
-  href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_CreateApax_System_String_
-  commentId: M:AXSharp.Compiler.Apax.CreateApax(System.String)
-  name.vb: CreateApax(String)
-  fullName: AXSharp.Compiler.Apax.CreateApax(string)
-  fullName.vb: AXSharp.Compiler.Apax.CreateApax(String)
-  nameWithType: Apax.CreateApax(string)
-  nameWithType.vb: Apax.CreateApax(String)
-- uid: AXSharp.Compiler.Apax.CreateApax*
-  name: CreateApax
-  href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_CreateApax_
-  commentId: Overload:AXSharp.Compiler.Apax.CreateApax
+- uid: AXSharp.Compiler.Apax.CreateApaxDto(System.String)
+  name: CreateApaxDto(string)
+  href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_CreateApaxDto_System_String_
+  commentId: M:AXSharp.Compiler.Apax.CreateApaxDto(System.String)
+  name.vb: CreateApaxDto(String)
+  fullName: AXSharp.Compiler.Apax.CreateApaxDto(string)
+  fullName.vb: AXSharp.Compiler.Apax.CreateApaxDto(String)
+  nameWithType: Apax.CreateApaxDto(string)
+  nameWithType.vb: Apax.CreateApaxDto(String)
+- uid: AXSharp.Compiler.Apax.CreateApaxDto*
+  name: CreateApaxDto
+  href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_CreateApaxDto_
+  commentId: Overload:AXSharp.Compiler.Apax.CreateApaxDto
   isSpec: "True"
-  fullName: AXSharp.Compiler.Apax.CreateApax
-  nameWithType: Apax.CreateApax
+  fullName: AXSharp.Compiler.Apax.CreateApaxDto
+  nameWithType: Apax.CreateApaxDto
 - uid: AXSharp.Compiler.Apax.Dependencies
   name: Dependencies
   href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_Dependencies
@@ -305,6 +305,22 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Apax.Targets
   nameWithType: Apax.Targets
+- uid: AXSharp.Compiler.Apax.TryCreateApaxDto(System.String)
+  name: TryCreateApaxDto(string)
+  href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_TryCreateApaxDto_System_String_
+  commentId: M:AXSharp.Compiler.Apax.TryCreateApaxDto(System.String)
+  name.vb: TryCreateApaxDto(String)
+  fullName: AXSharp.Compiler.Apax.TryCreateApaxDto(string)
+  fullName.vb: AXSharp.Compiler.Apax.TryCreateApaxDto(String)
+  nameWithType: Apax.TryCreateApaxDto(string)
+  nameWithType.vb: Apax.TryCreateApaxDto(String)
+- uid: AXSharp.Compiler.Apax.TryCreateApaxDto*
+  name: TryCreateApaxDto
+  href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_TryCreateApaxDto_
+  commentId: Overload:AXSharp.Compiler.Apax.TryCreateApaxDto
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Apax.TryCreateApaxDto
+  nameWithType: Apax.TryCreateApaxDto
 - uid: AXSharp.Compiler.Apax.Type
   name: Type
   href: api/AXSharp.Compiler.Apax.html#AXSharp_Compiler_Apax_Type
@@ -381,19 +397,19 @@ references:
   fullName.vb: AXSharp.Compiler.AxProject.New
   nameWithType: AxProject.AxProject
   nameWithType.vb: AxProject.New
-- uid: AXSharp.Compiler.AxProject.IxReferences
-  name: IxReferences
-  href: api/AXSharp.Compiler.AxProject.html#AXSharp_Compiler_AxProject_IxReferences
-  commentId: P:AXSharp.Compiler.AxProject.IxReferences
-  fullName: AXSharp.Compiler.AxProject.IxReferences
-  nameWithType: AxProject.IxReferences
-- uid: AXSharp.Compiler.AxProject.IxReferences*
-  name: IxReferences
-  href: api/AXSharp.Compiler.AxProject.html#AXSharp_Compiler_AxProject_IxReferences_
-  commentId: Overload:AXSharp.Compiler.AxProject.IxReferences
+- uid: AXSharp.Compiler.AxProject.AXSharpReferences
+  name: AXSharpReferences
+  href: api/AXSharp.Compiler.AxProject.html#AXSharp_Compiler_AxProject_AXSharpReferences
+  commentId: P:AXSharp.Compiler.AxProject.AXSharpReferences
+  fullName: AXSharp.Compiler.AxProject.AXSharpReferences
+  nameWithType: AxProject.AXSharpReferences
+- uid: AXSharp.Compiler.AxProject.AXSharpReferences*
+  name: AXSharpReferences
+  href: api/AXSharp.Compiler.AxProject.html#AXSharp_Compiler_AxProject_AXSharpReferences_
+  commentId: Overload:AXSharp.Compiler.AxProject.AXSharpReferences
   isSpec: "True"
-  fullName: AXSharp.Compiler.AxProject.IxReferences
-  nameWithType: AxProject.IxReferences
+  fullName: AXSharp.Compiler.AxProject.AXSharpReferences
+  nameWithType: AxProject.AXSharpReferences
 - uid: AXSharp.Compiler.AxProject.ProjectFile
   name: ProjectFile
   href: api/AXSharp.Compiler.AxProject.html#AXSharp_Compiler_AxProject_ProjectFile
@@ -503,6 +519,32 @@ references:
   commentId: F:AXSharp.Compiler.AXSharpConfig.CONFIG_FILE_NAME
   fullName: AXSharp.Compiler.AXSharpConfig.CONFIG_FILE_NAME
   nameWithType: AXSharpConfig.CONFIG_FILE_NAME
+- uid: AXSharp.Compiler.AXSharpConfig.IgnoreS7Pragmas
+  name: IgnoreS7Pragmas
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_IgnoreS7Pragmas
+  commentId: P:AXSharp.Compiler.AXSharpConfig.IgnoreS7Pragmas
+  fullName: AXSharp.Compiler.AXSharpConfig.IgnoreS7Pragmas
+  nameWithType: AXSharpConfig.IgnoreS7Pragmas
+- uid: AXSharp.Compiler.AXSharpConfig.IgnoreS7Pragmas*
+  name: IgnoreS7Pragmas
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_IgnoreS7Pragmas_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.IgnoreS7Pragmas
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.IgnoreS7Pragmas
+  nameWithType: AXSharpConfig.IgnoreS7Pragmas
+- uid: AXSharp.Compiler.AXSharpConfig.NoDependencyUpdate
+  name: NoDependencyUpdate
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_NoDependencyUpdate
+  commentId: P:AXSharp.Compiler.AXSharpConfig.NoDependencyUpdate
+  fullName: AXSharp.Compiler.AXSharpConfig.NoDependencyUpdate
+  nameWithType: AXSharpConfig.NoDependencyUpdate
+- uid: AXSharp.Compiler.AXSharpConfig.NoDependencyUpdate*
+  name: NoDependencyUpdate
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_NoDependencyUpdate_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.NoDependencyUpdate
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.NoDependencyUpdate
+  nameWithType: AXSharpConfig.NoDependencyUpdate
 - uid: AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
   name: OutputProjectFolder
   href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_OutputProjectFolder
@@ -516,38 +558,64 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.AXSharpConfig.OutputProjectFolder
   nameWithType: AXSharpConfig.OutputProjectFolder
-- uid: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(System.String)
-  name: RetrieveIxConfig(string)
-  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_RetrieveIxConfig_System_String_
-  commentId: M:AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(System.String)
-  name.vb: RetrieveIxConfig(String)
-  fullName: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(string)
-  fullName.vb: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig(String)
-  nameWithType: AXSharpConfig.RetrieveIxConfig(string)
-  nameWithType.vb: AXSharpConfig.RetrieveIxConfig(String)
-- uid: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig*
-  name: RetrieveIxConfig
-  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_RetrieveIxConfig_
-  commentId: Overload:AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig
+- uid: AXSharp.Compiler.AXSharpConfig.ProjectFile
+  name: ProjectFile
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_ProjectFile
+  commentId: P:AXSharp.Compiler.AXSharpConfig.ProjectFile
+  fullName: AXSharp.Compiler.AXSharpConfig.ProjectFile
+  nameWithType: AXSharpConfig.ProjectFile
+- uid: AXSharp.Compiler.AXSharpConfig.ProjectFile*
+  name: ProjectFile
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_ProjectFile_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.ProjectFile
   isSpec: "True"
-  fullName: AXSharp.Compiler.AXSharpConfig.RetrieveIxConfig
-  nameWithType: AXSharpConfig.RetrieveIxConfig
-- uid: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(System.String,AXSharp.Compiler.ICompilerOptions)
-  name: UpdateAndGetIxConfig(string, ICompilerOptions?)
-  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UpdateAndGetIxConfig_System_String_AXSharp_Compiler_ICompilerOptions_
-  commentId: M:AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(System.String,AXSharp.Compiler.ICompilerOptions)
-  name.vb: UpdateAndGetIxConfig(String, ICompilerOptions)
-  fullName: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(string, AXSharp.Compiler.ICompilerOptions?)
-  fullName.vb: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig(String, AXSharp.Compiler.ICompilerOptions)
-  nameWithType: AXSharpConfig.UpdateAndGetIxConfig(string, ICompilerOptions?)
-  nameWithType.vb: AXSharpConfig.UpdateAndGetIxConfig(String, ICompilerOptions)
-- uid: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig*
-  name: UpdateAndGetIxConfig
-  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UpdateAndGetIxConfig_
-  commentId: Overload:AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig
+  fullName: AXSharp.Compiler.AXSharpConfig.ProjectFile
+  nameWithType: AXSharpConfig.ProjectFile
+- uid: AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig(System.String)
+  name: RetrieveAXSharpConfig(string)
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_RetrieveAXSharpConfig_System_String_
+  commentId: M:AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig(System.String)
+  name.vb: RetrieveAXSharpConfig(String)
+  fullName: AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig(string)
+  fullName.vb: AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig(String)
+  nameWithType: AXSharpConfig.RetrieveAXSharpConfig(string)
+  nameWithType.vb: AXSharpConfig.RetrieveAXSharpConfig(String)
+- uid: AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig*
+  name: RetrieveAXSharpConfig
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_RetrieveAXSharpConfig_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig
   isSpec: "True"
-  fullName: AXSharp.Compiler.AXSharpConfig.UpdateAndGetIxConfig
-  nameWithType: AXSharpConfig.UpdateAndGetIxConfig
+  fullName: AXSharp.Compiler.AXSharpConfig.RetrieveAXSharpConfig
+  nameWithType: AXSharpConfig.RetrieveAXSharpConfig
+- uid: AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig(System.String,AXSharp.Compiler.ICompilerOptions)
+  name: UpdateAndGetAXSharpConfig(string, ICompilerOptions?)
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UpdateAndGetAXSharpConfig_System_String_AXSharp_Compiler_ICompilerOptions_
+  commentId: M:AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig(System.String,AXSharp.Compiler.ICompilerOptions)
+  name.vb: UpdateAndGetAXSharpConfig(String, ICompilerOptions)
+  fullName: AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig(string, AXSharp.Compiler.ICompilerOptions?)
+  fullName.vb: AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig(String, AXSharp.Compiler.ICompilerOptions)
+  nameWithType: AXSharpConfig.UpdateAndGetAXSharpConfig(string, ICompilerOptions?)
+  nameWithType.vb: AXSharpConfig.UpdateAndGetAXSharpConfig(String, ICompilerOptions)
+- uid: AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig*
+  name: UpdateAndGetAXSharpConfig
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UpdateAndGetAXSharpConfig_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.UpdateAndGetAXSharpConfig
+  nameWithType: AXSharpConfig.UpdateAndGetAXSharpConfig
+- uid: AXSharp.Compiler.AXSharpConfig.UseBase
+  name: UseBase
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UseBase
+  commentId: P:AXSharp.Compiler.AXSharpConfig.UseBase
+  fullName: AXSharp.Compiler.AXSharpConfig.UseBase
+  nameWithType: AXSharpConfig.UseBase
+- uid: AXSharp.Compiler.AXSharpConfig.UseBase*
+  name: UseBase
+  href: api/AXSharp.Compiler.AXSharpConfig.html#AXSharp_Compiler_AXSharpConfig_UseBase_
+  commentId: Overload:AXSharp.Compiler.AXSharpConfig.UseBase
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpConfig.UseBase
+  nameWithType: AXSharpConfig.UseBase
 - uid: AXSharp.Compiler.AXSharpProject
   name: AXSharpProject
   href: api/AXSharp.Compiler.AXSharpProject.html
@@ -670,12 +738,135 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.AXSharpProject.TargetProject
   nameWithType: AXSharpProject.TargetProject
+- uid: AXSharp.Compiler.AXSharpProject.UseBaseSymbol
+  name: UseBaseSymbol
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_UseBaseSymbol
+  commentId: P:AXSharp.Compiler.AXSharpProject.UseBaseSymbol
+  fullName: AXSharp.Compiler.AXSharpProject.UseBaseSymbol
+  nameWithType: AXSharpProject.UseBaseSymbol
+- uid: AXSharp.Compiler.AXSharpProject.UseBaseSymbol*
+  name: UseBaseSymbol
+  href: api/AXSharp.Compiler.AXSharpProject.html#AXSharp_Compiler_AXSharpProject_UseBaseSymbol_
+  commentId: Overload:AXSharp.Compiler.AXSharpProject.UseBaseSymbol
+  isSpec: "True"
+  fullName: AXSharp.Compiler.AXSharpProject.UseBaseSymbol
+  nameWithType: AXSharpProject.UseBaseSymbol
+- uid: AXSharp.Compiler.CompanionInfo
+  name: CompanionInfo
+  href: api/AXSharp.Compiler.CompanionInfo.html
+  commentId: T:AXSharp.Compiler.CompanionInfo
+  fullName: AXSharp.Compiler.CompanionInfo
+  nameWithType: CompanionInfo
+- uid: AXSharp.Compiler.CompanionInfo.COMPANIONS_FILE_NAME
+  name: COMPANIONS_FILE_NAME
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_COMPANIONS_FILE_NAME
+  commentId: F:AXSharp.Compiler.CompanionInfo.COMPANIONS_FILE_NAME
+  fullName: AXSharp.Compiler.CompanionInfo.COMPANIONS_FILE_NAME
+  nameWithType: CompanionInfo.COMPANIONS_FILE_NAME
+- uid: AXSharp.Compiler.CompanionInfo.FromFile(System.String)
+  name: FromFile(string)
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_FromFile_System_String_
+  commentId: M:AXSharp.Compiler.CompanionInfo.FromFile(System.String)
+  name.vb: FromFile(String)
+  fullName: AXSharp.Compiler.CompanionInfo.FromFile(string)
+  fullName.vb: AXSharp.Compiler.CompanionInfo.FromFile(String)
+  nameWithType: CompanionInfo.FromFile(string)
+  nameWithType.vb: CompanionInfo.FromFile(String)
+- uid: AXSharp.Compiler.CompanionInfo.FromFile*
+  name: FromFile
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_FromFile_
+  commentId: Overload:AXSharp.Compiler.CompanionInfo.FromFile
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CompanionInfo.FromFile
+  nameWithType: CompanionInfo.FromFile
+- uid: AXSharp.Compiler.CompanionInfo.Id
+  name: Id
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_Id
+  commentId: P:AXSharp.Compiler.CompanionInfo.Id
+  fullName: AXSharp.Compiler.CompanionInfo.Id
+  nameWithType: CompanionInfo.Id
+- uid: AXSharp.Compiler.CompanionInfo.Id*
+  name: Id
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_Id_
+  commentId: Overload:AXSharp.Compiler.CompanionInfo.Id
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CompanionInfo.Id
+  nameWithType: CompanionInfo.Id
+- uid: AXSharp.Compiler.CompanionInfo.ToFile(AXSharp.Compiler.CompanionInfo,System.String)
+  name: ToFile(CompanionInfo, string)
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_ToFile_AXSharp_Compiler_CompanionInfo_System_String_
+  commentId: M:AXSharp.Compiler.CompanionInfo.ToFile(AXSharp.Compiler.CompanionInfo,System.String)
+  name.vb: ToFile(CompanionInfo, String)
+  fullName: AXSharp.Compiler.CompanionInfo.ToFile(AXSharp.Compiler.CompanionInfo, string)
+  fullName.vb: AXSharp.Compiler.CompanionInfo.ToFile(AXSharp.Compiler.CompanionInfo, String)
+  nameWithType: CompanionInfo.ToFile(CompanionInfo, string)
+  nameWithType.vb: CompanionInfo.ToFile(CompanionInfo, String)
+- uid: AXSharp.Compiler.CompanionInfo.ToFile*
+  name: ToFile
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_ToFile_
+  commentId: Overload:AXSharp.Compiler.CompanionInfo.ToFile
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CompanionInfo.ToFile
+  nameWithType: CompanionInfo.ToFile
+- uid: AXSharp.Compiler.CompanionInfo.TryFromFile(System.String)
+  name: TryFromFile(string)
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_TryFromFile_System_String_
+  commentId: M:AXSharp.Compiler.CompanionInfo.TryFromFile(System.String)
+  name.vb: TryFromFile(String)
+  fullName: AXSharp.Compiler.CompanionInfo.TryFromFile(string)
+  fullName.vb: AXSharp.Compiler.CompanionInfo.TryFromFile(String)
+  nameWithType: CompanionInfo.TryFromFile(string)
+  nameWithType.vb: CompanionInfo.TryFromFile(String)
+- uid: AXSharp.Compiler.CompanionInfo.TryFromFile*
+  name: TryFromFile
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_TryFromFile_
+  commentId: Overload:AXSharp.Compiler.CompanionInfo.TryFromFile
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CompanionInfo.TryFromFile
+  nameWithType: CompanionInfo.TryFromFile
+- uid: AXSharp.Compiler.CompanionInfo.Version
+  name: Version
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_Version
+  commentId: P:AXSharp.Compiler.CompanionInfo.Version
+  fullName: AXSharp.Compiler.CompanionInfo.Version
+  nameWithType: CompanionInfo.Version
+- uid: AXSharp.Compiler.CompanionInfo.Version*
+  name: Version
+  href: api/AXSharp.Compiler.CompanionInfo.html#AXSharp_Compiler_CompanionInfo_Version_
+  commentId: Overload:AXSharp.Compiler.CompanionInfo.Version
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CompanionInfo.Version
+  nameWithType: CompanionInfo.Version
 - uid: AXSharp.Compiler.Core
   name: AXSharp.Compiler.Core
   href: api/AXSharp.Compiler.Core.html
   commentId: N:AXSharp.Compiler.Core
   fullName: AXSharp.Compiler.Core
   nameWithType: AXSharp.Compiler.Core
+- uid: AXSharp.Compiler.Core.eCommAccessibility
+  name: eCommAccessibility
+  href: api/AXSharp.Compiler.Core.eCommAccessibility.html
+  commentId: T:AXSharp.Compiler.Core.eCommAccessibility
+  fullName: AXSharp.Compiler.Core.eCommAccessibility
+  nameWithType: eCommAccessibility
+- uid: AXSharp.Compiler.Core.eCommAccessibility.None
+  name: None
+  href: api/AXSharp.Compiler.Core.eCommAccessibility.html#AXSharp_Compiler_Core_eCommAccessibility_None
+  commentId: F:AXSharp.Compiler.Core.eCommAccessibility.None
+  fullName: AXSharp.Compiler.Core.eCommAccessibility.None
+  nameWithType: eCommAccessibility.None
+- uid: AXSharp.Compiler.Core.eCommAccessibility.ReadOnly
+  name: ReadOnly
+  href: api/AXSharp.Compiler.Core.eCommAccessibility.html#AXSharp_Compiler_Core_eCommAccessibility_ReadOnly
+  commentId: F:AXSharp.Compiler.Core.eCommAccessibility.ReadOnly
+  fullName: AXSharp.Compiler.Core.eCommAccessibility.ReadOnly
+  nameWithType: eCommAccessibility.ReadOnly
+- uid: AXSharp.Compiler.Core.eCommAccessibility.ReadWrite
+  name: ReadWrite
+  href: api/AXSharp.Compiler.Core.eCommAccessibility.html#AXSharp_Compiler_Core_eCommAccessibility_ReadWrite
+  commentId: F:AXSharp.Compiler.Core.eCommAccessibility.ReadWrite
+  fullName: AXSharp.Compiler.Core.eCommAccessibility.ReadWrite
+  nameWithType: eCommAccessibility.ReadWrite
 - uid: AXSharp.Compiler.Core.ICombinedThreeVisitor
   name: ICombinedThreeVisitor
   href: api/AXSharp.Compiler.Core.ICombinedThreeVisitor.html
@@ -997,6 +1188,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Core.ISourceBuilder.Compilation
   nameWithType: ISourceBuilder.Compilation
+- uid: AXSharp.Compiler.Core.ISourceBuilder.CompilerOptions
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.Core.ISourceBuilder.html#AXSharp_Compiler_Core_ISourceBuilder_CompilerOptions
+  commentId: P:AXSharp.Compiler.Core.ISourceBuilder.CompilerOptions
+  fullName: AXSharp.Compiler.Core.ISourceBuilder.CompilerOptions
+  nameWithType: ISourceBuilder.CompilerOptions
+- uid: AXSharp.Compiler.Core.ISourceBuilder.CompilerOptions*
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.Core.ISourceBuilder.html#AXSharp_Compiler_Core_ISourceBuilder_CompilerOptions_
+  commentId: Overload:AXSharp.Compiler.Core.ISourceBuilder.CompilerOptions
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Core.ISourceBuilder.CompilerOptions
+  nameWithType: ISourceBuilder.CompilerOptions
 - uid: AXSharp.Compiler.Core.ISourceBuilder.Group
   name: Group
   href: api/AXSharp.Compiler.Core.ISourceBuilder.html#AXSharp_Compiler_Core_ISourceBuilder_Group
@@ -1036,6 +1240,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Core.ISourceBuilder.OutputFileSuffix
   nameWithType: ISourceBuilder.OutputFileSuffix
+- uid: AXSharp.Compiler.Core.ISourceBuilder.TypeCommAccessibility
+  name: TypeCommAccessibility
+  href: api/AXSharp.Compiler.Core.ISourceBuilder.html#AXSharp_Compiler_Core_ISourceBuilder_TypeCommAccessibility
+  commentId: P:AXSharp.Compiler.Core.ISourceBuilder.TypeCommAccessibility
+  fullName: AXSharp.Compiler.Core.ISourceBuilder.TypeCommAccessibility
+  nameWithType: ISourceBuilder.TypeCommAccessibility
+- uid: AXSharp.Compiler.Core.ISourceBuilder.TypeCommAccessibility*
+  name: TypeCommAccessibility
+  href: api/AXSharp.Compiler.Core.ISourceBuilder.html#AXSharp_Compiler_Core_ISourceBuilder_TypeCommAccessibility_
+  commentId: Overload:AXSharp.Compiler.Core.ISourceBuilder.TypeCommAccessibility
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Core.ISourceBuilder.TypeCommAccessibility
+  nameWithType: ISourceBuilder.TypeCommAccessibility
 - uid: AXSharp.Compiler.Core.IxNodeVisitor
   name: IxNodeVisitor
   href: api/AXSharp.Compiler.Core.IxNodeVisitor.html
@@ -1304,6 +1521,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.Compilation
   nameWithType: CsOnlinerSourceBuilder.Compilation
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CompilerOptions
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_CompilerOptions
+  commentId: P:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CompilerOptions
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CompilerOptions
+  nameWithType: CsOnlinerSourceBuilder.CompilerOptions
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CompilerOptions*
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_CompilerOptions_
+  commentId: Overload:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CompilerOptions
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CompilerOptions
+  nameWithType: CsOnlinerSourceBuilder.CompilerOptions
 - uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.CreateArrayTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration,AXSharp.Compiler.Core.IxNodeVisitor)
   name: CreateArrayTypeDeclaration(IArrayTypeDeclaration, IxNodeVisitor)
   href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_CreateArrayTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IArrayTypeDeclaration_AXSharp_Compiler_Core_IxNodeVisitor_
@@ -1524,6 +1754,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.OutputFileSuffix
   nameWithType: CsOnlinerSourceBuilder.OutputFileSuffix
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.TypeCommAccessibility
+  name: TypeCommAccessibility
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_TypeCommAccessibility
+  commentId: P:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.TypeCommAccessibility
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.TypeCommAccessibility
+  nameWithType: CsOnlinerSourceBuilder.TypeCommAccessibility
+- uid: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.TypeCommAccessibility*
+  name: TypeCommAccessibility
+  href: api/AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.html#AXSharp_Compiler_Cs_Onliner_CsOnlinerSourceBuilder_TypeCommAccessibility_
+  commentId: Overload:AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.TypeCommAccessibility
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Onliner.CsOnlinerSourceBuilder.TypeCommAccessibility
+  nameWithType: CsOnlinerSourceBuilder.TypeCommAccessibility
 - uid: AXSharp.Compiler.Cs.Plain
   name: AXSharp.Compiler.Cs.Plain
   href: api/AXSharp.Compiler.Cs.Plain.html
@@ -1581,6 +1824,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.Compilation
   nameWithType: CsPlainSourceBuilder.Compilation
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CompilerOptions
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_CompilerOptions
+  commentId: P:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CompilerOptions
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CompilerOptions
+  nameWithType: CsPlainSourceBuilder.CompilerOptions
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CompilerOptions*
+  name: CompilerOptions
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_CompilerOptions_
+  commentId: Overload:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CompilerOptions
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CompilerOptions
+  nameWithType: CsPlainSourceBuilder.CompilerOptions
 - uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.CreateArrayTypeDeclaration(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration,AXSharp.Compiler.Core.IxNodeVisitor)
   name: CreateArrayTypeDeclaration(IArrayTypeDeclaration, IxNodeVisitor)
   href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_CreateArrayTypeDeclaration_AX_ST_Semantic_Model_Declarations_Types_IArrayTypeDeclaration_AXSharp_Compiler_Core_IxNodeVisitor_
@@ -1897,18 +2153,31 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.OutputFileSuffix
   nameWithType: CsPlainSourceBuilder.OutputFileSuffix
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.TypeCommAccessibility
+  name: TypeCommAccessibility
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_TypeCommAccessibility
+  commentId: P:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.TypeCommAccessibility
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.TypeCommAccessibility
+  nameWithType: CsPlainSourceBuilder.TypeCommAccessibility
+- uid: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.TypeCommAccessibility*
+  name: TypeCommAccessibility
+  href: api/AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.html#AXSharp_Compiler_Cs_Plain_CsPlainSourceBuilder_TypeCommAccessibility_
+  commentId: Overload:AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.TypeCommAccessibility
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.Plain.CsPlainSourceBuilder.TypeCommAccessibility
+  nameWithType: CsPlainSourceBuilder.TypeCommAccessibility
 - uid: AXSharp.Compiler.Cs.PragmaExtensions
   name: PragmaExtensions
   href: api/AXSharp.Compiler.Cs.PragmaExtensions.html
   commentId: T:AXSharp.Compiler.Cs.PragmaExtensions
   fullName: AXSharp.Compiler.Cs.PragmaExtensions
   nameWithType: PragmaExtensions
-- uid: AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations(AX.ST.Semantic.Model.Declarations.IDeclaration)
-  name: AddAnnotations(IDeclaration)
-  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_AddAnnotations_AX_ST_Semantic_Model_Declarations_IDeclaration_
-  commentId: M:AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations(AX.ST.Semantic.Model.Declarations.IDeclaration)
-  fullName: AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations(AX.ST.Semantic.Model.Declarations.IDeclaration)
-  nameWithType: PragmaExtensions.AddAnnotations(IDeclaration)
+- uid: AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations(AX.ST.Semantic.Model.Declarations.IDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  name: AddAnnotations(IDeclaration, ISourceBuilder)
+  href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_AddAnnotations_AX_ST_Semantic_Model_Declarations_IDeclaration_AXSharp_Compiler_Core_ISourceBuilder_
+  commentId: M:AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations(AX.ST.Semantic.Model.Declarations.IDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  fullName: AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations(AX.ST.Semantic.Model.Declarations.IDeclaration, AXSharp.Compiler.Core.ISourceBuilder)
+  nameWithType: PragmaExtensions.AddAnnotations(IDeclaration, ISourceBuilder)
 - uid: AXSharp.Compiler.Cs.PragmaExtensions.AddAnnotations*
   name: AddAnnotations
   href: api/AXSharp.Compiler.Cs.PragmaExtensions.html#AXSharp_Compiler_Cs_PragmaExtensions_AddAnnotations_
@@ -2163,6 +2432,44 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.SemanticsHelpers.AddDocumentationComment
   nameWithType: SemanticsHelpers.AddDocumentationComment
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.GetCommAccessibility(AX.ST.Semantic.Model.Declarations.IDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  name: GetCommAccessibility(IDeclaration, ISourceBuilder)
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_GetCommAccessibility_AX_ST_Semantic_Model_Declarations_IDeclaration_AXSharp_Compiler_Core_ISourceBuilder_
+  commentId: M:AXSharp.Compiler.Cs.SemanticsHelpers.GetCommAccessibility(AX.ST.Semantic.Model.Declarations.IDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.GetCommAccessibility(AX.ST.Semantic.Model.Declarations.IDeclaration, AXSharp.Compiler.Core.ISourceBuilder)
+  nameWithType: SemanticsHelpers.GetCommAccessibility(IDeclaration, ISourceBuilder)
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.GetCommAccessibility*
+  name: GetCommAccessibility
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_GetCommAccessibility_
+  commentId: Overload:AXSharp.Compiler.Cs.SemanticsHelpers.GetCommAccessibility
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.GetCommAccessibility
+  nameWithType: SemanticsHelpers.GetCommAccessibility
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  name: IsEligibleForTranspile(IFieldDeclaration, ISourceBuilder)
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsEligibleForTranspile_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_Compiler_Core_ISourceBuilder_
+  commentId: M:AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.IFieldDeclaration, AXSharp.Compiler.Core.ISourceBuilder)
+  nameWithType: SemanticsHelpers.IsEligibleForTranspile(IFieldDeclaration, ISourceBuilder)
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.IVariableDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  name: IsEligibleForTranspile(IVariableDeclaration, ISourceBuilder)
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsEligibleForTranspile_AX_ST_Semantic_Model_Declarations_IVariableDeclaration_AXSharp_Compiler_Core_ISourceBuilder_
+  commentId: M:AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.IVariableDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.IVariableDeclaration, AXSharp.Compiler.Core.ISourceBuilder)
+  nameWithType: SemanticsHelpers.IsEligibleForTranspile(IVariableDeclaration, ISourceBuilder)
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  name: IsEligibleForTranspile(IArrayTypeDeclaration, ISourceBuilder)
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsEligibleForTranspile_AX_ST_Semantic_Model_Declarations_Types_IArrayTypeDeclaration_AXSharp_Compiler_Core_ISourceBuilder_
+  commentId: M:AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile(AX.ST.Semantic.Model.Declarations.Types.IArrayTypeDeclaration, AXSharp.Compiler.Core.ISourceBuilder)
+  nameWithType: SemanticsHelpers.IsEligibleForTranspile(IArrayTypeDeclaration, ISourceBuilder)
+- uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile*
+  name: IsEligibleForTranspile
+  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsEligibleForTranspile_
+  commentId: Overload:AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile
+  isSpec: "True"
+  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsEligibleForTranspile
+  nameWithType: SemanticsHelpers.IsEligibleForTranspile
 - uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsMemberEligibleForConstructor(AX.ST.Semantic.Model.Declarations.IFieldDeclaration,AXSharp.Compiler.Core.ISourceBuilder,System.String)
   name: IsMemberEligibleForConstructor(IFieldDeclaration, ISourceBuilder, string)
   href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsMemberEligibleForConstructor_AX_ST_Semantic_Model_Declarations_IFieldDeclaration_AXSharp_Compiler_Core_ISourceBuilder_System_String_
@@ -2219,19 +2526,6 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsMemberEligibleForTranspile
   nameWithType: SemanticsHelpers.IsMemberEligibleForTranspile
-- uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsTypeEligibleForTranspile(AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
-  name: IsTypeEligibleForTranspile(ITypeDeclaration, ISourceBuilder)
-  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsTypeEligibleForTranspile_AX_ST_Semantic_Model_Declarations_Types_ITypeDeclaration_AXSharp_Compiler_Core_ISourceBuilder_
-  commentId: M:AXSharp.Compiler.Cs.SemanticsHelpers.IsTypeEligibleForTranspile(AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration,AXSharp.Compiler.Core.ISourceBuilder)
-  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsTypeEligibleForTranspile(AX.ST.Semantic.Model.Declarations.Types.ITypeDeclaration, AXSharp.Compiler.Core.ISourceBuilder)
-  nameWithType: SemanticsHelpers.IsTypeEligibleForTranspile(ITypeDeclaration, ISourceBuilder)
-- uid: AXSharp.Compiler.Cs.SemanticsHelpers.IsTypeEligibleForTranspile*
-  name: IsTypeEligibleForTranspile
-  href: api/AXSharp.Compiler.Cs.SemanticsHelpers.html#AXSharp_Compiler_Cs_SemanticsHelpers_IsTypeEligibleForTranspile_
-  commentId: Overload:AXSharp.Compiler.Cs.SemanticsHelpers.IsTypeEligibleForTranspile
-  isSpec: "True"
-  fullName: AXSharp.Compiler.Cs.SemanticsHelpers.IsTypeEligibleForTranspile
-  nameWithType: SemanticsHelpers.IsTypeEligibleForTranspile
 - uid: AXSharp.Compiler.CsProject
   name: CsProject
   href: api/AXSharp.Compiler.CsProject.html
@@ -2257,6 +2551,19 @@ references:
   fullName.vb: AXSharp.Compiler.CsProject.New
   nameWithType: CsProject.CsProject
   nameWithType.vb: CsProject.New
+- uid: AXSharp.Compiler.CsProject.GenerateCompanionData
+  name: GenerateCompanionData()
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GenerateCompanionData
+  commentId: M:AXSharp.Compiler.CsProject.GenerateCompanionData
+  fullName: AXSharp.Compiler.CsProject.GenerateCompanionData()
+  nameWithType: CsProject.GenerateCompanionData()
+- uid: AXSharp.Compiler.CsProject.GenerateCompanionData*
+  name: GenerateCompanionData
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GenerateCompanionData_
+  commentId: Overload:AXSharp.Compiler.CsProject.GenerateCompanionData
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CsProject.GenerateCompanionData
+  nameWithType: CsProject.GenerateCompanionData
 - uid: AXSharp.Compiler.CsProject.GenerateResources
   name: GenerateResources()
   href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GenerateResources
@@ -2283,6 +2590,38 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.CsProject.GetMetaDataFolder
   nameWithType: CsProject.GetMetaDataFolder
+- uid: AXSharp.Compiler.CsProject.GetRelativePath(System.String,System.String)
+  name: GetRelativePath(string, string)
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GetRelativePath_System_String_System_String_
+  commentId: M:AXSharp.Compiler.CsProject.GetRelativePath(System.String,System.String)
+  name.vb: GetRelativePath(String, String)
+  fullName: AXSharp.Compiler.CsProject.GetRelativePath(string, string)
+  fullName.vb: AXSharp.Compiler.CsProject.GetRelativePath(String, String)
+  nameWithType: CsProject.GetRelativePath(string, string)
+  nameWithType.vb: CsProject.GetRelativePath(String, String)
+- uid: AXSharp.Compiler.CsProject.GetRelativePath*
+  name: GetRelativePath
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_GetRelativePath_
+  commentId: Overload:AXSharp.Compiler.CsProject.GetRelativePath
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CsProject.GetRelativePath
+  nameWithType: CsProject.GetRelativePath
+- uid: AXSharp.Compiler.CsProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable{System.Object})
+  name: InstallAXSharpDependencies(IEnumerable<object>)
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_InstallAXSharpDependencies_System_Collections_Generic_IEnumerable_System_Object__
+  commentId: M:AXSharp.Compiler.CsProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable{System.Object})
+  name.vb: InstallAXSharpDependencies(IEnumerable(Of Object))
+  fullName: AXSharp.Compiler.CsProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable<object>)
+  fullName.vb: AXSharp.Compiler.CsProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable(Of Object))
+  nameWithType: CsProject.InstallAXSharpDependencies(IEnumerable<object>)
+  nameWithType.vb: CsProject.InstallAXSharpDependencies(IEnumerable(Of Object))
+- uid: AXSharp.Compiler.CsProject.InstallAXSharpDependencies*
+  name: InstallAXSharpDependencies
+  href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_InstallAXSharpDependencies_
+  commentId: Overload:AXSharp.Compiler.CsProject.InstallAXSharpDependencies
+  isSpec: "True"
+  fullName: AXSharp.Compiler.CsProject.InstallAXSharpDependencies
+  nameWithType: CsProject.InstallAXSharpDependencies
 - uid: AXSharp.Compiler.CsProject.IxProjectFile
   name: IxProjectFile
   href: api/AXSharp.Compiler.CsProject.html#AXSharp_Compiler_CsProject_IxProjectFile
@@ -2516,6 +2855,32 @@ references:
   commentId: T:AXSharp.Compiler.ICompilerOptions
   fullName: AXSharp.Compiler.ICompilerOptions
   nameWithType: ICompilerOptions
+- uid: AXSharp.Compiler.ICompilerOptions.IgnoreS7Pragmas
+  name: IgnoreS7Pragmas
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_IgnoreS7Pragmas
+  commentId: P:AXSharp.Compiler.ICompilerOptions.IgnoreS7Pragmas
+  fullName: AXSharp.Compiler.ICompilerOptions.IgnoreS7Pragmas
+  nameWithType: ICompilerOptions.IgnoreS7Pragmas
+- uid: AXSharp.Compiler.ICompilerOptions.IgnoreS7Pragmas*
+  name: IgnoreS7Pragmas
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_IgnoreS7Pragmas_
+  commentId: Overload:AXSharp.Compiler.ICompilerOptions.IgnoreS7Pragmas
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ICompilerOptions.IgnoreS7Pragmas
+  nameWithType: ICompilerOptions.IgnoreS7Pragmas
+- uid: AXSharp.Compiler.ICompilerOptions.NoDependencyUpdate
+  name: NoDependencyUpdate
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_NoDependencyUpdate
+  commentId: P:AXSharp.Compiler.ICompilerOptions.NoDependencyUpdate
+  fullName: AXSharp.Compiler.ICompilerOptions.NoDependencyUpdate
+  nameWithType: ICompilerOptions.NoDependencyUpdate
+- uid: AXSharp.Compiler.ICompilerOptions.NoDependencyUpdate*
+  name: NoDependencyUpdate
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_NoDependencyUpdate_
+  commentId: Overload:AXSharp.Compiler.ICompilerOptions.NoDependencyUpdate
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ICompilerOptions.NoDependencyUpdate
+  nameWithType: ICompilerOptions.NoDependencyUpdate
 - uid: AXSharp.Compiler.ICompilerOptions.OutputProjectFolder
   name: OutputProjectFolder
   href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_OutputProjectFolder
@@ -2529,6 +2894,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.ICompilerOptions.OutputProjectFolder
   nameWithType: ICompilerOptions.OutputProjectFolder
+- uid: AXSharp.Compiler.ICompilerOptions.ProjectFile
+  name: ProjectFile
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_ProjectFile
+  commentId: P:AXSharp.Compiler.ICompilerOptions.ProjectFile
+  fullName: AXSharp.Compiler.ICompilerOptions.ProjectFile
+  nameWithType: ICompilerOptions.ProjectFile
+- uid: AXSharp.Compiler.ICompilerOptions.ProjectFile*
+  name: ProjectFile
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_ProjectFile_
+  commentId: Overload:AXSharp.Compiler.ICompilerOptions.ProjectFile
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ICompilerOptions.ProjectFile
+  nameWithType: ICompilerOptions.ProjectFile
+- uid: AXSharp.Compiler.ICompilerOptions.UseBase
+  name: UseBase
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_UseBase
+  commentId: P:AXSharp.Compiler.ICompilerOptions.UseBase
+  fullName: AXSharp.Compiler.ICompilerOptions.UseBase
+  nameWithType: ICompilerOptions.UseBase
+- uid: AXSharp.Compiler.ICompilerOptions.UseBase*
+  name: UseBase
+  href: api/AXSharp.Compiler.ICompilerOptions.html#AXSharp_Compiler_ICompilerOptions_UseBase_
+  commentId: Overload:AXSharp.Compiler.ICompilerOptions.UseBase
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ICompilerOptions.UseBase
+  nameWithType: ICompilerOptions.UseBase
 - uid: AXSharp.Compiler.IPackageReference
   name: IPackageReference
   href: api/AXSharp.Compiler.IPackageReference.html
@@ -2618,6 +3009,19 @@ references:
   commentId: T:AXSharp.Compiler.ITargetProject
   fullName: AXSharp.Compiler.ITargetProject
   nameWithType: ITargetProject
+- uid: AXSharp.Compiler.ITargetProject.GenerateCompanionData
+  name: GenerateCompanionData()
+  href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_GenerateCompanionData
+  commentId: M:AXSharp.Compiler.ITargetProject.GenerateCompanionData
+  fullName: AXSharp.Compiler.ITargetProject.GenerateCompanionData()
+  nameWithType: ITargetProject.GenerateCompanionData()
+- uid: AXSharp.Compiler.ITargetProject.GenerateCompanionData*
+  name: GenerateCompanionData
+  href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_GenerateCompanionData_
+  commentId: Overload:AXSharp.Compiler.ITargetProject.GenerateCompanionData
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ITargetProject.GenerateCompanionData
+  nameWithType: ITargetProject.GenerateCompanionData
 - uid: AXSharp.Compiler.ITargetProject.GenerateResources
   name: GenerateResources()
   href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_GenerateResources
@@ -2644,6 +3048,22 @@ references:
   isSpec: "True"
   fullName: AXSharp.Compiler.ITargetProject.GetMetaDataFolder
   nameWithType: ITargetProject.GetMetaDataFolder
+- uid: AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable{System.Object})
+  name: InstallAXSharpDependencies(IEnumerable<object>)
+  href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_InstallAXSharpDependencies_System_Collections_Generic_IEnumerable_System_Object__
+  commentId: M:AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable{System.Object})
+  name.vb: InstallAXSharpDependencies(IEnumerable(Of Object))
+  fullName: AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable<object>)
+  fullName.vb: AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies(System.Collections.Generic.IEnumerable(Of Object))
+  nameWithType: ITargetProject.InstallAXSharpDependencies(IEnumerable<object>)
+  nameWithType.vb: ITargetProject.InstallAXSharpDependencies(IEnumerable(Of Object))
+- uid: AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies*
+  name: InstallAXSharpDependencies
+  href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_InstallAXSharpDependencies_
+  commentId: Overload:AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies
+  isSpec: "True"
+  fullName: AXSharp.Compiler.ITargetProject.InstallAXSharpDependencies
+  nameWithType: ITargetProject.InstallAXSharpDependencies
 - uid: AXSharp.Compiler.ITargetProject.LoadReferences
   name: LoadReferences()
   href: api/AXSharp.Compiler.ITargetProject.html#AXSharp_Compiler_ITargetProject_LoadReferences
@@ -3107,6 +3527,417 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.CompilerOmitsAttribute.Omissions
   nameWithType: CompilerOmitsAttribute.Omissions
+- uid: AXSharp.Connector.ConcurrentSet`1
+  name: ConcurrentSet<T>
+  href: api/AXSharp.Connector.ConcurrentSet-1.html
+  commentId: T:AXSharp.Connector.ConcurrentSet`1
+  name.vb: ConcurrentSet(Of T)
+  fullName: AXSharp.Connector.ConcurrentSet<T>
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T)
+  nameWithType: ConcurrentSet<T>
+  nameWithType.vb: ConcurrentSet(Of T)
+- uid: AXSharp.Connector.ConcurrentSet`1.Add(`0)
+  name: Add(T)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Add__0_
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.Add(`0)
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Add(T)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Add(T)
+  nameWithType: ConcurrentSet<T>.Add(T)
+  nameWithType.vb: ConcurrentSet(Of T).Add(T)
+- uid: AXSharp.Connector.ConcurrentSet`1.Add*
+  name: Add
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Add_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Add
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Add
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Add
+  nameWithType: ConcurrentSet<T>.Add
+  nameWithType.vb: ConcurrentSet(Of T).Add
+- uid: AXSharp.Connector.ConcurrentSet`1.Clear
+  name: Clear()
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Clear
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.Clear
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Clear()
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Clear()
+  nameWithType: ConcurrentSet<T>.Clear()
+  nameWithType.vb: ConcurrentSet(Of T).Clear()
+- uid: AXSharp.Connector.ConcurrentSet`1.Clear*
+  name: Clear
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Clear_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Clear
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Clear
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Clear
+  nameWithType: ConcurrentSet<T>.Clear
+  nameWithType.vb: ConcurrentSet(Of T).Clear
+- uid: AXSharp.Connector.ConcurrentSet`1.Contains(`0)
+  name: Contains(T)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Contains__0_
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.Contains(`0)
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Contains(T)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Contains(T)
+  nameWithType: ConcurrentSet<T>.Contains(T)
+  nameWithType.vb: ConcurrentSet(Of T).Contains(T)
+- uid: AXSharp.Connector.ConcurrentSet`1.Contains*
+  name: Contains
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Contains_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Contains
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Contains
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Contains
+  nameWithType: ConcurrentSet<T>.Contains
+  nameWithType.vb: ConcurrentSet(Of T).Contains
+- uid: AXSharp.Connector.ConcurrentSet`1.CopyTo(`0[],System.Int32)
+  name: CopyTo(T[], int)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_CopyTo__0___System_Int32_
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.CopyTo(`0[],System.Int32)
+  name.vb: CopyTo(T(), Integer)
+  fullName: AXSharp.Connector.ConcurrentSet<T>.CopyTo(T[], int)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).CopyTo(T(), Integer)
+  nameWithType: ConcurrentSet<T>.CopyTo(T[], int)
+  nameWithType.vb: ConcurrentSet(Of T).CopyTo(T(), Integer)
+- uid: AXSharp.Connector.ConcurrentSet`1.CopyTo*
+  name: CopyTo
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_CopyTo_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.CopyTo
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.CopyTo
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).CopyTo
+  nameWithType: ConcurrentSet<T>.CopyTo
+  nameWithType.vb: ConcurrentSet(Of T).CopyTo
+- uid: AXSharp.Connector.ConcurrentSet`1.Count
+  name: Count
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Count
+  commentId: P:AXSharp.Connector.ConcurrentSet`1.Count
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Count
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Count
+  nameWithType: ConcurrentSet<T>.Count
+  nameWithType.vb: ConcurrentSet(Of T).Count
+- uid: AXSharp.Connector.ConcurrentSet`1.Count*
+  name: Count
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Count_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Count
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Count
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Count
+  nameWithType: ConcurrentSet<T>.Count
+  nameWithType.vb: ConcurrentSet(Of T).Count
+- uid: AXSharp.Connector.ConcurrentSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  name: ExceptWith(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_ExceptWith_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  name.vb: ExceptWith(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.ExceptWith(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).ExceptWith(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.ExceptWith(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).ExceptWith(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.ExceptWith*
+  name: ExceptWith
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_ExceptWith_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.ExceptWith
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.ExceptWith
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).ExceptWith
+  nameWithType: ConcurrentSet<T>.ExceptWith
+  nameWithType.vb: ConcurrentSet(Of T).ExceptWith
+- uid: AXSharp.Connector.ConcurrentSet`1.GetEnumerator
+  name: GetEnumerator()
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_GetEnumerator
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.GetEnumerator
+  fullName: AXSharp.Connector.ConcurrentSet<T>.GetEnumerator()
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).GetEnumerator()
+  nameWithType: ConcurrentSet<T>.GetEnumerator()
+  nameWithType.vb: ConcurrentSet(Of T).GetEnumerator()
+- uid: AXSharp.Connector.ConcurrentSet`1.GetEnumerator*
+  name: GetEnumerator
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_GetEnumerator_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.GetEnumerator
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.GetEnumerator
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).GetEnumerator
+  nameWithType: ConcurrentSet<T>.GetEnumerator
+  nameWithType.vb: ConcurrentSet(Of T).GetEnumerator
+- uid: AXSharp.Connector.ConcurrentSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  name: IntersectWith(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IntersectWith_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  name.vb: IntersectWith(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IntersectWith(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IntersectWith(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.IntersectWith(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).IntersectWith(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.IntersectWith*
+  name: IntersectWith
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IntersectWith_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IntersectWith
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IntersectWith
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IntersectWith
+  nameWithType: ConcurrentSet<T>.IntersectWith
+  nameWithType.vb: ConcurrentSet(Of T).IntersectWith
+- uid: AXSharp.Connector.ConcurrentSet`1.IsEmpty
+  name: IsEmpty
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsEmpty
+  commentId: P:AXSharp.Connector.ConcurrentSet`1.IsEmpty
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsEmpty
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsEmpty
+  nameWithType: ConcurrentSet<T>.IsEmpty
+  nameWithType.vb: ConcurrentSet(Of T).IsEmpty
+- uid: AXSharp.Connector.ConcurrentSet`1.IsEmpty*
+  name: IsEmpty
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsEmpty_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IsEmpty
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsEmpty
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsEmpty
+  nameWithType: ConcurrentSet<T>.IsEmpty
+  nameWithType.vb: ConcurrentSet(Of T).IsEmpty
+- uid: AXSharp.Connector.ConcurrentSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  name: IsProperSubsetOf(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsProperSubsetOf_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  name.vb: IsProperSubsetOf(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsProperSubsetOf(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.IsProperSubsetOf(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).IsProperSubsetOf(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.IsProperSubsetOf*
+  name: IsProperSubsetOf
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsProperSubsetOf_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IsProperSubsetOf
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsProperSubsetOf
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsProperSubsetOf
+  nameWithType: ConcurrentSet<T>.IsProperSubsetOf
+  nameWithType.vb: ConcurrentSet(Of T).IsProperSubsetOf
+- uid: AXSharp.Connector.ConcurrentSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  name: IsProperSupersetOf(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsProperSupersetOf_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  name.vb: IsProperSupersetOf(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsProperSupersetOf(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.IsProperSupersetOf(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).IsProperSupersetOf(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.IsProperSupersetOf*
+  name: IsProperSupersetOf
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsProperSupersetOf_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IsProperSupersetOf
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsProperSupersetOf
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsProperSupersetOf
+  nameWithType: ConcurrentSet<T>.IsProperSupersetOf
+  nameWithType.vb: ConcurrentSet(Of T).IsProperSupersetOf
+- uid: AXSharp.Connector.ConcurrentSet`1.IsReadOnly
+  name: IsReadOnly
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsReadOnly
+  commentId: P:AXSharp.Connector.ConcurrentSet`1.IsReadOnly
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsReadOnly
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsReadOnly
+  nameWithType: ConcurrentSet<T>.IsReadOnly
+  nameWithType.vb: ConcurrentSet(Of T).IsReadOnly
+- uid: AXSharp.Connector.ConcurrentSet`1.IsReadOnly*
+  name: IsReadOnly
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsReadOnly_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IsReadOnly
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsReadOnly
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsReadOnly
+  nameWithType: ConcurrentSet<T>.IsReadOnly
+  nameWithType.vb: ConcurrentSet(Of T).IsReadOnly
+- uid: AXSharp.Connector.ConcurrentSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  name: IsSubsetOf(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsSubsetOf_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  name.vb: IsSubsetOf(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsSubsetOf(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsSubsetOf(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.IsSubsetOf(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).IsSubsetOf(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.IsSubsetOf*
+  name: IsSubsetOf
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsSubsetOf_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IsSubsetOf
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsSubsetOf
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsSubsetOf
+  nameWithType: ConcurrentSet<T>.IsSubsetOf
+  nameWithType.vb: ConcurrentSet(Of T).IsSubsetOf
+- uid: AXSharp.Connector.ConcurrentSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  name: IsSupersetOf(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsSupersetOf_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  name.vb: IsSupersetOf(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsSupersetOf(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsSupersetOf(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.IsSupersetOf(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).IsSupersetOf(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.IsSupersetOf*
+  name: IsSupersetOf
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_IsSupersetOf_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.IsSupersetOf
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.IsSupersetOf
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).IsSupersetOf
+  nameWithType: ConcurrentSet<T>.IsSupersetOf
+  nameWithType.vb: ConcurrentSet(Of T).IsSupersetOf
+- uid: AXSharp.Connector.ConcurrentSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  name: Overlaps(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Overlaps_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  name.vb: Overlaps(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Overlaps(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Overlaps(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.Overlaps(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).Overlaps(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.Overlaps*
+  name: Overlaps
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Overlaps_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Overlaps
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Overlaps
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Overlaps
+  nameWithType: ConcurrentSet<T>.Overlaps
+  nameWithType.vb: ConcurrentSet(Of T).Overlaps
+- uid: AXSharp.Connector.ConcurrentSet`1.Remove(`0)
+  name: Remove(T)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Remove__0_
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.Remove(`0)
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Remove(T)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Remove(T)
+  nameWithType: ConcurrentSet<T>.Remove(T)
+  nameWithType.vb: ConcurrentSet(Of T).Remove(T)
+- uid: AXSharp.Connector.ConcurrentSet`1.Remove*
+  name: Remove
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Remove_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Remove
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Remove
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Remove
+  nameWithType: ConcurrentSet<T>.Remove
+  nameWithType.vb: ConcurrentSet(Of T).Remove
+- uid: AXSharp.Connector.ConcurrentSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  name: SetEquals(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_SetEquals_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  name.vb: SetEquals(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.SetEquals(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).SetEquals(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.SetEquals(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).SetEquals(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.SetEquals*
+  name: SetEquals
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_SetEquals_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.SetEquals
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.SetEquals
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).SetEquals
+  nameWithType: ConcurrentSet<T>.SetEquals
+  nameWithType.vb: ConcurrentSet(Of T).SetEquals
+- uid: AXSharp.Connector.ConcurrentSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  name: SymmetricExceptWith(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_SymmetricExceptWith_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  name.vb: SymmetricExceptWith(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.SymmetricExceptWith(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).SymmetricExceptWith(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.SymmetricExceptWith(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).SymmetricExceptWith(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.SymmetricExceptWith*
+  name: SymmetricExceptWith
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_SymmetricExceptWith_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.SymmetricExceptWith
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.SymmetricExceptWith
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).SymmetricExceptWith
+  nameWithType: ConcurrentSet<T>.SymmetricExceptWith
+  nameWithType.vb: ConcurrentSet(Of T).SymmetricExceptWith
+- uid: AXSharp.Connector.ConcurrentSet`1.ToArray
+  name: ToArray()
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_ToArray
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.ToArray
+  fullName: AXSharp.Connector.ConcurrentSet<T>.ToArray()
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).ToArray()
+  nameWithType: ConcurrentSet<T>.ToArray()
+  nameWithType.vb: ConcurrentSet(Of T).ToArray()
+- uid: AXSharp.Connector.ConcurrentSet`1.ToArray*
+  name: ToArray
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_ToArray_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.ToArray
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.ToArray
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).ToArray
+  nameWithType: ConcurrentSet<T>.ToArray
+  nameWithType.vb: ConcurrentSet(Of T).ToArray
+- uid: AXSharp.Connector.ConcurrentSet`1.TryAdd(`0)
+  name: TryAdd(T)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_TryAdd__0_
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.TryAdd(`0)
+  fullName: AXSharp.Connector.ConcurrentSet<T>.TryAdd(T)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).TryAdd(T)
+  nameWithType: ConcurrentSet<T>.TryAdd(T)
+  nameWithType.vb: ConcurrentSet(Of T).TryAdd(T)
+- uid: AXSharp.Connector.ConcurrentSet`1.TryAdd*
+  name: TryAdd
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_TryAdd_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.TryAdd
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.TryAdd
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).TryAdd
+  nameWithType: ConcurrentSet<T>.TryAdd
+  nameWithType.vb: ConcurrentSet(Of T).TryAdd
+- uid: AXSharp.Connector.ConcurrentSet`1.TryRemove(`0)
+  name: TryRemove(T)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_TryRemove__0_
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.TryRemove(`0)
+  fullName: AXSharp.Connector.ConcurrentSet<T>.TryRemove(T)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).TryRemove(T)
+  nameWithType: ConcurrentSet<T>.TryRemove(T)
+  nameWithType.vb: ConcurrentSet(Of T).TryRemove(T)
+- uid: AXSharp.Connector.ConcurrentSet`1.TryRemove*
+  name: TryRemove
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_TryRemove_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.TryRemove
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.TryRemove
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).TryRemove
+  nameWithType: ConcurrentSet<T>.TryRemove
+  nameWithType.vb: ConcurrentSet(Of T).TryRemove
+- uid: AXSharp.Connector.ConcurrentSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  name: UnionWith(IEnumerable<T>)
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_UnionWith_System_Collections_Generic_IEnumerable__0__
+  commentId: M:AXSharp.Connector.ConcurrentSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  name.vb: UnionWith(IEnumerable(Of T))
+  fullName: AXSharp.Connector.ConcurrentSet<T>.UnionWith(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).UnionWith(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ConcurrentSet<T>.UnionWith(IEnumerable<T>)
+  nameWithType.vb: ConcurrentSet(Of T).UnionWith(IEnumerable(Of T))
+- uid: AXSharp.Connector.ConcurrentSet`1.UnionWith*
+  name: UnionWith
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_UnionWith_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.UnionWith
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.UnionWith
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).UnionWith
+  nameWithType: ConcurrentSet<T>.UnionWith
+  nameWithType.vb: ConcurrentSet(Of T).UnionWith
+- uid: AXSharp.Connector.ConcurrentSet`1.Values
+  name: Values
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Values
+  commentId: P:AXSharp.Connector.ConcurrentSet`1.Values
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Values
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Values
+  nameWithType: ConcurrentSet<T>.Values
+  nameWithType.vb: ConcurrentSet(Of T).Values
+- uid: AXSharp.Connector.ConcurrentSet`1.Values*
+  name: Values
+  href: api/AXSharp.Connector.ConcurrentSet-1.html#AXSharp_Connector_ConcurrentSet_1_Values_
+  commentId: Overload:AXSharp.Connector.ConcurrentSet`1.Values
+  isSpec: "True"
+  fullName: AXSharp.Connector.ConcurrentSet<T>.Values
+  fullName.vb: AXSharp.Connector.ConcurrentSet(Of T).Values
+  nameWithType: ConcurrentSet<T>.Values
+  nameWithType.vb: ConcurrentSet(Of T).Values
 - uid: AXSharp.Connector.Connector
   name: Connector
   href: api/AXSharp.Connector.Connector.html
@@ -3429,6 +4260,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Connector.RwCycleCount
   nameWithType: Connector.RwCycleCount
+- uid: AXSharp.Connector.Connector.SetCulture(System.Globalization.CultureInfo)
+  name: SetCulture(CultureInfo)
+  href: api/AXSharp.Connector.Connector.html#AXSharp_Connector_Connector_SetCulture_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.Connector.SetCulture(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.Connector.SetCulture(System.Globalization.CultureInfo)
+  nameWithType: Connector.SetCulture(CultureInfo)
+- uid: AXSharp.Connector.Connector.SetCulture*
+  name: SetCulture
+  href: api/AXSharp.Connector.Connector.html#AXSharp_Connector_Connector_SetCulture_
+  commentId: Overload:AXSharp.Connector.Connector.SetCulture
+  isSpec: "True"
+  fullName: AXSharp.Connector.Connector.SetCulture
+  nameWithType: Connector.SetCulture
 - uid: AXSharp.Connector.Connector.SetField*
   name: SetField
   href: api/AXSharp.Connector.Connector.html#AXSharp_Connector_Connector_SetField_
@@ -5064,6 +5908,31 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Identity.TwinIdentityProvider.IdentitiesCount
   nameWithType: TwinIdentityProvider.IdentitiesCount
+- uid: AXSharp.Connector.IgnoreOnPocoOperation
+  name: IgnoreOnPocoOperation
+  href: api/AXSharp.Connector.IgnoreOnPocoOperation.html
+  commentId: T:AXSharp.Connector.IgnoreOnPocoOperation
+  fullName: AXSharp.Connector.IgnoreOnPocoOperation
+  nameWithType: IgnoreOnPocoOperation
+- uid: AXSharp.Connector.IgnoreOnPocoOperation.#ctor
+  name: IgnoreOnPocoOperation()
+  href: api/AXSharp.Connector.IgnoreOnPocoOperation.html#AXSharp_Connector_IgnoreOnPocoOperation__ctor
+  commentId: M:AXSharp.Connector.IgnoreOnPocoOperation.#ctor
+  name.vb: New()
+  fullName: AXSharp.Connector.IgnoreOnPocoOperation.IgnoreOnPocoOperation()
+  fullName.vb: AXSharp.Connector.IgnoreOnPocoOperation.New()
+  nameWithType: IgnoreOnPocoOperation.IgnoreOnPocoOperation()
+  nameWithType.vb: IgnoreOnPocoOperation.New()
+- uid: AXSharp.Connector.IgnoreOnPocoOperation.#ctor*
+  name: IgnoreOnPocoOperation
+  href: api/AXSharp.Connector.IgnoreOnPocoOperation.html#AXSharp_Connector_IgnoreOnPocoOperation__ctor_
+  commentId: Overload:AXSharp.Connector.IgnoreOnPocoOperation.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AXSharp.Connector.IgnoreOnPocoOperation.IgnoreOnPocoOperation
+  fullName.vb: AXSharp.Connector.IgnoreOnPocoOperation.New
+  nameWithType: IgnoreOnPocoOperation.IgnoreOnPocoOperation
+  nameWithType.vb: IgnoreOnPocoOperation.New
 - uid: AXSharp.Connector.IgnoreReflectionAttribute
   name: IgnoreReflectionAttribute
   href: api/AXSharp.Connector.IgnoreReflectionAttribute.html
@@ -5206,6 +6075,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ITwinElement.AttributeName
   nameWithType: ITwinElement.AttributeName
+- uid: AXSharp.Connector.ITwinElement.GetAttributeName(System.Globalization.CultureInfo)
+  name: GetAttributeName(CultureInfo)
+  href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_GetAttributeName_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ITwinElement.GetAttributeName(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ITwinElement.GetAttributeName(System.Globalization.CultureInfo)
+  nameWithType: ITwinElement.GetAttributeName(CultureInfo)
+- uid: AXSharp.Connector.ITwinElement.GetAttributeName*
+  name: GetAttributeName
+  href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_GetAttributeName_
+  commentId: Overload:AXSharp.Connector.ITwinElement.GetAttributeName
+  isSpec: "True"
+  fullName: AXSharp.Connector.ITwinElement.GetAttributeName
+  nameWithType: ITwinElement.GetAttributeName
+- uid: AXSharp.Connector.ITwinElement.GetHumanReadable(System.Globalization.CultureInfo)
+  name: GetHumanReadable(CultureInfo)
+  href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_GetHumanReadable_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ITwinElement.GetHumanReadable(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ITwinElement.GetHumanReadable(System.Globalization.CultureInfo)
+  nameWithType: ITwinElement.GetHumanReadable(CultureInfo)
+- uid: AXSharp.Connector.ITwinElement.GetHumanReadable*
+  name: GetHumanReadable
+  href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_GetHumanReadable_
+  commentId: Overload:AXSharp.Connector.ITwinElement.GetHumanReadable
+  isSpec: "True"
+  fullName: AXSharp.Connector.ITwinElement.GetHumanReadable
+  nameWithType: ITwinElement.GetHumanReadable
 - uid: AXSharp.Connector.ITwinElement.GetParent
   name: GetParent()
   href: api/AXSharp.Connector.ITwinElement.html#AXSharp_Connector_ITwinElement_GetParent
@@ -5727,15 +6622,15 @@ references:
   commentId: T:AXSharp.Connector.Localizations.Translator
   fullName: AXSharp.Connector.Localizations.Translator
   nameWithType: Translator
-- uid: AXSharp.Connector.Localizations.Translator.Localize(System.String,AXSharp.Connector.ITwinElement)
-  name: Localize(string, ITwinElement)
-  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Localize_System_String_AXSharp_Connector_ITwinElement_
-  commentId: M:AXSharp.Connector.Localizations.Translator.Localize(System.String,AXSharp.Connector.ITwinElement)
-  name.vb: Localize(String, ITwinElement)
-  fullName: AXSharp.Connector.Localizations.Translator.Localize(string, AXSharp.Connector.ITwinElement)
-  fullName.vb: AXSharp.Connector.Localizations.Translator.Localize(String, AXSharp.Connector.ITwinElement)
-  nameWithType: Translator.Localize(string, ITwinElement)
-  nameWithType.vb: Translator.Localize(String, ITwinElement)
+- uid: AXSharp.Connector.Localizations.Translator.Localize(System.String,AXSharp.Connector.ITwinElement,System.Globalization.CultureInfo)
+  name: Localize(string, ITwinElement, CultureInfo)
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Localize_System_String_AXSharp_Connector_ITwinElement_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.Localizations.Translator.Localize(System.String,AXSharp.Connector.ITwinElement,System.Globalization.CultureInfo)
+  name.vb: Localize(String, ITwinElement, CultureInfo)
+  fullName: AXSharp.Connector.Localizations.Translator.Localize(string, AXSharp.Connector.ITwinElement, System.Globalization.CultureInfo)
+  fullName.vb: AXSharp.Connector.Localizations.Translator.Localize(String, AXSharp.Connector.ITwinElement, System.Globalization.CultureInfo)
+  nameWithType: Translator.Localize(string, ITwinElement, CultureInfo)
+  nameWithType.vb: Translator.Localize(String, ITwinElement, CultureInfo)
 - uid: AXSharp.Connector.Localizations.Translator.Localize*
   name: Localize
   href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Localize_
@@ -5756,15 +6651,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.Localizations.Translator.SetLocalizationResource
   nameWithType: Translator.SetLocalizationResource
-- uid: AXSharp.Connector.Localizations.Translator.Translate(System.String,AXSharp.Connector.ITwinElement)
-  name: Translate(string, ITwinElement)
-  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Translate_System_String_AXSharp_Connector_ITwinElement_
-  commentId: M:AXSharp.Connector.Localizations.Translator.Translate(System.String,AXSharp.Connector.ITwinElement)
-  name.vb: Translate(String, ITwinElement)
-  fullName: AXSharp.Connector.Localizations.Translator.Translate(string, AXSharp.Connector.ITwinElement)
-  fullName.vb: AXSharp.Connector.Localizations.Translator.Translate(String, AXSharp.Connector.ITwinElement)
-  nameWithType: Translator.Translate(string, ITwinElement)
-  nameWithType.vb: Translator.Translate(String, ITwinElement)
+- uid: AXSharp.Connector.Localizations.Translator.Translate(System.String,AXSharp.Connector.ITwinElement,System.Globalization.CultureInfo)
+  name: Translate(string, ITwinElement, CultureInfo)
+  href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Translate_System_String_AXSharp_Connector_ITwinElement_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.Localizations.Translator.Translate(System.String,AXSharp.Connector.ITwinElement,System.Globalization.CultureInfo)
+  name.vb: Translate(String, ITwinElement, CultureInfo)
+  fullName: AXSharp.Connector.Localizations.Translator.Translate(string, AXSharp.Connector.ITwinElement, System.Globalization.CultureInfo)
+  fullName.vb: AXSharp.Connector.Localizations.Translator.Translate(String, AXSharp.Connector.ITwinElement, System.Globalization.CultureInfo)
+  nameWithType: Translator.Translate(string, ITwinElement, CultureInfo)
+  nameWithType.vb: Translator.Translate(String, ITwinElement, CultureInfo)
 - uid: AXSharp.Connector.Localizations.Translator.Translate*
   name: Translate
   href: api/AXSharp.Connector.Localizations.Translator.html#AXSharp_Connector_Localizations_Translator_Translate_
@@ -5778,15 +6673,15 @@ references:
   commentId: T:AXSharp.Connector.Localizations.TranslatorExtension
   fullName: AXSharp.Connector.Localizations.TranslatorExtension
   nameWithType: TranslatorExtension
-- uid: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement,System.String)
-  name: Translate(ITwinElement, string)
-  href: api/AXSharp.Connector.Localizations.TranslatorExtension.html#AXSharp_Connector_Localizations_TranslatorExtension_Translate_AXSharp_Connector_ITwinElement_System_String_
-  commentId: M:AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement,System.String)
-  name.vb: Translate(ITwinElement, String)
-  fullName: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement, string)
-  fullName.vb: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement, String)
-  nameWithType: TranslatorExtension.Translate(ITwinElement, string)
-  nameWithType.vb: TranslatorExtension.Translate(ITwinElement, String)
+- uid: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement,System.String,System.Globalization.CultureInfo)
+  name: Translate(ITwinElement, string, CultureInfo)
+  href: api/AXSharp.Connector.Localizations.TranslatorExtension.html#AXSharp_Connector_Localizations_TranslatorExtension_Translate_AXSharp_Connector_ITwinElement_System_String_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement,System.String,System.Globalization.CultureInfo)
+  name.vb: Translate(ITwinElement, String, CultureInfo)
+  fullName: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement, string, System.Globalization.CultureInfo)
+  fullName.vb: AXSharp.Connector.Localizations.TranslatorExtension.Translate(AXSharp.Connector.ITwinElement, String, System.Globalization.CultureInfo)
+  nameWithType: TranslatorExtension.Translate(ITwinElement, string, CultureInfo)
+  nameWithType.vb: TranslatorExtension.Translate(ITwinElement, String, CultureInfo)
 - uid: AXSharp.Connector.Localizations.TranslatorExtension.Translate*
   name: Translate
   href: api/AXSharp.Connector.Localizations.TranslatorExtension.html#AXSharp_Connector_Localizations_TranslatorExtension_Translate_
@@ -6013,6 +6908,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.AttributeName
   nameWithType: RootTwinObject.AttributeName
+- uid: AXSharp.Connector.RootTwinObject.GetAttributeName(System.Globalization.CultureInfo)
+  name: GetAttributeName(CultureInfo)
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_GetAttributeName_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.RootTwinObject.GetAttributeName(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.RootTwinObject.GetAttributeName(System.Globalization.CultureInfo)
+  nameWithType: RootTwinObject.GetAttributeName(CultureInfo)
+- uid: AXSharp.Connector.RootTwinObject.GetAttributeName*
+  name: GetAttributeName
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_GetAttributeName_
+  commentId: Overload:AXSharp.Connector.RootTwinObject.GetAttributeName
+  isSpec: "True"
+  fullName: AXSharp.Connector.RootTwinObject.GetAttributeName
+  nameWithType: RootTwinObject.GetAttributeName
 - uid: AXSharp.Connector.RootTwinObject.GetChildren
   name: GetChildren()
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_GetChildren
@@ -6039,6 +6947,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.RootTwinObject.GetConnector
   nameWithType: RootTwinObject.GetConnector
+- uid: AXSharp.Connector.RootTwinObject.GetHumanReadable(System.Globalization.CultureInfo)
+  name: GetHumanReadable(CultureInfo)
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_GetHumanReadable_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.RootTwinObject.GetHumanReadable(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.RootTwinObject.GetHumanReadable(System.Globalization.CultureInfo)
+  nameWithType: RootTwinObject.GetHumanReadable(CultureInfo)
+- uid: AXSharp.Connector.RootTwinObject.GetHumanReadable*
+  name: GetHumanReadable
+  href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_GetHumanReadable_
+  commentId: Overload:AXSharp.Connector.RootTwinObject.GetHumanReadable
+  isSpec: "True"
+  fullName: AXSharp.Connector.RootTwinObject.GetHumanReadable
+  nameWithType: RootTwinObject.GetHumanReadable
 - uid: AXSharp.Connector.RootTwinObject.GetKids
   name: GetKids()
   href: api/AXSharp.Connector.RootTwinObject.html#AXSharp_Connector_RootTwinObject_GetKids
@@ -8980,6 +9901,22 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.TwinObjectExtensions.CreatePoco
   nameWithType: TwinObjectExtensions.CreatePoco
+- uid: AXSharp.Connector.TwinObjectExtensions.HasAttribute*
+  name: HasAttribute
+  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_HasAttribute_
+  commentId: Overload:AXSharp.Connector.TwinObjectExtensions.HasAttribute
+  isSpec: "True"
+  fullName: AXSharp.Connector.TwinObjectExtensions.HasAttribute
+  nameWithType: TwinObjectExtensions.HasAttribute
+- uid: AXSharp.Connector.TwinObjectExtensions.HasAttribute``1(AXSharp.Connector.ITwinElement)
+  name: HasAttribute<T>(ITwinElement)
+  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_HasAttribute__1_AXSharp_Connector_ITwinElement_
+  commentId: M:AXSharp.Connector.TwinObjectExtensions.HasAttribute``1(AXSharp.Connector.ITwinElement)
+  name.vb: HasAttribute(Of T)(ITwinElement)
+  fullName: AXSharp.Connector.TwinObjectExtensions.HasAttribute<T>(AXSharp.Connector.ITwinElement)
+  fullName.vb: AXSharp.Connector.TwinObjectExtensions.HasAttribute(Of T)(AXSharp.Connector.ITwinElement)
+  nameWithType: TwinObjectExtensions.HasAttribute<T>(ITwinElement)
+  nameWithType.vb: TwinObjectExtensions.HasAttribute(Of T)(ITwinElement)
 - uid: AXSharp.Connector.TwinObjectExtensions.MakeReadOnce(AXSharp.Connector.ITwinObject)
   name: MakeReadOnce(ITwinObject)
   href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_MakeReadOnce_AXSharp_Connector_ITwinObject_
@@ -9050,6 +9987,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.TwinObjectExtensions.ReadAsync
   nameWithType: TwinObjectExtensions.ReadAsync
+- uid: AXSharp.Connector.TwinObjectExtensions.ReadAsync``1(AXSharp.Connector.ITwinObject)
+  name: ReadAsync<T>(ITwinObject)
+  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_ReadAsync__1_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.Connector.TwinObjectExtensions.ReadAsync``1(AXSharp.Connector.ITwinObject)
+  name.vb: ReadAsync(Of T)(ITwinObject)
+  fullName: AXSharp.Connector.TwinObjectExtensions.ReadAsync<T>(AXSharp.Connector.ITwinObject)
+  fullName.vb: AXSharp.Connector.TwinObjectExtensions.ReadAsync(Of T)(AXSharp.Connector.ITwinObject)
+  nameWithType: TwinObjectExtensions.ReadAsync<T>(ITwinObject)
+  nameWithType.vb: TwinObjectExtensions.ReadAsync(Of T)(ITwinObject)
 - uid: AXSharp.Connector.TwinObjectExtensions.RetrievePrimitives(AXSharp.Connector.ITwinObject,System.Collections.Generic.List{AXSharp.Connector.ITwinPrimitive})
   name: RetrievePrimitives(ITwinObject, List<ITwinPrimitive>)
   href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_RetrievePrimitives_AXSharp_Connector_ITwinObject_System_Collections_Generic_List_AXSharp_Connector_ITwinPrimitive__
@@ -9182,6 +10128,15 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.TwinObjectExtensions.WriteAsync
   nameWithType: TwinObjectExtensions.WriteAsync
+- uid: AXSharp.Connector.TwinObjectExtensions.WriteAsync``1(AXSharp.Connector.ITwinObject)
+  name: WriteAsync<T>(ITwinObject)
+  href: api/AXSharp.Connector.TwinObjectExtensions.html#AXSharp_Connector_TwinObjectExtensions_WriteAsync__1_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.Connector.TwinObjectExtensions.WriteAsync``1(AXSharp.Connector.ITwinObject)
+  name.vb: WriteAsync(Of T)(ITwinObject)
+  fullName: AXSharp.Connector.TwinObjectExtensions.WriteAsync<T>(AXSharp.Connector.ITwinObject)
+  fullName.vb: AXSharp.Connector.TwinObjectExtensions.WriteAsync(Of T)(AXSharp.Connector.ITwinObject)
+  nameWithType: TwinObjectExtensions.WriteAsync<T>(ITwinObject)
+  nameWithType.vb: TwinObjectExtensions.WriteAsync(Of T)(ITwinObject)
 - uid: AXSharp.Connector.TwinPrimitiveExtensions
   name: TwinPrimitiveExtensions
   href: api/AXSharp.Connector.TwinPrimitiveExtensions.html
@@ -9742,6 +10697,32 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ValueTypes.OnlinerBase.FromShadowToOnline
   nameWithType: OnlinerBase.FromShadowToOnline
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase.GetAttributeName(System.Globalization.CultureInfo)
+  name: GetAttributeName(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_GetAttributeName_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerBase.GetAttributeName(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.GetAttributeName(System.Globalization.CultureInfo)
+  nameWithType: OnlinerBase.GetAttributeName(CultureInfo)
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase.GetAttributeName*
+  name: GetAttributeName
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_GetAttributeName_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase.GetAttributeName
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.GetAttributeName
+  nameWithType: OnlinerBase.GetAttributeName
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase.GetHumanReadable(System.Globalization.CultureInfo)
+  name: GetHumanReadable(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_GetHumanReadable_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerBase.GetHumanReadable(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.GetHumanReadable(System.Globalization.CultureInfo)
+  nameWithType: OnlinerBase.GetHumanReadable(CultureInfo)
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase.GetHumanReadable*
+  name: GetHumanReadable
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_GetHumanReadable_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase.GetHumanReadable
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase.GetHumanReadable
+  nameWithType: OnlinerBase.GetHumanReadable
 - uid: AXSharp.Connector.ValueTypes.OnlinerBase.GetParent
   name: GetParent()
   href: api/AXSharp.Connector.ValueTypes.OnlinerBase.html#AXSharp_Connector_ValueTypes_OnlinerBase_GetParent
@@ -10247,6 +11228,14 @@ references:
   fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetAsync()
   nameWithType: OnlinerBase<T>.GetAsync()
   nameWithType.vb: OnlinerBase(Of T).GetAsync()
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAsync(System.Globalization.CultureInfo)
+  name: GetAsync(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetAsync_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAsync(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase<T>.GetAsync(System.Globalization.CultureInfo)
+  fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetAsync(System.Globalization.CultureInfo)
+  nameWithType: OnlinerBase<T>.GetAsync(CultureInfo)
+  nameWithType.vb: OnlinerBase(Of T).GetAsync(CultureInfo)
 - uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAsync*
   name: GetAsync
   href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetAsync_
@@ -10256,6 +11245,40 @@ references:
   fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetAsync
   nameWithType: OnlinerBase<T>.GetAsync
   nameWithType.vb: OnlinerBase(Of T).GetAsync
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAttributeToolTip(System.Globalization.CultureInfo)
+  name: GetAttributeToolTip(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetAttributeToolTip_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAttributeToolTip(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase<T>.GetAttributeToolTip(System.Globalization.CultureInfo)
+  fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetAttributeToolTip(System.Globalization.CultureInfo)
+  nameWithType: OnlinerBase<T>.GetAttributeToolTip(CultureInfo)
+  nameWithType.vb: OnlinerBase(Of T).GetAttributeToolTip(CultureInfo)
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAttributeToolTip*
+  name: GetAttributeToolTip
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetAttributeToolTip_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase`1.GetAttributeToolTip
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase<T>.GetAttributeToolTip
+  fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetAttributeToolTip
+  nameWithType: OnlinerBase<T>.GetAttributeToolTip
+  nameWithType.vb: OnlinerBase(Of T).GetAttributeToolTip
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetCyclic(System.Globalization.CultureInfo)
+  name: GetCyclic(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetCyclic_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerBase`1.GetCyclic(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase<T>.GetCyclic(System.Globalization.CultureInfo)
+  fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetCyclic(System.Globalization.CultureInfo)
+  nameWithType: OnlinerBase<T>.GetCyclic(CultureInfo)
+  nameWithType.vb: OnlinerBase(Of T).GetCyclic(CultureInfo)
+- uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetCyclic*
+  name: GetCyclic
+  href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetCyclic_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerBase`1.GetCyclic
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerBase<T>.GetCyclic
+  fullName.vb: AXSharp.Connector.ValueTypes.OnlinerBase(Of T).GetCyclic
+  nameWithType: OnlinerBase<T>.GetCyclic
+  nameWithType.vb: OnlinerBase(Of T).GetCyclic
 - uid: AXSharp.Connector.ValueTypes.OnlinerBase`1.GetDeclaringAssembly
   name: GetDeclaringAssembly()
   href: api/AXSharp.Connector.ValueTypes.OnlinerBase-1.html#AXSharp_Connector_ValueTypes_OnlinerBase_1_GetDeclaringAssembly
@@ -11872,6 +12895,12 @@ references:
   commentId: M:AXSharp.Connector.ValueTypes.OnlinerString.GetAsync
   fullName: AXSharp.Connector.ValueTypes.OnlinerString.GetAsync()
   nameWithType: OnlinerString.GetAsync()
+- uid: AXSharp.Connector.ValueTypes.OnlinerString.GetAsync(System.Globalization.CultureInfo)
+  name: GetAsync(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerString.html#AXSharp_Connector_ValueTypes_OnlinerString_GetAsync_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerString.GetAsync(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerString.GetAsync(System.Globalization.CultureInfo)
+  nameWithType: OnlinerString.GetAsync(CultureInfo)
 - uid: AXSharp.Connector.ValueTypes.OnlinerString.GetAsync*
   name: GetAsync
   href: api/AXSharp.Connector.ValueTypes.OnlinerString.html#AXSharp_Connector_ValueTypes_OnlinerString_GetAsync_
@@ -11879,6 +12908,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ValueTypes.OnlinerString.GetAsync
   nameWithType: OnlinerString.GetAsync
+- uid: AXSharp.Connector.ValueTypes.OnlinerString.GetCyclic(System.Globalization.CultureInfo)
+  name: GetCyclic(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerString.html#AXSharp_Connector_ValueTypes_OnlinerString_GetCyclic_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerString.GetCyclic(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerString.GetCyclic(System.Globalization.CultureInfo)
+  nameWithType: OnlinerString.GetCyclic(CultureInfo)
+- uid: AXSharp.Connector.ValueTypes.OnlinerString.GetCyclic*
+  name: GetCyclic
+  href: api/AXSharp.Connector.ValueTypes.OnlinerString.html#AXSharp_Connector_ValueTypes_OnlinerString_GetCyclic_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerString.GetCyclic
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerString.GetCyclic
+  nameWithType: OnlinerString.GetCyclic
 - uid: AXSharp.Connector.ValueTypes.OnlinerString.InstanceMaxValue
   name: InstanceMaxValue
   href: api/AXSharp.Connector.ValueTypes.OnlinerString.html#AXSharp_Connector_ValueTypes_OnlinerString_InstanceMaxValue
@@ -12564,6 +13606,12 @@ references:
   commentId: M:AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync
   fullName: AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync()
   nameWithType: OnlinerWString.GetAsync()
+- uid: AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync(System.Globalization.CultureInfo)
+  name: GetAsync(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerWString.html#AXSharp_Connector_ValueTypes_OnlinerWString_GetAsync_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync(System.Globalization.CultureInfo)
+  nameWithType: OnlinerWString.GetAsync(CultureInfo)
 - uid: AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync*
   name: GetAsync
   href: api/AXSharp.Connector.ValueTypes.OnlinerWString.html#AXSharp_Connector_ValueTypes_OnlinerWString_GetAsync_
@@ -12571,6 +13619,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.Connector.ValueTypes.OnlinerWString.GetAsync
   nameWithType: OnlinerWString.GetAsync
+- uid: AXSharp.Connector.ValueTypes.OnlinerWString.GetCyclic(System.Globalization.CultureInfo)
+  name: GetCyclic(CultureInfo)
+  href: api/AXSharp.Connector.ValueTypes.OnlinerWString.html#AXSharp_Connector_ValueTypes_OnlinerWString_GetCyclic_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.Connector.ValueTypes.OnlinerWString.GetCyclic(System.Globalization.CultureInfo)
+  fullName: AXSharp.Connector.ValueTypes.OnlinerWString.GetCyclic(System.Globalization.CultureInfo)
+  nameWithType: OnlinerWString.GetCyclic(CultureInfo)
+- uid: AXSharp.Connector.ValueTypes.OnlinerWString.GetCyclic*
+  name: GetCyclic
+  href: api/AXSharp.Connector.ValueTypes.OnlinerWString.html#AXSharp_Connector_ValueTypes_OnlinerWString_GetCyclic_
+  commentId: Overload:AXSharp.Connector.ValueTypes.OnlinerWString.GetCyclic
+  isSpec: "True"
+  fullName: AXSharp.Connector.ValueTypes.OnlinerWString.GetCyclic
+  nameWithType: OnlinerWString.GetCyclic
 - uid: AXSharp.Connector.ValueTypes.OnlinerWString.InstanceMaxValue
   name: InstanceMaxValue
   href: api/AXSharp.Connector.ValueTypes.OnlinerWString.html#AXSharp_Connector_ValueTypes_OnlinerWString_InstanceMaxValue
@@ -15403,6 +16464,19 @@ references:
   commentId: T:AXSharp.ixc_doc.Schemas.Remote
   fullName: AXSharp.ixc_doc.Schemas.Remote
   nameWithType: Remote
+- uid: AXSharp.ixc_doc.Schemas.Remote.Branch
+  name: Branch
+  href: api/AXSharp.ixc_doc.Schemas.Remote.html#AXSharp_ixc_doc_Schemas_Remote_Branch
+  commentId: P:AXSharp.ixc_doc.Schemas.Remote.Branch
+  fullName: AXSharp.ixc_doc.Schemas.Remote.Branch
+  nameWithType: Remote.Branch
+- uid: AXSharp.ixc_doc.Schemas.Remote.Branch*
+  name: Branch
+  href: api/AXSharp.ixc_doc.Schemas.Remote.html#AXSharp_ixc_doc_Schemas_Remote_Branch_
+  commentId: Overload:AXSharp.ixc_doc.Schemas.Remote.Branch
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Schemas.Remote.Branch
+  nameWithType: Remote.Branch
 - uid: AXSharp.ixc_doc.Schemas.Remote.Path
   name: Path
   href: api/AXSharp.ixc_doc.Schemas.Remote.html#AXSharp_ixc_doc_Schemas_Remote_Path
@@ -15416,6 +16490,19 @@ references:
   isSpec: "True"
   fullName: AXSharp.ixc_doc.Schemas.Remote.Path
   nameWithType: Remote.Path
+- uid: AXSharp.ixc_doc.Schemas.Remote.Repo
+  name: Repo
+  href: api/AXSharp.ixc_doc.Schemas.Remote.html#AXSharp_ixc_doc_Schemas_Remote_Repo
+  commentId: P:AXSharp.ixc_doc.Schemas.Remote.Repo
+  fullName: AXSharp.ixc_doc.Schemas.Remote.Repo
+  nameWithType: Remote.Repo
+- uid: AXSharp.ixc_doc.Schemas.Remote.Repo*
+  name: Repo
+  href: api/AXSharp.ixc_doc.Schemas.Remote.html#AXSharp_ixc_doc_Schemas_Remote_Repo_
+  commentId: Overload:AXSharp.ixc_doc.Schemas.Remote.Repo
+  isSpec: "True"
+  fullName: AXSharp.ixc_doc.Schemas.Remote.Repo
+  nameWithType: Remote.Repo
 - uid: AXSharp.ixc_doc.Schemas.Return
   name: Return
   href: api/AXSharp.ixc_doc.Schemas.Return.html
@@ -18217,6 +19304,532 @@ references:
   commentId: T:AXSharp.Presentation.UIExceptions.UIExceptionHandling.AppUiExceptionHandlerDelegate
   fullName: AXSharp.Presentation.UIExceptions.UIExceptionHandling.AppUiExceptionHandlerDelegate
   nameWithType: UIExceptionHandling.AppUiExceptionHandlerDelegate
+- uid: AXSharp.TIA2AXSharp
+  name: AXSharp.TIA2AXSharp
+  href: api/AXSharp.TIA2AXSharp.html
+  commentId: N:AXSharp.TIA2AXSharp
+  fullName: AXSharp.TIA2AXSharp
+  nameWithType: AXSharp.TIA2AXSharp
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter
+  name: TIA2AXSharpAdapter
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html
+  commentId: T:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter
+  nameWithType: TIA2AXSharpAdapter
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector,AXSharp.TIA2AXSharp.TIARootObject)
+  name: CreateAdapter(Connector, TIARootObject)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateAdapter_AXSharp_Connector_Connector_AXSharp_TIA2AXSharp_TIARootObject_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector,AXSharp.TIA2AXSharp.TIARootObject)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector, AXSharp.TIA2AXSharp.TIARootObject)
+  nameWithType: TIA2AXSharpAdapter.CreateAdapter(Connector, TIARootObject)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector,System.String)
+  name: CreateAdapter(Connector, string)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateAdapter_AXSharp_Connector_Connector_System_String_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector,System.String)
+  name.vb: CreateAdapter(Connector, String)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector, string)
+  fullName.vb: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.Connector, String)
+  nameWithType: TIA2AXSharpAdapter.CreateAdapter(Connector, string)
+  nameWithType.vb: TIA2AXSharpAdapter.CreateAdapter(Connector, String)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.S71500.WebApi.WebApiConnector)
+  name: CreateAdapter(WebApiConnector)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateAdapter_AXSharp_Connector_S71500_WebApi_WebApiConnector_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.S71500.WebApi.WebApiConnector)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter(AXSharp.Connector.S71500.WebApi.WebApiConnector)
+  nameWithType: TIA2AXSharpAdapter.CreateAdapter(WebApiConnector)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter*
+  name: CreateAdapter
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateAdapter_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateAdapter
+  nameWithType: TIA2AXSharpAdapter.CreateAdapter
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector,System.String)
+  name: CreateTIARootObject(WebApiConnector, string)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateTIARootObject_AXSharp_Connector_S71500_WebApi_WebApiConnector_System_String_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector,System.String)
+  name.vb: CreateTIARootObject(WebApiConnector, String)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector, string)
+  fullName.vb: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector, String)
+  nameWithType: TIA2AXSharpAdapter.CreateTIARootObject(WebApiConnector, string)
+  nameWithType.vb: TIA2AXSharpAdapter.CreateTIARootObject(WebApiConnector, String)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector,System.String[])
+  name: CreateTIARootObject(WebApiConnector, string[])
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateTIARootObject_AXSharp_Connector_S71500_WebApi_WebApiConnector_System_String___
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector,System.String[])
+  name.vb: CreateTIARootObject(WebApiConnector, String())
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector, string[])
+  fullName.vb: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector, String())
+  nameWithType: TIA2AXSharpAdapter.CreateTIARootObject(WebApiConnector, string[])
+  nameWithType.vb: TIA2AXSharpAdapter.CreateTIARootObject(WebApiConnector, String())
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector)
+  name: CreateTIARootObject(WebApiConnector)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateTIARootObject_AXSharp_Connector_S71500_WebApi_WebApiConnector_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject(AXSharp.Connector.S71500.WebApi.WebApiConnector)
+  nameWithType: TIA2AXSharpAdapter.CreateTIARootObject(WebApiConnector)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject*
+  name: CreateTIARootObject
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.html#AXSharp_TIA2AXSharp_TIA2AXSharpAdapter_CreateTIARootObject_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpAdapter.CreateTIARootObject
+  nameWithType: TIA2AXSharpAdapter.CreateTIARootObject
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer
+  name: TIA2AXSharpSerializer
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.html
+  commentId: T:AXSharp.TIA2AXSharp.TIA2AXSharpSerializer
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer
+  nameWithType: TIA2AXSharpSerializer
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize(System.String)
+  name: Deserialize(string)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.html#AXSharp_TIA2AXSharp_TIA2AXSharpSerializer_Deserialize_System_String_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize(System.String)
+  name.vb: Deserialize(String)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize(string)
+  fullName.vb: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize(String)
+  nameWithType: TIA2AXSharpSerializer.Deserialize(string)
+  nameWithType.vb: TIA2AXSharpSerializer.Deserialize(String)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize*
+  name: Deserialize
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.html#AXSharp_TIA2AXSharp_TIA2AXSharpSerializer_Deserialize_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Deserialize
+  nameWithType: TIA2AXSharpSerializer.Deserialize
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize(AXSharp.TIA2AXSharp.TIARootObject,System.String)
+  name: Serialize(TIARootObject, string)
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.html#AXSharp_TIA2AXSharp_TIA2AXSharpSerializer_Serialize_AXSharp_TIA2AXSharp_TIARootObject_System_String_
+  commentId: M:AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize(AXSharp.TIA2AXSharp.TIARootObject,System.String)
+  name.vb: Serialize(TIARootObject, String)
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize(AXSharp.TIA2AXSharp.TIARootObject, string)
+  fullName.vb: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize(AXSharp.TIA2AXSharp.TIARootObject, String)
+  nameWithType: TIA2AXSharpSerializer.Serialize(TIARootObject, string)
+  nameWithType.vb: TIA2AXSharpSerializer.Serialize(TIARootObject, String)
+- uid: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize*
+  name: Serialize
+  href: api/AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.html#AXSharp_TIA2AXSharp_TIA2AXSharpSerializer_Serialize_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIA2AXSharpSerializer.Serialize
+  nameWithType: TIA2AXSharpSerializer.Serialize
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement
+  name: TIABrowseElement
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html
+  commentId: T:AXSharp.TIA2AXSharp.TIABrowseElement
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement
+  nameWithType: TIABrowseElement
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.#ctor(System.String,Siemens.Simatic.S7.Webserver.API.Enums.ApiPlcProgramDataType,System.Boolean)
+  name: TIABrowseElement(string, ApiPlcProgramDataType, bool)
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement__ctor_System_String_Siemens_Simatic_S7_Webserver_API_Enums_ApiPlcProgramDataType_System_Boolean_
+  commentId: M:AXSharp.TIA2AXSharp.TIABrowseElement.#ctor(System.String,Siemens.Simatic.S7.Webserver.API.Enums.ApiPlcProgramDataType,System.Boolean)
+  name.vb: New(String, ApiPlcProgramDataType, Boolean)
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.TIABrowseElement(string, Siemens.Simatic.S7.Webserver.API.Enums.ApiPlcProgramDataType, bool)
+  fullName.vb: AXSharp.TIA2AXSharp.TIABrowseElement.New(String, Siemens.Simatic.S7.Webserver.API.Enums.ApiPlcProgramDataType, Boolean)
+  nameWithType: TIABrowseElement.TIABrowseElement(string, ApiPlcProgramDataType, bool)
+  nameWithType.vb: TIABrowseElement.New(String, ApiPlcProgramDataType, Boolean)
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.#ctor*
+  name: TIABrowseElement
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement__ctor_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIABrowseElement.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.TIABrowseElement
+  fullName.vb: AXSharp.TIA2AXSharp.TIABrowseElement.New
+  nameWithType: TIABrowseElement.TIABrowseElement
+  nameWithType.vb: TIABrowseElement.New
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.Children
+  name: Children
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_Children
+  commentId: P:AXSharp.TIA2AXSharp.TIABrowseElement.Children
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.Children
+  nameWithType: TIABrowseElement.Children
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.Children*
+  name: Children
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_Children_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIABrowseElement.Children
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.Children
+  nameWithType: TIABrowseElement.Children
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.Datatype
+  name: Datatype
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_Datatype
+  commentId: P:AXSharp.TIA2AXSharp.TIABrowseElement.Datatype
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.Datatype
+  nameWithType: TIABrowseElement.Datatype
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.Datatype*
+  name: Datatype
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_Datatype_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIABrowseElement.Datatype
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.Datatype
+  nameWithType: TIABrowseElement.Datatype
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.IsNested
+  name: IsNested
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_IsNested
+  commentId: P:AXSharp.TIA2AXSharp.TIABrowseElement.IsNested
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.IsNested
+  nameWithType: TIABrowseElement.IsNested
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.IsNested*
+  name: IsNested
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_IsNested_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIABrowseElement.IsNested
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.IsNested
+  nameWithType: TIABrowseElement.IsNested
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.Symbol
+  name: Symbol
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_Symbol
+  commentId: P:AXSharp.TIA2AXSharp.TIABrowseElement.Symbol
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.Symbol
+  nameWithType: TIABrowseElement.Symbol
+- uid: AXSharp.TIA2AXSharp.TIABrowseElement.Symbol*
+  name: Symbol
+  href: api/AXSharp.TIA2AXSharp.TIABrowseElement.html#AXSharp_TIA2AXSharp_TIABrowseElement_Symbol_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIABrowseElement.Symbol
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIABrowseElement.Symbol
+  nameWithType: TIABrowseElement.Symbol
+- uid: AXSharp.TIA2AXSharp.TIARootObject
+  name: TIARootObject
+  href: api/AXSharp.TIA2AXSharp.TIARootObject.html
+  commentId: T:AXSharp.TIA2AXSharp.TIARootObject
+  fullName: AXSharp.TIA2AXSharp.TIARootObject
+  nameWithType: TIARootObject
+- uid: AXSharp.TIA2AXSharp.TIARootObject.TIABrowseElements
+  name: TIABrowseElements
+  href: api/AXSharp.TIA2AXSharp.TIARootObject.html#AXSharp_TIA2AXSharp_TIARootObject_TIABrowseElements
+  commentId: P:AXSharp.TIA2AXSharp.TIARootObject.TIABrowseElements
+  fullName: AXSharp.TIA2AXSharp.TIARootObject.TIABrowseElements
+  nameWithType: TIARootObject.TIABrowseElements
+- uid: AXSharp.TIA2AXSharp.TIARootObject.TIABrowseElements*
+  name: TIABrowseElements
+  href: api/AXSharp.TIA2AXSharp.TIARootObject.html#AXSharp_TIA2AXSharp_TIARootObject_TIABrowseElements_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIARootObject.TIABrowseElements
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIARootObject.TIABrowseElements
+  nameWithType: TIARootObject.TIABrowseElements
+- uid: AXSharp.TIA2AXSharp.TIATwinObject
+  name: TIATwinObject
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html
+  commentId: T:AXSharp.TIA2AXSharp.TIATwinObject
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject
+  nameWithType: TIATwinObject
+- uid: AXSharp.TIA2AXSharp.TIATwinObject._children
+  name: _children
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject__children
+  commentId: F:AXSharp.TIA2AXSharp.TIATwinObject._children
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject._children
+  nameWithType: TIATwinObject._children
+- uid: AXSharp.TIA2AXSharp.TIATwinObject._kids
+  name: _kids
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject__kids
+  commentId: F:AXSharp.TIA2AXSharp.TIATwinObject._kids
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject._kids
+  nameWithType: TIATwinObject._kids
+- uid: AXSharp.TIA2AXSharp.TIATwinObject._parent
+  name: _parent
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject__parent
+  commentId: F:AXSharp.TIA2AXSharp.TIATwinObject._parent
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject._parent
+  nameWithType: TIATwinObject._parent
+- uid: AXSharp.TIA2AXSharp.TIATwinObject._primitives
+  name: _primitives
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject__primitives
+  commentId: F:AXSharp.TIA2AXSharp.TIATwinObject._primitives
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject._primitives
+  nameWithType: TIATwinObject._primitives
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.#ctor(AXSharp.Connector.ITwinObject,System.String,System.String)
+  name: TIATwinObject(ITwinObject, string, string)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject__ctor_AXSharp_Connector_ITwinObject_System_String_System_String_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.#ctor(AXSharp.Connector.ITwinObject,System.String,System.String)
+  name.vb: New(ITwinObject, String, String)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.TIATwinObject(AXSharp.Connector.ITwinObject, string, string)
+  fullName.vb: AXSharp.TIA2AXSharp.TIATwinObject.New(AXSharp.Connector.ITwinObject, String, String)
+  nameWithType: TIATwinObject.TIATwinObject(ITwinObject, string, string)
+  nameWithType.vb: TIATwinObject.New(ITwinObject, String, String)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.#ctor*
+  name: TIATwinObject
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject__ctor_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.TIATwinObject
+  fullName.vb: AXSharp.TIA2AXSharp.TIATwinObject.New
+  nameWithType: TIATwinObject.TIATwinObject
+  nameWithType.vb: TIATwinObject.New
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AddChild(AXSharp.Connector.ITwinObject)
+  name: AddChild(ITwinObject)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AddChild_AXSharp_Connector_ITwinObject_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.AddChild(AXSharp.Connector.ITwinObject)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AddChild(AXSharp.Connector.ITwinObject)
+  nameWithType: TIATwinObject.AddChild(ITwinObject)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AddChild*
+  name: AddChild
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AddChild_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.AddChild
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AddChild
+  nameWithType: TIATwinObject.AddChild
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AddKid(AXSharp.Connector.ITwinElement)
+  name: AddKid(ITwinElement)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AddKid_AXSharp_Connector_ITwinElement_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.AddKid(AXSharp.Connector.ITwinElement)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AddKid(AXSharp.Connector.ITwinElement)
+  nameWithType: TIATwinObject.AddKid(ITwinElement)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AddKid*
+  name: AddKid
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AddKid_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.AddKid
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AddKid
+  nameWithType: TIATwinObject.AddKid
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AddValueTag(AXSharp.Connector.ITwinPrimitive)
+  name: AddValueTag(ITwinPrimitive)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AddValueTag_AXSharp_Connector_ITwinPrimitive_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.AddValueTag(AXSharp.Connector.ITwinPrimitive)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AddValueTag(AXSharp.Connector.ITwinPrimitive)
+  nameWithType: TIATwinObject.AddValueTag(ITwinPrimitive)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AddValueTag*
+  name: AddValueTag
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AddValueTag_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.AddValueTag
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AddValueTag
+  nameWithType: TIATwinObject.AddValueTag
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AttributeName
+  name: AttributeName
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AttributeName
+  commentId: P:AXSharp.TIA2AXSharp.TIATwinObject.AttributeName
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AttributeName
+  nameWithType: TIATwinObject.AttributeName
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.AttributeName*
+  name: AttributeName
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_AttributeName_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.AttributeName
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.AttributeName
+  nameWithType: TIATwinObject.AttributeName
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetAttributeName(System.Globalization.CultureInfo)
+  name: GetAttributeName(CultureInfo)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetAttributeName_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetAttributeName(System.Globalization.CultureInfo)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetAttributeName(System.Globalization.CultureInfo)
+  nameWithType: TIATwinObject.GetAttributeName(CultureInfo)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetAttributeName*
+  name: GetAttributeName
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetAttributeName_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetAttributeName
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetAttributeName
+  nameWithType: TIATwinObject.GetAttributeName
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetChildren
+  name: GetChildren()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetChildren
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetChildren
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetChildren()
+  nameWithType: TIATwinObject.GetChildren()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetChildren*
+  name: GetChildren
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetChildren_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetChildren
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetChildren
+  nameWithType: TIATwinObject.GetChildren
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetConnector
+  name: GetConnector()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetConnector
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetConnector
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetConnector()
+  nameWithType: TIATwinObject.GetConnector()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetConnector*
+  name: GetConnector
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetConnector_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetConnector
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetConnector
+  nameWithType: TIATwinObject.GetConnector
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetHumanReadable(System.Globalization.CultureInfo)
+  name: GetHumanReadable(CultureInfo)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetHumanReadable_System_Globalization_CultureInfo_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetHumanReadable(System.Globalization.CultureInfo)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetHumanReadable(System.Globalization.CultureInfo)
+  nameWithType: TIATwinObject.GetHumanReadable(CultureInfo)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetHumanReadable*
+  name: GetHumanReadable
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetHumanReadable_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetHumanReadable
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetHumanReadable
+  nameWithType: TIATwinObject.GetHumanReadable
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetKids
+  name: GetKids()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetKids
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetKids
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetKids()
+  nameWithType: TIATwinObject.GetKids()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetKids*
+  name: GetKids
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetKids_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetKids
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetKids
+  nameWithType: TIATwinObject.GetKids
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetParent
+  name: GetParent()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetParent
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetParent
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetParent()
+  nameWithType: TIATwinObject.GetParent()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetParent*
+  name: GetParent
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetParent_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetParent
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetParent
+  nameWithType: TIATwinObject.GetParent
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetSymbolTail
+  name: GetSymbolTail()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetSymbolTail
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetSymbolTail
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetSymbolTail()
+  nameWithType: TIATwinObject.GetSymbolTail()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetSymbolTail*
+  name: GetSymbolTail
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetSymbolTail_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetSymbolTail
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetSymbolTail
+  nameWithType: TIATwinObject.GetSymbolTail
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetValueTags
+  name: GetValueTags()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetValueTags
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.GetValueTags
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetValueTags()
+  nameWithType: TIATwinObject.GetValueTags()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.GetValueTags*
+  name: GetValueTags
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_GetValueTags_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.GetValueTags
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.GetValueTags
+  nameWithType: TIATwinObject.GetValueTags
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.HumanReadable
+  name: HumanReadable
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_HumanReadable
+  commentId: P:AXSharp.TIA2AXSharp.TIATwinObject.HumanReadable
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.HumanReadable
+  nameWithType: TIATwinObject.HumanReadable
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.HumanReadable*
+  name: HumanReadable
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_HumanReadable_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.HumanReadable
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.HumanReadable
+  nameWithType: TIATwinObject.HumanReadable
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.Interpreter
+  name: Interpreter
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_Interpreter
+  commentId: P:AXSharp.TIA2AXSharp.TIATwinObject.Interpreter
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.Interpreter
+  nameWithType: TIATwinObject.Interpreter
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.Interpreter*
+  name: Interpreter
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_Interpreter_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.Interpreter
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.Interpreter
+  nameWithType: TIATwinObject.Interpreter
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain*
+  name: OnlineToPlain
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_OnlineToPlain_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain
+  nameWithType: TIATwinObject.OnlineToPlain
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain``1
+  name: OnlineToPlain<T>()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_OnlineToPlain__1
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain``1
+  name.vb: OnlineToPlain(Of T)()
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain<T>()
+  fullName.vb: AXSharp.TIA2AXSharp.TIATwinObject.OnlineToPlain(Of T)()
+  nameWithType: TIATwinObject.OnlineToPlain<T>()
+  nameWithType.vb: TIATwinObject.OnlineToPlain(Of T)()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline*
+  name: PlainToOnline
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_PlainToOnline_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline
+  nameWithType: TIATwinObject.PlainToOnline
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline``1(``0)
+  name: PlainToOnline<T>(T)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_PlainToOnline__1___0_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline``1(``0)
+  name.vb: PlainToOnline(Of T)(T)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline<T>(T)
+  fullName.vb: AXSharp.TIA2AXSharp.TIATwinObject.PlainToOnline(Of T)(T)
+  nameWithType: TIATwinObject.PlainToOnline<T>(T)
+  nameWithType.vb: TIATwinObject.PlainToOnline(Of T)(T)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow*
+  name: PlainToShadow
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_PlainToShadow_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow
+  nameWithType: TIATwinObject.PlainToShadow
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow``1(``0)
+  name: PlainToShadow<T>(T)
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_PlainToShadow__1___0_
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow``1(``0)
+  name.vb: PlainToShadow(Of T)(T)
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow<T>(T)
+  fullName.vb: AXSharp.TIA2AXSharp.TIATwinObject.PlainToShadow(Of T)(T)
+  nameWithType: TIATwinObject.PlainToShadow<T>(T)
+  nameWithType.vb: TIATwinObject.PlainToShadow(Of T)(T)
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.Poll
+  name: Poll()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_Poll
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.Poll
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.Poll()
+  nameWithType: TIATwinObject.Poll()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.Poll*
+  name: Poll
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_Poll_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.Poll
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.Poll
+  nameWithType: TIATwinObject.Poll
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain*
+  name: ShadowToPlain
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_ShadowToPlain_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain
+  nameWithType: TIATwinObject.ShadowToPlain
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain``1
+  name: ShadowToPlain<T>()
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_ShadowToPlain__1
+  commentId: M:AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain``1
+  name.vb: ShadowToPlain(Of T)()
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain<T>()
+  fullName.vb: AXSharp.TIA2AXSharp.TIATwinObject.ShadowToPlain(Of T)()
+  nameWithType: TIATwinObject.ShadowToPlain<T>()
+  nameWithType.vb: TIATwinObject.ShadowToPlain(Of T)()
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.Symbol
+  name: Symbol
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_Symbol
+  commentId: P:AXSharp.TIA2AXSharp.TIATwinObject.Symbol
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.Symbol
+  nameWithType: TIATwinObject.Symbol
+- uid: AXSharp.TIA2AXSharp.TIATwinObject.Symbol*
+  name: Symbol
+  href: api/AXSharp.TIA2AXSharp.TIATwinObject.html#AXSharp_TIA2AXSharp_TIATwinObject_Symbol_
+  commentId: Overload:AXSharp.TIA2AXSharp.TIATwinObject.Symbol
+  isSpec: "True"
+  fullName: AXSharp.TIA2AXSharp.TIATwinObject.Symbol
+  nameWithType: TIATwinObject.Symbol
 - uid: ixc
   name: ixc
   href: api/ixc.html

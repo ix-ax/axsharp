@@ -81,6 +81,7 @@
 
 <h2 id="api"><a href="../../api/AXSharp.Connector.S71500.WebApi.html">API</a></h2>
 <p>This connector offers an interface to interact with S7-15XX PLC systems through the WebAPI.</p>
+<p>For details how to make the data available see <a href="https://console.simatic-ax.siemens.io/docs/sld/extern-accessibility">extern accessibility</a>.</p>
 <p>Here is an example of how to create an instance of this connector:</p>
 <pre><code class="lang-C#">public static &lt;PLC_TWIN_TYPE&gt; Plc { get; } = new (ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable(&quot;AXTARGET&quot;) ?? &quot;10.10.101.1&quot;, &quot;Everybody&quot;, &quot;&quot;, true));
 </code></pre>
