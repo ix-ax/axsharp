@@ -128,7 +128,9 @@ public sealed class BuildTask : FrostingTask<BuildContext>
             Path.Combine(context.ScrDir, "AXSharp.examples\\hello.world.console\\hello.world.console.plc"),
             Path.Combine(context.ScrDir, "AXSharp.connectors\\tests\\ax-test-project\\"),
             Path.Combine(context.ScrDir, "tests.integrations\\integrated\\src\\ax\\"),
-            Path.Combine(context.TemplatesDir, "working\\templates\\axsharpblazor\\ax\\")
+            Path.Combine(context.TemplatesDir, "working\\templates\\axsharpblazor\\ax\\"),
+            Path.Combine(context.TemplatesDir, "working\\templates\\axsharpconsole\\ax")
+           
         };
 
 
