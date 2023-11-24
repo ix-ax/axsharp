@@ -75,7 +75,7 @@ internal class CsOnlinerConfigurationConstructorBuilder : CsOnlinerConstructorBu
             }
 
             AddToSource(semantics.SetProperties());
-            AddToSource(semantics.AddAnnotations());
+            AddToSource(semantics.AddAnnotations(this.SourceBuilder));
         }
     }
 

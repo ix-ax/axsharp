@@ -4,11 +4,14 @@
 
 This connector offers an interface to interact with S7-15XX PLC systems through the WebAPI.
 
+For details how to make the data available see [extern accessibility](https://console.simatic-ax.siemens.io/docs/sld/extern-accessibility).
+
 Here is an example of how to create an instance of this connector:
 
 ```C#
 public static <PLC_TWIN_TYPE> Plc { get; } = new (ConnectorAdapterBuilder.Build().CreateWebApi(Environment.GetEnvironmentVariable("AXTARGET") ?? "10.10.101.1", "Everybody", "", true));
 ```
+
 
 ## Considerations for WebAPI Connector Performance
 

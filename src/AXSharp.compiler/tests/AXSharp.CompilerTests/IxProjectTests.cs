@@ -89,6 +89,8 @@ namespace AXSharp.Compiler.Tests
             public string OutputFileSuffix => ".py";
             public string BuilderType => "Mock";
             public Compilation Compilation { get; }
+            public ICompilerOptions? CompilerOptions { get; }
+            public eCommAccessibility TypeCommAccessibility { get; } = eCommAccessibility.ReadWrite;
 
             #region ICombineThreeVisitor
             /// <summary>

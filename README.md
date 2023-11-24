@@ -48,6 +48,7 @@ In simple terms, the AX# takes the PLC program and translates the data structure
 ### Write PLC code
 
 ~~~iecst
+{S7.extern=ReadWrite}
 {#ix-attr:[Container(Layout.Stack)]}
 {#ix-attr:[Group(Layout.GroupBox)]}
 {#ix-set:AttributeName = "Location"}

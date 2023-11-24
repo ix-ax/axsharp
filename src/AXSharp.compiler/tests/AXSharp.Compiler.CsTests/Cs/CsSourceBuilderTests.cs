@@ -265,6 +265,15 @@ public abstract class CsSourceBuilderTests
         CompareOutputs(memberName);
     }
 
+    [Fact]
+    public void mixed_access()
+    {
+        var memberName = GetMethodName();
+        CompareOutputs(memberName);
+    }
+    
+
+
     private void CompareOutputs(string memberName)
     {
         var sourceFile = Path.Combine(testFolder, $@"samples\units\src\{memberName}.st");

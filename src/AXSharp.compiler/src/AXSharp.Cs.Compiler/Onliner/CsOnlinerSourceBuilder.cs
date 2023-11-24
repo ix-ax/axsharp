@@ -36,10 +36,13 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     {
         Project = project;
         Compilation = compilation;
+        CompilerOptions = project.CompilerOptions;
     }
 
     /// <inheritdoc />
     public Compilation Compilation { get; }
+
+    public ICompilerOptions? CompilerOptions { get; }
 
     private AXSharpProject Project { get; }
 
@@ -92,11 +95,15 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         return genericSignature;
     }
 
+    public eCommAccessibility TypeCommAccessibility { get; private set; }
+
     /// <inheritdoc />
     public void CreateClassDeclaration(IClassDeclarationSyntax classDeclarationSyntax,
         IClassDeclaration classDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = classDeclaration.GetCommAccessibility(this);
+        
         classDeclarationSyntax.UsingDirectives.ToList().ForEach(p => p.Visit(visitor, this));
         var generic = classDeclaration.GetGenericAttributes();
         
@@ -161,6 +168,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IConfigurationDeclaration configurationDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = eCommAccessibility.None;
+        
         AddToSource(
             $"public partial class {Project.TargetProject.ProjectRootNamespace}TwinController : ITwinController {{");
         AddToSource($"public {typeof(Connector.Connector).n()} Connector {{ get; }}");
@@ -173,6 +182,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     /// <inheritdoc />
     public void CreateConfigDeclaration(IConfigurationDeclaration configurationDeclaration, IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = eCommAccessibility.None;
+
         AddToSource($"public partial class {Project.TargetProject.ProjectRootNamespace} : ITwinController {{");
         AddToSource(@$"public {typeof(Connector.Connector).n()} Connector {{ get; }}");
         AddToSource(CsOnlinerConstructorBuilder.Create(visitor, configurationDeclaration, Project, this).Output);
@@ -184,6 +195,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         ITypeDeclaration typeDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = eCommAccessibility.None;
+        
         AddToSource($"public enum {enumTypeDeclarationSyntax.Name.Text} {{");
         AddToSource(string.Join("\n,", enumTypeDeclarationSyntax.EnumValues.Select(p => p.Name.Text)));
         AddToSource("}");
@@ -193,6 +206,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
     public void CreateNamedValueTypeDeclaration(INamedValueTypeDeclarationSyntax namedValueTypeDeclarationSyntax,
         INamedValueTypeDeclaration namedValueTypeDeclaration, IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = eCommAccessibility.None;
+        
         AddToSource(
             $"public enum {namedValueTypeDeclarationSyntax.Name.Text} : {namedValueTypeDeclarationSyntax.Type.TransformType()} {{");
 
@@ -242,6 +257,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IInterfaceDeclaration interfaceDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = eCommAccessibility.None;
+        
         AddToSource($"{interfaceDeclaration.AccessModifier.Transform()} partial interface {interfaceDeclaration.Name} {{}}");
     }
 
@@ -256,6 +273,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         IStructuredTypeDeclaration structuredTypeDeclaration,
         IxNodeVisitor visitor)
     {
+        TypeCommAccessibility = structuredTypeDeclaration.GetCommAccessibility(this);
+
         AddToSource(structuredTypeDeclaration.Pragmas.AddAttributes());
         AddToSource(
             $"{structuredTypeDeclaration.AccessModifier.Transform()}partial class {structTypeDeclarationSyntax.Name.Text}");

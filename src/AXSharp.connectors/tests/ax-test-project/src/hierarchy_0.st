@@ -1,3 +1,4 @@
+{S7.extern=ReadWrite}
 CLASS hierarchy_0
     VAR PUBLIC
         item_member_property_1   :     full_of_primitives;

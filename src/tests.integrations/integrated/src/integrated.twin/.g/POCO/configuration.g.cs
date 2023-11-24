@@ -42,14 +42,9 @@ namespace Pocos
 
     public partial class Pokus : AXSharp.Connector.IPlain
     {
-        public Nested Nested { get; set; } = new Nested();
     }
 
     public partial class Nested : AXSharp.Connector.IPlain
     {
-        public string SomeString { get; set; } = string.Empty;
-        public Int16 SomeInt { get; set; }
-
-        public Byte SomeByte { get; set; }
     }
 }

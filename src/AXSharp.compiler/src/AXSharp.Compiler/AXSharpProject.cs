@@ -47,6 +47,8 @@ public class AXSharpProject : IAXSharpProject
         CompilerOptions = AXSharpConfig.UpdateAndGetAXSharpConfig(axProject.ProjectFolder, cliCompilerOptions);
         OutputFolder = Path.GetFullPath(Path.Combine(AxProject.ProjectFolder, CompilerOptions.OutputProjectFolder));
         if (cliCompilerOptions != null) UseBaseSymbol = cliCompilerOptions.UseBase;
+        
+        
         BuilderTypes = builderTypes;
         TargetProject = Activator.CreateInstance(targetProjectType, this) as ITargetProject ?? throw new
             InvalidOperationException("Target project type must implement ITargetProject interface.");

@@ -54,6 +54,7 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
         }
     }
 
+    
     internal void CreateAssignment(ITypeDeclaration typeDeclaration, IDeclaration declaration)
     {
         switch (typeDeclaration)
@@ -68,18 +69,23 @@ internal class CsOnlinerPlainerOnlineToPlainBuilder : ICombinedThreeVisitor
                 AddToSource($"#pragma warning restore CS0612\n");
                 break;
             case IArrayTypeDeclaration arrayTypeDeclaration:
-                switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                if (arrayTypeDeclaration.IsMemberEligibleForConstructor(SourceBuilder))
                 {
-                    case IClassDeclaration classDeclaration:
-                    case IStructuredTypeDeclaration structuredTypeDeclaration:
-                        AddToSource($"#pragma warning disable CS0612\n");
-                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodNameNoac}Async()).Select(p => p.Result).ToArray();");
-                        AddToSource($"#pragma warning restore CS0612\n");
-                        break;
-                    case IScalarTypeDeclaration scalarTypeDeclaration:
-                    case IStringTypeDeclaration stringTypeDeclaration:                        
-                        AddToSource($"plain.{declaration.Name} = {declaration.Name}.Select(p => p.LastValue).ToArray();");                      
-                        break;
+                    switch (arrayTypeDeclaration.ElementTypeAccess.Type)
+                    {
+                        case IClassDeclaration classDeclaration:
+                        case IStructuredTypeDeclaration structuredTypeDeclaration:
+                            AddToSource($"#pragma warning disable CS0612\n");
+                            AddToSource(
+                                $"plain.{declaration.Name} = {declaration.Name}.Select(async p => await p.{MethodNameNoac}Async()).Select(p => p.Result).ToArray();");
+                            AddToSource($"#pragma warning restore CS0612\n");
+                            break;
+                        case IScalarTypeDeclaration scalarTypeDeclaration:
+                        case IStringTypeDeclaration stringTypeDeclaration:
+                            AddToSource(
+                                $"plain.{declaration.Name} = {declaration.Name}.Select(p => p.LastValue).ToArray();");
+                            break;
+                    }
                 }
                 break;
             case IReferenceTypeDeclaration referenceTypeDeclaration:

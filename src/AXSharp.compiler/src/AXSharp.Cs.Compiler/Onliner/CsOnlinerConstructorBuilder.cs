@@ -94,7 +94,7 @@ internal class CsOnlinerConstructorBuilder : ICombinedThreeVisitor
             }
 
             AddToSource(fieldDeclaration.SetProperties());
-            AddToSource(fieldDeclaration.AddAnnotations());
+            AddToSource(fieldDeclaration.AddAnnotations(this.SourceBuilder));
         }
     }
 

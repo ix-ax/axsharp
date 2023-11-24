@@ -30,5 +30,7 @@ namespace AXSharp.ixc_doc
         [Option('p', "project-file", Required = false, Default = "",
             HelpText = "(ignored here)Output project file")]
         public string? ProjectFile { get; set; }
+
+        public bool IgnoreS7Pragmas { get; set; }
     }
 }

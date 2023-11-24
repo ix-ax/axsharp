@@ -9,6 +9,7 @@ using System.Text;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Semantic.Model.Declarations.Types;
 using AX.ST.Semantic.Pragmas;
+using AXSharp.Compiler.Core;
 using AXSharp.Compiler.Cs.Pragmas.PragmaParser;
 
 namespace AXSharp.Compiler.Cs;
@@ -135,8 +136,9 @@ public static class PragmaExtensions
     ///     Produces statement to annotate the member based on attributes.
     /// </summary>
     /// <param name="declaration">Declaration</param>
+    /// <param name="sourceBuilder">Source builder.</param>
     /// <returns>Annotation statements</returns>
-    public static string AddAnnotations(this IDeclaration declaration)
+    public static string AddAnnotations(this IDeclaration declaration, ISourceBuilder sourceBuilder)
     {
         var sb = new StringBuilder();
         foreach (var attribute in
@@ -156,6 +158,11 @@ public static class PragmaExtensions
 
                     sb.AppendLine($"{declaration.Name}.MakeReadOnly();");
                     break;
+            }
+
+            if (declaration.IsAvailableReadOnlyForComm(sourceBuilder))
+            {
+                sb.AppendLine($"{declaration.Name}.MakeReadOnly();");
             }
         }
             

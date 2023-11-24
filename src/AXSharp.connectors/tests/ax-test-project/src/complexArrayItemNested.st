@@ -1,3 +1,4 @@
+{S7.extern=ReadWrite}
 CLASS complexArrayItemNested
     VAR PUBLIC
         nesteditemBOOL	        :       BOOL	      ;

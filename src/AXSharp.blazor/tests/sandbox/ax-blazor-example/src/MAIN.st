@@ -1,3 +1,4 @@
+{S7.extern=ReadWrite}
 CLASS MAIN
     VAR PUBLIC
         {#ix-set:AttributeName = "<#Hello#> <#World#>"}
