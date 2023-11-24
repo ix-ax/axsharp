@@ -1,3 +1,4 @@
+{S7.extern=ReadWrite}
 CLASS testingProgram
     VAR PUBLIC
         {#ix-set:AttributeName = "instanceOfStPrimitive"}
