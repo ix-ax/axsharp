@@ -160,6 +160,50 @@ public class AxProject
         return apaxFilesList;
     }
 
+    static bool AreVersionsCompatible(string v1, string v2)
+    {
+        var versionA = ParseVersion(v1);
+        var versionB = ParseVersion(v2);
+
+        if (v1.StartsWith("^") || v2.StartsWith("^"))
+        {
+            if (versionA.Major == 0 || versionB.Major == 0)
+            {
+                // Compare both major and minor for versions starting with 0
+                return versionA.Major == versionB.Major && versionA.Minor == versionB.Minor;
+            }
+            else
+            {
+                // Compare only major for other versions
+                return versionA.Major == versionB.Major;
+            }
+        }
+        else if (v1.StartsWith("~") || v2.StartsWith("~"))
+        {
+            // Compare both major and minor for tilde versions
+            return versionA.Major == versionB.Major && versionA.Minor == versionB.Minor;
+        }
+        else
+        {
+            // Direct version comparison if no symbol is used
+            return versionA.Equals(versionB);
+        }
+    }
+
+    static Version ParseVersion(string versionString)
+    {
+        // Check for caret or tilde and remove it
+        if (versionString.StartsWith("^") || versionString.StartsWith("~"))
+        {
+            versionString = versionString.Substring(1);
+        }
+
+        // Parsing version string and creating a Version object
+        return Version.Parse(versionString);
+    }
+
+
+
     private IEnumerable<object> GetProjectDependencies()
     {
         var dependencies = ProjectInfo.Dependencies ?? new Dictionary<string, string>();
@@ -184,7 +228,7 @@ public class AxProject
         foreach (var dependency in dependencies)
         {
             var hasSuchProject =
-                nearByProjects.FirstOrDefault(p => p.Apax.Name == dependency.Key && p.Apax.Version == dependency.Value);
+                nearByProjects.FirstOrDefault(p => p.Apax.Name == dependency.Key && AreVersionsCompatible(p.Apax.Version, dependency.Value));
             if (hasSuchProject != null)
             {
                 var pathAXSharpConfig =
@@ -199,7 +243,7 @@ public class AxProject
         foreach (var dependency in dependencies)
         {
             var dependencyWithCompanion = installedDependencies
-                .FirstOrDefault(p => p.Apax != null && p.Apax.Name == dependency.Key && p.Apax.Version == dependency.Value);
+                .FirstOrDefault(p => p.Apax != null && p.Apax.Name == dependency.Key && AreVersionsCompatible(p.Apax.Version, dependency.Value));
 
 
             if (dependencyWithCompanion?.Companion != null)
