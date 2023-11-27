@@ -96,7 +96,7 @@ public sealed class ProvisionTask : FrostingTask<BuildContext>
 
         context.ProcessRunner.Start(Helpers.GetApaxCommand(), new Cake.Core.IO.ProcessSettings()
         {
-            Arguments = $" install -r -c",
+            Arguments = $" install",
             WorkingDirectory = Path.Combine(context.ScrDir, "apax"),
             RedirectStandardOutput = false,
             RedirectStandardError = false,
