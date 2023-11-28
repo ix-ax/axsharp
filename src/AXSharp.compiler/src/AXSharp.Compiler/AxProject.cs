@@ -162,11 +162,11 @@ public class AxProject
 
     static bool AreVersionsCompatible(string v1, string v2)
     {
-        bool v1SemverCompliant = Version.TryParse(v1, out Version? versionA);
-        bool v2SemverCompliant = Version.TryParse(v2, out Version? versionB);
-        
+        var versionA = ParseVersion(v1);
+        var versionB = ParseVersion(v2);
 
-        if(!v1SemverCompliant || !v2SemverCompliant)
+
+        if (versionA == null || versionB == null)
         {
             return v1?.Trim() == v2?.Trim();
         }
@@ -197,16 +197,24 @@ public class AxProject
         }
     }
 
-    static Version ParseVersion(string versionString)
+    static SemVersion ParseVersion(string versionString)
     {
-        // Check for caret or tilde and remove it
-        if (versionString.StartsWith("^") || versionString.StartsWith("~"))
+        try
         {
-            versionString = versionString.Substring(1);
-        }
+            // Check for caret or tilde and remove it
+            if (versionString.StartsWith("^") || versionString.StartsWith("~"))
+            {
+                versionString = versionString.Substring(1);
+            }
 
-        // Parsing version string and creating a Version object
-        return Version.Parse(versionString);
+            // Parsing version string and creating a Version object
+            return SemVersion.Parse(versionString);
+        }
+        catch (Exception)
+        {
+
+            return null;
+        }        
     }
 
 
@@ -270,4 +278,57 @@ public class AxProject
 
         return projectDependencies;
     }
+
+   
+    public class SemVersion
+    {
+        public int Major { get; private set; }
+        public int Minor { get; private set; }
+        public int Patch { get; private set; }
+        public string PreRelease { get; private set; }
+        public string BuildMetadata { get; private set; }
+
+        public SemVersion(int major, int minor, int patch, string preRelease = "", string buildMetadata = "")
+        {
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+            PreRelease = preRelease;
+            BuildMetadata = buildMetadata;
+        }
+
+        public override string ToString()
+        {
+            string version = $"{Major}.{Minor}.{Patch}";
+            if (!string.IsNullOrEmpty(PreRelease))
+            {
+                version += $"-{PreRelease}";
+            }
+            if (!string.IsNullOrEmpty(BuildMetadata))
+            {
+                version += $"+{BuildMetadata}";
+            }
+            return version;
+        }
+
+        public static SemVersion Parse(string versionStr)
+        {
+            string[] mainParts = versionStr.Split(new char[] { '-', '+' }, 3);
+            string[] versionNumbers = mainParts[0].Split('.');
+            if (versionNumbers.Length != 3)
+            {
+                throw new FormatException("Invalid version format. Expected format is MAJOR.MINOR.PATCH[-PRERELEASE][+BUILDMETADATA]");
+            }
+
+            int major = int.Parse(versionNumbers[0]);
+            int minor = int.Parse(versionNumbers[1]);
+            int patch = int.Parse(versionNumbers[2]);
+
+            string preRelease = mainParts.Length > 1 ? mainParts[1] : "";
+            string buildMetadata = mainParts.Length > 2 ? mainParts[2] : "";
+
+            return new SemVersion(major, minor, patch, preRelease, buildMetadata);
+        }
+    }
+
 }
