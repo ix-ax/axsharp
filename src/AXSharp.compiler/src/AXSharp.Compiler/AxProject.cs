@@ -162,8 +162,15 @@ public class AxProject
 
     static bool AreVersionsCompatible(string v1, string v2)
     {
-        var versionA = ParseVersion(v1);
-        var versionB = ParseVersion(v2);
+        bool v1SemverCompliant = Version.TryParse(v1, out Version? versionA);
+        bool v2SemverCompliant = Version.TryParse(v2, out Version? versionB);
+        
+
+        if(!v1SemverCompliant || !v2SemverCompliant)
+        {
+            return v1?.Trim() == v2?.Trim();
+        }
+
 
         if (v1.StartsWith("^") || v2.StartsWith("^"))
         {
