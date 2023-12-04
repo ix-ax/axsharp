@@ -329,6 +329,19 @@ public class AxProject
 
             return new SemVersion(major, minor, patch, preRelease, buildMetadata);
         }
-    }
+        public override bool Equals(object? obj)
+        {
+            return obj is SemVersion version &&
+                   Major == version.Major &&
+                   Minor == version.Minor &&
+                   Patch == version.Patch &&
+                   PreRelease == version.PreRelease &&
+                   BuildMetadata == version.BuildMetadata;
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Major, Minor, Patch, PreRelease, BuildMetadata);
+        }
+    }
 }
