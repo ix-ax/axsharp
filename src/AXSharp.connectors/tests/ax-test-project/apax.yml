@@ -14,3 +14,5 @@ scripts:
   postbuild: dotnet run --project
     ..//..//..//AXSharp.compiler//src//ixc//AXSharp.ixc.csproj --framework
     net7.0
+installStrategy: strict
+apaxVersion: 3.0.0

@@ -6,3 +6,5 @@ targets:
   - axunit-llvm
 devDependencies:
   "@ax/stc": 5.3.28
+installStrategy: strict
+apaxVersion: 3.0.0
