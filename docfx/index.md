@@ -38,6 +38,7 @@ The presentations provide a mechanism for automated UI generation from PLC code.
 - [axcode](https://axcite.me)
 - [dotnet 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [dotnet 7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+- [dotnet 7](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [vscode](https://code.visualstudio.com/Download) or [vs2022](https://visualstudio.microsoft.com/vs/)
 
 > **Make sure you have installed both .NET6 and .NET7.**
