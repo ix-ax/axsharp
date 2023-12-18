@@ -414,6 +414,12 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         }
 
+        protected override bool ShouldRender()
+        {
+            return false;
+        }
+
+
         public virtual void Dispose()
         {
             UnSubscribeFromPolling();
