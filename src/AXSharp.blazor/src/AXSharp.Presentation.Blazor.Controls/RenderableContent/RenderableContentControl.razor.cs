@@ -88,10 +88,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter]
         public string LayoutChildrenClass { get; set; }
-
-        //[CascadingParameter]
-        //public object VisualParent { get; set; }
-
         [Inject]
         public ComponentService ComponentService { get; set; }
         [Inject]
