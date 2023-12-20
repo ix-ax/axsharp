@@ -45,14 +45,32 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         public object Context
         {
             get => _context;
-            set { _context =  value as ITwinElement;  }
+            set
+            {
+                if (_context != value)
+                {
+                    _context = value as ITwinElement;
+                    this.ForceRender();
+                }
+            }
         }
 
         /// <summary>
         /// Parameter Presentation specify mode, in which view UI is generated. Type PresentationType is used.
         /// </summary>
         [Parameter]
-        public string Presentation { get; set; }
+        public string Presentation
+        {
+            get => _presentation;
+            set
+            {
+                if (_presentation != value)
+                {
+                    _presentation = value;
+                    this.ForceRender();
+                }
+            }
+        }
 
 
         /// <summary>
@@ -70,7 +88,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter]
         public string LayoutChildrenClass { get; set; }
-
         [Inject]
         public ComponentService ComponentService { get; set; }
         [Inject]
@@ -92,9 +109,18 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }           
         }
 
+        /// <summary>
+        /// Forces re-rendering of this rcc.
+        /// [!IMPORTANT] Forced re-rendering may impact client-side performance. The method is automatically called when <see cref="Presentation"/> or <see cref="Context"/> property change.
+        /// </summary>
+        public void ForceRender()
+        {
+            shouldRender = true;
+            this.StateHasChanged();
+        }
+
         protected override void OnParametersSet()
         {
-            
             Type layoutType = TryLoadLayoutTypeFromProperty(_context);
             if (layoutType == null)
             {
@@ -414,8 +440,17 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         }
 
+        private bool shouldRender = false;
+        private string _presentation;
+
         protected override bool ShouldRender()
         {
+            if (shouldRender)
+            {
+                shouldRender = false;
+                return true;
+            }
+
             return false;
         }
 
