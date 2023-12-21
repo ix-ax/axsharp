@@ -25,6 +25,12 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// </summary>
     public partial class RenderableComponentBase : ComponentBase, IRenderableComponent, IDisposable
     {
+        /// <summary>
+        /// Gets or sets the RenderableContentControl that encapsulates this component.
+        /// </summary>
+        [Parameter]
+        public object RccContainer { get; set; } = new Object();
+
         [Parameter] public int PollingInterval { get; set; }
 
         /// <summary>

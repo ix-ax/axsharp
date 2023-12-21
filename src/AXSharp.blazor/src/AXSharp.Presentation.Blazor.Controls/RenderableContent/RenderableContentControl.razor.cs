@@ -19,8 +19,10 @@ using System.Collections.Generic;
 using AXSharp.Presentation.Blazor.Exceptions;
 using System.Reflection;
 using System.ComponentModel;
+using System.Globalization;
 using AXSharp.Connector.ValueTypes;
 using System.Xml.Linq;
+using AXSharp.Connector.Localizations;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
@@ -42,7 +44,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
         /// </summary>
         [Parameter]
-        public object Context
+        public ITwinElement Context
         {
             get => _context;
             set
@@ -83,6 +85,14 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter]
         public string LayoutClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets parent container containing this renderable content control
+        /// [!NOTE] This method is used in advanced scenarios it must be set explicitly.
+        /// </summary>
+        [Parameter]
+        public ComponentBase ParentContainer { get; set; }
+        
         /// <summary>
         /// Parameter LayoutChildrenClass, in which children of layouts will be wrapped.
         /// </summary>
@@ -103,10 +113,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         {
             base.OnInitialized();
 
-            if(_context is null)
-            {
-                throw new ParameterWrongTypeRendererException(Context.GetType().ToString());
-            }           
+                
         }
 
         /// <summary>
@@ -121,15 +128,15 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         protected override void OnParametersSet()
         {
-            Type layoutType = TryLoadLayoutTypeFromProperty(_context);
+            Type layoutType = TryLoadLayoutTypeFromProperty(Context);
             if (layoutType == null)
             {
-                layoutType = TryLoadLayoutType(_context);
+                layoutType = TryLoadLayoutType(Context);
             }
             if (layoutType != null) MainLayoutType = layoutType;
 
-            _groupContainer = TryLoadGroupTypeFromProperty(_context);
-            if (_groupContainer == null) _groupContainer = TryLoadGroupType(_context);
+            _groupContainer = TryLoadGroupTypeFromProperty(Context);
+            if (_groupContainer == null) _groupContainer = TryLoadGroupType(Context);
 
             if (String.IsNullOrEmpty(Presentation)) Presentation = "";
             _viewModelCache.ResetCounter();
@@ -189,7 +196,16 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                     //if not found, look at predecessor
                     component = ViewLocatorBuilder(twinType.BaseType, twin, presentationName);
                 }
-                if (component != null) return component;
+
+                if (component != null)
+                {
+                    if (component is RenderableComponentBase)
+                    {
+                        ((RenderableComponentBase)component).RccContainer = this;
+                    }
+
+                    return component;
+                }
             }
             return null;
         }
@@ -224,6 +240,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             __builder.OpenComponent(1, primitiveComponent.GetType());
             __builder.AddAttribute(2, "Onliner", twinPrimitive);
             __builder.AddAttribute(3, "IsReadOnly", HasReadAccess(twinPrimitive));
+            __builder.AddAttribute(1, "RccContainer", this);
             __builder.CloseComponent();
         };
 
@@ -234,6 +251,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             if (component is IRenderableComplexComponentBase)
             {
                 __builder.AddAttribute(1, "Component", twin);
+                __builder.AddAttribute(1, "RccContainer", this);
             }
             else if (component is IRenderableViewModelBase)
             {
