@@ -22,5 +22,6 @@ namespace AXSharp.Presentation.Blazor.Interfaces
         /// </summary>
         void RemovePolledElements();
 
+        
     }
 }
