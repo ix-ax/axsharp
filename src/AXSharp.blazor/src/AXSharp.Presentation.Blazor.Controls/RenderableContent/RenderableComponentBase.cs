@@ -33,7 +33,6 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         [Parameter] public int PollingInterval { get; set; }
 
-
         /// <summary>
         /// Disposes this object as well as communication resources used by this component.
         /// </summary>

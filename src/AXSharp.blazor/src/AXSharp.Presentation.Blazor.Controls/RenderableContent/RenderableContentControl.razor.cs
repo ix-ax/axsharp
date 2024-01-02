@@ -58,6 +58,9 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
         }
 
+        /// <summary>
+        /// Method called when the context is changed.
+        /// </summary>
         public virtual void OnContextChanged()
         {
 
