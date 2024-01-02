@@ -52,9 +52,15 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 if (_context != value)
                 {
                     _context = value as ITwinElement;
+                    this.OnContextChanged();
                     this.ForceRender();
                 }
             }
+        }
+
+        public virtual void OnContextChanged()
+        {
+
         }
 
         /// <summary>
@@ -69,11 +75,16 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 if (_presentation != value)
                 {
                     _presentation = value;
+                    OnPresentationChanged();
                     this.ForceRender();
                 }
             }
         }
 
+        public virtual void OnPresentationChanged()
+        {
+
+        }
 
         /// <summary>
         /// Parameter Class, in which RenderableContentenControl will be wrapped.
