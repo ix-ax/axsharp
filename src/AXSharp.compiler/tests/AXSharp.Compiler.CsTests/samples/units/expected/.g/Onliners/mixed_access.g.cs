@@ -148,6 +148,7 @@ public partial class Motor : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -357,6 +358,7 @@ public partial class struct1 : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -566,6 +568,7 @@ public partial class struct2 : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -775,6 +778,7 @@ public partial class struct3 : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -978,6 +982,7 @@ public partial class struct4 : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1202,6 +1207,7 @@ public partial class AbstractMotor : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1406,6 +1412,7 @@ public partial class GenericMotor : AbstractMotor
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async override Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1534,6 +1541,7 @@ public partial class SpecificMotorA : GenericMotor
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async override Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);

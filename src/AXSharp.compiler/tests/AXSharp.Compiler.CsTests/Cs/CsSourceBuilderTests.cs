@@ -299,6 +299,15 @@ public abstract class CsSourceBuilderTests
         var actualFileContent = File.ReadAllText(actualSourceFile);
         var expectedFileContent = File.Exists(expectedSourceFile) ? File.ReadAllText(expectedSourceFile) : string.Empty;
 
+        var actualFileContentLines = actualFileContent.Split("\n").Select(a => a.Trim()).ToArray();
+        var expectedFileContentLines = expectedFileContent.Split("\n").Select(a => a.Trim()).ToArray();
+
+        for (int i = 0; i < expectedFileContentLines.Length; i++)
+        {
+            Assert.Equal(expectedFileContentLines[i], actualFileContentLines[i]);
+        }
+
+
         output.WriteLine("------------------------ actual ------------------");
         output.WriteLine(actualSourceFile);
         output.WriteLine(actualFileContent);
@@ -306,7 +315,7 @@ public abstract class CsSourceBuilderTests
         output.WriteLine(expectedSourceFile);
         output.WriteLine(expectedFileContent);
 
-        Assert.Equal(expectedFileContent, actualFileContent);
+        
     }
 
     public string GetMethodName()

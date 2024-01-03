@@ -90,6 +90,7 @@ public partial class _NULL_CONTEXT_MULTIPLE : AXSharp.Connector.ITwinObject, ICo
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
