@@ -117,6 +117,30 @@ namespace Simatic.Ax.StateFramework
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.Simatic.Ax.StateFramework.using_type_named_values plain, Pocos.Simatic.Ax.StateFramework.using_type_named_values latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.LColors != LColors.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());

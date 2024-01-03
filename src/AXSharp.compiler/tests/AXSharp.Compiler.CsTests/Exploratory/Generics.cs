@@ -121,6 +121,11 @@ namespace AXSharp.Compiler.CsTests.Exploratory
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class GenericMemberB : IPlain
     {

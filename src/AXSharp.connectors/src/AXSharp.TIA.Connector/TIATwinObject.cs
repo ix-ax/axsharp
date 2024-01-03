@@ -117,4 +117,9 @@ public class TIATwinObject : ITwinObject, ITIAGenericObject
     {
         throw new NotImplementedException();
     }
+
+    public Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        throw new NotImplementedException();
+    }
 }

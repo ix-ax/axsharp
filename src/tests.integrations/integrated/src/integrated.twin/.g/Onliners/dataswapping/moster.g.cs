@@ -204,6 +204,43 @@ namespace MonsterData
             return this.RetrievePrimitives();
         }
 
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.MonsterData.MonsterBase plain, Pocos.MonsterData.MonsterBase latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Description != Description.LastValue)
+                    somethingChanged = true;
+                if (plain.Id != Id.LastValue)
+                    somethingChanged = true;
+                for (int i760901_3001_mimi = 0; i760901_3001_mimi < latest.ArrayOfBytes.Length; i760901_3001_mimi++)
+                {
+                    if (latest.ArrayOfBytes.ElementAt(i760901_3001_mimi) != plain.ArrayOfBytes[i760901_3001_mimi])
+                        somethingChanged = true;
+                }
+
+                for (int i760901_3001_mimi = 0; i760901_3001_mimi < latest.ArrayOfDrives.Length; i760901_3001_mimi++)
+                {
+                    if (await ArrayOfDrives.ElementAt(i760901_3001_mimi).DetectsAnyChangeAsync(plain.ArrayOfDrives[i760901_3001_mimi], latest.ArrayOfDrives[i760901_3001_mimi]))
+                        somethingChanged = true;
+                }
+
+                if (await DriveBase_tobeignoredbypocooperations.DetectsAnyChangeAsync(plain.DriveBase_tobeignoredbypocooperations, latest.DriveBase_tobeignoredbypocooperations))
+                    somethingChanged = true;
+                if (plain.Description_tobeignoredbypocooperations != Description_tobeignoredbypocooperations.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -404,6 +441,27 @@ namespace MonsterData
             return this.RetrievePrimitives();
         }
 
+        public async override Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public new async Task<bool> DetectsAnyChangeAsync(Pocos.MonsterData.Monster plain, Pocos.MonsterData.Monster latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (await base.DetectsAnyChangeAsync(plain))
+                    return true;
+                if (await DriveA.DetectsAnyChangeAsync(plain.DriveA, latest.DriveA))
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public new void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -559,6 +617,31 @@ namespace MonsterData
             Acc.Shadow = plain.Acc;
             Dcc.Shadow = plain.Dcc;
             return this.RetrievePrimitives();
+        }
+
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.MonsterData.DriveBase plain, Pocos.MonsterData.DriveBase latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Position != Position.LastValue)
+                    somethingChanged = true;
+                if (plain.Velo != Velo.LastValue)
+                    somethingChanged = true;
+                if (plain.Acc != Acc.LastValue)
+                    somethingChanged = true;
+                if (plain.Dcc != Dcc.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
         }
 
         public void Poll()

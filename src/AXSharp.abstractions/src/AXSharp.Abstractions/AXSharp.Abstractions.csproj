@@ -42,10 +42,6 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
-  </ItemGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">    
     <DebugType>Full</DebugType>
   </PropertyGroup>

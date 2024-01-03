@@ -13,6 +13,10 @@ namespace integrated.tests
 #if NET7_0
             Task.Delay(500).Wait();
 #endif
+
+#if NET8_0
+            Task.Delay(750).Wait();
+#endif
         }
 
         [Fact]

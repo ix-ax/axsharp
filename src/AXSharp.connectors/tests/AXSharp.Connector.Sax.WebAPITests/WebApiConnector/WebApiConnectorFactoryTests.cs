@@ -117,6 +117,11 @@ namespace AXSharp.Connector.S71500.WebAPITests
             {
                 throw new NotImplementedException();
             }
+
+            public Task<bool> AnyChangeAsync<T>(T plain)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         
