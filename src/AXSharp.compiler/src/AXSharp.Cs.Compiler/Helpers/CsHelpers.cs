@@ -5,6 +5,7 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using System.Text;
 using AX.ST.Semantic.Model.Declarations;
 using AX.ST.Syntax.Tree;
 using AXSharp.Connector;
@@ -47,7 +48,10 @@ internal static class CsHelpers
     public static string CreateGenericHasChangedMethodMethod(string methodName, string pocoTypeName, bool isExtended = false)
     {
         var qualifier = isExtended ? "override" : "virtual";
-        return $"///<inheritdoc/>\npublic async {qualifier} Task<bool> {TwinObjectExtensions.HasChangedMethodName}<T>(T plain){{\n return await this.{methodName}((dynamic)plain);\n}}";
+        var sb = new StringBuilder();
+        sb.AppendLine("///<inheritdoc/>");
+        sb.AppendLine($"public async {qualifier} Task<bool> {TwinObjectExtensions.HasChangedMethodName}<T>(T plain){{\n return await this.{methodName}((dynamic)plain);\n}}");
+        return sb.ToString();
     }
 
     public static string CreateGenericSwapperMethodFromPlainer(string methodName, string pocoTypeName, bool isExtended)
