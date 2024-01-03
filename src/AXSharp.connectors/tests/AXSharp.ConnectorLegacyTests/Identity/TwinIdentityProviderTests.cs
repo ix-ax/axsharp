@@ -228,6 +228,11 @@ namespace AXSharp.Connector.Identity.Tests
             throw new NotImplementedException();
         }
 
+        public Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            throw new NotImplementedException();
+        }
+
         public object OnlineToPlain()
         {
             throw new NotImplementedException();
@@ -356,6 +361,11 @@ namespace AXSharp.Connector.Identity.Tests
         }
 
         public Task PlainToShadow<T>(T plain)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AnyChangeAsync<T>(T plain)
         {
             throw new NotImplementedException();
         }

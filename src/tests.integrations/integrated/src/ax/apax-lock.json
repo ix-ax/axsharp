@@ -1,13 +1,13 @@
 {
-  "name": "ix-integration-plc",
+  "name": "integrated",
   "version": "0.0.0",
   "lockFileVersion": "2",
   "installStrategy": "strict",
   "root": {
-    "name": "ix-integration-plc",
+    "name": "integrated",
     "version": "0.0.0",
     "devDependencies": {
-      "@ax/sdk": "2311.0.1"
+      "@ax/sdk": "^2311.0.1"
     }
   },
   "packages": {
@@ -667,6 +667,13 @@
       ],
       "dependencies": {}
     },
+    "@ax/st-docs": {
+      "name": "@ax/st-docs",
+      "version": "6.0.146",
+      "integrity": "sha512-KUs6JC/dWedgnaxH7UrqAOuJm6rKS4gzXTLguqXbtWHKdDKOceIw1yODyjty4iuOm6TkDm2UX4ya6QFC84eBHA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-docs/-/st-docs-6.0.146.tgz",
+      "dependencies": {}
+    },
     "@ax/system-math": {
       "name": "@ax/system-math",
       "version": "6.0.94",
@@ -679,13 +686,6 @@
       "version": "6.0.94",
       "integrity": "sha512-8xn57nA5NfZ6ImTxmFGvzFp7wLL38JdUgjsuEg+xbzs29e8ftvbTCNqaWMVdX05N4QNAqohq2BlEkIyFtDH8Qg==",
       "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-datetime/-/system-datetime-6.0.94.tgz",
-      "dependencies": {}
-    },
-    "@ax/st-docs": {
-      "name": "@ax/st-docs",
-      "version": "6.0.146",
-      "integrity": "sha512-KUs6JC/dWedgnaxH7UrqAOuJm6rKS4gzXTLguqXbtWHKdDKOceIw1yODyjty4iuOm6TkDm2UX4ya6QFC84eBHA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-docs/-/st-docs-6.0.146.tgz",
       "dependencies": {}
     }
   },

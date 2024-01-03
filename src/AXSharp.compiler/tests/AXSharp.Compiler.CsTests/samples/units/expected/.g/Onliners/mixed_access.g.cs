@@ -148,6 +148,30 @@ public partial class Motor : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.Motor plain, Pocos.Motor latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            if (plain.Run != Run.LastValue)
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -332,6 +356,30 @@ public partial class struct1 : AXSharp.Connector.ITwinObject
     {
         await this.s2.PlainToShadowAsync(plain.s2);
         return this.RetrievePrimitives();
+    }
+
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.struct1 plain, Pocos.struct1 latest = null)
+    {
+        var somethingChanged = false;
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        return await Task.Run(async () =>
+        {
+            if (await s2.DetectsAnyChangeAsync(plain.s2, latest.s2))
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
     }
 
     public void Poll()
@@ -520,6 +568,30 @@ public partial class struct2 : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.struct2 plain, Pocos.struct2 latest = null)
+    {
+        var somethingChanged = false;
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        return await Task.Run(async () =>
+        {
+            if (await s3.DetectsAnyChangeAsync(plain.s3, latest.s3))
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -706,6 +778,30 @@ public partial class struct3 : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.struct3 plain, Pocos.struct3 latest = null)
+    {
+        var somethingChanged = false;
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        return await Task.Run(async () =>
+        {
+            if (await s4.DetectsAnyChangeAsync(plain.s4, latest.s4))
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -884,6 +980,30 @@ public partial class struct4 : AXSharp.Connector.ITwinObject
     {
         s5.Shadow = plain.s5;
         return this.RetrievePrimitives();
+    }
+
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.struct4 plain, Pocos.struct4 latest = null)
+    {
+        var somethingChanged = false;
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        return await Task.Run(async () =>
+        {
+            if (plain.s5 != s5.LastValue)
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
     }
 
     public void Poll()
@@ -1087,6 +1207,32 @@ public partial class AbstractMotor : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.AbstractMotor plain, Pocos.AbstractMotor latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            if (plain.Run != Run.LastValue)
+                somethingChanged = true;
+            if (plain.ReverseDirection != ReverseDirection.LastValue)
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -1266,6 +1412,30 @@ public partial class GenericMotor : AbstractMotor
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
+    public async override Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public new async Task<bool> DetectsAnyChangeAsync(Pocos.GenericMotor plain, Pocos.GenericMotor latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            if (await base.DetectsAnyChangeAsync(plain))
+                return true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public new void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -1369,6 +1539,30 @@ public partial class SpecificMotorA : GenericMotor
     {
         await base.PlainToShadowAsync(plain);
         return this.RetrievePrimitives();
+    }
+
+    ///<inheritdoc/>
+    public async override Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public new async Task<bool> DetectsAnyChangeAsync(Pocos.SpecificMotorA plain, Pocos.SpecificMotorA latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            if (await base.DetectsAnyChangeAsync(plain))
+                return true;
+            plain = latest;
+            return somethingChanged;
+        });
     }
 
     public new void Poll()

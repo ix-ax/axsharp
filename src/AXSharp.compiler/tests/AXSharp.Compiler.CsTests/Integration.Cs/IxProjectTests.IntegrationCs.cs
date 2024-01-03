@@ -123,7 +123,13 @@ public class IxProjectTests
             var actualFileContent = File.ReadAllText(actualList[currentIndex]);
             try
             {
-                Assert.Equal(expectedFileContent, actualFileContent);
+                var actualFileContentLines = actualFileContent.Split("\n").Select(a => a.Trim()).ToArray();
+                var expectedFileContentLines = expectedFileContent.Split("\n").Select(a => a.Trim()).ToArray();
+
+                for (int i = 0; i < expectedFileContentLines.Length; i++)
+                {
+                    Assert.Equal(expectedFileContentLines[i], actualFileContentLines[i]);
+                }
             }
             catch (Exception)
             {

@@ -497,6 +497,82 @@ namespace ClassWithPrimitiveTypesNamespace
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes plain, Pocos.ClassWithPrimitiveTypesNamespace.ClassWithPrimitiveTypes latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.myBOOL != myBOOL.LastValue)
+                    somethingChanged = true;
+                if (plain.myBYTE != myBYTE.LastValue)
+                    somethingChanged = true;
+                if (plain.myWORD != myWORD.LastValue)
+                    somethingChanged = true;
+                if (plain.myDWORD != myDWORD.LastValue)
+                    somethingChanged = true;
+                if (plain.myLWORD != myLWORD.LastValue)
+                    somethingChanged = true;
+                if (plain.mySINT != mySINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myINT != myINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myDINT != myDINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myLINT != myLINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myUSINT != myUSINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myUINT != myUINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myUDINT != myUDINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myULINT != myULINT.LastValue)
+                    somethingChanged = true;
+                if (plain.myREAL != myREAL.LastValue)
+                    somethingChanged = true;
+                if (plain.myLREAL != myLREAL.LastValue)
+                    somethingChanged = true;
+                if (plain.myTIME != myTIME.LastValue)
+                    somethingChanged = true;
+                if (plain.myLTIME != myLTIME.LastValue)
+                    somethingChanged = true;
+                if (plain.myDATE != myDATE.LastValue)
+                    somethingChanged = true;
+                if (plain.myLDATE != myLDATE.LastValue)
+                    somethingChanged = true;
+                if (plain.myTIME_OF_DAY != myTIME_OF_DAY.LastValue)
+                    somethingChanged = true;
+                if (plain.myLTIME_OF_DAY != myLTIME_OF_DAY.LastValue)
+                    somethingChanged = true;
+                if (plain.myDATE_AND_TIME != myDATE_AND_TIME.LastValue)
+                    somethingChanged = true;
+                if (plain.myLDATE_AND_TIME != myLDATE_AND_TIME.LastValue)
+                    somethingChanged = true;
+                if (plain.myCHAR != myCHAR.LastValue)
+                    somethingChanged = true;
+                if (plain.myWCHAR != myWCHAR.LastValue)
+                    somethingChanged = true;
+                if (plain.mySTRING != mySTRING.LastValue)
+                    somethingChanged = true;
+                if (plain.myWSTRING != myWSTRING.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());

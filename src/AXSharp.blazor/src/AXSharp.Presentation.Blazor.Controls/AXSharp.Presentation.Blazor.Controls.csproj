@@ -82,17 +82,16 @@
   </ItemGroup>
 
   <ItemGroup>  
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AXSharp.Presentation.Blazor\AXSharp.Presentation.Blazor.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
   </ItemGroup>
 
   <ItemGroup>
 	    <Folder Include="wwwroot\css\" />
 	    <Folder Include="wwwroot\js\" />
   </ItemGroup>
-	
+
+	<ItemGroup>
+		<ProjectReference Include="..\AXSharp.Presentation.Blazor\AXSharp.Presentation.Blazor.csproj" />
+	</ItemGroup>
 
 </Project>

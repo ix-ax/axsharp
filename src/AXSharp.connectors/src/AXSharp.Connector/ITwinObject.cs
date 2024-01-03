@@ -98,4 +98,11 @@ public interface ITwinObject : ITwinElement
     /// </summary>
     /// <param name="plain">POCO object to be written to the shadows of this object.</param>
     Task PlainToShadow<T>(T plain);
+
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    Task<bool> AnyChangeAsync<T>(T plain);
 }

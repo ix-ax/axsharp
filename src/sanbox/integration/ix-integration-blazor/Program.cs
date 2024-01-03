@@ -39,7 +39,7 @@ namespace ix_integration_blazor
             App = app;
 
             Entry.Plc.Connector.BuildAndStart().ReadWriteCycleDelay = 10;
-
+            Entry.Plc.Connector.BuildAndStart().SubscriptionMode = ReadSubscriptionMode.Polling;
             Entry.Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.Ignore;
             //Entry.Plc.Connector.Translator.SetLocalizationResource(Entry.Plc.GetType(), "Properties.PlcStringResources");
             

@@ -102,6 +102,30 @@ namespace TypeWithNameAttributes
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.TypeWithNameAttributes.Motor plain, Pocos.TypeWithNameAttributes.Motor latest = null)
+        {
+            var somethingChanged = false;
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            return await Task.Run(async () =>
+            {
+                if (plain.isRunning != isRunning.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -303,6 +327,32 @@ namespace TypeWithNameAttributes
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.TypeWithNameAttributes.Vehicle plain, Pocos.TypeWithNameAttributes.Vehicle latest = null)
+        {
+            var somethingChanged = false;
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            return await Task.Run(async () =>
+            {
+                if (await m.DetectsAnyChangeAsync(plain.m, latest.m))
+                    somethingChanged = true;
+                if (plain.displacement != displacement.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -495,6 +545,30 @@ namespace TypeWithNameAttributes
         {
             SomeClassVariable.Shadow = plain.SomeClassVariable;
             return this.RetrievePrimitives();
+        }
+
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.TypeWithNameAttributes.NoAccessModifierClass plain, Pocos.TypeWithNameAttributes.NoAccessModifierClass latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.SomeClassVariable != SomeClassVariable.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
         }
 
         public void Poll()

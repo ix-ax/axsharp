@@ -80,6 +80,9 @@ CONFIGURATION MyConfiguration
        StartPolling_ConcurentOverload : RealMonsterData.RealMonster;  
 
        {S7.extern=ReadWrite}
+       ChangeDetections : RealMonsterData.RealMonster;  
+
+       {S7.extern=ReadWrite}
        GH_ISSUE_183 : GH_ISSUE_183.GH_ISSUE_183_1;
     END_VAR
 END_CONFIGURATION

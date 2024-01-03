@@ -211,6 +211,45 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.RealMonsterBase plain, Pocos.RealMonsterData.RealMonsterBase latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Description != Description.LastValue)
+                    somethingChanged = true;
+                if (plain.Id != Id.LastValue)
+                    somethingChanged = true;
+                if (plain.TestDate != TestDate.LastValue)
+                    somethingChanged = true;
+                if (plain.TestDateTime != TestDateTime.LastValue)
+                    somethingChanged = true;
+                if (plain.TestTimeSpan != TestTimeSpan.LastValue)
+                    somethingChanged = true;
+                for (int i760901_3001_mimi = 0; i760901_3001_mimi < latest.ArrayOfBytes.Length; i760901_3001_mimi++)
+                {
+                    if (latest.ArrayOfBytes.ElementAt(i760901_3001_mimi) != plain.ArrayOfBytes[i760901_3001_mimi])
+                        somethingChanged = true;
+                }
+
+                for (int i760901_3001_mimi = 0; i760901_3001_mimi < latest.ArrayOfDrives.Length; i760901_3001_mimi++)
+                {
+                    if (await ArrayOfDrives.ElementAt(i760901_3001_mimi).DetectsAnyChangeAsync(plain.ArrayOfDrives[i760901_3001_mimi], latest.ArrayOfDrives[i760901_3001_mimi]))
+                        somethingChanged = true;
+                }
+
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -411,6 +450,27 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public async override Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public new async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.RealMonster plain, Pocos.RealMonsterData.RealMonster latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (await base.DetectsAnyChangeAsync(plain))
+                    return true;
+                if (await DriveA.DetectsAnyChangeAsync(plain.DriveA, latest.DriveA))
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public new void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -587,6 +647,33 @@ namespace RealMonsterData
             Dcc.Shadow = plain.Dcc;
             await this.NestedLevelOne.PlainToShadowAsync(plain.NestedLevelOne);
             return this.RetrievePrimitives();
+        }
+
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.DriveBaseNested plain, Pocos.RealMonsterData.DriveBaseNested latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Position != Position.LastValue)
+                    somethingChanged = true;
+                if (plain.Velo != Velo.LastValue)
+                    somethingChanged = true;
+                if (plain.Acc != Acc.LastValue)
+                    somethingChanged = true;
+                if (plain.Dcc != Dcc.LastValue)
+                    somethingChanged = true;
+                if (await NestedLevelOne.DetectsAnyChangeAsync(plain.NestedLevelOne, latest.NestedLevelOne))
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
         }
 
         public void Poll()
@@ -841,6 +928,33 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.NestedLevelOne plain, Pocos.RealMonsterData.NestedLevelOne latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Position != Position.LastValue)
+                    somethingChanged = true;
+                if (plain.Velo != Velo.LastValue)
+                    somethingChanged = true;
+                if (plain.Acc != Acc.LastValue)
+                    somethingChanged = true;
+                if (plain.Dcc != Dcc.LastValue)
+                    somethingChanged = true;
+                if (await NestedLevelTwo.DetectsAnyChangeAsync(plain.NestedLevelTwo, latest.NestedLevelTwo))
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -1093,6 +1207,33 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.NestedLevelTwo plain, Pocos.RealMonsterData.NestedLevelTwo latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Position != Position.LastValue)
+                    somethingChanged = true;
+                if (plain.Velo != Velo.LastValue)
+                    somethingChanged = true;
+                if (plain.Acc != Acc.LastValue)
+                    somethingChanged = true;
+                if (plain.Dcc != Dcc.LastValue)
+                    somethingChanged = true;
+                if (await NestedLevelThree.DetectsAnyChangeAsync(plain.NestedLevelThree, latest.NestedLevelThree))
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -1322,6 +1463,31 @@ namespace RealMonsterData
             Acc.Shadow = plain.Acc;
             Dcc.Shadow = plain.Dcc;
             return this.RetrievePrimitives();
+        }
+
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.NestedLevelThree plain, Pocos.RealMonsterData.NestedLevelThree latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                if (plain.Position != Position.LastValue)
+                    somethingChanged = true;
+                if (plain.Velo != Velo.LastValue)
+                    somethingChanged = true;
+                if (plain.Acc != Acc.LastValue)
+                    somethingChanged = true;
+                if (plain.Dcc != Dcc.LastValue)
+                    somethingChanged = true;
+                plain = latest;
+                return somethingChanged;
+            });
         }
 
         public void Poll()

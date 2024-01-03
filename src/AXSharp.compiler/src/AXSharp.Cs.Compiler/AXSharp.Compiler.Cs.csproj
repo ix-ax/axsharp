@@ -58,9 +58,9 @@
     </None>
   </ItemGroup>
 	<ItemGroup>		
-		<PackageReference Include="Irony"/>
-		<PackageReference Include="Irony.Interpreter"/>
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp"/>
+		<PackageReference Include="Irony" />
+		<PackageReference Include="Irony.Interpreter" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\AXSharp.connectors\src\AXSharp.Connector\AXSharp.Connector.csproj" />
