@@ -98,7 +98,6 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async override Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -219,7 +218,6 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);

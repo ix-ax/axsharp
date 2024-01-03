@@ -90,7 +90,6 @@ public partial class _NULL_CONTEXT : AXSharp.Connector.ITwinObject, IContext
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);

@@ -686,7 +686,6 @@ public partial class ComplexForConfig : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -958,7 +957,6 @@ public partial class Motor : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1183,7 +1181,6 @@ public partial class Vehicle : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);

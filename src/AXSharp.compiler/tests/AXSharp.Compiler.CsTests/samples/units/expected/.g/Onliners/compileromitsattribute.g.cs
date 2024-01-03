@@ -115,7 +115,6 @@ namespace CompilerOmmits
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -344,7 +343,6 @@ namespace CompilerOmmits
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -576,7 +574,6 @@ namespace Enums
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -832,7 +829,6 @@ namespace misc
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1044,7 +1040,6 @@ namespace misc
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1248,7 +1243,6 @@ namespace misc
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1473,7 +1467,6 @@ namespace misc
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1717,7 +1710,6 @@ namespace UnknownArraysShouldNotBeTraspiled
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
@@ -1952,7 +1944,6 @@ namespace UnknownArraysShouldNotBeTraspiled
             return this.RetrievePrimitives();
         }
 
-        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);

@@ -49,7 +49,7 @@ internal static class CsHelpers
     {
         var qualifier = isExtended ? "override" : "virtual";
         var sb = new StringBuilder();
-        sb.AppendLine("///<inheritdoc/>");
+        //sb.AppendLine("///<inheritdoc/>\r\n");
         sb.AppendLine($"public async {qualifier} Task<bool> {TwinObjectExtensions.HasChangedMethodName}<T>(T plain){{\n return await this.{methodName}((dynamic)plain);\n}}");
         return sb.ToString();
     }

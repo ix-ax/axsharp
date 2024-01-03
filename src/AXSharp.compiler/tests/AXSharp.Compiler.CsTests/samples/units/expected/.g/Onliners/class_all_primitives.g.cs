@@ -420,7 +420,6 @@ public partial class class_all_primitives : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
-    ///<inheritdoc/>
     public async virtual Task<bool> AnyChangeAsync<T>(T plain)
     {
         return await this.DetectsAnyChangeAsync((dynamic)plain);
