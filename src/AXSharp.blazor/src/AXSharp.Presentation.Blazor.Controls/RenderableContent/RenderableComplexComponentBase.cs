@@ -29,8 +29,27 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             get => _component;
             set
             {
-                _component = value;
+                if (_component == null)
+                {
+                    _component = value;
+                    this.OnComponentChanged();
+                    return;
+                }
+
+                if (_component != null && !_component.Equals(value))
+                {
+                    _component = value;
+                    this.OnComponentChanged();
+                }
             } 
+        }
+
+        /// <summary>
+        /// Method called when the component (the context component of this rcc) is changed.
+        /// </summary>
+        public virtual void OnComponentChanged()
+        {
+
         }
     }
 }
