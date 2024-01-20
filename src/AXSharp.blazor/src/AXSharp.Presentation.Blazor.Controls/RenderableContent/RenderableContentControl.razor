@@ -27,7 +27,7 @@
         //try to find complex component (also try predecessors) and generate it
         var twin = (ITwinObject)element;
         var twinType = twin.GetType();
-        var component = ViewLocatorBuilder(twinType, twin, Presentation);
+        var component = ViewLocatorBuilder(twinType, twin, Presentation, PresentationTemplate);
         if (component != null)
         {
             @CreateComplexComponent(twin, component)
@@ -146,7 +146,7 @@
     {
         Type mainLayout = null;
 
-        var component = ViewLocatorBuilder(twin.GetType(), twin, Presentation);
+        var component = ViewLocatorBuilder(twin.GetType(), twin, Presentation, PresentationTemplate);
         if (component != null)
         {
             var name = String.IsNullOrEmpty(twin.AttributeName) ? twin.GetSymbolTail() : twin.AttributeName;
@@ -187,7 +187,7 @@
     {
         string presentationType = GetDisplayPresentationIfEmpty();
         var primitiveKidType = primitiveKid.GetType();
-        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, primitiveKid, presentationType);
+        var primitiveComponent = ViewLocatorBuilder(primitiveKidType, primitiveKid, presentationType, PresentationTemplate);
         @CreatePrimitiveComponent(primitiveKid, primitiveComponent)
     };
 

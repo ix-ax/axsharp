@@ -39,7 +39,34 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter] public int PollingInterval { get; set; } = 250;
 
-        
+        /// <summary>
+        /// Gets or sets the presentation template used for displaying data.
+        /// </summary>
+        /// <remarks>
+        /// The presentation template specifies the way the data is formatted and presented to the user.
+        /// It is a string value that can be assigned using markup syntax or plain text.
+        /// By default, the presentation template is an empty string. If no presentation template is given
+        /// the renderer will use the locator pattern to provide the presentation type.
+        /// </remarks>
+        /// <value>
+        /// The presentation template string.
+        /// </value>
+        [Parameter]
+        public string PresentationTemplate
+        {
+            get => presentationTemplate;
+
+            set
+            {
+                if (presentationTemplate != value)
+                {
+                    presentationTemplate = value;
+                    OnPresentationChanged();
+                    this.ForceRender();
+                }
+            }
+        } 
+
         /// <summary>
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
         /// </summary>
@@ -187,8 +214,14 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// <param name="presentationType">Type of presentation.</param>
         /// </summary>
 
-        internal IRenderableComponent ViewLocatorBuilder(Type twinType, ITwinElement twin, string presentationType)
+        internal IRenderableComponent ViewLocatorBuilder(Type twinType, ITwinElement twin, string presentationType, string presentationTemplate = null)
         {
+
+            if (!string.IsNullOrWhiteSpace(presentationTemplate))
+            {
+                return ComponentService.GetComponent(presentationTemplate);
+            }
+
             var namespc = twinType.Namespace;
             //set default namespace if is namespace of primitive types or empty
             if (string.IsNullOrEmpty(namespc) || namespc == "AXSharp.Connector.ValueTypes")
@@ -208,7 +241,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 if (component == null)
                 {
                     //if not found, look at predecessor
-                    component = ViewLocatorBuilder(twinType.BaseType, twin, presentationName);
+                    component = ViewLocatorBuilder(twinType.BaseType, twin, presentationName, PresentationTemplate);
                 }
 
                 if (component != null)
@@ -269,7 +302,9 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             }
             else if (component is IRenderableViewModelBase)
             {
-                __builder.AddAttribute(1, "TwinContainer", new TwinContainerObject(twin, _viewModelCache.CreateCacheId(_navigationManager.Uri, twin.Symbol, Presentation.ToLower())));
+                __builder.AddAttribute(1, "TwinContainer", new TwinContainerObject(twin, 
+                                                _viewModelCache.CreateCacheId(_navigationManager.Uri, twin.Symbol, 
+                                                    Presentation.ToLower())));
             }
             else
             {
@@ -474,6 +509,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         private bool shouldRender = false;
         private string _presentation;
+        private string presentationTemplate = null;
 
         protected override bool ShouldRender()
         {
