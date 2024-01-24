@@ -5,33 +5,33 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
-using System.Collections.Concurrent;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using AXSharp.Connector.S71500.WebAPI;
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Polly;
+using Polly.Retry;
+using Serilog;
 using Serilog.Events;
 using Siemens.Simatic.S7.Webserver.API.Exceptions;
 using Siemens.Simatic.S7.Webserver.API.Models.Responses;
 using Siemens.Simatic.S7.Webserver.API.Services;
 using Siemens.Simatic.S7.Webserver.API.Services.IdGenerator;
 using Siemens.Simatic.S7.Webserver.API.Services.RequestHandling;
+using System.Collections.Concurrent;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Linq;
+using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Headers;
 using System.Net.Security;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Net;
+using System.Text;
 using System.Xml.Serialization;
-using Polly;
-using Polly.Retry;
-using Newtonsoft.Json.Linq;
-using Serilog;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -53,10 +53,12 @@ public class WebApiConnector : Connector
     /// <param name="dbName">Root DB name (AX uses 'TGlobalVariablesDB')</param>
     public WebApiConnector(string ipAddress, string userName, string password,
         Func<HttpRequestMessage, X509Certificate2, X509Chain, SslPolicyErrors, bool>? customServerCertHandler,
+        eTargetPlatform platform = eTargetPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         IPAddress = ipAddress;
         DBName = dbName;
+        TargetPlatform = platform;
 
         var serviceFactory = new ApiStandardServiceFactory();
         var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
@@ -74,11 +76,12 @@ public class WebApiConnector : Connector
     /// <param name="password">Password.</param>
     /// <param name="ignoreSSLErros">When set to 'true' the connection will ignore SSL errors.</param>
     /// <param name="dbName">Root DB name (AX uses 'TGlobalVariablesDB')</param>
-    public WebApiConnector(string ipAddress, string userName, string password, bool ignoreSSLErros,
+    public WebApiConnector(string ipAddress, string userName, string password, bool ignoreSSLErros, eTargetPlatform platform = eTargetPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         IPAddress = ipAddress;
         DBName = dbName;
+        TargetPlatform = platform;
 
         if (ignoreSSLErros)
             ServerCertificateCallback.CertificateCallback =
@@ -86,7 +89,7 @@ public class WebApiConnector : Connector
 
         var serviceFactory = new ApiStandardServiceFactory();
         Client = serviceFactory.GetHttpClient(ipAddress, userName, password);
-        
+
         requestHandler = new ApiHttpClientRequestHandler(Client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
@@ -115,7 +118,7 @@ public class WebApiConnector : Connector
     {
         get
         {
-           return requestHandler;
+            return requestHandler;
         }
     }
 
@@ -144,9 +147,9 @@ public class WebApiConnector : Connector
             throw new Exception($"Too many requests {concurrent}");
         }
 
-        lock (concurentCountMutex) 
+        lock (concurentCountMutex)
         {
-             concurrentRequest = concurrentRequest + 1;
+            concurrentRequest = concurrentRequest + 1;
         }
     }
 
@@ -258,12 +261,12 @@ public class WebApiConnector : Connector
         }
     }
 
-    
+
     /// <inheritdoc />
     public override async Task ReadBatchAsync(IEnumerable<ITwinPrimitive>? primitives)
     {
         if (primitives == null) return;
-                       
+
         var responseData = new ApiBulkResponse();
 
         var twinPrimitives = primitives as ITwinPrimitive[] ?? primitives.ToArray();
@@ -288,7 +291,7 @@ public class WebApiConnector : Connector
             await AntiThrottling(primitives);
 
             var webApiPrimitives = twinPrimitives.Cast<IWebApiPrimitive>().Distinct().ToArray();
-           
+
             foreach (var requestSegment in webApiPrimitives.SegmentReadRequest(MAX_READ_REQUEST_SEGMENT))
             {
                 var apiPrimitives = requestSegment as IWebApiPrimitive[] ?? requestSegment.ToArray();
@@ -422,7 +425,7 @@ public class WebApiConnector : Connector
         return ((OnlinerBase<T>)primitive).LastValue;
     }
 
-  
+
     internal async Task<T> ReadAsync<T>(IWebApiPrimitive primitive, T value)
     {
         await ReadBatchAsync(new IWebApiPrimitive[] { primitive });
@@ -473,7 +476,7 @@ public class WebApiConnector : Connector
         {
             return new ApiPlcWriteRequest($"{root}.{symbol}", value);
         }
-       
+
     }
 
     internal static WebApiConnector Cast(Connector connector)
@@ -490,4 +493,6 @@ public class WebApiConnector : Connector
     {
         await WriteBatchAsync(primitives);
     }
+
+    public eTargetPlatform TargetPlatform { get; } = eTargetPlatform.SIMATICAX;
 }

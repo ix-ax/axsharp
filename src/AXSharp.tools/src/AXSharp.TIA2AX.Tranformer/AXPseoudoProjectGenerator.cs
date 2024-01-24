@@ -12,11 +12,11 @@ namespace AXSharp.TIA2AX.Transformer
 {
     public class AXPseoudoProjectGenerator
     {
-        public static void Create(string baseDirectory, string outputProject, IEnumerable<string> sources)
+        public static void Create(string baseDirectory, string outputProject, IEnumerable<string> sources, Options options)
         {
             var generator = new AXPseoudoProjectGenerator();
-            
-            generator.CreateProjectStructure(baseDirectory, outputProject);
+
+            generator.CreateProjectStructure(baseDirectory, outputProject, options);
 
             var srcFolderPath = Path.Combine(baseDirectory, outputProject, "src");
 
@@ -32,15 +32,15 @@ namespace AXSharp.TIA2AX.Transformer
                 var tranformed = string.Empty;
                 using (var sw = new StreamWriter(Path.Combine(srcFolderPath, $"{fileName.Name}.st")))
                 {
-                    tranformed = TIA2AXTypeTransformer.GetTransformation(input);
-                    sw.Write(TIA2AXTypeTransformer.GetTransformation(tranformed));
+                    tranformed = TIA2AXTypeTransformer.GetTransformation(input, options);
+                    sw.Write(tranformed);
                 }
 
-                
+
                 foreach (var dbName in generator.GetDbNames(tranformed))
                 {
                     configurationBuilder.AppendLine($"\t{{#ix-attr: [DBAttribute()]}}");
-                    configurationBuilder.AppendLine($"\t{dbName} : {dbName};");
+                    configurationBuilder.AppendLine($"\t{dbName} : {options.Namespace}.{dbName};");
                 }
             }
             configurationBuilder.AppendLine("\tEND_VAR");
@@ -67,7 +67,7 @@ END_PROGRAM");
             }
         }
 
-      
+
         private IEnumerable<string> GetDbNames(string source)
         {
             var regex = new Regex(@"{#ix-db: (?<dbName>\w+)}");
@@ -78,7 +78,7 @@ END_PROGRAM");
             }
         }
 
-        private void CreateProjectStructure(string baseDirectory, string outputProject)
+        private void CreateProjectStructure(string baseDirectory, string outputProject, Options option)
         {
             // Combine paths to create the full directory paths
             string projectDirectory = Path.Combine(baseDirectory, outputProject);
@@ -93,7 +93,7 @@ END_PROGRAM");
             string apaxFilePath = Path.Combine(projectDirectory, "apax.yml");
 
             // Content for the apax.yml file
-            string apaxContent = $@"name: ""{outputProject}""
+            string apaxContent = $@"name: ""{option.Namespace}""
 version: 0.0.0
 type: app
 targets:  

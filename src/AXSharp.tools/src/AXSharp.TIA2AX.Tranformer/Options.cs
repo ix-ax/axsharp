@@ -1,9 +1,9 @@
-﻿using System;
+﻿using CommandLine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommandLine;
 
 namespace AXSharp.TIA2AX.Transformer
 {
@@ -13,6 +13,9 @@ namespace AXSharp.TIA2AX.Transformer
         public IEnumerable<string> DataBlocks { get; set; }
 
         [Option('o', "output", Required = true, HelpText = "Output folder for pseudo AX project")]
-        public string? Output{ get; set; }
+        public string? Output { get; set; }
+
+        [Option('n', "namespace", Required = true, HelpText = "Enclosing namespace for all types.")]
+        public string? Namespace { get; set; }
     }
 }
