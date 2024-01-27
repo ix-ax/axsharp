@@ -19,8 +19,10 @@ using System.Collections.Generic;
 using AXSharp.Presentation.Blazor.Exceptions;
 using System.Reflection;
 using System.ComponentModel;
+using System.Globalization;
 using AXSharp.Connector.ValueTypes;
 using System.Xml.Linq;
+using AXSharp.Connector.Localizations;
 
 namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 {
@@ -37,23 +39,82 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter] public int PollingInterval { get; set; } = 250;
 
-        
+        /// <summary>
+        /// Gets or sets the presentation template used for displaying data.
+        /// </summary>
+        /// <remarks>
+        /// The presentation template specifies the way the data is formatted and presented to the user.
+        /// It is a string value that can be assigned using markup syntax or plain text.
+        /// By default, the presentation template is an empty string. If no presentation template is given
+        /// the renderer will use the locator pattern to provide the presentation type.
+        /// </remarks>
+        /// <value>
+        /// The presentation template string.
+        /// </value>
+        [Parameter]
+        public string PresentationTemplate
+        {
+            get => presentationTemplate;
+
+            set
+            {
+                if (presentationTemplate != value)
+                {
+                    presentationTemplate = value;
+                    OnPresentationChanged();
+                    this.ForceRender();
+                }
+            }
+        } 
+
         /// <summary>
         /// Parameter Context accept ITwinElement instance, which is used as base model for UI generation.
         /// </summary>
         [Parameter]
-        public object Context
+        public ITwinElement Context
         {
             get => _context;
-            set { _context =  value as ITwinElement;  }
+            set
+            {
+                if (_context != value)
+                {
+                    _context = value as ITwinElement;
+                    this.OnContextChanged();
+                    this.ForceRender();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method called when the context is changed.
+        /// </summary>
+        public virtual void OnContextChanged()
+        {
+
         }
 
         /// <summary>
         /// Parameter Presentation specify mode, in which view UI is generated. Type PresentationType is used.
         /// </summary>
         [Parameter]
-        public string Presentation { get; set; }
+        public string Presentation
+        {
+            get => _presentation;
+            set
+            {
+                if (_presentation != value)
+                {
+                    _presentation = value;
+                    OnPresentationChanged();
+                    this.ForceRender();
+                }
+            }
+        }
 
+        public virtual void OnPresentationChanged()
+        {
+
+        }
 
         /// <summary>
         /// Parameter Class, in which RenderableContentenControl will be wrapped.
@@ -65,12 +126,19 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// </summary>
         [Parameter]
         public string LayoutClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets parent container containing this renderable content control
+        /// [!NOTE] This method is used in advanced scenarios it must be set explicitly.
+        /// </summary>
+        [Parameter]
+        public ComponentBase ParentContainer { get; set; }
+        
         /// <summary>
         /// Parameter LayoutChildrenClass, in which children of layouts will be wrapped.
         /// </summary>
         [Parameter]
         public string LayoutChildrenClass { get; set; }
-
         [Inject]
         public ComponentService ComponentService { get; set; }
         [Inject]
@@ -86,24 +154,30 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         {
             base.OnInitialized();
 
-            if(_context is null)
-            {
-                throw new ParameterWrongTypeRendererException(Context.GetType().ToString());
-            }           
+                
+        }
+
+        /// <summary>
+        /// Forces re-rendering of this rcc.
+        /// [!IMPORTANT] Forced re-rendering may impact client-side performance. The method is automatically called when <see cref="Presentation"/> or <see cref="Context"/> property change.
+        /// </summary>
+        public void ForceRender()
+        {
+            shouldRender = true;
+            this.StateHasChanged();
         }
 
         protected override void OnParametersSet()
         {
-            
-            Type layoutType = TryLoadLayoutTypeFromProperty(_context);
+            Type layoutType = TryLoadLayoutTypeFromProperty(Context);
             if (layoutType == null)
             {
-                layoutType = TryLoadLayoutType(_context);
+                layoutType = TryLoadLayoutType(Context);
             }
             if (layoutType != null) MainLayoutType = layoutType;
 
-            _groupContainer = TryLoadGroupTypeFromProperty(_context);
-            if (_groupContainer == null) _groupContainer = TryLoadGroupType(_context);
+            _groupContainer = TryLoadGroupTypeFromProperty(Context);
+            if (_groupContainer == null) _groupContainer = TryLoadGroupType(Context);
 
             if (String.IsNullOrEmpty(Presentation)) Presentation = "";
             _viewModelCache.ResetCounter();
@@ -140,8 +214,14 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
         /// <param name="presentationType">Type of presentation.</param>
         /// </summary>
 
-        internal IRenderableComponent ViewLocatorBuilder(Type twinType, ITwinElement twin, string presentationType)
+        internal IRenderableComponent ViewLocatorBuilder(Type twinType, ITwinElement twin, string presentationType, string presentationTemplate = null)
         {
+
+            if (!string.IsNullOrWhiteSpace(presentationTemplate))
+            {
+                return ComponentService.GetComponent(presentationTemplate);
+            }
+
             var namespc = twinType.Namespace;
             //set default namespace if is namespace of primitive types or empty
             if (string.IsNullOrEmpty(namespc) || namespc == "AXSharp.Connector.ValueTypes")
@@ -161,9 +241,18 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
                 if (component == null)
                 {
                     //if not found, look at predecessor
-                    component = ViewLocatorBuilder(twinType.BaseType, twin, presentationName);
+                    component = ViewLocatorBuilder(twinType.BaseType, twin, presentationName, PresentationTemplate);
                 }
-                if (component != null) return component;
+
+                if (component != null)
+                {
+                    if (component is RenderableComponentBase)
+                    {
+                        ((RenderableComponentBase)component).RccContainer = this;
+                    }
+
+                    return component;
+                }
             }
             return null;
         }
@@ -198,6 +287,7 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             __builder.OpenComponent(1, primitiveComponent.GetType());
             __builder.AddAttribute(2, "Onliner", twinPrimitive);
             __builder.AddAttribute(3, "IsReadOnly", HasReadAccess(twinPrimitive));
+            __builder.AddAttribute(1, "RccContainer", this);
             __builder.CloseComponent();
         };
 
@@ -208,10 +298,13 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             if (component is IRenderableComplexComponentBase)
             {
                 __builder.AddAttribute(1, "Component", twin);
+                __builder.AddAttribute(1, "RccContainer", this);
             }
             else if (component is IRenderableViewModelBase)
             {
-                __builder.AddAttribute(1, "TwinContainer", new TwinContainerObject(twin, _viewModelCache.CreateCacheId(_navigationManager.Uri, twin.Symbol, Presentation.ToLower())));
+                __builder.AddAttribute(1, "TwinContainer", new TwinContainerObject(twin, 
+                                                _viewModelCache.CreateCacheId(_navigationManager.Uri, twin.Symbol, 
+                                                    Presentation.ToLower())));
             }
             else
             {
@@ -413,6 +506,22 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             return Presentation;
 
         }
+
+        private bool shouldRender = false;
+        private string _presentation;
+        private string presentationTemplate = null;
+
+        protected override bool ShouldRender()
+        {
+            if (shouldRender)
+            {
+                shouldRender = false;
+                return true;
+            }
+
+            return false;
+        }
+
 
         public virtual void Dispose()
         {

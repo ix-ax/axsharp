@@ -436,6 +436,69 @@ public partial class all_primitives : AXSharp.Connector.ITwinObject
         return this.RetrievePrimitives();
     }
 
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.all_primitives plain, Pocos.all_primitives latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            if (plain.myBOOL != myBOOL.LastValue)
+                somethingChanged = true;
+            if (plain.myBYTE != myBYTE.LastValue)
+                somethingChanged = true;
+            if (plain.myWORD != myWORD.LastValue)
+                somethingChanged = true;
+            if (plain.myDWORD != myDWORD.LastValue)
+                somethingChanged = true;
+            if (plain.myLWORD != myLWORD.LastValue)
+                somethingChanged = true;
+            if (plain.mySINT != mySINT.LastValue)
+                somethingChanged = true;
+            if (plain.myINT != myINT.LastValue)
+                somethingChanged = true;
+            if (plain.myDINT != myDINT.LastValue)
+                somethingChanged = true;
+            if (plain.myLINT != myLINT.LastValue)
+                somethingChanged = true;
+            if (plain.myUSINT != myUSINT.LastValue)
+                somethingChanged = true;
+            if (plain.myUINT != myUINT.LastValue)
+                somethingChanged = true;
+            if (plain.myUDINT != myUDINT.LastValue)
+                somethingChanged = true;
+            if (plain.myULINT != myULINT.LastValue)
+                somethingChanged = true;
+            if (plain.myREAL != myREAL.LastValue)
+                somethingChanged = true;
+            if (plain.myLREAL != myLREAL.LastValue)
+                somethingChanged = true;
+            if (plain.myTIME != myTIME.LastValue)
+                somethingChanged = true;
+            if (plain.myLTIME != myLTIME.LastValue)
+                somethingChanged = true;
+            if (plain.myDATE != myDATE.LastValue)
+                somethingChanged = true;
+            if (plain.myTIME_OF_DAY != myTIME_OF_DAY.LastValue)
+                somethingChanged = true;
+            if (plain.myDATE_AND_TIME != myDATE_AND_TIME.LastValue)
+                somethingChanged = true;
+            if (plain.mySTRING != mySTRING.LastValue)
+                somethingChanged = true;
+            if (plain.myWSTRING != myWSTRING.LastValue)
+                somethingChanged = true;
+            if (plain.myEnum != (myEnum)latest.myEnum)
+                somethingChanged = true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());

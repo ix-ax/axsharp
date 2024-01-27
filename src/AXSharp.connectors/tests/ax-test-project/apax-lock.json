@@ -1,10 +1,10 @@
 {
-  "name": "ix-integration-plc",
+  "name": "ax_test_project",
   "version": "0.0.0",
   "lockFileVersion": "2",
   "installStrategy": "strict",
   "root": {
-    "name": "ix-integration-plc",
+    "name": "ax_test_project",
     "version": "0.0.0",
     "devDependencies": {
       "@ax/sdk": "2311.0.1"
@@ -523,62 +523,6 @@
       ],
       "dependencies": {}
     },
-    "@ax/stc-win-x64": {
-      "name": "@ax/stc-win-x64",
-      "version": "6.0.146",
-      "integrity": "sha512-4hTgmIG54MaWhgxBV8gygU19yilVLfieizhUb08aRXz2o1+YKqd6ifgz1NBAT9RVOgnMj0IJcUynuLo998i1zg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-win-x64/-/stc-win-x64-6.0.146.tgz",
-      "os": [
-        "win32"
-      ],
-      "cpu": [
-        "x64"
-      ],
-      "dependencies": {
-        "@ax/st-docs": "6.0.146"
-      }
-    },
-    "@ax/stc-linux-x64": {
-      "name": "@ax/stc-linux-x64",
-      "version": "6.0.146",
-      "integrity": "sha512-Cy8psrCe2TB+bCZrCzU4qtPxf0UWzCpdmxOCBC4fEVKnKW6MaBOBt85PAbz6MtAriH4boJY9gMMuPspWlKavPA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-linux-x64/-/stc-linux-x64-6.0.146.tgz",
-      "os": [
-        "linux"
-      ],
-      "cpu": [
-        "x64"
-      ],
-      "dependencies": {
-        "@ax/st-docs": "6.0.146"
-      }
-    },
-    "@ax/st-ls-win-x64": {
-      "name": "@ax/st-ls-win-x64",
-      "version": "3.0.113",
-      "integrity": "sha512-dPj6b2aRhnelCe0BpIcLMLvHbUj2zhfQOtu4jzdZFDPhKICdB9+fTebuYRmP2vna4ogTke22e6f2buwR6VO1Vw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-win-x64/-/st-ls-win-x64-3.0.113.tgz",
-      "os": [
-        "win32"
-      ],
-      "cpu": [
-        "x64"
-      ],
-      "dependencies": {}
-    },
-    "@ax/st-ls-linux-x64": {
-      "name": "@ax/st-ls-linux-x64",
-      "version": "3.0.113",
-      "integrity": "sha512-/QUsNMJrMPRVcCrCD7gkw/xl0VvZ8YEJXxQMWGwkWol3JgxiPjWW/fb7EqpzDU+ij45xy85rBdx29MMHQ3Of9Q==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-linux-x64/-/st-ls-linux-x64-3.0.113.tgz",
-      "os": [
-        "linux"
-      ],
-      "cpu": [
-        "x64"
-      ],
-      "dependencies": {}
-    },
     "@ax/system-strings": {
       "name": "@ax/system-strings",
       "version": "6.0.94",
@@ -659,6 +603,62 @@
       "version": "16.0.3",
       "integrity": "sha512-CfqbzR+wPnocP0+pDpb3cYBxdefkS6WvHbGaDNGAoCkK3Y8WnNfWbxXr37e5XIi7iPMZ8BONWaRFIN5h4RMeOA==",
       "resolved": "https://registry.simatic-ax.siemens.io/@ax/build-native-linux/-/build-native-linux-16.0.3.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ax/stc-win-x64": {
+      "name": "@ax/stc-win-x64",
+      "version": "6.0.146",
+      "integrity": "sha512-4hTgmIG54MaWhgxBV8gygU19yilVLfieizhUb08aRXz2o1+YKqd6ifgz1NBAT9RVOgnMj0IJcUynuLo998i1zg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-win-x64/-/stc-win-x64-6.0.146.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {
+        "@ax/st-docs": "6.0.146"
+      }
+    },
+    "@ax/stc-linux-x64": {
+      "name": "@ax/stc-linux-x64",
+      "version": "6.0.146",
+      "integrity": "sha512-Cy8psrCe2TB+bCZrCzU4qtPxf0UWzCpdmxOCBC4fEVKnKW6MaBOBt85PAbz6MtAriH4boJY9gMMuPspWlKavPA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-linux-x64/-/stc-linux-x64-6.0.146.tgz",
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {
+        "@ax/st-docs": "6.0.146"
+      }
+    },
+    "@ax/st-ls-win-x64": {
+      "name": "@ax/st-ls-win-x64",
+      "version": "3.0.113",
+      "integrity": "sha512-dPj6b2aRhnelCe0BpIcLMLvHbUj2zhfQOtu4jzdZFDPhKICdB9+fTebuYRmP2vna4ogTke22e6f2buwR6VO1Vw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-win-x64/-/st-ls-win-x64-3.0.113.tgz",
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "dependencies": {}
+    },
+    "@ax/st-ls-linux-x64": {
+      "name": "@ax/st-ls-linux-x64",
+      "version": "3.0.113",
+      "integrity": "sha512-/QUsNMJrMPRVcCrCD7gkw/xl0VvZ8YEJXxQMWGwkWol3JgxiPjWW/fb7EqpzDU+ij45xy85rBdx29MMHQ3Of9Q==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-linux-x64/-/st-ls-linux-x64-3.0.113.tgz",
       "os": [
         "linux"
       ],

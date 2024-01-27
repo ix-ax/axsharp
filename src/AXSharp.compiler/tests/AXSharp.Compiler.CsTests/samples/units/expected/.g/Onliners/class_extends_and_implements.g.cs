@@ -98,6 +98,30 @@ public partial class ExtendsAndImplements : ExtendeeExtendsAndImplements, IImple
         return this.RetrievePrimitives();
     }
 
+    ///<inheritdoc/>
+    public async override Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public new async Task<bool> DetectsAnyChangeAsync(Pocos.ExtendsAndImplements plain, Pocos.ExtendsAndImplements latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            if (await base.DetectsAnyChangeAsync(plain))
+                return true;
+            plain = latest;
+            return somethingChanged;
+        });
+    }
+
     public new void Poll()
     {
         this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -193,6 +217,28 @@ public partial class ExtendeeExtendsAndImplements : AXSharp.Connector.ITwinObjec
     public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ExtendeeExtendsAndImplements plain)
     {
         return this.RetrievePrimitives();
+    }
+
+    ///<inheritdoc/>
+    public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+    {
+        return await this.DetectsAnyChangeAsync((dynamic)plain);
+    }
+
+    ///<summary>
+    ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+    ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+    ///</summary>
+    public async Task<bool> DetectsAnyChangeAsync(Pocos.ExtendeeExtendsAndImplements plain, Pocos.ExtendeeExtendsAndImplements latest = null)
+    {
+        if (latest == null)
+            latest = await this._OnlineToPlainNoacAsync();
+        var somethingChanged = false;
+        return await Task.Run(async () =>
+        {
+            plain = latest;
+            return somethingChanged;
+        });
     }
 
     public void Poll()

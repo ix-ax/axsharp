@@ -142,6 +142,8 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerShadowToPlainBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
         AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
+        
+        AddToSource(CsOnlinerHasChangedBuilder.Create(visitor, classDeclaration, this, isExtended).Output);
 
         AddPollingMethod(isExtended);
         AddCreatePocoMethod(classDeclaration, isExtended);
@@ -296,6 +298,7 @@ public class CsOnlinerSourceBuilder : ICombinedThreeVisitor, ISourceBuilder
         AddToSource(CsOnlinerPlainerShadowToPlainProtectedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
         AddToSource(CsOnlinerPlainerPlainToShadowBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
 
+        AddToSource(CsOnlinerHasChangedBuilder.Create(visitor, structuredTypeDeclaration, this).Output);
         AddPollingMethod(false);
 
         AddCreatePocoMethod(structuredTypeDeclaration, false);

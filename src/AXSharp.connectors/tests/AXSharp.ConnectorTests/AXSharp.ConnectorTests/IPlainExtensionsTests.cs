@@ -311,6 +311,11 @@ namespace AXSharp.ConnectorTests
             await this.PlainToShadowAsync((dynamic)plain);
         }
 
+        public Task<bool> AnyChangeAsync<T1>(T1 plain)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.all_primitives plain)
         {
             myBOOL.Shadow = plain.myBOOL;

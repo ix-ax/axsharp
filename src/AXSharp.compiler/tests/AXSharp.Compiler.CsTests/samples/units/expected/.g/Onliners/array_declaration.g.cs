@@ -136,6 +136,40 @@ namespace ArrayDeclarationSimpleNamespace
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class plain, Pocos.ArrayDeclarationSimpleNamespace.array_declaration_class latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                for (int i760901_3001_mimi = 0; i760901_3001_mimi < latest.primitive.Length; i760901_3001_mimi++)
+                {
+                    if (latest.primitive.ElementAt(i760901_3001_mimi) != plain.primitive[i760901_3001_mimi])
+                        somethingChanged = true;
+                }
+
+                for (int i760901_3001_mimi = 0; i760901_3001_mimi < latest.complex.Length; i760901_3001_mimi++)
+                {
+                    if (await complex.ElementAt(i760901_3001_mimi).DetectsAnyChangeAsync(plain.complex[i760901_3001_mimi], latest.complex[i760901_3001_mimi]))
+                        somethingChanged = true;
+                }
+
+                plain = latest;
+                return somethingChanged;
+            });
+        }
+
         public void Poll()
         {
             this.RetrievePrimitives().ToList().ForEach(x => x.Poll());
@@ -305,6 +339,28 @@ namespace ArrayDeclarationSimpleNamespace
         public async Task<IEnumerable<ITwinPrimitive>> PlainToShadowAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain)
         {
             return this.RetrievePrimitives();
+        }
+
+        ///<inheritdoc/>
+        public async virtual Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            return await this.DetectsAnyChangeAsync((dynamic)plain);
+        }
+
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
+        public async Task<bool> DetectsAnyChangeAsync(Pocos.ArrayDeclarationSimpleNamespace.some_complex_type plain, Pocos.ArrayDeclarationSimpleNamespace.some_complex_type latest = null)
+        {
+            if (latest == null)
+                latest = await this._OnlineToPlainNoacAsync();
+            var somethingChanged = false;
+            return await Task.Run(async () =>
+            {
+                plain = latest;
+                return somethingChanged;
+            });
         }
 
         public void Poll()

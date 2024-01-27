@@ -1,5 +1,6 @@
 ﻿using AXSharp.Connector.ValueTypes;
 using Microsoft.AspNetCore.Components;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace AXSharp.Presentation.Blazor.Controls.Templates
            
         protected override Task OnInitializedAsync()
         {
+            AddToPolling(this.Onliner, this.PollingInterval);
             UpdateValuesOnChangeOutFocus(Onliner);
             return base.OnInitializedAsync();
         }

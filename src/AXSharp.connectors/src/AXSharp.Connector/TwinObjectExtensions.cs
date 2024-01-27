@@ -29,6 +29,8 @@ public static class TwinObjectExtensions
 
     public static readonly string PlainToShadowMethodName = nameof(ITwinObject.PlainToShadow);
 
+    public static readonly string HasChangedMethodName = nameof(ITwinObject.AnyChangeAsync);
+    
     /// <summary>
     ///     Makes <see cref="AXSharp.Connector.ITwinObject" /> readonly for this application.
     /// </summary>

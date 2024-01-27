@@ -25,7 +25,13 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
     /// </summary>
     public partial class RenderableComponentBase : ComponentBase, IRenderableComponent, IDisposable
     {
-        [Parameter] public int PollingInterval { get; set; }
+        /// <summary>
+        /// Gets or sets the RenderableContentControl that encapsulates this component.
+        /// </summary>
+        [Parameter]
+        public object RccContainer { get; set; } = new Object();
+
+        [Parameter] public int PollingInterval { get; set; } = 250;
 
         /// <summary>
         /// Disposes this object as well as communication resources used by this component.
@@ -153,7 +159,10 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
 
         protected void HandlePropertyChanged(object sender, PropertyChangedEventArgs a)
         {
-            InvokeAsync(StateHasChanged);
+            if (ShouldBeUpdated(sender as ITwinElement))
+            {
+                InvokeAsync(StateHasChanged);
+            }
         }
 
         protected void HandleShadowPropertyChanged(object sender, ValueChangedEventArgs a)
@@ -161,9 +170,39 @@ namespace AXSharp.Presentation.Blazor.Controls.RenderableContent
             InvokeAsync(StateHasChanged);
         }
 
+        protected virtual bool ShouldBeUpdated(ITwinElement element)
+        {
+            if (element == null)
+                return true;
+            
+            var renderableContentControl = (RccContainer as RenderableContentControl);
+            
+            if(renderableContentControl != null)
+            {
+                if (renderableContentControl.Context.GetParent().GetConnector().SubscriptionMode == ReadSubscriptionMode.AutoSubscribeUsedVariables)
+                {
+                    return true;
+                }
+                
+                if (renderableContentControl.Context.GetParent().GetConnector().SubscriptionMode == ReadSubscriptionMode.Polling)
+                {
+                    return this.PolledElements.Contains(element);
+                }
+            }
+
+            return true;
+        }
+
         protected void HandlePropertyChangedOnOutFocus(object sender, PropertyChangedEventArgs a)
         {
-            if(!HasFocus) InvokeAsync(StateHasChanged);
+            if (!HasFocus)
+            {
+                if (ShouldBeUpdated(sender as ITwinElement))
+                {
+                    InvokeAsync(StateHasChanged);
+                }
+            }
+                
         }
     }
 }

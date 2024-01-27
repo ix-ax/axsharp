@@ -78,6 +78,11 @@ namespace AXSharp.Connector.Tests
             throw new NotImplementedException();
         }
 
+        public Task<bool> AnyChangeAsync<T>(T plain)
+        {
+            throw new NotImplementedException();
+        }
+
         public object OnlineToPlain()
         {
             throw new NotImplementedException();
