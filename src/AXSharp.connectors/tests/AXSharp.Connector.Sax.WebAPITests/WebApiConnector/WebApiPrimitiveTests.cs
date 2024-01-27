@@ -22,7 +22,7 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
     {
         private static string TargetIp { get; } = Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET") ?? "10.10.101.1";
 
-        public static WebApiConnector TestApiConnector { get; } = new WebApiConnector(TargetIp, "Everybody", "", true).BuildAndStart() as WebApiConnector;
+        public static WebApiConnector TestApiConnector { get; } = new WebApiConnector(TargetIp, "Everybody", Environment.GetEnvironmentVariable("AX_TARGET_PWD"), true).BuildAndStart() as WebApiConnector;
     }
 
     public abstract class WebApiPrimitiveTests<T, N> where T : OnlinerBase<N>, new()

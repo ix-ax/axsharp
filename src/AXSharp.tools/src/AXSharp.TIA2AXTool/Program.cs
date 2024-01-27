@@ -49,7 +49,7 @@ void Main(Options o)
   
     Stopwatch sw = new Stopwatch();
     sw.Start();
-    var connector = new WebApiConnector(o.Ip, o.Username, o.Password, true, string.Empty);
+    var connector = new WebApiConnector(o.Ip, o.Username, o.Password, true, dbName:string.Empty);
     Console.WriteLine("Connected.");
     Console.WriteLine("Generating...");
 

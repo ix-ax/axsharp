@@ -5,9 +5,9 @@
 // https://github.com/ix-ax/axsharp/blob/dev/LICENSE
 // Third party licenses: https://github.com/ix-ax/axsharp/blob/master/notices.md
 
+using AXSharp.Connector.S71500.WebApi;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-using AXSharp.Connector.S71500.WebApi;
 
 namespace AXSharp.Connector;
 
@@ -28,10 +28,11 @@ public static class WebApiConnectorExtensions
     /// <returns>Connector adapter for WebAPI connection.</returns>
     public static ConnectorAdapter CreateWebApi(this ConnectorAdapterBuilder adapter,
         string ipAddress, string userName, string password, bool ignoreSSLErros,
+        eTargetPlatform platform = eTargetPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         return new ConnectorAdapter(typeof(WebApiConnectorFactory))
-            { Parameters = new object[] { ipAddress, userName, password, ignoreSSLErros, dbName } };
+        { Parameters = new object[] { ipAddress, userName, password, ignoreSSLErros, platform, dbName } };
     }
 
     /// <summary>
@@ -47,9 +48,10 @@ public static class WebApiConnectorExtensions
     public static ConnectorAdapter CreateWebApi(this ConnectorAdapterBuilder adapter,
         string ipAddress, string userName, string password,
         Func<HttpRequestMessage, X509Certificate2, X509Chain, SslPolicyErrors, bool>? customServerCertHandler,
+        eTargetPlatform platform = eTargetPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         return new ConnectorAdapter(typeof(WebApiConnectorFactory))
-            { Parameters = new object[] { ipAddress, userName, password, customServerCertHandler, dbName } };
+        { Parameters = new object[] { ipAddress, userName, password, customServerCertHandler, platform, dbName } };
     }
 }

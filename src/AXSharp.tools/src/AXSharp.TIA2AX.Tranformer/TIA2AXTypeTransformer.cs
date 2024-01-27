@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AXSharp.TIA2AX.Transformer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +18,17 @@ namespace TAXSharp.TIA2AX.Transformer
             "DWORD", "LWORD"
         };
 
-        public static string GetTransformation(string input)
+        public static string GetTransformation(string input, Options options)
         {
             var t = new TIA2AXTypeTransformer();
-            return t.Tranform(input);
+            return t.Tranform(input, options);
         }
-        private string Tranform(string input)
+        private string Tranform(string input, Options options)
         {
             string output = TransformTypes(input);
             output = ConvertDataBlocksToStructs(output);
             output = RemoveUnknownTypeDeclarations(output);
+            output = $"NAMESPACE {options.Namespace}\n {output} \nEND_NAMESPACE";
             return output;
         }
 

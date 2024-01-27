@@ -35,7 +35,7 @@ namespace AXSharp.TIA2AXSharpTests
         public async void GoAxTest()
         {
 
-            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, dbName:string.Empty);
             //var connector = new WebApiConnector("172.20.30.110", "Everybody", "", true, string.Empty);
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector);
 
@@ -67,7 +67,7 @@ namespace AXSharp.TIA2AXSharpTests
         public async void GoTiaPortalDbData()
         {
 
-            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, dbName:string.Empty);
 
             //var rootObject = await TIA2AXSharpAdapter.CreateTIARootObject(connector, new[] { "DbData" });
             //TIA2AXSharpSerializer.Serialize(rootObject, "dbData.json");
@@ -98,7 +98,7 @@ namespace AXSharp.TIA2AXSharpTests
         public async void GoTiaPortalDbDataFromParamTest()
         {
 
-            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, dbName:string.Empty);
 
 
             var adapter = await TIA2AXSharpAdapter.CreateAdapter(connector, "dbData.json");
@@ -124,7 +124,7 @@ namespace AXSharp.TIA2AXSharpTests
         public async void GoAdapterWithSerializationTest()
         {
 
-            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, dbName:string.Empty);
             var rootObject = await TIA2AXSharpAdapter.CreateTIARootObject(connector, new[] { "dbtest" });
             TIA2AXSharpSerializer.Serialize(rootObject, "test.json");
 
@@ -149,7 +149,7 @@ namespace AXSharp.TIA2AXSharpTests
         public async void GoAdapterFromDeSerializedTest()
         {
 
-            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, string.Empty);
+            var connector = new WebApiConnector("10.10.10.180", "Everybody", "", true, dbName:string.Empty);
 
 
             var rootObject = TIA2AXSharpSerializer.Deserialize("test.json");

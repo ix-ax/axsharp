@@ -42,7 +42,7 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
 
     /// <inheritdoc />
     ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
-    
+
     /// <inheritdoc />
     ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
     {
@@ -70,7 +70,16 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
     {
         if (long.TryParse(value, out var val))
         {
-            UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(val)));
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    UpdateRead(TimeSpan.FromMilliseconds(val));
+                    break;
+                case eTargetPlatform.SIMATICAX:
+                    UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(val)));
+                    break;
+
+            }
         }
     }
 
@@ -93,7 +102,9 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
     /// <inheritdoc />
     public override async Task<TimeSpan> GetAsync()
     {
-        return await _webApiConnector.ReadAsync<TimeSpan>(this);
+
+        var l = await _webApiConnector.ReadAsync<TimeSpan>(this);
+        return l;
     }
 
     /// <inheritdoc />

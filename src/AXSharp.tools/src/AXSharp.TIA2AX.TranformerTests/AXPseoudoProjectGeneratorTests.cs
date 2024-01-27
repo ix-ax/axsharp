@@ -16,20 +16,22 @@ namespace AXSharp.TIA2AX.Transformer.Tests
         public void CreateTest()
         {
             var assemblyLocation = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            AXPseoudoProjectGenerator.Create(assemblyLocation.DirectoryName, "output", new string[] { Path.Combine(assemblyLocation.DirectoryName, "samples", "ExportViacDbBezInstancneho.db") });
+            AXPseoudoProjectGenerator.Create(assemblyLocation.DirectoryName, 
+               "output", 
+               new string[] { Path.Combine(assemblyLocation.DirectoryName, "samples", "ExportViacDbBezInstancneho.db") }, new Options() { Namespace = "nmspc"});
 
             var expectedConfiguration = @"CONFIGURATION MyConfiguration
 TASK Main(Interval := T#10ms, Priority := 1);
 PROGRAM P1 WITH Main: MyProgram;
 	VAR_GLOBAL
 	{#ix-attr: [DBAttribute()]}
-	DB_StorageNok : DB_StorageNok;
+	DB_StorageNok : nmspc.DB_StorageNok;
 	{#ix-attr: [DBAttribute()]}
-	DBRivetingSetup : DBRivetingSetup;
+	DBRivetingSetup : nmspc.DBRivetingSetup;
 	{#ix-attr: [DBAttribute()]}
-	DB_Storage : DB_Storage;
+	DB_Storage : nmspc.DB_Storage;
 	{#ix-attr: [DBAttribute()]}
-	DbData : DbData;
+	DbData : nmspc.DbData;
 	END_VAR
 END_CONFIGURATION
 PROGRAM MyProgram
@@ -42,7 +44,8 @@ END_PROGRAM";
 
             Assert.Equal(expectedConfiguration, actualConfiguration);
 
-            var expectedTypes = @"TYPE tGlobalData_22 :
+            var expectedTypes = @"NAMESPACE nmspc
+ TYPE tGlobalData_22 :
 STRUCT
          TraceabilityActive : Bool;
       END_STRUCT;
@@ -601,11 +604,16 @@ TYPE tReference :
    END_STRUCT;
 
 END_TYPE
+
+{#ix-db: DB_StorageNok}
 CLASS PUBLIC DB_StorageNok 
    VAR PUBLIC 
       Data : Array[0..2] of tData_bobock;
    END_VAR
 END_CLASS
+
+
+{#ix-db: DBRivetingSetup}
 CLASS PUBLIC DBRivetingSetup 
 
    VAR PUBLIC 
@@ -621,11 +629,17 @@ CLASS PUBLIC DBRivetingSetup
       AnalogRetainTareData : Array[0..10] of Real;
    END_VAR
 END_CLASS
+
+
+{#ix-db: DB_Storage}
 CLASS PUBLIC DB_Storage 
    VAR PUBLIC 
       Data : Array[0..50] of tData_bobock;
    END_VAR
 END_CLASS
+
+
+{#ix-db: DbData}
 CLASS PUBLIC DbData 
 
    VAR PUBLIC 
@@ -637,11 +651,26 @@ CLASS PUBLIC DbData
 END_CLASS
 
 
-";
+ 
+END_NAMESPACE";
+
 
             var actualTypes = File.ReadAllText(Path.Combine(assemblyLocation.DirectoryName, "output", "src", "ExportViacDbBezInstancneho.db.st"));
 
-            Assert.Equal(expectedTypes, actualTypes);
+
+            Assert.Equal(expectedTypes.Split('\n').Length, actualTypes.Split('\n').Length);
+
+            var exp = expectedTypes.Split('\n').Select(p => p.Trim()).ToArray();
+            var act = actualTypes.Split('\n').Select(p => p.Trim()).ToArray();
+            for (int i = 0; i < exp.Length; i++)
+            {
+                Assert.Equal(exp[i], act[i]);
+            }
+
+                
+            
+
+            
         }
 
         [Fact()]
@@ -654,7 +683,7 @@ END_CLASS
 
             // Define the arguments to pass.
             // If the arguments might contain spaces, wrap them in quotes.
-            string arguments = $"-o {assemblyLocation.DirectoryName} -d {Path.Combine(assemblyLocation.DirectoryName, "samples", "ExportViacDbBezInstancneho.db")}";
+            string arguments = $"-o {assemblyLocation.DirectoryName} -d {Path.Combine(assemblyLocation.DirectoryName, "samples", "ExportViacDbBezInstancneho.db")} -n nmspc";
 
             try
             {
@@ -706,13 +735,13 @@ TASK Main(Interval := T#10ms, Priority := 1);
 PROGRAM P1 WITH Main: MyProgram;
 	VAR_GLOBAL
 	{#ix-attr: [DBAttribute()]}
-	DB_StorageNok : DB_StorageNok;
+	DB_StorageNok : nmspc.DB_StorageNok;
 	{#ix-attr: [DBAttribute()]}
-	DBRivetingSetup : DBRivetingSetup;
+	DBRivetingSetup : nmspc.DBRivetingSetup;
 	{#ix-attr: [DBAttribute()]}
-	DB_Storage : DB_Storage;
+	DB_Storage : nmspc.DB_Storage;
 	{#ix-attr: [DBAttribute()]}
-	DbData : DbData;
+	DbData : nmspc.DbData;
 	END_VAR
 END_CONFIGURATION
 PROGRAM MyProgram
@@ -725,7 +754,8 @@ END_PROGRAM";
 
             Assert.Equal(expectedConfiguration, actualConfiguration);
 
-            var expectedTypes = @"TYPE tGlobalData_22 :
+            var expectedTypes = @"NAMESPACE nmspc
+ TYPE tGlobalData_22 :
 STRUCT
          TraceabilityActive : Bool;
       END_STRUCT;
@@ -1284,11 +1314,16 @@ TYPE tReference :
    END_STRUCT;
 
 END_TYPE
+
+{#ix-db: DB_StorageNok}
 CLASS PUBLIC DB_StorageNok 
    VAR PUBLIC 
       Data : Array[0..2] of tData_bobock;
    END_VAR
 END_CLASS
+
+
+{#ix-db: DBRivetingSetup}
 CLASS PUBLIC DBRivetingSetup 
 
    VAR PUBLIC 
@@ -1304,11 +1339,17 @@ CLASS PUBLIC DBRivetingSetup
       AnalogRetainTareData : Array[0..10] of Real;
    END_VAR
 END_CLASS
+
+
+{#ix-db: DB_Storage}
 CLASS PUBLIC DB_Storage 
    VAR PUBLIC 
       Data : Array[0..50] of tData_bobock;
    END_VAR
 END_CLASS
+
+
+{#ix-db: DbData}
 CLASS PUBLIC DbData 
 
    VAR PUBLIC 
@@ -1320,11 +1361,19 @@ CLASS PUBLIC DbData
 END_CLASS
 
 
-";
+ 
+END_NAMESPACE";
 
             var actualTypes = File.ReadAllText(Path.Combine(assemblyLocation.DirectoryName, "PseudoAX", "src", "ExportViacDbBezInstancneho.db.st"));
 
-            Assert.Equal(expectedTypes, actualTypes);
+            Assert.Equal(expectedTypes.Split('\n').Length, actualTypes.Split('\n').Length);
+
+            var exp = expectedTypes.Split('\n').Select(p => p.Trim()).ToArray();
+            var act = actualTypes.Split('\n').Select(p => p.Trim()).ToArray();
+            for (int i = 0; i < exp.Length; i++)
+            {
+                Assert.Equal(exp[i], act[i]);
+            }
         }
     }
 }

@@ -7,77 +7,50 @@
   <ItemGroup>
     <GlobalPackageReference Include="GitVersion.MsBuild" Version="5.10.3">
       <PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </GlobalPackageReference>
-
     <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
-    
-
-    <PackageVersion Include="CliWrap" Version="3.6.0"/>		
-		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
-		<PackageVersion Include="Newtonsoft.Json" Version="13.0.2" />
-		<PackageVersion Include="NuGet.Configuration" Version="6.3.1" />
-		<PackageVersion Include="NuGet.Packaging" Version="6.3.1" />
-		<PackageVersion Include="Polly" Version="7.2.4" />
-		<PackageVersion Include="Serilog.Sinks.Console" Version="4.1.0" />
-		<PackageVersion Include="YamlDotNet" Version="13.0.0" />
-
+    <PackageVersion Include="CliWrap" Version="3.6.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />    
+    <PackageVersion Include="NuGet.Configuration" Version="6.3.1" />
+    <PackageVersion Include="NuGet.Packaging" Version="6.3.1" />
+    <PackageVersion Include="Polly" Version="7.2.4" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageVersion Include="YamlDotNet" Version="13.0.0" />
     <PackageVersion Include="Irony" Version="1.2.0" />
-		<PackageVersion Include="Irony.Interpreter" Version="1.2.0" />
-		
+    <PackageVersion Include="Irony.Interpreter" Version="1.2.0" />
     <PackageVersion Include="CommandLineParser" Version="2.9.1" />
-
     <PackageVersion Include="LibGit2Sharp" Version="0.27.2" />
-		<PackageVersion Include="Newtonsoft.Json" Version="13.0.2" />
-		<PackageVersion Include="YamlDotNet" Version="13.0.0" />
-		
-
-    <PackageVersion Include="coverlet.collector" Version="3.2.0"/>
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="YamlDotNet" Version="13.0.0" />
+    <PackageVersion Include="coverlet.collector" Version="3.2.0" />
     <PackageVersion Include="bunit" Version="1.11.7" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageVersion Include="xunit" Version="2.4.2" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5"/>
-
-    
-		
-		<PackageVersion Include="ResXResourceReader.NetStandard" Version="1.1.0" />		
-		    
-	  <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2"/>
-		<PackageVersion Include="NSubstitute" Version="5.0.0"/>
-		<PackageVersion Include="xunit" Version="2.4.2"/>
-		<PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5"/>					
-		<PackageVersion Include="coverlet.collector" Version="3.2.0"/>					
-
-    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />						
-		<PackageVersion Include="Serilog.Sinks.File" Version="5.0.0" />
-
-    
-		
-		
-		
-		<PackageVersion Include="Siemens.Simatic.S7.Webserver.API" Version="2.1.4" />
-
-
-    <PackageVersion Include="nunit" Version="3.13.3" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="4.2.1" />      
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageVersion Include="ResXResourceReader.NetStandard" Version="1.1.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageVersion Include="NSubstitute" Version="5.0.0" />
-    <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.15"/>      
-     
+    <PackageVersion Include="xunit" Version="2.4.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageVersion Include="coverlet.collector" Version="3.2.0" />
+    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageVersion Include="Siemens.Simatic.S7.Webserver.API" Version="2.2.14" />
+    <PackageVersion Include="nunit" Version="3.13.3" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageVersion Include="NSubstitute" Version="5.0.0" />
+    <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" />
     <PackageVersion Include="AutoFixture" Version="4.17.0" />
-    <PackageVersion Include="AutoFixture.AutoNSubstitute" Version="4.17.0" />        
+    <PackageVersion Include="AutoFixture.AutoNSubstitute" Version="4.17.0" />
     <PackageVersion Include="FluentAssertions" Version="6.8.0" />
-
-    
     <PackageVersion Include="MSTest.TestAdapter" Version="2.2.10" />
     <PackageVersion Include="MSTest.TestFramework" Version="2.2.10" />
-
-    <PackageVersion Include="Moq" Version="4.18.2" />                  
-
+    <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="System.Speech" Version="7.0.0" />
     <PackageVersion Include="System.Interactive" Version="6.0.1" />
-
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.2" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.2" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.2" />
