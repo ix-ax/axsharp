@@ -16,7 +16,9 @@ namespace AXSharp.TIA2AX.Transformer.Tests
         public void CreateTest()
         {
             var assemblyLocation = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            AXPseoudoProjectGenerator.Create(assemblyLocation.DirectoryName, "output", new string[] { Path.Combine(assemblyLocation.DirectoryName, "samples", "ExportViacDbBezInstancneho.db") });
+            AXPseoudoProjectGenerator.Create(assemblyLocation.DirectoryName, 
+               "output", 
+               new string[] { Path.Combine(assemblyLocation.DirectoryName, "samples", "ExportViacDbBezInstancneho.db") }, new Options());
 
             var expectedConfiguration = @"CONFIGURATION MyConfiguration
 TASK Main(Interval := T#10ms, Priority := 1);

@@ -94,7 +94,7 @@ public class WebApiConnector : Connector
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         requestHandler.ApiLogout();
-        requestHandler.ApiLogin(userName, string.Empty, true);
+        requestHandler.ApiLogin(userName, password, true);
 
         NumberOfInstances++;
     }

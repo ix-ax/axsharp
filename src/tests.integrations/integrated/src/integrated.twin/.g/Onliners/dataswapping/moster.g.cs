@@ -204,11 +204,16 @@ namespace MonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.MonsterData.MonsterBase plain, Pocos.MonsterData.MonsterBase latest = null)
         {
             if (latest == null)
@@ -441,11 +446,16 @@ namespace MonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async override Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public new async Task<bool> DetectsAnyChangeAsync(Pocos.MonsterData.Monster plain, Pocos.MonsterData.Monster latest = null)
         {
             if (latest == null)
@@ -619,11 +629,16 @@ namespace MonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.MonsterData.DriveBase plain, Pocos.MonsterData.DriveBase latest = null)
         {
             if (latest == null)

@@ -23,7 +23,7 @@ public class GH_PTKu_ix_xx : IDisposable
     public GH_PTKu_ix_xx(ITestOutputHelper output)
     {
         Plc = new ax_test_projectTwinController(ConnectorAdapterBuilder.Build()
-            .CreateWebApi(Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"), "Everybody", "", true));
+            .CreateWebApi(Environment.GetEnvironmentVariable("AX_WEBAPI_TARGET"), "Everybody", Environment.GetEnvironmentVariable("AX_TARGET_PWD"), true));
         Plc.Connector.ReadWriteCycleDelay = 250;
         Plc.Connector.ExceptionBehaviour = CommExceptionBehaviour.ReThrow;
         Plc.Connector.SubscriptionMode = ReadSubscriptionMode.Polling;

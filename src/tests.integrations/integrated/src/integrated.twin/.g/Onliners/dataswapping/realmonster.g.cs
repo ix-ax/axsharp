@@ -211,11 +211,16 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.RealMonsterBase plain, Pocos.RealMonsterData.RealMonsterBase latest = null)
         {
             if (latest == null)
@@ -450,11 +455,16 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async override Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public new async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.RealMonster plain, Pocos.RealMonsterData.RealMonster latest = null)
         {
             if (latest == null)
@@ -649,11 +659,16 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.DriveBaseNested plain, Pocos.RealMonsterData.DriveBaseNested latest = null)
         {
             if (latest == null)
@@ -928,11 +943,16 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.NestedLevelOne plain, Pocos.RealMonsterData.NestedLevelOne latest = null)
         {
             if (latest == null)
@@ -1207,11 +1227,16 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.NestedLevelTwo plain, Pocos.RealMonsterData.NestedLevelTwo latest = null)
         {
             if (latest == null)
@@ -1465,11 +1490,16 @@ namespace RealMonsterData
             return this.RetrievePrimitives();
         }
 
+        ///<inheritdoc/>
         public async virtual Task<bool> AnyChangeAsync<T>(T plain)
         {
             return await this.DetectsAnyChangeAsync((dynamic)plain);
         }
 
+        ///<summary>
+        ///Compares if the current plain object has changed from the previous object.This method is used by the framework to determine if the object has changed and needs to be updated.
+        ///[!NOTE] Any member in the hierarchy that is ignored by the compilers (e.g. when CompilerOmitAttribute is used) will not be compared, and therefore will not be detected as changed.
+        ///</summary>
         public async Task<bool> DetectsAnyChangeAsync(Pocos.RealMonsterData.NestedLevelThree plain, Pocos.RealMonsterData.NestedLevelThree latest = null)
         {
             if (latest == null)
