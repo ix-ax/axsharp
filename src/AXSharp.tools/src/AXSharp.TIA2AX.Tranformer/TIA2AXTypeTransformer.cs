@@ -167,8 +167,11 @@ namespace TAXSharp.TIA2AX.Transformer
             // This pattern looks for the quote marks around words and removes them.
             input = Regex.Replace(input, @"\""(.*?)\""", "$1");
 
-            // Remove strings within curly braces, including the braces themselves
-            input = Regex.Replace(input, @"\s*{[^}]*}", "");
+            // move pragmas to new line before..
+            input = Regex.Replace(input, @"(.+){(.*?)}(.+)", "\t\t{$2}\n$1$3");
+
+            // try to replace DTL - date time long
+            // todo
 
             return input;
         }
