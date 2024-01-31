@@ -40,6 +40,7 @@ namespace AXSharp.TIA2AX.Transformer
                 foreach (var dbName in generator.GetDbNames(tranformed))
                 {
                     configurationBuilder.AppendLine($"\t{{#ix-attr: [DBAttribute()]}}");
+                    configurationBuilder.AppendLine($"\t{{S7.extern=ReadWrite}}");
                     configurationBuilder.AppendLine($"\t{dbName} : {options.Namespace}.{dbName};");
                 }
             }
@@ -97,7 +98,12 @@ END_PROGRAM");
 version: 0.0.0
 type: app
 targets:  
-  - axunit-llvm  
+    - '1500'
+ #   - plcsim
+ #   - llvm
+ #   - swcpu
+ #   - vplc
+
 devDependencies:
   ""@ax/sdk"": ^2311.0.1
 ";
