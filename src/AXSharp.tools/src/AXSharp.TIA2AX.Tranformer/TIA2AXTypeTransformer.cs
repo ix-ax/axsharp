@@ -158,7 +158,7 @@ namespace TAXSharp.TIA2AX.Transformer
             }
 
             // Remove quotation marks around type name and add a colon
-            input = Regex.Replace(input, @"TYPE\s*""(\w+)""", "TYPE $1 :");
+            input = Regex.Replace(input, @"TYPE\s*""(\w+)""", "TYPE \n{S7.extern=ReadWrite}\n$1 :");
 
             // Remove the VERSION line
             input = Regex.Replace(input, @"\s*VERSION\s*:\s*\d+(\.\d+)?\s*\r?\n", "\n", RegexOptions.Multiline);
