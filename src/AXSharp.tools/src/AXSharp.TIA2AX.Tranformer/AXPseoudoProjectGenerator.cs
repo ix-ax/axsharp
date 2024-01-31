@@ -93,13 +93,13 @@ END_PROGRAM");
             string apaxFilePath = Path.Combine(projectDirectory, "apax.yml");
 
             // Content for the apax.yml file
-            string apaxContent = $@"name: ""{option.Namespace}""
+            string apaxContent = $@"name: ""{option.Namespace.ToLower()}""
 version: 0.0.0
 type: app
 targets:  
   - axunit-llvm  
 devDependencies:
-  ""@ax/sdk"": ^4.0.8
+  ""@ax/sdk"": ^2311.0.1
 ";
 
             // Write the apax content to the file
