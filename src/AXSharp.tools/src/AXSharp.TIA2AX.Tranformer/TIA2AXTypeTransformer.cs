@@ -189,7 +189,7 @@ namespace TAXSharp.TIA2AX.Transformer
                 string name = match.Groups[2].Value;
 
                 // Create pragma directive with the name of the data block
-                string pragmaDirective = $"{{#ix-db: {name}}}\n";
+                string pragmaDirective = $"{{#ix-db: {name}}}\n{{S7.extern=ReadWrite}}\n";
 
                 // Replace DATA_BLOCK and any modifiers with CLASS PUBLIC and the name, removing DATA_BLOCK modifiers
                 string transformedBlock = Regex.Replace(blockContent, @"DATA_BLOCK\s+\w+", $"CLASS PUBLIC {name} ");
