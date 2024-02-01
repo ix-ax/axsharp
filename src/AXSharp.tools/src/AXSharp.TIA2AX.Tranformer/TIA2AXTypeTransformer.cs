@@ -167,11 +167,13 @@ namespace TAXSharp.TIA2AX.Transformer
             // This pattern looks for the quote marks around words and removes them.
             input = Regex.Replace(input, @"\""(.*?)\""", "$1");
 
+            //TODO
+            // remove DTL type
+            //TimeStampLast { InstructionName:= 'DTL'; LibVersion:= '1.0'} : DTL;
+            input = Regex.Replace(input, @"^(?=.*{InstructionName := 'DTL')(?=.*: DTL;).*[\r\n]+", "", RegexOptions.Multiline);
+
             // move pragmas to new line before..
             input = Regex.Replace(input, @"(.+){(.*?)}(.+)", "\t\t{$2}\n$1$3");
-
-            // try to replace DTL - date time long
-            // todo
 
             return input;
         }
