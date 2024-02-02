@@ -87,8 +87,16 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
 
     private DateOnly GetFromBinary(long value)
     {
-        var val = value / 100;
-        return DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
+        if (_webApiConnector.TargetPlatform == eTargetPlatform.S71500)
+        {
+            int val = ((int)value) - 1;
+            return DateOnly.FromDayNumber(val).AddYears(1989);
+        }
+        else
+        {
+            var val = value / 100;
+            return DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
+        }
     }
 
     private string GetFromDate(DateOnly date)

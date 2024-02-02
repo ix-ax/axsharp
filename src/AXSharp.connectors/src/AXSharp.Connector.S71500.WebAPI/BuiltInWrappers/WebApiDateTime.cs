@@ -7,6 +7,7 @@
 
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -67,7 +68,19 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        UpdateRead(GetFromBinary(value));
+
+        switch (_webApiConnector.TargetPlatform)
+        {
+            case eTargetPlatform.S71500:
+                UpdateRead(ParseFromString(value));
+                break;
+            case eTargetPlatform.SIMATICAX:
+                UpdateRead(GetFromBinary(value));
+                break;
+            default:
+                UpdateRead(GetFromBinary(value));
+                break;
+        }
     }
 
     /// <inheritdoc />
@@ -75,6 +88,22 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     {
         return await _webApiConnector.ReadAsync<DateTime>(this);
     }
+
+    private DateTime ParseFromString(string value)
+    {
+        try
+        {
+            var  val = JsonSerializer.Deserialize<DateTimeTia>(value);
+            return new DateTime(val.year, val.month, val.day, val.hour, val.minute, (int)(val.second), (int)((val.second * 1000) % 1000), DateTimeKind.Local);
+        }
+        catch (Exception)
+        {
+            //swallow
+        }
+
+        return DateTime.MinValue;
+    }
+
 
     private DateTime GetFromBinary(string value)
     {
@@ -106,4 +135,15 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     {
         return await _webApiConnector.WriteAsync(this, value);
     }
+}
+
+
+public class DateTimeTia
+{
+    public int year { get; set; }
+    public int month { get; set; }
+    public int day { get; set; }
+    public int hour { get; set; }
+    public int minute { get; set; }
+    public double second { get; set; }
 }

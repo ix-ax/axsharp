@@ -70,7 +70,19 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
     {
         if (long.TryParse(value, out var val))
         {
-            UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
+
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    UpdateRead(TimeSpan.FromMilliseconds(val));
+                    break;
+                case eTargetPlatform.SIMATICAX:
+                    UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
+                    break;
+                default:
+                    UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
+                    break;
+            }
         }
     }
 
