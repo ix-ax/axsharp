@@ -17,6 +17,7 @@ namespace AXSharp.TIA2AX.Transformer
             var generator = new AXPseoudoProjectGenerator();
 
             generator.CreateProjectStructure(baseDirectory, outputProject, options);
+            generator.AddTiaDataTypes(baseDirectory, outputProject, options);
 
             var srcFolderPath = Path.Combine(baseDirectory, outputProject, "src");
 
@@ -110,6 +111,39 @@ devDependencies:
 
             // Write the apax content to the file
             File.WriteAllText(apaxFilePath, apaxContent);
+        }
+        private void AddTiaDataTypes(string baseDirectory, string outputProject, Options option)
+        {
+            // Combine paths to create the full directory paths
+            string projectDirectory = Path.Combine(baseDirectory, outputProject);
+            string srcDirectory = Path.Combine(projectDirectory, "src");
+
+            // Create the src and test directories
+            EnsureDirectory(srcDirectory);
+
+            string filePath = Path.Combine(srcDirectory, "DTL.st");
+
+            // Content for DLT type
+            string content = $@"NAMESPACE {option.Namespace.ToLower()}
+   TYPE
+      {{S7.extern=ReadWrite}}
+      DTL :
+         STRUCT
+            YEAR  : UINT;
+            MONTH : USINT;
+            DAY: USINT;
+            WEEKDAY: USINT;
+            HOUR: USINT;
+            MINUTE: USINT;
+            SECOND: USINT;
+            NANOSECOND: UDINT;
+         END_STRUCT;
+   END_TYPE
+END_NAMESPACE
+";
+
+            // Write the apax content to the file
+            File.WriteAllText(filePath, content);
         }
     }
 }
