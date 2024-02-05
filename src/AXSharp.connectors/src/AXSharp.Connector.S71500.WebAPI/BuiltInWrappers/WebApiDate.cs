@@ -59,10 +59,10 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
         {
             switch (_webApiConnector.TargetPlatform)
             {
-                case eTargetPlatform.S71500:
+                case eTargetProjectPlatform.TIAPORTAL:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDateTIA(CyclicToWrite), _webApiConnector.DBName);
                     break;
-                case eTargetPlatform.SIMATICAX:
+                case eTargetProjectPlatform.SIMATICAX:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
                     break;
                 default:
@@ -100,11 +100,11 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
     {
         switch (_webApiConnector.TargetPlatform)
         {
-            case eTargetPlatform.S71500:
+            case eTargetProjectPlatform.TIAPORTAL:
                 int val = ((int)value) - 1;
                 return DateOnly.FromDayNumber(val).AddYears(1989);
 
-            case eTargetPlatform.SIMATICAX:
+            case eTargetProjectPlatform.SIMATICAX:
                 var valAx = value / 100;
                 return DateOnly.FromDateTime(DateTime.FromBinary(valAx).AddYears(1969));
 

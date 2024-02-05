@@ -60,11 +60,11 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
         {
             switch (_webApiConnector.TargetPlatform)
             {
-                case eTargetPlatform.S71500:
+                case eTargetProjectPlatform.TIAPORTAL:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite.TotalNanoseconds.ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
                     break;
 
-                case eTargetPlatform.SIMATICAX:
+                case eTargetProjectPlatform.SIMATICAX:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
                     break;
 
@@ -82,14 +82,14 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
     {
         switch (_webApiConnector.TargetPlatform)
         {
-            case eTargetPlatform.S71500:
+            case eTargetProjectPlatform.TIAPORTAL:
                 if (long.TryParse(value, out var valTia))
                 {
                     UpdateRead(TimeSpan.FromMicroseconds(valTia / 1000)); // value in nanoseconds
                 }
                 break;
 
-            case eTargetPlatform.SIMATICAX:
+            case eTargetProjectPlatform.SIMATICAX:
                 if (long.TryParse(value, out var valAx))
                 {
                     UpdateRead(TimeSpan.FromMilliseconds(valAx / 1000000));

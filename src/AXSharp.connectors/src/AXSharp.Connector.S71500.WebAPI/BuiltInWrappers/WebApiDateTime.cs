@@ -60,11 +60,11 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
         {
             switch (_webApiConnector.TargetPlatform)
             {
-                case eTargetPlatform.S71500:
+                case eTargetProjectPlatform.TIAPORTAL:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetTIAJObjectFromDate(CyclicToWrite), _webApiConnector.DBName);
                     break;
 
-                case eTargetPlatform.SIMATICAX:
+                case eTargetProjectPlatform.SIMATICAX:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
                     break;
 
@@ -82,11 +82,11 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     {
         switch (_webApiConnector.TargetPlatform)
         {
-            case eTargetPlatform.S71500:
+            case eTargetProjectPlatform.TIAPORTAL:
                 UpdateRead(ParseFromTIAJson(value));
                 break;
 
-            case eTargetPlatform.SIMATICAX:
+            case eTargetProjectPlatform.SIMATICAX:
                 UpdateRead(GetFromBinary(value));
                 break;
 

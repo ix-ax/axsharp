@@ -61,10 +61,10 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
         {
             switch (_webApiConnector.TargetPlatform)
             {
-                case eTargetPlatform.S71500:
+                case eTargetProjectPlatform.TIAPORTAL:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMilliseconds(CyclicToWrite), _webApiConnector.DBName);
                     break;
-                case eTargetPlatform.SIMATICAX:
+                case eTargetProjectPlatform.SIMATICAX:
                     _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMicroSeconds(CyclicToWrite), _webApiConnector.DBName);
                     break;
                 default:
@@ -85,10 +85,10 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
         {
             switch (_webApiConnector.TargetPlatform)
             {
-                case eTargetPlatform.S71500:
+                case eTargetProjectPlatform.TIAPORTAL:
                     UpdateRead(TimeSpan.FromMilliseconds(val));
                     break;
-                case eTargetPlatform.SIMATICAX:
+                case eTargetProjectPlatform.SIMATICAX:
                     UpdateRead(TimeSpan.FromMilliseconds(ToMilliseconds(val)));
                     break;
 
