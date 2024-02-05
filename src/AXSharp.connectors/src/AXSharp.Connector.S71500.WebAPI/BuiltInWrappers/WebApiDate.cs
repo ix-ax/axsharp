@@ -50,7 +50,6 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
             _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
             return _plcReadRequestData;
         }
-
     }
 
     /// <inheritdoc />
@@ -58,7 +57,19 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
     {
         get
         {
-            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDateTIA(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+                case eTargetPlatform.SIMATICAX:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+                default:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+            }
+
             return _plcWriteRequestData;
         }
     }
@@ -87,16 +98,30 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
 
     private DateOnly GetFromBinary(long value)
     {
-        if (_webApiConnector.TargetPlatform == eTargetPlatform.S71500)
+        switch (_webApiConnector.TargetPlatform)
         {
-            int val = ((int)value) - 1;
-            return DateOnly.FromDayNumber(val).AddYears(1989);
+            case eTargetPlatform.S71500:
+                int val = ((int)value) - 1;
+                return DateOnly.FromDayNumber(val).AddYears(1989);
+
+            case eTargetPlatform.SIMATICAX:
+                var valAx = value / 100;
+                return DateOnly.FromDateTime(DateTime.FromBinary(valAx).AddYears(1969));
+
+            default:
+                var valdef = value / 100;
+                return DateOnly.FromDateTime(DateTime.FromBinary(valdef).AddYears(1969));
         }
-        else
-        {
-            var val = value / 100;
-            return DateOnly.FromDateTime(DateTime.FromBinary(val).AddYears(1969));
-        }
+    }
+
+    private long GetFromDateTIA(DateOnly date)
+    {
+        if (date <= TIAMinValue)
+            date = TIAMinValue;
+
+        var retval = date.ToDateTime(TimeOnly.MinValue) - TIAMinValue.ToDateTime(TimeOnly.MinValue);
+
+        return (long)retval.TotalDays;
     }
 
     private string GetFromDate(DateOnly date)
