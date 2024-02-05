@@ -7,7 +7,6 @@
 
 using AXSharp.Connector.ValueTypes;
 using Newtonsoft.Json.Linq;
-using System.Text.Json;
 
 namespace AXSharp.Connector.S71500.WebApi;
 
@@ -43,7 +42,7 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
 
     /// <inheritdoc />
     ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
-    
+
     /// <inheritdoc />
     ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
     {
@@ -52,7 +51,6 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
             _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
             return _plcReadRequestData;
         }
-
     }
 
     /// <inheritdoc />
@@ -60,7 +58,21 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     {
         get
         {
-            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetTIAJObjectFromDate(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+
+                case eTargetPlatform.SIMATICAX:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+
+                default:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, GetFromDate(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+            }
+
             return _plcWriteRequestData;
         }
     }
@@ -68,15 +80,16 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-
         switch (_webApiConnector.TargetPlatform)
         {
             case eTargetPlatform.S71500:
-                UpdateRead(ParseFromString(value));
+                UpdateRead(ParseFromTIAJson(value));
                 break;
+
             case eTargetPlatform.SIMATICAX:
                 UpdateRead(GetFromBinary(value));
                 break;
+
             default:
                 UpdateRead(GetFromBinary(value));
                 break;
@@ -89,11 +102,11 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
         return await _webApiConnector.ReadAsync<DateTime>(this);
     }
 
-    private DateTime ParseFromString(string value)
+    private DateTime ParseFromTIAJson(string value)
     {
         try
         {
-            var  val = JsonSerializer.Deserialize<DateTimeTia>(value);
+            var val = Newtonsoft.Json.JsonConvert.DeserializeObject<DateTimeTia>(value);
             return new DateTime(val.year, val.month, val.day, val.hour, val.minute, (int)(val.second), (int)((val.second * 1000) % 1000), DateTimeKind.Local);
         }
         catch (Exception)
@@ -101,9 +114,16 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
             //swallow
         }
 
-        return DateTime.MinValue;
+        return MinValueTIA;
     }
 
+    private JObject GetTIAJObjectFromDate(DateTime dateTime)
+    {
+        if (dateTime <= MinValueTIA)
+            dateTime = MinValueTIA;
+
+        return JObject.FromObject(new DateTimeTia(dateTime));
+    }
 
     private DateTime GetFromBinary(string value)
     {
@@ -137,9 +157,23 @@ public class WebApiDateTime : OnlinerDateTime, IWebApiPrimitive
     }
 }
 
-
 public class DateTimeTia
 {
+    public DateTimeTia()
+    {
+    }
+
+    public DateTimeTia(DateTime fromDateTime)
+    {
+        this.year = fromDateTime.Year;
+        this.month = fromDateTime.Month;
+        this.day = fromDateTime.Day;
+        this.hour = fromDateTime.Hour;
+        this.minute = fromDateTime.Minute;
+        this.second = (double)fromDateTime.Second;
+        this.second = second + (((double)fromDateTime.Millisecond) / 1000);
+    }
+
     public int year { get; set; }
     public int month { get; set; }
     public int day { get; set; }
