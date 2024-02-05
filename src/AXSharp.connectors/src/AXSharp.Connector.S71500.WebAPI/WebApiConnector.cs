@@ -53,7 +53,7 @@ public class WebApiConnector : Connector
     /// <param name="dbName">Root DB name (AX uses 'TGlobalVariablesDB')</param>
     public WebApiConnector(string ipAddress, string userName, string password,
         Func<HttpRequestMessage, X509Certificate2, X509Chain, SslPolicyErrors, bool>? customServerCertHandler,
-        eTargetPlatform platform = eTargetPlatform.SIMATICAX,
+        eTargetProjectPlatform platform = eTargetProjectPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         IPAddress = ipAddress;
@@ -76,7 +76,7 @@ public class WebApiConnector : Connector
     /// <param name="password">Password.</param>
     /// <param name="ignoreSSLErros">When set to 'true' the connection will ignore SSL errors.</param>
     /// <param name="dbName">Root DB name (AX uses 'TGlobalVariablesDB')</param>
-    public WebApiConnector(string ipAddress, string userName, string password, bool ignoreSSLErros, eTargetPlatform platform = eTargetPlatform.SIMATICAX,
+    public WebApiConnector(string ipAddress, string userName, string password, bool ignoreSSLErros, eTargetProjectPlatform platform = eTargetProjectPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         IPAddress = ipAddress;
@@ -494,5 +494,5 @@ public class WebApiConnector : Connector
         await WriteBatchAsync(primitives);
     }
 
-    public eTargetPlatform TargetPlatform { get; } = eTargetPlatform.SIMATICAX;
+    public eTargetProjectPlatform TargetPlatform { get; } = eTargetProjectPlatform.SIMATICAX;
 }
