@@ -114,14 +114,14 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
         }
     }
 
-    private ulong GetFromDateTIA(DateOnly date)
+    private long GetFromDateTIA(DateOnly date)
     {
         if (date <= TIAMinValue)
             date = TIAMinValue;
 
         var retval = date.ToDateTime(TimeOnly.MinValue) - TIAMinValue.ToDateTime(TimeOnly.MinValue);
 
-        return (ulong)retval.TotalDays;
+        return (long)retval.TotalDays;
     }
 
     private string GetFromDate(DateOnly date)

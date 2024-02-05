@@ -62,7 +62,7 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
             switch (_webApiConnector.TargetPlatform)
             {
                 case eTargetPlatform.S71500:
-                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (ulong)CyclicToWrite.TotalMilliseconds, _webApiConnector.DBName);
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (long)CyclicToWrite.TotalMilliseconds, _webApiConnector.DBName);
                     break;
 
                 case eTargetPlatform.SIMATICAX:

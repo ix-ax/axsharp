@@ -42,8 +42,7 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
 
     /// <inheritdoc />
     ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
-    
-    
+
     /// <inheritdoc />
     ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
     {
@@ -52,7 +51,6 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
             _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
             return _plcReadRequestData;
         }
-
     }
 
     /// <inheritdoc />
@@ -60,7 +58,21 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
     {
         get
         {
-            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite.TotalNanoseconds.ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+                    break;
+
+                case eTargetPlatform.SIMATICAX:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+                    break;
+
+                default:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+                    break;
+            }
+
             return _plcWriteRequestData;
         }
     }
@@ -68,9 +80,28 @@ public class WebApiLTimeOfDay : OnlinerLTimeOfDay, IWebApiPrimitive
     /// <inheritdoc />
     public void Read(string value)
     {
-        if (long.TryParse(value, out var val))
+        switch (_webApiConnector.TargetPlatform)
         {
-            UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
+            case eTargetPlatform.S71500:
+                if (long.TryParse(value, out var valTia))
+                {
+                    UpdateRead(TimeSpan.FromMicroseconds(valTia / 1000)); // value in nanoseconds
+                }
+                break;
+
+            case eTargetPlatform.SIMATICAX:
+                if (long.TryParse(value, out var valAx))
+                {
+                    UpdateRead(TimeSpan.FromMilliseconds(valAx / 1000000));
+                }
+                break;
+
+            default:
+                if (long.TryParse(value, out var valdef))
+                {
+                    UpdateRead(TimeSpan.FromMilliseconds(valdef / 1000000));
+                }
+                break;
         }
     }
 
