@@ -59,8 +59,21 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
     {
         get
         {
-            // TODO: review this casting to string... reason: there is some problem while creating reuqest from long.
-            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMicroSeconds(CyclicToWrite), _webApiConnector.DBName);
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMilliseconds(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+                case eTargetPlatform.SIMATICAX:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMicroSeconds(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+                default:
+                     // TODO: review this casting to string... reason: there is some problem while creating reuqest from long.
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, ToMicroSeconds(CyclicToWrite), _webApiConnector.DBName);
+                    break;
+
+            }
+
             return _plcWriteRequestData;
         }
     }
@@ -81,6 +94,12 @@ public class WebApiTime : OnlinerTime, IWebApiPrimitive
 
             }
         }
+    }
+
+
+    private long ToMilliseconds(TimeSpan value)
+    {
+        return (long)value.TotalMilliseconds;
     }
 
 
