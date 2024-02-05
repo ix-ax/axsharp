@@ -43,7 +43,7 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
 
     /// <inheritdoc />
     ApiPlcWriteRequest IWebApiPrimitive.PeekPlcWriteRequestData => _plcWriteRequestData ?? WebApiConnector.CreateWriteRequest(Symbol, CyclicToWrite, _webApiConnector.DBName);
-    
+
     /// <inheritdoc />
     ApiPlcReadRequest IWebApiPrimitive.PlcReadRequestData
     {
@@ -52,7 +52,6 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
             _plcReadRequestData = WebApiConnector.CreateReadRequest(Symbol, _webApiConnector.DBName);
             return _plcReadRequestData;
         }
-
     }
 
     /// <inheritdoc />
@@ -60,7 +59,21 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
     {
         get
         {
-            _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+            switch (_webApiConnector.TargetPlatform)
+            {
+                case eTargetPlatform.S71500:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (ulong)CyclicToWrite.TotalMilliseconds, _webApiConnector.DBName);
+                    break;
+
+                case eTargetPlatform.SIMATICAX:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+                    break;
+
+                default:
+                    _plcWriteRequestData = WebApiConnector.CreateWriteRequest(Symbol, (CyclicToWrite.TotalMilliseconds * 1000000).ToString(CultureInfo.InvariantCulture), _webApiConnector.DBName);
+                    break;
+            }
+
             return _plcWriteRequestData;
         }
     }
@@ -70,15 +83,16 @@ public class WebApiTimeOfDay : OnlinerTimeOfDay, IWebApiPrimitive
     {
         if (long.TryParse(value, out var val))
         {
-
             switch (_webApiConnector.TargetPlatform)
             {
                 case eTargetPlatform.S71500:
                     UpdateRead(TimeSpan.FromMilliseconds(val));
                     break;
+
                 case eTargetPlatform.SIMATICAX:
                     UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
                     break;
+
                 default:
                     UpdateRead(TimeSpan.FromMilliseconds(val / 1000000));
                     break;
