@@ -82,19 +82,19 @@ public class WebApiConnector : Connector
         IPAddress = ipAddress;
         DBName = dbName;
         TargetPlatform = platform;
-
+       
         if (ignoreSSLErros)
             ServerCertificateCallback.CertificateCallback =
                 (sender, cert, chain, sslPolicyErrors) => true;
 
         var serviceFactory = new ApiStandardServiceFactory();
-        Client = serviceFactory.GetHttpClient(ipAddress, userName, password);
+        Client = serviceFactory.GetHttpClient(ipAddress, userName, password ?? string.Empty);
 
         requestHandler = new ApiHttpClientRequestHandler(Client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         requestHandler.ApiLogout();
-        requestHandler.ApiLogin(userName, password, true);
+        requestHandler.ApiLogin(userName, password ?? string.Empty, true);
 
         NumberOfInstances++;
     }
