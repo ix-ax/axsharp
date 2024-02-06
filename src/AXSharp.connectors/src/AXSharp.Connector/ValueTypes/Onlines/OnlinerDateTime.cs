@@ -27,6 +27,18 @@ public class OnlinerDateTime : OnlinerBase<DateTime>, IOnlineDateTime, IShadowDa
     /// </summary>
     public static readonly DateTime MinValue = new(1970, 01, 01, 0, 0, 0, 0);
 
+
+    /// <summary>
+    ///     Gets the max value of <see cref="OnlinerDateTime" /> for TIA project.
+    /// </summary>
+    public static readonly DateTime MaxValueTIA = new(2089, 12, 31, 23, 59, 59, 999);
+
+    /// <summary>
+    ///     Gets the min value of <see cref="OnlinerDateTime" /> for TIA project.
+    /// </summary>
+    public static readonly DateTime MinValueTIA = new(1990, 01, 01, 0, 0, 0, 0);
+
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="OnlinerDateTime" /> class.
     /// </summary>

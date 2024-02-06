@@ -28,7 +28,7 @@ public static class WebApiConnectorExtensions
     /// <returns>Connector adapter for WebAPI connection.</returns>
     public static ConnectorAdapter CreateWebApi(this ConnectorAdapterBuilder adapter,
         string ipAddress, string userName, string password, bool ignoreSSLErros,
-        eTargetPlatform platform = eTargetPlatform.SIMATICAX,
+        eTargetProjectPlatform platform = eTargetProjectPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         return new ConnectorAdapter(typeof(WebApiConnectorFactory))
@@ -48,7 +48,7 @@ public static class WebApiConnectorExtensions
     public static ConnectorAdapter CreateWebApi(this ConnectorAdapterBuilder adapter,
         string ipAddress, string userName, string password,
         Func<HttpRequestMessage, X509Certificate2, X509Chain, SslPolicyErrors, bool>? customServerCertHandler,
-        eTargetPlatform platform = eTargetPlatform.SIMATICAX,
+        eTargetProjectPlatform platform = eTargetProjectPlatform.SIMATICAX,
         string dbName = "\"TGlobalVariablesDB\"")
     {
         return new ConnectorAdapter(typeof(WebApiConnectorFactory))

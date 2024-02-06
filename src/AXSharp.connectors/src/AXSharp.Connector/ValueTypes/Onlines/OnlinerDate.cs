@@ -45,9 +45,20 @@ public class OnlinerDate : OnlinerBase<DateOnly>, IOnlineDate, IShadowDate
     public static DateOnly MaxValue { get; } = new(2262, 4, 11);
 
     /// <summary>
+    ///     Gets the max value of <see cref="OnlinerDate" /> for TIA project.
+    /// </summary>
+    public static DateOnly TIAMaxValue { get; } = new(2169, 6, 6);
+
+    /// <summary>
     ///     Gets the min value of <see cref="OnlinerDate" />.
     /// </summary>
     public static DateOnly MinValue { get; } = new(1970, 01, 1);
+
+
+    /// <summary>
+    ///     Gets the min value of <see cref="OnlinerDate"  /> for TIA project.
+    /// </summary>
+    public static DateOnly TIAMinValue { get; } = new(1990, 01, 1);
 
     /// <summary>
     ///     Gets the max value for this instance.

@@ -14,8 +14,9 @@ namespace TAXSharp.TIA2AX.Transformer
         {
             // IEC61131-3 primitive types
             "BOOL", "SINT", "INT", "DINT", "LINT", "USINT", "UINT", "UDINT", "ULINT",
-            "REAL", "LREAL", "TIME", "DATE", "TOD", "DT", "STRING", "BYTE", "WORD",
-            "DWORD", "LWORD"
+            "REAL", "LREAL", "STRING", "BYTE", "WORD", 
+            "DWORD", "LWORD", 
+            "TIME", "DATE", "TIME_OF_DAY", "LTIME_OF_DAY","DATE_AND_TIME", "LDATE_AND_TIME","DTL"
         };
 
         public static string GetTransformation(string input, Options options)
@@ -27,6 +28,7 @@ namespace TAXSharp.TIA2AX.Transformer
         {
             string output = TransformTypes(input);
             output = ConvertDataBlocksToStructs(output);
+
             output = RemoveUnknownTypeDeclarations(output);
             output = $"NAMESPACE {options.Namespace}\n {output} \nEND_NAMESPACE";
             return output;
@@ -38,20 +40,31 @@ namespace TAXSharp.TIA2AX.Transformer
             var lines = code.Replace("\r\n", "\n").Split('\n');
             var firstPassCode = new List<string>();
 
+            bool allTypesFounded = false;
             // First pass to collect all type names
-            foreach (var line in lines)
+            for (int i = 0; i < lines.Length; i++)
             {
-                var trimmedLine = line.Trim();
+                var trimmedLine = lines[i].Trim();
 
-                if (trimmedLine.StartsWith("TYPE ", StringComparison.OrdinalIgnoreCase) && trimmedLine.Contains(":"))
+                if (trimmedLine.Equals("TYPE", StringComparison.OrdinalIgnoreCase) )
                 {
-                    var typeName = trimmedLine.Split(new[] { ' ', ':' }, StringSplitOptions.RemoveEmptyEntries)[1];
-                    knownTypes.Add(typeName); // Collect type names
+                    if ((i+3) > lines.Length) 
+                    { 
+                        allTypesFounded |= true;
+                        break;
+                    }
+
+                    var dateType = lines[i+2].Trim().Split(new[] { ' ', ':' }, StringSplitOptions.RemoveEmptyEntries)[0];
+
+                    knownTypes.Add(dateType); // Collect type names
                 }
+
             }
+
 
             // Second pass to remove unknown type declarations
             var cleanedCode = new List<string>();
+
             var insideTypeDeclaration = false;
 
             foreach (var line in lines)
@@ -59,7 +72,7 @@ namespace TAXSharp.TIA2AX.Transformer
                 var trimmedLine = line.Trim();
 
                 // Detect the beginning of a type declaration
-                if (trimmedLine.StartsWith("TYPE ", StringComparison.OrdinalIgnoreCase))
+                if (trimmedLine.StartsWith("TYPE", StringComparison.OrdinalIgnoreCase))
                 {
                     insideTypeDeclaration = true;
                     cleanedCode.Add(line); // Add the type declaration line
@@ -158,7 +171,7 @@ namespace TAXSharp.TIA2AX.Transformer
             }
 
             // Remove quotation marks around type name and add a colon
-            input = Regex.Replace(input, @"TYPE\s*""(\w+)""", "TYPE $1 :");
+            input = Regex.Replace(input, @"TYPE\s*""(\w+)""", "TYPE\n{S7.extern=ReadWrite}\n$1 :");
 
             // Remove the VERSION line
             input = Regex.Replace(input, @"\s*VERSION\s*:\s*\d+(\.\d+)?\s*\r?\n", "\n", RegexOptions.Multiline);
@@ -167,8 +180,25 @@ namespace TAXSharp.TIA2AX.Transformer
             // This pattern looks for the quote marks around words and removes them.
             input = Regex.Replace(input, @"\""(.*?)\""", "$1");
 
-            // Remove strings within curly braces, including the braces themselves
-            input = Regex.Replace(input, @"\s*{[^}]*}", "");
+            // replad LTD tia portal type to LDATE_AND_TIME of ax
+            // https://console.simatic-ax.siemens.io/docs/axcode/xlad/lad-editor/data-types#ldate_and_time
+            input = Regex.Replace(input, @"(:\s*)LDT(\s*;)", "$1LDATE_AND_TIME$2", RegexOptions.Multiline);
+
+            // move pragmas to new line before..
+            input = Regex.Replace(input, @"(.+){(.*?)}(.+)", "\t\t{$2}\n$1$3");
+
+            //DTL - clear pragmas and 
+            input = Regex.Replace(input, @"(?=\{[^}]*?InstructionName\s*:=\s*'DTL';).*?{(.*?;)?\s*(.*?;)?\s*([^;{}]+)}", m =>
+            {
+                if (m.Groups.Count == 4)
+                {
+                    if (m.Groups[2].Length > 1)
+                    {
+                        return "{" + m.Groups[3].Value.Trim() + "}";
+                    }
+                }
+                return "";
+            });
 
             return input;
         }
@@ -189,7 +219,7 @@ namespace TAXSharp.TIA2AX.Transformer
                 string name = match.Groups[2].Value;
 
                 // Create pragma directive with the name of the data block
-                string pragmaDirective = $"{{#ix-db: {name}}}\n";
+                string pragmaDirective = $"{{#ix-db: {name}}}\n{{S7.extern=ReadWrite}}\n";
 
                 // Replace DATA_BLOCK and any modifiers with CLASS PUBLIC and the name, removing DATA_BLOCK modifiers
                 string transformedBlock = Regex.Replace(blockContent, @"DATA_BLOCK\s+\w+", $"CLASS PUBLIC {name} ");

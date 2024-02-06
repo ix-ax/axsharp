@@ -19,7 +19,7 @@ public class WebApiConnectorFactory : ConnectorFactory
             (string)parameters[1],
             (string)parameters[2],
             (bool)parameters[3],
-            (eTargetPlatform)parameters[4],
+            (eTargetProjectPlatform)parameters[4],
             (string)parameters[5]);
     }
 

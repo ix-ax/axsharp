@@ -17,6 +17,7 @@ namespace AXSharp.TIA2AX.Transformer
             var generator = new AXPseoudoProjectGenerator();
 
             generator.CreateProjectStructure(baseDirectory, outputProject, options);
+            generator.AddTiaDataTypes(baseDirectory, outputProject, options);
 
             var srcFolderPath = Path.Combine(baseDirectory, outputProject, "src");
 
@@ -40,6 +41,7 @@ namespace AXSharp.TIA2AX.Transformer
                 foreach (var dbName in generator.GetDbNames(tranformed))
                 {
                     configurationBuilder.AppendLine($"\t{{#ix-attr: [DBAttribute()]}}");
+                    configurationBuilder.AppendLine($"\t{{S7.extern=ReadWrite}}");
                     configurationBuilder.AppendLine($"\t{dbName} : {options.Namespace}.{dbName};");
                 }
             }
@@ -93,17 +95,55 @@ END_PROGRAM");
             string apaxFilePath = Path.Combine(projectDirectory, "apax.yml");
 
             // Content for the apax.yml file
-            string apaxContent = $@"name: ""{option.Namespace}""
+            string apaxContent = $@"name: ""{option.Namespace.ToLower()}""
 version: 0.0.0
 type: app
 targets:  
-  - axunit-llvm  
+    - '1500'
+ #   - plcsim
+ #   - llvm
+ #   - swcpu
+ #   - vplc
+
 devDependencies:
-  ""@ax/sdk"": ^4.0.8
+  ""@ax/sdk"": ^2311.0.1
 ";
 
             // Write the apax content to the file
             File.WriteAllText(apaxFilePath, apaxContent);
+        }
+        private void AddTiaDataTypes(string baseDirectory, string outputProject, Options option)
+        {
+            // Combine paths to create the full directory paths
+            string projectDirectory = Path.Combine(baseDirectory, outputProject);
+            string srcDirectory = Path.Combine(projectDirectory, "src");
+
+            // Create the src and test directories
+            EnsureDirectory(srcDirectory);
+
+            string filePath = Path.Combine(srcDirectory, "DTL.st");
+
+            // Content for DLT type
+            string content = $@"NAMESPACE {option.Namespace.ToLower()}
+   TYPE
+      {{S7.extern=ReadWrite}}
+      DTL :
+         STRUCT
+            YEAR  : UINT;
+            MONTH : USINT;
+            DAY: USINT;
+            WEEKDAY: USINT;
+            HOUR: USINT;
+            MINUTE: USINT;
+            SECOND: USINT;
+            NANOSECOND: UDINT;
+         END_STRUCT;
+   END_TYPE
+END_NAMESPACE
+";
+
+            // Write the apax content to the file
+            File.WriteAllText(filePath, content);
         }
     }
 }
