@@ -23,7 +23,7 @@ public class AXSharpConfig : ICompilerOptions
     [Obsolete($"Use 'Create {nameof(RetrieveAXSharpConfig)} instead.")]
     public AXSharpConfig()
     {
-            
+
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public class AXSharpConfig : ICompilerOptions
     /// </summary>
     public const string CONFIG_FILE_NAME = "AXSharp.config.json";
 
-    
+
 
 
     private string _outputProjectFolder = "ix";
@@ -68,7 +68,7 @@ public class AXSharpConfig : ICompilerOptions
     [JsonIgnore]
     public string AxProjectFolder
     {
-        get => _axProjectFolder.Replace("\\",Path.DirectorySeparatorChar.ToString());
+        get => _axProjectFolder.Replace("\\", Path.DirectorySeparatorChar.ToString());
         set => _axProjectFolder = value;
     }
 
@@ -103,6 +103,8 @@ public class AXSharpConfig : ICompilerOptions
 #pragma warning disable CS0618
             AXSharpConfig = AXSharpConfig == null ? new AXSharpConfig() { AxProjectFolder = directory } : AXSharpConfig;
 #pragma warning restore CS0618
+            OverridesFromCli(AXSharpConfig, newCompilerOptions);
+
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(file, AXSharpConfig);
         }
@@ -120,7 +122,7 @@ public class AXSharpConfig : ICompilerOptions
         return AXSharpConfig;
     }
 
-   
+
     public static AXSharpConfig RetrieveAXSharpConfig(string ixConfigFilePath)
     {
         try
@@ -139,7 +141,7 @@ public class AXSharpConfig : ICompilerOptions
         {
             throw new FailedToReadIxConfigurationFileException($"Unable to process '{ixConfigFilePath}'", ex);
         }
-        
+
     }
 
     private static void OverridesFromCli(ICompilerOptions fromConfig, ICompilerOptions? newCompilerOptions)
