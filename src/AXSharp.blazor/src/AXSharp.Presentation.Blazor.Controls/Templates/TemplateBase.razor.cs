@@ -22,9 +22,8 @@ namespace AXSharp.Presentation.Blazor.Controls.Templates
             set;
         }
 
-        protected string ToolTipText => string.IsNullOrEmpty(Onliner.AttributeToolTip)
-            ? Onliner.HumanReadable
-            : Onliner.AttributeToolTip;
+        protected string ToolTipText => Onliner?.HumanReadable;
+            
 
         ///<inheritdoc/>
         protected override async Task OnAfterRenderAsync(bool firstRender)
