@@ -9,7 +9,11 @@
            class="w-100 form-control @AccessStatus"
            type="@IsNumeric(typeof(T))"
            step="any"
-           @bind="@Onliner.Shadow">
+           @bind="@Onliner.Shadow"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="@ToolTipText">
 </TemplateView>
 @code
 {

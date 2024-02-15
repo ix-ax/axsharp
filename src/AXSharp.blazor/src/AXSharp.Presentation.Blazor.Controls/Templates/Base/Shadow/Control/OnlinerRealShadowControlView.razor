@@ -10,7 +10,11 @@
            type="number"
            step="any"
            value="@Onliner.Shadow.ToString().Replace(',', '.')"
-           @onchange="Change">
+           @onchange="Change"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="@ToolTipText">
 </TemplateView>
 
 @code {

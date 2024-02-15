@@ -13,7 +13,11 @@
            @onfocus="@(() => { HasFocus = true; LastValue = Onliner.LastValue; })"
            @onblur="@(() => HasFocus = false)"
            @onchange="Change"
-           @key="Key">
+           @key="Key"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="@ToolTipText">
 </TemplateView>
 
 @code

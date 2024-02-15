@@ -9,5 +9,9 @@
            class="w-100 form-control @AccessStatus"
            style=@(IsReadOnly? "" : "background-color:transparent")
            type="text"
-           value="@Onliner.Shadow">
+           value="@Onliner.Shadow"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="@ToolTipText">
 </TemplateView>
