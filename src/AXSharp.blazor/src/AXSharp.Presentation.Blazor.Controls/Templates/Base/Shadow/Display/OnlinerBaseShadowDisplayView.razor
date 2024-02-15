@@ -10,5 +10,9 @@
            style=@(IsReadOnly? "" : "background-color:transparent")
            type="text"
            step="any"
-           @bind="@Onliner.Shadow">
+           @bind="@Onliner.Shadow"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="@ToolTipText">
 </TemplateView>

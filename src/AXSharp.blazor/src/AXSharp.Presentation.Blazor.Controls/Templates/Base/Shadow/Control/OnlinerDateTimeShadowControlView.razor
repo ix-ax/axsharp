@@ -12,7 +12,11 @@
            value="@Onliner.Shadow.ToString("yyyy-MM-dd\"T\"HH:mm:ss")"
            @onfocusout="FocusOut"
            @onchange="Change"
-           @key="Key">
+           @key="Key"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="@ToolTipText">
 </TemplateView>
 
 @code

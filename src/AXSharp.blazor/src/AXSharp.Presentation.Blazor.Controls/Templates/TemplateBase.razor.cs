@@ -1,6 +1,7 @@
 ﻿using AXSharp.Connector.ValueTypes;
 using AXSharp.Presentation.Blazor.Controls.RenderableContent;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,37 @@ namespace AXSharp.Presentation.Blazor.Controls.Templates
 {
     public partial class TemplateBase<T> : RenderableComponentBase
     {
+        private IJSObjectReference? module;
+
+        [Inject]
+        public IJSRuntime JSRuntime
+        {
+            get;
+            set;
+        }
+
+        protected string ToolTipText => string.IsNullOrEmpty(Onliner.AttributeToolTip)
+            ? Onliner.HumanReadable
+            : Onliner.AttributeToolTip;
+
+        ///<inheritdoc/>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                try
+                {
+                    module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
+                        "./_content/AXSharp.Presentation.Blazor.Controls/Templates/TemplateBase.razor.js");
+                    await module.InvokeVoidAsync("addToolTips");
+                }
+                catch (Exception e)
+                {
+                    // ignored
+                }
+            }
+        }
+
         [Parameter]
         public OnlinerBase<T> Onliner { get; set; }
 
