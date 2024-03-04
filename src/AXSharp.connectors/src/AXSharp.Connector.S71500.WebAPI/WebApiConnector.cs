@@ -59,9 +59,11 @@ public class WebApiConnector : Connector
         IPAddress = ipAddress;
         DBName = dbName;
         TargetPlatform = platform;
+        UserName = userName;
+        UserPassword = password;
 
         var serviceFactory = new ApiStandardServiceFactory();
-        var client = serviceFactory.GetHttpClient(ipAddress, userName, password);
+        var client = serviceFactory.GetHttpClient(ipAddress, UserName, UserPassword);
         requestHandler = new ApiHttpClientRequestHandler(client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
@@ -82,19 +84,21 @@ public class WebApiConnector : Connector
         IPAddress = ipAddress;
         DBName = dbName;
         TargetPlatform = platform;
-       
+        UserName = userName;
+        UserPassword = password;
+
         if (ignoreSSLErros)
             ServerCertificateCallback.CertificateCallback =
                 (sender, cert, chain, sslPolicyErrors) => true;
 
         var serviceFactory = new ApiStandardServiceFactory();
-        Client = serviceFactory.GetHttpClient(ipAddress, userName, password ?? string.Empty);
+        Client = serviceFactory.GetHttpClient(ipAddress, UserName, UserPassword ?? string.Empty);
 
         requestHandler = new ApiHttpClientRequestHandler(Client,
             new ApiRequestFactory(ReqIdGenerator, RequestParameterChecker), ApiResponseChecker);
 
         requestHandler.ApiLogout();
-        requestHandler.ApiLogin(userName, password ?? string.Empty, true);
+        requestHandler.ApiLogin(UserName, UserPassword ?? string.Empty, true);
 
         NumberOfInstances++;
     }
@@ -171,6 +175,9 @@ public class WebApiConnector : Connector
     /// </summary>
     internal string IPAddress { get; }
 
+    internal string UserName { get; }
+    internal string UserPassword { get; }
+
     internal string DBName { get; }
 
     /// <inheritdoc />
@@ -180,10 +187,46 @@ public class WebApiConnector : Connector
         return this;
     }
 
+    public async Task ReLoginToConnectorApi()
+    {
+        bool Conncected = false;
+
+        IsRwLoopSuspended = true; // suspen cyclic R/W operations
+
+        do
+        {
+            Task.Delay(2000).Wait(); // wait
+            try
+            {
+                requestHandler.ReLogin(UserName, UserPassword ?? string.Empty, true);
+                Logger.Warning($"Plc {IPAddress} Api ReLogin Done!");
+
+                Siemens.Simatic.S7.Webserver.API.Enums.ApiPlcOperatingMode mode;
+
+                do
+                {
+                    Task.Delay(2000).Wait();
+                    mode = requestHandler.PlcReadOperatingMode().Result;
+
+                    Logger.Warning($"Plc {IPAddress} Has mode {mode.ToString()}!");
+                } while (mode != Siemens.Simatic.S7.Webserver.API.Enums.ApiPlcOperatingMode.Run);
+
+                Conncected = true;
+                this.IsRwLoopSuspended = false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        } while (!Conncected);
+    }
+
     internal void HandleCommFailure(Exception exception, string description, IEnumerable<ITwinPrimitive> primitives,
         ApiBulkResponse response, IEnumerable<ApiRequestBase> originalRequest)
     {
         string firstFailedItemParams = string.Empty;
+
+        bool WasPermitionChanged = false;
 
         foreach (var errorResponse in response.ErrorResponses)
         {
@@ -195,11 +238,21 @@ public class WebApiConnector : Connector
             }
 
             Logger.Error($"{failedItemParams} : {errorResponse.Error.Message} [{errorResponse.Error.Code}]");
+
+            if (!WasPermitionChanged && (errorResponse.Error.Code == Siemens.Simatic.S7.Webserver.API.Enums.ApiErrorCode.PermissionDenied))
+            {
+                WasPermitionChanged = true;
+            }
         }
 
         foreach (var primitive in primitives)
         {
             primitive?.AccessStatus.Update(RwCycleCount, $"{description}: '{exception.Message}' [{firstFailedItemParams}] ");
+        }
+
+        if (WasPermitionChanged)
+        {
+            ReLoginToConnectorApi(); // Start in async task.
         }
 
         switch (ExceptionBehaviour)
