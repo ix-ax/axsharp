@@ -87,5 +87,23 @@ CONFIGURATION MyConfiguration
         // GH_PKTu_ix_56_FirstInheritance : GH.PKTu.ix_56.FirstInheritance;
         {S7.extern=ReadWrite}
         GH_PKTu_ix_56_SecondInheritance : GH.PKTu.ix_56.SecondInheritance;
+
+        {S7.extern=ReadWrite}
+        myDATE_leap_febr	        :       DATE	      ;        
+        {S7.extern=ReadWrite}
+        myLDATE_leap_febr	        :       LDATE	      ;
+        {S7.extern=ReadWrite}
+        myDATE_AND_TIME_leap_febr   :      DATE_AND_TIME ;
+        {S7.extern=ReadWrite}
+        myLDATE_AND_TIME_leap_febr  :      LDATE_AND_TIME;
+
+        {S7.extern=ReadWrite}
+        myDATE_leap_late	        :       DATE	      ;
+        {S7.extern=ReadWrite}
+        myLDATE_leap_late	        :       LDATE	      ;
+        {S7.extern=ReadWrite}
+        myDATE_AND_TIME_leap_late   :      DATE_AND_TIME ;
+        {S7.extern=ReadWrite}
+        myLDATE_AND_TIME_leap_late  :      LDATE_AND_TIME;
     END_VAR
 END_CONFIGURATION
