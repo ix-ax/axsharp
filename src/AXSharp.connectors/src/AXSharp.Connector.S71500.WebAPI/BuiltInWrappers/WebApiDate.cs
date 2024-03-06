@@ -106,8 +106,8 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
 
             case eTargetProjectPlatform.SIMATICAX:
                 var valAx = value / 100;
-                return DateOnly.FromDateTime(DateTime.FromBinary(valAx).AddYears(1969));
-
+                return valAx.AdjustForLeapDate();
+            
             default:
                 var valdef = value / 100;
                 return DateOnly.FromDateTime(DateTime.FromBinary(valdef).AddYears(1969));
@@ -128,8 +128,7 @@ public class WebApiDate : OnlinerDate, IWebApiPrimitive
     {
         if (date <= MinValue)
             date = MinValue;
-
-        var retval = date.ToDateTime(TimeOnly.MinValue) - MinValue.ToDateTime(TimeOnly.MinValue);
+        var retval = date.ToDateTime(TimeOnly.MinValue) - MinValue.ToDateTime(TimeOnly.MinValue); 
         return (new DateTime().AddDays(retval.TotalDays).ToBinary() * 100).ToString();
     }
 
