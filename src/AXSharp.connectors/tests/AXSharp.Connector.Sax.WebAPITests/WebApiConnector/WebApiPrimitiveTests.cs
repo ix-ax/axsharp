@@ -167,6 +167,80 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
         protected override DateOnly Max { get; } = WebApiDate.MaxValue;
         protected override DateOnly Mid { get; } = DateOnly.FromDateTime(DateTime.Today);
         protected override DateOnly Min { get; } = WebApiDate.MinValue;
+
+        [Fact]
+        public virtual async void should_synchron_write_leap_value()
+        {
+            var expected = new DateOnly(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_no_leap_value()
+        {
+            var expected = new DateOnly(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_first_leap_day_value()
+        {
+            var expected = new DateOnly(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_write_cyclic_leap_value()
+        {
+            var expected = new DateOnly(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+
+        [Fact]
+        public virtual async void should_write_cyclic_no_leap_value()
+        {
+            var expected = new DateOnly(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_first_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDate), Connector, "", "myDATE_leap_febr") as WebApiDate;
+            var expected = new DateOnly(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+      
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
+        
+        [Fact]
+        public virtual async void should_synchron_read_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDate), Connector, "", "myDATE_leap_late") as WebApiDate;
+            var expected = new DateOnly(2024, 3, 5);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
     }
 
     public class WebApiDateTimeTest : WebApiPrimitiveTests<WebApiDateTime, DateTime>
@@ -175,6 +249,80 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
         protected override DateTime Max { get; } = WebApiDateTime.MaxValue;
         protected override DateTime Mid { get; } = DateTime.Today;
         protected override DateTime Min { get; } = WebApiDateTime.MinValue;
+
+        [Fact]
+        public virtual async void should_synchron_write_leap_value()
+        {
+            var expected = new DateTime(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_no_leap_value()
+        {
+            var expected = new DateTime(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_first_leap_day_value()
+        {
+            var expected = new DateTime(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_write_cyclic_leap_value()
+        {
+            var expected = new DateTime(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+
+        [Fact]
+        public virtual async void should_write_cyclic_no_leap_value()
+        {
+            var expected = new DateTime(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_first_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDateTime), Connector, "", "myDATE_AND_TIME_leap_febr") as WebApiDateTime;
+            var expected = new DateTime(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDateTime), Connector, "", "myDATE_AND_TIME_leap_late") as WebApiDateTime;
+            var expected = new DateTime(2024, 3, 5);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
     }
 
     public class WebApiDIntTest : WebApiPrimitiveTests<WebApiDInt, int>
@@ -489,6 +637,83 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
         protected override DateOnly Max { get; } = WebApiLDate.MaxValue;
         protected override DateOnly Mid { get; } = DateOnly.FromDateTime(DateTime.Today);
         protected override DateOnly Min { get; } = WebApiLDate.MinValue;
+
+        [Fact]
+        public virtual async void should_synchron_write_leap_value()
+        {
+            var expected = new DateOnly(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_no_leap_value()
+        {
+            var expected = new DateOnly(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_first_leap_day_value()
+        {
+            var expected = new DateOnly(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_write_cyclic_leap_value()
+        {
+            var expected = new DateOnly(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+
+        [Fact]
+        public virtual async void should_write_cyclic_no_leap_value()
+        {
+            var expected = new DateOnly(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_first_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDate), Connector, "", "myLDATE_leap_febr") as WebApiDate;
+            var expected = new DateOnly(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDate), Connector, "", "myLDATE_leap_late") as WebApiDate;
+            var expected = new DateOnly(2024, 3, 5);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
+
+
+
     }
 
     public class WebApiLDateTimeTest : WebApiPrimitiveTests<WebApiLDateTime, DateTime>
@@ -497,6 +722,81 @@ namespace AXSharp.Connector.S71500.WebAPITests.Primitives
         protected override DateTime Max { get; } = WebApiLDateTime.MaxValue;
         protected override DateTime Mid { get; } = DateTime.Today;
         protected override DateTime Min { get; } = WebApiLDateTime.MinValue;
+
+        [Fact]
+        public virtual async void should_synchron_write_leap_value()
+        {
+            var expected = new DateTime(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_no_leap_value()
+        {
+            var expected = new DateTime(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_write_first_leap_day_value()
+        {
+            var expected = new DateTime(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive!.SetAsync(expected);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_write_cyclic_leap_value()
+        {
+            var expected = new DateTime(2024, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+
+        [Fact]
+        public virtual async void should_write_cyclic_no_leap_value()
+        {
+            var expected = new DateTime(2023, 3, 4);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+            await webApiPrimitive.SetAsync(Max);
+            webApiPrimitive!.Cyclic = expected;
+            webApiPrimitive!.AddToPeriodicQueue();
+            await Task.Delay(WaitTimeForCyclicOperations);
+            Assert.Equal(expected, webApiPrimitive.Cyclic);
+            Assert.Equal(expected, await webApiPrimitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_first_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDate), Connector, "", "myLDATE_AND_TIME_leap_febr") as WebApiDate;
+            var expected = new DateOnly(2024, 2, 29);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
+
+        [Fact]
+        public virtual async void should_synchron_read_leap_day_value()
+        {
+            var primitive = Activator.CreateInstance(typeof(WebApiDate), Connector, "", "myLDATE_AND_TIME_leap_late") as WebApiDate;
+            var expected = new DateOnly(2024, 3, 5);
+            TestConnector.TestApiConnector.ClearPeriodicReadSet();
+
+            Assert.Equal(expected, await primitive.GetAsync());
+        }
+
     }
 
 }

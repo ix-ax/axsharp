@@ -42,6 +42,15 @@ PROGRAM MyProgram
         Hierarchy : hierarchy;
 
 
+        myDATE_leap_febr	        :       DATE	      ;
+        myLDATE_leap_febr	        :       LDATE	      ;
+        myDATE_AND_TIME_leap_febr   :      DATE_AND_TIME ;
+        myLDATE_AND_TIME_leap_febr  :      LDATE_AND_TIME;
+
+        myDATE_leap_late	        :       DATE	      ;
+        myLDATE_leap_late	        :       LDATE	      ;
+        myDATE_AND_TIME_leap_late   :      DATE_AND_TIME ;
+        myLDATE_AND_TIME_leap_late  :      LDATE_AND_TIME;
         //myArrayString: ARRAY[0..10] OF STRING ;
         //myArrayComplex: ARRAY[0..10] OF complexArrayItem; 
 
@@ -179,4 +188,15 @@ PROGRAM MyProgram
     maxsmatch.myWCHAR	        := maxs.myWCHAR	         =  myWCHAR	        ;
     maxsmatch.mySTRING	        := maxs.mySTRING	     =  mySTRING	    ;   
     maxsmatch.myWSTRING	        := maxs.myWSTRING	     =  myWSTRING	    ;
+
+
+    myDATE_leap_febr	        :=  DATE#2024-02-29;
+    myLDATE_leap_febr	        :=  LDATE#2024-02-29;
+    myDATE_AND_TIME_leap_febr   :=  DATE_AND_TIME#2024-02-29-0:0:0.0;
+    myLDATE_AND_TIME_leap_febr  :=  LDATE_AND_TIME#2024-02-29-0:0:0.0;
+
+    myDATE_leap_late	        :=   DATE#2024-03-05;
+    myLDATE_leap_late	        :=   LDATE#2024-03-05;
+    myDATE_AND_TIME_leap_late   :=   DATE_AND_TIME#2024-03-05-0:0:0.0;
+    myLDATE_AND_TIME_leap_late  :=   LDATE_AND_TIME#2024-03-05-0:0:0.0;
 END_PROGRAM
