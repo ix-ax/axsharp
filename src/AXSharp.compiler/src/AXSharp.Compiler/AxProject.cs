@@ -232,7 +232,7 @@ public class AxProject
                     ApaxFile = new FileInfo(Path.Combine(p, "apax.yml"))
                 }).ToList();
 
-        nearByProjects = SearchForApaxFiles(GetStartDirectory(this.ProjectFolder, 2), 0, 2)
+        nearByProjects = SearchForApaxFiles(GetStartDirectory(this.ProjectFolder, 2), 0, 4)
             .Select(p => new FileInfo(p))
             .Where(p => !p.Directory.FullName.Contains(".apax"))
             .Select(a => new NearByProjects() { Apax = Apax.TryCreateApaxDto(a.FullName), ApaxFile = a })
