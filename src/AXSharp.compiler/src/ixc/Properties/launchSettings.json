@@ -9,9 +9,8 @@
       "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\integrations\\ctrl\\"
     },
     "ixc-simple-template": {
-      "commandName": "Project",
-      "commandLineArgs": "-b",
-      "workingDirectory": "C:\\W\\Develop\\gh\\ix-ax\\axopen\\src\\templates.simple\\app\\"
+      "commandName": "Project",      
+      "workingDirectory": "c:\\W\\Develop\\gh\\ix-ax\\_axopen\\axopen.template.simple\\ax"
     },
     "ixc-template-ref": {
       "commandName": "Project",
