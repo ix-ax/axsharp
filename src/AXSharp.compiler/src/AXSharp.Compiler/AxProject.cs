@@ -117,6 +117,15 @@ public class AxProject
                 if (dirInfo.Parent != null)
                 {
                     dirInfo = dirInfo.Parent;
+                    var potentialapax = dirInfo.GetFiles().Where(p => p.Name == "apax.yml").FirstOrDefault();
+                    if (potentialapax != null)
+                    {
+                        var apax = Apax.CreateApaxDto(potentialapax.FullName);
+                        if (apax.Type == "workspace")
+                        {
+                            return dirInfo.FullName;
+                        }
+                    }
                 }
                 else
                 {
@@ -232,7 +241,7 @@ public class AxProject
                     ApaxFile = new FileInfo(Path.Combine(p, "apax.yml"))
                 }).ToList();
 
-        nearByProjects = SearchForApaxFiles(GetStartDirectory(this.ProjectFolder, 2), 0, 4)
+        nearByProjects = SearchForApaxFiles(GetStartDirectory(this.ProjectFolder, 4), 0, 4)
             .Select(p => new FileInfo(p))
             .Where(p => !p.Directory.FullName.Contains(".apax"))
             .Select(a => new NearByProjects() { Apax = Apax.TryCreateApaxDto(a.FullName), ApaxFile = a })
