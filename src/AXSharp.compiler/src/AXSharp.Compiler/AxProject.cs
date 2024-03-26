@@ -129,6 +129,7 @@ public class AxProject
                 }
                 else
                 {
+                    Log.Logger.Information("Workspace apax file was not located in the directory structure, project references won't be compiled.");
                     return dirInfo.FullName; // Return root if we hit it before moving the desired levels up
                 }
             }
